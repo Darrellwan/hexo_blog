@@ -7,14 +7,14 @@ title: Hexo
 subtitle: ''
 description: ''
 keywords:
-author: John Doe
+author: Darrell
 language: en
 timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://hexo.darrelltw.site/
-permalink: :year/:month/:day/:title/
+permalink: :title/
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
@@ -95,7 +95,7 @@ exclude:
 ignore:
 
 # Comments
-disqus_enable: false
+disqus_enable: true
 disqus_shortname: hexo-darrelltw-site
 disqus_count: true
 
