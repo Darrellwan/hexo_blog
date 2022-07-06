@@ -30,7 +30,7 @@
     <link rel="Shortcut Icon" href="<%- config.root %>img/favicon.ico" type="image/ico">
 
     <link rel="alternate" href="<% if (theme.rss){ %><%- theme.rss %><% } else { %><%- config.root %>atom.xml<% } %>" title="<%= config.title %>" type="application/atom+xml">
-    <link rel="preload" as="style" href="<%- config.root %>css/all.css" media="screen" type="text/css">
+    <link rel="stylesheet" href="<%- config.root %>css/all.css" media="screen" type="text/css">
     <% if (theme.highlightjs) { %>
     <link rel="stylesheet" href="<%- config.root %>highlightjs/<%- theme.highlightjs %>.css" type="text/css">
     <% } %>
