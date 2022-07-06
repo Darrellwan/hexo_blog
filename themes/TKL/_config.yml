@@ -23,17 +23,15 @@ works:
 duoshuo:
 
 #disqus name
-disqus_shortname:
+# disqus_shortname: hexo-darrelltw-site
 
 #fancybox
 fancybox: true
 
 # Miscellaneous
-github: https://github.com/
-twitter: https://twitter.com/
+github: https://github.com/Darrellwan
 facebook: https://www.facebook.com/
-google: https://google.com/
-weibo: http://weibo.com/
+darrell_news: https://wp.darrelltw.site?utm_source=referral&utm_medium=hexo.darrelltw.site
 
 #about  timeline
 timeline:
@@ -62,3 +60,5 @@ local_search:
   trigger: auto
   # show top n results per article, show all results by setting to -1
   top_n_per_article: 2
+
+gtm: true
