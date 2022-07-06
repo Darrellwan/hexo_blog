@@ -95,14 +95,14 @@ exclude:
 ignore:
 
 # Comments
-disqus_enable: true
+disqus_enable: false
 disqus_shortname: hexo-darrelltw-site
 disqus_count: true
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: TKL
+theme: next
 
 # Sitemap
 sitemap:
