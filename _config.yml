@@ -104,11 +104,6 @@ disqus_count: true
 ## Themes: https://hexo.io/themes/
 theme: TKL
 
-# Deployment
-## Docs: https://hexo.io/docs/one-command-deployment
-deploy:
-  type: ''
-
 # Sitemap
 sitemap:
   path: sitemap.xml
