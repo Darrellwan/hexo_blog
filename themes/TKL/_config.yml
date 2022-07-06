@@ -1,10 +1,10 @@
 # config
-cover: /img/bg_img.jpg
+cover: /img/bg_img_sky.webp
 logo: /img/logo.png
 top_saying:
-- title: YOU'VE MADE A <span>BRAVE</span> DECISION, WELCOME.
-- content: 每一个不曾起舞的日子都是对生命的辜负。
-bottom_saying: 虽然还没想好写点什么，但是总觉得这里放句话比较和谐。
+- title: Code Life Better
+- content: 開發中
+bottom_saying: Don't think, just do
 # Content
 excerpt_link: Read More
 
