@@ -101,6 +101,8 @@ disqus_count: true
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
+plugins:
+- hexo-generator-robotstxt
 ## Themes: https://hexo.io/themes/
 theme: next
 
@@ -110,3 +112,9 @@ sitemap:
   rel: false
   tags: true
   categories: true
+
+robotstxt:
+  useragent: "*"
+  disallow:
+  allow:
+  sitemap: /sitemap.xml
