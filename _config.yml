@@ -107,3 +107,6 @@ theme: next
 # Sitemap
 sitemap:
   path: sitemap.xml
+  rel: false
+  tags: true
+  categories: true
