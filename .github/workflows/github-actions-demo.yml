@@ -11,13 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      
+
       - name: Configuration environment
-        env:
-          HEXO_DEPLOY_PRI: ${{secrets.HEXO_DEPLOY_PRI}}
         run: |
-          git config - user.name "DarrellWan"
-          git config - user.email "darrellwang74@gmail.com"
+          git config user.name "DarrellWan"
+          git config user.email "darrellwang74@gmail.com"
       - name: Install dependencies
         run: |
           npm i -g hexo-cli
