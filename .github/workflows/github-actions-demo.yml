@@ -10,8 +10,16 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "? The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "? This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "? The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - run: /usr/local/share/npm/bin/hexo clean; /usr/local/share/npm/bin/hexo g;
-      - run: echo "? This job's status is ${{ job.status }}."
+      - name: Configuration environment
+        env:
+          HEXO_DEPLOY_PRI: ${{secrets.HEXO_DEPLOY_PRI}}
+        run: |
+          git config - user.name "DarrellWan"
+          git config - user.email "darrellwang74@gmail.com"
+      - name: Install dependencies
+        run: |
+          npm i -g hexo-cli
+          npm i
+      - name: Deploy hexo
+        run: |
+          hexo generate && hexo deploy
