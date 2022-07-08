@@ -9,4 +9,5 @@ tags: hexo, blog
 * Theme 如何挑選
 * 如何安裝 GTM
 * 使用 Sublime 來寫 Hexo 文章
+* 使用 Git Action 自動化部署
 
