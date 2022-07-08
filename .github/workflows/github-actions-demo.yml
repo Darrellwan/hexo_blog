@@ -10,18 +10,14 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      
-      - name: Configuration environment
-        env:
-          HEXO_DEPLOY_PRI: ${{secrets.HEXO_DEPLOY_PRI}}
-        run: |
-          git config - user.name "DarrellWan"
-          git config - user.email "darrellwang74@gmail.com"
-      - name: Install dependencies
-        run: |
-          npm i -g hexo-cli
-          npm i
-      - name: Deploy hexo
-        run: |
-          hexo generate && hexo deploy
+      - uses: actions/checkout@v2
+      - name: deploy to vm
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSHKEY }}
+          script: |
+            cd /home/darrell/dev/hexo_first_test/hexo
+            git pull
+            hexo clean; hexo generate
