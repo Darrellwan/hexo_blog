@@ -10,6 +10,8 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v1
+      
       - name: Configuration environment
         env:
           HEXO_DEPLOY_PRI: ${{secrets.HEXO_DEPLOY_PRI}}
