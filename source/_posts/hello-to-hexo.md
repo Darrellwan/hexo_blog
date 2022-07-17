@@ -63,7 +63,7 @@ gtm:
 
 1. 在專案中 .github 的資料夾建立一個 workflows 的資料夾如圖
 <!-- ![github_action_folder](./hello-to-hexo/github_action_folder.png) -->
-{% img left	https://hexo.darrelltw.site/hello-to-hexo/github_action_folder.png 238 135 github_action_folder github_action_folder %}
+{% img left	https://hexo.darrelltw.site/hello-to-hexo/github_action_folder.png github_action_folder github_action_folder %}
 
 2. 這個 YAML 檔中目前我使用的內容如下
 ```
@@ -120,8 +120,8 @@ hexo generate //重新產生最新的靜態檔案
 
 另外比較重要的是這些 ${{ secrets.xxx}} 該怎麼設定
 需要到 Github Repository -> Setting -> Secrets -> Action 來新增，必須小心，這邊新增後就無法檢視原本的內容，更新會是空白的欄位讓你直接更新上去。
-{% img left	https://hexo.darrelltw.site/hello-to-hexo/github_action_secrets_setting.webp 900 487 github_action_secrets_setting github_action_secrets_setting %}
+{% img left	https://hexo.darrelltw.site/hello-to-hexo/github_action_secrets_setting.webp github_action_secrets_setting github_action_secrets_setting %}
 
 設置好後應該就大功告成了，可以在 Local 端 Push 一次
 Github -> Repository -> Action 這邊就會顯示 run 的狀態(成功或失敗，和失敗在哪)
-{% img left	https://hexo.darrelltw.site/hello-to-hexo/github_action_run_result.png 900 196 github_action_run_result github_action_run_result %}
+{% img left	https://hexo.darrelltw.site/hello-to-hexo/github_action_run_result.png github_action_run_result github_action_run_result %}

@@ -1,7 +1,3 @@
-{{ open_graph() }}
-
-{{ canonical() }}
-
 <script id="page-datalayer">
   let currentPageData = {
     title : "{{ page.title }}",
