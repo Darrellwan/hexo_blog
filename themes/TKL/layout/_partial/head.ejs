@@ -18,12 +18,13 @@
 <head>
   <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
   <!-- Meta data -->
+    <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+    <meta name="description" content="<%- config.subtitle %>" />
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content="<%- config.title %>">
     <meta name="author" content="<%- config.author %>">
-    <meta name="description" content="<%- config.subtitle %>" />
     <meta name="keywords" content="<%- config.keywords %>" />
 
     <!-- Favicon, (keep icon in root folder) -->

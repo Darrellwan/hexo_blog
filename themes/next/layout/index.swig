@@ -1,4 +1,5 @@
 {% extends '_layout.swig' %}
+<%- seoStructuredData(config) %>
 {% import '_macro/sidebar.swig' as sidebar_template with context %}
 
 {% block title %}{{ title }}{%- if theme.index_with_subtitle and subtitle %} - {{ subtitle }}{%- endif %}{% endblock %}
