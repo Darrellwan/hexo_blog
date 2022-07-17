@@ -119,3 +119,9 @@ robotstxt:
   disallow:
   allow:
   sitemap: /sitemap.xml
+
+seo_structured_data:
+  organization:
+    name: Darrell Blog
+    url: https://hexo.darrelltw.site
+    logoUrl: https://hexo.darrelltw.site/images/logo.png
