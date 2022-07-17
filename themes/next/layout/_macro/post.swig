@@ -8,7 +8,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="{{ url_for(theme.avatar.url or theme.images + '/avatar.gif') }}">
       <meta itemprop="name" content="{{ author }}">
-      <link itemprop="url" href="https://www.linkedin.com/in/darrell-wang-78265a8b/">
+      <link itemprop="url" href="{{ config.authorLink }}">
       <meta itemprop="description" content="{{ description }}">
     </span>
 
