@@ -3,6 +3,7 @@ title: hello to hexo
 date: 2022-07-06 13:42:47
 tags: hexo, blog
 page_type: post
+description: 第一篇在 Hexo 上面的文章，未來會慢慢寫下建置心得以及一些使用心得。
 ---
 
 第一篇在 [Hexo](https://hexo.io/) 上面的文章，未來會慢慢寫下建置心得以及一些使用心得。

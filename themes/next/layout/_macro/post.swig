@@ -46,6 +46,11 @@
           {%- set time_diff = time(post.date) != time(post.updated) %}
           {%- set datetime_diff = date_diff or time_diff %}
 
+
+          {%- if post.description and is_index %}
+            <div class="post-description is-index">{{ post.description }}</div>
+          {%- endif %}
+
           {%- if theme.post_meta.created_at %}
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -162,6 +167,7 @@
       </header>
     {%- endif %}
 
+    {%- if not is_index %}
     {#################}
     {### POST BODY ###}
     {#################}
@@ -213,6 +219,7 @@
 
     {%- if theme.related_posts.enable and (theme.related_posts.display_in_home or not is_index) %}
       {{ partial('_partials/post/post-related.swig') }}
+    {%- endif %}    
     {%- endif %}
 
     {%- if not is_index %}
@@ -253,6 +260,8 @@
         <div class="post-eof"></div>
       </footer>
     {%- endif %}
+
+
   </article>
   {######################}
   {### END POST BLOCK ###}
