@@ -1,4 +1,4 @@
-{{ open_graph({image : "https://hexo.darrelltw.site/images/logo.png"}) }}
+{{ open_graph({image : "https://hexo.darrelltw.site/images/darrell_icon_512.png"}) }}
 
 {{ canonical() }}
 
