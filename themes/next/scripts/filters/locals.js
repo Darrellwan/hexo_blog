@@ -15,6 +15,7 @@ hexo.extend.filter.register('template_locals', locals => {
   locals.title = __('title') !== 'title' ? __('title') : config.title;
   locals.subtitle = __('subtitle') !== 'subtitle' ? __('subtitle') : config.subtitle;
   locals.author = __('author') !== 'author' ? __('author') : config.author;
+  locals.authorLink = __('authorLink') !== 'authorLink' ? __('authorLink') : config.authorLink;
   locals.description = __('description') !== 'description' ? __('description') : config.description;
   locals.languages = [...i18n.languages];
   locals.languages.splice(locals.languages.indexOf('default'), 1);
