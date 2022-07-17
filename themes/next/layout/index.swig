@@ -7,7 +7,6 @@
 {% block class %}index posts-expand{% endblock %}
 
 {% block content %}
-  {{ partial('_macro/index.swig', { is_index: true}) }}
   {%- for post in page.posts.toArray() %}
     {{ partial('_macro/post.swig', {post: post, is_index: true}) }}
   {%- endfor %}
