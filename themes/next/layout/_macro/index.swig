@@ -1,0 +1,1 @@
+<%- seoStructuredData(config) %>
