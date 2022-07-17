@@ -3,13 +3,14 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Darrell Hexo Blog
-subtitle: ''
+title: Darrell Blog
+subtitle: 'Coding, Marketing, Technology'
 description: 'Coding, Marketing, Technology'
 keywords: Digital Marketing, Martech
 author: Darrell
+authorLink: 'https://www.linkedin.com/in/darrell-wang-78265a8b/'
 language: en
-timezone: ''
+timezone: 'Asia/Taipei'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
