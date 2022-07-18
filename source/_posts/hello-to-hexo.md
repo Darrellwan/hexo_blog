@@ -26,11 +26,11 @@ description: 第一篇在 Hexo 上面的文章，未來會慢慢寫下建置心�
 
 目前這個網站使用的 Theme 是 [Next](https://github.com/theme-next/hexo-theme-next)
 安裝 GTM(Google Tag Manager) 和 GA(Google Analytic) 的方式類似，
-檔案在 ```.\themes\next\layout\_third-party\analytics\google-analytics.swig```
+檔案在 
+> .\themes\next\layout\_third-party\analytics\google-analytics.swig
 
 我的作法是遵照 Theme 設定 GA 的方式，透過 config 來判斷是否要載入:
-
-```
+```html
 {%- if theme.gtm.gtm_id %}
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -42,11 +42,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 {%- endif %}
 ```
 
+
 > 主題的設定檔案路徑
 > .\themes\next\_config.yml
 
 如果在主題的設定檔中有填入
-```
+```javascript
 gtm:
   gtm_id: GTM-WRZDBFS
 ```
@@ -66,7 +67,7 @@ gtm:
 {% img left	https://hexo.darrelltw.site/hello-to-hexo/github_action_folder.png github_action_folder github_action_folder %}
 
 2. 這個 YAML 檔中目前我使用的內容如下
-```
+```YAML
 name: GitHub Actions Demo
 on: 
   push:
@@ -101,7 +102,7 @@ jobs:
 **jobs**
 這邊是 action 會開始執行的動作
 
-``` 
+```yaml
 - use xxx
 ```
 是指說去應用別人已經寫好的 action，像我這邊用到的 ssh 登入機制就是使用一個名為 appleboy 的使用者建立的 ssh-action@master
@@ -110,11 +111,11 @@ jobs:
 並填入我遠端機器的 host, username, sshkey 等等
 
 **scripts** 就是連線到機器後要下的指令，蠻直覺的
-```
-cd 到相對應的資料夾
-git pull
-hexo clean //清除已經產生的靜態檔案
-hexo generate //重新產生最新的靜態檔案
+```shell
+cd 到相對應的資料夾;
+git pull;
+hexo clean; //清除已經產生的靜態檔案
+hexo generate; //重新產生最新的靜態檔案
 ```
 不用 hexo server 的原因是我使用 nginx 當作 server 了
 
