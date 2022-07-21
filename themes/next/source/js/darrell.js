@@ -1,1 +1,2 @@
-// console.log("It's darrell js")
+import firebase from "firebase/app";
+import "firebase/messaging";

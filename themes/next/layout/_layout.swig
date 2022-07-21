@@ -8,6 +8,7 @@
   {{ partial('_third-party/analytics/index.swig', {}, {cache: theme.cache.enable}) }}
   {{ partial('_scripts/noscript.swig', {}, {cache: theme.cache.enable}) }}
   {% include '_partials/head/head-datalayer.swig' %}
+  {% include '_partials/head/head-firebase.swig' %}
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
