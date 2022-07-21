@@ -146,7 +146,7 @@ function showToken(currentToken) {
     return window.localStorage.getItem('sentToServer') === '1';
   }
 
-  async function setTokenSentToServer(sent) {
+  function setTokenSentToServer(sent) {
     window.localStorage.setItem('sentToServer', sent ? '1' : '0');
     main();
     closeWindow();
