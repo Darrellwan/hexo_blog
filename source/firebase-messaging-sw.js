@@ -8,11 +8,18 @@ importScripts("https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js");
 importScripts("https://www.gstatic.com/firebasejs/8.8.1/firebase-messaging.js");
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+// firebase.initializeApp(firebaseConfig);
+firebase.initializeApp({
+    apiKey: "AIzaSyCbDuQldDXIGUYwszFngMPz-dsSKac5shw",
+    authDomain: "darrelltestiterable.firebaseapp.com",
+    projectId: "darrelltestiterable",
+    storageBucket: "darrelltestiterable.appspot.com",
+    messagingSenderId: "712933270955",
+    appId: "1:712933270955:web:f958378386628d950a9eee"
+});
 const messaging = firebase.messaging();
 
 messaging.onBackgroundMessage(function(payload) {
-  console.log("onBackgroundMessage payload");
   console.log('[firebase-messaging-sw.js] Received background message ', payload);
   // // Customize notification here
   // const notificationTitle = 'Background Message Title';
