@@ -1,16 +1,16 @@
 ---
-title: hello to hexo
+title: Hello To Hexo
 date: 2022-07-06 13:42:47
-tags: hexo, blog
+tags: hexo, blog, google-tag-manager, git-action, theme
 page_type: post
-description: 第一篇在 Hexo 上面的文章，未來會慢慢寫下建置心得以及一些使用心得。
+description: 如何挑選 Theme, 如何安裝 Google Tag Manager, 使用 Git Action 自動化部署 Hexo
 ---
 
-第一篇在 [Hexo](https://hexo.io/) 上面的文章，未來會慢慢寫下建置心得以及一些使用心得。
+如何挑選 Theme, 主題的設定檔案路徑, 如何安裝 Google Tag Manager, 使用 Git Action 自動化部署 Hexo
 
 ---
 
-### Theme 如何挑選
+### 如何挑選 Theme
 
 官方文件中提供的模板有很多 [連結](https://hexo.io/themes/)
 但建議還是都先找一下該 Theme 的 Github 連結來確認一下使用者的人數和維護的日期，
@@ -55,7 +55,7 @@ gtm:
 
 ---
 
-### 使用 Git Action 自動化部署
+### 使用 Git Action 自動化部署 Hexo
 
 這邊可能不是 Best Practice. 
 背景原因是租用的機器就是需要 ssh 去連線，如果在 Local 中修改完去推 code.
