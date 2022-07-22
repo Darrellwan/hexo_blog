@@ -60,5 +60,5 @@ messaging.onBackgroundMessage(function(payload) {
     data: { url:payload.data.click_action }, //the url which we gonna use later
     actions: []
   };
-  self.registration.showNotification(notificationTitle,notificationOptions);
+  return self.registration.showNotification(notificationTitle,notificationOptions);
 });
