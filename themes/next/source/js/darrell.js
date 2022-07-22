@@ -201,7 +201,7 @@ function showToken(currentToken) {
           // showToken('Error retrieving registration token. ', err);
           // setTokenSentToServer(false);
         });
-  }
+  }))
 
   
 
