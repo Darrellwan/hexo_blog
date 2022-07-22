@@ -25,7 +25,8 @@ self.addEventListener('notificationclick', function(event) {
     event.notification.close();
     // fcp_options.link field from the FCM backend service goes there, but as the host differ, it not handled by Firebase JS Client sdk, so custom handling
     if (event.notification && event.notification.data && event.notification.data.FCM_MSG && event.notification.data.FCM_MSG.notification) {
-        const url = event.notification.data.FCM_MSG.notification.click_action;
+        const  = event.notification.data.FCM_MSG.notification.click_action;
+        console.log({url: url});
         event.waitUntil(
             self.clients.matchAll({type: 'window'}).then( windowClients => {
                 // Check if there is already a window/tab open with the target URL
@@ -33,6 +34,7 @@ self.addEventListener('notificationclick', function(event) {
                     var client = windowClients[i];
                     // If so, just focus it.
                     if (client.url === url && 'focus' in client) {
+                        console.log("37 focus")
                         return client.focus();
                     }
                 }
