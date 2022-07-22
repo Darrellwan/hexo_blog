@@ -20,8 +20,9 @@ firebase.initializeApp({
 const messaging = firebase.messaging();
 
 self.addEventListener('notificationclick', function(event) {
-  var redirect_url = event.notification.data.click_action;
   console.log("notificationclick")
+  console.log({event: event})
+  var redirect_url = event.notification.data.click_action;
   console.log({redirect_url: redirect_url})
   event.notification.close();
   event.waitUntil(
@@ -56,5 +57,7 @@ messaging.onBackgroundMessage(function(payload) {
     data: { url:payload.data.click_action }, //the url which we gonna use later
     actions: []
   };
+  console.log({notificationTitle: notificationTitle});
+  console.log({notificationOptions: notificationOptions});
   return self.registration.showNotification(notificationTitle,notificationOptions);
 });
