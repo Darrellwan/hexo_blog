@@ -1,5 +1,3 @@
-importScripts('https://cdn.onesignal.com/sdks/OneSignalSDKWorker.js');
-
 var currentValue = "";
 
 function getLocalStorageFirebaseToken() {
