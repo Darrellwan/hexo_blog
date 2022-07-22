@@ -45,6 +45,21 @@ self.addEventListener('notificationclick', function(event) {
   );
 });
 
+// FCM
+messaging.setBackgroundMessageHandler(function(payload) {
+  console.log("setBackgroundMessageHandler")
+  console.log({payload: payload})
+  // var data = payload.data;
+  // var title = data.title;
+  // var options = {
+  //   body: data.body,
+  //   icon: '/logo/logo192.png',
+  //   badge: '/logo/logo192.png'
+  // };
+  // click_action = data.click_action;
+
+  // return self.registration.showNotification(title, options);
+});
 
 
 messaging.onBackgroundMessage(function(payload) {
