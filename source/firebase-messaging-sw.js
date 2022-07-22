@@ -20,33 +20,29 @@ firebase.initializeApp({
 const messaging = firebase.messaging();
 
 self.addEventListener('notificationclick', function(event) {
-    console.log("notificationclick")
-    console.log(event);
-    event.notification.close();
-    // fcp_options.link field from the FCM backend service goes there, but as the host differ, it not handled by Firebase JS Client sdk, so custom handling
-    if (event.notification && event.notification.data && event.notification.data.FCM_MSG && event.notification.data.FCM_MSG.notification) {
-        const  = event.notification.data.FCM_MSG.notification.click_action;
-        console.log({url: url});
-        event.waitUntil(
-            self.clients.matchAll({type: 'window'}).then( windowClients => {
-                // Check if there is already a window/tab open with the target URL
-                for (var i = 0; i < windowClients.length; i++) {
-                    var client = windowClients[i];
-                    // If so, just focus it.
-                    if (client.url === url && 'focus' in client) {
-                        console.log("37 focus")
-                        return client.focus();
-                    }
-                }
-                // If not, then open the target URL in a new window/tab.
-                if (self.clients.openWindow) {
-                    console.log("open window")
-                    return self.clients.openWindow(url);
-                }
-            })
-        )
-    }
-}, false);
+  var redirect_url = event.notification.data.click_action;
+  console.log("notificationclick")
+  console.log({redirect_url: redirect_url})
+  event.notification.close();
+  event.waitUntil(
+    clients
+      .matchAll({
+        type: "window"
+      })
+      .then(function(clientList) {
+        console.log(clientList);
+        for (var i = 0; i < clientList.length; i++) {
+          var client = clientList[i];
+          if (client.url === "/" && "focus" in client) {
+            return client.focus();
+          }
+        }
+        if (clients.openWindow) {
+          return clients.openWindow(redirect_url);
+        }
+      })
+  );
+});
 
 
 
