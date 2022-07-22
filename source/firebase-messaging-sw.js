@@ -45,26 +45,9 @@ self.addEventListener('notificationclick', function(event) {
   );
 });
 
-// FCM
 messaging.setBackgroundMessageHandler(function(payload) {
-  console.log("setBackgroundMessageHandler")
-  console.log({payload: payload})
-  // var data = payload.data;
-  // var title = data.title;
-  // var options = {
-  //   body: data.body,
-  //   icon: '/logo/logo192.png',
-  //   badge: '/logo/logo192.png'
-  // };
-  // click_action = data.click_action;
-
-  // return self.registration.showNotification(title, options);
-});
-
-
-messaging.onBackgroundMessage(function(payload) {
-  console.log('[firebase-messaging-sw.js] Received background message ', payload);
-  // // Customize notification here
+    console.log('[firebase-messaging-sw.js] Received background message ', payload);
+  // Customize notification here
   var notificationTitle = payload.data.title; //or payload.notification or whatever your payload is
   var notificationOptions = {
     body: payload.data.body,
@@ -72,7 +55,23 @@ messaging.onBackgroundMessage(function(payload) {
     data: { url:payload.data.click_action }, //the url which we gonna use later
     actions: []
   };
-  console.log({notificationTitle: notificationTitle});
-  console.log({notificationOptions: notificationOptions});
-  return self.registration.showNotification(notificationTitle,notificationOptions);
+
+  return self.registration.showNotification(notificationTitle,
+    notificationOptions);
+});
+
+
+messaging.onBackgroundMessage(function(payload) {
+  console.log('[firebase-messaging-sw.js] Received background message ', payload);
+  // // Customize notification here
+  // var notificationTitle = payload.data.title; //or payload.notification or whatever your payload is
+  // var notificationOptions = {
+  //   body: payload.data.body,
+  //   icon: payload.data.icon,
+  //   data: { url:payload.data.click_action }, //the url which we gonna use later
+  //   actions: []
+  // };
+  // console.log({notificationTitle: notificationTitle});
+  // console.log({notificationOptions: notificationOptions});
+  // return self.registration.showNotification(notificationTitle,notificationOptions);
 });
