@@ -46,14 +46,17 @@ self.addEventListener('notificationclick', function(event) {
     }
 }, false);
 
+
+
 messaging.onBackgroundMessage(function(payload) {
   console.log('[firebase-messaging-sw.js] Received background message ', payload);
   // // Customize notification here
-  // const notificationTitle = 'Background Message Title';
-  // const notificationOptions = {
-  //   body: 'Background Message body.',
-  //   icon: '/firebase-logo.png'
-  // };
-
-  // self.registration.showNotification(notificationTitle,notificationOptions);
+  var notificationTitle = payload.data.title; //or payload.notification or whatever your payload is
+  var notificationOptions = {
+    body: payload.data.body,
+    icon: payload.data.icon,
+    data: { url:payload.data.click_action }, //the url which we gonna use later
+    actions: []
+  };
+  self.registration.showNotification(notificationTitle,notificationOptions);
 });
