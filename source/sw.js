@@ -24,7 +24,6 @@ self.addEventListener('notificationclick', function(event) {
                 }
                 // If not, then open the target URL in a new window/tab.
                 if (self.clients.openWindow) {
-                    console.log("open window")
                     return self.clients.openWindow(url);
                 }
             })
