@@ -14,15 +14,17 @@ self.addEventListener('notificationclick', function(event) {
     if (event.notification && event.notification.data && event.notification.data.FCM_MSG && event.notification.data.FCM_MSG.notification) {
         const url = event.notification.data.FCM_MSG.notification.click_action;
         console.log({url: url})
+
         event.waitUntil(
             self.clients.matchAll({type: 'window'}).then( windowClients => {
                 // Check if there is already a window/tab open with the target URL
-                for (var i = 0; i < windowClients.length; i++) {
-                    var client = windowClients[i];
-                    // If so, just focus it.
-                    if (client.url === url && 'focus' in client) {
-                        return client.focus();
-                    }
+               for (i = 0; i < clients.length; i++) {
+                  if (clients[i].url.indexOf(scopeUrl) !== -1) {
+                        // Scope url is the part of main url
+                        clients[i].navigate(redirectUrl);
+                        return clients[i].focus();
+                        break;
+                  }
                 }
                 // If not, then open the target URL in a new window/tab.
                 if (self.clients.openWindow) {
@@ -33,8 +35,7 @@ self.addEventListener('notificationclick', function(event) {
         )
     }
 }, false);
-// Initialize Firebase
-// firebase.initializeApp(firebaseConfig);
+
 firebase.initializeApp({
     apiKey: "AIzaSyCbDuQldDXIGUYwszFngMPz-dsSKac5shw",
     authDomain: "darrelltestiterable.firebaseapp.com",
