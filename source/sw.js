@@ -19,11 +19,10 @@ self.addEventListener('notificationclick', function(event) {
             self.clients.matchAll({type: 'window'}).then( windowClients => {
                 // Check if there is already a window/tab open with the target URL
                for (i = 0; i < clients.length; i++) {
-                  if (clients[i].url.indexOf(scopeUrl) !== -1) {
+                console.log({clients: clients[i]})
+                  if (clients[i].url.indexOf(scopeUrl) !== -1 && 'focus' in clients[i]) {
                         // Scope url is the part of main url
-                        clients[i].navigate(redirectUrl);
-                        return clients[i].focus();
-                        break;
+                        return self.clients[i].focus();
                   }
                 }
                 // If not, then open the target URL in a new window/tab.
