@@ -182,33 +182,32 @@ function showToken(currentToken) {
 
   // Initialize Firebase Cloud Messaging and get a reference to the service
   const messaging = firebase.messaging();
-
-    if('serviceWorker' in navigator) {   // 檢查browser有無支援serviceWorker
-        navigator.serviceWorker.register('/firebase-messaging-sw.js').then(function() {   // register會回傳一個Promise
-            console.log('Service worker registered!');
-        });
-    }
-
-  "serviceWorker"in navigator && window.addEventListener("load", (()=>{
-      messaging.getToken({vapidKey: 'BGUJBJ5eChMW3VfIyYOI_cQPeMS9Z78UgUuFO6jGPZej7PmzcPJ7e-0sSXl0VnTp5N55BrfIV0_t9ZrWr3CoIAw'}).then((currentToken) => {
-        if (currentToken) {
-        	console.log({currentToken: currentToken})
-            // sendTokenToServer(currentToken);
-            // updateUIForPushEnabled(currentToken);
-          } else {
-            // Show permission request.
-            console.log('No registration token available. Request permission to generate one.');
-            // Show permission UI.
-            // updateUIForPushPermissionRequired();
-            // setTokenSentToServer(false);
-          }
-        }).catch((err) => {
-          console.log('An error occurred while retrieving token. ', err);
-          // showToken('Error retrieving registration token. ', err);
-          // setTokenSentToServer(false);
-        });
-  }))
-
   
+if ("serviceWorker" in navigator) {
+navigator.serviceWorker
+  .register("./firebase-messaging-sw.js")
+  .then(function(registration) {
+    console.log("Registration successful, scope is:", registration.scope);
+    messaging.getToken({vapidKey: 'BGUJBJ5eChMW3VfIyYOI_cQPeMS9Z78UgUuFO6jGPZej7PmzcPJ7e-0sSXl0VnTp5N55BrfIV0_t9ZrWr3CoIAw', serviceWorkerRegistration : registration })
+      .then((currentToken) => {
+        if (currentToken) {
+          console.log('current token for client: ', currentToken);
+
+          // Track the token -> client mapping, by sending to backend server
+          // show on the UI that permission is secured
+        } else {
+          console.log('No registration token available. Request permission to generate one.');
+
+          // shows on the UI that permission is required 
+        }
+      }).catch((err) => {
+        console.log('An error occurred while retrieving token. ', err);
+        // catch error while creating client token
+      });  
+    })
+    .catch(function(err) {
+      console.log("Service worker registration failed, error:"  , err );
+  }); 
+}
 
                 
