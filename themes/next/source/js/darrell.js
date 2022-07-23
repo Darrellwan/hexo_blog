@@ -185,7 +185,7 @@ function showToken(currentToken) {
   
 if ("serviceWorker" in navigator) {
 navigator.serviceWorker
-  .register("./sw.js")
+  .register("./sw9.js")
   .then(function(registration) {
     console.log("Registration successful, scope is:", registration.scope);
     messaging.getToken({vapidKey: 'BGUJBJ5eChMW3VfIyYOI_cQPeMS9Z78UgUuFO6jGPZej7PmzcPJ7e-0sSXl0VnTp5N55BrfIV0_t9ZrWr3CoIAw', serviceWorkerRegistration : registration })
