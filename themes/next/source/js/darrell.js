@@ -183,6 +183,12 @@ function showToken(currentToken) {
   // Initialize Firebase Cloud Messaging and get a reference to the service
   const messaging = firebase.messaging();
 
+    if('serviceWorker' in navigator) {   // 檢查browser有無支援serviceWorker
+        navigator.serviceWorker.register('/firebase-messaging-sw.js').then(function() {   // register會回傳一個Promise
+            console.log('Service worker registered!');
+        });
+    }
+
   "serviceWorker"in navigator && window.addEventListener("load", (()=>{
       messaging.getToken({vapidKey: 'BGUJBJ5eChMW3VfIyYOI_cQPeMS9Z78UgUuFO6jGPZej7PmzcPJ7e-0sSXl0VnTp5N55BrfIV0_t9ZrWr3CoIAw'}).then((currentToken) => {
         if (currentToken) {
