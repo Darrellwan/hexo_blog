@@ -96,9 +96,9 @@ exclude:
 ignore:
 
 # Comments
-disqus_enable: true
+disqus_enable: false
 disqus_shortname: hexo-darrelltw-site
-disqus_count: true
+disqus_count: false
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
