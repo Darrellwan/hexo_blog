@@ -4,6 +4,7 @@ date: 2022-07-06 13:42:47
 tags: hexo, blog, google-tag-manager, git-action, theme
 page_type: post
 description: 如何挑選 Theme, 如何安裝 Google Tag Manager, 使用 Git Action 自動化部署 Hexo
+categories: Hexo
 ---
 
 如何挑選 Theme, 主題的設定檔案路徑, 如何安裝 Google Tag Manager, 使用 Git Action 自動化部署 Hexo

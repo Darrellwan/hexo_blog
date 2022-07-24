@@ -4,6 +4,7 @@ date: 2022-07-24 19:53:09
 tags: firebase, FCM, notification, Stack Overflow
 page_type: post
 description: 讓 FCM Notification 可以支援點擊任何連結，不受到同 Host/Domain 的約束
+categories: Firebase Cloud Messaging
 ---
 
 
