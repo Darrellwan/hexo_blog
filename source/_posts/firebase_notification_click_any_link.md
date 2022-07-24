@@ -60,7 +60,7 @@ self.addEventListener('notificationclick', function(event) {
 }, false);
 ```
 
-這邊使用傳送給 FCM 的 Payload 是長這樣
+這邊是用來傳送給 FCM 的 Payload 
 
 ```json
 {
