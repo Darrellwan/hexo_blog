@@ -580,9 +580,9 @@ comments:
 
 # Disqus
 disqus:
-  enable: true
-  shortname: hexo-darrelltw-site
-  count: true
+  enable: false
+  shortname: 
+  count: false
   #post_meta_order: 0
 
 # DisqusJS

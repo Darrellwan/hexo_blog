@@ -187,12 +187,9 @@ if ("serviceWorker" in navigator) {
 navigator.serviceWorker
   .register("/sw.js")
   .then(function(registration) {
-    console.log("Registration successful, scope is:", registration.scope);
     messaging.getToken({vapidKey: 'BGUJBJ5eChMW3VfIyYOI_cQPeMS9Z78UgUuFO6jGPZej7PmzcPJ7e-0sSXl0VnTp5N55BrfIV0_t9ZrWr3CoIAw', serviceWorkerRegistration : registration })
       .then((currentToken) => {
         if (currentToken) {
-          console.log('current token for client: ', currentToken);
-
           // Track the token -> client mapping, by sending to backend server
           // show on the UI that permission is secured
         } else {
