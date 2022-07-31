@@ -9,4 +9,10 @@ Disallow: /fonts/
 Disallow: /vendors/
 Disallow: /fancybox/
 
+User-agent: Googlebot
+Disallow:
+User-agent: Googlebot-image
+Disallow:
+
+
 Sitemap: https://hexo.darrelltw.site/sitemap.xml
