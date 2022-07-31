@@ -15,7 +15,7 @@ categories:
 ---
 
 
-### Stack Overflow 上面的提問
+# Stack Overflow 上面的提問
 
 [Stack Overflow 原文連結](https://stackoverflow.com/questions/73098387/can-ecommerce-item-for-ga4-add-to-cart-event-have-custom-parameters/)
 
@@ -60,7 +60,7 @@ items: [
 
 ---
 
-### 利用 Custom Variable 來解決問題 !
+# 利用 Custom Variable 來解決問題 !
 
 其實較正確的解決方法應該是去網站上修改 DataLayer. 是個比較根本的解決方法，
 不過其實在 Google Tag Manager 也能改寫來完成
@@ -93,7 +93,7 @@ function(){
 
 ---
 
-### 延伸思考 : Universal Analytics 的 Datalayer (Ecommerce)
+# 延伸思考 : Universal Analytics 的 Datalayer (Ecommerce)
 
 
 [Google: Universal Analytics Datalayer](https://developers.google.com/analytics/devguides/collection/ua/gtm/enhanced-ecommerce#details)
