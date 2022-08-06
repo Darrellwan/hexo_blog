@@ -59,7 +59,7 @@ function(){
 可能的情況有
 1. 要是數字裡面有兩個(含)以上的 comma, 數字就會變得混亂
 	例如 : 1,234,567 會變成 1.234,567
-{% img left	https://hexo.darrelltw.site/tackoverflow-handle-comma-and-period/only_replace_first_comma.png only_replace_first_comma %}
+{% img left	https://hexo.darrelltw.site/stackoverflow-handle-comma-and-period/only_replace_first_comma.png only_replace_first_comma %}
 	=> 解法 : 如果有多個 comma 要處理，請使用 [JavaScript replaceAll](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replaceAll)
 
 2. 呈上，如果最後轉出來的價格為 1.234.567 那基本上還是個無效的價格數字，這時最好回頭去詢問工程師或是檢查網站上的程式碼，直接調整成正確的價格格式 : 1234.567 (不要包含逗點)
@@ -72,7 +72,7 @@ function(){
 
 像是電商網站中，會有大量的產品資訊，但怎麼讓 Google 可以搜尋到這個產品的圖片跟價格等等資訊，並讓 Google 知道這是一個 **產品**
 
-{% img left	https://hexo.darrelltw.site/tackoverflow-handle-comma-and-period/google_product_from_structure_data.png google_product_from_structure_data %}
+{% img left	https://hexo.darrelltw.site/stackoverflow-handle-comma-and-period/google_product_from_structure_data.png google_product_from_structure_data %}
 
 當搜尋了 **電腦螢幕** ，發現可以切換到 **Shopping** 這個 tab，裡面就包含了大量的螢幕商品資訊。
 也就是說這些產品的網頁資訊都包含了 Product 的結構化資料
@@ -80,9 +80,9 @@ function(){
 可以裡用 [Google 測試結構化資料](https://developers.google.com/search/docs/advanced/structured-data) 來反查別人怎麼做的 : 
 
 
-{% img left	https://hexo.darrelltw.site/tackoverflow-handle-comma-and-period/google_product_from_structure_data_result.png google_product_from_structure_data_result %}
+{% img left	https://hexo.darrelltw.site/stackoverflow-handle-comma-and-period/google_product_from_structure_data_result.png google_product_from_structure_data_result %}
 
-{% img left	https://hexo.darrelltw.site/tackoverflow-handle-comma-and-period/google_product_from_structure_data_result_products.png google_product_from_structure_data_result_products %}
+{% img left	https://hexo.darrelltw.site/stackoverflow-handle-comma-and-period/google_product_from_structure_data_result_products.png google_product_from_structure_data_result_products %}
 
 可以看到 Google 檢索這個 Pchome24 的螢幕商品時取得了哪些商品資訊，所以他可能就出現在了 Google 的購物搜尋中，
 大家也可以多利用結構化資料，來曝光自己的商品資訊。
