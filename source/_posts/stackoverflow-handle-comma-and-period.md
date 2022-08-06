@@ -5,8 +5,7 @@ tags:
 	- stackoverflow
 	- google-tag-manager
 	- google analytics 4
-	- price
-description: 利用 Google Tag Manager 傳送 Price 價格資料給 Google Analytics 4 時，因為逗點和小數點的問題導致價格無法順利追蹤
+description: 利用 Google Tag Manager 傳送 Price 作為結構化資料或是 Google Analytics 4 時，因為逗點和小數點的問題導致價格無法順利追蹤
 categories: 
 	- Google Tag Manager
 	- Googel Analytics 4

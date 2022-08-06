@@ -1,5 +1,5 @@
 ---
-title: Stackoverflow GTM - Rewrite Items In Datalayer
+title: GTM - Rewrite Items In Datalayer (From Stackoverflow )
 date: 2022-07-31 22:49:43
 tags: 
 	- stackoverflow
