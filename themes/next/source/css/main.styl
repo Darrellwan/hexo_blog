@@ -1,7 +1,7 @@
 // CSS Style Guide: http://codeguide.co/#css
 
 
-$scheme    = hexo-config('scheme') ? hexo-config('scheme') : 'Muse';
+$scheme  = hexo-config('scheme') ? hexo-config('scheme') : 'Muse';
 
 $variables = base $scheme;
 
@@ -45,3 +45,15 @@ for $inject_mixin in hexo-config('injects.mixin')
 // --------------------------------------------------
 for $inject_style in hexo-config('injects.style')
   @import $inject_style;
+
+
+@font-face {
+  font-family: RobotoMono;
+  src: url('../fonts/RobotoMono-Medium.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.roboto_fonts {
+  font-family: RobotoMono;
+}

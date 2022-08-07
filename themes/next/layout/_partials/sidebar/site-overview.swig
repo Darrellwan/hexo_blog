@@ -91,6 +91,7 @@
       {%- endif %}
         {{ next_url(sidebarURL, sidebarIcon + sidebarText, {title: name + ' → ' + sidebarURL}) }}
       </span>
+      <br>
     {%- endfor %}
   </div>
 {%- endif %}

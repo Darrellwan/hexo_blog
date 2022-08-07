@@ -255,7 +255,7 @@
 
         {{ partial('_partials/post/post-footer.swig', {}, {cache: theme.cache.enable}) }}
 
-        {{ post_nav(post) }}
+        
       </footer>
     {% else %}
       <footer class="post-footer">

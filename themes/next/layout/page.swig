@@ -33,12 +33,12 @@
             <div class="tag-cloud-title">
               {{ _p('counter.tag_cloud', site.tags.length) }}
             </div>
-            <div class="tag-cloud-tags">
+            <div class="tag-cloud-tags roboto_fonts">
               {{ tagcloud({
                 min_font   : theme.tagcloud.min,
                 max_font   : theme.tagcloud.max,
                 amount     : theme.tagcloud.amount,
-                color      : true,
+                color      : false,
                 start_color: theme.tagcloud.start,
                 end_color  : theme.tagcloud.end})
               }}
