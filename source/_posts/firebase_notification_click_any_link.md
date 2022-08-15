@@ -27,7 +27,7 @@ categories:
 importScripts("https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js");
 importScripts("https://www.gstatic.com/firebasejs/8.8.1/firebase-messaging.js");
 ```
-{% img left	https://hexo.darrelltw.site/firebase_notification_click_any_link/notification_code_determine_same_host.png notification_code_determine_same_host %}
+{% img left	https://darrelltw.com/firebase_notification_click_any_link/notification_code_determine_same_host.png notification_code_determine_same_host %}
 
 可以看到截圖中 紅框處，只要 host 不同就會直接 return 掉
 
@@ -83,4 +83,4 @@ self.addEventListener('notificationclick', function(event) {
 ```
 
 收到的通知截圖和點擊後能正確開啟 Google Map
-{% img left	https://hexo.darrelltw.site/firebase_notification_click_any_link/notification_sample.png notification_sample %}
+{% img left	https://darrelltw.com/firebase_notification_click_any_link/notification_sample.png notification_sample %}

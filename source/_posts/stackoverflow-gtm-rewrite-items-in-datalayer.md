@@ -2,11 +2,9 @@
 title: GTM - Rewrite Items In Datalayer (From Stackoverflow )
 date: 2022-07-31 22:49:43
 tags: 
-	- stackoverflow
-	- google-tag-manager
-	- google analytics 4
+  - Google Tag Tanager
+  - Google Analytics 4
 	- datalayer
-	- items
   - Stack Overflow
 description: 如何改寫 Datalyer 的 Items ，符合 Google Analytics 4 的 Items 規格
 categories: 
