@@ -1,5 +1,5 @@
 ---
-title: GTM - Handle comma and period - 處理價格的小數點和逗點 (From Stackoverflow )
+title: GTM - Handle comma and period (From Stackoverflow )
 date: 2022-08-06 13:59:00
 tags: 
 	- stackoverflow
