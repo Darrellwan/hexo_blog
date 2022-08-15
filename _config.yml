@@ -14,7 +14,7 @@ timezone: 'Asia/Taipei'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://hexo.darrelltw.site/
+url: https://darrelltw.com/
 permalink: :title/
 permalink_defaults:
 pretty_urls:
@@ -123,5 +123,5 @@ robotstxt:
 seo_structured_data:
   organization:
     name: Darrell Blog
-    url: https://hexo.darrelltw.site
-    logoUrl: https://hexo.darrelltw.site/images/logo.png
+    url: https://darrelltw.com
+    logoUrl: https://darrelltw.com/images/logo.png

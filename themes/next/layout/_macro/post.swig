@@ -3,7 +3,7 @@
   {##################}
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="{{ post.lang or config.language }}">
     <link itemprop="mainEntityOfPage" href="{{ post.permalink }}">
-    <meta itemprop="image" content="https://hexo.darrelltw.site/images/logo.png">
+    <meta itemprop="image" content="https://darrelltw.com/images/logo.png">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="{{ url_for(theme.avatar.url or theme.images + '/avatar.gif') }}">
