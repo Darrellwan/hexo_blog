@@ -259,7 +259,6 @@
       </footer>
     {% else %}
       <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
     {%- endif %}
 
