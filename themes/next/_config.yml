@@ -339,7 +339,7 @@ calendar:
 text_align:
   # Available values: start | end | left | right | center | justify | justify-all | match-parent
   desktop: justify
-  mobile: justify
+  mobile: start
 
 # Reduce padding / margin indents on devices with narrow width.
 mobile_layout_economy: false
@@ -420,19 +420,19 @@ font:
   # Global font settings used for all elements inside <body>.
   global:
     external: true
-    family: Lato
+    family: RobotoMono
     size:
 
   # Font settings for site title (.site-title).
   title:
     external: true
-    family:
+    family: RobotoMono
     size:
 
   # Font settings for headlines (<h1> to <h6>).
   headings:
     external: true
-    family:
+    family: RobotoMono
     size:
 
   # Font settings for posts (.post-body).
