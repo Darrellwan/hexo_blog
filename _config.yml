@@ -114,12 +114,6 @@ sitemap:
   tags: true
   categories: true
 
-robotstxt:
-  useragent: "*"
-  disallow:
-  allow:
-  sitemap: /sitemap.xml
-
 seo_structured_data:
   organization:
     name: Darrell Blog
