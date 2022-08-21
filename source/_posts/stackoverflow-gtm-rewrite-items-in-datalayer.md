@@ -1,5 +1,5 @@
 ---
-title: GTM - Rewrite Items In Datalayer (From Stackoverflow )
+title: Google Tag Manger - 重寫 Datalayer 裡面中的 Item
 date: 2022-07-31 22:49:43
 tags: 
   - Google Tag Tanager

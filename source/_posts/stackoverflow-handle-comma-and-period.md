@@ -1,5 +1,5 @@
 ---
-title: GTM - Handle comma and period (From Stackoverflow )
+title: Google Tag Tanager - 處理價格的逗點跟小數點
 date: 2022-08-06 13:59:00
 tags: 
 	- Google Tag Tanager
