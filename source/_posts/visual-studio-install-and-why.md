@@ -3,7 +3,7 @@ title: 從 Sublime Text 跳到 Visual Studio Code
 date: 2022-08-21 11:00:00
 tags: 
 	- Visual Studio Code
-    - Stack Overflow
+	- Stack Overflow
 description: 為何從 Sublime Text 轉換到 Visual Studio Code
 categories: 
 	- Code Development
