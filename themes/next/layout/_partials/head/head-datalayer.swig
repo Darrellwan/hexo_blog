@@ -18,11 +18,6 @@
     post_views : "{{ page.views }}",
     type: "{{page.page_type}}"
   };
-
-  let testPage = "{{page.defaultImage}}";
-  let testconfig = "{{config.defaultImage}}";
-  console.log({testPage: testPage})
-  console.log({testconfig: testconfig})
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push(currentPageData)
 </script>
