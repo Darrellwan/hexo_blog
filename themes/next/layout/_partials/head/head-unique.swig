@@ -12,3 +12,5 @@
     lang   : '{{ page.lang }}'
   };
 </script>
+
+{{ json_ld() }}
