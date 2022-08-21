@@ -119,3 +119,5 @@ seo_structured_data:
     name: Darrell Blog
     url: https://darrelltw.com
     logoUrl: https://darrelltw.com/images/logo.png
+
+defaultImage: https://darrelltw.com/images/darrell_icon_512.png

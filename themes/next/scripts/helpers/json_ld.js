@@ -13,15 +13,7 @@ function jsonLd() {
   const links = [];
 
   if (authorLinks) {
-    for (let key in authorLinks) {
-      if (authorLinks.hasOwnProperty(key)) {
-        const link = authorLinks[key].url;
-
-        if (link) {
-          links.push(link);
-        }
-      }
-    }
+    links.push(authorLinks);
   }
 
   const author = {
@@ -67,17 +59,12 @@ function jsonLd() {
       schema.keywords = page.tags.map((tag) => tag.name).join(", ");
     }
 
-    if (page.photos && page.photos.length > 0) {
-      images = images.concat(page.photos);
-    }
-
     if (page.coverImage) {
-      images.unshift(page.coverImage);
-    }
-
-    if (page.thumbnailImage || page.coverImage) {
-      images.unshift(page.thumbnailImage);
-      schema.thumbnailUrl = page.thumbnailImage || page.coverImage;
+      images.push(page.coverImage);
+      schema.thumbnailUrl = page.coverImage;
+    }else if(config.defaultImage) {
+      images.push(config.defaultImage);
+      schema.thumbnailUrl = config.defaultImage;
     }
 
     schema.image = images;
