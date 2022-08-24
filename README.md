@@ -4,6 +4,11 @@
 [![hexo-theme-next](https://img.shields.io/badge/hexo_theme-next-red.svg "hexo-theme-yilia-plus")](https://theme-next.js.org/ "hexo-theme-next")
 [![Author](https://img.shields.io/badge/Author-Darrell-red.svg "Author")](https://github.com/Darrellwan "Author")
 
+## [Google Tag Manager - Using Ecommerce Datalayer directly in GA4 Event tag](https://darrelltw.com/gtm-ga4-new-feature-use-ecommerce-datalayer/?utm_source=github&utm_medium=referral)
+
+Google Tag Manger 發布新功能，可以在 Google Analytics 4 的 Tag 中直接使用 Ecommerce 的 DataLayer，再也不用重新設定一個額外的 DataLayer Variable For Items
+
+
 ## [從 Sublime Text 跳到 Visual Studio Code](https://darrelltw.com/visual-studio-install-and-why/?utm_source=github&utm_medium=referral)
 
 為何從 Sublime Text 轉換到 Visual Studio Code
