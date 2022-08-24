@@ -3,7 +3,7 @@ title: Hello To Hexo
 date: 2022-07-06 13:42:47
 tags: 
   - hexo
-  - Google Tag Tanager
+  - Google Tag Manager
   - theme
   - git-action
 page_type: post

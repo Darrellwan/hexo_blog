@@ -2,7 +2,7 @@
 title: GA4 Ecommerce Recommend Events DataLayer
 date: 2022-08-15 22:36:53
 tags: 
-	- Google Tag Tanager
+	- Google Tag Manager
 	- Google Analytics 4
 description: GA4 在電子商務的推薦事件，Datalayer 該如何準備
 categories: 

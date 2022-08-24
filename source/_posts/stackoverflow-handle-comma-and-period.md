@@ -1,8 +1,8 @@
 ---
-title: Google Tag Tanager - 處理價格的逗點跟小數點
+title: Google Tag Manager - 處理價格的逗點跟小數點
 date: 2022-08-06 13:59:00
 tags: 
-	- Google Tag Tanager
+	- Google Tag Manager
 	- Google Analytics 4
 	- Stack Overflow
 description: 利用 Google Tag Manager 傳送 Price 作為結構化資料或是 Google Analytics 4 時，因為逗點和小數點的問題導致價格無法順利追蹤
