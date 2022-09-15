@@ -1,16 +1,16 @@
 ---
-title: GA4 Certification Announced
+title: GA4 Certification Announced | GA4 證照測驗公布
 date: 2022-08-18 22:20:05
 tags: 
 	- Google Analytics 4
-description: Google Analytics 4 終於公布了自己的課程和認證考試 !
+description: Google Analytics 4 終於公布了自己的課程和證照測驗 !
 categories: 
 	- Google Analytics 4
 ---
 
 # Google Analytics 4 Certification !
 
-就在 2022/08/17 ，Google 終於公布了大家期盼已久的課程和認證考試
+就在 2022/08/17 ，Google 終於公布了大家期盼已久的課程和證照考試
 
 [{% img left https://darrelltw.com/ga4-certification-announced/ga4_linkedin_certification_announced.png ga4_linkedin_certification_announced %}](http://goo.gle/skillshopga4)
 
@@ -38,7 +38,7 @@ categories:
 ## 3. Universal Analytics 也會有部分題目出現
 > 有些 session 的概念和一些 UA 本身的概念都會出現在題目中，但占比不大，原先就有一些 Universal Analytics 經驗的人會覺得相對輕鬆
 
-總結來說我覺得這份認證可以當作一個回頭檢驗自己這幾個月下來的學習是否有得到效果，
+總結來說我覺得這份證照的考取可以當作一個回頭檢驗自己這幾個月下來的學習是否有得到效果，
 但實務上會使用到的分析思維和報表的實作都還是需要大量的練習才會更熟悉。
 
 祝每個想拿到證照的人都能早日一起拿到
