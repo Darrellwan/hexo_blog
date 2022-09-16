@@ -44,5 +44,3 @@ categories:
 祝每個想拿到證照的人都能早日一起拿到
 
 {% img left	https://darrelltw.com/ga4-certification-announced/passed_the_certification.png passed_the_certification %}
-
-
