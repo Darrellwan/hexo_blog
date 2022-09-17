@@ -6,6 +6,7 @@ tags:
 description: Google Analytics 4 終於公布了自己的課程和證照測驗 !
 categories: 
 	- Google Analytics 4
+page_type: post
 ---
 
 # Google Analytics 4 Certification !

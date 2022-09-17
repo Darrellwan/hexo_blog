@@ -7,6 +7,7 @@ tags:
 description: 使用 Google App Script 的 doGet, doPost function 來測試收到 get post request 的情形，很常利用在一些 webhook 的串接時想要有個臨時的地方測試 payload 時會用到。
 categories: 
 	- Google App Script
+page_type: post
 ---
 
  ![API](./google-app-script-test-webhook/API.png)

@@ -7,6 +7,7 @@ tags:
 description: GA4 在電子商務的推薦事件，Datalayer 該如何準備
 categories: 
 	- Google Tag Manager
+page_type: post
 ---
 
 

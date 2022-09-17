@@ -7,6 +7,7 @@ tags:
 description: Google Tag Manger 發布新功能，可以在 Google Analytics 4 的 Tag 中直接使用 Ecommerce 的 DataLayer，再也不用重新設定一個額外的 DataLayer Variable For Items
 categories: 
 	- Google Tag Manager
+page_type: post
 ---
 
  ![gtm_tag_with_ecommerce_datalayer](./gtm-ga4-new-feature-use-ecommerce-datalayer/gtm_tag_with_ecommerce_datalayer.png)

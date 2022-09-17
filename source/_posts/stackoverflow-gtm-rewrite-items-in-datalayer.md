@@ -9,6 +9,7 @@ tags:
 description: 如何改寫 Datalyer 的 Items ，符合 Google Analytics 4 的 Items 規格
 categories: 
 	- Google Tag Manager
+page_type: post
 ---
 
 

@@ -34,5 +34,4 @@
   };
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push(currentPageData);
-  console.log("123");
 </script>

@@ -8,6 +8,7 @@ description: 為何從 Sublime Text 轉換到 Visual Studio Code
 categories: 
 	- Code Development
 coverImage : https://darrelltw.com/visual-studio-install-and-why/vs_code_logo.png
+page_type: post
 ---
 
 # 從 Sublime Text 的轉移
