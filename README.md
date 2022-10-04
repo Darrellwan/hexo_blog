@@ -4,6 +4,10 @@
 [![hexo-theme-next](https://img.shields.io/badge/hexo_theme-next-red.svg "hexo-theme-yilia-plus")](https://theme-next.js.org/ "hexo-theme-next")
 [![Author](https://img.shields.io/badge/Author-Darrell-red.svg "Author")](https://github.com/Darrellwan "Author")
 
+## [Google Tag Manager - GA4 Field To Set 設定事件參數](https://darrelltw.com/google-tag-manager-ga4-configuration-fieldtoset/?utm_source=github&utm_medium=referral)
+
+當決大部分的 GA4 Event 都需要設定相同的 Event Parameter 時，利用 Field To Set 可以只設定一次就解決 !
+
 ## [Google App Script 測試 Webhook 的串接](https://darrelltw.com/google-app-script-test-webhook/?utm_source=github&utm_medium=referral)
 
 使用 Google App Script 的 doGet, doPost function 來測試收到 get post request 的情形，很常利用在一些 webhook 的串接時想要有個臨時的地方測試 payload 時會用到。
