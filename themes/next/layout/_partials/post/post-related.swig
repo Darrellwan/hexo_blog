@@ -11,12 +11,20 @@
     {%- if popular_post.img and popular_post.img != '' %}
       <div class="popular-posts-img"><img src="{{ popular_post.img }}"></div>
     {%- endif %}
-    <div class="popular-posts-title"><a href="{{ popular_post.path }}" rel="bookmark">{{ popular_post.title }}</a></div>
+    <div class="popular-posts-title"><a class="non-border orange-main-color js-popular-post" href="{{ popular_post.path }}" rel="bookmark">{{ popular_post.title }}</a></div>
     {%- if popular_post.excerpt and popular_post.excerpt != '' %}
       <div class="popular-posts-excerpt"><p>{{ popular_post.excerpt }}</p></div>
     {%- endif %}
   </li>
   {%- endif %}    
-  {%- endfor %}
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      "event" : "popular_post_view",
+      "post_path" : "{{ popular_post.path }}",
+      "post_title" : "{{ popular_post.title }}",
+    })
+  </script>
+  {%- endfor %}  
   </ul>
 {%- endif %}

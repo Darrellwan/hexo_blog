@@ -1,13 +1,16 @@
 <script id="page-datalayer">
+
+  let category_arr = "";
   {%- if page.categories and page.categories.length %}
-      let category_arr = [];
+  category_arr = [];
       {%- for cat in page.categories.toArray() %}
         category_arr.push("{{ cat.name }}")
       {%- endfor %}
   {%- endif %}
 
+  let tags_arr = "";
   {%- if page.tags and page.tags.length %}
-      let tags_arr = [];
+  tags_arr = [];
       {%- for tag in page.tags.toArray() %}
         tags_arr.push("{{ tag.name }}")
       {%- endfor %}
