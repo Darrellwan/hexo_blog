@@ -419,20 +419,20 @@ font:
 
   # Global font settings used for all elements inside <body>.
   global:
-    external: true
-    family: RobotoMono
+    external: false
+    family: Roboto
     size:
 
   # Font settings for site title (.site-title).
   title:
-    external: true
-    family: RobotoMono
+    external: false
+    family: Roboto
     size:
 
   # Font settings for headlines (<h1> to <h6>).
   headings:
-    external: true
-    family: RobotoMono
+    external: false
+    family: Roboto
     size:
 
   # Font settings for posts (.post-body).
