@@ -3,8 +3,6 @@
     <img class="site-author-image" itemprop="image" alt="{{ author }}"
       src="{{ url_for(theme.avatar.url) }}">
   {%- endif %}
-  <p class="site-author-name" itemprop="name">{{ author }}</p>
-  <div class="site-description" itemprop="description">{{ description }}</div>
 </div>
 
 {%- if theme.site_state %}
