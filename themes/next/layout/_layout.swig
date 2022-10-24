@@ -9,6 +9,8 @@
   {{ partial('_scripts/noscript.swig', {}, {cache: theme.cache.enable}) }}
   {% include '_partials/head/head-datalayer.swig' %}
   {% include '_partials/head/head-firebase.swig' %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.0/css/lightgallery.min.css" integrity="sha512-F2E+YYE1gkt0T5TVajAslgDfTEUQKtlu4ralVq78ViNxhKXQLrgQLLie8u1tVdG2vWnB3ute4hcdbiBtvJQh0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.0/css/lightgallery-bundle.min.css" integrity="sha512-nUqPe0+ak577sKSMThGcKJauRI7ENhKC2FQAOOmdyCYSrUh0GnwLsZNYqwilpMmplN+3nO3zso8CWUgu33BDag==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -58,5 +60,17 @@
   {%- if theme.pjax %}
     </div>
   {%- endif %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.0/lightgallery.min.js" integrity="sha512-pG+XpUdyBtp28FzjpaIaj72KYvZ87ZbmB3iytDK5+WFVyun8r5LJ2x1/Jy/KHdtzUXA0CUVhEnG+Isy1jVJAbA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.0/plugins/mediumZoom/lg-medium-zoom.min.js" integrity="sha512-Iyw6NvFcjzIh3iMLEkUV+Ar101O4Y3Dd/V7tEvl0vjKPh0snQM8wtQOjuqWFpXqAi9ab4IOao5bEG2+9x6yFpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    (function(){
+      lightGallery(document.querySelector('div.post-body'), {
+          // Target all images
+          selector: '.blog-images',
+          // Add medium zoom plugin
+          plugins: [lgMediumZoom],
+      });
+    })()
+  </script>
 </body>
 </html>

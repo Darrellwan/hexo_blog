@@ -1,5 +1,5 @@
 ---
-title: Google Tag Manager - 利用 LocalStorage Cookie SessionStorage 來暫存資訊
+title: GTM - 利用 LocalStorage Cookie SessionStorage 來暫存資訊
 date: 2022-10-20 21:55:00
 tags:
 	- Google Tag Manager
@@ -9,8 +9,7 @@ categories:
 	- Google Tag Manager
 page_type: post
 ---
-
- ![background_storage_picture](./background_storage_picture.webp)
+{% darrellImage background_storage_picture ./background_storage_picture.webp %}
 
 ## 為什麼需要暫存資料
 
@@ -23,7 +22,7 @@ page_type: post
 我們必須判斷使用者 點擊 登入的按鈕後，還要能判斷他登入成功的情境
 (因為他很有可能輸入錯誤的帳號密碼，或單純不小心點擊到那個登入按鈕，這些都是我們不想要的情境)
 
- ![login_demo](./login_demo.png)
+{% darrellImage login_demo ./login_demo.png %}
 
 所以這個時候有個方法就是
 1. 追蹤他點擊登入按鈕
@@ -40,7 +39,7 @@ page_type: post
 1. 開啟 Chrome DevTool
 2. 點擊 tab: Application
 3. 左方中可以分別找到這些項目
- ![how_to_check_cookie_storage](./how_to_check_cookie_storage.png)
+{% darrellImage how_to_check_cookie_storage ./how_to_check_cookie_storage.png %}
 
 ## 三種儲存的差異
 
@@ -62,10 +61,10 @@ Cookie 是個方便的選擇，但也有很多地方要小心
 以下是個範例和順便讓大家知道如何查詢一個 request 帶了哪些 cookie
 
 1. 打開 chrome devtool，選擇 tab: `network`，選取一個 domain 是自己 domain 的 request
-![how_to_check_the_cookie_in_request](./how_to_check_the_cookie_in_request.png)
+{% darrellImage how_to_check_the_cookie_in_request ./how_to_check_the_cookie_in_request.png %}
 
 2. 選擇 Cookie，就能看到所有跟著 request 送出的 cookie
-![the_cookie_in_the_request](./the_cookie_in_the_request.png)
+{% darrellImage the_cookie_in_the_request ./the_cookie_in_the_request.png %}
 
 
 ### SessionStorage
@@ -77,11 +76,11 @@ SessionStorage 和 LocalStorage
 SessionStorage 的生命週期就只有，當下這個分頁
 
 (附圖為三個分頁，純粹重新展示一次`分頁`的概念)
-![3_tabs_in_chrome](./3_tabs_in_chrome.png)
+{% darrellImage 3_tabs_in_chrome ./3_tabs_in_chrome.png %}
 
 Session Storage 在不同分頁時，無法彼此共用，就算在同一個網站底下也是
 而且分頁關掉的那一剎那，SessionStorage 就會跟著消失了
-![session_storage_in_different_tab.webp](./session_storage_in_different_tab.webp)
+{% darrellImage session_storage_in_different_tab ./session_storage_in_different_tab.webp %}
 
 
 ### LocalStorage
@@ -92,7 +91,7 @@ LocalStorage 的概念就單純很多
 並且除非去清除掉，不然就是會一直存在
 
 下圖顯示為，存了一次資料進 LocalStorage 後，所有分頁都會出現
-![local_storage_in_different_tab.webp](./local_storage_in_different_tab.webp)
+{% darrellImage local_storage_in_different_tab ./local_storage_in_different_tab.webp %}
 
 
 ### 如何使用 Cookie (JavaScript)
@@ -111,7 +110,7 @@ function setCookie(cname, cvalue, exdays) {
 ```
 
 需要注意的是第三個參數為天數
-![set_cookie.webp](./set_cookie.webp)
+{% darrellImage set_cookie ./set_cookie.webp %}
 
 #### 取得 Cookie
 
@@ -134,7 +133,7 @@ function getCookie(cname) {
   return "";
 }
 ```
-![get_cookie.webp](./get_cookie.webp)
+{% darrellImage get_cookie ./get_cookie.webp %}
 
 
 #### 移除 Cookie
@@ -180,15 +179,15 @@ localStorage.removeItem("key");
 當你想儲存一個 object 或是 array 到 localStorage 或 Cookie 時
 存的當下並沒有報錯和 Error
 但檢查的時候就會發現它存壞了
-![store_object_in_storage](./store_object_in_storage.webp)
+{% darrellImage store_object_in_storage ./store_object_in_storage.webp %}
 
 請記得使用 [JSON.stringify()](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)
 將 object 先存成 json sring 後再儲存
-![store_object_in_storage_json_stringify](./store_object_in_storage_json_stringify.webp)
+{% darrellImage store_object_in_storage_json_stringify ./store_object_in_storage_json_stringify.webp %}
 
 取出的時候，也要記得把 json string 再轉回 object 使用
 [JSON.parse()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse)
-![get_object_in_storage_json_parse](./get_object_in_storage_json_parse.webp)
+{% darrellImage get_object_in_storage_json_parse ./get_object_in_storage_json_parse.webp %}
 
 ### In Google Tag Manager
 
@@ -196,7 +195,7 @@ localStorage.removeItem("key");
 通常會在兩個地方使用到
 
 代碼的 `自訂HTML`
-![tag_manager_customhtml](./tag_manager_customhtml.webp)
+{% darrellImage tag_manager_customhtml ./tag_manager_customhtml.webp %}
 
 變數的 `自訂 JavaScript`
-![tag_manager_custom_js_variable](./tag_manager_custom_js_variable.webp)
+{% darrellImage tag_manager_custom_js_variable ./tag_manager_custom_js_variable.webp %}
