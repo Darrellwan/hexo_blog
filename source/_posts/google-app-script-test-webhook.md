@@ -10,8 +10,8 @@ categories:
 page_type: post
 ---
 
- ![API](./google-app-script-test-webhook/API.png)
- ![Webhook](./google-app-script-test-webhook/Webhook.png)
+{% darrellImage API ./API.png %}
+{% darrellImage Webhook ./Webhook.png %}
 
 ---
 
@@ -27,7 +27,7 @@ page_type: post
 這麼一來你就再也不用每個小時發一個 request 去詢問了!
 
 另一種我們很有感的 webhook 就是地震國家警報
- ![earthquake_alarm](./google-app-script-test-webhook/earthquake_alarm.png)
+{% darrellImage earthquake_alarm ./earthquake_alarm.png %}
 任何警報類型的場景都很適合 webhook，當和其他系統在討論串接時，也要記得 webhook 的存在並詢問對方是否有這種機制
 較常發生的情境有 : 
 - 成立訂單
@@ -55,10 +55,10 @@ page_type: post
 
 ## 建立一個 Google Sheet 和 Google App Script
 
- ![googlesheet_create_app_script](./google-app-script-test-webhook/googlesheet_create_app_script.png)
+{% darrellImage googlesheet_create_app_script ./googlesheet_create_app_script.png %}
 通常也可以直接建立一個空白的 Google App Script，但今天這場景會把資料寫入在 Google Sheet 上，所以我直接從 Google Sheet 上建立一個 Google App Script。
 
- ![app_script_intro](./google-app-script-test-webhook/app_script_intro.png)
+{% darrellImage app_script_intro ./app_script_intro.png %}
 新建立好的 Google App Script 會有一隻預設的檔案，副檔名為 gs 檔，並且內建一個 myFunction
 
 ---
@@ -123,27 +123,27 @@ function writeToSheet(type, data){
 }
 ```
 
-![sheet_id_name_position](./google-app-script-test-webhook/sheet_id_name_position.png)
+{% darrellImage sheet_id_name_position ./sheet_id_name_position.png %}
 如何尋找 SpreadSheet ID 和 Sheet Name
 
 ---
 ## 部署 Google App Script
 
 部署的步驟圖多，盡量用圖片解釋
-![deploy_step_1](./google-app-script-test-webhook/deploy_step_1.png)
-![deploy_step_2](./google-app-script-test-webhook/deploy_step_2.png)
-![deploy_step_3](./google-app-script-test-webhook/deploy_step_3.png)
-![deploy_step_4](./google-app-script-test-webhook/deploy_step_4.png)
-![deploy_step_5](./google-app-script-test-webhook/deploy_step_5.png)
-![deploy_step_6](./google-app-script-test-webhook/deploy_step_6.png)
-![deploy_step_7](./google-app-script-test-webhook/deploy_step_7.png)
+{% darrellImage deploy_step_1 ./deploy_step_1.png %}
+{% darrellImage deploy_step_2 ./deploy_step_2.png %}
+{% darrellImage deploy_step_3 ./deploy_step_3.png %}
+{% darrellImage deploy_step_4 ./deploy_step_4.png %}
+{% darrellImage deploy_step_5 ./deploy_step_5.png %}
+{% darrellImage deploy_step_6 ./deploy_step_6.png %}
+{% darrellImage deploy_step_7 ./deploy_step_7.png %}
 這邊的網址就是 webhook 的 endpoint，可以開始測試 Get 和 Post 的 Request 了!
 
 ---
 ## 測試 Endpoint 和 GSheet 是否成功
 
 這邊用 PostMan 測試自己的 endpoint
-![test_deploy_result_postman](./google-app-script-test-webhook/test_deploy_result_postman.png)
+{% darrellImage test_deploy_result_postman ./test_deploy_result_postman.png %}
 
 可以看到 Google Sheet 上有正確的紀錄 Post 的相關資料了!
-![test_deploy_result_gsheet](./google-app-script-test-webhook/test_deploy_result_gsheet.png)
+{% darrellImage test_deploy_result_gsheet ./test_deploy_result_gsheet.png %}

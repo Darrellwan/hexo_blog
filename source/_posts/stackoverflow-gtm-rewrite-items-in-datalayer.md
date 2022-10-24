@@ -12,6 +12,7 @@ categories:
 page_type: post
 ---
 
+{% darrellImage stack_overflow ./stack_overflow.png %}
 
 # Stack Overflow 上面的提問
 
@@ -87,7 +88,7 @@ function(){
 就是把 Datalayer 中的 Item 取出來，並透過 Array Map 的方式來重新改寫，
 主要是把所有的 Key 改成 GA4 的規則，賦予相對應的值就能解決
 
-{% img left	https://i.stack.imgur.com/SXa7e.png google_tag_manager_preview_datalayer %}
+{% darrellImage google_tag_manager_preview_datalayer https://i.stack.imgur.com/SXa7e.png %}
 
 ---
 

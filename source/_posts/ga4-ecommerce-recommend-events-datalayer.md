@@ -10,7 +10,6 @@ categories:
 page_type: post
 ---
 
-
 # Google 上的建議事件清單
 
 [[GA4] 建議事件](https://support.google.com/analytics/answer/9267735?hl=zh-Hant)

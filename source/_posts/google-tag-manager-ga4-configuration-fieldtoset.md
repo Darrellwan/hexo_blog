@@ -10,7 +10,7 @@ categories:
 page_type: post
 ---
 
- ![introduce_field_to_set](./google-tag-manager-ga4-configuration-fieldtoset/introduce_field_to_set.png)
+{% darrellImage introduce_field_to_set ./introduce_field_to_set.png %}
 
 ---
 
@@ -19,7 +19,7 @@ page_type: post
 有些時候因為特殊場景，發現到少數幾個參數幾乎在全部的事件都會需要被追蹤
 但又因為一些先天上的限制導致無法使用 User Property
 
-![ga4_user_property_limit](./google-tag-manager-ga4-configuration-fieldtoset/ga4_user_property_limit.png)
+{% darrellImage ga4_user_property_limit ./ga4_user_property_limit.png %}
 
 GA4 User Property 的長度限制 :
 Key - 24 字元
@@ -51,7 +51,7 @@ abcdefghijklmnopqrstuvwxyzabcdefghij
 
 # Field To Set
 
-![field_to_set](./google-tag-manager-ga4-configuration-fieldtoset/field_to_set.png)
+{% darrellImage field_to_set ./field_to_set.png %}
 
 [Google 官方文件連結](https://developers.google.com/analytics/devguides/collection/ga4/event-parameters?client_type=gtag)
 
@@ -61,7 +61,7 @@ UserId 也是在這裡設定
 
 範例中填入兩個參數，其中一個是固定的值，另一個是讀取 Cookie
 
-![check_event_parameter](./google-tag-manager-ga4-configuration-fieldtoset/check_event_parameter.png)
+{% darrellImage check_event_parameter ./check_event_parameter.png %}
 
 Preview 後就可以發現，送出去的每個 Event 都會包含這兩個參數了
 

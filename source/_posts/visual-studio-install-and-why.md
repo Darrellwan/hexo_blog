@@ -21,12 +21,14 @@ page_type: post
 
 # Visual Studio Code 的流行
 
- ![google_trend](./visual-studio-install-and-why/google_trend.png)
+{% darrellImage google_trend ./google_trend.png %}
+
 從 [Google Trend](https://trends.google.com.tw/trends/explore?date=all&q=%2Fm%2F0b6h18n,%2Fm%2F0134xwrk,%2Fm%2F0_x5x3g,EMACS,%2Fm%2F07zh7#TIMESERIES) 中可以看到，Visual Studio 從 2018 開始的搜尋聲量開始大量上升，
 並且超過一些當時也還是很紅的 Sublime Text, Vim, Atom 等等，並且從此一路長紅，到 2022 的今天已經遠遠超過其他編輯器和開發環境，在2022年初甚至又暴漲了一波。
 
 開發人員非常熟悉的 Stack Overflow，其實每年也會公布一些和開發人員息息相關的報告和趨勢，以下是 [2022 年的報告](https://survey.stackoverflow.co/2022/#technology-most-popular-technologies)
-![stackoverflow_2022](./visual-studio-install-and-why/stackoverflow_2022_.webp)
+
+{% darrellImage stackoverflow_2022 ./stackoverflow_2022_.webp %}
 
 也能看到 Visual Studio Code 的領先程度，在大量工程師的投票之中還是穩居第一，
 雖然這份投票和報告並不能代表全部工程師和相關人士的喜好，但應該也已經呈現絕大部分的情況了!
@@ -86,4 +88,4 @@ Visual Studio Code 有很方便的套件市集 Extensions Marketplace 可以搜�
 也是很簡單卻很好用的功能，當程式碼有時充滿 Bracket {} 時，很容易迷失在找對應的括號中，有了這個套件後，每組對應的括號都會有自已的顏色，
 可以因此少花費很多心力在這上面
 
- ![rainbow_brackets.webp](./visual-studio-install-and-why/rainbow_brackets.webp)
+{% darrellImage rainbow_brackets.webp ./rainbow_brackets.webp %}

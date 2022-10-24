@@ -13,7 +13,8 @@ page_type: post
 
 就在 2022/08/17 ，Google 終於公布了大家期盼已久的課程和證照考試
 
-[{% img left https://darrelltw.com/ga4-certification-announced/ga4_linkedin_certification_announced.png ga4_linkedin_certification_announced %}](http://goo.gle/skillshopga4)
+ 
+[{% darrellImage ga4_linkedin_certification_announced ./ga4_linkedin_certification_announced.png %}](http://goo.gle/skillshopga4)
 
 ---
 
@@ -44,4 +45,4 @@ page_type: post
 
 祝每個想拿到證照的人都能早日一起拿到
 
-{% img left	https://darrelltw.com/ga4-certification-announced/passed_the_certification.png passed_the_certification %}
+{% darrellImage passed_the_certification ./passed_the_certification.png %}

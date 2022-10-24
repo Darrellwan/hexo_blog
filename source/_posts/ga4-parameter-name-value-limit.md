@@ -9,7 +9,7 @@ categories:
 page_type: post
 ---
 
- ![limitation](./ga4-parameter-name-value-limit/limitation.webp)
+ {% darrellImage limitation ./limitation.webp %}
 
  ---
 
@@ -73,7 +73,7 @@ window.dataLayer.push({
 
 ## User Property 限制總結
 
-![user_property_limit](./ga4-parameter-name-value-limit/user_property_limit.png)
+ {% darrellImage user_property_limit ./user_property_limit.png %}
 
 # 語言問題 英文 vs 中文
 

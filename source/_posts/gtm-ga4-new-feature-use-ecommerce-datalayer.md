@@ -10,7 +10,7 @@ categories:
 page_type: post
 ---
 
- ![gtm_tag_with_ecommerce_datalayer](./gtm-ga4-new-feature-use-ecommerce-datalayer/gtm_tag_with_ecommerce_datalayer.png)
+{% darrellImage gtm_tag_with_ecommerce_datalayer ./gtm_tag_with_ecommerce_datalayer.png %}
 
 ---
 
@@ -23,7 +23,7 @@ page_type: post
 
 2. 新版的 Ecommerce DataLayer 現在也可以支援舊版 Universal Analyitcs 的 Tag 了! 之前在 GA4 和 UA 並行時，通常是保留舊版的電子商務 DataLayer 並且額外佈署一套 For GA4 的 DataLayer，也就是說網站上有可能同時存在兩種，現在 Google 讓 GTM 可以直接讀取新版的 Datalayer 並轉換成 UA 能支援的形式，再也不用請工程師維護兩套 DataLayer 了!
 
- ![simo_ahava_linkedin_gtm_new_feature](./gtm-ga4-new-feature-use-ecommerce-datalayer/simo_ahava_linkedin_gtm_new_feature.webp)
+{% darrellImage simo_ahava_linkedin_gtm_new_feature ./simo_ahava_linkedin_gtm_new_feature.webp %}
 
 # 如何在 GA4 Tag 直接使用 Ecommerce Datalayer
 
@@ -33,7 +33,7 @@ page_type: post
 ecommerce 物件有 items，並且包含了 item_id, item_name 等相關必要的參數
 [Google 的 GA4 Datalayer 文件](https://developers.google.com/analytics/devguides/collection/ga4/ecommerce?client_type=gtm#view_item_details)
 
- ![check_current_ecommerce_datalayer](./gtm-ga4-new-feature-use-ecommerce-datalayer/check_current_ecommerce_datalayer.webp)
+{% darrellImage check_current_ecommerce_datalayer ./check_current_ecommerce_datalayer.webp %}
 
 ## Tag 裡面設定讀取 Ecommerce Datalayer
 
@@ -44,13 +44,13 @@ ecommerce 物件有 items，並且包含了 item_id, item_name 等相關必要�
 更多設定 -> 電子商務 [v] 傳送電子商務資料
   -> 資料來源  Data Layer
 
- ![gtm_tag_with_ecommerce_datalayer](./gtm-ga4-new-feature-use-ecommerce-datalayer/gtm_tag_with_ecommerce_datalayer.png)
+{% darrellImage gtm_tag_with_ecommerce_datalayer ./gtm_tag_with_ecommerce_datalayer.png %}
 
  ## 完成設定 檢查觸發情形
 
 設定完成後，如果是在 GTM 的預覽模式(Preview) 檢查，可以在 Google Analytics 4 的 Debug View 中確認即時的測試資料，如圖片上中，view_item_list 這個 Event 有正確接收到，並且 Items 中也都有 DataLayer 中包含的 Items 資訊，那就代表成功!
 
- ![ga4_debug_view](./gtm-ga4-new-feature-use-ecommerce-datalayer/ga4_debug_view.webp)
+{% darrellImage ga4_debug_view ./ga4_debug_view.webp %}
 
 # 心得
 

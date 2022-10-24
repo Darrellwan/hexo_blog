@@ -10,7 +10,8 @@ categories:
 page_type: post
 ---
 
-<img src="./background_image_gtm_tool_preview.png" alt="background_image_gtm_tool_preview"/> 
+{% darrellImage background_image_gtm_tool_preview ./background_image_gtm_tool_preview.png %}
+
 
 ## 檔案連結
 
@@ -25,43 +26,40 @@ page_type: post
 
 1. 選擇上方管理 -> 右方 [匯出容器]
 
-<img src="./export_from_container_step1.webp" alt="export_from_container_step1"/> 
-
+{% darrellImage export_from_container_step1 ./export_from_container_step1.webp %}
 2. 選擇最新的版本 或是 工作區的版本
 
-<img src="./export_from_container_step2.webp" alt="export_from_container_step2"/> 
-
+{% darrellImage export_from_container_step2 ./export_from_container_step2.webp %}
 3. 選擇後，點擊匯出即可
 
-<img src="./export_from_container_step3.webp" alt="export_from_container_step3"/> 
-
+{% darrellImage export_from_container_step3 ./export_from_container_step3.webp %}
 ## 1. 複製一份新的 Google Sheet
 
-![copy from sheet 1](https://i.imgur.com/0QWbPh3.png)
-![copy from sheet 2](https://i.imgur.com/0i3qXCp.png)
+{% darrellImage copy_from_sheet_1 https://i.imgur.com/0QWbPh3.png %}
+{% darrellImage copy_from_sheet_2 https://i.imgur.com/0i3qXCp.png %}
 
 
 ## 2. 等待上方選單 GTM Tag 出現
 
-![wait for the menu shows](https://i.imgur.com/9LcoACf.png)
-![click the menu - Read From JSON File](https://i.imgur.com/d3oZRQs.png)
+{% darrellImage wait_for_the_menu_shows https://i.imgur.com/9LcoACf.png %}
+{% darrellImage click_the_menu_-_Read_From_JSON_File https://i.imgur.com/d3oZRQs.png %}
 
 ## 3. 授予必要的權限
 
-![continue to authorization](https://i.imgur.com/NCZ25M6.png)
-![Choose an account](https://i.imgur.com/FSXlAq3.png)
-![Choose advanced to verify](https://i.imgur.com/5mJFAGG.png)
-![Allow the required permission](https://i.imgur.com/qy8lBhU.png)
+{% darrellImage continue_to_authorization https://i.imgur.com/NCZ25M6.png %}
+{% darrellImage Choose_an_account https://i.imgur.com/FSXlAq3.png %}
+{% darrellImage Choose_advanced_to_verify https://i.imgur.com/5mJFAGG.png %}
+{% darrellImage Allow_the_required_permission https://i.imgur.com/qy8lBhU.png %}
 
 ## 4. 開始使用!
 
 1. 打開選單 GTM Tag - Read from JSON File
-![Click the menu and item](https://i.imgur.com/d3oZRQs.png)
+{% darrellImage Click_the_menu_and_item https://i.imgur.com/d3oZRQs.png %}
 
 2. 上傳一份從 GTM 匯出的 JSON 檔案
-![Upload the JSON File](https://i.imgur.com/yUETlf8.png)
+{% darrellImage Upload_the_JSON_File https://i.imgur.com/yUETlf8.png %}
 
 3. 稍等程式運行，結果將會出現在 Google Sheet 中
-![The Upload result](https://i.imgur.com/7odKdAi.png)
+{% darrellImage The_Upload_result https://i.imgur.com/7odKdAi.png %}
 
 
