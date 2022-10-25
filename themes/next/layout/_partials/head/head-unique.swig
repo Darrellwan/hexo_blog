@@ -1,4 +1,4 @@
-{{ open_graph({image : "https://darrelltw.com/images/darrell_icon_512.png"}) }}
+{{ open_graph() }}
 
 {{ canonical() }}
 
