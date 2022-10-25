@@ -182,7 +182,7 @@ localStorage.removeItem("key");
 {% darrellImage store_object_in_storage ./store_object_in_storage.webp %}
 
 請記得使用 [JSON.stringify()](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)
-將 object 先存成 json sring 後再儲存
+將 object 先存成 json string 後再儲存
 {% darrellImage store_object_in_storage_json_stringify ./store_object_in_storage_json_stringify.webp %}
 
 取出的時候，也要記得把 json string 再轉回 object 使用
