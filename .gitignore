@@ -7,3 +7,5 @@ public/
 .deploy*/
 _multiconfig.yml
 .vscode/launch.json
+env
+secret.yml

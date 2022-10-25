@@ -3,6 +3,9 @@
 document.addEventListener('DOMContentLoaded', () => {
   const algoliaSettings = CONFIG.algolia;
   const { indexName, appID, apiKey } = algoliaSettings;
+  const insightsMiddleware = instantsearch.middlewares.createInsightsMiddleware({
+    insightsClient: window.aa,
+  })
 
   let search = instantsearch({
     indexName,
@@ -46,9 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
             .replace(/\$\{time}/, data.processingTimeMS);
           return `${stats}
             <span class="algolia-powered">
-              <img src="${CONFIG.root}images/algolia_logo.svg" alt="Algolia">
+              <img src="${CONFIG.root}images/algolia-icon.svg" alt="Algolia">
             </span>
-            <hr>`;
+            `;
         }
       }
     }),
@@ -58,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
       templates: {
         item: data => {
           let link = data.permalink ? data.permalink : CONFIG.root + data.path;
-          return `<a href="${link}" class="algolia-hit-item-link">${data._highlightResult.title.value}</a>`;
+          return `<a href="${link}" class="algolia-hit-item-link js-algolia-search-result">${data._highlightResult.title.value}</a>`;
         },
         empty: data => {
           return `<div id="algolia-hits-empty">
@@ -89,9 +92,22 @@ document.addEventListener('DOMContentLoaded', () => {
         selectedItem: 'current',
         disabledItem: 'disabled-item'
       }
+    }),
+    instantsearch.widgets.analytics({
+      pushFunction(formattedParameters, state, results) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          'event': 'algolia_search',
+          'keyword': state.query,
+          'facet_parameters': formattedParameters,
+          'number_of_hits': results.nbHits,
+          'process_time_ms' : results.processingTimeMS
+        });
+      },
+      delay: 1500
     })
   ]);
-
+  search.use(insightsMiddleware);
   search.start();
 
   // Handle and trigger popup window
