@@ -69,6 +69,8 @@
           selector: '.blog-images',
           // Add medium zoom plugin
           plugins: [lgMediumZoom],
+          width: '80%',
+          margin: 60
       });
     })()
   </script>
