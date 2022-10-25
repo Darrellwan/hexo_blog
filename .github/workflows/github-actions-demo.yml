@@ -20,4 +20,4 @@ jobs:
           script: |
             cd /home/darrell/dev/hexo_first_test/hexo
             git pull
-            hexo clean; hexo g --config main.yml,secret.yml;hexo algolia;
+            hexo clean; hexo generate --config "main.yml,secret.yml"; hexo algolia --config "main.yml,secret.yml";
