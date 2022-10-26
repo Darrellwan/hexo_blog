@@ -1,4 +1,4 @@
-{{ open_graph() }}
+{{ custom_open_graph() }}
 
 {{ canonical() }}
 

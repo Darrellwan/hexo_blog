@@ -3,9 +3,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   const algoliaSettings = CONFIG.algolia;
   const { indexName, appID, apiKey } = algoliaSettings;
-  const insightsMiddleware = instantsearch.middlewares.createInsightsMiddleware({
-    insightsClient: window.aa,
-  })
+
 
   let search = instantsearch({
     indexName,
@@ -15,6 +13,34 @@ document.addEventListener('DOMContentLoaded', () => {
       if (searchInput.value) {
         helper.search();
       }
+    },
+    routing: {
+      stateMapping: {
+        stateToRoute(uiState) {
+          const indexUiState = uiState[indexName];
+          return {
+            q: indexUiState.query,
+            categories: indexUiState.menu && indexUiState.menu.categories,
+            brand:
+              indexUiState.refinementList && indexUiState.refinementList.brand,
+            page: indexUiState.page,
+          }
+        },
+        routeToState(routeState) {
+          return {
+            [indexName]: {
+              query: routeState.q,
+              menu: {
+                categories: routeState.categories,
+              },
+              refinementList: {
+                brand: routeState.brand,
+              },
+              page: routeState.page,
+            },
+          };
+        },
+      },
     }
   });
 
@@ -61,7 +87,8 @@ document.addEventListener('DOMContentLoaded', () => {
       templates: {
         item: data => {
           let link = data.permalink ? data.permalink : CONFIG.root + data.path;
-          return `<a href="${link}" class="algolia-hit-item-link js-algolia-search-result">${data._highlightResult.title.value}</a>`;
+          let keywords = data._highlightResult.title.matchedWords.join(",");
+          return `<a href="${link}" class="algolia-hit-item-link js-algolia-search-result" data-search-keyword="${keywords}">${data._highlightResult.title.value}</a>`;
         },
         empty: data => {
           return `<div id="algolia-hits-empty">
@@ -107,15 +134,19 @@ document.addEventListener('DOMContentLoaded', () => {
       delay: 1500
     })
   ]);
-  search.use(insightsMiddleware);
   search.start();
+
+  // Monitor main search box
+  const onPopupOpen = () => {
+    document.body.style.overflow = 'hidden';
+    document.querySelector('.search-pop-overlay').classList.add('search-active');
+    document.querySelector('.search-input').focus();
+  };
 
   // Handle and trigger popup window
   document.querySelectorAll('.popup-trigger').forEach(element => {
     element.addEventListener('click', () => {
-      document.body.style.overflow = 'hidden';
-      document.querySelector('.search-pop-overlay').classList.add('search-active');
-      document.querySelector('.search-input').focus();
+      onPopupOpen();
     });
   });
 
@@ -136,5 +167,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (event.key === 'Escape') {
       onPopupClose();
     }
+  });
+
+  window.addEventListener('load', event => {
+    if(document.location.search.indexOf("?q=") > -1){
+      window.setTimeout(onPopupOpen, 1500);
+    }
+    console.log({window_aa: window.aa})
+    const insightsMiddleware = instantsearch.middlewares.createInsightsMiddleware({
+      insightsClient: window.aa,
+    })
+    search.use(insightsMiddleware);
   });
 });
