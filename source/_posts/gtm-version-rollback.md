@@ -64,7 +64,7 @@ page_type: post
 
 選取需要的設定，Tag 或 Trigger Variable
 右上角匯出即可
-會下載一份 JSON 檔案，請留者等等的步驟會馬上用到
+會下載一份 JSON 檔案，請留著等等的步驟會馬上用到
 {% darrellImage 選擇需要的代碼或設定 select_tag_in_v2.webp %}
 
 ### 匯入剛剛的設定
