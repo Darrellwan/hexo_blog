@@ -10,7 +10,7 @@ categories:
 page_type: post
 ---
 
-{% darrellImage background_image_gtm_tool_preview ./background_image_gtm_tool_preview.png %}
+{% darrellImageCover background_image_gtm_tool_preview ./background_image_gtm_tool_preview.png %}
 
 
 ## 檔案連結

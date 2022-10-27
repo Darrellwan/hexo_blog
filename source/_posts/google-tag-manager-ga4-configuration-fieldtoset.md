@@ -10,7 +10,7 @@ categories:
 page_type: post
 ---
 
-{% darrellImage introduce_field_to_set ./introduce_field_to_set.png %}
+{% darrellImageCover introduce_field_to_set ./introduce_field_to_set.png %}
 
 ---
 

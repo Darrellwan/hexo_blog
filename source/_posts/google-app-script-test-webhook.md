@@ -10,8 +10,8 @@ categories:
 page_type: post
 ---
 
-{% darrellImage API ./API.png %}
-{% darrellImage Webhook ./Webhook.png %}
+{% darrellImageCover API ./API.png %}
+{% darrellImageCover Webhook ./Webhook.png %}
 
 ---
 

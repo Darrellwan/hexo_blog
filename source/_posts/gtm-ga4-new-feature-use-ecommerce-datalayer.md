@@ -10,7 +10,7 @@ categories:
 page_type: post
 ---
 
-{% darrellImage gtm_tag_with_ecommerce_datalayer ./gtm_tag_with_ecommerce_datalayer.png %}
+{% darrellImageCover gtm_tag_with_ecommerce_datalayer ./gtm_tag_with_ecommerce_datalayer.png %}
 
 ---
 

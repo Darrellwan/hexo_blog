@@ -12,7 +12,7 @@ categories:
 page_type: post
 ---
 
-{% darrellImage stack_overflow ./stack_overflow.png %}
+{% darrellImageCover stack_overflow ./stack_overflow.png %}
 
 # Stack Overflow 上面的提問
 

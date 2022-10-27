@@ -9,7 +9,7 @@ categories:
 	- Google Tag Manager
 page_type: post
 ---
-{% darrellImage background_storage_picture ./background_storage_picture.webp %}
+{% darrellImageCover background_storage_picture ./background_storage_picture.webp %}
 
 ## 為什麼需要暫存資料
 

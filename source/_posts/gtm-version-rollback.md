@@ -10,7 +10,7 @@ categories:
 page_type: post
 
 ---
-{% darrellImage container_rollback_background ./container_rollback_background.webp %}
+{% darrellImageCover container_rollback_background ./container_rollback_background.webp %}
 
 ## GTM 的版本
 
