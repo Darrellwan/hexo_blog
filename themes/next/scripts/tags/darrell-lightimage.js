@@ -34,7 +34,7 @@ function customLightGalleryCover(args) {
   
   return `
   <figure lg-background-color="#282828" class="blog-images" data-src="${imageSrc}">
-    <img alt="${altText}" data-src="${imageSrc}" class="lazyload" sizes="(min-width: 1000px) 930px, 90vw">
+    <img alt="${altText}" data-src="${imageSrc}" class="lazyload" sizes="(min-width: 1000px) 930px, 90vw" width="1000px" height="auto">
   </figure>`
 }
 

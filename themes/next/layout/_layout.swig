@@ -72,7 +72,8 @@
           // Add medium zoom plugin
           plugins: [lgMediumZoom],
           width: '80%',
-          margin: 60
+          margin: 60,
+          licenseKey: "5DD87466-59204227-85FCA075-CFE25BAD"
       });
     })()
   </script>
