@@ -15,4 +15,4 @@ User-agent: Googlebot-image
 Disallow:
 
 
-Sitemap: https://darrelltw.com/sitemap.xml
+Sitemap: https://www.darrelltw.com/sitemap.xml

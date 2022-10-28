@@ -19,7 +19,7 @@ page_type: post
 在逛 Linkedin 時看到 Google Tag Manager 領域中的大神 [Simo Ahava](https://www.linkedin.com/in/simoahava/) PO 了一篇關於 [Google Tag Manager 的新功能](https://www.linkedin.com/posts/simoahava_two-potentially-very-very-helpful-additions-activity-6968136889128136704-Y13t)
 
 簡單來說就是 Google 在 GTM 中支持了兩種新功能
-1. 先前我們提到的 [GA4 Ecommerce DataLayer 佈署](https://darrelltw.com/ga4-ecommerce-recommend-events-datalayer/?from=gtm-ga4-new-feature-use-ecommerce-datalayer)，在 GA4 Tag 要使用時，得額外建立一個 Variable 並對應到 Ecommerce 中的 Items，現在終於多了一個選項可以直接請 GTM 參考 Datalayer，或是使用額外準備好的 DataLayer variable 來讀取電子商務相關參數! 大大節省了相關的設定時間。
+1. 先前我們提到的 [GA4 Ecommerce DataLayer 佈署](https://www.darrelltw.com/ga4-ecommerce-recommend-events-datalayer/?from=gtm-ga4-new-feature-use-ecommerce-datalayer)，在 GA4 Tag 要使用時，得額外建立一個 Variable 並對應到 Ecommerce 中的 Items，現在終於多了一個選項可以直接請 GTM 參考 Datalayer，或是使用額外準備好的 DataLayer variable 來讀取電子商務相關參數! 大大節省了相關的設定時間。
 
 2. 新版的 Ecommerce DataLayer 現在也可以支援舊版 Universal Analyitcs 的 Tag 了! 之前在 GA4 和 UA 並行時，通常是保留舊版的電子商務 DataLayer 並且額外佈署一套 For GA4 的 DataLayer，也就是說網站上有可能同時存在兩種，現在 Google 讓 GTM 可以直接讀取新版的 Datalayer 並轉換成 UA 能支援的形式，再也不用請工程師維護兩套 DataLayer 了!
 
@@ -62,6 +62,6 @@ ecommerce 物件有 items，並且包含了 item_id, item_name 等相關必要�
 但網站上的 DataLayer 是否佈署正確與否更凸顯了重要性，只要有些錯誤卻又無法在短期內修正，
 Google Tag Manager 這邊就還是得盡力的去修正。
 
-[Datalayer 的佈署文章請參考](https://darrelltw.com/ga4-ecommerce-recommend-events-datalayer/?from=gtm-ga4-new-feature-use-ecommerce-datalayer)
+[Datalayer 的佈署文章請參考](https://www.darrelltw.com/ga4-ecommerce-recommend-events-datalayer/?from=gtm-ga4-new-feature-use-ecommerce-datalayer)
 
 

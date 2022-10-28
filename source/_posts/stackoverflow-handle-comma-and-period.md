@@ -30,7 +30,7 @@ value.replace(",", ".")
 
 # 利用 GTM 中的 Custom Variable 來解決問題 !
 
-和之前的文章中 [Rewrite Items In Datalayer](https://darrelltw.com/stackoverflow-gtm-rewrite-items-in-datalayer/) 其實用的方法一樣，
+和之前的文章中 [Rewrite Items In Datalayer](https://www.darrelltw.com/stackoverflow-gtm-rewrite-items-in-datalayer/) 其實用的方法一樣，
 都是利用 Customer Variable 來處理。
 
 ## 首先，先知道原本的 Price 該怎麼取得

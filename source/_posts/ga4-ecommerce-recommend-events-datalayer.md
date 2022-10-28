@@ -14,7 +14,7 @@ page_type: post
 
 [[GA4] 建議事件](https://support.google.com/analytics/answer/9267735?hl=zh-Hant)
 
-{% img left	https://darrelltw.com/ga4-ecommerce-recommend-events-datalayer/ga4_document_suggest_events.png ga4_document_suggest_events %}
+{% img left	https://www.darrelltw.com/ga4-ecommerce-recommend-events-datalayer/ga4_document_suggest_events.png ga4_document_suggest_events %}
 
 在 Google 官方文件中，有提到一些產業的建議事件，電子商務(線上銷售)的事件列表並沒有提供很詳細的解釋，以及 Datalayer 該如何準備。
 希望在本文中可以更清楚地提供說明

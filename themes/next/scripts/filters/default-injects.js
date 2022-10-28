@@ -22,3 +22,11 @@ hexo.extend.filter.register('theme_inject', injects => {
   });
 
 }, 99);
+
+hexo.extend.filter.register('server_middleware', function(app){
+  app.use(function(req, res, next){
+      res.setHeader('X-Powered-By', 'HexoDarrell');
+      res.setHeader('123', '456');
+    next();
+  });
+});

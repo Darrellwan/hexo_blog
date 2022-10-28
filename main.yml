@@ -14,7 +14,7 @@ timezone: 'Asia/Taipei'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://darrelltw.com/
+url: https://www.darrelltw.com/
 permalink: :title/
 permalink_defaults:
 pretty_urls:
@@ -117,10 +117,10 @@ sitemap:
 seo_structured_data:
   organization:
     name: Darrell
-    url: https://darrelltw.com
-    logoUrl: https://darrelltw.com/images/logo.png
+    url: https://www.darrelltw.com
+    logoUrl: https://www.darrelltw.com/images/logo.png
 
-defaultImage: https://darrelltw.com/images/darrell_icon_512.png
+defaultImage: https://www.darrelltw.com/images/darrell_icon_512.png
 
 algolia:
   appId: "JPTDAB3P1B" 
@@ -137,3 +137,14 @@ algolia:
     - slug
     - tags
     - title
+
+server:
+  port: 4000
+  log: false
+  ip: 0.0.0.0
+  compress: false
+  cache: false
+  header: true
+  serveStatic:
+    extensions:
+    - html
