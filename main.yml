@@ -9,7 +9,7 @@ description: 'Coding, Marketing, Technology'
 keywords: Digital Marketing, Martech
 author: Darrell
 authorLink: https://www.linkedin.com/in/darrell-wang-78265a8b/
-language: 'en'
+language: 'zh-tw'
 timezone: 'Asia/Taipei'
 
 # URL
@@ -121,3 +121,19 @@ seo_structured_data:
     logoUrl: https://darrelltw.com/images/logo.png
 
 defaultImage: https://darrelltw.com/images/darrell_icon_512.png
+
+algolia:
+  appId: "JPTDAB3P1B" 
+  applicationID: "JPTDAB3P1B" 
+  apiKey: "6e8babb8aef768a0190937d0b744dba9" 
+  chunkSize: 5000
+  indexName: "dev_post"
+  fields:
+    - content:strip:truncate,0,500
+    - excerpt:strip
+    - gallery
+    - perma link
+    - photos
+    - slug
+    - tags
+    - title

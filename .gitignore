@@ -8,4 +8,5 @@ public/
 _multiconfig.yml
 .vscode/launch.json
 env
+.env
 secret.yml
