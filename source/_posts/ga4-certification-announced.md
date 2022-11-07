@@ -3,6 +3,7 @@ title: GA4 Certification Announced | GA4 證照測驗公布
 date: 2022-08-18 22:20:05
 tags: 
 	- Google Analytics 4
+	- GA4 證照
 description: Google Analytics 4 終於公布了自己的課程和證照測驗 !
 categories: 
 	- Google Analytics 4
