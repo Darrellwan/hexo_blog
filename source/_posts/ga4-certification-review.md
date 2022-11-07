@@ -25,6 +25,10 @@ page_type: post
 ### Config & Admin : 一些在 GA4 帳戶設定和資源設定的地方
 {% darrellImage ga4_admin_config ga4_admin_config.webp %}
 
+這次的佔比這邊佔了蠻大一塊，印象中以前也是差不多這樣子
+不過這邊大部分就是測試看看你對於這些設定的地方是否熟悉在哪
+建議可以將這些地方都打開來看一看，不太清楚的就搭配文件
+
 ### Google Product 連結
 {% darrellImage ga4_product_connect ga4_product_connect.png %}
 
