@@ -36,11 +36,11 @@ hexo.extend.helper.register('post_nav', function(post) {
   const prev = theme.post_navigation === 'right' ? post.prev : post.next;
   const next = theme.post_navigation === 'right' ? post.next : post.prev;
   const left = prev ? `
-    <a href="${this.url_for(prev.path)}" rel="prev" title="${prev.title}">
+    <a href="${this.url_for(prev.path)}" rel="prev" title="${prev.title}" aria-label="${__('accessibility.prev_page')}">
       <i class="fa fa-chevron-left"></i> ${prev.title}
     </a>` : '';
   const right = next ? `
-    <a href="${this.url_for(next.path)}" rel="next" title="${next.title}">
+    <a href="${this.url_for(next.path)}" rel="next" title="${next.title}" aria-label="${__('accessibility.next_page')}">
       ${next.title} <i class="fa fa-chevron-right"></i>
     </a>` : '';
   return `
