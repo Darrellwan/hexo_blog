@@ -80,8 +80,8 @@ follow_me:
   welcome: 歡迎關注我的其它發布渠道
 accessibility:
   nav_toggle: 切換導航欄
-  prev_page: 上一頁
-  next_page: 下一頁
+  prev_page: Previous Page
+  next_page: Next Page
 symbols_count_time:
   count: 文章字數
   count_total: 總字數
