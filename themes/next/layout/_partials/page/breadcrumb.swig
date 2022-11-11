@@ -1,6 +1,6 @@
 {%- set paths = page.path.split('/') %}
 {%- set count = paths.length %}
-{%- if count > 2 %}
+{%- if count > 1 %}
   {%- set current = 0 %}
   {%- set link = '' %}
   <ul class="breadcrumb">

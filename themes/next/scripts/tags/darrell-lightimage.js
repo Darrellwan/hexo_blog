@@ -20,7 +20,7 @@ function customLightGallery(args, content) {
   
   return `
   <figure lg-background-color="#282828" class="blog-images" data-src="${imageSrc}">
-    <img alt="${altText}" data-src="${imageSrc}" class="lazyload" sizes="(min-width: 1000px) 930px, 90vw">
+    <img alt="${altText}" data-src="${imageSrc}" class="lazyload max-1024" sizes="(min-width: 1000px) 930px, 90vw">
   </figure>`
 }
 
@@ -34,7 +34,7 @@ function customLightGalleryCover(args) {
   
   return `
   <figure lg-background-color="#282828" class="blog-images" data-src="${imageSrc}" style="min-height: 400px;">
-    <img alt="${altText}" data-src="${imageSrc}" src="${imageSrc}" class="lazyload" sizes="(min-width: 1000px) 930px, 90vw" style="object-fit: contain;">
+    <img alt="${altText}" data-src="${imageSrc}" src="${imageSrc}" class="lazyload max-1024" sizes="(min-width: 1000px) 930px, 90vw" style="object-fit: contain;">
   </figure>`
 }
 

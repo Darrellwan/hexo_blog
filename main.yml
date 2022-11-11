@@ -148,3 +148,6 @@ server:
   serveStatic:
     extensions:
     - html
+
+breadcrumb:
+  display: true

@@ -6,6 +6,8 @@
 
 {% block class %}category{% endblock %}
 
+
+
 {% block content %}
 
   {######################}
@@ -14,7 +16,7 @@
   <div class="post-block">
     <div class="posts-collapse">
       <div class="collection-title">
-        <h2 class="collection-header">
+        <h2 class="collection-header test-hi">
           {{- page.category }}
           <small>{{ __('title.category') }}</small>
         </h2>
