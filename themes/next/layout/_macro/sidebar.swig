@@ -43,10 +43,9 @@
           <span>0%</span>
         </div>
       {%- endif %}
-    </div>
-    <div class="sidebar-inner">
-      <ul class="sidebar-nav motion-element category-post">
-        <li class="sidebar-nav-toc">          
+
+      <ul class="sidebar-nav category-post">
+        <li class="sidebar-category-post">          
           {{ partial('_partials/sidebar/darrellcustom-category-post.swig', {page: page}) }}
         </li>
       </ul>

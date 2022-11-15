@@ -1,5 +1,5 @@
 ---
-title: GTM - Custom Event 自訂事件的觸發條件(Trigger)
+title: GTM - 觸發條件 自訂事件 (Custom Event)
 date: 2022-11-01 21:12:21
 tags:
 	- Google Tag Manager
