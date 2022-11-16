@@ -67,7 +67,7 @@ function customOpenGraphHelper(options = {}) {
   const type = options.type || (this.is_post() ? 'article' : 'website');
   const url = prettyUrls(options.url || this.url, config.pretty_urls);
   const siteName = options.site_name || config.title;
-  const twitterCard = options.twitter_card || 'summary';
+  const twitterCard = options.twitter_card || 'summary_large_image' || 'summary';
   const date = options.date !== false ? options.date || page.date : false;
   const updated = options.updated !== false ? options.updated || page.updated : false;
   const language = options.language || page.lang || page.language || config.language;
