@@ -25,7 +25,7 @@ NexT.boot.registerEvents = function() {
     }
   });
 
-  var TAB_ANIMATE_DURATION = 200;
+  var TAB_ANIMATE_DURATION = 1;
   document.querySelectorAll('.sidebar-nav li').forEach((element, index) => {
     element.addEventListener('click', event => {
       var item = event.currentTarget;
