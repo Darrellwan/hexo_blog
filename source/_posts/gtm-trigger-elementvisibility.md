@@ -10,7 +10,7 @@ date: 2022-11-15 22:00:47
 description: GTM 的觸發條件 - 元素可見度，是個能力強大的工具，當你想要追蹤一個網頁元素的出現，或是一個元素滾動到可視範圍中，都可以使用這個觸發條件來達成
 ---
 
-{% darrellImage gtm_trigger_visibility_bg gtm_trigger_visibility_bg.png %}
+{% darrellImageCover gtm_trigger_visibility_bg gtm_trigger_visibility_bg.png %}
 
 ## 觸發條件 : 元素可見度
 

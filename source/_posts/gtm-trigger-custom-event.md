@@ -9,7 +9,7 @@ categories:
 page_type: post
 ---
 
-{% darrellImage trigger_custom_event_bg trigger_custom_event_bg.png %}
+{% darrellImageCover trigger_custom_event_bg trigger_custom_event_bg.png %}
 
 ## 觸發條件 : 自訂事件
 
