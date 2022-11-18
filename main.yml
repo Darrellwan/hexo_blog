@@ -31,6 +31,18 @@ code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
 
+archive_generator:
+  enabled: true
+  per_page: 100
+  yearly: true
+  monthly: true
+  daily: false
+  order_by: -date
+
+category_generator:
+  per_page: 0
+  order_by: -date
+
 # Writing
 new_post_name: :title.md # File name of new posts
 default_layout: post
