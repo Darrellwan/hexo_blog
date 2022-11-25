@@ -1,5 +1,5 @@
 ---
-title: GA4 電子商務的建議事件說明
+title: GA4 電子商務的建議事件說明 & DataLayer 規格
 date: 2022-08-15 22:36:53
 tags: 
 	- Google Tag Manager
