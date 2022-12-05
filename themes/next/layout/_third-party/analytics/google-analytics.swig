@@ -47,6 +47,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 {%- endif %}
 
+<script>
+  console.log({ page_gtm_only: '{{ page.gtm_id }}'});
+</script>
 {%- if page.gtm_id %}
 <script>
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
