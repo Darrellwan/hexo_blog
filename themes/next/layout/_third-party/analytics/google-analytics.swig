@@ -48,14 +48,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 {%- endif %}
 
 <script>
-  console.log({ page_gtm_only: '{{ page.gtm_id }}'});
+  console.log({ page_gtm_only: '{{ page.gtmid }}'});
 </script>
-{%- if page.gtm_id %}
+{%- if page.gtmid %}
 <script>
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','{{ page.gtm_id }}');
+})(window,document,'script','dataLayer','{{ page.gtmid }}');
 </script>
 {%- endif %}
