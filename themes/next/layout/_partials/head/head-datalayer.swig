@@ -33,7 +33,8 @@
     post_posted : "{{ page.posted }}",
     post_sticky : "{{ page.sticky }}",
     post_views : "{{ page.views }}",
-    type: "{{page.page_type}}"
+    type: "{{page.page_type}}",
+    customgtmid: "{{page.gtmid}}"
   };
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push(currentPageData);
