@@ -1,5 +1,5 @@
 ---
-title: GTM - 代碼(Tag) GA4 Field To Set 設定事件參數
+title: Google Tag Manager - 代碼(Tag) GA4 Field To Set 設定事件參數
 date: 2022-10-04 19:15:36
 tags: 
 	- Google Tag Manager

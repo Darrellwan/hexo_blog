@@ -1,5 +1,5 @@
 ---
-title: GTM - 變數 對照表(Lookup Table) 介紹和如何使用
+title: Google Tag Manager - 變數 對照表(Lookup Table) 介紹和如何使用
 date: 2022-11-10 23:01:13
 tags:
     - Google Tag Manager

@@ -1,5 +1,5 @@
 ---
-title: GTM - 利用 LocalStorage Cookie SessionStorage 來暫存資訊
+title: Google Tag Manager - 利用 LocalStorage Cookie SessionStorage 來暫存資訊
 date: 2022-10-20 21:55:00
 tags:
 	- Google Tag Manager

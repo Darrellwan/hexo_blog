@@ -4,7 +4,7 @@
 [![hexo-theme-next](https://img.shields.io/badge/hexo_theme-next-red.svg "hexo-theme-yilia-plus")](https://theme-next.js.org/ "hexo-theme-next")
 [![Author](https://img.shields.io/badge/Author-Darrell-red.svg "Author")](https://github.com/Darrellwan "Author")
 
-## [GTM - 變數 對照表(Lookup Table) 介紹和如何使用](https://www.darrelltw.com/gtm-variable-lookuptable-introduce/?utm_source=github&utm_medium=referral)
+## [Google Tag Manager - 變數 對照表(Lookup Table) 介紹和如何使用](https://www.darrelltw.com/gtm-variable-lookuptable-introduce/?utm_source=github&utm_medium=referral)
 
 GTM 的變數 - 對照表(Lookup Table)，可以幫助你在有明確規則的狀況下改寫變數中的值，用來去蕪存菁或是直接改成想要的資料格式。只需要注意他的運算規則是等於(==)而不是包含
 
@@ -12,7 +12,7 @@ GTM 的變數 - 對照表(Lookup Table)，可以幫助你在有明確規則的�
 
 GA4 的證照已經出現一陣子了，希望能透過這次對於題目的回顧，提供給一些大家準備的方向
 
-## [GTM - 代碼(Tag) GA4 Field To Set 設定事件參數](https://www.darrelltw.com/google-tag-manager-ga4-configuration-fieldtoset/?utm_source=github&utm_medium=referral)
+## [Google Tag Manager - 代碼(Tag) GA4 Field To Set 設定事件參數](https://www.darrelltw.com/google-tag-manager-ga4-configuration-fieldtoset/?utm_source=github&utm_medium=referral)
 
 當決大部分的 GA4 Event 都需要設定相同的 Event Parameter 時，利用 Field To Set 可以只設定一次就解決 !
 

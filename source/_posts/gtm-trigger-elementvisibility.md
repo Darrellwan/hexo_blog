@@ -1,5 +1,5 @@
 ---
-title: GTM - 觸發條件 元素可見度 (Element Visibility)
+title: Google Tag Manager - 觸發條件 元素可見度 (Element Visibility)
 tags:
 	- Google Tag Manager
 	- GTM Tutorial

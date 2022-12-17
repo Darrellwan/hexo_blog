@@ -1,5 +1,5 @@
 ---
-title: GTM - 觸發條件 自訂事件 (Custom Event)
+title: Google Tag Manager - 觸發條件 自訂事件 (Custom Event)
 date: 2022-11-01 21:12:21
 tags:
 	- Google Tag Manager

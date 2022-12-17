@@ -1,5 +1,5 @@
 ---
-title: GTM - 觸發條件 點擊和連結點擊 (All Click, Link Click)
+title: Google Tag Manager - 觸發條件 點擊和連結點擊 (All Click, Link Click)
 tags:
 	- Google Tag Manager
 	- GTM Tutorial

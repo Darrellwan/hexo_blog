@@ -1,5 +1,5 @@
 ---
-title: GTM - 觸發條件 網頁瀏覽、Dom就緒、視窗已載入
+title: Google Tag Manager - 觸發條件 網頁瀏覽、Dom就緒、視窗已載入
 tags:
   - Google Tag Manager
   - GTM Tutorial
