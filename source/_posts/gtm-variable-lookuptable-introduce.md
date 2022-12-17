@@ -4,7 +4,7 @@ date: 2022-11-10 23:01:13
 tags:
     - Google Tag Manager
     - GTM Tutorial
-    - GTM 教學
+    - Google Tag Manager 教學
 description: GTM 的變數 - 對照表(Lookup Table)，可以幫助你在有明確規則的狀況下改寫變數中的值，用來去蕪存菁或是直接改成想要的資料格式。只需要注意他的運算規則是等於(==)而不是包含
 categories: 
     - Google Tag Manager

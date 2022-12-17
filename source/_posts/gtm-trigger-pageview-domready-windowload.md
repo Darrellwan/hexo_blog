@@ -3,7 +3,7 @@ title: Google Tag Manager - 觸發條件 網頁瀏覽、Dom就緒、視窗已載
 tags:
   - Google Tag Manager
   - GTM Tutorial
-  - GTM 教學
+  - Google Tag Manager 教學
 categories:
   - Google Tag Manager
 page_type: post

@@ -3,7 +3,7 @@ title: Google Tag Manager - 觸發條件 元素可見度 (Element Visibility)
 tags:
 	- Google Tag Manager
 	- GTM Tutorial
-	- GTM 教學
+	- Google Tag Manager 教學
 categories:
 	- Google Tag Manager
 page_type: post

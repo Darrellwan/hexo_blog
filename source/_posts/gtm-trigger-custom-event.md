@@ -4,7 +4,7 @@ date: 2022-11-01 21:12:21
 tags:
 	- Google Tag Manager
 	- GTM Tutorial
-	- GTM 教學
+	- Google Tag Manager 教學
 description: Google Tag Manager 中的觸發條件(Trigger), 要如何設定自訂事件(Custom Event)來對應 Datalayer 中的事件
 categories: 
 	- Google Tag Manager
