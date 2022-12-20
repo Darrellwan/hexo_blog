@@ -14,3 +14,7 @@
 </script>
 
 {{ json_ld() }}
+
+{%- if page.categories and page.categories.length %}
+  {{ darrell_structured_data() }}
+{%- endif %}
