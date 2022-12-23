@@ -133,7 +133,7 @@ var timingData = {
 console.log(JSON.stringify(timingData, null, 2))
 ```
 
-## Google Tag Manager 設定相關的 DataLayer 和 GA4
+## Google Tag Manager 設定相關的 DataLayer 和 GA4 Event
 
 有了 DataLayer 後事情一切就變得很簡單了
 
@@ -156,6 +156,17 @@ console.log(JSON.stringify(timingData, null, 2))
 
 注意 : 這邊並沒有辦法區分使用者的網路環境是 Wifi 還是行動網路
 只能先假設行動版的用戶速度會比桌機版用戶慢一些
+
+## GA4 的自訂定義 -> 自訂指標
+
+這邊因為送進去的是數字時間
+所以建立相對應的**自訂指標** 未來就可以在報表上觀察
+
+> 管理 > 自訂定義 > 新增自訂指標
+
+{% darrellImage800 GA4在自訂指標中新增 add_custom_metric_in_google_analytics_4.png max-800 %}
+
+**注意，免費版 GA4 帳戶中這邊只能設定 50 個自訂維度，請謹慎使用**
 
 ## 補充
 
