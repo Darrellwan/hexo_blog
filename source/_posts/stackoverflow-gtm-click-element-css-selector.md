@@ -7,7 +7,7 @@ categories:
   - Google Tag Manager
 page_type: post
 date: 2022-12-01 22:34:39
-description: 情境是想要追蹤一些 <a> 連結的點擊追蹤，可是這些元素都沒有適合參考的 id, class。唯一看起來可以使用的就是 data-type 的屬性，如何使用 CSS Selector 在做到
+description: 情境是想要追蹤一些 `<a>` 連結的點擊追蹤，可是這些元素都沒有適合參考的 id, class。唯一看起來可以使用的就是 data-type 的屬性，如何使用 CSS Selector 在做到
 ---
 
 {% darrellImageCover stackoverflow_gtm_ga_f&q stackoverflow_qna_bg.png max-800 %}
