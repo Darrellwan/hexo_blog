@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Registering Widgets
   search.addWidgets([
     instantsearch.widgets.configure({
+      clickAnalytics: true,
       hitsPerPage: algoliaSettings.hits.per_page || 10
     }),
 
@@ -88,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
         item: data => {
           let link = data.permalink ? data.permalink : CONFIG.root + data.path;
           let keywords = data._highlightResult.title.matchedWords.join(",");
-          return `<a href="${link}" class="algolia-hit-item-link js-algolia-search-result" data-search-keyword="${keywords}">${data._highlightResult.title.value}</a>`;
+          return `<a href="${link}" data-insights-object-id="${data.objectID}" data-insights-position="${data.__position}" data-insights-query-id="${data.__queryID}" class="algolia-hit-item-link js-algolia-search-result" data-search-keyword="${keywords}">${data._highlightResult.title.value}</a>`;
         },
         empty: data => {
           return `<div id="algolia-hits-empty">
