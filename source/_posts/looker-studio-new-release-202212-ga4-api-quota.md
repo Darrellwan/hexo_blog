@@ -1,5 +1,5 @@
 ---
-title: LookerStudio - 新功能釋出 Google Analytics 4 API 使用狀況
+title: LookerStudio(DataStudio) - GA4 報表錯誤? 新功能釋出 Google Analytics 4 API 使用狀況
 tags:
   - Google Analytics 4
   - Looker Studio
@@ -7,7 +7,7 @@ categories:
   - Looker Studio
 page_type: post
 date: 2022-12-30 22:02:57
-description: 上個月開始 Google 突然無預警的修正了 Google Analytics 4 的 API Quota 套用在 Looker Studio 上。影響了大量的用戶無法正常使用，但目前看起來 Google 並沒有想要調整回原本的無上限版本。經過一陣子的時間後，Google 推出了一個新功能方便你查詢目前 API Quota 的使用情形，算是在這種大逆風的狀況下推出一點貼心的功能(但你還是不能隨心所欲地一直拉報表或是分享給很多用戶使用)
+description: 上個月開始 Google 突然無預警的修正了 Google Analytics 4 的 API Quota 套用在 Looker Studio (原本名為 Data Studio) 上。影響了大量的用戶無法正常使用，但目前看起來 Google 並沒有想要調整回原本的無上限版本。經過一陣子的時間後，Google 推出了一個新功能方便你查詢目前 API Quota 的使用情形，算是在這種大逆風的狀況下推出一點貼心的功能(但你還是不能隨心所欲地一直拉報表或是分享給很多用戶使用)
 ---
 
 {% darrellImageCover LookerStudio202212新功能 looker_studio_new_release_202212.png max-800 %}
