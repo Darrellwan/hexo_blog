@@ -29,7 +29,7 @@
     "hexo-renderer-stylus": "^2.1.0",
     "hexo-server": "^3.0.0",
     "hexo-theme-landscape": "^0.0.3",
-    "lightgallery": "^2.7.0"
+    "lightgallery": "^2.7.1"
   },
   "devDependencies": {
     "hexo-breadcrumb": "^1.0.2"
