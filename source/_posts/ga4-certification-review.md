@@ -4,7 +4,7 @@ date: 2022-11-06 09:12:01
 tags: 
 	- Google Analytics 4
 	- GA4 證照
-description: GA4 的證照已經出現一陣子了，希望能透過這次對於題目的回顧，提供給一些大家準備的方向
+description: GA4 的證照已經出現一陣子了，希望能透過這次對於題目的回顧，提供給一些大家準備的方向 (20230112更新 , GA4 Config 換地方了)
 categories: 
 	- Google Analytics 4
 page_type: post
@@ -23,7 +23,12 @@ page_type: post
 簡單說明一下自己的分類
 
 ### Config & Admin : 一些在 GA4 帳戶設定和資源設定的地方
-{% darrellImage ga4_admin_config ga4_admin_config.webp %}
+
+#### 2022301 更新! GA4 Config 換地方囉
+
+{% darrellImage800 GA4的Config搬家了 ga4_config_change_place_in_2022Q4.png max-800 %}
+
+{% darrellImage800 原本在GA4_Config的設定都搬到了Admin new_ga4_config_in_admin.png max-800 %}
 
 這次的佔比這邊佔了蠻大一塊，印象中以前也是差不多這樣子
 不過這邊大部分就是測試看看你對於這些設定的地方是否熟悉在哪
