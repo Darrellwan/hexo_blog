@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Darrell
+title: Darrell Martech
 subtitle: 'Coding, Marketing, Technology'
 description: 'Coding, Marketing, Technology'
 keywords: Digital Marketing, Martech, Google Tag Manager, GA4, Measurement
@@ -116,7 +116,7 @@ sitemap:
 
 seo_structured_data:
   organization:
-    name: Darrell
+    name: Darrell Martech
     url: https://www.darrelltw.com
     logoUrl: https://www.darrelltw.com/images/logo.png
 
