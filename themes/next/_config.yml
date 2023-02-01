@@ -677,6 +677,8 @@ google_analytics:
 gtm:
   gtm_id: GTM-WRZDBFS
 
+vwo: true
+
 # Growingio Analytics
 growingio_analytics: # <project_id>
 
