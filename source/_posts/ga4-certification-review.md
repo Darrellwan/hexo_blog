@@ -4,7 +4,7 @@ date: 2022-11-06 09:12:01
 tags: 
 	- Google Analytics 4
 	- GA4 證照
-description: GA4 的證照已經出現一陣子了，希望能透過這次對於題目的回顧，提供給一些大家準備的方向 (20230112更新 , GA4 Config 換地方了)
+description: GA4 的證照已經出現一陣子了，希望能透過這次對於題目的回顧，提供給一些大家準備的方向 (20230112更新 , GA4 config 已經移至 admin)
 categories: 
 	- Google Analytics 4
 page_type: post
