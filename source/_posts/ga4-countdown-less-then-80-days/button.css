@@ -1,0 +1,44 @@
+.email_button {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px 24px;
+    border: 1px solid #cc5f00;
+    border-radius: 8px;
+    background: #ff9b00;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ff9b00), to(#cc5f00));
+    background: -moz-linear-gradient(top, #ff9b00, #cc5f00);
+    background: linear-gradient(to bottom, #ff9b00, #cc5f00);
+    font: normal normal bold 20px arial;
+    color: #ffffff !important;
+    text-decoration: none;
+}
+.email_button:hover,
+.email_button:focus {
+    border: 1px solid #ff7700;
+    background: #ffba00;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffba00), to(#f57200));
+    background: -moz-linear-gradient(top, #ffba00, #f57200);
+    background: linear-gradient(to bottom, #ffba00, #f57200);
+    color: #ffffff;
+    text-decoration: none;
+}
+.email_button:active {
+    background: #cc5f00;
+    background: -webkit-gradient(linear, left top, left bottom, from(#cc5f00), to(#cc5f00));
+    background: -moz-linear-gradient(top, #cc5f00, #cc5f00);
+    background: linear-gradient(to bottom, #cc5f00, #cc5f00);
+}
+.email_button:before{
+    content:  "\0000a0";
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+    line-height: 24px;
+    margin: 0 4px -6px -4px;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACaUlEQVRIibWWT0tUURiHn3PmNne6TVPoMI4T6PgnBS2lQM1dEC4KF32ApE3SZ2gXRC4Maie0bhEE2SKDWqRBmMLkIlKJFkUa1oxSNuo43pnxbXFnnEZn0oX3gcPhnnPu73feA+e8rwIQET9wBegC6oAwEAJOAn7ACxiAxiGbb2kgBSSBX0ACWAAmgTGlVAoRCYnIVzl85kTEr4GrQJTDpw3o18A5F8QL9Gog4qJBVANBFw2qDCBQMpTLsTn9FqOjE+XzHUglO/uRI5E6PDXh3VMBA7D+HUl/mGF15D6ecC3WjZt46uorCottk376hK0345jtHVTdurN7iV8DJduUzZQTyM8frA8PYU+MlxXfjsdZHx5ia+I1GREW48vlllka5xLtQfX1IaZJ6vEjNh6OIBsb+R0I9tQka3dvk1tcYLWllU/pDH+SyXIyXmN3BDu0t6N6LsCzUTIzMdYWvmFdu449/Q57apKcZfH94iV+R04hs/NlJf5vICDH/TAwgIq9Z3vsOesP7gGwVt/AYlcPtmlWEi7gMyrPidMphXR3oZqa2B4dZammluVow37COxiAne9LUar0O1iNGhzEk1hBxROIyEH0bZ03qBhA3g1HTwiHqjnd3IC5//EApPcaqMKLLHlRlXcrOlpHfbS2NBIMVhf/05oy2AbOe76DeaYT3/lussdOYJgWispH0RiNEgyGSLSdJdLdWzYCJSJzOE+rG8xrnGzkFkkNrLhosKKBJRcNvmgg5qLBBCISEJGYC0n/lYh4FYCIeIF+4DLQjJPlAji5olCyFBo4d8emWLqkKZYun4EXwEulVPYvVD1yy3k4DqgAAAAASUVORK5CYII=") no-repeat left center transparent;
+    background-size: 100% 100%;
+}
