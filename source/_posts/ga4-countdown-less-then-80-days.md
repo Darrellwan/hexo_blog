@@ -1,5 +1,5 @@
 ---
-title: GA4升級倒數77天，探討從通用型GA升級至GA4的必要性、好處與挑戰
+title: GA4 升級倒數77天，探討從通用GA升級至GA4的必要性、好處與挑戰
 date: 2023-04-16 20:24:58
 tags: 
 	- Google Analytics 4
