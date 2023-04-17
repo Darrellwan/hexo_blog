@@ -44,11 +44,13 @@
         </div>
       {%- endif %}
 
+      {%- if theme.show_sidebar_category %}
       <ul class="sidebar-nav category-post">
         <li class="sidebar-category-post">          
           {{ partial('_partials/sidebar/darrellcustom-category-post.swig', {page: page}) }}
         </li>
       </ul>
+      {%- endif %}
     </div>
   </aside>
   <div id="sidebar-dimmer"></div>

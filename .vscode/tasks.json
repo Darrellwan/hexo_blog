@@ -1,0 +1,16 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+	  {
+		"label": "Run Hexo",
+		"type": "shell",
+		"command": "node_modules/hexo/bin/hexo",
+		"args": ["clean", "generate --config main.yml", "server --config main.yml"],
+		"group": {
+		  "kind": "build",
+		  "isDefault": true
+		}
+	  }
+	]
+  }
+  

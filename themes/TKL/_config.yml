@@ -62,3 +62,5 @@ local_search:
   top_n_per_article: 2
 
 gtm: true
+
+show_sidebar_category: true

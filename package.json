@@ -3,13 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "hexo generate",
+    "build": "hexo generate --config 'main.yml'",
     "clean": "hexo clean",
     "deploy": "hexo deploy",
-    "server": "hexo server"
+    "server": "hexo server --config 'main.yml'",
+    "custom": "hexo clean; hexo generate --config 'main.yml'; hexo server --config 'main.yml'"
   },
   "hexo": {
-    "version": "6.2.0"
+    "version": "6.3.0"
   },
   "dependencies": {
     "dotenv": "^16.0.3",
