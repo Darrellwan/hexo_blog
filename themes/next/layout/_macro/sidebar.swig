@@ -44,10 +44,19 @@
         </div>
       {%- endif %}
 
-      {%- if theme.show_sidebar_category %}
+      {%- if theme.show_sidebar_category == true %}
       <ul class="sidebar-nav category-post">
         <li class="sidebar-category-post">          
           {{ partial('_partials/sidebar/darrellcustom-category-post.swig', {page: page}) }}
+        </li>
+      </ul>
+      {%- endif %}
+
+
+      {%- if theme.show_adsense_ad == true %}
+      <ul class="sidebar-nav sense-layout">
+        <li class="sidebar-sense-layout">          
+          {{ partial('_partials/sidebar/darrellcustom-adSense.swig') }}
         </li>
       </ul>
       {%- endif %}
