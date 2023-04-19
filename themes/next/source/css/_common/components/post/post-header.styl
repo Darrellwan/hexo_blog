@@ -4,6 +4,9 @@
 
 .posts-expand .post-title {
   font-size: $font-size-largest;
+  @media only screen and (max-width: 767px) {
+    font-size: 1.25rem;
+  }
   font-weight: normal;
   margin: initial;
   text-align: left;
@@ -67,12 +70,20 @@
   color: $whitesmoke;
   font-family: $font-family-posts;
   font-size: $font-size-smallest;
-  margin: 3px 0 1rem 0;
+  @media only screen and (max-width: 767px) {
+    font-size: 0.7rem; /* Change the font size to 0.7 rem for mobile devices */
+  }
+
+  margin: 3px 0 3px 0;
   text-align: left;
 
   .post-description {
     font-size: $font-size-large;
     margin-top: 2px;
+    @media only screen and (max-width: 767px) {      
+      height: 4em;
+      overflow: hidden;
+    }
   }
 
   time {
@@ -81,9 +92,17 @@
   }
 }
 
+.post-meta .post-meta-item {
+  color: #a2a2a2;
+  a {   
+    color: #a2a2a2;
+  }
+}
+
 .post-meta .post-meta-item + .post-meta-item::before {
   content: '|';
   margin: 0 .5em;
+  
 }
 
 .post-meta-divider {
