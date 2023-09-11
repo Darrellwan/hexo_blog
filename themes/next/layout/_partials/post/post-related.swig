@@ -21,7 +21,7 @@
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       "event" : "popular_post_view",
-      "post_path" : "{{ popular_post.path }}",
+      "post_path" : "{{ popular_post.path }}/",
       "post_title" : "{{ popular_post.title }}",
     })
   </script>
