@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const algoliaSettings = CONFIG.algolia;
   const { indexName, appID, apiKey } = algoliaSettings;
 
-
   let search = instantsearch({
     indexName,
     searchClient  : algoliasearch(appID, apiKey),
@@ -41,7 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
           };
         },
       },
-    }
+    },
+    insights: {
+      insightsInitParams: {
+        useCookie: true,
+      },
+    },
   });
 
   window.pjax && search.on('render', () => {
@@ -51,7 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Registering Widgets
   search.addWidgets([
     instantsearch.widgets.configure({
-      clickAnalytics: true,
       hitsPerPage: algoliaSettings.hits.per_page || 10
     }),
 
@@ -86,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
     instantsearch.widgets.hits({
       container: '#algolia-hits',
       templates: {
-        item: data => {
+        item: (data) => {
           let link = data.permalink ? data.permalink : CONFIG.root + data.path;
           let keywords = data._highlightResult.title.matchedWords.join(",");
           return `<a href="${link}" data-insights-object-id="${data.objectID}" data-insights-position="${data.__position}" data-insights-query-id="${data.__queryID}" class="algolia-hit-item-link js-algolia-search-result" data-search-keyword="${keywords}">${data._highlightResult.title.value}</a>`;
@@ -174,10 +177,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if(document.location.search.indexOf("?q=") > -1){
       window.setTimeout(onPopupOpen, 1500);
     }
-    console.log({window_aa: window.aa})
-    const insightsMiddleware = instantsearch.middlewares.createInsightsMiddleware({
-      insightsClient: window.aa,
-    })
-    search.use(insightsMiddleware);
+    // const insightsMiddleware = instantsearch.middlewares.createInsightsMiddleware({
+    //   insightsClient: window.aa,
+    //   insightsInitParams: {
+    //     useCookie: true,
+    //   }
+    // })
+    // search.use(insightsMiddleware);
   });
 });
