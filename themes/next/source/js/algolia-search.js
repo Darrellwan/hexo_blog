@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let search = instantsearch({
     indexName,
     searchClient  : algoliasearch(appID, apiKey),
+    stalledSearchDelay: 1000,
     searchFunction: helper => {
       let searchInput = document.querySelector('.search-input');
       if (searchInput.value) {
@@ -52,6 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.pjax.refresh(document.getElementById('algolia-hits'));
   });
 
+
+  let timerId;
   // Registering Widgets
   search.addWidgets([
     instantsearch.widgets.configure({
@@ -64,10 +67,14 @@ document.addEventListener('DOMContentLoaded', () => {
       // Hide default icons of algolia search
       showReset           : false,
       showSubmit          : false,
-      showLoadingIndicator: false,
       cssClasses          : {
         input: 'search-input'
-      }
+      },
+      showLoadingIndicator: true,
+      queryHook(query, refine) {
+        clearTimeout(timerId)
+        timerId = setTimeout(() => refine(query), 300)
+      },
     }),
 
     instantsearch.widgets.stats({
