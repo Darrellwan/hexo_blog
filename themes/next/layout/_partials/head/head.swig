@@ -64,4 +64,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href='https://fonts.googleapis.com/css?family=Roboto Mono' rel='stylesheet'>
 <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(function(OneSignal) {
+    OneSignal.init({
+      appId: "bcac3b87-b9ab-4b81-a060-54135c4a761f",
+    });
+  });
+</script>
 {{ next_config() }}
