@@ -4,6 +4,13 @@
   "gcm_sender_id": "103953800507",
   "display": "standalone",
   "start_url": "/",
-  "name": "OneSignal Manifest Example",
-  "short_name": "OS Manifest"
+  "name": "DarrellMartech_TW Manifest Example",
+  "short_name": "DarrellMartech_TW",
+  "icons": [
+    {
+        "src": "/darrell_icon_512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+    }
+]
 }
