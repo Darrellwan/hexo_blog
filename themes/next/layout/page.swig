@@ -23,7 +23,10 @@
     {### PAGE BLOCK ###}
     {##################}
     <div class="post-block" lang="{{ page.lang or config.language }}">
+    {%- if page.type !== 'categories' %}       
       {% include '_partials/page/page-header.swig' %}
+    {%- endif %}
+
       {#################}
       {### PAGE BODY ###}
       {#################}
@@ -46,11 +49,8 @@
           </div>
         {% elif page.type === 'categories' %}
           <div class="category-all-page">
-            <div class="category-all-title">
-              {{ _p('counter.categories', site.categories.length) }}
-            </div>
             <div class="category-all">
-              {{ list_categories() }}
+              {{ list_categories({show_count : false}) }}
             </div>
           </div>
         {% elif page.type === 'schedule' %}
