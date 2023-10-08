@@ -4,13 +4,28 @@
   "gcm_sender_id": "103953800507",
   "display": "standalone",
   "start_url": "/",
-  "name": "DarrellMartech_TW Manifest Example",
-  "short_name": "DarrellMartech_TW",
+  "name": "DarrellTW Martech",
+  "short_name": "DarrellTW Martech",
   "icons": [
-    {
-        "src": "/darrell_icon_512.png",
-        "sizes": "512x512",
-        "type": "image/png"
-    }
-]
+      {
+          "src": "/images/darrell_icon_512.png",
+          "sizes": "192x192",
+          "type": "image/png"
+      },
+      {
+          "src": "/images/darrell_icon_512.png",
+          "sizes": "256x256",
+          "type": "image/png"
+      },
+      {
+          "src": "/images/darrell_icon_512.png",
+          "sizes": "384x384",
+          "type": "image/png"
+      },
+      {
+          "src": "/images/darrell_icon_512.png",
+          "sizes": "512x512",
+          "type": "image/png"
+      }
+  ]
 }
