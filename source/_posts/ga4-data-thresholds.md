@@ -1,6 +1,7 @@
 ---
 title: GA4 報表有時候數字對不起來，很有可能是遇到資料閾值 
 date: 2023-11-06 17:57:34
+id: ga4-data-thresholds
 tags:
 	- Google Analytics 4
 categories:
