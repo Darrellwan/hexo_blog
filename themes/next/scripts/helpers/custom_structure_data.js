@@ -76,11 +76,6 @@ function darrellOrgStructuredData() {
     "name": "Darrell Martech TW",
     "url": "https://www.darrelltw.com/",
     "logo": "https://www.darrelltw.com/images/darrell_icon_512.png",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "台北市",
-      "addressCountry": "TW"
-    },
     "contactPoint": {
       "@type": "ContactPoint",
       "email": "service@darrelltw.com",
