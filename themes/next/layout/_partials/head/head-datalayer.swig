@@ -19,6 +19,7 @@
   let currentPageData = {
     title : "{{ page.title }}",
     page_date : "{{ page.date }}",
+    page_id : "{{ page.id }}",
     page_updated : "{{ page.updated }}",
     page_categories : category_arr,
     page_tags : tags_arr,
