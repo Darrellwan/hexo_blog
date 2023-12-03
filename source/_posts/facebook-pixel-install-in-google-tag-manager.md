@@ -1,16 +1,15 @@
 ---
 title: Facebook Pixel 利用 GTM 安裝和注意事項避免重複觸發
-date: 2023-12-01 19:46:45
+date: 2023-12-03 19:46:45
 tags:
 	- Google Tag Manager
-    - Facebook Pixel
+	- Facebook Pixel
 categories:
 	- Pixel Tracking
 page_type: post
 id: facebook-pixel-install-in-google-tag-manager
-description: Facebook Pixel 像素是一個很常見安裝在網站上的程式碼，只是 Meta 在 Pixel像素 的安裝文件中只提到最簡易的安裝方式，這種方式促使只要網站上安裝超過一組 Pixel ID 就會造成重複觸發或是互相干擾的情況。
+description: Facebook Pixel 像素是一個很常見安裝在網站上的程式碼，只是 Meta 在 Pixel像素 的安裝文件中只提到最簡易的安裝方式，這種方式促使只要網站上安裝超過一組 Pixel ID 就會造成重複觸發或是互相干擾的情況，這裡也會提供在 Google Tag Manager 或是 hardcode 上可以避免的方式
 ---
-
 
 {% darrellImageCover facebook_pixel_install_in_google_tag_manager_bg facebook_pixel_install_in_google_tag_manager_bg.png max-800 %}
 
@@ -46,8 +45,7 @@ description: Facebook Pixel 像素是一個很常見安裝在網站上的程式�
 官方文件
 [如何設定及安裝 Meta 像素](https://www.facebook.com/business/help/952192354843755?id=1205376682832142)
 
-## 標準事件、自訂事件、避免觸發的進階技巧
-
+## 標準事件、自訂事件
 
 ### 標準事件
 
@@ -126,4 +124,81 @@ fbq('trackCustom', 'Hello');
 fbq('trackCustom', 'Hi', {name: 'Bob'});
 fbq('trackCustom', 'Hello', {name: 'Jack'});
 ```
+
+## 避免觸發的進階技巧
+
+一但網站上安裝超過一組的 Facebook Pixel Code 時
+原先上面官方文件提到的方式就會開始或多或少的出現一些問題
+最麻煩的自己的 Pixel ID 會接收到其他人或是廠商觸發的事件
+這本身有好有壞，如果別人的安裝方式正確且完整，那就剛好搭上好的順發車
+
+但如果對方安裝的事件和參數自己根本不需要，或是不太正確
+那被影響到就會很冤枉，且沒有方式可以避免!
+
+### 範例
+
+官方範例:
+{% darrellImage800 facebook_mutiple_pixel_tracking_demo facebook_mutiple_pixel_tracking_demo.png max-800 %}
+
+這邊截圖的橘色和紫色部分其實都會造成問題
+因為 Pixel A 和 Pixel B 先後都被 init (類似註冊的概念)
+後面觸發的任何事件，都會以 **廣播** 的方式發送給任何有 init 的 Pixel ID
+
+橘色的標準事件 PageView 會同時發送給 A 和 B, 所以 A 其實多觸發了一次的 PageView
+紫色的自訂事件 Step4 通常預期只會發送給 B, 但其實還是同時發送給 A 和 B, A 收到了一個不在預期內的事件
+
+### 解決方式
+
+其實官方的文件一直都有該如何解決這問題的方案
+該文章甚至早在 2017 年就已經出現
+[Facebook - Accurate Event Tracking with Multiple Pixels](https://developers.facebook.com/ads/blog/post/v2/2017/11/28/event-tracking-with-multiple-pixels-tracksingle/)
+
+但自己一直覺得應該把這個做為預設的方式，現實世界中一個網站要安裝大於一個的 Facebook Pixel 其實非常常見
+例如原本找了廣告代理商 A, 後面換成代理商 B 最後改為自己找團隊來操作廣告
+這樣基本上最少就有三組 Facebook Pixel Code 在網站上
+很容易就算沒有和該廠商合作，也沒發現他們的 Pixle Code 一直沒有移除，隨著時間網站上就會慢慢累積多組 Code
+
+{% darrellImage800 facebook_mutiple_pixel_tracking_solution facebook_mutiple_pixel_tracking_solution.png max-800 %}
+
+一樣針對 標準事件和自訂事件 都有各自需要些微調整的地方
+
+```
+// 標準事件
+
+fbq('track', 'Purchase', {
+	'value': 4,
+	'currency': 'GBP'
+});
+
+fbq('trackSingle', '<PIXEL_A>', 'Purchase', {
+	value: 4,
+	currency: 'GBP',
+});
+
+將原本的 track 改為 trackeSingle
+並在後面多放上 `pixel_id`
+這樣就可以讓該事件，只發送給標示的 pixel_id
+```
+
+```
+// 自訂事件
+
+fbq('trackCustom', 'Step4');
+
+fbq('trackSingleCustom', '<PIXEL_B>', 'Step4',{});
+
+和標準事件很像
+把 trackCustom 改為 trackSingleCustom, 並在後面多一個欄位是指定的 `pixel_id`
+其餘都和原本的方式一樣
+```
+
+其實整個方式對於工程師來說算是很簡單的，
+所以也希望如果有機會需要在 GTM 或是直接放在前端 code 上的 facebook pixel
+如果都能使用這套避免重複觸發的方式來安裝，那就會大幅降低彼此之間的影響
+
+安裝精準且資料豐富正確的 Facebook Pixel Code 都會很好的幫助廣告的成效
+且讓操作廣告的人在廣告後台可以安排更多不同的受眾策略
+例如 瀏覽過 商品名稱包含xxx 且價格介於 ooo 到 yyy 的人來當作受眾
+
+
 
