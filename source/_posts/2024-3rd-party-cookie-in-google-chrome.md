@@ -11,6 +11,8 @@ description: 2024年起，Google將逐步淘汰第三方Cookie，並開始推出
 date: 2023-12-15 16:50:19
 ---
 
+{% darrellImageCover google_chrome_3rd_party_cookie_bg google_chrome_3rd_party_cookie_bg.png max-800 %}
+
 ## 時程
 
 先前參與 2023 年的數位時代 Martech 高峰會時有講者多次提到第三方 Cookie 將於 2024 年消失，的確 Google 目前的計畫看起來將在 2024 的 Q4 全面啟用新的三方 Cookie 機制。
