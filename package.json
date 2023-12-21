@@ -7,13 +7,18 @@
     "clean": "hexo clean",
     "deploy": "hexo deploy",
     "server": "hexo server --config 'main.yml'",
-    "generate": "hexo clean; hexo generate --config 'main.yml'; hexo server --config 'main.yml'",
-    "add_post" : "hexo new post gtm %npm_config_title%"
+    "test": "npm run clean && npm run generate_custom && npm run server_custom ",
+    "generate_custom": "hexo generate --config './main.yml'",
+    "server_custom": "hexo server --config './main.yml'",
+    "generate": "hexo clean && hexo generate --config 'main.yml' && hexo server --config 'main.yml' ",
+    "add_post": "hexo new gtm %npm_config_posttitle%"
   },
   "hexo": {
     "version": "6.3.0"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.1.1",
+    "@vercel/speed-insights": "^1.0.1",
     "dotenv": "^16.0.3",
     "hexo": "^6.2.0",
     "hexo-algoliasearch": "^1.0.0",

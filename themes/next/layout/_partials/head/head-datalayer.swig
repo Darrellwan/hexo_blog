@@ -40,4 +40,6 @@
   window.customizedGtmId = "{{page.gtmid}}" || false;
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push(currentPageData);
+
+  
 </script>
