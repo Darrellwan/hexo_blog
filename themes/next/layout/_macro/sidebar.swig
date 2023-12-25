@@ -29,7 +29,7 @@
           <div class="post-toc motion-element">{{ toc }}</div>
         {%- endif %}
       </div>
-      <div class="om-embedded-campaign" data-campaign-id="21"></div>
+      <div class="klaviyo-form-YecXGf"></div>
       <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
