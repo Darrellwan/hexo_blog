@@ -169,7 +169,7 @@ feed:
   type:
     - rss2
   path:
-    - rss2.xml
+    - rss.xml
   limit: 0
   hub:
   content:
