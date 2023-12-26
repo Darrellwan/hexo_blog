@@ -178,6 +178,6 @@ feed:
   content_limit: 140
   content_limit_delim: ' '
   order_by: -date
-  icon: icon.png
+  icon: ./image/darrell_icon_64.png
   autodiscovery: true
   template:
