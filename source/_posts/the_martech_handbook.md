@@ -7,6 +7,7 @@ categories:
 	- Martech
 page_type: post
 description: Martech 行銷科技這個詞已經出現了許久，只是對於大多數人來說好像還是一個有點模糊的概念。這本書像是對整個行銷科技有一個初步的介紹，並且用這一兩年的觀點來說明現行的狀況。企業可以做好什麼樣的準備，建立一個好的心態來發揮行銷科技能帶來的好處。
+bgImage: the_martech_handbook_bg.png
 ---
 
 {% darrellImageCover the_martech_handbook_bg the_martech_handbook_bg.png max-800 %}

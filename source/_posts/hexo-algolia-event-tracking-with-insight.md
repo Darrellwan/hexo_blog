@@ -8,6 +8,7 @@ categories:
 page_type: post
 date: 2023-09-13 21:36:19
 description: 在 Hexo 的 Algolia 中啟用內建的 insight 來追蹤相關的搜尋、點擊的行為
+bgImage: algolia_event_tracking_in_insight_bg.png
 ---
 
 {% darrellImageCover algolia_event_tracking_in_insight_bg algolia_event_tracking_in_insight_bg.png max-800 %}

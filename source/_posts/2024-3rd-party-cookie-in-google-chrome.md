@@ -9,6 +9,7 @@ page_type: post
 id: 2024_3rd_party_cookie_in_google_chrome
 description: 2024年起，Google將逐步淘汰第三方Cookie，並開始推出更注重使用者隱私的 Privacy Sandbox，和整體目前的時間軸
 date: 2023-12-15 16:50:19
+bgImage: google_chrome_3rd_party_cookie_bg.png
 ---
 
 {% darrellImageCover google_chrome_3rd_party_cookie_bg google_chrome_3rd_party_cookie_bg.png max-800 %}

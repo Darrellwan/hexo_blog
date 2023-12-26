@@ -9,6 +9,7 @@ categories:
 page_type: post
 id: facebook-pixel-install-in-google-tag-manager
 description: Facebook Pixel 像素是一個很常見安裝在網站上的程式碼，只是 Meta 在 Pixel像素 的安裝文件中只提到最簡易的安裝方式，這種方式促使只要網站上安裝超過一組 Pixel ID 就會造成重複觸發或是互相干擾的情況，這裡也會提供在 Google Tag Manager 或是 hardcode 上可以避免的方式
+bgImage: facebook_pixel_install_in_google_tag_manager_bg.png
 ---
 
 {% darrellImageCover facebook_pixel_install_in_google_tag_manager_bg facebook_pixel_install_in_google_tag_manager_bg.png max-800 %}

@@ -9,6 +9,7 @@ description: GTM 的變數 - 對照表(Lookup Table)，可以幫助你在有明�
 categories: 
     - Google Tag Manager
 page_type: post
+bgImage: gtm_lookuptable_bg.webp
 ---
 {% darrellImage gtm_lookuptable_bg gtm_lookuptable_bg.webp %}
 

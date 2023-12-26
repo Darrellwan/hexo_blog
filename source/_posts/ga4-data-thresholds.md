@@ -8,6 +8,7 @@ categories:
 	- Google Analytics 4
 page_type: post
 description: GA4 的報表加一個維度後，數字就對不起來了，這個非常反直覺的問題來自於 Google 的 Thresholds 資料閾值。
+bgImage: ga4-data-thresholds_bg.png
 ---
 
 {% darrellImageCover ga4-data-thresholds_bg ga4-data-thresholds_bg.png max-800 %}

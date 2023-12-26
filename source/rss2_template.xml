@@ -22,6 +22,9 @@
       <title>{{ post.title }}</title>
       <link>{{ post.permalink | uriencode }}?utm_source=rss_feed&amp;utm_medium=rss</link>
       <guid>{{ post.permalink | uriencode }}</guid>
+      {% if post.bgImage %}
+      <customImage>{{ post.permalink + post.bgImage | uriencode }}</customImage>
+      {% endif %}
       <pubDate>{{ post.date.toDate().toUTCString() }}</pubDate>
       {% if post.description %}
       <description>{{ post.description }}</description>

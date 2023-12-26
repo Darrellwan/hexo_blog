@@ -8,6 +8,7 @@ description: 隨著 GTM 容器的使用，創造了數十個或是上百個版�
 categories: 
 	- Google Tag Manager
 page_type: post
+bgImage: container_rollback_background.webp
 
 ---
 {% darrellImageCover container_rollback_background ./container_rollback_background.webp %}

@@ -9,6 +9,7 @@ categories:
 page_type: post
 date: 2022-11-21 22:51:08
 description: GTM 的觸發條件 - 網頁瀏覽(Page View)、Dom就緒(Dom Ready)、視窗已載入(Window Loaded)三個觸發條件由於非常接近，直接綜合在一起寫，也可以發現說其實這三個觸發條件是有順序關聯的，希望能好好解釋這三者的差異
+bgImage: gtm_trigger_pageview_bg.png
 ---
 
 {% darrellImageCover gtm_trigger_pageview_bg gtm_trigger_pageview_bg.png %}
