@@ -42,9 +42,9 @@ custom_file_path:
 favicon:
   small: /images/favicon.ico
   medium: /images/favicon.ico
-  apple_touch_icon: /images/logo.png
-  safari_pinned_tab: /images/logo.png
-  #android_manifest: /images/manifest.json
+  apple_touch_icon: /images/apple-touch-icon.png
+  safari_pinned_tab: /images/safari-pinned-tab.svg
+  android_manifest: /images/site.webmanifest.json
   #ms_browserconfig: /images/browserconfig.xml
 
 # Show multilingual switcher in footer.
