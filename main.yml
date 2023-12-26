@@ -167,10 +167,8 @@ breadcrumb:
 feed:
   enable: true
   type:
-    - atom
     - rss2
   path:
-    - atom.xml
     - rss2.xml
   limit: 0
   hub:
@@ -181,3 +179,4 @@ feed:
   icon: ./image/darrell_icon_64.png
   autodiscovery: true
   template:
+    - ./source/rss2_template.xml
