@@ -29,7 +29,11 @@
           <div class="post-toc motion-element">{{ toc }}</div>
         {%- endif %}
       </div>
-      <div class="klaviyo-form-YecXGf"></div>
+      {%- if display_toc %}
+      {%- else %}
+          <div class="klaviyo-form-YecXGf"></div>
+      {%- endif %}
+      
       <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
