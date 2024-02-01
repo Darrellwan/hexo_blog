@@ -30,7 +30,7 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render: 
- - 'test-tool-hash256.html'
+ - 'tool-hash-sha256.html'
 
 archive_generator:
   enabled: true
