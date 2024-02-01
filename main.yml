@@ -29,7 +29,8 @@ archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
-skip_render:
+skip_render: 
+ - 'test-tool-hash256.html'
 
 archive_generator:
   enabled: true

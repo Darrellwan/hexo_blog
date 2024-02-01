@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHA-256 Hash Generator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+
+        .textarea {
+            width: 80%;
+            height: 150px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            resize: none;
+        }
+
+        #convertButton {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #convertButton:hover {
+            background-color: #0056b3;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <textarea id="inputArea" class="textarea" placeholder="Enter values to hash..."></textarea>
+        <button id="convertButton">Convert to SHA-256</button>
+        <textarea id="outputArea" class="textarea" placeholder="Hashed values will appear here..." readonly></textarea>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+    <script>
+        document.getElementById("convertButton").addEventListener("click", function() {
+            var inputValues = document.getElementById("inputArea").value.split('\n');
+            var hashedValues = inputValues.map(function(value) {
+                return value.trim() ? CryptoJS.SHA256(value.trim()).toString(CryptoJS.enc.Hex) : '';
+            });
+            document.getElementById("outputArea").value = hashedValues.join('\n');
+        });
+    </script>
+</body>
+</html>
