@@ -88,6 +88,11 @@
                 return value.trim() ? CryptoJS.SHA256(value.trim()).toString(CryptoJS.enc.Hex) : '';
             });
             document.getElementById("outputArea").value = hashedValues.join('\n');
+
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                event: 'run_hash_sha256'
+            }) 
         });
     </script>
 </body>
