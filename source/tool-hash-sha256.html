@@ -3,56 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHA-256 Hash Generator</title>
+    <meta name="description" content="大量 Hash SHA-256 支援多行轉換">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Hash SHA-256 大量轉換小工具">
+    <meta property="og:url" content="https://www.darrelltw.com/">
+    <meta property="og:site_name" content="Darrell Martech">
+    <meta property="og:description" content="大量 Hash SHA-256 支援多行轉換">
+    <meta property="og:locale" content="zh_TW">
+    <meta property="og:image" content="https://www.darrelltw.com/images/darrell_icon_512.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://www.darrelltw.com/images/darrell_icon_512.png">
+    <title>Hash SHA-256 大量轉換小工具</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
+            background-color: #1e1e1e; /* 暗色背景 */
+            color: #fff; /* 亮色文本 */
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             height: 100vh;
             margin: 0;
-            color: #333;
+            padding: 20px; /* 避免布局溢出 */
         }
-
-        .textarea {
+    
+        .container {
             width: 80%;
-            height: 150px;
-            margin-bottom: 20px;
-            margin-top: 20px;
-            padding: 10px;
-            border: 2px solid #ddd;
+            max-width: 1080px; /* 设置最大宽度 */
+            background-color: #252526; /* 深色容器背景色 */
+            padding: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
             border-radius: 8px;
-            font-size: 16px;
-            resize: none;
+            border: 1px solid #3c3c3c; /* 容器边框 */
         }
-
-        #convertButton {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            background-color: #007bff;
-            color: white;
+    
+        .textarea, button {
+            width: 100%; /* 使按钮与文本区同宽 */
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 4px;
             font-size: 16px;
+            box-sizing: border-box; /* 边框盒模型 */
+        }
+    
+        .textarea {
+            height: 30vh;
+            max-height: 360px;
+            border: 1px solid #3c3c3c; /* 文本区边框颜色 */
+            background-color: #2d2d2d; /* 文本区背景色 */
+            color: #dcdcdc; /* 文本颜色 */
+            resize: none; /* 禁止调整大小 */
+        }
+    
+        .textarea::placeholder {
+            color: #bbb; /* 提高 placeholder 文本的亮度 */
+        }
+    
+        button {
+            background-color: #007acc; /* 按钮背景色 */
+            color: white;
+            border: 1px solid #3c3c3c; /* 按钮边框颜色 */
             cursor: pointer;
             transition: background-color 0.3s;
         }
-
-        #convertButton:hover {
-            background-color: #0056b3;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 600px;
-            padding: 20px;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 12px;
+    
+        button:hover {
+            background-color: #0062cc; /* 按钮悬停颜色 */
         }
     </style>
+    
 </head>
 <body>
     <div class="container">
