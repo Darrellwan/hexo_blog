@@ -4,7 +4,7 @@ date: 2022-07-31 22:49:43
 tags: 
   - Google Tag Manager
   - Google Analytics 4
-	- datalayer
+	- DataLayer
   - Stack Overflow
 description: 如何改寫 Datalyer 的 Items ，符合 Google Analytics 4 的 Items 規格
 categories: 

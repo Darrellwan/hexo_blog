@@ -5,7 +5,7 @@ tags:
 	- Hexo
 	- Algolia
 	- Google Tag Manager
-	- datalayer
+	- DataLayer
 	- Google Analytics 4
 description: 終於也使用了 Algolia 來當作這個網站的搜尋引擎，雖然他有支援一些 UA 的追蹤，還是想把他的 DataLayer 如何實作寫出來，讓需要的人可以客製自己的 search dataLayer 來使用
 categories: 
