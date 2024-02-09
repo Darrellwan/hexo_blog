@@ -38,7 +38,15 @@
     customgtmid: "{{page.gtmid}}"
   };
   window.customizedGtmId = "{{page.gtmid}}" || false;
-  window.dataLayer = window.dataLayer || [];
+  // window.dataLayer = window.dataLayer || [];
+  window.dataLayer = [];
+
+  (function(){
+      var pageLoadStartTime = window.performance.timing.navigationStart;
+      var currentTime = new Date().getTime();
+      var pageLoadTime = currentTime - pageLoadStartTime;
+      console.log("replace the datalayer at " + pageLoadTime);
+  })()
   window.dataLayer.push(currentPageData);
 
   
