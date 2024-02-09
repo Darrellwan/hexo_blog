@@ -38,8 +38,7 @@
     customgtmid: "{{page.gtmid}}"
   };
   window.customizedGtmId = "{{page.gtmid}}" || false;
-  // window.dataLayer = window.dataLayer || [];
-  window.dataLayer = [];
+  window.dataLayer = window.dataLayer || [];
 
   (function(){
       var pageLoadStartTime = window.performance.timing.navigationStart;
