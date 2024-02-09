@@ -12,7 +12,6 @@
   <script>
 
   window.dataLayer = [];
-  window.dataLayer.push({event: "test_z})
   (function(){
       var pageLoadStartTime = window.performance.timing.navigationStart;
       var currentTime = new Date().getTime();
@@ -38,6 +37,25 @@
       var pageLoadTime = currentTime - pageLoadStartTime;
       console.log("gtm start load at " + pageLoadTime);
   })()
+
+  window.dataLayer = [];
+  (function(){
+      var pageLoadStartTime = window.performance.timing.navigationStart;
+      var currentTime = new Date().getTime();
+      var pageLoadTime = currentTime - pageLoadStartTime;
+      console.log("replace gtm at position ZZ " + pageLoadTime);
+  })()
+
+
+    window.addEventListener('load', function() {
+        window.dataLayer = [];
+      (function(){
+          var pageLoadStartTime = window.performance.timing.navigationStart;
+          var currentTime = new Date().getTime();
+          var pageLoadTime = currentTime - pageLoadStartTime;
+          console.log("replace gtm at position load " + pageLoadTime);
+      })()
+    });
 
   </script>
 {%- endif %}

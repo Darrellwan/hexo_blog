@@ -18,7 +18,8 @@
   </li>
   {%- endif %}    
   <script>
-    window.dataLayer = window.dataLayer || [];
+    // window.dataLayer = window.dataLayer || [];
+    window.dataLayer = [];
     window.dataLayer.push({
       "event" : "popular_post_view",
       "post_path" : "{{ popular_post.path }}/",
