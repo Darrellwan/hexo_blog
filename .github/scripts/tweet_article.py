@@ -50,7 +50,8 @@ def main():
     setup_logging()
     
     # 假設 NEW_FILES 是一個包含新 Markdown 文件路徑的環境變量
-    new_files = os.environ.get('NEW_FILES', '').split()
+    new_files = os.environ.get('new_files_py', '').split()
+    print((f"new_files: {new_files}"))
     for file_path in new_files:
         metadata = read_markdown_file(file_path)
         description = metadata.get('description')

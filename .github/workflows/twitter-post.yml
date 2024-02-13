@@ -35,7 +35,8 @@ jobs:
           NEW_FILES=$(git diff --name-only --diff-filter=A $SECOND_LAST_COMMIT $LAST_COMMIT -- './source/_posts/*.md')
           echo "New markdown files: $NEW_FILES"
           if [ -n "$NEW_FILES" ]; then
-            echo "new_files=$NEW_FILES" >> $GITHUB_OUTPUT
+          echo "new_files=$NEW_FILES" >> $GITHUB_OUTPUT
+          echo "new_files_py=$NEW_FILES" >> $GITHUB_ENV
           fi
         else
           echo "Not enough commits to compare."
