@@ -2,6 +2,7 @@ import os
 import yaml
 import git
 import logging
+from tweepy import OAuthHandler, API, Client
 
 def setup_logging():
     logging.basicConfig(filename='log.txt', level=logging.DEBUG,format='%(asctime)s:%(levelname)s:%(message)s')
@@ -13,9 +14,24 @@ def read_markdown_file(file_path):
         metadata = yaml.safe_load(content)
         return metadata
 
+def twitter_api():
+    ACCESS_KEY = ''
+    ACCESS_SECRET = ''
+    CONSUMER_KEY = ''
+    CONSUMER_SECRET = ''
+    BEARER_TOKEN = ''
+    api = Client(bearer_token=BEARER_TOKEN,
+        access_token=ACCESS_KEY,
+        access_token_secret=ACCESS_SECRET,
+        consumer_key=CONSUMER_KEY,
+        consumer_secret=CONSUMER_SECRET)
+    return api
+
 def tweet_article(api, description, cover_url):
-    tweet = f"{description} {cover_url}"
-    api.update_status(tweet)
+    response = api.create_tweet(text=description)
+    logging.info(f"response: {response}")
+    print(f"response: {response}")
+    return response
     
 def check_new_article():
     try:
@@ -65,7 +81,13 @@ def main():
     # description, cover = check_new_article()
     # logging.info(f"Description: {description}")
     # logging.info(f"Cover: {cover}")
+        
+def test_twitter():
+    setup_logging()
+    x_api = twitter_api()    
+    tweet_article(x_api, "test_twitter_from_api 202402131623 the thrid post", "")   
 
 if __name__ == "__main__":
-    main()
+    # main()
+    test_twitter()
     
