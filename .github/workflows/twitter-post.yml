@@ -4,30 +4,19 @@ on:
   push:
     branches:
       - dev-action-new-x-post # 或者你使用的分支名
-
 jobs:
-  tweet:
+  check-new-files:
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
-    - name: Install Dependencies
+
+    - name: Check for New Files
       run: |
-        pip install PyYAML tweepy GitPython
-    - name: Tweet New Article
-      env:
-        CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
-        CONSUMER_SECRET: ${{ secrets.TWITTER_CONSUMER_SECRET }}
-        ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
-        ACCESS_SECRET: ${{ secrets.TWITTER_ACCESS_SECRET }}
-      run: python .github/scripts/tweet_article.py
-    - name: Print Log File
-      run: cat log.txt
-    - name: Upload Log File
-      uses: actions/upload-artifact@v2
-      with:
-        name: log-file
-        path: log.txt
+        # 取得最近兩次提交的 ID
+        LAST_COMMIT=$(git rev-parse HEAD)
+        SECOND_LAST_COMMIT=$(git rev-parse HEAD~1)
+
+        # 列出在特定路徑下，這兩次提交間新增的文件
+        git diff --name-only --diff-filter=A $SECOND_LAST_COMMIT $LAST_COMMIT -- './source/_posts/*.md'
+      

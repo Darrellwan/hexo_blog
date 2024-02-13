@@ -4,15 +4,13 @@ import git
 import logging
 
 def setup_logging():
-    """
-    設置日誌記錄的配置。
-    """
     logging.basicConfig(filename='log.txt', level=logging.DEBUG,format='%(asctime)s:%(levelname)s:%(message)s')
     
 def check_new_article():
     try:
         repo = git.Repo(search_parent_directories=True)
         commits = list(repo.iter_commits('dev-action-new-x-post', max_count=5))
+        # commits = list(repo.iter_commits(max_count=5))
         
         logging.info(f"commits: {commits}")
         logging.info(f"len commits: {len(commits)}")
