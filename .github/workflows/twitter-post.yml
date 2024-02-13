@@ -39,6 +39,7 @@ jobs:
           fi
         else
           echo "Not enough commits to compare."
+        fi
 
     - name: Process and Tweet New Articles
       if: steps.check-new-md-files.outputs.new_files
