@@ -1,0 +1,26 @@
+name: Twitter Post on New Article
+
+on:
+  push:
+    branches:
+      - dev-action-new-x-post # 或者你使用的分支名
+
+jobs:
+  tweet:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    - name: Install Dependencies
+      run: |
+        pip install PyYAML tweepy
+    - name: Tweet New Article
+      env:
+        CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
+        CONSUMER_SECRET: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+        ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+        ACCESS_SECRET: ${{ secrets.TWITTER_ACCESS_SECRET }}
+      run: python .github/scripts/tweet_article.py
