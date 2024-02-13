@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - dev-action-new-x-post # 或者你使用的分支名
+
 jobs:
   check-new-md-files:
     runs-on: ubuntu-latest
@@ -15,12 +16,29 @@ jobs:
 
     - name: Check for New Markdown Files
       run: |
+        # 輸出提交數量以供檢查
+        echo "Total commits: $(git rev-list --count HEAD)"
+
         # 只有當存在多於一個提交時，才執行後續命令
         if [ $(git rev-list --count HEAD) -gt 1 ]; then
           LAST_COMMIT=$(git rev-parse HEAD)
           SECOND_LAST_COMMIT=$(git rev-parse HEAD~1)
-          git diff --name-only --diff-filter=A $SECOND_LAST_COMMIT $LAST_COMMIT -- '*.md'
+
+          # 輸出最近兩次提交的 ID
+          echo "Last commit: $LAST_COMMIT"
+          echo "Second last commit: $SECOND_LAST_COMMIT"
+
+          # 檢查並輸出新增的 .md 檔案
+          NEW_FILES=$(git diff --name-only --diff-filter=A $SECOND_LAST_COMMIT $LAST_COMMIT -- '*.md')
+          echo "New markdown files: $NEW_FILES"
+          
+          # 如果有新文件，進行相應處理
+          if [ -n "$NEW_FILES" ]; then
+            echo "Processing new markdown files..."
+            # 在這裡添加處理新文件的命令
+          else
+            echo "No new markdown files found."
+          fi
         else
           echo "Not enough commits to compare."
         fi
-
