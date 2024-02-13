@@ -15,6 +15,7 @@ def check_new_article():
         commits = list(repo.iter_commits('dev-action-new-x-post', max_count=5))
         
         logging.info(f"commits: {commits}")
+        logging.info(f"len commits: {len(commits)}")
 
         if len(commits) < 2:
             return None, None
