@@ -42,7 +42,7 @@ jobs:
 
     - name: Process and Tweet New Articles
       if: steps.check-new-md-files.outputs.new_files
-      run: python tweet_new_article.py
+      run: python tweet_article.py
       env:
         TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
         TWITTER_API_SECRET: ${{ secrets.TWITTER_API_SECRET }}
