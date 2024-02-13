@@ -23,23 +23,4 @@ jobs:
         else
           echo "Not enough commits to compare."
         fi
-        jobs:
-          check-new-md-files:
-            runs-on: ubuntu-latest
-        
-            steps:
-            - uses: actions/checkout@v2
-              with:
-                fetch-depth: 0  # 獲取完整提交歷史
-        
-            - name: Check for New Markdown Files
-              run: |
-                # 只有當存在多於一個提交時，才執行後續命令
-                if [ $(git rev-list --count HEAD) -gt 1 ]; then
-                  LAST_COMMIT=$(git rev-parse HEAD)
-                  SECOND_LAST_COMMIT=$(git rev-parse HEAD~1)
-                  git diff --name-only --diff-filter=A $SECOND_LAST_COMMIT $LAST_COMMIT -- './source/_posts/*.md'
-                else
-                  echo "Not enough commits to compare."
-                fi
 
