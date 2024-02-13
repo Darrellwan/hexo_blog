@@ -52,4 +52,9 @@ jobs:
         TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
         TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}    
     - name: Print Log File
-      run: cat log.txt
+      run: |
+        if [ -f log.txt ]; then
+          cat log.txt
+        else
+          echo "log.txt does not exist."
+        fi
