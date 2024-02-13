@@ -51,9 +51,12 @@ def main():
     
     # 假設 NEW_FILES 是一個包含新 Markdown 文件路徑的環境變量
     new_files = os.environ.get('new_files_py', '').split()
+    dev_file = ["source/_posts/test_202402131541.md"]
+    new_files = dev_file
     print((f"new_files: {new_files}"))
     for file_path in new_files:
         metadata = read_markdown_file(file_path)
+        logging.info(f"metadata: {metadata}")  
         description = metadata.get('description')
         cover_url = metadata.get('cover')        
         logging.info(f"description: {description}")        
