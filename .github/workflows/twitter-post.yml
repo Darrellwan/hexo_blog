@@ -42,7 +42,7 @@ jobs:
         fi
 
     - name: Process and Tweet New Articles
-      if: steps.check-new-md-files.outputs.new_files
+      if: env.new_files
       run: |
         python .github/scripts/tweet_article.py
         ls -l
