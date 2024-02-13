@@ -21,7 +21,7 @@ jobs:
 
     - name: Install Python dependencies
       run: |
-        pip install tweepy PyYAML
+        pip install tweepy PyYAML gitpython
 
     - name: Check for New Markdown Files
       id: check-new-md-files
