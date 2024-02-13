@@ -5,6 +5,17 @@ import logging
 
 def setup_logging():
     logging.basicConfig(filename='log.txt', level=logging.DEBUG,format='%(asctime)s:%(levelname)s:%(message)s')
+
+def read_markdown_file(file_path):
+    with open(file_path, 'r') as file:
+        # 讀取 YAML front matter
+        content = file.read().split('---')[1]
+        metadata = yaml.safe_load(content)
+        return metadata
+
+def tweet_article(api, description, cover_url):
+    tweet = f"{description} {cover_url}"
+    api.update_status(tweet)
     
 def check_new_article():
     try:
@@ -37,9 +48,20 @@ def check_new_article():
 # 主函数
 def main():
     setup_logging()
-    description, cover = check_new_article()
-    logging.info(f"Description: {description}")
-    logging.info(f"Cover: {cover}")
+    
+    # 假設 NEW_FILES 是一個包含新 Markdown 文件路徑的環境變量
+    new_files = os.environ.get('NEW_FILES', '').split()
+    for file_path in new_files:
+        metadata = read_markdown_file(file_path)
+        description = metadata.get('description')
+        cover_url = metadata.get('cover')        
+        logging.info(f"description: {description}")        
+        logging.info(f"cover_url: {cover_url}")
+        # tweet_article(api, description, cover_url)
+    # description, cover = check_new_article()
+    # logging.info(f"Description: {description}")
+    # logging.info(f"Cover: {cover}")
 
 if __name__ == "__main__":
     main()
+    
