@@ -49,10 +49,11 @@ jobs:
         python .github/scripts/tweet_article.py
         ls -l
       env:
-        TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
-        TWITTER_API_SECRET: ${{ secrets.TWITTER_API_SECRET }}
-        TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
-        TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}    
+        X_API_KEY: ${{ secrets.X_API_KEY }}
+        X_API_SECRET: ${{ secrets.X_API_SECRET }}
+        X_ACCESS_KEY: ${{ secrets.X_ACCESS_KEY }}
+        X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}    
+        X_BEARER: ${{ secrets.X_BEARER }}    
     - name: Print Log File
       run: |
         if [ -f log.txt ]; then

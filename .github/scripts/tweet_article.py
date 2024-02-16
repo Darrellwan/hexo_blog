@@ -1,25 +1,39 @@
 import os
 import yaml
-import git
-import logging
-from tweepy import OAuthHandler, API, Client
+import requests
+from loguru import logger
+from tweepy import API, Client, OAuth1UserHandler
+from dotenv import load_dotenv
+
+load_dotenv()
+
+ACCESS_KEY = os.getenv('X_API_KEY')
+ACCESS_SECRET = os.getenv('X_API_SECRET')
+CONSUMER_KEY = os.getenv('X_ACCESS_KEY')
+CONSUMER_SECRET = os.getenv('X_ACCESS_SECRET')
+BEARER_TOKEN = os.getenv('X_BEARER')
+
+logger.debug(f"ACCESS_KEY: {ACCESS_KEY}")
+logger.debug(f"ACCESS_SECRET: {ACCESS_SECRET}")
+logger.debug(f"CONSUMER_KEY: {CONSUMER_KEY}")
+logger.debug(f"CONSUMER_SECRET: {CONSUMER_SECRET}")
+logger.debug(f"BEARER_TOKEN: {BEARER_TOKEN}")
 
 def setup_logging():
-    logging.basicConfig(filename='log.txt', level=logging.DEBUG,format='%(asctime)s:%(levelname)s:%(message)s')
+    logger.add("logging_{time:YYYYMMDD}.log", rotation="1 day")
+
+def image_link(cover_url, file_path):
+    base_name = os.path.splitext(os.path.basename(file_path))[0]
+    host = "https://www.darrelltw.com"
+    return f"{host}/{base_name}/{cover_url}"
 
 def read_markdown_file(file_path):
-    with open(file_path, 'r') as file:
-        # 讀取 YAML front matter
+    with open(file_path, 'r', encoding='utf-8') as file:
         content = file.read().split('---')[1]
         metadata = yaml.safe_load(content)
-        return metadata
+    return metadata
 
 def twitter_api():
-    ACCESS_KEY = ''
-    ACCESS_SECRET = ''
-    CONSUMER_KEY = ''
-    CONSUMER_SECRET = ''
-    BEARER_TOKEN = ''
     api = Client(bearer_token=BEARER_TOKEN,
         access_token=ACCESS_KEY,
         access_token_secret=ACCESS_SECRET,
@@ -27,67 +41,62 @@ def twitter_api():
         consumer_secret=CONSUMER_SECRET)
     return api
 
-def tweet_article(api, description, cover_url):
-    response = api.create_tweet(text=description)
-    logging.info(f"response: {response}")
+def twitter_v1_api():
+    auth = OAuth1UserHandler(CONSUMER_KEY, CONSUMER_SECRET)
+    auth.set_access_token(
+        ACCESS_KEY,
+        ACCESS_SECRET,
+    )
+    return API(auth)
+
+def tweet_article(api, description, mediaId):
+    response = api.create_tweet(text=description, media_ids=[mediaId])
+    logger.debug(f"response: {response}")
     print(f"response: {response}")
     return response
     
-def check_new_article():
+def upload_to_twitter_and_tweet(file_path, socialText, cover_url):
     try:
-        repo = git.Repo(search_parent_directories=True)
-        commits = list(repo.iter_commits('dev-action-new-x-post', max_count=5))
-        # commits = list(repo.iter_commits(max_count=5))
-        
-        logging.info(f"commits: {commits}")
-        logging.info(f"len commits: {len(commits)}")
-
-        if len(commits) < 2:
-            return None, None
-
-        commit = commits[0]
-        prev_commit = commits[1]
-        logging.info(f"commit: {commit}")
-        logging.info(f"prev_commit: {prev_commit}")
-
-        diff_index = prev_commit.diff(commit, create_patch=True)
-        for diff in diff_index:
-            logging.info(f"diff: {diff}")
-            if diff.change_type == 'A' and diff.a_path.endswith('.md'):
-                with open(diff.a_path, 'r') as file:
-                    docs = yaml.load_all(file, Loader=yaml.FullLoader)
-                    front_matter = next(docs)
-                    return front_matter.get('description'), front_matter.get('cover')
+        image_url = image_link(cover_url, file_path) 
+        response = requests.get(image_url)
+        image_name = 'temp_image.jpg'
+        with open(image_name, 'wb') as file:
+            file.write(response.content)            
+        logger.debug(f"image_url: {image_url}")
     except Exception as e:
-        logging.error(f"檢查新文章時發生錯誤: {e}")
-        return None, None
-# 主函数
-def main():
+        logger.error(f"Error downloading the image: {e}")
+        return
+
+    try:
+        client_v1 = twitter_v1_api()
+        media = client_v1.media_upload(image_name)
+        media_id = media.media_id 
+        os.remove(image_name)
+        logger.debug(f"media_id: {media_id}")
+        x_api = twitter_api()    
+        tweet_article(x_api, socialText, media_id)
+    except Exception as e:
+        logger.error(f"Error uploading to Twitter: {e}")
+
+def main():        
     setup_logging()
-    
-    # 假設 NEW_FILES 是一個包含新 Markdown 文件路徑的環境變量
-    new_files = os.environ.get('new_files_py', '').split()
-    dev_file = ["source/_posts/test_202402131541.md"]
+    # new_files = os.environ.get('new_files_py', '').split()
+    dev_file = ["source/_posts/email-dmarc-gmail-new-policy-in-202402.md"]
     new_files = dev_file
     print((f"new_files: {new_files}"))
-    for file_path in new_files:
-        metadata = read_markdown_file(file_path)
-        logging.info(f"metadata: {metadata}")  
-        description = metadata.get('description')
-        cover_url = metadata.get('cover')        
-        logging.info(f"description: {description}")        
-        logging.info(f"cover_url: {cover_url}")
-        # tweet_article(api, description, cover_url)
-    # description, cover = check_new_article()
-    # logging.info(f"Description: {description}")
-    # logging.info(f"Cover: {cover}")
-        
-def test_twitter():
-    setup_logging()
-    x_api = twitter_api()    
-    tweet_article(x_api, "test_twitter_from_api 202402131623 the thrid post", "")   
 
+    for file_path in new_files:
+        try:
+            metadata = read_markdown_file(file_path)
+            logger.debug(f"metadata: {metadata}")  
+            socialText = metadata.get('socialText')
+            cover_url = metadata.get('bgImage')        
+            logger.debug(f"socialText: {socialText}")        
+            logger.debug(f"cover_url: {cover_url}")   
+            upload_to_twitter_and_tweet(file_path, socialText, cover_url)
+        except Exception as e:
+            logger.error(f"Error processing file {file_path}: {e}")
+        
 if __name__ == "__main__":
-    # main()
-    test_twitter()
+    main()
     
