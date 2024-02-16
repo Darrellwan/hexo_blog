@@ -13,12 +13,6 @@ CONSUMER_KEY = os.getenv('X_ACCESS_KEY')
 CONSUMER_SECRET = os.getenv('X_ACCESS_SECRET')
 BEARER_TOKEN = os.getenv('X_BEARER')
 
-logger.debug(f"ACCESS_KEY: {ACCESS_KEY}")
-logger.debug(f"ACCESS_SECRET: {ACCESS_SECRET}")
-logger.debug(f"CONSUMER_KEY: {CONSUMER_KEY}")
-logger.debug(f"CONSUMER_SECRET: {CONSUMER_SECRET}")
-logger.debug(f"BEARER_TOKEN: {BEARER_TOKEN}")
-
 def setup_logging():
     logger.add("logging_{time:YYYYMMDD}.log", rotation="1 day")
 
@@ -83,8 +77,6 @@ def main():
     # new_files = os.environ.get('new_files_py', '').split()
     dev_file = ["source/_posts/email-dmarc-gmail-new-policy-in-202402.md"]
     new_files = dev_file
-    print((f"new_files: {new_files}"))
-
     for file_path in new_files:
         try:
             metadata = read_markdown_file(file_path)
