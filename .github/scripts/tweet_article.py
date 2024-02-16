@@ -61,7 +61,6 @@ def upload_to_twitter_and_tweet(file_path, socialText, cover_url):
         client_v1 = twitter_v1_api()
         media = client_v1.media_upload(image_url)
         media_id = media.media_id 
-        os.remove(image_name)
         logger.debug(f"media_id: {media_id}")
         x_api = twitter_api()    
         tweet_article(x_api, socialText, media_id)
@@ -83,7 +82,7 @@ def main():
             logger.debug(f"file_path: {file_path}")
             test = combine_paths(cover_url, file_path)       
             logger.debug(f"test: {test}")   
-            # upload_to_twitter_and_tweet(file_path, socialText, cover_url)
+            upload_to_twitter_and_tweet(file_path, socialText, cover_url)
         except Exception as e:
             logger.error(f"Error processing file {file_path}: {e}")
         
