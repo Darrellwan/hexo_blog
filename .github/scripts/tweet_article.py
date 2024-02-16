@@ -7,11 +7,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-ACCESS_KEY = os.getenv('X_API_KEY')
-ACCESS_SECRET = os.getenv('X_API_SECRET')
-CONSUMER_KEY = os.getenv('X_ACCESS_KEY')
-CONSUMER_SECRET = os.getenv('X_ACCESS_SECRET')
-BEARER_TOKEN = os.getenv('X_BEARER')
+ACCESS_KEY = os.environ.get('X_API_KEY')
+ACCESS_SECRET = os.environ.get('X_API_SECRET')
+CONSUMER_KEY = os.environ.get('X_ACCESS_KEY')
+CONSUMER_SECRET = os.environ.get('X_ACCESS_SECRET')
+BEARER_TOKEN = os.environ.get('X_BEARER')
 
 def setup_logging():
     logger.add("logging_{time:YYYYMMDD}.log", rotation="1 day")
