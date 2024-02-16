@@ -22,8 +22,9 @@ def image_link(cover_url, file_path):
     return f"{host}/{base_name}/{cover_url}"
 
 def combine_paths(cover_url, file_path):
-    directory = os.path.dirname(file_path)
-    combined_path = os.path.join(directory, cover_url)
+    directory, filename = os.path.split(file_path)
+    new_directory = os.path.join(directory, os.path.splitext(filename)[0])
+    combined_path = os.path.join(new_directory, cover_url)
     combined_path = combined_path.replace("\\", "/")
     return combined_path
 
