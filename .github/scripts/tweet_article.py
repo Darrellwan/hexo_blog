@@ -74,14 +74,12 @@ def upload_to_twitter_and_tweet(file_path, socialText, cover_url):
 
 def main():        
     setup_logging()
-    # new_files = os.environ.get('new_files_py', '').split()
-    dev_file = ["source/_posts/email-dmarc-gmail-new-policy-in-202402.md"]
-    new_files = dev_file
+    new_files = os.environ.get('new_files_py', '').split()
     for file_path in new_files:
         try:
             metadata = read_markdown_file(file_path)
             logger.debug(f"metadata: {metadata}")  
-            socialText = metadata.get('socialText')
+            socialText = metadata.get('socialText') or metadata.get('description') or metadata.get('title')
             cover_url = metadata.get('bgImage')        
             logger.debug(f"socialText: {socialText}")        
             logger.debug(f"cover_url: {cover_url}")   
