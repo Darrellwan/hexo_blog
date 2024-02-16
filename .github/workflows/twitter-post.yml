@@ -21,7 +21,7 @@ jobs:
 
     - name: Install Python dependencies
       run: |
-        pip install tweepy PyYAML gitpython loguru
+        pip install tweepy PyYAML gitpython loguru python-dotenv
 
     - name: Check for New Markdown Files
       id: check-new-md-files
