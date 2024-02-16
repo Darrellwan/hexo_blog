@@ -7,10 +7,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-ACCESS_KEY = os.environ.get('X_API_KEY')
-ACCESS_SECRET = os.environ.get('X_API_SECRET')
-CONSUMER_KEY = os.environ.get('X_ACCESS_KEY')
-CONSUMER_SECRET = os.environ.get('X_ACCESS_SECRET')
+ACCESS_KEY = os.environ.get('X_ACCESS_KEY')
+ACCESS_SECRET = os.environ.get('X_ACCESS_SECRET')
+CONSUMER_KEY = os.environ.get('X_API_KEY')
+CONSUMER_SECRET = os.environ.get('X_API_SECRET')
 BEARER_TOKEN = os.environ.get('X_BEARER')
 
 def setup_logging():
