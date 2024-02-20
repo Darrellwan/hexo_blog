@@ -14,32 +14,31 @@
     "add_post": "hexo new gtm %npm_config_posttitle%"
   },
   "hexo": {
-    "version": "6.3.0"
+    "version": "7.1.1"
   },
   "dependencies": {
-    "@vercel/analytics": "^1.1.1",
-    "@vercel/speed-insights": "^1.0.1",
-    "dotenv": "^16.0.3",
-    "hexo": "^6.2.0",
-    "hexo-algoliasearch": "^1.0.0",
-    "hexo-deployer-git": "^3.0.0",
+    "@vercel/analytics": "^1.2.1",
+    "@vercel/speed-insights": "^1.0.10",
+    "dotenv": "^16.4.5",
+    "hexo": "^7.1.1",
+    "hexo-algoliasearch": "^2.0.1",
+    "hexo-deployer-git": "^4.0.0",
     "hexo-dynamic-config": "^1.0.0",
-    "hexo-generator-archive": "^1.0.0",
-    "hexo-generator-category": "^1.0.0",
+    "hexo-generator-archive": "^2.0.0",
+    "hexo-generator-category": "^2.0.0",
     "hexo-generator-feed": "^3.0.0",
-    "hexo-generator-index": "^2.0.0",
+    "hexo-generator-index": "^3.0.0",
     "hexo-generator-sitemap": "^3.0.1",
-    "hexo-generator-tag": "^1.0.0",
+    "hexo-generator-tag": "^2.0.0",
     "hexo-helper-seo-structured-data": "^0.0.3",
     "hexo-related-popular-posts": "^5.0.1",
     "hexo-renderer-ejs": "^2.0.0",
     "hexo-renderer-markdown-it": "github:hexojs/hexo-renderer-markdown-it",
-    "hexo-renderer-stylus": "^2.1.0",
+    "hexo-renderer-stylus": "^3.0.1",
     "hexo-server": "^3.0.0",
-    "hexo-theme-landscape": "^0.0.3",
-    "lightgallery": "^2.7.0"
-  },
-  "devDependencies": {
-    "hexo-breadcrumb": "^1.0.2"
+    "hexo-tag-embed": "^1.0.0",
+    "hexo-theme-landscape": "^1.0.0",
+    "hexo-theme-next": "^8.19.1",
+    "lightgallery": "^2.7.2"
   }
 }

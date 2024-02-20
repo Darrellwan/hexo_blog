@@ -3,6 +3,7 @@ title: 404
 date: 2022-08-19 14:04:35
 comments: false
 permalink: /404.html
+layout: page
 ---
 
 

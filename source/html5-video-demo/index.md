@@ -2,6 +2,7 @@
 title: Html5 Video Demo
 date: 2022-12-03 14:06:06
 gtmid: "GTM-N3DWVCC"
+layout: page
 ---
 
 <video width="973" height="480" controls>
