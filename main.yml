@@ -133,7 +133,7 @@ algolia:
     - content:strip:truncate,0,500
     - excerpt:strip
     - gallery
-    - perma link
+    - permalink
     - photos
     - slug
     - tags
