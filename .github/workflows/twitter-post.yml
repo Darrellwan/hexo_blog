@@ -1,0 +1,63 @@
+name: Twitter Post on New Article
+
+on:
+  push:
+    branches:
+      - dev-action-new-x-post
+
+jobs:
+  tweet-new-article:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.8'
+
+    - name: Install Python dependencies
+      run: |
+        pip install tweepy PyYAML gitpython loguru python-dotenv
+
+    - name: Check for New Markdown Files
+      id: check-new-md-files
+      run: |
+        echo "Total commits: $(git rev-list --count HEAD)"
+        if [ $(git rev-list --count HEAD) -gt 1 ]; then
+          LAST_COMMIT=$(git rev-parse HEAD)
+          SECOND_LAST_COMMIT=$(git rev-parse HEAD~1)
+          echo "Last commit: $LAST_COMMIT"
+          echo "Second last commit: $SECOND_LAST_COMMIT"
+          NEW_FILES=$(git diff --name-only --diff-filter=A $SECOND_LAST_COMMIT $LAST_COMMIT -- './source/_posts/*.md')
+          echo "New markdown files: $NEW_FILES"
+          if [ -n "$NEW_FILES" ]; then
+          echo "new_files=$NEW_FILES" >> $GITHUB_OUTPUT
+          echo "new_files_py=$NEW_FILES" >> $GITHUB_ENV
+          fi
+        else
+          echo "Not enough commits to compare."
+        fi
+
+    - name: Process and Tweet New Articles
+      # if: steps.check-new-md-files.outputs.new_files
+      if: steps.check-new-md-files.outputs.new_files || true
+      run: |
+        python .github/scripts/tweet_article.py
+        ls -l
+      env:
+        X_API_KEY: ${{ secrets.X_API_KEY }}
+        X_API_SECRET: ${{ secrets.X_API_SECRET }}
+        X_ACCESS_KEY: ${{ secrets.X_ACCESS_KEY }}
+        X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}    
+        X_BEARER: ${{ secrets.X_BEARER }}    
+    - name: Print Log File
+      run: |
+        if [ -f log.txt ]; then
+          cat log.txt
+        else
+          echo "log.txt does not exist."
+        fi
