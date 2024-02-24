@@ -3,7 +3,7 @@ name: Twitter Post on New Article
 on:
   push:
     branches:
-      - dev-action-new-x-post
+      - main
 
 jobs:
   tweet-new-article:
