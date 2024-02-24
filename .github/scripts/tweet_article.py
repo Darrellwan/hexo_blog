@@ -16,11 +16,6 @@ BEARER_TOKEN = os.environ.get('X_BEARER')
 def setup_logging():
     logger.add("logging_{time:YYYYMMDD}.log", rotation="1 day")
 
-def image_link(cover_url, file_path):
-    base_name = os.path.splitext(os.path.basename(file_path))[0]
-    host = "https://www.darrelltw.com"
-    return f"{host}/{base_name}/{cover_url}"
-
 def combine_paths(cover_url, file_path):
     directory, filename = os.path.split(file_path)
     new_directory = os.path.join(directory, os.path.splitext(filename)[0])
@@ -52,8 +47,6 @@ def twitter_v1_api():
 
 def tweet_article(api, description, mediaId):
     response = api.create_tweet(text=description, media_ids=[mediaId])
-    logger.debug(f"response: {response}")
-    print(f"response: {response}")
     return response
     
 def upload_to_twitter_and_tweet(file_path, socialText, cover_url):
@@ -62,27 +55,20 @@ def upload_to_twitter_and_tweet(file_path, socialText, cover_url):
         client_v1 = twitter_v1_api()
         media = client_v1.media_upload(image_url)
         media_id = media.media_id 
-        logger.debug(f"media_id: {media_id}")
         x_api = twitter_api()    
-        tweet_article(x_api, socialText, media_id)
+        tweet_article(x_api, socialText, media_id)        
+        logger.error(f"Successfully tweet it")
     except Exception as e:
         logger.error(f"Error uploading to Twitter: {e}")
 
 def main():        
     setup_logging()
     new_files = os.environ.get('new_files_py', '').split()
-    new_files = ["source/_posts/test-3rd-party-cookie.md"]
     for file_path in new_files:
         try:
             metadata = read_markdown_file(file_path)
-            logger.debug(f"metadata: {metadata}")  
             socialText = metadata.get('socialText') or metadata.get('description') or metadata.get('title')
             cover_url = metadata.get('bgImage')        
-            logger.debug(f"socialText: {socialText}")        
-            logger.debug(f"cover_url: {cover_url}")   
-            logger.debug(f"file_path: {file_path}")
-            test = combine_paths(cover_url, file_path)       
-            logger.debug(f"test: {test}")   
             upload_to_twitter_and_tweet(file_path, socialText, cover_url)
         except Exception as e:
             logger.error(f"Error processing file {file_path}: {e}")
