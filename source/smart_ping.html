@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>坪數計算器</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f4f7f6;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #333;
+        text-align: center;
+      }
+      .input-group {
+        margin-bottom: 20px;
+      }
+      .input-group label {
+        display: block;
+        margin-bottom: 5px;
+        color: #333;
+      }
+      .input-group input {
+        width: calc(33.333% - 10px);
+        padding: 10px;
+        margin-right: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-sizing: border-box;
+      }
+      .input-group input:last-child {
+        margin-right: 0;
+      }
+      .btn {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #6a89cc;
+        color: white;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      .btn:hover {
+        background-color: #4c6ea5;
+      }
+      .result {
+        margin-top: 20px;
+        background-color: #eef2f7;
+        padding: 20px;
+        border-radius: 5px;
+      }
+      .result p {
+        margin: 0;
+        color: #333;
+      }
+      .history {
+        margin-top: 20px;
+        background-color: #eef2f7;
+        padding: 20px;
+        border-radius: 5px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid #dde1e7;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 8px;
+      }
+      th {
+        background-color: #6a89cc;
+        color: white;
+      }
+      td {
+        background-color: #f8f9fb;
+      }
+      .clear {
+        background-color: #e55039;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        text-align: center;
+        display: inline-block;
+        margin-top: 10px;
+      }
+      .clear:hover {
+        background-color: #cc4731;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>坪數計算器</h1>
+      <div class="input-group">
+        <label for="length">長度 (cm)</label>
+        <input type="number" id="length" placeholder="輸入長度" />
+        <label for="width">寬度 (cm)</label>
+        <input type="number" id="width" placeholder="輸入寬度" />
+        <label for="area">面積 (平方公尺)</label>
+        <input type="number" id="area" placeholder="輸入面積" />
+      </div>
+      <button class="btn" id="calculate">計算坪數</button>
+      <div class="result" id="result"></div>
+      <div class="history" id="history">
+        <h2>歷史記錄</h2>
+        <table id="historyTable">
+          <thead>
+            <tr>
+              <th>長度</th>
+              <th>寬度</th>
+              <th>面積</th>
+              <th>坪數</th>
+            </tr>
+          </thead>
+          <tbody id="historyBody">
+            <!-- History records will be inserted here -->
+          </tbody>
+        </table>
+        <button class="clear" id="clearHistory">清空紀錄</button>
+      </div>
+    </div>
+
+    <script>
+      const lengthInput = document.getElementById("length");
+      const widthInput = document.getElementById("width");
+      const areaInput = document.getElementById("area");
+      const resultDiv = document.getElementById("result");
+      const historyTableBody = document.getElementById("historyBody");
+      const clearHistoryButton = document.getElementById("clearHistory");
+
+      let history = JSON.parse(localStorage.getItem("history")) || [];
+
+      function calculatePing(e) {
+        let length = parseFloat(lengthInput.value);
+        let width = parseFloat(widthInput.value);
+        let area = parseFloat(areaInput.value);
+        console.log(e);
+        if (e.target.getAttribute("id") == "length" || e.target.getAttribute("id") == "width") {
+          if (!length || !width) {
+            return false;
+          }
+          let m_length = length / 100;
+          let m_width = width / 100;
+
+          if (m_length > 0 && m_width > 0) {
+            area = m_length * m_width;
+            areaInput.value = area.toFixed(2);
+          }
+        } else if (e.target.getAttribute("id") == "area") {
+            lengthInput.value = 0;
+            widthInput.value = 0;
+        }
+        let ping;
+
+        if (area > 0) {
+          ping = area / 3.3058;
+          resultDiv.innerHTML = "計算結果：" + ping.toFixed(2) + " 坪";
+          addRecord(length, width, area, ping);
+        }
+      }
+
+      function addRecord(length, width, area, ping) {
+        const record = { length, width, area, ping };
+        history.unshift(record);
+        history = history.slice(0, 10);
+        localStorage.setItem("history", JSON.stringify(history));
+        renderHistory();
+      }
+
+      function renderHistory() {
+        historyTableBody.innerHTML = "";
+        history.forEach((record) => {
+          const row = historyTableBody.insertRow();
+          row.innerHTML = `
+                <td>${record.length || "-"} cm</td>
+                <td>${record.width || "-"} cm</td>
+                <td>${record.area.toFixed(2)} ㎡</td>
+                <td>${record.ping.toFixed(2)} 坪</td>
+            `;
+        });
+      }
+
+      function clearHistory() {
+        localStorage.removeItem("history");
+        history = [];
+        renderHistory();
+      }
+
+      // Event listeners
+      lengthInput.addEventListener("change", calculatePing);
+      widthInput.addEventListener("change", calculatePing);
+      areaInput.addEventListener("change", calculatePing);
+      clearHistoryButton.addEventListener("click", clearHistory);
+
+      // Initialize history display
+      renderHistory();
+    </script>
+  </body>
+</html>
