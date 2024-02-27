@@ -60,7 +60,7 @@
   .btn {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #556789;
+    background-color: #3d4a61;
     color: white;
     text-align: center;
     border: none;
@@ -184,6 +184,11 @@
   
         let history = JSON.parse(localStorage.getItem("history")) || [];
 
+        function trackDt(event, additionalData){
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({event: event, ...additionalData})
+        }
+
         function generateId() {
             const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
             let id = "";
@@ -197,7 +202,6 @@
           let length = parseFloat(lengthInput.value);
           let width = parseFloat(widthInput.value);
           let area = parseFloat(areaInput.value);
-          console.log(e.target.getAttribute("id"));
           if (e.target.getAttribute("id") == "length" || e.target.getAttribute("id") == "width") {
             if (!length || !width) {
               return false;
@@ -219,7 +223,6 @@
   
           if (area > 0) {
             ping = area / 3.3058;
-            resultDiv.innerHTML = "計算結果：" + ping.toFixed(2) + " 坪";
             addRecord(length, width, area, ping);
           }
         }
@@ -229,8 +232,8 @@
           const record = { length, width, area, ping, randomId };
           history.unshift(record);
           history = history.slice(0, 10);
-          console.log({history: history});
           localStorage.setItem("history", JSON.stringify(history));
+          trackDt("calculate_ping", {ping: ping, length: length, area: area, randomId: randomId})
           renderHistory();
         }
   
@@ -265,6 +268,7 @@
                 dataArray.splice(objectIndex, 1);
                 localStorage.setItem('history', JSON.stringify(dataArray));
             }
+            trackDt("delete_record", {randomId: rowId})
             row.parentNode.removeChild(row);
         }
   
