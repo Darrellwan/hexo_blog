@@ -5,8 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="提供平方公尺轉坪數的線上換算工具，簡單易用，一次最多可換算十組資料，方便您快速計算房屋、土地等面積。此外，本工具支援記憶功能，可儲存您常用的換算資料，下次使用更加便利。">
 <title>SmartPing 坪數計算器</title>
-<link rel="icon" href="https://www.darrelltw.com/smart_ping_icon.ico" type="image/x-icon">
-<link rel="shortcut icon" href="https://www.darrelltw.com/smart_ping_icon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" sizes="180x180" href="https://www.darrelltw.com/smart_ping_asset/smart_ping_apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.darrelltw.com/smart_ping_asset/smart_ping_favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.darrelltw.com/smart_ping_asset/smart_ping_favicon-16x16.png">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.darrelltw.com/smart_ping.html">
 <meta property="og:title" content="SmartPing 坪數計算器">
@@ -138,13 +139,13 @@
   <h1>坪數計算器</h1>
   <div class="input-group">
     <div class="input-square">
-      <input type="number" id="length" class="input-field" pattern="[0-9]*" inputmode="numeric" placeholder="長度 (cm)">
+      <input type="number" id="length" class="input-field" pattern="[0-9]*" inputmode="numeric" placeholder="長 (cm)">
     </div>
     <div class="input-square">
-      <input type="number" id="width" class="input-field" pattern="[0-9]*" inputmode="numeric" placeholder="寬度 (cm)">
+      <input type="number" id="width" class="input-field" pattern="[0-9]*" inputmode="numeric" placeholder="寬 (cm)">
     </div>
     <div class="input-square">
-      <input type="number" id="area" class="input-field" pattern="[0-9]*" inputmode="numeric" placeholder="面積 (m²)">
+      <input type="number" id="area" class="input-field" pattern="[0-9]*" inputmode="numeric" placeholder="m²">
     </div>
   </div>
   <button class="btn" onclick="calculate()">計算坪數</button>
@@ -160,11 +161,11 @@
     </colgroup>
     <thead>
       <tr>
-        <th>長度 (cm)</th>
-        <th>寬度 (cm)</th>
-        <th>面積 (平方公尺)</th>
-        <th>坪數</th>
-        <th>操作</th>
+        <th>長 (cm)</th>
+        <th>寬 (cm)</th>
+        <th>m²</th>
+        <th>坪</th>
+        <th></th>
       </tr>
     </tbody>
     </thead>
@@ -243,7 +244,7 @@
                 <td>${record.width || "-"} cm</td>
                 <td>${record.area.toFixed(2)} ㎡</td>
                 <td>${record.ping.toFixed(2)} 坪</td>
-                <td><button class="delete-record-btn" onclick="deleteRecord(this)">刪除</button></td>
+                <td><button class="delete-record-btn" onclick="deleteRecord(this)">X</button></td>
             `;
             row.setAttribute("data-id", record.randomId);
           });
