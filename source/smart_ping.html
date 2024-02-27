@@ -50,7 +50,6 @@
   }
   .input-field {
     flex: 1;
-    margin: 0 10px;
     padding: 10px;
     border: none;
     border-radius: 5px;
@@ -139,19 +138,18 @@
   <h1>坪數計算器</h1>
   <div class="input-group">
     <div class="input-square">
-      <input type="number" id="length" class="input-field" placeholder="長度 (cm)">
+      <input type="number" id="length" class="input-field" pattern="[0-9]*" inputmode="numeric" placeholder="長度 (cm)">
     </div>
     <div class="input-square">
-      <input type="number" id="width" class="input-field" placeholder="寬度 (cm)">
+      <input type="number" id="width" class="input-field" pattern="[0-9]*" inputmode="numeric" placeholder="寬度 (cm)">
     </div>
     <div class="input-square">
-      <input type="number" id="area" class="input-field" placeholder="面積 (m²)">
+      <input type="number" id="area" class="input-field" pattern="[0-9]*" inputmode="numeric" placeholder="面積 (m²)">
     </div>
   </div>
   <button class="btn" onclick="calculate()">計算坪數</button>
   <button id="clearHistory" class="btn clear-btn">清空記錄</button>
 
-  <div id="result"></div>
   <table id="history">
     <colgroup>
         <col style="width: 10%;">
@@ -162,8 +160,8 @@
     </colgroup>
     <thead>
       <tr>
-        <th>長度 (m)</th>
-        <th>寬度 (m)</th>
+        <th>長度 (cm)</th>
+        <th>寬度 (cm)</th>
         <th>面積 (平方公尺)</th>
         <th>坪數</th>
         <th>操作</th>
@@ -178,7 +176,6 @@
         const lengthInput = document.getElementById("length");
         const widthInput = document.getElementById("width");
         const areaInput = document.getElementById("area");
-        const resultDiv = document.getElementById("result");
         const historyTableBody = document.getElementById("historyBody");
         const clearHistoryButton = document.getElementById("clearHistory");
   
