@@ -24,7 +24,7 @@ bgImage: gtm-datalayer-broken-reset_bg.png
 
 正常情況下我們安裝 Google Tag Manager 時都會在 `<head></head>` 中貼入下面的程式碼
 
-```
+```html
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -36,7 +36,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 這段程式碼除了載入 Google Tag Manager 的 JavaScirpt 以外，也對 dataLayer 這個變數做了一個初始化和監聽
 在有安裝 GTM 的情況下正確對 dataLayer 的宣告方式為
-```
+```js
   window.dataLayer = window.dataLayer || [];
 ```
 翻譯成白話文是
@@ -66,13 +66,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 而往往是這個看似簡單的事物會造成誤會
 
 **正確的宣告變數和推送資料**
-```
+```js
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push(...)
 ```
 
 **會造成錯誤的寫法**
-```
+```js
   window.dataLayer = [];
   window.dataLayer.push(...)
 ```
@@ -92,7 +92,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 請非技術人員再給工程師相關的埋碼文件時
 要在上面特別請工程師注意 dataLayer 變數的宣告
 
-```
+```js
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push(...)
 ```

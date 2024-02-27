@@ -58,18 +58,6 @@ render_drafts: false
 post_asset_folder: true
 relative_link: false
 future: true
-highlight:
-  enable: true
-  line_number: true
-  auto_detect: false
-  tab_replace: ''
-  wrap: true
-  hljs: false
-prismjs:
-  enable: false
-  preprocess: true
-  line_number: true
-  tab_replace: ''
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
@@ -146,7 +134,7 @@ algolia:
     - content:strip:truncate,0,500
     - excerpt:strip
     - gallery
-    - perma link
+    - permalink
     - photos
     - slug
     - tags
@@ -163,8 +151,21 @@ server:
     extensions:
     - html
 
-breadcrumb:
-  display: true
+syntax_highlighter: highlight.js
+highlight:
+  auto_detect: false
+  line_number: true
+  line_threshold: 0
+  tab_replace: ''
+  exclude_languages:
+    - example
+  wrap: true
+  hljs: false
+prismjs:
+  preprocess: true
+  line_number: true
+  line_threshold: 0
+  tab_replace: ''
 
 feed:
   enable: true
