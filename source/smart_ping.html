@@ -156,7 +156,7 @@
       <input type="number" id="area" class="input-field" pattern="\d+(\.\d*)?" inputmode="numeric" placeholder="m²">
     </div>
   </div>
-  <button class="btn" onclick="calculate()">計算坪數</button>
+  <button class="btn" onclick="calculatePing()">計算坪數</button>
   <button id="clearHistory" class="btn clear-btn">清空記錄</button>
 
   <table id="history">
@@ -165,7 +165,7 @@
         <col style="width: 12%;">
         <col style="width: 20%;">
         <col style="width: 20%;">
-        <col style="width: 5%;">
+        <col style="width: 3%;">
     </colgroup>
     <thead>
       <tr>
@@ -187,8 +187,6 @@
         const areaInput = document.getElementById("area");
         const historyTableBody = document.getElementById("historyBody");
         const clearHistoryButton = document.getElementById("clearHistory");
-  
-        let history = JSON.parse(localStorage.getItem("history")) || [];
 
         function trackDt(event, additionalData){
             window.dataLayer = window.dataLayer || [];
@@ -236,6 +234,7 @@
         function addRecord(length, width, area, ping) {
           const randomId = generateId();
           const record = { length, width, area, ping, randomId };
+          let history = JSON.parse(localStorage.getItem("history")) || [];
           history.unshift(record);
           history = history.slice(0, 10);
           localStorage.setItem("history", JSON.stringify(history));
