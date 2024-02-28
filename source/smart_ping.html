@@ -243,6 +243,7 @@
         }
   
         function renderHistory() {
+            let history = JSON.parse(localStorage.getItem("history")) || [];
             historyTableBody.innerHTML = "";
             history.forEach((record) => {
             const row = historyTableBody.insertRow();
