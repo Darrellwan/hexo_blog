@@ -75,6 +75,24 @@ function customLightGalleryCover(args) {
   </figure>`
 }
 
+function customOnlyImage(args) {
+  let altText = args[0];
+  let imageSrc = args[1];
+  let className = args[2];
+
+  if(!className || className == ""){
+    className = "max-1024";
+  }
+
+  if(!altText || !imageSrc){
+    return ``
+  }
+  
+  return `
+  <img alt="${altText}" data-src="${imageSrc}" src="${imageSrc}" class="${className}">`
+}
+
 hexo.extend.tag.register('darrellImage', customLightGallery, {ends: false});
+hexo.extend.tag.register('darrellOnlyImage', customOnlyImage, {ends: false});
 hexo.extend.tag.register('darrellImage800', customLightGallery800, {ends: false});
 hexo.extend.tag.register('darrellImageCover', customLightGalleryCover, {ends: false});
