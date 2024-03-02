@@ -216,3 +216,36 @@ Google 雖然佛心的提供了免費的 GA4 給大家使用，也開放了串�
 以自己之前在企業端服務的經驗，那時候就很常會需要和PM跟資料部門一起協作
 我會負責講解線上的行為資料目前蒐集到哪些，也去理解資料部門是用哪些資料來做線上跟線下的整合
 一起找出資料該如何合併並完成PM們想像的分析結果或是提供一些數據上的洞察
+
+ServerSide Tracking 這幾年也是一個重要的課題
+像是 Meta 的 Conversion API 
+Google Ads 的 Enhanced Conversion
+就是希望大家多提供使用者的加密資訊來做到更好的比對
+
+## Digital Ads
+
+數位廣告相信是大部分人比較熟悉的領域了
+文中提到的**關鍵字廣告**也是大部分人一定會操作的廣告形式
+
+字組是否會符合使用者搜尋該關鍵字的意圖
+並提供相對應的內容或產品
+**競價**的概念也是廣告很有趣的一個環節
+好不容易出現在搜尋列表頁中，要吸引使用者點擊又是另一個課題
+
+幾個比較重要的關鍵字 
+**RTB、SSP、DSP**
+也找到另一個在說明這個概念的影片
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-Glgi9RRuJs?si=nXVptJueRPupllOG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+廣告的種類也是推陳出新，
+例如抖音等短影片的興起，讓影片廣告也開始需要布局短影音的廣告型態，在幾秒鐘到15秒之間就要抓住使用者的注意並傳遞訊息
+
+廣告受眾的來源最簡單的區分方式就是站內跟站外
+當然有一小部份的人會跨足兩邊
+站外的受眾就是透過一些基本資訊或興趣去結合
+站內的受眾就是在自己的網站內產生行為的使用者
+兩者在策略上跟目標都會不太相同，但最終的目的當然都是希望讓使用者消費或達成特定行為
+
+裡面也介紹到了像是 Facebook Google 如何跨網站的追蹤使用者行為
+便能精準地知道使用者到底看過哪些內容，對哪些商品有興趣，或是已經購買了哪些商品等等
+
