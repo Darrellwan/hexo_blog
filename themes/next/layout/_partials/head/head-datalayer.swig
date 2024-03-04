@@ -43,7 +43,7 @@
   (function(){
       var pageLoadStartTime = window.performance.timing.navigationStart;
       var currentTime = new Date().getTime();
-      var pageLoadTime = currentTime - pageLoadStartTime;\
+      var pageLoadTime = currentTime - pageLoadStartTime;
   })()
   window.dataLayer.push(currentPageData);
 
