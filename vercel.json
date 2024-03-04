@@ -21,7 +21,7 @@
           },
           {
             "key": "Permissions-Policy",
-            "value": "geolocation=(self), push=(self)"
+            "value": "geolocation=(self)"
           }
         ]
       }
