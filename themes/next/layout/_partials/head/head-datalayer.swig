@@ -43,8 +43,7 @@
   (function(){
       var pageLoadStartTime = window.performance.timing.navigationStart;
       var currentTime = new Date().getTime();
-      var pageLoadTime = currentTime - pageLoadStartTime;
-      console.log("replace the datalayer at " + pageLoadTime);
+      var pageLoadTime = currentTime - pageLoadStartTime;\
   })()
   window.dataLayer.push(currentPageData);
 
