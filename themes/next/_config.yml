@@ -177,20 +177,20 @@ site_state: true
 # Key is the link label showing to end users.
 # Value before `||` delimiter is the target permalink, value after `||` delimiter is the name of Font Awesome icon.
 social:
-  GitHub: https://github.com/Darrellwan/ || fab fa-github
-  E-Mail: https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=info@darrelltw.com&su=請填入問題或主旨 || fa fa-envelope
+  GitHub: https://github.com/Darrellwan/ || fab fa-brands fa-square-github
+  E-Mail: https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=info@darrelltw.com&su=請填入問題或主旨 || fa fa-solid fa-envelope
   #Weibo: https://weibo.com/yourname || fab fa-weibo
   #Google: https://plus.google.com/yourname || fab fa-google
-  #Twitter: https://twitter.com/yourname || fab fa-twitter
+  Twitter: https://twitter.com/DarrellMarTech || fab fa-brands fa-square-x-twitter
   #FB Page: https://www.facebook.com/yourname || fab fa-facebook
   #StackOverflow: https://stackoverflow.com/yourname || fab fa-stack-overflow
   #YouTube: https://youtube.com/yourname || fab fa-youtube
-  #Instagram: https://instagram.com/yourname || fab fa-instagram
+  Instagram: https://www.instagram.com/darrellmartech_tw/ || fab fa-brands fa-square-instagram
   #Skype: skype:yourname?call|chat || fab fa-skype
 
 social_icons:
   enable: true
-  icons_only: false
+  icons_only: true
   transition: false
 
 # Blog rolls
@@ -889,7 +889,8 @@ vendors:
   # Internal version: 5.13.0
   # fontawesome: //cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css
   # fontawesome: //cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css
-  fontawesome:
+  fontawesome: //cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css
+  # fontawesome:
 
   # MathJax
   # mathjax: //cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
