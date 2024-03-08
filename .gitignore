@@ -10,3 +10,5 @@ _multiconfig.yml
 env
 .env
 secret.yml
+twitter_rerun.py
+twitter_rerun.sh
