@@ -45,9 +45,6 @@ GA4 中可以調整最短 **5 分鐘最長 7小時55 分鐘**為 Session 重新�
 
 ## User
 
-
-<blockquote class="twitter-tweet" data-lang="zh-tw" data-theme="dark" data-align="center" data-cards="hidden"> <a href="https://twitter.com/DarrellMarTech/status/1766167180578873589"></a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
 User 使用者這個詞其實說對也不對
 比較精準的說法還是比較偏向**裝置**
 
@@ -66,4 +63,7 @@ User 使用者這個詞其實說對也不對
 從 進入 到 離開 使用者的這段時間也就是 **Session**
 他使用的每個器材就像是 **事件**
 
+---
 
+> 有任何意見交流歡迎透過 Twitter 或 Email:
+<blockquote class="twitter-tweet" data-lang="zh-tw" data-theme="dark" data-align="center" data-cards="hidden"> <a href="https://twitter.com/DarrellMarTech/status/1766167180578873589"></a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
