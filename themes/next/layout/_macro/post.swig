@@ -251,6 +251,9 @@
               <a href="{{ url_for(tag.path) }}" rel="tag">{{ tag_indicate }} {{ tag.name }}</a>
             {%- endfor %}
           </div>
+          <div class="post-tags">
+            <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="darrellmartechtw" data-color="#ffa500" data-emoji="☕"  data-font="Bree" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#FFDD00" ></script>
+          </div>
         {%- endif %}
 
         {{ partial('_partials/post/post-footer.swig', {}, {cache: theme.cache.enable}) }}
