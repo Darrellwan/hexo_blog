@@ -35,40 +35,8 @@ function darrellStructuredData() {
 
 hexo.extend.helper.register("darrell_structured_data", darrellStructuredData);
 
-/**
- * Builds JSON-LD structured data for current page according to its type (page or post).
- *
- * @returns {string} - JSON-LD structured data
- */
-function darrellOrgStructuredData() {
 
-  /**
-   * 
-   * <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "OnlineBusiness",
-      "name": "我的線上書店",
-      "url": "http://www.myonlinebookstore.com",
-      "logo": "http://www.myonlinebookstore.com/logo.png",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "中山北路一段",
-        "addressLocality": "台北市",
-        "postalCode": "104",
-        "addressCountry": "TW"
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+886-2-1234-5678",
-        "contactType": "客戶服務"
-      },
-      "founder": "張三",
-      "foundingDate": "2010-01-01",
-      "email": "info@myonlinebookstore.com"
-    }
-    </script>
-   */
+function darrellOrgStructuredData() {
 
   schema = {
     "@context": "https://schema.org",
@@ -93,3 +61,20 @@ function darrellOrgStructuredData() {
 }
 
 hexo.extend.helper.register("darrell_org_structured_data", darrellOrgStructuredData);
+
+
+function darrellWebStructuredData() {
+
+  schema = {
+    "@context" : "https://schema.org",
+    "@type" : "WebSite",
+    "name" : "Darrell Martech TW",
+    "url" : "https://www.darrelltw.com/"
+  };
+
+  return (
+    '<script type="application/ld+json">' + JSON.stringify(schema) + "</script>"
+  );
+}
+
+hexo.extend.helper.register("darrell_web_structured_data", darrellWebStructuredData);

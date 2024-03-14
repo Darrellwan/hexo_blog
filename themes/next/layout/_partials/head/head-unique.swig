@@ -20,3 +20,4 @@
 {%- endif %}
 
 {{ darrell_org_structured_data() }}
+{{ darrell_web_structured_data() }}
