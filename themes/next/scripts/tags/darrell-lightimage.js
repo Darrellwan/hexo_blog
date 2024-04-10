@@ -56,6 +56,26 @@ function customLightGallery800(args, content) {
   </figure>`
 }
 
+
+function customLightGallery800h(args, content) {
+  let altText = args[0];
+  let imageSrc = args[1];
+  let className = args[2];
+
+  if(!className || className == ""){
+    className = "max-800h";
+  }
+
+  if(!altText || !imageSrc){
+    return ``
+  }
+  
+  return `
+  <figure lg-background-color="#282828" class="blog-images" data-src="${imageSrc}">
+    <img alt="${altText}" data-src="${imageSrc}" class="lazyload ${className}" sizes="(max-width: 100%) 930px, 90vw">
+  </figure>`
+}
+
 function customLightGalleryCover(args) {
   let altText = args[0];
   let imageSrc = args[1];
@@ -95,4 +115,5 @@ function customOnlyImage(args) {
 hexo.extend.tag.register('darrellImage', customLightGallery, {ends: false});
 hexo.extend.tag.register('darrellOnlyImage', customOnlyImage, {ends: false});
 hexo.extend.tag.register('darrellImage800', customLightGallery800, {ends: false});
+hexo.extend.tag.register('darrellImageh800', customLightGallery800h, {ends: false});
 hexo.extend.tag.register('darrellImageCover', customLightGalleryCover, {ends: false});
