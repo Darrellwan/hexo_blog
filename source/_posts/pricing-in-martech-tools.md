@@ -10,6 +10,8 @@ description: 數位行銷工具越來越多，而且每一種的計費方式也�
 date: 2024-04-08 21:01:00
 ---
 
+{% darrellImageCover pricing-in-martech-tools-bg pricing-in-martech-tools-bg.jpg max-800 %}
+
 ## MTU - Monthly Tracked User
 
 以每月追蹤到的使用者為主，這邊的使用者偏向裝置，也就是一個使用者未登入的情況下，如果使用三種不同裝置和你的網站互動，就會計價為3
