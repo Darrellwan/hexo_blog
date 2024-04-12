@@ -6,6 +6,7 @@ categories:
   - Martech 
 page_type: post
 id: pricing_in_martech_tools
+bgImage: pricing-in-martech-tools-bg.jpg
 description: 數位行銷工具越來越多，而且每一種的計費方式也不太相同，介紹一些常見的指標來了解這些工具是怎麼計價的。
 date: 2024-04-08 21:01:00
 ---
