@@ -1,5 +1,5 @@
 ---
-title: Google Tag Manager - 進階技巧 利用 perfomance timing 來追蹤網頁載入速度
+title: 利用 GA4 GTM 來追蹤網頁載入時間 - GTM 進階技巧
 tags:
   - Google Tag Manager
   - Google Tag Manager 技巧
@@ -9,6 +9,7 @@ categories:
   - Google Tag Manager
 page_type: post
 date: 2022-12-23 23:38:02
+modified: 2024-04-25 22:11:05
 description: 以前使用舊版的GA中看得到使用者的網頁載入時間，目前在 GA4 預設是沒有這個功能的，於是找到了可以使用 JavaScript 來取得相關的載入時間後，用GA4 的 event 來搜集相關訊息 
 ---
 
@@ -28,21 +29,24 @@ DAVID VALLEJO 也是我最常用用來檢查 GA4/GTM 的擴充功能作者
 
 ## 利用 window.performance 來取得載入時間
 
+1. 首先建立一個 Tag, 並選擇 CustomHtml
+並可先思考一下網站流量大小，來修改 siteSpeedSampleRate 的數值
+建議如果月流量超過 10 萬以上 page views 或 sessions 
+就可能先設定個 5~10 來小量追蹤 5% - 10% 的用戶
+確保沒有造成大量影響 
+
 ```JavaScript
 (function() {
 
-    // 這裡設定 1~100 來決定多少 % 的流量需要追蹤載入時間，因為追蹤該時間勢必也會影響一點效能，擔心的話可以先從小部分流量測試
+    // <建議調整>這裡設定 1~100 來決定多少 % 的流量需要追蹤載入時間，因為追蹤該時間勢必也會影響一點效能，擔心的話可以先從小部分流量測試
     var siteSpeedSampleRate = 100;
     var gaCookiename = '_ga';
-    // 如果一開始 GTM 有指名要使用其他的 DataLayer 名稱才需要改
+    // <不建議調整>如果一開始 GTM 有指名要使用其他的 DataLayer 名稱才需要改
     var dataLayerName = 'dataLayer';
 
-    // No need to edit anything after this line
     var shouldItBeTracked = function(siteSpeedSampleRate) {
-        // If we don't pass a sample rate, default value is 1
         if (!siteSpeedSampleRate)
             siteSpeedSampleRate = 1;
-        // Generate a hashId from a String
         var hashId = function(a) {
             var b = 1, c;
             if (a)
@@ -57,7 +61,6 @@ DAVID VALLEJO 也是我最常用用來檢查 GA4/GTM 的擴充功能作者
         }
         var clientId = ('; ' + document.cookie).split('; '+gaCookiename+'=').pop().split(';').shift().split(/GA1\.[0-9]\./)[1];
         if(!clientId) return !1;
-        // If, for any reason the sample speed rate is higher than 100, let's keep it to a 100 max value
         var b = Math.min(siteSpeedSampleRate, 100);        
         return hashId(clientId) % 100 >= b ? !1 : !0
     }
@@ -79,7 +82,6 @@ DAVID VALLEJO 也是我最常用用來檢查 GA4/GTM 的擴充功能作者
             "dom_interactive_time": pt.domInteractive - pt.navigationStart,
             "content_load_time": pt.domContentLoadedEventStart - pt.navigationStart
         };
-        // Sanity Checks if any value is negative abort
         if (Object.values(timingData).filter(function(e) {
             if (e < 0)
                 return e;
