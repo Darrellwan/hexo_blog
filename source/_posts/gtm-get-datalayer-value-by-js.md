@@ -1,8 +1,8 @@
 ---
 title: 社群問答:使用 JavaScript 取得 DataLayer 的資料
-tags:
-  - Google Tag Manager
 categories:
+  - Google Tag Manager
+tags:
   - Google Tag Manager
   - DataLayer
   - 社群問答
