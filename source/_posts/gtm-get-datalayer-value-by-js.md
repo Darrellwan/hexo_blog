@@ -9,12 +9,12 @@ categories:
 	- Stack Overflow
 page_type: post
 id: gtm-get-datalayer-value-by-js
-bgImage: gtm-get-datalayer-value-by-js-bg.png
+bgImage: gtm-get-datalayer-value-by-js-bg.jpg
 description: Stackoverflow 中有人提問在 Google Tag Manager 如何使用 Custom JavaScript 來取得 DataLayer 中的資料，有兩種方法可以達成這個需求，一個是使用一般的 JavaScript，另一種是使用 Google Tag Manager 的特殊物件
 date: 2024-04-26 08:19:14
 ---
 
-{% darrellImageCover gtm-get-datalayer-value-by-js-bg gtm-get-datalayer-value-by-js-bg.webp max-800 %}
+{% darrellImageCover gtm-get-datalayer-value-by-js-bg gtm-get-datalayer-value-by-js-bg.jpg max-800 %}
 
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
