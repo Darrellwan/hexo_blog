@@ -15,6 +15,34 @@ preload:
 
 {% darrellImageCover ChatGPT-broken-in-browser-bg ChatGPT-broken-in-browser-bg.png max-800 %}
 
+## 202405 更新
+
+最近遇到的新問題是打開會呈現空白畫面，左邊的聊天紀錄也都讀取不出來
+
+想要下的 prompt 送出後也沒反應
+
+{% darrellImage800 chatgpt_empty_ui.png chatgpt_empty_ui.png.png max-800 %}
+
+打開了 Chrome 的 Devtool 發現報了很多 503 error
+此類錯誤來自 chatgpt 的 server error，作為使用者的我們暫時只能耐心等待修復
+
+{% darrellImage800 chatgpt_openai_user_report_error chatgpt_openai_user_report_error.png max-800 %}
+
+從這個網站也看到這一兩個小時有大量的使用者回報遇到錯誤
+
+<a href="https://downdetector.com/status/openai/"><i class="fa-solid fa-link"></i><span> Downdetector OpenAI </span></a>
+
+官方的 Status 也提到目前有遇到問題
+```
+Investigating - We are currently investigating this issue.
+May 03, 2024 - 00:18 PDT
+```
+<a href="https://status.openai.com/"><i class="fa-solid fa-link"></i><span> Status OpenAI </span></a>
+
+未來有遇到錯誤的人也可以參考上面兩個連結，看看是不是大規模性的問題
+而不是單純個人的電腦或瀏覽器造成錯誤!
+
+
 ## ChatGPT 又壞掉?!
 
 從 ChatGPT 開始火熱至今，本來就經歷過大大小小的問題，但這次發現壞掉的狀況很奇怪
