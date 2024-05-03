@@ -21,7 +21,7 @@ preload:
 
 想要下的 prompt 送出後也沒反應
 
-{% darrellImage800 chatgpt_empty_ui.png chatgpt_empty_ui.png.png max-800 %}
+{% darrellImage800 chatgpt_empty_ui chatgpt_empty_ui.png max-800 %}
 
 打開了 Chrome 的 Devtool 發現報了很多 503 error
 此類錯誤來自 chatgpt 的 server error，作為使用者的我們暫時只能耐心等待修復
