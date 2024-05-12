@@ -7,7 +7,8 @@ categories:
   - Google Tag Manager
 page_type: post
 date: 2022-12-01 22:34:39
-description: 情境是想要追蹤一些 `<a>` 連結的點擊追蹤，可是這些元素都沒有適合參考的 id, class。唯一看起來可以使用的就是 data-type 的屬性，如何使用 CSS Selector 在做到
+updated:  2024-05-12 15:47:31
+description: 情境是想要追蹤一些 a link 連結的點擊追蹤，可是這些元素都沒有適合參考的 id, class。唯一看起來可以使用的就是 data-type 的屬性，如何使用 CSS Selector 在做到
 bgImage: stackoverflow_qna_bg.png
 ---
 
@@ -18,7 +19,7 @@ bgImage: stackoverflow_qna_bg.png
 ## 問題: 元素沒有好的 id ,class 來選擇作為 trigger 的條件
 
 如使用者提供的截圖
-{% darrellImage800 stackoverflow_question_problem https://i.stack.imgur.com/y1lhH.jpg.png max-800 %}
+{% darrellImage800 stackoverflow_question_problem stackoverflow_question_problem.jpg max-800 %}
 
 ```html
 <div class="change-results-view">
