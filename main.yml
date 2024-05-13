@@ -30,7 +30,6 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render: 
- - 'tool-hash-sha256.html'
  - 'smart_ping.html'
 
 archive_generator:
