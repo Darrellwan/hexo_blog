@@ -30,7 +30,9 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render: 
- - 'smart_ping.html'
+ - 'smart_ping.html' 
+ - 'tool-hash-sha256.html'
+ - 'resume-page.html'
 
 archive_generator:
   enabled: true
