@@ -7,11 +7,12 @@ categories:
   - Google Tag Manager
 page_type: post
 id: gtm_chrome_devtool_tracking_skill
-description: description
+description: 點擊連結時可以不要跳轉網頁來確認追蹤、使用 Chrome Devtool 的快捷鍵來快速測試 CSS Selector 和使用上一個指令
 date: 2024-05-29 19:30:48
-bgImage: gtm-get-datalayer-value-by-js-bg.jpg
+bgImage: gtm-chrome-devtool-tracking-skill_bg.jpg
 ---
 
+{% darrellImageCover gtm-chrome-devtool-tracking-skill gtm-chrome-devtool-tracking-skill_bg.jpg max-800 %}
 
 ## 讓網頁的連結暫時不要跳轉到下一頁
 
@@ -29,7 +30,7 @@ window.onbeforeunload = function(){
 
 {% darrellImage800 put_code_in_console_for_block_alink put_code_in_console_for_block_alink.png max-800 %}
 
-{% darrellImage800  {% darrellImage800 put_code_in_console_for_block_alink put_code_in_console_for_block_alink.png max-800 %}.png max-800 %}
+{% darrellImage800 show_confirm_when_beforeunload_execute show_confirm_when_beforeunload_execute.png max-800 %}
 
 ## 快速測試 CSS Selector
 ```
