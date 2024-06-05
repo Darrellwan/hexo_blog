@@ -31,7 +31,12 @@ preload:
 最近突然遭遇到一次大規模的 ChatGPT is at capacity right now
 主要的原因就是 ChatGPT 大當機，伺服器突然無法處理大量的請求
 
-<img src="https://i.imgur.com/le2dqA4.gif">
+<video autoplay loop muted playsinline>
+    <source src="./chatgpt_down_20240604.webm" type="video/webm">
+    <img src="https://i.imgur.com/le2dqA4.gif" alt="Fallback GIF">
+</video>
+
+
 
 這次發生的時間長達五個小時之久
 還好這次發生的時間算是台灣的深夜，影響的範圍應該沒有白天來的多
