@@ -9,13 +9,36 @@ id: chatgpt-broken-in-web-browser
 bgImage: ChatGPT-broken-in-browser-bg.png
 description: ChatGPT 壞掉或是問答沒有反應嗎? 最近的錯誤狀況和網路上搜尋的狀態都不太相同，沒有明顯的錯誤訊息，但就是一直無法問答，最後發現可能只是語言的設定問題!
 date: 2024-03-10 23:28:37
+modified: 2024-06-05 21:06:03
 preload: 
  - ChatGPT-broken-in-browser-bg.png
 ---
 
 {% darrellImageCover ChatGPT-broken-in-browser-bg ChatGPT-broken-in-browser-bg.png max-800 %}
 
-## 202405 更新
+## 快速檢查是否為 ChatGPT 端的問題
+
+### OpenAI downdetector
+<a href="https://downdetector.com/status/openai/"><i class="fa-solid fa-link"></i><span> Downdetector OpenAI </span></a>
+{% darrellImage800 down_detector_thumbnail down_detector_thumbnail.png max-800 %}
+
+### Status OpenAI
+<a href="https://status.openai.com/"><i class="fa-solid fa-link"></i><span> Status OpenAI </span></a>
+{% darrellImage800 openai_status_thumbnail openai_status_thumbnail.png max-800 %}
+
+## 202406 ChatGPT is at capacity right now
+
+最近突然遭遇到一次大規模的 ChatGPT is at capacity right now
+主要的原因就是 ChatGPT 大當機，伺服器突然無法處理大量的請求
+
+<img src="https://i.imgur.com/le2dqA4.gif">
+
+這次發生的時間長達五個小時之久
+還好這次發生的時間算是台灣的深夜，影響的範圍應該沒有白天來的多
+
+{% darrellImage800 chatgpt_status_down_in_20240604 chatgpt_status_down_in_20240604.png max-800 %}
+
+## 202405 更新 - 空白畫面 - server error
 
 最近遇到的新問題是打開會呈現空白畫面，左邊的聊天紀錄也都讀取不出來
 
@@ -42,17 +65,13 @@ May 03, 2024 - 00:18 PDT
 未來有遇到錯誤的人也可以參考上面兩個連結，看看是不是大規模性的問題
 而不是單純個人的電腦或瀏覽器造成錯誤!
 
-
-## ChatGPT 又壞掉?!
+## 空白畫面 & 解決方式
 
 從 ChatGPT 開始火熱至今，本來就經歷過大大小小的問題，但這次發現壞掉的狀況很奇怪
 
 一樣的帳號在手機版 APP 沒有問題，而且如果會影響到 plus 用戶應該不會有任何通知
 
 彷彿在網路上無法找到太多資料，就思考是否其實是一小部分的人會遇到的問題
-
-
-## 解決方式
 
 後來在 ChatGPT 的官方論壇碰碰運氣
 
