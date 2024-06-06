@@ -47,11 +47,11 @@
 {{ next_font() }}
 
 {%- set font_awesome_uri = theme.vendors.fontawesome or next_vendors('font-awesome/css/all.min.css') %}
-<link rel="stylesheet" media="print" href="{{ font_awesome_uri }}">
+<link rel="stylesheet" href="{{ font_awesome_uri }}">
 
 {%- if theme.fancybox %}
   {%- set fancybox_css_uri = theme.vendors.fancybox_css or next_vendors('//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css') %}
-  <link rel="stylesheet" media="print" href="{{ fancybox_css_uri }}">
+  <link rel="stylesheet" href="{{ fancybox_css_uri }}">
 {%- endif %}
 
 {%- if theme.pace.enable %}
