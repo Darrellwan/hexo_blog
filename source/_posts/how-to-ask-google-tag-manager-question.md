@@ -1,14 +1,14 @@
 ---
-title: 如何詢問 Google Tag Manager 相關的問題
+title: 詢問 Google Tag Manager 相關的問題
 tags:
   - Google Tag Manager
 categories:
   - Google Tag Manager
 page_type: post
 id: how-to-ask-google-tag-manager-question
-description: description
-date: 2024-06-17 21:35:00
-modified: 2024-06-17 21:35:00
+description: 如何有效發問 Google Tag Manager 的問題或疑難雜症，讓其他人快速又精準的能回答你的問題，也會增加大家回答的意願!
+date: 2024-06-19 21:35:00
+modified: 2024-06-19 21:35:00
 preload: 
  - how-to-ask-google-tag-manager-question.jpg
 ---
@@ -36,13 +36,29 @@ preload:
 
 ## 期待的發問
 
-1. 我想要做到某件事情
-(想要追蹤 GA4 的某個事件，在使用者點擊或是執行某個行為時)
-(想要知道該如何快速的追蹤多個 button 的點擊)
-(想要知道該如何追蹤使用者瀏覽了某個區塊)
+### 1. 我想要做到某件事情
+- (想要追蹤 GA4 的某個事件，在使用者點擊或是執行某個行為時)
+- (想要知道該如何快速的追蹤多個 button 的點擊)
+- (想要知道該如何追蹤使用者瀏覽了某個區塊)
 
-2. 我目前做了哪些
-(我已經設定了 Trigger 但他沒有正確觸發)
-(我不確定是否該使用 Variable 來做)
-(我該怎麼找到某個區塊，並且讓 GTM 可以追蹤到)
+### 2. 我目前做了哪些
+- (我已經設定了 Trigger 但他沒有正確觸發)
+- (我不確定是否該使用 Variable 來做)
+- (我該怎麼找到某個區塊，並且讓 GTM 可以追蹤到)
 
+### 3. 卡住的地方
+- (截圖所標示的地方跟我預期不符)
+- (GA4 的 Tag 有觸發，但我的報表沒有收到資料)
+- (我該在哪裡檢查我傳送的資料對不對)
+
+### 4. 補充詳細資訊
+- (GTM 的設定截圖)
+- (GTM 的預覽截圖)
+- (GA4 要檢查的報表截圖)
+
+### 好的範例
+
+
+<a href="https://stackoverflow.com/questions/75825394/google-tag-manager-gtm-click-element-not-firing-when-contains-matches-css-se/75829306#75829306"><i class="fa-solid fa-link"></i><span> Google Tag Manager GTM - Click Element not firing when contains / matches CSS selector </span></a>
+
+{% darrellImage800 good_example_of_gtm_question good_example_of_gtm_question.png max-800 %}
