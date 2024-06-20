@@ -132,7 +132,7 @@ algolia:
   chunkSize: 5000
   indexName: "dev_post"
   fields:
-    - content:strip:truncate,0,500
+    - content:strip:truncate,0,2000
     - excerpt:strip
     - gallery
     - permalink
