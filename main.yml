@@ -33,6 +33,8 @@ skip_render:
  - 'smart_ping.html' 
  - 'tool-hash-sha256.html'
  - 'resume-page.html'
+ - tools/**
+ - 'tools/**'
 
 archive_generator:
   enabled: true
