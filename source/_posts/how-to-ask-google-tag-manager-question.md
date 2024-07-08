@@ -6,11 +6,12 @@ categories:
   - Google Tag Manager
 page_type: post
 id: how-to-ask-google-tag-manager-question
+bgImage: how-to-ask-google-tag-manager-question.jpg
+preload: 
+ - how-to-ask-google-tag-manager-question.jpg
 description: 如何有效發問 Google Tag Manager 的問題或疑難雜症，讓其他人快速又精準的能回答你的問題，也會增加大家回答的意願!
 date: 2024-06-19 21:35:00
 modified: 2024-06-19 21:35:00
-preload: 
- - how-to-ask-google-tag-manager-question.jpg
 ---
 {% darrellImageCover how-to-ask-google-tag-manager-question-如何詢問GTM相關的問題 how-to-ask-google-tag-manager-question.jpg max-800 %}
 

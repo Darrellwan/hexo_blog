@@ -8,4 +8,7 @@ categories:
 page_type: post
 id: {{ title }}
 description: description
+bgImage: bg.jpg
+preload: 
+ - bg.jpg
 ---

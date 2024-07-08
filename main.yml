@@ -97,6 +97,7 @@ pagination_dir: page
 # Include / Exclude file(s)
 ## include:/exclude: options only apply to the 'source/' folder
 include:
+  - .well-known/**
 exclude:
 ignore:
 
@@ -134,7 +135,7 @@ algolia:
   chunkSize: 5000
   indexName: "dev_post"
   fields:
-    - content:strip:truncate,0,500
+    - content:strip:truncate,0,2000
     - excerpt:strip
     - gallery
     - permalink

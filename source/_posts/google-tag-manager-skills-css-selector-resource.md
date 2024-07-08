@@ -3,8 +3,7 @@ title: Google Tag Manager - 進階技巧 CSS 選擇器的練習資源
 date: 2022-12-17 22:51:28
 tags:
 	- Google Tag Manager
-	- Google Tag Manager 技巧
-    - JavaScript
+  - JavaScript
 description: 多次在 StackOverflow 的問答中或是實務上被問到的問題，會發現很多情境都會使用到 CSS Selector(選擇器)，但這對於不常使用的人來說其實有一定的入門門檻，這邊介紹了一個用遊戲來學習 CSS Selector 的網站和教學的資源搭配使用
 categories: 
 	- Google Tag Manager
