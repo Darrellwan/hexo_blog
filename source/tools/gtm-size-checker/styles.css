@@ -10,6 +10,7 @@
     --high-size-color: #ff4757;
     --error-color: #ff4757;
 }
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
     margin: 0;
@@ -18,17 +19,20 @@ body {
     color: var(--text-color);
     line-height: 1.6;
 }
+
 .container {
     max-width: 1000px;
     margin: 0 auto;
     padding: 2rem;
 }
+
 h1 {
     color: var(--text-color);
     margin-bottom: 1.5rem;
     font-weight: 300;
     font-size: 2rem;
 }
+
 #drop-area {
     border: 2px dashed var(--border-color);
     border-radius: 8px;
@@ -40,10 +44,12 @@ h1 {
     transition: all 0.3s ease;
     cursor: pointer;
 }
+
 #drop-area.highlight {
     border-color: var(--accent-color);
     background-color: rgba(58, 134, 255, 0.1);
 }
+
 #file-info {
     width: 100%;
     border-collapse: separate;
@@ -52,11 +58,13 @@ h1 {
     border-radius: 8px;
     overflow: hidden;
 }
+
 #file-info th, #file-info td {
     padding: 1rem;
     text-align: left;
     border-bottom: 1px solid var(--border-color);
 }
+
 #file-info th {
     background-color: var(--secondary-bg);
     font-weight: 600;
@@ -65,18 +73,23 @@ h1 {
     letter-spacing: 0.05em;
     cursor: pointer;
 }
+
 #file-info th:hover {
     background-color: var(--hover-color);
 }
+
 #file-info tr:last-child td {
     border-bottom: none;
 }
+
 #file-info tr:nth-child(even) {
     background-color: rgba(255, 255, 255, 0.03);
 }
+
 #file-info tr:hover {
     background-color: var(--hover-color);
 }
+
 .button {
     background-color: var(--accent-color);
     color: white;
@@ -87,9 +100,11 @@ h1 {
     font-size: 1rem;
     transition: background-color 0.3s ease;
 }
+
 .button:hover {
     background-color: #2a75e6;
 }
+
 #loading-overlay {
     position: fixed;
     top: 0;
@@ -105,14 +120,17 @@ h1 {
     visibility: hidden;
     transition: opacity 0.3s, visibility 0.3s;
 }
+
 #loading-overlay.active {
     opacity: 1;
     visibility: visible;
 }
+
 .loading-content {
     text-align: center;
     color: white;
 }
+
 .progress-bar {
     width: 200px;
     height: 4px;
@@ -121,44 +139,54 @@ h1 {
     margin-top: 20px;
     overflow: hidden;
 }
+
 .progress {
     width: 0%;
     height: 100%;
     background-color: var(--accent-color);
     transition: width 0.3s ease;
 }
+
 .sort-icon::after {
     content: '\25B2';
     display: inline-block;
     margin-left: 5px;
 }
+
 .sort-icon.desc::after {
     content: '\25BC';
 }
+
 .status {
     font-weight: bold;
     padding: 4px 8px;
     border-radius: 4px;
 }
+
 .status-active {
     color: var(--active-color);
 }
+
 .status-paused {
     color: var(--paused-color);
 }
+
 .high-size {
     color: var(--high-size-color);
     font-weight: bold;
 }
+
 #stats {
     background-color: var(--secondary-bg);
     border-radius: 8px;
     padding: 1rem;
     margin-bottom: 1rem;
 }
+
 #stats p {
     margin: 0.5rem 0;
 }
+
 #error-message {
     background-color: var(--error-color);
     color: white;

@@ -8,6 +8,18 @@
     const sortHeader = document.querySelector('th.sort-icon');
     const errorMessageElement = document.getElementById('error-message');
 
+    // Tag type mapping
+    const tagTypeMap = {
+        'awct': 'Google Ads Conversion',
+        'flc': 'Floodlight Counter',
+        'fls': 'Floodlight Sales',
+        'gaawe': 'GA4',
+        'gclidw': 'Conversion Linker',
+        'googtag': 'Google Tag',
+        'html': 'Custom HTML',
+        'sp': 'Google Ads Remarketing'
+    };
+
     // State
     let tagData = [];
     let averageSize = 0;
@@ -154,6 +166,7 @@
                 return {
                     id: tag.tagId || 'N/A',
                     name: tag.name || 'N/A',
+                    type: tagTypeMap[tag.type] || tag.type || 'Unknown',
                     size: JSON.stringify(tag).length / 1024,
                     paused: tag.paused || false
                 };
@@ -187,6 +200,7 @@
             row.innerHTML = `
                 <td>${sanitizeHTML(tag.id)}</td>
                 <td>${sanitizeHTML(tag.name)}</td>
+                <td>${sanitizeHTML(tag.type)}</td>
                 <td><span class="${tag.size > averageSize && tag.size > 5 ? 'high-size' : ''}">${tag.size.toFixed(2)} KB</span></td>
                 <td><span class="status ${tag.paused ? 'status-paused' : 'status-active'}">${tag.paused ? 'Paused' : 'Active'}</span></td>
             `;

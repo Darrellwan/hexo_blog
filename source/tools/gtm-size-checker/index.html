@@ -4,36 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>GTM Size Checker | 分析 Google Tag Manager 容器大小 | Darrell TW</title>
+    <title>GTM Size Checker | 分析 Google Tag Manager 容器大小 | DarrellTW</title>
     <meta name="description" content="使用 GTM Size Checker 輕鬆分析和優化您的 Google Tag Manager 容器大小。上傳 JSON、檢查標籤大小，識別大型標籤以提升網站效能。">
 
-    <!-- https://www.darrelltw.com/ -->
     <link rel="alternate" hreflang="en" href="https://www.darrelltw.com/en/tools/gtm-size-checker/">
     <link rel="alternate" hreflang="zh-Hant-TW" href="https://www.darrelltw.com/tools/gtm-size-checker/">
     <link rel="alternate" hreflang="x-default" href="https://www.darrelltw.com/tools/gtm-size-checker/">
     <link rel="canonical" href="https://www.darrelltw.com/tools/gtm-size-checker/">
     <link rel="stylesheet" href="./gtm-size-checker/styles.css">
+    <link id="style-placeholder" rel="stylesheet">
     <meta property="og:title" content="GTM Size Checker | Google Tag Manager 容器大小分析工具">
-    <meta property="og:description" content="分析和優化您的 GTM 容器大小，提升網站效能。上傳 JSON 檔案，輕鬆檢查標籤大小。">
+    <meta property="og:description" content="分析 Google Tag Manager 大小，快速找出為何工作區過大。">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.darrelltw.com/tools/gtm-size-checker/">
     <meta property="og:image" content="https://www.darrelltw.com/tools/gtm-size-checker/gtm_size_checker_256.png">
     <meta property="og:locale" content="zh_TW">
     <meta property="og:locale:alternate" content="en_US">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="GTM Size Checker | Google Tag Manager 容器大小分析工具">
-    <meta name="twitter:description" content="分析和優化您的 GTM 容器大小，提升網站效能。上傳 JSON 檔案，輕鬆檢查標籤大小。">
+    <meta name="twitter:title" content="GTM Size Checker | Google Tag Manager 空間分析工具">
+    <meta name="twitter:description" content="分析 Google Tag Manager 大小，快速找出為何工作區過大。">
     <meta name="twitter:image" content="https://www.darrelltw.com/tools/gtm-size-checker/gtm_size_checker_256.png">
     <meta name="keywords" content="Google Tag Manager, GTM, size checker, 容器優化, 標籤分析, 網站效能, Darrell TW">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="./gtm-size-checker/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="./gtm-size-checker/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./gtm-size-checker/favicon-16x16.png">
     <script type="application/ld+json">
     {
       "@context": "http://schema.org",
       "@type": "SoftwareApplication",
       "name": "GTM Size Checker",
-      "description": "一個用於分析和優化 Google Tag Manager 容器大小的工具，旨在提升網站效能。",
+      "description": "分析 Google Tag Manager 大小，快速找出為何工作區過大。",
       "applicationCategory": "WebApplication",
       "operatingSystem": "Any",
       "offers": {
@@ -43,7 +43,7 @@
       },
       "author": {
         "@type": "Person",
-        "name": "Darrell TW"
+        "name": "DarrellTW"
       },
       "url": "https://www.darrelltw.com/tools/gtm-size-checker/"
     }
@@ -54,7 +54,6 @@
         <h1>Google Tag Manager - Size Checker</h1>
         <div id="drop-area" role="region" aria-label="File upload area">
             <p>Drag and drop a JSON file here or click to select</p>
-            <p>Please upload your GTM export JSON file</p>
             <input type="file" id="fileElem" accept=".json" style="display:none">
             <button id="selectFile" class="button">Select File</button>
         </div>
@@ -65,6 +64,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
+                    <th>Type</th>
                     <th class="sort-icon desc">Size (KB)</th>
                     <th>Status</th>
                 </tr>
@@ -82,8 +82,7 @@
             </div>
         </div>
     </div>
-
+    <script id="script-placeholder"></script>
     <script src="./gtm-size-checker/script.js"></script>
-    <!-- https://www.darrelltw.com/tools/gtm-size-checker/script.js -->
 </body>
 </html>
