@@ -110,6 +110,8 @@
     }
 
     function handleFiles(files) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({event: "file_upload"});
         if (files.length) {
             clearContent();
             uploadFile(files[0]);
@@ -118,6 +120,8 @@
 
     function uploadFile(file) {
         if (!file || file.type !== 'application/json') {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({event: "file_upload_error"});
             showError('Please upload a valid JSON file.');
             return;
         }
@@ -131,12 +135,16 @@
                 try {
                     const json = JSON.parse(e.target.result);
                     if (json.containerVersion && Array.isArray(json.containerVersion.tag)) {
+                        window.dataLayer = window.dataLayer || [];
+                        window.dataLayer.push({event: "file_upload_success"});
                         analyzeContainerVersionTag(json.containerVersion.tag);
                     } else {
                         throw new Error('Invalid JSON structure');
                     }
                 } catch (error) {
                     if (error.message === 'Invalid JSON structure') {
+                        window.dataLayer = window.dataLayer || [];
+                        window.dataLayer.push({event: "file_upload_fail_not_well_format"});
                         showError('The JSON file does not contain the expected containerVersion.tag structure. Please check your file and try again.');
                     } else {
                         showError('Error parsing JSON file: ' + error.message);
@@ -171,6 +179,8 @@
                     paused: tag.paused || false
                 };
             });
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({event: "analyze_success", "tags_length":tagData.length});
 
             calculateStats();
             sortTagData();
