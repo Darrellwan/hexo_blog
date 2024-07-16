@@ -18,19 +18,54 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
-
-.container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 2rem;
+header {
+    background-color: var(--secondary-bg);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 h1 {
     color: var(--text-color);
-    margin-bottom: 1.5rem;
+    margin: 0;
     font-weight: 300;
     font-size: 2rem;
+}
+
+.social-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-button {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.social-button:hover {
+    color: var(--accent-color);
+}
+
+.social-button svg {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+}
+.container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+    box-sizing: border-box;
+    flex: 1;
 }
 
 #drop-area {
@@ -48,6 +83,46 @@ h1 {
 #drop-area.highlight {
     border-color: var(--accent-color);
     background-color: rgba(58, 134, 255, 0.1);
+}
+
+#tutorial {
+    margin: 20px 0;
+    background-color: var(--secondary-bg);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#tutorial summary {
+    cursor: pointer;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--hover-color);
+}
+
+#tutorial summary::after {
+    content: '▼';
+    transition: transform 0.3s;
+}
+
+#tutorial[open] summary::after {
+    transform: rotate(180deg);
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 #file-info {
@@ -195,4 +270,14 @@ h1 {
     margin-bottom: 1rem;
     font-weight: bold;
     display: none;
+}
+
+footer {
+    margin-top: auto;
+    text-align: center;
+    font-size: 0.8em;
+    color: var(--text-color);
+    padding: 1rem 0;
+    background-color: var(--secondary-bg);
+    width: 100%;
 }
