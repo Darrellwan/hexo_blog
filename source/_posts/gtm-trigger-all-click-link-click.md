@@ -7,7 +7,7 @@ tags:
 categories:
   - Google Tag Manager
 page_type: post
-date: 2024-07-17 22:17:23
+date: 2022-11-30 22:17:23
 modified: 2024-07-17 22:17:23
 id: gtm-trigger-all-click-link-click
 bgImage: GTM-Trigger-Click_Link-BG.jpg
