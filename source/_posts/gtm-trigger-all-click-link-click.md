@@ -7,7 +7,12 @@ tags:
 categories:
   - Google Tag Manager
 page_type: post
-date: 2022-11-30 22:17:23
+date: 2024-07-17 22:17:23
+modified: 2024-07-17 22:17:23
+id: gtm-trigger-all-click-link-click
+bgImage: GTM-Trigger-Click_Link-BG.jpg
+preload:
+  - GTM-Trigger-Click_Link-BG.jpg
 description: Google Tag Manager 中的觸發條件(Trigger), 要如何設定點擊和連結點擊，兩者的差異以及該選哪一個
 ---
 
@@ -19,16 +24,14 @@ description: Google Tag Manager 中的觸發條件(Trigger), 要如何設定點�
 
 由於新建立的 GTM 容器預設參數只有一些跟網頁和網址相關的內建變數
 
-{% darrellImage800 GTM預設的內建變數 gtm_builtin_variables.png max-800 %}
-
 跟點擊有關的變數得自行先去開啟
-不熟的話可以先全部開啟沒關係
+不熟的話可以先都開啟沒關係
 
-{% darrellImage800 GTM設定click相關的內建變數 gtm_configure_click_related_variables.png max-800 %}
+<div style="padding:0 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/985731879?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="gtm-click-trigger-click_variable"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 
-另外要是確定自己的容器 Container 是全新的，或之前都沒有設定過 Click 相關的觸發條件
-亦或是下方的教學中，點擊按鈕沒有在預覽模式出現相關點擊資訊
-只要先建立一個所有元素的觸發條件即可 如圖
+另外要是 GTM 容器 是全新的，或之前都沒有設定過 Click 相關的觸發條件
+或者點擊按鈕沒有在預覽模式出現相關點擊資訊
+就要先建立一個所有元素的觸發條件 如圖
 
 {% darrellImage800 GTM設定一個全新的點擊所有元素條件 gtm_configure_new_all_click_trigger.png max-800 %}
 
@@ -136,3 +139,8 @@ Click 這個事件偵測到的元素是什麼
 也在...底下
 依此類推
 相信就比較能清楚知道這個被點擊的元素對應到的是畫面上的哪個元素
+
+## 更新紀錄
+
+### 2024/07 
+新增影片說明，讓一些步驟更好理解
