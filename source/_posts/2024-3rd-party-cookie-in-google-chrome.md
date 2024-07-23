@@ -1,5 +1,5 @@
 ---
-title: Google Chrome 第三方 Cookie 在 2024 年的計畫與終結
+title: Google Chrome 在 2024/07 宣布不再移除第三方 Cookie
 tags:
   - 3rd party cookie
   - browser
@@ -7,12 +7,41 @@ categories:
   - Martech
 page_type: post
 id: 2024_3rd_party_cookie_in_google_chrome
-description: 2024年起，Google將逐步淘汰第三方Cookie，並開始推出更注重使用者隱私的 Privacy Sandbox，和整體目前的時間軸
+description: 2024/07 Google 宣布不會移除第三方 Cookie，Privacy Sandbox 推出的第四年未來會繼續更新，並且讓 Chrome 的使用者未來可以自行選擇隱私相關的分享
 date: 2023-12-15 16:50:19
+modified: 2024-07-23 22:17:23
 bgImage: google_chrome_3rd_party_cookie_bg.png
 ---
 
 {% darrellImageCover google_chrome_3rd_party_cookie_bg google_chrome_3rd_party_cookie_bg.png max-800 %}
+
+## 202407 更新 - 不會移除第三方 Cookie
+
+Google 官方宣布的文章
+<a href="https://privacysandbox.com/intl/en_us/news/privacy-sandbox-update/"><i class="fa-solid fa-link"></i><span> A new path for Privacy Sandbox on the web </span></a>
+
+DIGIDAY
+<a href="https://digiday.com/marketing/after-years-of-uncertainty-google-says-it-wont-be-deprecating-third-party-cookies-in-chrome/"><i class="fa-solid fa-link"></i><span> After years of uncertainty, Google says it won’t be ‘deprecating third-party cookies’ in Chrome </span></a>
+
+數位時代
+<a href="https://www.bnext.com.tw/article/79840/cookies-awesome-google-2024"><i class="fa-solid fa-link"></i><span> Google重磅宣布：不淘汰Cookie了！什麼是Cookie？為何廣告投放要靠它？ </span></a>
+
+---
+
+先前有提過，Google 為了使用者隱私而開發出所謂的 The Privacy Sandbox 並且打算棄用第三方 Cookie
+瀏覽器市占率最高的 Chrome 如果淘汰第三方 Cookie 那對所有數位廣告產業的影響肯定是巨大的
+
+從 Privacy Sandbox 推出到現在已經是第四個年頭，
+Google 卻突然方向一變，突然宣布不會再棄用第三方 Cookie
+
+推測 Privacy Sandbox 並沒有一個較為單純的方式能在保護使用者隱私的同時，還能讓數位廣告的成效保持在一定的比率上
+留下第三方 Cookie 可能是一個退而求其次的辦法，並且持續開發 Privacy Sandbox，官方文章中有提到**使用者未來可以自行選擇分享資料的設定，並且隨時切換**
+
+短期來看，廣告產業可以暫時鬆一口氣，但也辛苦有參與 Privacy Sandbox 測試的廠商
+由於消息才剛出來，還不確定未來是否有其他人表態，Google 可能要做出更多解釋給在意隱私的有關單位
+
+也期待未來 Privacy Sandbox 的更新，會如何讓使用者來選擇，並且結合下方提到的一些已知功能 API 來做搭配
+
 
 ## 時程
 
