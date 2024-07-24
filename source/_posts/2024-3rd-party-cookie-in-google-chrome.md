@@ -1,5 +1,5 @@
 ---
-title: Google Chrome 在 2024/07 宣布不再移除第三方 Cookie
+title: Google 宣布不再移除或淘汰 第三方Cookie - 202407
 tags:
   - 3rd party cookie
   - browser
@@ -7,7 +7,7 @@ categories:
   - Martech
 page_type: post
 id: 2024_3rd_party_cookie_in_google_chrome
-description: 2024/07 Google 宣布不會移除第三方 Cookie，Privacy Sandbox 推出的第四年未來會繼續更新，並且讓 Chrome 的使用者未來可以自行選擇隱私相關的分享
+description: Google 宣布不會移除 第三方Cookie，Privacy Sandbox 推出的第四年未來會繼續更新，並且讓 Chrome 的使用者未來可以自行選擇隱私相關的分享
 date: 2023-12-15 16:50:19
 modified: 2024-07-23 22:17:23
 bgImage: google_chrome_3rd_party_cookie_bg.png
