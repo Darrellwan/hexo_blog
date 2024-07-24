@@ -85,11 +85,10 @@
           {%- endif %}
 
           {%- if post.categories and post.categories.length and theme.post_meta.categories %}
-            <span class="post-meta-item">
+            <span class="post-meta-item t-post-meta-category">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">{{ __('post.in') }}</span>
               {%- for cat in post.categories.toArray() %}
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="{{ url_for(cat.path) }}" itemprop="url" rel="index"><span itemprop="name">{{ cat.name }}</span></a>
