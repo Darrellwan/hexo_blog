@@ -38,7 +38,7 @@
     "hexo-server": "^3.0.0",
     "hexo-tag-embed": "^1.0.0",
     "hexo-theme-landscape": "^1.0.0",
-    "hexo-theme-next": "^8.20.0",
+    "hexo-theme-next": "^8.21.0",
     "lightgallery": "^2.7.2",
     "punycode": "^2.3.1"
   }
