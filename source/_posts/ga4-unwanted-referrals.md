@@ -1,9 +1,9 @@
 ---
 title: GA4 找到並移除不想要的 referral 網域
 tags:
-  - GA4
+  - Google Analytics 4
 categories:
-  - GA4
+  - Google Analytics 4
 page_type: post
 id: ga4-unwanted-referrals
 description: 排除參照連結網址是防止自己的流量來源媒介被擾亂的重要步驟，並且提供台灣常見的連結一鍵複製並可以照著說明來設定排除
