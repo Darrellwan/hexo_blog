@@ -38,6 +38,7 @@
     "hexo-renderer-stylus": "^3.0.1",
     "hexo-server": "^3.0.0",
     "hexo-tag-embed": "^1.0.0",
+    "hexo-theme-even": "github:ahonn/hexo-theme-even",
     "hexo-theme-landscape": "^1.0.0",
     "hexo-theme-next": "^8.20.0",
     "lightgallery": "^2.7.2",
