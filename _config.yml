@@ -109,7 +109,8 @@ disqus_count: false
 plugins:
 - hexo-generator-robotstxt
 ## Themes: https://hexo.io/themes/
-theme: next
+# theme: next
+theme: even
 
 # Sitemap
 sitemap:

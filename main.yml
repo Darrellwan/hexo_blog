@@ -111,7 +111,8 @@ disqus_count: false
 plugins:
 - hexo-generator-robotstxt
 ## Themes: https://hexo.io/themes/
-theme: next
+# theme: next
+theme: even
 
 # Sitemap
 sitemap:
@@ -173,10 +174,8 @@ prismjs:
 
 feed:
   enable: true
-  type:
-    - rss2
-  path:
-    - rss.xml
+  type: rss2
+  path: rss.xml
   limit: 0
   hub:
   content:

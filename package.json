@@ -32,6 +32,7 @@
     "hexo-generator-tag": "^2.0.0",
     "hexo-helper-seo-structured-data": "^0.0.3",
     "hexo-related-popular-posts": "^5.0.1",
+    "hexo-renderer-dartsass": "^0.1.3",
     "hexo-renderer-ejs": "^2.0.0",
     "hexo-renderer-markdown-it": "github:hexojs/hexo-renderer-markdown-it",
     "hexo-renderer-stylus": "^3.0.1",
