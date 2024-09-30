@@ -5,7 +5,7 @@
         "headers": [
           {
             "key": "Content-Security-Policy",
-            "value": "default-src 'self' *.vimeo.com *.cloudflare.com *.heapanalytics.com *.buymeacoffee.com *.vwo.com *.convertkit.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.vimeo.com *.google.com *.googleapis.com *.cloudflare.com *.heapanalytics.com *.buymeacoffee.com *.vwo.com *.twitter.com *.cookiebot.com *.optimonk.com *.mixpanel.com *.jsdelivr.net *.segment.io *.doubleclick.net *.hotjar.io *.darrelltw.com *.gstatic.com *.linkedin.com *.facebook.com *.klaviyo.com *.onesignal.com *.clarity.ms *.convertkit.com; img-src 'self' data: *.vimeo.com *.google.com *.heapanalytics.com *.imgur.com *.cookiebot.com *.optimonk.com *.bing.com *.linkedin.com *.clarity.ms *.onesignal.com *.mixpanel.com *.jsdelivr.net *.segment.io *.doubleclick.net *.hotjar.io *.darrelltw.com *.gstatic.com *.facebook.com *.klaviyo.com *.cloudflareinsights.com *.convertkit.com; connect-src *; style-src 'self' 'unsafe-inline' *.vimeo.com *.klaviyo.com *.googletagmanager.com *.cloudflare.com *.googleapis.com *.optimonk.com *.onesignal.com *.convertkit.com; font-src 'self' data: *.klaviyo.com *.optimonk.com *.gstatic.com *.cloudflare.com *.convertkit.com; frame-src 'self' *.vimeo.com *.cookiebot.com *.doubleclick.net *.youtube.com *.twitter.com *.convertkit.com;"
+            "value": ""
           },
           {
             "key": "X-Frame-Options",
