@@ -15,6 +15,9 @@ date: 2024-10-03 12:38:00
 
 {% darrellImage800 ga4_item_name_show_zero_purchase_bg ga4_item_name_show_zero_purchase_bg.jpg max-800 %}
 
+[English Version Please Click Here](https://medium.com/@darrell.tw.martech/abnormal-items-purchased-shows-0-in-ga4-a2509f4150bd)
+<link rel="alternate" hreflang="en" href="https://medium.com/@darrell.tw.martech/abnormal-items-purchased-shows-0-in-ga4-a2509f4150bd" />
+
 ## 商品購買數異常
 
 在 GA4 的電子商務報表中，
