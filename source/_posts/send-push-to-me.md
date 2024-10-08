@@ -97,9 +97,6 @@ https://toolscord.com/webhook
 
 {% darrellImage800 toolscord_website toolscord_website.png max-800 %}
 
-文章後續會加上 Slack 和 Telegram 的介紹，
-如果內容有幫助歡迎訂閱，會在補完後發送 Email 通知!
-
 ## Telegram Bot Webhook
 
 ### 找 BotFather 建立 Bot
