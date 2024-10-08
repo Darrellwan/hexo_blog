@@ -1,5 +1,5 @@
 ---
-title: Line Notify 結束服務公告，有哪些其他的社群平台可以代替轉移
+title: Line Notify 結束服務，轉移到 Slack、Telegram、Discord
 tags:
   - Development
   - Push Notification
