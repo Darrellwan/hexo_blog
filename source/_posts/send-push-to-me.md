@@ -7,17 +7,19 @@ categories:
   - Martech
 page_type: post
 id: send_push_to_me
-description: Line Notify 發佈要停止服務的震撼彈，如果正在使用或是打算使用，這裡整理出可以考慮替代的方案和如何串接，Slack、Telegram、Discord 
+description: Line Notify 宣布要停止服務，如果正在使用或是打算使用，替代方案和如何串接 Slack、Telegram、Discord 
 bgImage: push_yourself_bg.png
 preload:
   - push_yourself_bg.png
 date: 2024-10-07 22:36:11
-modified: 2024-10-08 11:18:11
+modified: 2024-10-08 17:18:11
 ---
 
 {% darrellImage800 push_yourself_bg push_yourself_bg.png max-800 %}
 
 ## 前言
+
+[LINE Notify結束服務公告](https://notify-bot.line.me/closing-announce)
 
 Line Notify 宣布要停止服務了，
 預計於 **2025年3月31日結束**，
