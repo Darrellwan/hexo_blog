@@ -1002,4 +1002,4 @@ images: images
 
 
 show_sidebar_category: false
-show_adsense_ad: true
+show_adsense_ad: false
