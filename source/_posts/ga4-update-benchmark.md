@@ -119,3 +119,24 @@ GA4 在 10/28 發布了關於 Benchmark 的更新，
 那就要搭配其他事件或是 hotjar, clarity 等工具進行分析來證實這個假設
 
 {% darrellImage800 ga4_benchmark_scenario_average_session_duration_high ga4_benchmark_scenario_average_session_duration_high.png max-800 %} 
+
+## 產業列表
+
+文件上有列出的:
+藝術與娛樂
+汽車與交通工具
+美容與健身
+圖書與文學
+商業與工業
+電腦和電子產品
+財經...
+
+但其實有12xx多種可以選擇
+這邊有從程式碼翻到全部的產業類別
+整理在這個 [Google Sheet](https://docs.google.com/spreadsheets/d/19BYRjiz44r8EXWjS9ikQ7EHw6kRAlZLAL8fei6J08NM/edit?usp=sharing) 中
+
+英文版的示意圖
+{% darrellImage800 ga4_benchmark_industry_list_eng ga4_benchmark_industry_list_eng.png max-800 %}
+
+中文版的示意圖
+{% darrellImage800 ga4_benchmark_industry_list_zhtw ga4_benchmark_industry_list_zhtw.png max-800 %}
