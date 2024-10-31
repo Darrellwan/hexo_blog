@@ -52,9 +52,9 @@ GA4 在 10/28 發布了關於 Benchmark 的更新，
 1. 帳戶設定的選項: **根據輸入內容和業務洞察資料建立模型** 沒有開啟
 {% darrellImage800 ga4_account_setting_turn_on_Modeling_contributions_business_insights ga4_account_setting_turn_on_Modeling_contributions_business_insights.png max-800 %}
 
-### 閥值限制
-2. 資料量不足，受到閥值(threshold)的限制
-這點目前沒有文件提出大約的閥值落在哪裡，後續應該會有相關討論出現
+### 閾值限制
+2. 資料量不足，受到閾值(threshold)的限制
+這點目前沒有文件提出大約的閾值落在哪裡，後續應該會有相關討論出現
 
 ### 選擇正確的指標
 3. 注意目前的指標是不是無法套用 benchmark
