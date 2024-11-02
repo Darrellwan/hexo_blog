@@ -178,15 +178,16 @@ site_state: true
 # Key is the link label showing to end users.
 # Value before `||` delimiter is the target permalink, value after `||` delimiter is the name of Font Awesome icon.
 social:
-  GitHub: https://github.com/Darrellwan/ || fab fa-brands fa-square-github
-  E-Mail: https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=info@darrelltw.com&su=請填入問題或主旨 || fa fa-solid fa-envelope
   #Weibo: https://weibo.com/yourname || fab fa-weibo
   #Google: https://plus.google.com/yourname || fab fa-google
   Twitter: https://twitter.com/DarrellMarTech || fab fa-brands fa-square-x-twitter
   #FB Page: https://www.facebook.com/yourname || fab fa-facebook
   #StackOverflow: https://stackoverflow.com/yourname || fab fa-stack-overflow
   #YouTube: https://youtube.com/yourname || fab fa-youtube
-  Instagram: https://www.instagram.com/darrellmartech_tw/ || fab fa-brands fa-square-instagram
+  Instagram: https://www.instagram.com/darrell_tw_/ || fab fa-brands fa-square-instagram
+  Threads: https://www.threads.net/@darrell_tw_ || fab fa-brands fa-square-threads
+  GitHub: https://github.com/Darrellwan/ || fab fa-brands fa-square-github
+  E-Mail: https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=info@darrelltw.com&su=請填入問題或主旨 || fa fa-solid fa-envelope
   #Skype: skype:yourname?call|chat || fab fa-skype
 
 social_icons:

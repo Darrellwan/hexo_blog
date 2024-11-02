@@ -62,14 +62,19 @@ function darrellOrgStructuredData() {
 
 hexo.extend.helper.register("darrell_org_structured_data", darrellOrgStructuredData);
 
-
 function darrellWebStructuredData() {
 
   schema = {
     "@context" : "https://schema.org",
     "@type" : "WebSite",
     "name" : "Darrell Martech TW",
-    "url" : "https://www.darrelltw.com/"
+    "url" : "https://www.darrelltw.com/",
+    "sameAs" : [
+      "https://x.com/DarrellMarTech",
+      "https://www.threads.net/@darrell_tw_",
+      "https://www.instagram.com/darrell_tw_/",
+      "https://medium.com/@darrell.tw.martech"
+    ]
   };
 
   return (
