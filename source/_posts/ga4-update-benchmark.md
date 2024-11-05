@@ -11,6 +11,7 @@ bgImage: ga4_update_benchmark_bg.jpg
 preload:
   - ga4_update_benchmark_bg.jpg
 date: 2024-10-30 19:10:41
+modified: 2024-11-05 12:01:01
 ---
 
 {% darrellImageCover ga4_update_benchmark_bg ga4_update_benchmark_bg.jpg max-800 %}
@@ -135,8 +136,26 @@ GA4 在 10/28 發布了關於 Benchmark 的更新，
 這邊有從程式碼翻到全部的產業類別
 整理在這個 [Google Sheet](https://docs.google.com/spreadsheets/d/19BYRjiz44r8EXWjS9ikQ7EHw6kRAlZLAL8fei6J08NM/edit?usp=sharing) 中
 
+需要 raw data 裡面的人可以參考!
+
 英文版的示意圖
 {% darrellImage800 ga4_benchmark_industry_list_eng ga4_benchmark_industry_list_eng.png max-800 %}
 
 中文版的示意圖
 {% darrellImage800 ga4_benchmark_industry_list_zhtw ga4_benchmark_industry_list_zhtw.png max-800 %}
+
+### 利用 XMind 整理產業列表
+
+原本是用 Google Sheet 整理，但發現 XMind 可以更清楚的表現
+於是重新調整語法後匯入了 XMind 中
+
+[XMind公開網址](https://xmind.ai/share/N2QQZBAa?xid=3lgXkHmQ)
+
+<iframe src="https://xmind.ai/embed/N2QQZBAa?sheet-id=fd4d11b2-efd0-4fec-b472-bd0992c8b247" width="900px" height="540px" frameborder="0" scrolling="no" allow="fullscreen"></iframe>
+
+兩個範例: 
+### 汽車有細分到品牌
+{% darrellImage800 ga4_benchmark_xmind_cars ga4_benchmark_xmind_cars.png max-800 %}
+
+### 美食也有區分中式、西式等等
+{% darrellImage800 ga4_benchmark_xmind_cuisine ga4_benchmark_xmind_cuisine.png max-800 %}
