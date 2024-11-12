@@ -1,12 +1,12 @@
 ---
-title: bouncer_to_clean_email_list
+title: 利用 Bouncer 來清理電子報的無效用戶
 tags:
   - Martech
 categories:
   - Martech
 page_type: post
 id: bouncer_to_clean_email_list
-description: description
+description: Bouncer 是一個付費的第三方工具，可以掃描電子報訂閱用戶中，是不是存在一些已經失效的 Email 用戶。掃描後得到結果排除，就能省下這些寄信的費用，也能提高寄送的成功率，開信率等等
 bgImage: bouncer_api_introduction_bg.png
 preload:
   - bouncer_api_introduction_bg.png
