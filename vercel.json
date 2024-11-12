@@ -24,6 +24,15 @@
             "value": "geolocation=(self), browsing-topics=()"
           }
         ]
+      },
+      {
+        "source": "/(.*_bg.*)\\.(jpg|jpeg|png|gif|webp|svg)$",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-store, no-cache, must-revalidate"
+          }
+        ]
       }
     ]
   }
