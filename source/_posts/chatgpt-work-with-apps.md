@@ -12,6 +12,7 @@ bgImage: chatgpt_work_with_apps_bg.png
 preload:
   - chatgpt_work_with_apps_bg.png
 date: 2024-11-25 15:07:13
+modified: 2024-11-28 12:25:08
 ---
 {% darrellImageCover chatgpt_work_with_apps_bg chatgpt_work_with_apps_bg.png max-800 %}
 
@@ -26,7 +27,63 @@ date: 2024-11-25 15:07:13
 
 ## 目前支援的 Apps
 
-{% darrellImage chatgpt_work_with_apps_support_apps chatgpt_work_with_apps_support_apps.png max-400 %}
+### 20241126 更新
+新增了下列 Apps:
+
+<div style="max-width: 600px; overflow-x: auto;">
+  <table style="width: 100%;">
+    <thead>
+      <tr>
+        <th style="width: 30%;">類別</th>
+        <th>應用程式</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>VS Code Forks</strong></td>
+        <td>
+          <ul style="margin: 0; padding-left: 20px;">
+            <li>VS Code Insiders</li>
+            <li>VS Codium</li>
+            <li>Cursor</li>
+            <li>Windsurf</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>JetBrains IDEs</strong></td>
+        <td>
+          <ul style="margin: 0; padding-left: 20px;">
+            <li>Android Studio</li>
+            <li>IntelliJ</li>
+            <li>PyCharm</li>
+            <li>WebStorm</li>
+            <li>PHPStorm</li>
+            <li>CLion</li>
+            <li>Rider</li>
+            <li>RubyMine</li>
+            <li>AppCode</li>
+            <li>GoLand</li>
+            <li>DataGrip</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>其他應用程式</strong></td>
+        <td>
+          <ul style="margin: 0; padding-left: 20px;">
+            <li>Panic’s Nova (編輯器)</li>
+            <li>Prompt (終端機)</li>
+            <li>TextMate</li>
+            <li>BBEdit</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+{% darrellImage chatgpt_work_with_apps_support_apps_1128 chatgpt_work_with_apps_support_apps_1128.png max-400 %}
 
 - VSCode
 - Terminal
@@ -34,11 +91,33 @@ date: 2024-11-25 15:07:13
 - 文字編輯工具
 - XCode
 
-只有 VSCode 和 iTerm 不是 MacOS 原生 App，但也可以看出這兩個 Apps 對開發者來說有多麽重要
+更新過後涵蓋了大量的開發者 APP
+像是 APP 工程師要是同時在 Mac 開發 iOS 和 Android 
+就能共同使用 ChatGPT 來協助
 
 {% darrellImage chatgpt_work_with_apps_support_apps_icon chatgpt_work_with_apps_support_apps_icon.png max-800 %} 
 
 ## 啟用步驟
+
+### VSCode & Cursor 要安裝擴充套件
+
+請先到這個頁面下載擴充套件
+
+[How to install the Work with Apps Visual Studio Code extension](https://help.openai.com/en/articles/10128592-how-to-install-the-work-with-apps-visual-studio-code-extension)
+
+Cursor 也是 VSCode Based 的 App，所以安裝同一個擴充套件就好
+
+#### 步驟1 : Command + Shift + P 開啟控制列
+貼上 `Extensions: Install from VSIX…` 並選擇
+
+{% darrellImage install_vscode_extension_step1 install_vscode_extension_step1.png max-800 %}
+
+#### 步驟2 : 選擇下載的 vsix 檔案
+安裝完成後就可以正常在 ChatGPT 啟用了
+
+{% darrellImage install_vscode_extension_step2 install_vscode_extension_step2.png max-800 %}
+
+### 一般啟用步驟:
 
 {% darrellImage chatgpt_work_with_apps_support_apps_steps_of_enable chatgpt_work_with_apps_support_apps_steps_of_enable.png max-400 %}
 
@@ -94,6 +173,15 @@ date: 2024-11-25 15:07:13
 - 結果：5
 - 小吐槽：減掉壓力，也減掉煩惱！
 ```
+
+### 請 ChatGPT 解釋程式碼(影片)
+
+在 Cursor 選取需要 ChatGPT 幫忙的程式碼
+並且使用快捷鍵
+`option + shift + 1`
+chatGPT 的對話視窗就會從下方彈出了!
+
+<div style="padding:0;position:relative;"><iframe src="https://player.vimeo.com/video/1034097665?badge=0&&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;byline=false&amp;title=false&amp;muted=true" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="GoogleTagManager export json file"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 
 ### VSCode 的限制
 
