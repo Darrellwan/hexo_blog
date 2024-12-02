@@ -1,5 +1,5 @@
 ---
-title: 在 Klaviyo 使用 Gmail 特惠註解顯示折扣碼
+title: 在 Klaviyo 使用 Gmail 促銷標註顯示折扣碼
 tags:
   - Email Marketing
 categories:
@@ -7,11 +7,12 @@ categories:
 page_type: post
 id: gmail-annotations-with-klaviyo
 description: description
-bgImage: bg.jpg
+bgImage: gmail_annotations_discount_code_with_klaviyo_bg.jpg
 preload:
-  - bg.jpg
-date: 2024-11-27 15:41:36
+  - gmail_annotations_discount_code_with_klaviyo_bg.jpg
+date: 2024-11-28 15:41:36
 ---
+{% darrellImageCover gmail_annotations_discount_code_with_klaviyo_bg gmail_annotations_discount_code_with_klaviyo_bg.jpg max-800 %}
 
 ## Gmail 特惠註解
 
@@ -19,13 +20,13 @@ date: 2024-11-27 15:41:36
 
 {% darrellImage gmail_annotations_with_discount_code_example gmail_annotations_with_discount_code_example.jpg max-800 %}
 
-其實 Google 是有文件教學說怎麼樣加上這些註解的
+其實 Google 是有提供文件教學的
 
 <a href="https://developers.google.com/gmail/promotab/overview?hl=zh-tw"><i class="fa-solid fa-link"></i><span> Gmail 註解 </span></a>
 
 {% darrellImage gmail_annotations_document gmail_annotations_document.png max-800 %}
 
-文件中介紹了三種的呈現方式
+文件中介紹了三種呈現方式
 
 ### Create a deal annotation (交易註解)
 ```
@@ -50,7 +51,7 @@ date: 2024-11-27 15:41:36
 </script>
 ```
 
-這是簡單但又直覺的方式，如一開始的截圖一樣會呈現折扣碼，描述
+這是簡單且直覺的方式，如一開始的截圖一樣會呈現折扣碼，描述
 並且多久後過期，過期也會呈現已過期
 {% darrellImage gmail_annotations_with_discount_code_expired gmail_annotations_with_discount_code_expired.jpg max-400 %}
 
