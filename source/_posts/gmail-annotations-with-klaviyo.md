@@ -6,7 +6,7 @@ categories:
   - Marketing
 page_type: post
 id: gmail-annotations-with-klaviyo
-description: description
+description: 有看過Gmail 促銷標註嗎? 為什麼別人的行銷信可以呈現折扣碼或是活動圖片? 其實只要照著 Google 文件就可以做到，讓我們用 Klaviyo 來實作看看
 bgImage: gmail_annotations_discount_code_with_klaviyo_bg.jpg
 preload:
   - gmail_annotations_discount_code_with_klaviyo_bg.jpg
