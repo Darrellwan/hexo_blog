@@ -2,7 +2,7 @@
 title: 工具推薦-移除 GTM 中的舊版 GA設定-Tagsbuster
 tags:
   - Google Tag Manager
-  - Tool
+  - Tools
 categories:
   - Google Tag Manager
 page_type: post

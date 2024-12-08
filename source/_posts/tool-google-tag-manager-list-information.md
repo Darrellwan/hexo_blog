@@ -3,7 +3,7 @@ title: Tool - 利用 Google Sheet 列出 GTM 中的所有設定資訊
 date: 2022-10-18 21:05:59
 tags:
 	- Google Tag Manager
-	- Tool Share
+	- Tools
 description: 利用 Google Sheet 和 App Script 來列出 Google Tag Manager 中所有關於 GA4 的 Tags 設定，包含其中的 Parameters、Trigger、Variable 等等，再也不用一個一個打開來檢查設定
 categories: 
 	- Google Tag Manager

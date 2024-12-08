@@ -1,10 +1,10 @@
 ---
-title: GA4 GTM 最推薦的套件工具 Analytics Debugger
+title: 
 date: 2023-05-01 21:36:19
 tags:
   - Google Analytics 4
   - Google Tag Manager
-  - Tool
+  - Tools
 categories:
   - Martech
 description: 對於一個每天都要接觸 GTM 和 GA4 等等追蹤的分析師或是工程師來說，一些好的工具絕對能最大化節省作業的時間，最近看到一個幾乎每天都要用的工具有一個重大改版，更加確定了想要推薦它! Analytics Debugger 是一個檢查 GTM DataLayer 和 GA4 觸發的好工具，能夠節省大量時間去確認 Devtool 的 Request。更神奇的是，它也開始支援了像是 Matomo, Amplitude, Tealium IQ, Adobe Analytics 這些網站追蹤都是常用的分析平台。

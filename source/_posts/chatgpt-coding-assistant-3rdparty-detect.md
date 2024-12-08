@@ -3,7 +3,7 @@ title: Chatgpt 幫你寫程式 - 實現一個類似 wappalyzer 的分析功能
 tags:
   - Chatgpt
   - Martech
-  - Tool Share
+  - Tools
 categories:
   - Martech
 page_type: post

@@ -4,7 +4,7 @@ date: 2023-05-06 23:45:42
 tags:
   - Google Analytics 4
   - Google Tag Manager
-  - Tool
+  - Tools
 categories:
   - Martech  
 description: 很重要的一個版本更新! 現在開始支援了對於 Marketing Pixel 的支援，Google Ad 和 Facebook Pixel，請記得在更新後到設定中打開這個選項，本篇文章也會介紹一些其他的更新內容
