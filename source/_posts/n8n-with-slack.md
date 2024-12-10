@@ -9,11 +9,13 @@ categories:
 page_type: post
 id: n8n-with-slack
 description: Slack 應該是蠻多人使用的通訊工具，也很多開發者拿來串接作為通知訊息，用 n8n 串接 Slack 對非技術人員來說算是相當簡單，可以真的不需要學會程式碼用 no-code 的方式來達成
-bgImage: bg.jpg
+bgImage: n8n-with-slack_bg.jpg
 preload:
-  - bg.jpg
+  - n8n-with-slack_bg.jpg
 date: 2024-12-08 17:57:04
 ---
+
+{% darrellImageCover n8n-with-slack_bg n8n-with-slack_bg.jpg %}
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
