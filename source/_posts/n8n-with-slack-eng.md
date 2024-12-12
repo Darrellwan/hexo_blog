@@ -201,7 +201,7 @@ ts: The timestamp of the message. You'll need this timestamp if you want the App
 Here's how to use the timestamp as shown below
 {% darrellImage n8n_slack-post_message_to_reply n8n_slack-post_message_to_reply.png max-400 %}
 
-## Results
+## Conclusion
 
 The scenario demonstrated here is quite simple
 
