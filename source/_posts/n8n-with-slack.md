@@ -8,7 +8,7 @@ categories:
   - Automation
 page_type: post
 id: n8n-with-slack
-description: Slack 應該是蠻多人使用的通訊工具，也很多開發者拿來串接作為通知訊息，用 n8n 串接 Slack 對非技術人員來說算是相當簡單，可以真的不需要學會程式碼用 no-code 的方式來達成
+description: Slack 應該是蠻多人使用的通訊工具，也很多開發者拿來串接作為通知訊息，用 n8n 串接 Slack 對非技術人員來說算是相當簡單，可以真的不需要學會程式碼用 no-code 的方式來達成，希望這篇 n8n 串 slack 的教學會對你有幫助
 bgImage: n8n-with-slack_bg.jpg
 preload:
   - n8n-with-slack_bg.jpg
