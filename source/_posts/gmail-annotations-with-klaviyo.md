@@ -127,7 +127,7 @@ POSITION (選用)：輪轉介面中卡片的位置。
 
 ## Klaviyo 使用 Gmail annotation
 
-{% darrellImage darrelltw_klaviyo_gmail_annotation_discount darrelltw_klaviyo_gmail_annotation_discount.png max-800 %}
+{% darrellImage darrelltw_klaviyo_gmail_annotation_discount darrelltw_klaviyo_gmail_annotation_discount.jpg max-800 %}
 
 如何在 Klaviyo 使用 Gmail annotation，
 首先上面提到 Annotation 有兩種程式碼格式:
