@@ -1,5 +1,5 @@
 ---
-title: Google App Script 用 Gmail 發信 ChatGPT 幫你美化 Email 模板
+title: Google App Script 用 Gmail 發有質感美觀的信
 tags:
   - Google App Script
   - ChatGPT
