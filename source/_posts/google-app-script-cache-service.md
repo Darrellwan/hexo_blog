@@ -12,6 +12,7 @@ bgImage: appscript_cache_bg.jpg
 preload:
   - appscript_cache_bg.jpg
 date: 2024-12-22 23:48:43
+comments: true
 ---
 
 {% darrellImageCover appscript_cache_bg appscript_cache_bg.jpg max-800 %}
