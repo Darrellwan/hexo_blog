@@ -103,7 +103,7 @@ exclude:
 ignore:
 
 # Comments
-disqus_enable: false
+disqus_enable: true
 disqus_shortname: hexo-darrelltw-site
 disqus_count: false
 
