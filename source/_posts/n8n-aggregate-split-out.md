@@ -7,11 +7,12 @@ categories:
 page_type: post
 id: n8n-aggregate-split_out
 description: n8n 的 Aggregate 和 Split Out 節點，可以將多個資料合併成一個，或是相反將一個資料拆成多組資料，對於 n8n 的核心處理資料很重要也很常用到
-bgImage: bg.jpg
+bgImage: n8n-splitout_aggregation_bg.jpg
 preload:
-  - bg.jpg
+  - n8n-splitout_aggregation_bg.jpg
 date: 2025-01-15 20:36:01
 ---
+{% darrellImageCover n8n-splitout_aggregation_bg n8n-splitout_aggregation_bg.jpg max-800 %}
 
 ## Aggregate
 
