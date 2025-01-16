@@ -65,3 +65,21 @@
 <link href='https://fonts.googleapis.com/css?family=Roboto Mono' rel='stylesheet'>
 <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
 {{ next_config() }}
+
+{%- if is_post() %}
+  <script src="https://cdn.jsdelivr.net/gh/julmot/mark.js/dist/mark.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // 取得目標元素
+      const context = document.querySelector('.post-toc');
+      console.log({context: context})
+
+      // 建立 Mark 實例
+      const markInstance = new Mark(context);
+      console.log({markInstance: markInstance})
+      markInstance.mark('n8n', {
+        className: 'highlight-n8n'
+      });
+    });
+  </script>
+{%- endif %}
