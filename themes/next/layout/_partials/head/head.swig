@@ -4,6 +4,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="{{ theme.android_chrome_color }}">
 <meta name="generator" content="Hexo {{ hexo_version }}">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto&display=swap" rel="stylesheet">
+
 <link rel="manifest" href="/manifest.json"/>
 
 {%- if theme.favicon.apple_touch_icon %}
@@ -60,8 +65,4 @@
   <link rel="stylesheet" href="{{ pace_css_uri }}">
   <script src="{{ pace_js_uri }}"></script>
 {%- endif %}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href='https://fonts.googleapis.com/css?family=Roboto Mono' rel='stylesheet'>
-<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
 {{ next_config() }}
