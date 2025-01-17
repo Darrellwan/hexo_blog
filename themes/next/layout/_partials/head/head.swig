@@ -66,3 +66,16 @@
   <script src="{{ pace_js_uri }}"></script>
 {%- endif %}
 {{ next_config() }}
+
+{%- if is_post() %}
+  <script src="https://cdn.jsdelivr.net/gh/julmot/mark.js/dist/mark.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const context = document.querySelector('.post-toc');
+      const markInstance = new Mark(context);
+      markInstance.mark('n8n', {
+        className: 'highlight-n8n'
+      });
+    });
+  </script>
+{%- endif %}

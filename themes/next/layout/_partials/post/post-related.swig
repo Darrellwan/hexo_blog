@@ -1,5 +1,28 @@
 {%- set popular_posts = popular_posts_json(theme.related_posts.params, page) %}
 {%- if popular_posts.json and popular_posts.json.length > 0 %}
+
+  {%- if theme.social and is_post %}
+    <div class="links-of-author motion-element">
+      {%- for name, link in theme.social %}
+        <span class="links-of-author-item">
+        {%- set sidebarURL = link.split('||')[0] | trim %}
+        {%- if theme.social_icons.enable %}
+          {%- set sidebarIcon = '<i class="' + link.split('||')[1] | trim + ' fa-fw"></i>' %}
+        {%- else %}
+          {%- set sidebarIcon = '' %}
+        {%- endif %}
+        {%- if theme.social_icons.enable and theme.social_icons.icons_only %}
+          {%- set sidebarText = '' %}
+        {%- else %}
+          {%- set sidebarText = name %}
+        {%- endif %}
+          {{ next_url(sidebarURL, sidebarIcon + sidebarText, {title: name + ' → ' + sidebarURL}) }}
+        </span>
+        <br>
+      {%- endfor %}
+    </div>
+  {%- endif %}
+  
   <div class="popular-posts-header">{{ theme.related_posts.title or __('post.related_posts') }}</div>
   <ul class="popular-posts">
   {%- for popular_post in popular_posts.json %}
