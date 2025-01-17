@@ -49,13 +49,14 @@ Line 的後台其實有兩種，但兩者都會用到
 有哪些要注意的地方
 
 1. 官方帳號
-https://manager.line.biz/
+<a href="https://manager.line.biz/"><i class="fa-solid fa-link"></i><span>Line OA 官方帳號 後台</span></a>
+
 {% darrellImage800 n8n_line_oa_platform n8n_line_oa_platform.png max-400 %}
 - \- 可以更改顯示名稱和頭像
 - \- 可以設定 Webhook
 
 2. 開發者後台
-https://developers.line.biz/console/
+<a href="https://developers.line.biz/console/"><i class="fa-solid fa-link"></i><span>Line Developer Console</span></a>
 {% darrellImage800 n8n_line_developer_console n8n_line_developer_console.png max-400 %}
 - \- 可以取得自己的 Line UID
 - \- 可以取得不過期的 Token
@@ -321,6 +322,10 @@ Body JSON:
 示意圖:
 {% darrellImage800 n8n_line_reply_api_n8n_setting_request_json_result n8n_line_reply_api_n8n_setting_request_json_result.png max-400 %}
 
+---
+
+以上就是這次 Line Message API <-> n8n 的分享
+如果操作上有問題，歡迎透過下方社群連結或信箱聯絡
 
 
 
