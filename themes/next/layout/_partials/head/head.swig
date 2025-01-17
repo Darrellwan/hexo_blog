@@ -80,10 +80,6 @@
       }
     }
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initMark);
-    } else {
-      initMark();
-    }
+    window.addEventListener('load', initMark);
   </script>
 {%- endif %}
