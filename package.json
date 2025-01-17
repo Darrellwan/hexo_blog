@@ -20,6 +20,7 @@
     "@vercel/analytics": "^1.4.1",
     "@vercel/speed-insights": "^1.1.0",
     "dotenv": "^16.4.7",
+    "glob": "^11.0.1",
     "hexo": "^7.3.0",
     "hexo-algoliasearch": "^2.0.1",
     "hexo-deployer-git": "^4.0.0",
@@ -40,6 +41,9 @@
     "hexo-theme-landscape": "^1.0.0",
     "hexo-theme-next": "^8.22.0",
     "lightgallery": "^2.8.2",
-    "punycode": "^2.3.1"
+    "punycode": "^2.3.1",
+    "puppeteer": "^24.1.0",
+    "rimraf": "^6.0.1",
+    "uuid": "^11.0.5"
   }
 }
