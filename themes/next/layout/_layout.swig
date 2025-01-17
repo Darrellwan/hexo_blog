@@ -10,7 +10,6 @@
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   {{ partial('_scripts/noscript.swig', {}, {cache: theme.cache.enable}) }}
   {% include '_partials/head/head-datalayer.swig' %}
-  {% include '_partials/head/head-firebase.swig' %}
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/css/lightgallery.min.css" integrity="sha512-F2E+YYE1gkt0T5TVajAslgDfTEUQKtlu4ralVq78ViNxhKXQLrgQLLie8u1tVdG2vWnB3ute4hcdbiBtvJQh0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   {{ partial('_third-party/analytics/index.swig', {}, {cache: theme.cache.enable}) }}
 
