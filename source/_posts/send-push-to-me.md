@@ -274,7 +274,7 @@ curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, World!"
 我的另外一篇有提到如何用 n8n 這個自動化工具來串接 Line Messgae API
 
 {% articleCard 
-  url="/n8n-line-message-api" 
+  url="/n8n-line-message-api/" 
   title="n8n 串接 Line Messgae API" 
   previewText="Line Notify 的替代方案之一 Line Message API，介紹怎麼用 n8n 的 Request 來發送和接收 webhook，也會提供模板範例" 
   thumbnail="https://www.darrelltw.com/n8n-line-message-api/n8n-line-message-api-bg.jpg" 
