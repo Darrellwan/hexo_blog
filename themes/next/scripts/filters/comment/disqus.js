@@ -20,13 +20,6 @@ hexo.extend.filter.register('theme_inject', injects => {
 
   injects.bodyEnd.file('disqus', path.join(hexo.theme_dir, 'layout/_third-party/comments/disqus.swig'));
 
-  // 確認是否為文章頁面
-  if (typeof is_post !== 'undefined' && is_post) {
-    // 在這裡放置 disqus 的初始化代碼
-    // 例如：
-    // disqus.init();
-  }
-
 });
 
 // Add post_meta
