@@ -12,7 +12,7 @@ bgImage: push_yourself_bg.png
 preload:
   - push_yourself_bg.png
 date: 2024-10-07 22:36:11
-modified: 2024-10-08 17:18:11
+modified: 2025-01-22 11:18:11
 ---
 
 {% darrellImage800 push_yourself_bg push_yourself_bg.png max-800 %}
@@ -255,3 +255,27 @@ curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, World!"
 {% darrellImage800 darrelltw_slack_message_usage darrelltw_slack_message_usage.png max-800 %}
 
 
+## Line Messagge API
+
+如果你的需求或環境不適合轉移到其他服務平台上
+且願意付費，那 Line Messagge API 就是唯一的最佳解
+
+### 計費
+
+{% darrellImage800 line_message_api_pricing line_message_api_pricing.png max-800 %}
+
+免費方案是 200 次發送/$0/月
+中用量 3000 次發送/$800/月
+高用量 6000 次發送/$1200/月
+
+### 使用方式
+
+由於這需要技術上的串接，
+我的另外一篇有提到如何用 n8n 這個自動化工具來串接 Line Messgae API
+
+{% articleCard 
+  url="/n8n-line-message-api" 
+  title="n8n 串接 Line Messgae API" 
+  previewText="Line Notify 的替代方案之一 Line Message API，介紹怎麼用 n8n 的 Request 來發送和接收 webhook，也會提供模板範例" 
+  thumbnail="https://www.darrelltw.com/n8n-line-message-api/n8n-line-message-api-bg.jpg" 
+%}
