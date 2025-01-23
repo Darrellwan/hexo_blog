@@ -59,7 +59,9 @@ function customOpenGraphHelper(options = {}) {
 
   const { config, page } = this;
   const { content } = page;
+
   let images = options.image || options.images || page.photos || [];
+  let bgImage = page.bgImage || false;
   let coverImage = page.coverImage || config.coverImage || false;
   let description = options.description || page.description || page.excerpt || content || config.description;
   let keywords = (page.tags && page.tags.length ? page.tags : undefined) || config.keywords || false;
@@ -79,6 +81,10 @@ function customOpenGraphHelper(options = {}) {
     description = escapeHTML(stripHTML(description).substring(0, 200)
       .trim() // Remove prefixing/trailing spaces
     ).replace(/\n/g, ' '); // Replace new lines by spaces
+  }
+
+  if( bgImage ){
+    images.push(bgImage);
   }
 
   if (!images.length && content) {
