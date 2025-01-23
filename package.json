@@ -23,6 +23,7 @@
     "glob": "^11.0.1",
     "hexo": "^7.3.0",
     "hexo-algoliasearch": "^2.0.1",
+    "hexo-clean-css": "^2.0.0",
     "hexo-deployer-git": "^4.0.0",
     "hexo-dynamic-config": "^1.0.0",
     "hexo-generator-archive": "^2.0.0",

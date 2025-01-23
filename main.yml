@@ -218,3 +218,12 @@ markdown:
     prepend_root: false
     post_asset: false
   inline: false 
+
+clean_css:
+  enable: true
+  exclude: 
+    - '*.min.css'
+  options:
+    compatibility: 'ie10+'
+    level: 2
+    rebase: false

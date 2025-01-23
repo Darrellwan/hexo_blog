@@ -1,4 +1,4 @@
-{%- if theme.disqus.count %}
+{%- if theme.disqus.count and is_post() %}
 <script>
   function loadCount() {
     var d = document, s = d.createElement('script');
@@ -10,7 +10,7 @@
   window.addEventListener('load', loadCount, false);
 </script>
 {%- endif %}
-{%- if page.comments %}
+{%- if page.comments and is_post() %}
 <script>
   var disqus_config = function() {
     this.page.url = {{ page.permalink | json }};
