@@ -8,7 +8,7 @@ categories:
   - Martech
 page_type: post
 id: storylane-demo-website-new-feature
-description: Explore Storylane website onboarding tool: create interactive feature tutorials without coding, free version suitable for small websites
+description: Explore Storylane website onboarding tool, create interactive feature tutorials without coding, free version suitable for small websites
 bgImage: storylane_bg.png
 preload:
   - storylane_bg.png
