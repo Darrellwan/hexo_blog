@@ -181,7 +181,7 @@ Cursor 也是 VSCode Based 的 App，所以安裝同一個擴充套件就好
 `option + shift + 1`
 chatGPT 的對話視窗就會從下方彈出了!
 
-<div style="padding:0;position:relative;"><iframe src="https://player.vimeo.com/video/1034097665?badge=0&&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;byline=false&amp;title=false&amp;muted=true" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="GoogleTagManager export json file"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+<div style="padding:0;position:relative;"><iframe src="https://player.vimeo.com/video/1034097665?badge=0&&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;byline=false&amp;title=false&amp;muted=true" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="GoogleTagManager export json file"></iframe></div><script async src="https://player.vimeo.com/api/player.js"></script>
 
 ### VSCode 的限制
 

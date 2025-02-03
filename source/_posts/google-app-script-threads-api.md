@@ -310,4 +310,4 @@ Looker Studio 視覺化，只需要使用 Google Sheet 就好
 
 用一個簡短的範例介紹如何拉其中一張圖表
 
-<div style="padding:0;position:relative;"><iframe src="https://player.vimeo.com/video/1027172231?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Looker Studio 新增 Time Series Chart 呈現 Threads 資料"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+<div style="padding:0;position:relative;"><iframe src="https://player.vimeo.com/video/1027172231?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Looker Studio 新增 Time Series Chart 呈現 Threads 資料"></iframe></div><script async src="https://player.vimeo.com/api/player.js"></script>
