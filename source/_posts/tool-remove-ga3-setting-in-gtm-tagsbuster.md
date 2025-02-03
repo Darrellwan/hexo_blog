@@ -42,7 +42,7 @@ GA3(UA) 已經在 2024/07 正式退場
 
 如何匯出 GTM 的設定檔案可以參考之前撰寫工具的教學影片
 
-<div style="padding:0;position:relative;"><iframe src="https://player.vimeo.com/video/994685225?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;byline=false&amp;title=false&amp;muted=true" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="GoogleTagManager export json file"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+<div style="padding:0;position:relative;"><iframe src="https://player.vimeo.com/video/994685225?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;byline=false&amp;title=false&amp;muted=true" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="GoogleTagManager export json file"></iframe></div><script async src="https://player.vimeo.com/api/player.js"></script>
 
 匯出後就可以到 
 <a href="https://tagsbuster.analytics-debugger.com/"><i class="fa-solid fa-link"></i><span> Tagsbuster </span></a> 的網站選擇那個 JSON 檔案並匯入
@@ -70,5 +70,5 @@ GA3(UA) 已經在 2024/07 正式退場
 4. 檢查 GA4 和其他媒體的設定是否都正常
 5. 如果真的**出現問題，就不要發布設定**，並且排查問題
 
-<div style="padding:0;position:relative;"><iframe src="https://player.vimeo.com/video/994691916?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;byline=false&amp;title=false&amp;muted=true" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="gtm-import-json-and-check-changes"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+<div style="padding:0;position:relative;"><iframe src="https://player.vimeo.com/video/994691916?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;byline=false&amp;title=false&amp;muted=true" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="gtm-import-json-and-check-changes"></iframe></div><script async src="https://player.vimeo.com/api/player.js"></script>
 

@@ -67,7 +67,7 @@ TDX 的 API 在免費版一個月只有給三點
 影片可以顯示出 Pin 前後的差異:
 
 
-<div style="padding:0;position:relative;"><iframe src="https://player.vimeo.com/video/1052909965?badge=0&&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;byline=false&amp;title=false&amp;muted=true" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="n8n pin before after in openAi model"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+<div style="padding:0;position:relative;"><iframe src="https://player.vimeo.com/video/1052909965?badge=0&&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;byline=false&amp;title=false&amp;muted=true" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="n8n pin before after in openAi model"></iframe></div><script async src="https://player.vimeo.com/api/player.js"></script>
 
 ## 注意事項
 

@@ -27,7 +27,7 @@ description: Google Tag Manager 中的觸發條件(Trigger), 要如何設定點�
 跟點擊有關的變數得自行先去開啟
 不熟的話可以先都開啟沒關係
 
-<div style="padding:0 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/985731879?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="gtm-click-trigger-click_variable"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+<div style="padding:0 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/985731879?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="gtm-click-trigger-click_variable"></iframe></div><script async src="https://player.vimeo.com/api/player.js"></script>
 
 另外要是 GTM 容器 是全新的，或之前都沒有設定過 Click 相關的觸發條件
 或者點擊按鈕沒有在預覽模式出現相關點擊資訊

@@ -45,7 +45,7 @@ date: 2024-09-08 22:32:25
 4. 點擊更多 -> 列出不適用的參照連結網址
 5. 開始設定需要排除的網址
 
-<div style="padding:0;position:relative;"><iframe src="https://player.vimeo.com/video/1007409135?badge=0&&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;byline=false&amp;title=false&amp;muted=true" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="GoogleTagManager export json file"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+<div style="padding:0;position:relative;"><iframe src="https://player.vimeo.com/video/1007409135?badge=0&&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;byline=false&amp;title=false&amp;muted=true" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="GoogleTagManager export json file"></iframe></div><script async src="https://player.vimeo.com/api/player.js"></script>
 
 ## 台灣有哪些網域適合被排除
 

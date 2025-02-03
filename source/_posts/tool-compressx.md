@@ -54,7 +54,7 @@ Standard 方案
 ### 1.在 Finder 中直接用 CompressX 開啟
 點選開啟後，CompressX 就會對開啟的圖片或影片開始壓縮
 
-<div style="padding:0;position:relative;"><iframe src="https://player.vimeo.com/video/1036630332?badge=0&&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;byline=false&amp;title=false&amp;muted=true" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="GoogleTagManager export json file"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+<div style="padding:0;position:relative;"><iframe src="https://player.vimeo.com/video/1036630332?badge=0&&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;byline=false&amp;title=false&amp;muted=true" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="GoogleTagManager export json file"></iframe></div><script async src="https://player.vimeo.com/api/player.js"></script>
 
 可以看到壓縮的時間非常快，兩張照片幾乎耗時不到一兩秒鐘
 並且檔案大小分別從：
@@ -62,7 +62,7 @@ Standard 方案
 - 466 KB -> 122 KB (節省了 73.8%)
 
 ### 2. 拖曳檔案到 CompressX
-<div style="padding:0;position:relative;"><iframe src="https://player.vimeo.com/video/1036668093?badge=0&&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;byline=false&amp;title=false&amp;muted=true" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="GoogleTagManager export json file"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+<div style="padding:0;position:relative;"><iframe src="https://player.vimeo.com/video/1036668093?badge=0&&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;byline=false&amp;title=false&amp;muted=true" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="GoogleTagManager export json file"></iframe></div><script async src="https://player.vimeo.com/api/player.js"></script>
 
 拖曳的方式就是先開啟 compressX 的 app
 並把要壓縮的檔案直接拖曳 或是手動選擇檔案
