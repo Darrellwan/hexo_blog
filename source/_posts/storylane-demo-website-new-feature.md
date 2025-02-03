@@ -1,5 +1,5 @@
 ---
-title: Storylane 網站新功能的導覽教學工具
+title: Storylane - A Tool for Website Feature Onboarding
 tags:
   - Martech
   - Tools
@@ -8,7 +8,7 @@ categories:
   - Martech
 page_type: post
 id: storylane-demo-website-new-feature
-description: 探索 Storylane 網站導覽工具：無需寫程式碼，快速製作互動式新功能教學，免費版本適合小型網站
+description: Explore Storylane website onboarding tool: create interactive feature tutorials without coding, free version suitable for small websites
 bgImage: storylane_bg.png
 preload:
   - storylane_bg.png
@@ -17,104 +17,94 @@ date: 2025-01-22 16:16:35
 
 {% darrellImageCover storylane_bg storylane_bg.png max-800 %}
 
-## Storylane 介紹
+## Introduction to Storylane
 
 {% darrellImage800 storylane_official_demo storylane_official_demo.png max-800 %}
 
-起因是在 Threads 上看有人分享 Storylane
-這種網站新功能的導覽很有趣
+I first came across Storylane in a post shared on Threads.
+The approach to website feature onboarding is particularly fascinating.
 
-以前在工作經驗中也遇過類似的需求
-通常都會請工程師用程式碼的方式加上導覽步驟
-但其實這蠻耗費工時的
+During my previous work experience, we typically had to ask engineers to implement onboarding steps by writing code, which was very time-consuming.
 
-如果有像 Storylane 這種工具
-就能快速的錄製過程
-並在過程中加入步驟來引導使用者
+Tools like Storylane allow you to quickly record the process and add guiding steps for users along the way.
 
-## Storylane 價格和方案
+## Storylane Pricing and Plans
 
-會想推廣這個工具的另一個原因是有免費的版本
-且對小型網站流量不大的很夠用
+One compelling reason to recommend this tool is its free version,
+which is sufficient for small websites with low traffic.
 
-免費版最多只能上線 1 個 Demo
-但可以錄製多個
-意思是如果你**同時只有 1個Demo 需要上線教學，那就夠用!**
-而且沒有限制 PageViews 數
+The free version allows only one Demo to be live at a time,
+though you can record multiple demos.
+This means if you **only need one Demo live at a time, it's perfect!**
+Plus, there are no PageView limitations.
 
-商用有協作需求的話 Starter 方案
-一個月 $40 美金
-一年大約新台幣 15,000 元
-以工具的費用來說算是相當便宜
-蠻適合新功能迭代很快，且會需要有教學需求的網站!
-另外 Starter 方案就能串接 GA4 和進階的分析模組
-能更好分析使用者對於 Demo 的反應
+For commercial use with collaboration needs, the Starter plan
+is priced at $40 USD per month,
+approximately 15,000 NTD per year.
+This is quite cost-effective for such a tool,
+making it ideal for websites with rapid feature iterations and tutorial requirements!
+Moreover, the Starter plan includes GA4 integration and advanced analytics modules,
+enabling better analysis of user engagement with the Demo.
 
 {% darrellImage800 storylane_plans storylane_plans.png max-800 %}
 
-## 建立 Demo 
+## Creating a Demo 
 
-### 1.錄製一個 Demo
+### 1. Recording a Demo
 
 {% darrellImage800 storylane_record_demo storylane_record_demo.png max-400 %}
 
-錄製的方式蠻簡單的，只要安裝它的 Chrome 擴充功能
+Recording is straightforward: simply install their Chrome extension
 
 <a href="https://chromewebstore.google.com/detail/storylane/ongmhighpnfpojfidgigcjflgdkjfdeb">
   {% darrellImage800 storylane_chrome_extension storylane_chrome_extension.png max-400 %}
 </a>
 
-到自己的網站中點擊套件後就能開始錄製
+Visit your website and click on the extension to begin recording
 
 {% darrellImage800 storylane_record_demo_start storylane_record_demo_start.png max-800 %}
 
-錄製完成後結束錄製即可
+Once finished, simply stop the recording
 
 {% darrellImage800 storylane_record_demo_finish storylane_record_demo_finish.png max-400 %}
 
-之後就會進入到 Demo 的編輯頁面
+You will then be taken to the Demo editing page
 
 {% darrellImage800 storylane_record_demo_edit storylane_record_demo_edit.png max-400 %}
 
-### 2. 編輯錄製的步驟
+### 2. Editing Recorded Steps
 
-第一步通常是編輯這個 Demo 的標題和介紹
-讓使用者可以先知道你預計要展示什麼樣的新功能
+The initial step involves editing the Demo's title and introduction,
+ensuring users understand what new features you're planning to showcase.
 
 {% darrellImage800 storylane_edit_demo_title storylane_edit_demo_title.png max-400 %}
 
-之後可以針對你每個點擊的步驟
-做進一步的解釋
-例如: 點擊這個功能，是為了什麼
+Next, you can provide detailed explanations for each click step. For instance, clarify why users need to click on a particular feature
 
 {% darrellImage800 storylane_edit_demo_click_explain storylane_edit_demo_click_explain.png max-400 %}
 
-如果是 Input 介面，也能提醒使用者應該要輸入什麼內容
+For input interfaces, you can provide guidance on the required inputs
 
 {% darrellImage800 storylane_edit_demo_input_explain storylane_edit_demo_input_explain.png max-400 %}
 
-另外也有一些不錯的特效
-像是加深背景顏色
-並對選定的區域做 spotlight 的效果
+Additionally, there are attractive effects, such as background dimming and spotlighting selected areas
 
 {% darrellImage800 storylane_demo_fancy_effect storylane_demo_fancy_effect.png max-800 %}
 
-## 導覽成效
+## Onboarding Performance
 
 {% darrellImage800 storylane_analytics storylane_analytics.png max-800 %}
 
-由於是免費版本，可以看到的分析並不多
-有多少人被 Demo 導覽，並且完成的比率是多少，耗時多久
+Since it's the free version, the analytics are somewhat limited; you can view metrics such as the number of users guided by the Demo, the completion rate, and the time spent
 
-## 成果預覽
+## Preview Results
 
 {% darrellImage800 storylane_analytics_created_by_me storylane_analytics_created_by_me.png max-800 %}
 
-這是一個目前自己網站在免費版試玩的 Demo
+This is a Demo that I am currently testing on my website using the free version
 
-可以透過下面連結進入
-等待三到五秒後就會彈出這個 Demo 導覽
+You can access the Demo by clicking the link below. The Demo guide will automatically appear after 3-5 seconds
 
-<a href="https://www.darrelltw.com/?storylane=true">Storylane 試玩</a>
+<a href="https://www.darrelltw.com/?storylane=true">Try Storylane</a>
 
 
