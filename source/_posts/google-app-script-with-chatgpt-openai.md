@@ -2,7 +2,7 @@
 title: Google App Script 在 Google Sheet 和 ChatGPT 問答
 tags: 
 	- Google App Script
-	- ChartGPT
+	- ChatGPT
 description: 使用 Google App Script 自定義一個 Function 函式並透過 ChatGPT 的 API，就可以實現在自己的 Google Sheet 和 ChatGPT 進行對談
 categories: 
 	- Google App Script

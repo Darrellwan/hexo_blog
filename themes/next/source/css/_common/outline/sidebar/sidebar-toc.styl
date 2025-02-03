@@ -1,5 +1,5 @@
 .post-toc {
-  font-size: $font-size-small;
+  font-size: $font-size-smallmed;
   padding-top: 1rem;
 
   ol {
@@ -15,6 +15,21 @@
     a {
       transition-property: all;
       the-transition();
+      color: inherit;
+      
+      &[data-text*="n8n"] {
+        &::before {
+          content: attr(data-before);
+        }
+        
+        &::after {
+          content: attr(data-after);
+        }
+        
+        span.highlight {
+          color: red;
+        }
+      }
     }
   }
 

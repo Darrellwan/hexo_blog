@@ -1,5 +1,5 @@
 ---
-title: 
+title: GA4 超好用的檢查事件工具 Analytics Debugger
 date: 2023-05-01 21:36:19
 tags:
   - Google Analytics 4

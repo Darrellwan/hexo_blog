@@ -1,4 +1,4 @@
-{%- if page.comments %}
+{%- if page.comments and is_post() %}
   {%- if theme.injects.comment.length == 1 %}
     {%- set inject_item = theme.injects.comment[0] %}
     {{ partial(inject_item.layout, inject_item.locals, inject_item.options) }}

@@ -100,7 +100,7 @@ async function scrapeTrackingLibraries() {
 而 Google App Script 的 fetch 基本上就是幾乎到 dom ready 就回傳 html 了
 [對於網頁載入時間點有興趣的話，另一篇文章有提到這個概念](https://www.darrelltw.com/gtm-trigger-pageview-domready-windowload/)
 
-{% darrellImage800 chartgpt_coding_ask_fetch_in_gas chartgpt_coding_ask_fetch_in_gas.png max-800 %}
+{% darrellImage800 chatgpt_coding_ask_fetch_in_gas chartgpt_coding_ask_fetch_in_gas.png max-800 %}
 
 我直接請 chatgpt 給我一些其他有別於 Google App Script 的方式，它提到了 `Puppeteer`
 以前有用過的印象，大概知道他是用來調用瀏覽器相關的功能

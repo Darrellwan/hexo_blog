@@ -266,6 +266,7 @@
 
 
   </article>
+  {{ partial('_partials/post/post-mark.swig') }}
   {######################}
   {### END POST BLOCK ###}
   {######################}

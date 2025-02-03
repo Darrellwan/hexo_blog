@@ -1,6 +1,8 @@
 ---
-title: Analytics Debugger v2.3.2 更新 支援 Google Ad, Facebook Pixel 且能暫停點擊連結的跳轉
+title: Analytics Debugger v2.4.6 更新 
 date: 2023-05-06 23:45:42
+modified: 2024-12-25 12:23:23
+id: analytics-debuuger-v2-3-2
 tags:
   - Google Analytics 4
   - Google Tag Manager
@@ -13,6 +15,35 @@ description: 很重要的一個版本更新! 現在開始支援了對於 Marketi
 {% darrellImageCover analytics_debugger_bg_v2_3_2 analytics_debugger_bg_v2_3_2.png max-800 %}
 
 [先前一篇文章已經有提到安裝和基本的教學](https://www.darrelltw.com/ga4-gtm-best-tool-analytics-debugger/?from=analytics-debuuger-v2-3-2)
+
+目前支援的平台列表:
+{% darrellImage800 analytics_debugger_2_4_6_support_vendors analytics_debugger_2_4_6_support_vendors.png max-800 %}
+- GTM/GTAG  
+- GA3  
+- GA4  
+- MATOMO  
+- CHARTBEAT  
+- PIWIK PRO  
+- AMPLITUDE  
+- TEALIUM IQ  
+- TEALIUM CDH  
+- ADOBE ANALYTICS  
+- ADOBE LAUNCH  
+- ADOBE XDM  
+- MARFEEL  
+- PLAUSIBLE  
+- PIANO  
+- PARSELY  
+- MKT.PIXELS  
+- FATHOM  
+- UMAMI  
+- SNOWPLOW  
+- RINGSIDE
+
+## Analytics Debugger V2.4.6 
+
+1. 支援 Chartbeat
+2. 修復 Amplitude Endpoint
 
 ## Analytics Debugger V2.3.2 更新內容
 

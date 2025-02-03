@@ -9,7 +9,7 @@ id: chatgpt-broken-in-web-browser
 bgImage: ChatGPT-broken-in-browser-bg.png
 description: ChatGPT 壞掉或是問答沒有反應嗎? 最近的錯誤狀況和網路上搜尋的狀態都不太相同，沒有明顯的錯誤訊息，但就是一直無法問答，最後發現可能只是語言的設定問題!
 date: 2024-03-10 23:28:37
-modified: 2024-06-05 21:06:03
+modified: 2024-12-12 10:53:03
 preload: 
  - ChatGPT-broken-in-browser-bg.png
 ---
@@ -42,6 +42,23 @@ preload:
 還好這次發生的時間算是台灣的深夜，影響的範圍應該沒有白天來的多
 
 {% darrellImage800 chatgpt_status_down_in_20240604 chatgpt_status_down_in_20240604.png max-800 %}
+
+## 20241212 更新 
+
+今天 ChatGPT 的網頁版或 APP 畫面都呈現了錯誤訊息
+ChatGPT is currently unavailable. 
+Status: Identified - We have identified the issue and are working to roll out a fix.
+
+{% darrellImage800 chatgpt_browser_show_error chatgpt_browser_show_error.png max-800 %}
+
+{% darrellImage800 chatgpt_app_show_error chatgpt_app_show_error.jpg max-800 %}
+
+較有可能的原因為:
+1. Sora 使用了蠻大量的資源
+2. iOS 18.2 更新的推出，當中 Siri 和 OpenAI 的整合更加全面
+這些原因可能造成這次 OpenAI ChatGPT 的大當機
+
+除了使用一些相關的替代工具例如像是 Claude 或 Perplexity
 
 ## 202405 更新 - 空白畫面 - server error
 
