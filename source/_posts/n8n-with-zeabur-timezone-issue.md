@@ -83,7 +83,7 @@ Value:
 請注意貼的 Key & Value 不要貼錯，可能會造成無法預期的問題
 貼上存檔後，Restart n8n service 並等它一下
 
-### 測試
+### 成果測試
 
 直接到 workflow 新開一個，並直接測試新的 Schedule Trigger 是否會顯示台北時區
 就不用每次按照上面原本的 workflow 重新設定
