@@ -1,0 +1,38 @@
+name: Update Analytics Data
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # 每天凌晨執行一次
+  workflow_dispatch:  # 允許手動觸發
+
+jobs:
+  fetch-analytics:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create data directory if not exists
+        run: mkdir -p data
+
+      - name: Fetch Analytics Data
+        id: fetch-data
+        run: |
+          response=$(curl -s -X GET \
+            -H "Content-Type: application/json" \
+            https://darrellinfo-n8n.hnd1.zeabur.app/webhook/blog_post_data)
+          
+          # 添加時間戳記到數據中
+          timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          json_with_timestamp=$(echo "$response" | jq --arg ts "$timestamp" '. + {"last_updated": $ts}')
+          
+          echo "$json_with_timestamp" > data/analytics.json
+
+      - name: Commit and Push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add data/analytics.json
+          git commit -m "chore: update analytics data [skip ci]" || exit 0
+          git push 
