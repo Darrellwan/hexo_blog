@@ -3,7 +3,7 @@
 ## 🌟 部落格資訊
 - 網站: [Darrell Martech](https://www.darrelltw.com/)
 - 文章總數: 79
-- 最後更新: 2025/02/12 12:05:32
+- 最後更新: 2025/02/12 12:02:30
 
 ## 📚 最新文章
 
@@ -13,7 +13,7 @@
 - 發布時間: 2025/02/06
 - 分類: Automation
 - 標籤: n8n, n8n Tips
-- [閱讀全文](https://www.darrelltw.com/n8n-with-zeabur-timezone-issue/?utm_source=github_readme&utm_medium=referral)
+- [閱讀全文](https://www.darrelltw.com/n8n-with-zeabur-timezone-issue/)
 
 
 ### 在 GTM 安裝 Line Tag Pixel
@@ -22,7 +22,7 @@
 - 發布時間: 2025/02/06
 - 分類: Google Tag Manager
 - 標籤: Google Tag Manager, Line Tag, DPA
-- [閱讀全文](https://www.darrelltw.com/gtm-install-line-tag-pixel/?utm_source=github_readme&utm_medium=referral)
+- [閱讀全文](https://www.darrelltw.com/gtm-install-line-tag-pixel/)
 
 
 ### n8n 小撇步 - Pin Data
@@ -31,7 +31,7 @@
 - 發布時間: 2025/02/03
 - 分類: Automation
 - 標籤: n8n, n8n Tips
-- [閱讀全文](https://www.darrelltw.com/n8n-tips-pin/?utm_source=github_readme&utm_medium=referral)
+- [閱讀全文](https://www.darrelltw.com/n8n-tips-pin/)
 
 
 ### n8n 內建參數介紹
@@ -40,7 +40,7 @@
 - 發布時間: 2025/01/25
 - 分類: Automation
 - 標籤: n8n, n8n 介紹
-- [閱讀全文](https://www.darrelltw.com/n8n-built-in-variables/?utm_source=github_readme&utm_medium=referral)
+- [閱讀全文](https://www.darrelltw.com/n8n-built-in-variables/)
 
 
 ### Storylane 網站新功能的導覽教學工具
@@ -49,7 +49,7 @@
 - 發布時間: 2025/01/23
 - 分類: Martech
 - 標籤: Martech, Tools, User Onboarding
-- [閱讀全文](https://www.darrelltw.com/storylane-demo-website-new-feature/?utm_source=github_readme&utm_medium=referral)
+- [閱讀全文](https://www.darrelltw.com/storylane-demo-website-new-feature/)
 
 
 ### n8n 用 Request 發送 LINE Message API
@@ -58,7 +58,7 @@
 - 發布時間: 2025/01/17
 - 分類: Automation
 - 標籤: n8n, Line
-- [閱讀全文](https://www.darrelltw.com/n8n-line-message-api/?utm_source=github_readme&utm_medium=referral)
+- [閱讀全文](https://www.darrelltw.com/n8n-line-message-api/)
 
 
 ### n8n Aggregate 和 Split Out
@@ -67,7 +67,7 @@
 - 發布時間: 2025/01/16
 - 分類: Automation
 - 標籤: n8n
-- [閱讀全文](https://www.darrelltw.com/n8n-aggregate-split-out/?utm_source=github_readme&utm_medium=referral)
+- [閱讀全文](https://www.darrelltw.com/n8n-aggregate-split-out/)
 
 
 ### Google App Script - Cache Service 做快取
@@ -76,7 +76,7 @@
 - 發布時間: 2024/12/23
 - 分類: Google App Script
 - 標籤: Google App Script, Cache
-- [閱讀全文](https://www.darrelltw.com/google-app-script-cache-service/?utm_source=github_readme&utm_medium=referral)
+- [閱讀全文](https://www.darrelltw.com/google-app-script-cache-service/)
 
 
 ### Google App Script 用 Gmail 發有質感美觀的信
@@ -85,7 +85,7 @@
 - 發布時間: 2024/12/15
 - 分類: Google App Script
 - 標籤: Google App Script, ChatGPT, Gmail
-- [閱讀全文](https://www.darrelltw.com/google-app-script-gmail-nice-email-template/?utm_source=github_readme&utm_medium=referral)
+- [閱讀全文](https://www.darrelltw.com/google-app-script-gmail-nice-email-template/)
 
 
 ### n8n If 和 Switch
@@ -94,7 +94,7 @@
 - 發布時間: 2024/12/12
 - 分類: Automation
 - 標籤: n8n, Integration, Webhook
-- [閱讀全文](https://www.darrelltw.com/n8n-if-switch/?utm_source=github_readme&utm_medium=referral)
+- [閱讀全文](https://www.darrelltw.com/n8n-if-switch/)
 
 
 ## 📊 分類統計
@@ -119,4 +119,4 @@
 - [標籤列表](https://www.darrelltw.com/tags/)
 
 ---
-*此 README 由 GitHub Action 自動生成於 2025/02/12 12:05:32*
+*此 README 由 GitHub Action 自動生成於 2025/02/12 12:02:30*

@@ -11,7 +11,9 @@
     "generate_custom": "hexo generate --config './main.yml'",
     "server_custom": "hexo server --config './main.yml'",
     "generate": "hexo clean && hexo generate --config 'main.yml' && hexo server --config 'main.yml' ",
-    "add_post": "hexo new gtm %npm_config_posttitle%"
+    "add_post": "hexo new gtm %npm_config_posttitle%",
+    "test-readme": "node scripts/test-readme-generation.js",
+    "restore-readme": "node scripts/restore-readme.js"
   },
   "hexo": {
     "version": "7.3.0"
@@ -46,5 +48,10 @@
     "puppeteer": "^24.1.0",
     "rimraf": "^6.0.1",
     "uuid": "^11.0.5"
+  },
+  "devDependencies": {
+    "dayjs": "^1.11.13",
+    "gray-matter": "^4.0.3",
+    "js-yaml": "^4.1.0"
   }
 }
