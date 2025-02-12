@@ -1,12 +1,12 @@
 name: Update Analytics Data
 
 on:
-  schedule:
-    - cron: '0 0 * * *'  # 每天凌晨執行一次
-  workflow_dispatch:  # 允許手動觸發
+  repository_dispatch:
+    types: [update-analytics]
+  workflow_dispatch:  # 保留手動觸發選項
 
 jobs:
-  fetch-analytics:
+  update-readme:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -16,23 +16,47 @@ jobs:
       - name: Create data directory if not exists
         run: mkdir -p data
 
-      - name: Fetch Analytics Data
-        id: fetch-data
+      - name: Process Analytics Data
+        id: process-data
         run: |
-          response=$(curl -s -X GET \
-            -H "Content-Type: application/json" \
-            https://darrellinfo-n8n.hnd1.zeabur.app/webhook/blog_post_data)
+          # 從 event payload 獲取原始數據
+          raw_data='${{ toJSON(github.event.client_payload) }}'
           
-          # 添加時間戳記到數據中
+          # 驗證數據格式
+          if [ "$(echo "$raw_data" | jq 'type')" != "\"array\"" ]; then
+            echo "Error: Invalid data format"
+            exit 1
+          fi
+          
+          # 計算總訪問量
+          total_sessions=$(echo "$raw_data" | jq '[.[].sessions | tonumber] | add')
+          
+          # 添加百分比到數據中
+          processed_data=$(echo "$raw_data" | jq --arg total "$total_sessions" '
+            map(. + {
+              "percentage": ((.sessions | tonumber) / ($total | tonumber) * 100 | round * 0.1)
+            }) | sort_by(-.percentage)
+          ')
+          
+          # 添加時間戳記
           timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-          json_with_timestamp=$(echo "{\"data\": $response, \"last_updated\": \"$timestamp\"}")
+          json_with_timestamp=$(echo "{
+            \"data\": $processed_data,
+            \"last_updated\": \"$timestamp\"
+          }")
           
           echo "$json_with_timestamp" > data/analytics.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate README
+        run: node scripts/generate-readme.js
 
       - name: Commit and Push
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add data/analytics.json
-          git commit -m "chore: update analytics data [skip ci]" || exit 0
+          git add data/analytics.json README.md
+          git commit -m "chore: update analytics data and README" || exit 0
           git push 
