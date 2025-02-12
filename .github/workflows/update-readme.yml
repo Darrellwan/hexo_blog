@@ -1,0 +1,58 @@
+name: Update README
+
+on:
+  push:
+    paths:
+      - 'source/_posts/**'
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 0'  # 每週日執行一次
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      
+      - name: Install dependencies
+        run: |
+          npm ci
+          npm install gray-matter dayjs
+      
+      - name: Generate README
+        run: node scripts/generate-readme.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          commit-message: 'docs: update README with latest blog posts'
+          title: '📝 Update README with latest blog posts'
+          body: |
+            自動更新 README 文件，包含最新的部落格文章列表。
+            
+            * 更新時間: ${{ steps.date.outputs.date }}
+            * 觸發事件: ${{ github.event_name }}
+          branch: update-readme
+          delete-branch: true
+          labels: |
+            documentation
+            automated pr 
