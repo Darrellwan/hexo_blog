@@ -2,12 +2,12 @@
   "data": [
   {
     "customEvent:post_title": "Line Notify 結束服務，轉移到 Slack、Telegram、Discord",
-    "sessions": "502",
+    "sessions": "501",
     "percentage": 2.5
   },
   {
     "customEvent:post_title": "n8n 用 Request 發送 LINE Message API",
-    "sessions": "456",
+    "sessions": "455",
     "percentage": 2.3000000000000003
   },
   {
@@ -17,7 +17,7 @@
   },
   {
     "customEvent:post_title": "n8n Aggregate 和 Split Out",
-    "sessions": "99",
+    "sessions": "97",
     "percentage": 0.5
   },
   {
@@ -32,7 +32,7 @@
   },
   {
     "customEvent:post_title": "Google App Script 測試 Webhook 的串接",
-    "sessions": "54",
+    "sessions": "53",
     "percentage": 0.30000000000000004
   },
   {
@@ -126,17 +126,17 @@
     "percentage": 0.1
   },
   {
-    "customEvent:post_title": "n8n If 和 Switch",
-    "sessions": "12",
-    "percentage": 0.1
-  },
-  {
     "customEvent:post_title": "檢查網站是否安裝 GA4",
     "sessions": "12",
     "percentage": 0.1
   },
   {
     "customEvent:post_title": "Google App Script - Cache Service 做快取",
+    "sessions": "11",
+    "percentage": 0.1
+  },
+  {
+    "customEvent:post_title": "n8n If 和 Switch",
     "sessions": "11",
     "percentage": 0.1
   },
@@ -151,5 +151,5 @@
     "percentage": 0.1
   }
 ],
-  "last_updated": "2025-02-12T08:54:21Z"
+  "last_updated": "2025-02-12T09:35:01Z"
 }
