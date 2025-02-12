@@ -25,7 +25,7 @@ jobs:
           
           # 添加時間戳記到數據中
           timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-          json_with_timestamp=$(echo "$response" | jq --arg ts "$timestamp" '. + {"last_updated": $ts}')
+          json_with_timestamp=$(echo "{\"data\": $response, \"last_updated\": \"$timestamp\"}")
           
           echo "$json_with_timestamp" > data/analytics.json
 
