@@ -85,6 +85,23 @@ function parseMarkdownFile(filePath) {
   }
 }
 
+function countWords(filePath) {
+  try {
+    const content = fs.readFileSync(filePath, 'utf8');
+    // 移除 frontmatter
+    const postContent = content.replace(/^---[\s\S]*?---/, '');
+    // 移除 HTML 標籤
+    const textContent = postContent.replace(/<[^>]*>/g, '');
+    // 計算中文字和英文字
+    const chineseCount = (textContent.match(/[\u4e00-\u9fa5]/g) || []).length;
+    const englishCount = (textContent.match(/[a-zA-Z]+/g) || []).join('').length;
+    return chineseCount + englishCount;
+  } catch (error) {
+    console.warn(`警告：無法計算 ${filePath} 的字數`, error);
+    return 0;
+  }
+}
+
 async function generateReadme() {
   try {
     // 讀取所有 .md 文件
@@ -94,12 +111,17 @@ async function generateReadme() {
         const filePath = path.join(POSTS_DIR, file);
         const postData = parseMarkdownFile(filePath);
         const url = normalizeUrl(`${blogConfig.url}/${file.replace('.md', '')}`);
+        const wordCount = countWords(filePath);
         return {
           ...postData,
-          url
+          url,
+          wordCount
         };
       })
       .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    // 計算總字數
+    const totalWords = posts.reduce((sum, post) => sum + post.wordCount, 0);
 
     // 生成分類統計
     const categories = {};
@@ -121,7 +143,7 @@ ${post.description ? `> ${post.description}` : ''}
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-${posts.length}-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-${Math.floor(Math.random() * 100000)}+-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-${totalWords}+-blue?style=flat-square)
 ![已發布天數](https://img.shields.io/badge/已發布天數-${Math.floor((new Date() - new Date(Math.min(...posts.map(p => new Date(p.date))))) / (1000 * 60 * 60 * 24))}-blue?style=flat-square)
 
 ## 📈 近期熱門文章
@@ -138,7 +160,7 @@ ${(() => {
   return popularPosts.map((post, index) => {
     const barLength = Math.floor((post.percentage / maxPercentage) * maxBarWidth);
     const bar = '█'.repeat(barLength).padEnd(maxBarWidth, '░');
-    return `${bar} ${ranks[index]} ${post['customEvent:post_title']} (${post.percentage}%)`;
+    return `${bar} ${ranks[index]} ${post['customEvent:post_title']}`;
   }).join('\n');
 })()}
 \`\`\`
@@ -182,10 +204,6 @@ ${(() => {
 - [所有文章列表](${normalizeUrl(`${blogConfig.url}/archives/`, false)})
 - [分類列表](${normalizeUrl(`${blogConfig.url}/categories/`, false)})
 - [標籤列表](${normalizeUrl(`${blogConfig.url}/tags/`, false)})
-
----
-*README 由 GitHub Action 自動生成於 ${dayjs().format('YYYY/MM/DD HH:mm:ss')}*
-*流量數據更新於 ${dayjs(analyticsData.last_updated).format('YYYY/MM/DD HH:mm:ss')}*
 
 <div align="center">
   <a href="https://twitter.com/DarrellMarTech" target="_blank">
