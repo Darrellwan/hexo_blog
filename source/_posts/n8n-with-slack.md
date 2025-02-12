@@ -8,7 +8,7 @@ categories:
   - Automation
 page_type: post
 id: n8n-with-slack
-description: Slack 應該是蠻多人使用的通訊工具，也很多開發者拿來串接作為通知訊息，用 n8n 串接 Slack 對非技術人員來說算是相當簡單，可以真的不需要學會程式碼用 no-code 的方式來達成，希望這篇 n8n 串 slack 的教學會對你有幫助
+description: Slack 應該是蠻多人使用的通訊工具，也很多開發者拿來串接作為通知訊息，用 n8n 串接 Slack 對非技術人員來說算是相當簡單，可以真的不需要學會程式碼用 no-code 的方式來達成，希望這篇 n8n 串 slack 的教學會對你有幫助，也介紹了 Slack Trigger 該怎麼使用
 bgImage: n8n-with-slack_bg.jpg
 preload:
   - n8n-with-slack_bg.jpg
@@ -156,7 +156,7 @@ Credentials 設定好後，就可以建立 Node 來發送訊息
 4. 按下 Test Action 後測試，看到截圖這樣就代表成功
 {% darrellImage n8n_slack_send_message_test_success n8n_slack_send_message_test_success.png max-400 %}
 
-## 用 Slack 觸發 workflow
+## Slack Trigger
 
 Slack 除了可以當 action，也能當 Trigger 來觸發
 這裡會用 app mention 來示範
