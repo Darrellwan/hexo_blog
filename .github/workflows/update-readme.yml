@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'source/_posts/**'
+      - 'data/analytics.json'
   workflow_dispatch:
   schedule:
     - cron: '0 0 * * 0'  # 每週日執行一次
@@ -44,13 +45,12 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
-          commit-message: 'docs: update README with latest blog posts'
-          title: '📝 Update README with latest blog posts'
+          commit-message: 'docs: update README with latest blog posts and analytics'
+          title: '📝 Update README with latest content'
           body: |
-            自動更新 README 文件，包含最新的部落格文章列表。
-            
-            * 更新時間: ${{ steps.date.outputs.date }}
-            * 觸發事件: ${{ github.event_name }}
+            自動更新 README 文件，包含：
+            * 最新的部落格文章列表
+            * 文章流量數據更新    
           branch: update-readme
           delete-branch: true
           labels: |

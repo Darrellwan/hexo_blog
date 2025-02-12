@@ -10,15 +10,27 @@ dayjs.locale('zh-tw');
 
 const POSTS_DIR = path.join(__dirname, '../source/_posts');
 const README_PATH = path.join(__dirname, '../README.md');
+const ANALYTICS_PATH = path.join(__dirname, '../data/analytics.json');
+
+// 讀取分析數據
+function getAnalyticsData() {
+  try {
+    const analyticsContent = fs.readFileSync(ANALYTICS_PATH, 'utf8');
+    return JSON.parse(analyticsContent);
+  } catch (error) {
+    console.warn('無法讀取分析數據，使用空數據');
+    return { data: [], last_updated: new Date().toISOString() };
+  }
+}
 
 // 讀取部落格配置
 function getBlogConfig() {
   try {
-    const configPath = path.join(__dirname, '../_config.yml');
+    const configPath = path.join(__dirname, '../main.yml');
     const configContent = fs.readFileSync(configPath, 'utf8');
     return yaml.load(configContent);
   } catch (error) {
-    console.error('無法讀取 _config.yml，使用預設配置');
+    console.error('無法讀取 main.yml，使用預設配置');
     return {
       title: 'My Blog',
       url: 'https://example.com'
@@ -46,6 +58,7 @@ function normalizeUrl(url, addUtm = true) {
 }
 
 const blogConfig = getBlogConfig();
+const analyticsData = getAnalyticsData();
 
 function parseMarkdownFile(filePath) {
   try {
@@ -114,23 +127,18 @@ ${post.description ? `> ${post.description}` : ''}
 ## 📈 近期熱門文章
 \`\`\`text
 ${(() => {
-  const popularPosts = [
-    { rank: '🥇', title: 'Line Notify 結束服務，轉移到 Slack、Telegram、Discord', views: 324 },
-    { rank: '🥈', title: 'n8n 用 Request 發送 LINE Message API', views: 304 },
-    { rank: '🥉', title: 'ChatGPT 在網頁版無法使用，沒有錯誤訊息卻都無法回答問題', views: 232 },
-    { rank: '4️⃣', title: 'n8n Aggregate 和 Split Out', views: 71 },
-    { rank: '5️⃣', title: 'ChatGPT 新功能 - Work with Apps 一起運作', views: 59 }
-  ];
-
-  // 找出最大閱讀量作為基準
-  const maxViews = Math.max(...popularPosts.map(p => p.views));
+  // 使用分析數據
+  const popularPosts = analyticsData.data.slice(0, 5);
+  const ranks = ['🥇', '🥈', '🥉', '4️⃣', '5️⃣'];
+  
+  // 找出最大百分比作為基準
+  const maxPercentage = Math.max(...popularPosts.map(p => p.percentage));
   const maxBarWidth = 30;
 
-  return popularPosts.map(post => {
-    const percent = (post.views / maxViews) * 100;
-    const barLength = Math.floor((percent / 100) * maxBarWidth);
+  return popularPosts.map((post, index) => {
+    const barLength = Math.floor((post.percentage / maxPercentage) * maxBarWidth);
     const bar = '█'.repeat(barLength).padEnd(maxBarWidth, '░');
-    return `${bar} ${post.rank} ${post.title}`;
+    return `${bar} ${ranks[index]} ${post['customEvent:post_title']} (${post.percentage}%)`;
   }).join('\n');
 })()}
 \`\`\`
@@ -177,6 +185,7 @@ ${(() => {
 
 ---
 *README 由 GitHub Action 自動生成於 ${dayjs().format('YYYY/MM/DD HH:mm:ss')}*
+*流量數據更新於 ${dayjs(analyticsData.last_updated).format('YYYY/MM/DD HH:mm:ss')}*
 
 <div align="center">
   <a href="https://twitter.com/DarrellMarTech" target="_blank">
