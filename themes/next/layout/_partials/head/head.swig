@@ -68,5 +68,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto&family=Noto+Sans+TC:wght@300&display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+</style>
 
 {{ next_config() }}

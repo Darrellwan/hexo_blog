@@ -114,6 +114,8 @@ function customLightGalleryCover(args) {
       src="${imageSrc}"
       class="${className}" 
       sizes="(min-width: 1000px) 930px, 90vw" 
+      width="800"
+      height="450"
       style="background-color: #f0f0f0;">
   </figure>`
 }
