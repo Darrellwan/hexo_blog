@@ -3,7 +3,12 @@ const path = require('path');
 
 async function testReadmeGeneration() {
   try {
-    console.log('🔍 開始測試...');
+    // 取得觸發程序的資訊
+    const caller = new Error().stack
+      .split('\n')[2]
+      .trim()
+      .replace(/^at /, '');
+    console.log(`🔍 開始測試... (觸發來源: ${caller})`);
 
     // 1. 檢查必要檔案是否存在
     const requiredFiles = [

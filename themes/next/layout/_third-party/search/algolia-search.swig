@@ -3,4 +3,10 @@
 <script src="{{ algolia_search_uri }}"></script>
 <script src="{{ instant_search_uri }}"></script>
 
-{{- next_js('algolia-search.js') }}
+<script>
+window.addEventListener('load', function() {
+  var script = document.createElement('script');
+  script.src = '{{ url_for('/js/algolia-search.js') }}';
+  document.body.appendChild(script);
+});
+</script>
