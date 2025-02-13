@@ -111,8 +111,8 @@ function customLightGalleryCover(args) {
     <img 
       alt="${altText}" 
       data-src="${imageSrc}" 
-      src="${generatePlaceholder(width, height)}"
-      class="lazyload ${className}" 
+      src="${imageSrc}"
+      class="${className}" 
       sizes="(min-width: 1000px) 930px, 90vw" 
       style="background-color: #f0f0f0;">
   </figure>`
