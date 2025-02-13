@@ -16,6 +16,7 @@ NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
       title     : {{ page.title | json }},
     });
   }, window.DisqusJS);
+  console.log('disqusjs 19');
 });
 </script>
 {%- endif %}

@@ -6,15 +6,15 @@ categories:
   - ChatGPT
 page_type: post
 id: chatgpt-broken-in-web-browser
-bgImage: ChatGPT-broken-in-browser-bg.png
+bgImage: ChatGPT-broken-in-browser-bg.jpg
 description: ChatGPT 壞掉或是問答沒有反應嗎? 最近的錯誤狀況和網路上搜尋的狀態都不太相同，沒有明顯的錯誤訊息，但就是一直無法問答，最後發現可能只是語言的設定問題!
 date: 2024-03-10 23:28:37
 modified: 2024-12-12 10:53:03
 preload: 
- - ChatGPT-broken-in-browser-bg.png
+ - ChatGPT-broken-in-browser-bg.jpg
 ---
 
-{% darrellImageCover ChatGPT-broken-in-browser-bg ChatGPT-broken-in-browser-bg.png max-800 %}
+{% darrellImageCover ChatGPT-broken-in-browser-bg ChatGPT-broken-in-browser-bg.jpg max-800 %}
 
 ## 快速檢查是否為 ChatGPT 端的問題
 
@@ -30,13 +30,6 @@ preload:
 
 最近突然遭遇到一次大規模的 ChatGPT is at capacity right now
 主要的原因就是 ChatGPT 大當機，伺服器突然無法處理大量的請求
-
-<video autoplay loop muted playsinline>
-    <source src="./chatgpt_down_20240604.webm" type="video/webm">
-    <img src="https://i.imgur.com/le2dqA4.gif" alt="Fallback GIF">
-</video>
-
-
 
 這次發生的時間長達五個小時之久
 還好這次發生的時間算是台灣的深夜，影響的範圍應該沒有白天來的多
