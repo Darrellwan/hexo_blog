@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>n8n Workflow 視覺化工具</title>
+    <!-- 載入 Web Components 支援 -->
+    <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2.0.0/webcomponentsloader.js"></script>
+    <script src="https://www.unpkg.com/lit@2.0.0-rc.2/polyfill-support.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@n8n_io/n8n-demo-component/n8n-demo.bundled.js"></script>
+    <style>
+        :root {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --accent-color: #007bff;
+            --border-color: #404040;
+            --card-hover: #3d3d3d;
+        }
+
+        body {
+            font-family: 'Microsoft JhengHei', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: var(--text-primary);
+        }
+
+        /* Header 樣式 */
+        header {
+            background-color: var(--bg-secondary);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-button {
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background-color: var(--card-hover);
+        }
+
+        .nav-button.active {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: var(--bg-secondary);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .input-section {
+            background-color: var(--bg-primary);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        textarea {
+            width: 100%;
+            height: 250px;
+            margin: 1rem 0;
+            padding: 1rem;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        textarea::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .button-container {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        button {
+            background-color: var(--accent-color);
+            color: var(--text-primary);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            transform: translateY(-1px);
+        }
+
+        #visualization {
+            margin-top: 2rem;
+            padding: 2rem;
+            background-color: var(--bg-secondary);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        footer {
+            background-color: var(--bg-secondary);
+            padding: 1.5rem 2rem;
+            text-align: center;
+            margin-top: auto;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .social-button {
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+            border-radius: 50%;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .social-button:hover {
+            color: var(--accent-color);
+            background-color: rgba(0, 123, 255, 0.1);
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .social-buttons {
+                justify-content: center;
+            }
+
+            .container {
+                padding: 1rem;
+                margin: 1rem;
+            }
+        }
+
+        n8n-demo {
+            --n8n-frame-background-color: var(--bg-secondary);
+            --n8n_json-background-color: var(--bg-primary);
+            --n8n_copy-button-background-color: var(--accent-color);
+            --n8n_workflow-min-height: 500px;
+            --n8n_iframe-border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>n8n Workflow 視覺化工具</h1>
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-button active">視覺化工具</a>
+            <a href="models.html" class="nav-button">模型列表</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="input-section">
+            <h2>n8n Workflow 視覺化工具</h2>
+            <p class="description">
+                這個工具可以幫助您將 n8n workflow JSON 轉換為視覺化圖表。只需將您的 workflow JSON 貼到下方的文字框中，
+                點擊「顯示視覺化」按鈕即可看到結果。
+            </p>
+            <textarea id="jsonInput" placeholder="在此貼上您的 workflow JSON..."></textarea>
+            <div class="button-container">
+                <button onclick="visualizeWorkflow()">顯示視覺化</button>
+                <button onclick="resetWorkflow()" style="background-color: #6c757d;">重置</button>
+            </div>
+        </div>
+        <div id="visualization"></div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="copyright">© 2024 DarrellTW. All rights reserved.</div>
+            <div class="social-buttons">
+                <a href="https://www.linkedin.com/in/darrell-wang-tw/" class="social-button" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                </a>
+                <a href="https://www.darrelltw.com/" class="social-button" target="_blank" rel="noopener noreferrer" title="Website">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm1 16.057v-3.057h2.994c-.059 1.143-.212 2.24-.456 3.279-.823-.12-1.674-.188-2.538-.222zm1.957 2.162c-.499 1.33-1.159 2.497-1.957 3.456v-3.62c.666.028 1.319.081 1.957.164zm-1.957-7.219v-3.015c.868-.034 1.721-.103 2.548-.224.238 1.027.389 2.111.446 3.239h-2.994zm0-5.014v-3.661c.806.969 1.471 2.15 1.971 3.496-.642.084-1.3.137-1.971.165zm2.703-3.267c1.237.496 2.354 1.228 3.29 2.146-.642.234-1.311.442-2.019.607-.344-.992-.775-1.91-1.271-2.753zm-7.241 13.56c-.244-1.039-.398-2.136-.456-3.279h2.994v3.057c-.865.034-1.714.102-2.538.222zm2.538 1.776v3.62c-.798-.959-1.458-2.126-1.957-3.456.638-.083 1.291-.136 1.957-.164zm-2.994-7.055c.057-1.128.207-2.212.446-3.239.827.121 1.68.19 2.548.224v3.015h-2.994zm1.024-5.179c.5-1.346 1.165-2.527 1.97-3.496v3.661c-.671-.028-1.329-.081-1.97-.165zm-2.005-.35c-.708-.165-1.377-.373-2.018-.607.937-.918 2.053-1.65 3.29-2.146-.496.844-.927 1.762-1.272 2.753zm-.549 1.918c-.264 1.151-.434 2.36-.492 3.611h-3.933c.165-1.658.739-3.197 1.617-4.518.88.361 1.816.67 2.808.907zm.009 9.262c-.988.236-1.92.542-2.797.9-.89-1.328-1.471-2.879-1.637-4.551h3.934c.058 1.265.231 2.488.5 3.651zm.553 1.917c.342.976.768 1.881 1.257 2.712-1.223-.49-2.326-1.211-3.256-2.115.636-.229 1.299-.435 1.999-.597zm9.924 0c.7.163 1.362.367 1.999.597-.931.903-2.034 1.625-3.257 2.116.489-.832.915-1.737 1.258-2.713zm.553-1.917c.27-1.163.442-2.386.501-3.651h3.934c-.167 1.672-.748 3.223-1.638 4.551-.877-.358-1.81-.664-2.797-.9zm.501-5.651c-.058-1.251-.229-2.46-.492-3.611.992-.237 1.929-.546 2.809-.907.877 1.321 1.451 2.86 1.616 4.518h-3.933z"/>
+                    </svg>
+                </a>
+                <a href="https://buymeacoffee.com/darrellmartechtw" class="social-button" target="_blank" rel="noopener noreferrer" title="Buy Me a Coffee">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function visualizeWorkflow() {
+            const jsonInput = document.getElementById('jsonInput').value;
+            const visualizationDiv = document.getElementById('visualization');
+            
+            try {
+                // 驗證 JSON 格式
+                JSON.parse(jsonInput);
+                
+                // 清除之前的視覺化
+                visualizationDiv.innerHTML = '';
+                
+                // 創建新的 n8n-demo 元素
+                const n8nDemo = document.createElement('n8n-demo');
+                n8nDemo.setAttribute('workflow', jsonInput);
+                
+                visualizationDiv.appendChild(n8nDemo);
+            } catch (e) {
+                alert('請輸入有效的 JSON 格式！');
+            }
+        }
+
+        // 預設的示例 workflow
+        const defaultWorkflow = {
+            "nodes": [
+                {
+                    "name": "Workflow-Created",
+                    "type": "n8n-nodes-base.webhook",
+                    "position": [512, 369],
+                    "parameters": {
+                        "path": "webhook",
+                        "httpMethod": "POST"
+                    },
+                    "typeVersion": 1
+                }
+            ],
+            "connections": {}
+        };
+
+        // 載入頁面時設置預設值
+        window.onload = function() {
+            document.getElementById('jsonInput').value = JSON.stringify(defaultWorkflow, null, 2);
+        }
+
+        // 添加重置功能
+        function resetWorkflow() {
+            document.getElementById('jsonInput').value = JSON.stringify(defaultWorkflow, null, 2);
+            document.getElementById('visualization').innerHTML = '';
+        }
+    </script>
+</body>
+</html>
