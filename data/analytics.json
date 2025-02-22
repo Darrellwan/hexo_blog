@@ -2,47 +2,52 @@
   "data": [
   {
     "customEvent:post_title": "Line Notify 結束服務，轉移到 Slack、Telegram、Discord",
-    "sessions": "446",
+    "sessions": "447",
     "percentage": 2.4000000000000004
   },
   {
-    "customEvent:post_title": "n8n 用 Request 發送 LINE Message API",
-    "sessions": "326",
-    "percentage": 1.8
+    "customEvent:post_title": "ChatGPT 在網頁版無法使用，沒有錯誤訊息卻都無法回答問題",
+    "sessions": "305",
+    "percentage": 1.6
   },
   {
-    "customEvent:post_title": "ChatGPT 在網頁版無法使用，沒有錯誤訊息卻都無法回答問題",
-    "sessions": "287",
+    "customEvent:post_title": "n8n 用 Request 發送 LINE Message API",
+    "sessions": "301",
     "percentage": 1.6
   },
   {
     "customEvent:post_title": "ChatGPT 新功能 - Work with Apps 一起運作",
-    "sessions": "94",
-    "percentage": 0.5
+    "sessions": "109",
+    "percentage": 0.6000000000000001
   },
   {
     "customEvent:post_title": "n8n 串接 Slack、發送訊息、用 Slack 觸發 workflow",
-    "sessions": "92",
+    "sessions": "86",
     "percentage": 0.5
   },
   {
     "customEvent:post_title": "Google App Script 測試 Webhook 的串接",
-    "sessions": "63",
-    "percentage": 0.30000000000000004
+    "sessions": "72",
+    "percentage": 0.4
   },
   {
     "customEvent:post_title": "n8n 內建參數介紹",
-    "sessions": "46",
+    "sessions": "52",
     "percentage": 0.30000000000000004
   },
   {
     "customEvent:post_title": "n8n 小撇步 - Timezone 問題如何在 Zeabur 設定",
-    "sessions": "45",
-    "percentage": 0.2
+    "sessions": "50",
+    "percentage": 0.30000000000000004
   },
   {
     "customEvent:post_title": "Google Tag Manager - 觸發條件 點擊和連結點擊 (All Click, Link Click)",
-    "sessions": "44",
+    "sessions": "46",
+    "percentage": 0.2
+  },
+  {
+    "customEvent:post_title": "n8n 小撇步 - Pin Data",
+    "sessions": "32",
     "percentage": 0.2
   },
   {
@@ -51,19 +56,24 @@
     "percentage": 0.2
   },
   {
-    "customEvent:post_title": "n8n 小撇步 - Pin Data",
-    "sessions": "30",
-    "percentage": 0.2
-  },
-  {
     "customEvent:post_title": "利用 GA4 GTM 來追蹤網頁載入時間 - GTM 進階技巧",
     "sessions": "30",
     "percentage": 0.2
   },
   {
+    "customEvent:post_title": "Facebook Pixel 利用 GTM 安裝和注意事項避免重複觸發",
+    "sessions": "27",
+    "percentage": 0.1
+  },
+  {
     "customEvent:post_title": "Storylane 網站新功能的導覽教學工具",
-    "sessions": "29",
-    "percentage": 0.2
+    "sessions": "27",
+    "percentage": 0.1
+  },
+  {
+    "customEvent:post_title": "GA4 找到並移除不想要的 referral 網域",
+    "sessions": "24",
+    "percentage": 0.1
   },
   {
     "customEvent:post_title": "Google App Script 用 Gmail 發有質感美觀的信",
@@ -82,17 +92,7 @@
   },
   {
     "customEvent:post_title": "Google Analytics 4 支援資料直接匯出到 Google Sheet (Google 官方釋出)",
-    "sessions": "21",
-    "percentage": 0.1
-  },
-  {
-    "customEvent:post_title": "GA4 找到並移除不想要的 referral 網域",
-    "sessions": "20",
-    "percentage": 0.1
-  },
-  {
-    "customEvent:post_title": "Facebook Pixel 利用 GTM 安裝和注意事項避免重複觸發",
-    "sessions": "19",
+    "sessions": "22",
     "percentage": 0.1
   },
   {
@@ -101,17 +101,12 @@
     "percentage": 0.1
   },
   {
-    "customEvent:post_title": "Gmail Yahoo 2024/02新政策 全面驗證 DMARC 認證",
-    "sessions": "14",
-    "percentage": 0.1
-  },
-  {
     "customEvent:post_title": "Google App Script 在 Google Sheet 和 ChatGPT 問答",
-    "sessions": "14",
+    "sessions": "15",
     "percentage": 0.1
   },
   {
-    "customEvent:post_title": "n8n If 和 Switch",
+    "customEvent:post_title": "Google Tag Manager - 觸發條件 自訂事件 (Custom Event)",
     "sessions": "13",
     "percentage": 0.1
   },
@@ -121,22 +116,22 @@
     "percentage": 0.1
   },
   {
-    "customEvent:post_title": "Google Tag Manager - 觸發條件 元素可見度 (Element Visibility)",
-    "sessions": "12",
+    "customEvent:post_title": "Gmail Yahoo 2024/02新政策 全面驗證 DMARC 認證",
+    "sessions": "11",
     "percentage": 0.1
   },
   {
-    "customEvent:post_title": "檢查網站是否安裝 GA4",
+    "customEvent:post_title": "Google Tag Manager - 觸發條件 元素可見度 (Element Visibility)",
+    "sessions": "11",
+    "percentage": 0.1
+  },
+  {
+    "customEvent:post_title": "n8n If 和 Switch",
     "sessions": "11",
     "percentage": 0.1
   },
   {
     "customEvent:post_title": "GA4 更新 - 使用者購物歷程 一眼看出使用者在購物過程中的流失",
-    "sessions": "10",
-    "percentage": 0.1
-  },
-  {
-    "customEvent:post_title": "Google Analytics 4 Data API - Google App Script 使用 API 的 Filter 篇",
     "sessions": "10",
     "percentage": 0.1
   },
@@ -149,7 +144,12 @@
     "customEvent:post_title": "行銷科技工具之間的串接",
     "sessions": "10",
     "percentage": 0.1
+  },
+  {
+    "customEvent:post_title": "Hexo Algolia 心得 和GTM實作追蹤站內搜尋事件",
+    "sessions": "9",
+    "percentage": 0
   }
 ],
-  "last_updated": "2025-02-20T00:45:03Z"
+  "last_updated": "2025-02-22T08:16:27Z"
 }
