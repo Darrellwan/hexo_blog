@@ -2,6 +2,9 @@
   "name": "hexo-site",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": "^20.17.0 || >=22.9.0"
+  },
   "scripts": {
     "build": "hexo generate --config 'main.yml'",
     "clean": "hexo clean",
@@ -19,8 +22,8 @@
     "version": "7.3.0"
   },
   "dependencies": {
-    "@vercel/analytics": "^1.4.1",
-    "@vercel/speed-insights": "^1.1.0",
+    "@vercel/analytics": "^1.5.0",
+    "@vercel/speed-insights": "^1.2.0",
     "dotenv": "^16.4.7",
     "glob": "^11.0.1",
     "hexo": "^7.3.0",
@@ -41,13 +44,13 @@
     "hexo-renderer-stylus": "^3.0.1",
     "hexo-server": "^3.0.0",
     "hexo-tag-embed": "^1.0.0",
-    "hexo-theme-landscape": "^1.0.0",
+    "hexo-theme-landscape": "^1.1.0",
     "hexo-theme-next": "^8.22.0",
     "lightgallery": "^2.8.2",
     "punycode": "^2.3.1",
-    "puppeteer": "^24.1.0",
+    "puppeteer": "^24.2.1",
     "rimraf": "^6.0.1",
-    "uuid": "^11.0.5"
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "dayjs": "^1.11.13",

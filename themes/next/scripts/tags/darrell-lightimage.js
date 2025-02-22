@@ -41,7 +41,7 @@ function customLightGallery800(args, content) {
   let className = args[2];
   // 預設尺寸 800x450（16:9）
   let width = 800;
-  let height = 450;
+  let height = 200;
 
   if(!className || className == ""){
     className = "max-800";
@@ -95,8 +95,8 @@ function customLightGalleryCover(args) {
   let altText = args[0];
   let imageSrc = args[1];
   let className = args[2];
-  let width = 1024;
-  let height = 1024;
+  let width = 800;
+  let height = 600;
 
   if(!className || className == ""){
     className = "max-1024";
