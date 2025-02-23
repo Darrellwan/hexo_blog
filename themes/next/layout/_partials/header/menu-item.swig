@@ -27,7 +27,11 @@
       {%- endfor %}
     {%- endif %}
 
-    {{ next_url(itemURL, menuIcon + menuText + menuBadge, {rel: 'section'}) }}
+    {%- if itemURL.startsWith('http') %}
+      {{ next_url(itemURL, menuIcon + menuText + menuBadge, {rel: 'section', target: '_blank'}) }}
+    {%- else %}
+      {{ next_url(itemURL, menuIcon + menuText + menuBadge, {rel: 'section'}) }}
+    {%- endif %}
 
   </li>
 
