@@ -52,14 +52,15 @@
         }
 
         .container {
-            max-width: 1200px;
+            width: 90%; /* 使用百分比寬度 */
+            max-width: 90%; /* 最大寬度也使用百分比 */
             margin: 2rem auto;
             padding: 2rem;
         }
 
         .model-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr); /* 預設三欄 */
             gap: 2rem;
             margin: 0;
             padding: 0;
@@ -77,7 +78,6 @@
             min-height: 500px;
             width: 100%;
             box-sizing: border-box;
-            aspect-ratio: 1 / 1.5;
         }
 
         .model-card:hover {
@@ -179,77 +179,132 @@
         }
 
         /* 媒體查詢調整 */
-        @media (min-width: 1440px) {
+        @media (min-width: 2560px) { /* 4K 及以上螢幕 */
             .container {
-                max-width: 1400px;
-            }
-            .model-grid {
-                grid-template-columns: repeat(2, 1fr);
+                width: 80%;
+                max-width: 80%;
             }
         }
 
-        @media (min-width: 1024px) and (max-width: 1439px) {
+        @media (max-width: 1440px) {
+            .container {
+                padding: 2rem;
+                margin: 1rem auto;
+            }
+            
             .model-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
             }
         }
 
-        @media (min-width: 768px) and (max-width: 1023px) {
-            .model-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        @media (max-width: 992px) {
             .container {
                 padding: 1.5rem;
             }
-        }
-
-        @media (max-width: 767px) {
-            .container {
-                padding: 1rem;
-                margin: 1rem;
-            }
-
+            
             .model-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
+                grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr));
             }
-
+            
             .model-card {
-                min-height: auto;
-                padding: 1rem;
+                min-height: 450px;
             }
-
-            .skeleton {
-                height: 300px;
-                min-height: 300px;
-                max-height: 300px;
-            }
-
-            .tag-container {
-                flex-wrap: wrap;
-            }
-
-            .metrics {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-
-            header {
-                padding: 1rem;
-                flex-direction: column;
-                text-align: center;
-                gap: 1rem;
+            
+            .workflow-preview {
+                min-height: 250px;
             }
         }
 
         @media (max-width: 768px) {
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
+            .container {
+                width: 95%;
+                max-width: 95%;
+                padding: 1rem;
+                margin: 0.5rem auto;
             }
+            
+            .model-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .model-card {
+                padding: 1rem;
+                min-height: auto;
+            }
+            
+            .workflow-preview {
+                min-height: 200px;
+            }
+            
+            .model-card h3 {
+                font-size: 1.2rem;
+            }
+            
+            .model-card .description {
+                font-size: 0.9rem;
+                margin: 0.5rem 0;
+            }
+            
+            .tag-container {
+                flex-wrap: wrap;
+                gap: 0.3rem;
+            }
+            
+            .tag {
+                font-size: 0.8rem;
+                padding: 0.2rem 0.6rem;
+            }
+            
+            .metrics {
+                flex-direction: column;
+                gap: 0.5rem;
+                font-size: 0.8rem;
+            }
+        }
 
-            .social-buttons {
-                justify-content: center;
+        @media (max-width: 480px) {
+            .container {
+                padding: 0.5rem;
+                margin: 0;
+            }
+            
+            .model-grid {
+                gap: 0.8rem;
+            }
+            
+            .model-card {
+                padding: 0.8rem;
+            }
+            
+            .workflow-preview {
+                min-height: 180px;
+            }
+            
+            .preview-placeholder {
+                font-size: 0.8rem;
+                padding: 1rem;
+            }
+        }
+
+        /* 針對較小螢幕優化骨架屏 */
+        @media (max-width: 768px) {
+            .skeleton h3 {
+                height: 1.4rem;
+            }
+            
+            .skeleton .description {
+                height: 3.6rem;
+            }
+            
+            .skeleton .workflow-preview {
+                height: 200px;
+            }
+            
+            .skeleton .tag {
+                width: 60px;
+                height: 1.6rem;
             }
         }
 
@@ -324,27 +379,21 @@
         .skeleton .tag,
         .skeleton .metric span {
             border-radius: 4px;
-            animation: pulse 2s ease-in-out infinite;
+            animation: skeleton-pulse 2s ease-in-out infinite;
         }
 
         .skeleton svg {
             opacity: 0.3;
         }
 
-        /* 添加骨架屏動畫效果 */
-        @keyframes pulse {
-            0% {
-                opacity: 0.3;
-            }
-            50% {
-                opacity: 0.5;
-            }
-            100% {
-                opacity: 0.3;
-            }
+        /* 骨架屏動畫重命名 */
+        @keyframes skeleton-pulse {
+            0% { opacity: 0.3; }
+            50% { opacity: 0.5; }
+            100% { opacity: 0.3; }
         }
 
-        /* 新增載入元素的樣式 */
+        /* Loading 動畫樣式 */
         .loading-overlay {
             position: fixed;
             top: 0;
@@ -356,33 +405,141 @@
             justify-content: center;
             align-items: center;
             z-index: 1000;
+        }
+
+        .loading-container {
+            display: flex;
+            align-items: center;
             color: white;
             font-size: 1.5rem;
         }
 
-        /* 新增載入動畫的樣式 */
         .loading-spinner {
             width: 50px;
             height: 50px;
-            border: 4px solid rgba(255, 255, 255, 0.3);
+            border: 3px solid rgba(234, 75, 113, 0.1);
             border-radius: 50%;
-            border-top: 4px solid #ffffff;
-            animation: spin 1s linear infinite;
-            margin-right: 1rem;
+            border-top: 3px solid #ea4b71;
+            border-right: 3px solid #ea4b71;
+            animation: spin-gradient 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
         }
 
-        @keyframes spin {
+        @keyframes spin-gradient {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        /* 添加漢堡選單按鈕樣式 */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 24px;
+            height: 18px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 11;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        /* 修改導航按鈕樣式 */
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .nav-button {
+            padding: 0.5rem 1.2rem;
+            border-radius: 8px;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-button.active {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* 手機版樣式 */
+        @media (max-width: 768px) {
+            header {
+                position: relative;
+                justify-content: space-between;
+                padding: 1rem;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-buttons {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 250px;
+                height: 100vh;
+                background-color: var(--bg-secondary);
+                flex-direction: column;
+                padding: 80px 1rem 2rem;
+                transition: right 0.3s ease;
+                z-index: 10;
+                box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+            }
+
+            .nav-buttons.active {
+                right: 0;
+            }
+
+            /* 移動版選單項目樣式 */
+            .nav-button {
+                width: 100%;
+                padding: 1rem;
+                border-radius: 0;
+                background: none;
+                border-bottom: 1px solid var(--border-color);
+                text-align: left;
+                font-size: 1rem;
+            }
+
+            .nav-button:last-child {
+                border-bottom: none;
+            }
+
+            .nav-button.active {
+                background: none;
+                color: var(--accent-color);
+            }
+
+            /* 調整標題大小 */
+            header h1 {
+                font-size: 1.2rem;
+                margin: 0;
+            }
+        }
     </style>
+    <script src="js/header.js"></script>
 </head>
 <body>
     <header>
         <h1>Darrell <span style="color: #ea4b71;">n8n</span> 模版分享</h1>
+        <button class="menu-toggle" aria-label="選單">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
         <div class="nav-buttons">
-            <a href="visualize.html" class="nav-button glassmorphism">視覺化工具</a>
-            <a href="models.html" class="nav-button glassmorphism active">模版列表</a>
+            <a href="visualize.html" class="nav-button">視覺化工具</a>
+            <a href="models.html" class="nav-button active">模版列表</a>
         </div>
     </header>
 
@@ -525,7 +682,7 @@
                 </a>
                 <a href="https://www.instagram.com/darrell_tw_/" class="social-button" target="_blank" rel="noopener noreferrer" title="Instagram">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.281-.059 1.689-.073 4.948-.073zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                     </svg>
                 </a>
                 <a href="https://www.threads.net/@darrell_tw_" class="social-button" target="_blank" rel="noopener noreferrer" title="Threads">
@@ -545,22 +702,34 @@
         </div>
     </footer>
     <div class="loading-overlay" id="loading-overlay">
-        <div class="loading-spinner"></div>
+        <div class="loading-container">
+            <div class="loading-spinner"></div>
+        </div>
     </div>
     <script>
-        // 從 JSON 檔案載入模版資料
+        function showLoading() {
+            document.getElementById('loading-overlay').style.display = 'flex';
+        }
+
+        function hideLoading() {
+            document.getElementById('loading-overlay').style.display = 'none';
+        }
+
+        // 修改現有的 loadModelData 函數
         async function loadModelData() {
             try {
+                showLoading();
                 const response = await fetch('data/workflow-models.json');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const data = await response.json();
-                // 添加 1 秒延遲
                 await new Promise(resolve => setTimeout(resolve, 1000));
+                hideLoading();
                 return data.models;
             } catch (error) {
                 console.error('載入模版資料失敗:', error);
+                hideLoading();
                 return null;
             }
         }
