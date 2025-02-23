@@ -45,7 +45,7 @@
           {%- else %}
             {%- set sidebarText = name %}
           {%- endif %}
-            {{ next_url(sidebarURL, sidebarIcon + sidebarText, {title: name + ' → ' + sidebarURL}) }}
+            {{ next_url(sidebarURL, sidebarIcon + sidebarText, {title: name + ' → ' + sidebarURL, rel: 'noopener', target: '_blank'}) }}
           </span>
           <br>
         {%- endfor %}
