@@ -125,6 +125,7 @@ menu:
   #schedule: /schedule/ || fa fa-calendar
   #sitemap: /sitemap.xml || fa fa-sitemap
   #commonweal: /404/ || fa fa-heartbeat
+  n8n_template: /tools/n8n_template/models.html || fa fa-solid fa-n highlight-n8n
 
 # Enable / Disable menu icons / item badges.
 menu_settings:
