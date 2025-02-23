@@ -1,0 +1,286 @@
+{
+    "models": {
+        "creditcard": {
+            "id": "creditcard",
+            "title": "別忘記繳費:信用卡帳單自動建日曆提醒",
+            "description": "這個工作流程自動化處理來自多家銀行的信用卡對帳單電子郵件。它會提取重要的支付細節，將其儲存在 Google 試算表中，並在 Google 日曆中建立付款提醒。此外，它還允許使用者在帳單支付完成後更新付款狀態。\n\n主要功能\n\n電子郵件處理：從八家台灣銀行檢索信用卡對帳單電子郵件。\n\nPDF 解析：從電子郵件內容或附加的 PDF 檔案中提取付款截止日期和金額。\n\nGoogle 試算表整合：將提取的數據記錄到 Google 試算表文件中，以便記錄保存。\n\nGoogle 日曆整合：在 Google 日曆中建立事件，作為到期付款的提醒。\n\nWebhook 用於付款更新：允許使用者透過 Webhook 更新付款狀態。",
+            "detailedDescription": [
+                "自動Email中的帳單資訊",
+                "解析 PDF 檔案並提取繳費資訊",
+                "同步到 Google Calendar 建立提醒事項",
+                "記錄到 Google Sheets 進行追蹤",
+                "提供便捷的繳費狀態更新機制"
+            ],
+            "tags": ["自動化", "信用卡", "帳單管理", "Gmail", "Google Calendar", "Google Sheets"],
+            "nodes": 32,
+            "createdAt": "2025-02-17",
+            "updatedAt": "2025-02-17",
+            "setup": {
+                "prerequisites": "需要設定 Gmail、Google Calendar 和 Google Sheets 的 API 存取權限",
+                "steps": [
+                    {
+                        "title": "Gmail 設定",
+                        "description": "設定 Gmail API 存取權限，用於讀取信用卡帳單郵件",
+                        "options": [
+                            "設定 OAuth 2.0 認證",
+                            "授予郵件讀取權限",
+                            "設定郵件過濾條件"
+                        ]
+                    },
+                    {
+                        "title": "Google Calendar 設定",
+                        "description": "建立專用的信用卡繳費行事曆",
+                        "options": [
+                            "建立新的行事曆",
+                            "設定提醒時間",
+                            "自訂事件格式"
+                        ]
+                    },
+                    {
+                        "title": "Google Sheets 設定",
+                        "description": "準備追蹤記錄用的試算表",
+                        "options": [
+                            "建立資料表",
+                            "設定欄位格式",
+                            "設定存取權限"
+                        ]
+                    }
+                ]
+            },
+            "examples": [
+                {
+                    "title": "基本設定範例",
+                    "description": "展示如何設定基本的信用卡帳單處理流程",
+                    "code": {
+                        "trigger": "gmail",
+                        "actions": [
+                            "extract_pdf",
+                            "parse_data",
+                            "create_calendar_event",
+                            "update_sheet"
+                        ],
+                        "banks": [
+                            "永豐銀行",
+                            "國泰世華",
+                            "中國信託",
+                            "台北富邦",
+                            "玉山銀行",
+                            "星展銀行",
+                            "聯邦銀行",
+                            "台新銀行"
+                        ]
+                    }
+                }
+            ],
+            "advancedSettings": {
+                "emailFilter": {
+                    "title": "郵件過濾設定",
+                    "description": "自訂每家銀行的郵件過濾條件"
+                },
+                "pdfPassword": {
+                    "title": "PDF 密碼設定",
+                    "description": "設定各銀行 PDF 檔案的解密密碼"
+                },
+                "calendar": {
+                    "title": "行事曆設定",
+                    "description": "自訂提醒時間和事件格式"
+                }
+            },
+            "fields": {
+                "gmail": {
+                    "title": "Gmail 設定",
+                    "fields": {
+                        "searchQuery": {
+                            "type": "string",
+                            "description": "Gmail 搜尋條件，用於過濾信用卡帳單郵件",
+                            "example": "subject:(信用卡帳單) from:(bank@example.com)"
+                        },
+                        "attachmentType": {
+                            "type": "string",
+                            "description": "附件類型",
+                            "default": "pdf"
+                        }
+                    }
+                },
+                "calendar": {
+                    "title": "行事曆設定",
+                    "fields": {
+                        "calendarId": {
+                            "type": "string",
+                            "description": "Google Calendar ID",
+                            "example": "primary"
+                        },
+                        "reminderDays": {
+                            "type": "number",
+                            "description": "到期日前幾天提醒",
+                            "default": 7
+                        },
+                        "eventTitle": {
+                            "type": "string",
+                            "description": "事件標題格式",
+                            "example": "{{銀行名稱}}信用卡繳費 - {{金額}}"
+                        }
+                    }
+                },
+                "sheets": {
+                    "title": "試算表設定",
+                    "fields": {
+                        "spreadsheetId": {
+                            "type": "string",
+                            "description": "Google Sheets ID",
+                            "example": "1A2B3C4D5E..."
+                        },
+                        "sheetName": {
+                            "type": "string",
+                            "description": "工作表名稱",
+                            "default": "信用卡帳單紀錄"
+                        }
+                    }
+                }
+            }
+        },
+        "line_message": {
+            "id": "line_message",
+            "title": "Line Message API 和 Webhook 回覆",
+            "description": "這個工作流程自動化處理來自 Line 的訊息，並提供兩種主要功能：自動回覆和主動推送訊息。當使用者傳送訊息時，系統會自動回覆相同的內容；另外也可以透過 Line UID 主動發送訊息給特定使用者。\n\n主要功能：\n\n自動回覆：接收使用者訊息並自動回覆\n推送訊息：透過 Line UID 主動發送訊息給特定使用者",
+            "detailedDescription": [
+                "接收 Line Webhook 訊息",
+                "自動回覆相同內容給使用者",
+                "支援主動推送訊息功能",
+                "使用 Line Messaging API"
+            ],
+            "tags": ["自動化", "Line", "訊息", "Webhook", "API"],
+            "nodes": 7,
+            "createdAt": "2025-02-17",
+            "updatedAt": "2025-02-17",
+            "setup": {
+                "prerequisites": "需要設定 Line Channel 和取得 Channel Access Token",
+                "steps": [
+                    {
+                        "title": "Line Developer 設定",
+                        "description": "在 Line Developer Console 設定 Webhook URL",
+                        "options": [
+                            "建立 Line Channel",
+                            "設定 Webhook URL",
+                            "取得 Channel Access Token"
+                        ]
+                    }
+                ]
+            },
+            "examples": [
+                {
+                    "title": "基本設定範例",
+                    "description": "展示如何設定基本的 Line 訊息處理流程",
+                    "code": {
+                        "trigger": "webhook",
+                        "actions": [
+                            "check_message_type",
+                            "reply_message",
+                            "push_message"
+                        ]
+                    }
+                }
+            ],
+            "fields": {
+                "webhook": {
+                    "title": "Webhook 設定",
+                    "fields": {
+                        "path": {
+                            "type": "string",
+                            "description": "Webhook 路徑",
+                            "example": "638c118e-1c98-4491-b6ff-14e2e75380b6"
+                        }
+                    }
+                },
+                "line": {
+                    "title": "Line 設定",
+                    "fields": {
+                        "channelAccessToken": {
+                            "type": "string",
+                            "description": "Line Channel Access Token",
+                            "example": "YOUR_CHANNEL_ACCESS_TOKEN"
+                        },
+                        "lineUid": {
+                            "type": "string",
+                            "description": "接收者的 Line UID",
+                            "example": "Uxxxxxxxxxxxx"
+                        }
+                    }
+                }
+            }
+        },
+        "food_delivery_easy_expense": {
+            "id": "food_delivery_easy_expense",
+            "title": "外送記帳自動化",
+            "description": "這個工作流程自動化處理 UberEats 訂單郵件，並將訂單資訊發送到 Slack 頻道，同時提供 Moze 記帳連結。系統會監控特定主旨的 Gmail 郵件，提取訂單關鍵資訊，並透過 Slack 發送格式化訊息。\n\n主要功能：\n\n郵件監控：自動檢查 UberEats 訂單郵件\n資料提取：解析郵件內容取得價格、商店、日期資訊\nSlack 通知：發送美觀的訊息格式，並提供快速記帳連結",
+            "detailedDescription": [
+                "監控 UberEats 訂單郵件",
+                "提取訂單金額與商家資訊",
+                "自動發送到指定 Slack 頻道",
+                "提供 Moze 快速記帳連結"
+            ],
+            "tags": ["自動化", "記帳", "外送", "Gmail", "Slack", "Moze"],
+            "nodes": 6,
+            "createdAt": "2024-03-19",
+            "updatedAt": "2024-03-19",
+            "setup": {
+                "prerequisites": "需要設定 Gmail 和 Slack 的 API 存取權限",
+                "steps": [
+                    {
+                        "title": "Gmail 設定",
+                        "description": "設定 Gmail API 存取權限，用於讀取 UberEats 訂單郵件",
+                        "options": [
+                            "設定 OAuth 2.0 認證",
+                            "授予郵件讀取權限"
+                        ]
+                    },
+                    {
+                        "title": "Slack 設定",
+                        "description": "設定 Slack Webhook 用於發送通知",
+                        "options": [
+                            "建立 Slack App",
+                            "設定 Bot Token",
+                            "選擇目標頻道"
+                        ]
+                    }
+                ]
+            },
+            "examples": [
+                {
+                    "title": "基本設定範例",
+                    "description": "展示如何設定基本的外送訂單處理流程",
+                    "code": {
+                        "trigger": "gmail",
+                        "actions": [
+                            "extract_data",
+                            "format_message",
+                            "send_to_slack"
+                        ]
+                    }
+                }
+            ],
+            "fields": {
+                "gmail": {
+                    "title": "Gmail 設定",
+                    "fields": {
+                        "searchQuery": {
+                            "type": "string",
+                            "description": "Gmail 搜尋條件",
+                            "example": "subject:透過 Uber Eats 系統送出的訂單"
+                        }
+                    }
+                },
+                "slack": {
+                    "title": "Slack 設定",
+                    "fields": {
+                        "channelId": {
+                            "type": "string",
+                            "description": "Slack 頻道 ID",
+                            "example": "C0883CJM1UH"
+                        }
+                    }
+                }
+            }
+        }
+    }
+} 

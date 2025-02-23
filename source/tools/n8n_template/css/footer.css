@@ -1,0 +1,94 @@
+/* Footer 樣式 */
+footer {
+    background-color: rgba(45, 45, 45, 0.8);
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.2);
+    padding: 0;
+    position: relative;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid var(--border-color);
+    margin-top: auto;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 2rem;
+}
+
+.copyright {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 50px;
+}
+
+.social-buttons {
+    display: flex;
+    gap: 0.8rem;
+    height: 100%;
+    align-items: center;
+}
+
+.social-button {
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    text-decoration: none;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.social-button svg {
+    width: 18px;
+    height: 18px;
+}
+
+.social-button:hover {
+    color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    footer {
+        height: auto;
+        min-height: 50px;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.5rem 2rem;
+    }
+    
+    .social-buttons {
+        justify-content: center;
+    }
+    
+    .copyright {
+        font-size: 0.85rem;
+        text-align: center;
+        line-height: normal;
+    }
+} 

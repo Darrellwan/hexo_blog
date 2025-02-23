@@ -1,0 +1,150 @@
+/* Header 樣式 */
+header {
+    background-color: rgba(45, 45, 45, 0.8);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    padding: 0 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    font-weight: 500;
+    line-height: 50px;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 0.8rem;
+    height: 100%;
+    align-items: center;
+}
+
+/* 方案一：現代簡約風格 */
+.nav-button.modern {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    color: var(--text-primary);
+    border: none;
+    height: 32px;
+    padding: 0 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 0.9rem;
+    position: relative;
+}
+
+.nav-button.modern::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-button.modern:hover::after,
+.nav-button.modern.active::after {
+    width: 100%;
+}
+
+.nav-button.modern.active {
+    color: var(--accent-color);
+    background: transparent;
+}
+
+/* 方案二：磨砂玻璃風格 */
+.nav-button.glassmorphism {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    height: 28px;
+    padding: 0 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    min-width: 80px;
+    margin: 0;
+}
+
+.nav-button.glassmorphism:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.nav-button.glassmorphism.active {
+    background: rgba(0, 123, 255, 0.2);
+    border-color: rgba(0, 123, 255, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.2);
+}
+
+/* 方案三：新擬態風格 */
+.nav-button.neumorphism {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: none;
+    height: 32px;
+    padding: 0 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2),
+                -5px -5px 10px rgba(255, 255, 255, 0.05);
+}
+
+.nav-button.neumorphism:hover {
+    box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.2),
+                inset -3px -3px 6px rgba(255, 255, 255, 0.05);
+}
+
+.nav-button.neumorphism.active {
+    background: var(--accent-color);
+    box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.2),
+                inset -3px -3px 6px rgba(255, 255, 255, 0.05);
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    header {
+        padding: 0 1rem;
+    }
+    
+    header h1 {
+        font-size: 1.1rem;
+    }
+    
+    .nav-button.glassmorphism {
+        height: 26px;
+        padding: 0 0.8rem;
+        font-size: 0.85rem;
+        min-width: 70px;
+    }
+} 
