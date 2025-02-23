@@ -2,6 +2,8 @@ name: Update README
 
 on:
   push:
+    branches:
+      - main      # 只在 main 分支上觸發
     paths:
       - 'source/_posts/**'
       - 'data/analytics.json'
