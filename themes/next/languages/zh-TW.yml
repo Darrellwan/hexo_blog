@@ -16,6 +16,7 @@ menu:
   sitemap: 網站地圖
   commonweal: 公益 404
   emailSubscribe: 訂閱
+  n8n_template: <span class="highlight-n8n">n8n</span>模版
 sidebar:
   overview: 本站概要
   toc: 文章目錄
