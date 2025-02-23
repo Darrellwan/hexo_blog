@@ -3,7 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>n8n Workflow 視覺化工具</title>
+    <title>n8n Workflow 示例</title>
+    <meta name="description" content="探索 n8n Workflow 的各種預設模版，包含自動化自動化模版範例">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/n8n-demo.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
     <!-- 載入 Web Components 支援 -->
     <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2.0.0/webcomponentsloader.js"></script>
     <script src="https://www.unpkg.com/lit@2.0.0-rc.2/polyfill-support.js"></script>
@@ -17,10 +28,11 @@
             --accent-color: #007bff;
             --border-color: #404040;
             --card-hover: #3d3d3d;
+            --n8n-workflow-min-height: 800px;
         }
 
         body {
-            font-family: 'Microsoft JhengHei', sans-serif;
+            font-family: 'Noto Sans TC', 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
             background-color: var(--bg-primary);
@@ -28,52 +40,6 @@
             display: flex;
             flex-direction: column;
             color: var(--text-primary);
-        }
-
-        /* Header 樣式 */
-        header {
-            background-color: var(--bg-secondary);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-            padding: 1rem 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 1.8rem;
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        .nav-buttons {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .nav-button {
-            background-color: var(--bg-secondary);
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
-            padding: 0.8rem 1.5rem;
-            border-radius: 6px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .nav-button:hover {
-            background-color: var(--card-hover);
-        }
-
-        .nav-button.active {
-            background-color: var(--accent-color);
-            border-color: var(--accent-color);
         }
 
         .container {
@@ -153,94 +119,27 @@
             border: 1px solid var(--border-color);
         }
 
-        footer {
-            background-color: var(--bg-secondary);
-            padding: 1.5rem 2rem;
-            text-align: center;
-            margin-top: auto;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .social-buttons {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .social-button {
-            color: var(--text-secondary);
-            transition: color 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.5rem;
-            border-radius: 50%;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .social-button:hover {
-            color: var(--accent-color);
-            background-color: rgba(0, 123, 255, 0.1);
-        }
-
         /* 響應式設計 */
         @media (max-width: 768px) {
-            header {
-                padding: 1rem;
-                flex-direction: column;
-                text-align: center;
-                gap: 1rem;
-            }
-
-            header h1 {
-                font-size: 1.5rem;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .social-buttons {
-                justify-content: center;
-            }
-
             .container {
                 padding: 1rem;
                 margin: 1rem;
             }
         }
-
-        n8n-demo {
-            --n8n-frame-background-color: var(--bg-secondary);
-            --n8n_json-background-color: var(--bg-primary);
-            --n8n_copy-button-background-color: var(--accent-color);
-            --n8n_workflow-min-height: 500px;
-            --n8n_iframe-border-radius: 8px;
-        }
     </style>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-WH2WS5GF');
+    </script>
 </head>
 <body>
     <header>
-        <h1>n8n Workflow 視覺化工具</h1>
+        <h1><span style="color: #ea4b71;">n8n</span> 模版JSON視覺化工具</h1>
         <div class="nav-buttons">
-            <a href="index.html" class="nav-button active">視覺化工具</a>
-            <a href="models.html" class="nav-button">模型列表</a>
+            <a href="visualize.html" class="nav-button glassmorphism active">視覺化工具</a>
+            <a href="models.html" class="nav-button glassmorphism">模版列表</a>
         </div>
     </header>
 
@@ -257,21 +156,36 @@
                 <button onclick="resetWorkflow()" style="background-color: #6c757d;">重置</button>
             </div>
         </div>
-        <div id="visualization"></div>
+        <div id="visualization">
+            <n8n-demo id="workflow-demo"></n8n-demo>
+        </div>
     </div>
 
     <footer>
         <div class="footer-content">
-            <div class="copyright">© 2024 DarrellTW. All rights reserved.</div>
+            <div class="copyright">© 2025 DarrellTW. All rights reserved.</div>
             <div class="social-buttons">
                 <a href="https://www.linkedin.com/in/darrell-wang-tw/" class="social-button" target="_blank" rel="noopener noreferrer" title="LinkedIn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                     </svg>
                 </a>
+                <a href="mailto:darrell.tw.martech@gmail.com" class="social-button" target="_blank" rel="noopener noreferrer" title="Gmail">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/darrell_tw_/" class="social-button" target="_blank" rel="noopener noreferrer" title="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+                <a href="https://www.threads.net/@darrell_tw_" class="social-button" target="_blank" rel="noopener noreferrer" title="Threads">
+                    <svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 440 511.43"><path fill="#fff" fill-rule="nonzero" d="M342.383 237.038a177.282 177.282 0 00-6.707-3.046c-3.948-72.737-43.692-114.379-110.429-114.805-38.505-.255-72.972 15.445-94.454 48.041l36.702 25.178c15.265-23.159 39.221-28.096 56.864-28.096.204 0 .408 0 .61.002 21.974.14 38.555 6.529 49.287 18.987 7.81 9.071 13.034 21.606 15.621 37.425-19.483-3.311-40.553-4.329-63.077-3.038-63.45 3.655-104.24 40.661-101.501 92.08 1.391 26.083 14.385 48.523 36.587 63.181 18.772 12.391 42.95 18.45 68.077 17.079 33.183-1.819 59.215-14.48 77.377-37.63 13.793-17.58 22.516-40.363 26.368-69.069 15.814 9.544 27.535 22.103 34.007 37.2 11.006 25.665 11.648 67.84-22.764 102.223-30.15 30.121-66.392 43.151-121.164 43.554-60.758-.45-106.708-19.935-136.583-57.915-27.976-35.562-42.434-86.93-42.973-152.674.539-65.746 14.997-117.114 42.973-152.676 29.875-37.979 75.824-57.463 136.582-57.914 61.197.455 107.948 20.033 138.967 58.195 15.21 18.713 26.676 42.248 34.236 69.688L440 161.532c-9.163-33.775-23.582-62.881-43.203-87.017C357.031 25.59 298.872.519 223.936 0h-.3C148.851.518 91.344 25.683 52.709 74.795 18.331 118.499.598 179.308.002 255.535l-.002.18.002.18c.596 76.225 18.329 137.037 52.707 180.741 38.635 49.11 96.142 74.277 170.927 74.794h.3c66.486-.462 113.352-17.868 151.96-56.442 50.51-50.463 48.99-113.718 32.342-152.549-11.945-27.847-34.716-50.463-65.855-65.401zM227.587 344.967c-27.808 1.567-56.699-10.916-58.124-37.651-1.056-19.823 14.108-41.942 59.831-44.577a266.87 266.87 0 0115.422-.45c16.609 0 32.145 1.613 46.271 4.701-5.268 65.798-36.172 76.483-63.4 77.977z"/></svg>
+                </a>
                 <a href="https://www.darrelltw.com/" class="social-button" target="_blank" rel="noopener noreferrer" title="Website">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm1 16.057v-3.057h2.994c-.059 1.143-.212 2.24-.456 3.279-.823-.12-1.674-.188-2.538-.222zm1.957 2.162c-.499 1.33-1.159 2.497-1.957 3.456v-3.62c.666.028 1.319.081 1.957.164zm-1.957-7.219v-3.015c.868-.034 1.721-.103 2.548-.224.238 1.027.389 2.111.446 3.239h-2.994zm0-5.014v-3.661c.806.969 1.471 2.15 1.971 3.496-.642.084-1.3.137-1.971.165zm2.703-3.267c1.237.496 2.354 1.228 3.29 2.146-.642.234-1.311.442-2.019.607-.344-.992-.775-1.91-1.271-2.753zm-7.241 13.56c-.244-1.039-.398-2.136-.456-3.279h2.994v3.057c-.865.034-1.714.102-2.538.222zm2.538 1.776v3.62c-.798-.959-1.458-2.126-1.957-3.456.638-.083 1.291-.136 1.957-.164zm-2.994-7.055c.057-1.128.207-2.212.446-3.239.827.121 1.68.19 2.548.224v3.015h-2.994zm1.024-5.179c.5-1.346 1.165-2.527 1.97-3.496v3.661c-.671-.028-1.329-.081-1.97-.165zm-2.005-.35c-.708-.165-1.377-.373-2.018-.607.937-.918 2.053-1.65 3.29-2.146-.496.844-.927 1.762-1.272 2.753zm-.549 1.918c-.264 1.151-.434 2.36-.492 3.611h-3.933c.165-1.658.739-3.197 1.617-4.518.88.361 1.816.67 2.808.907zm.009 9.262c-.988.236-1.92.542-2.797.9-.89-1.328-1.471-2.879-1.637-4.551h3.934c.058 1.265.231 2.488.5 3.651zm.553 1.917c.342.976.768 1.881 1.257 2.712-1.223-.49-2.326-1.211-3.256-2.115.636-.229 1.299-.435 1.999-.597zm9.924 0c.7.163 1.362.367 1.999.597-.931.903-2.034 1.625-3.257 2.116.489-.832.915-1.737 1.258-2.713zm.553-1.917c.27-1.163.442-2.386.501-3.651h3.934c-.167 1.672-.748 3.223-1.638 4.551-.877-.358-1.81-.664-2.797-.9zm.501-5.651c-.058-1.251-.229-2.46-.492-3.611.992-.237 1.929-.546 2.809-.907.877 1.321 1.451 2.86 1.616 4.518h-3.933z"/>
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
                     </svg>
                 </a>
                 <a href="https://buymeacoffee.com/darrellmartechtw" class="social-button" target="_blank" rel="noopener noreferrer" title="Buy Me a Coffee">
@@ -286,20 +200,13 @@
     <script>
         function visualizeWorkflow() {
             const jsonInput = document.getElementById('jsonInput').value;
-            const visualizationDiv = document.getElementById('visualization');
+            const n8nDemo = document.getElementById('workflow-demo');
             
             try {
                 // 驗證 JSON 格式
-                JSON.parse(jsonInput);
-                
-                // 清除之前的視覺化
-                visualizationDiv.innerHTML = '';
-                
-                // 創建新的 n8n-demo 元素
-                const n8nDemo = document.createElement('n8n-demo');
-                n8nDemo.setAttribute('workflow', jsonInput);
-                
-                visualizationDiv.appendChild(n8nDemo);
+                const workflowData = JSON.parse(jsonInput);
+                // 更新 workflow 屬性
+                n8nDemo.setAttribute('workflow', JSON.stringify(workflowData));
             } catch (e) {
                 alert('請輸入有效的 JSON 格式！');
             }
@@ -325,12 +232,16 @@
         // 載入頁面時設置預設值
         window.onload = function() {
             document.getElementById('jsonInput').value = JSON.stringify(defaultWorkflow, null, 2);
+            // 設置預設 workflow
+            const n8nDemo = document.getElementById('workflow-demo');
+            n8nDemo.setAttribute('workflow', JSON.stringify(defaultWorkflow));
         }
 
         // 添加重置功能
         function resetWorkflow() {
             document.getElementById('jsonInput').value = JSON.stringify(defaultWorkflow, null, 2);
-            document.getElementById('visualization').innerHTML = '';
+            const n8nDemo = document.getElementById('workflow-demo');
+            n8nDemo.setAttribute('workflow', JSON.stringify(defaultWorkflow));
         }
     </script>
 </body>

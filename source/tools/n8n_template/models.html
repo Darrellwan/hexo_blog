@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darrell n8n 模版分享</title>
+    <meta name="description" content="探索 n8n Workflow 的各種預設模版，包含自動化自動化模版範例">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/n8n-demo.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <!-- 添加 n8n workflow visualizer -->
+    <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2.0.0/webcomponents-loader.js"></script>
+    <script src="https://www.unpkg.com/lit@2.0.0-rc.2/polyfill-support.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@n8n_io/n8n-demo-component/n8n-demo.bundled.js"></script>
+    <!-- 添加自動化模版視覺化工具 -->
+    <script src="js/workflow-visualizer.js"></script>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-WH2WS5GF');</script>
+    <style>
+        :root {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --accent-color: #007bff;
+            --border-color: #404040;
+            --card-hover: #3d3d3d;
+            --title-color: #ff8c00;
+            --n8n-workflow-min-height: 400px;
+            --skeleton-color: #3d3d3d;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: var(--text-primary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .model-card {
+            background-color: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            height: auto;
+            min-height: 500px;
+            width: 100%;
+            box-sizing: border-box;
+            aspect-ratio: 1 / 1.5;
+        }
+
+        .model-card:hover {
+            transform: translateY(-5px);
+            background-color: var(--card-hover);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .card-content {
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .model-card h3 {
+            margin: 0;
+            color: var(--title-color);
+            font-size: 1.4rem;
+            flex: 0 0 auto;
+        }
+
+        .model-card .description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin: 1rem 0;
+            flex: 1 1 auto;
+            overflow: hidden;
+        }
+
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: auto;
+            padding: 0.5rem 0;
+        }
+
+        .tag {
+            background-color: var(--bg-primary);
+            color: var(--text-secondary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .metrics {
+            display: flex;
+            gap: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+            margin: 0;
+            flex: 0 0 auto;
+        }
+
+        .metric {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .workflow-preview {
+            margin: 1rem 0;
+            flex: 1;
+            min-height: 300px;
+            max-height: 400px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: var(--bg-primary);
+            cursor: pointer;
+        }
+
+        .preview-placeholder {
+            width: 100%;
+            height: 100%;
+            min-height: var(--n8n-workflow-min-height);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .preview-placeholder:hover {
+            background-color: var(--card-hover);
+            color: var(--text-primary);
+        }
+
+        /* 覆蓋 n8n-demo.css 中的預設高度 */
+        .workflow-preview n8n-demo {
+            height: 400px !important;
+            min-height: 400px !important;
+            max-height: 400px !important;
+        }
+
+        /* 媒體查詢調整 */
+        @media (min-width: 1440px) {
+            .container {
+                max-width: 1400px;
+            }
+            .model-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) and (max-width: 1439px) {
+            .model-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .model-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .container {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .container {
+                padding: 1rem;
+                margin: 1rem;
+            }
+
+            .model-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .model-card {
+                min-height: auto;
+                padding: 1rem;
+            }
+
+            .skeleton {
+                height: 300px;
+                min-height: 300px;
+                max-height: 300px;
+            }
+
+            .tag-container {
+                flex-wrap: wrap;
+            }
+
+            .metrics {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            header {
+                padding: 1rem;
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .social-buttons {
+                justify-content: center;
+            }
+        }
+
+        /* 修改骨架屏樣式 */
+        .skeleton {
+            position: relative;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .skeleton:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        .skeleton .card-content {
+            cursor: default;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .skeleton h3 {
+            width: 70%;
+            height: 1.8rem;
+            margin-bottom: 1rem;
+            background-color: var(--skeleton-color);
+        }
+
+        .skeleton .description {
+            width: 100%;
+            height: 4.8rem;
+            background-color: var(--skeleton-color);
+            margin: 1rem 0;
+        }
+
+        .skeleton .workflow-preview {
+            width: 100%;
+            background-color: var(--skeleton-color);
+            margin: 1rem 0;
+            cursor: default;
+        }
+
+        .skeleton .preview-placeholder {
+            background-color: transparent;
+            cursor: default;
+        }
+
+        .skeleton .tag-container {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: auto;
+            padding: 0.5rem 0;
+        }
+
+        .skeleton .tag {
+            width: 80px;
+            height: 2rem;
+            background-color: var(--skeleton-color);
+            margin: 0;
+        }
+
+        .skeleton .metric span {
+            width: 80px;
+            height: 1.2rem;
+            display: inline-block;
+            background-color: var(--skeleton-color);
+        }
+
+        .skeleton h3,
+        .skeleton .description,
+        .skeleton .workflow-preview,
+        .skeleton .tag,
+        .skeleton .metric span {
+            border-radius: 4px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .skeleton svg {
+            opacity: 0.3;
+        }
+
+        /* 添加骨架屏動畫效果 */
+        @keyframes pulse {
+            0% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 0.3;
+            }
+        }
+
+        /* 新增載入元素的樣式 */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        /* 新增載入動畫的樣式 */
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid #ffffff;
+            animation: spin 1s linear infinite;
+            margin-right: 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Darrell <span style="color: #ea4b71;">n8n</span> 模版分享</h1>
+        <div class="nav-buttons">
+            <a href="visualize.html" class="nav-button glassmorphism">視覺化工具</a>
+            <a href="models.html" class="nav-button glassmorphism active">模版列表</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="model-grid">
+            <!-- 2x2 預設模板 -->
+            <div class="model-card skeleton">
+                <div class="card-content">
+                    <h3></h3>
+                    <div class="description"></div>
+                </div>
+                <div class="workflow-preview">
+                    <div class="preview-placeholder"></div>
+                </div>
+                <div class="card-content">
+                    <div class="tag-container">
+                        <span class="tag"></span>
+                        <span class="tag"></span>
+                    </div>
+                    <div class="metrics">
+                        <div class="metric">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                            </svg>
+                            <span></span>
+                        </div>
+                        <div class="metric">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M11 2.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0zM4.5 7.5A.5.5 0 0 0 4 8v4a.5.5 0 0 0 1 0V8a.5.5 0 0 0-.5-.5zm7 0a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 1 0V8a.5.5 0 0 0-.5-.5z"/>
+                            </svg>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 複製三次相同的預設模板 -->
+            <div class="model-card skeleton">
+                <div class="card-content">
+                    <h3></h3>
+                    <div class="description"></div>
+                </div>
+                <div class="workflow-preview">
+                    <div class="preview-placeholder"></div>
+                </div>
+                <div class="card-content">
+                    <div class="tag-container">
+                        <span class="tag"></span>
+                        <span class="tag"></span>
+                    </div>
+                    <div class="metrics">
+                        <div class="metric">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                            </svg>
+                            <span></span>
+                        </div>
+                        <div class="metric">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M11 2.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0zM4.5 7.5A.5.5 0 0 0 4 8v4a.5.5 0 0 0 1 0V8a.5.5 0 0 0-.5-.5zm7 0a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 1 0V8a.5.5 0 0 0-.5-.5z"/>
+                            </svg>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="model-card skeleton">
+                <div class="card-content">
+                    <h3></h3>
+                    <div class="description"></div>
+                </div>
+                <div class="workflow-preview">
+                    <div class="preview-placeholder"></div>
+                </div>
+                <div class="card-content">
+                    <div class="tag-container">
+                        <span class="tag"></span>
+                        <span class="tag"></span>
+                    </div>
+                    <div class="metrics">
+                        <div class="metric">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                            </svg>
+                            <span></span>
+                        </div>
+                        <div class="metric">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M11 2.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0zM4.5 7.5A.5.5 0 0 0 4 8v4a.5.5 0 0 0 1 0V8a.5.5 0 0 0-.5-.5zm7 0a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 1 0V8a.5.5 0 0 0-.5-.5z"/>
+                            </svg>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="model-card skeleton">
+                <div class="card-content">
+                    <h3></h3>
+                    <div class="description"></div>
+                </div>
+                <div class="workflow-preview">
+                    <div class="preview-placeholder"></div>
+                </div>
+                <div class="card-content">
+                    <div class="tag-container">
+                        <span class="tag"></span>
+                        <span class="tag"></span>
+                    </div>
+                    <div class="metrics">
+                        <div class="metric">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                            </svg>
+                            <span></span>
+                        </div>
+                        <div class="metric">
+                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M11 2.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0zM4.5 7.5A.5.5 0 0 0 4 8v4a.5.5 0 0 0 1 0V8a.5.5 0 0 0-.5-.5zm7 0a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 1 0V8a.5.5 0 0 0-.5-.5z"/>
+                            </svg>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="copyright">© 2025 DarrellTW. All rights reserved.</div>
+            <div class="social-buttons">
+                <a href="https://www.linkedin.com/in/darrell-wang-tw/" class="social-button" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                </a>
+                <a href="mailto:darrell.tw.martech@gmail.com" class="social-button" target="_blank" rel="noopener noreferrer" title="Gmail">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/darrell_tw_/" class="social-button" target="_blank" rel="noopener noreferrer" title="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+                <a href="https://www.threads.net/@darrell_tw_" class="social-button" target="_blank" rel="noopener noreferrer" title="Threads">
+                    <svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 440 511.43"><path fill="#fff" fill-rule="nonzero" d="M342.383 237.038a177.282 177.282 0 00-6.707-3.046c-3.948-72.737-43.692-114.379-110.429-114.805-38.505-.255-72.972 15.445-94.454 48.041l36.702 25.178c15.265-23.159 39.221-28.096 56.864-28.096.204 0 .408 0 .61.002 21.974.14 38.555 6.529 49.287 18.987 7.81 9.071 13.034 21.606 15.621 37.425-19.483-3.311-40.553-4.329-63.077-3.038-63.45 3.655-104.24 40.661-101.501 92.08 1.391 26.083 14.385 48.523 36.587 63.181 18.772 12.391 42.95 18.45 68.077 17.079 33.183-1.819 59.215-14.48 77.377-37.63 13.793-17.58 22.516-40.363 26.368-69.069 15.814 9.544 27.535 22.103 34.007 37.2 11.006 25.665 11.648 67.84-22.764 102.223-30.15 30.121-66.392 43.151-121.164 43.554-60.758-.45-106.708-19.935-136.583-57.915-27.976-35.562-42.434-86.93-42.973-152.674.539-65.746 14.997-117.114 42.973-152.676 29.875-37.979 75.824-57.463 136.582-57.914 61.197.455 107.948 20.033 138.967 58.195 15.21 18.713 26.676 42.248 34.236 69.688L440 161.532c-9.163-33.775-23.582-62.881-43.203-87.017C357.031 25.59 298.872.519 223.936 0h-.3C148.851.518 91.344 25.683 52.709 74.795 18.331 118.499.598 179.308.002 255.535l-.002.18.002.18c.596 76.225 18.329 137.037 52.707 180.741 38.635 49.11 96.142 74.277 170.927 74.794h.3c66.486-.462 113.352-17.868 151.96-56.442 50.51-50.463 48.99-113.718 32.342-152.549-11.945-27.847-34.716-50.463-65.855-65.401zM227.587 344.967c-27.808 1.567-56.699-10.916-58.124-37.651-1.056-19.823 14.108-41.942 59.831-44.577a266.87 266.87 0 0115.422-.45c16.609 0 32.145 1.613 46.271 4.701-5.268 65.798-36.172 76.483-63.4 77.977z"/></svg>
+                </a>
+                <a href="https://www.darrelltw.com/" class="social-button" target="_blank" rel="noopener noreferrer" title="Website">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                    </svg>
+                </a>
+                <a href="https://buymeacoffee.com/darrellmartechtw" class="social-button" target="_blank" rel="noopener noreferrer" title="Buy Me a Coffee">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+    <script>
+        // 從 JSON 檔案載入模版資料
+        async function loadModelData() {
+            try {
+                const response = await fetch('data/workflow-models.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                // 添加 1 秒延遲
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                return data.models;
+            } catch (error) {
+                console.error('載入模版資料失敗:', error);
+                return null;
+            }
+        }
+
+        // 創建模版卡片的 HTML
+        function createModelCard(model) {
+            return `
+                <div class="model-card">
+                    <div class="card-content" onclick="window.location.href='model-detail.html?model=${model.id}'">
+                        <h3>${model.title}</h3>
+                        <div class="description">
+                            ${formatDescription(model.detailedDescription)}
+                        </div>
+                    </div>
+                    <div class="workflow-preview" id="workflow-preview-${model.id}">
+                        <div class="preview-placeholder" onclick="previewWorkflow('${model.id}', event)">
+                            點擊預覽自動化模版
+                        </div>
+                    </div>
+                    <div class="card-content" onclick="window.location.href='model-detail.html?model=${model.id}'">
+                        <div class="tag-container">
+                            ${model.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        </div>
+                        <div class="metrics">
+                            <div class="metric">
+                                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                </svg>
+                                <span>${model.nodes || 0} 個節點</span>
+                            </div>
+                            <div class="metric">
+                                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M11 2.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0zM4.5 7.5A.5.5 0 0 0 4 8v4a.5.5 0 0 0 1 0V8a.5.5 0 0 0-.5-.5zm7 0a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 1 0V8a.5.5 0 0 0-.5-.5z"/>
+                                </svg>
+                                <span>更新於 ${model.updatedAt}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // 添加新的格式化函數
+        function formatDescription(description) {
+            // 檢查是否為有效值
+            if (!description) return '';
+            
+            // 確保轉換為字串
+            const descStr = String(description);
+            
+            // 將文字按換行符分割成數組
+            const lines = descStr.split('\n');
+            
+            // 如果只有一行，直接返回
+            if (lines.length <= 1) return descStr;
+            
+            // 多行時轉換為列表形式
+            return `<ul style="margin: 0; padding-left: 1.2em;">
+                ${lines.map(line => `<li>${line.trim()}</li>`).join('')}
+            </ul>`;
+        }
+
+        // 預覽自動化模版
+        async function previewWorkflow(modelId, event) {
+            event.stopPropagation(); // 防止事件冒泡到卡片
+            const previewContainer = document.getElementById(`workflow-preview-${modelId}`);
+            if (previewContainer) {
+                try {
+                    previewContainer.innerHTML = '<div class="preview-placeholder">載入中...</div>';
+                    const visualizer = new WorkflowVisualizer(`workflow-preview-${modelId}`);
+                    await visualizer.visualizeWorkflow(modelId);
+                } catch (error) {
+                    console.error(`模版 ${modelId} 視覺化失敗:`, error);
+                    previewContainer.innerHTML = `
+                        <div class="preview-placeholder" onclick="previewWorkflow('${modelId}', event)">
+                            載入失敗，點擊重試
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        // 更新頁面內容
+        async function updatePageContent() {
+            const modelGrid = document.querySelector('.model-grid');
+            
+            try {
+                const models = await loadModelData();
+                if (!models) {
+                    throw new Error('無法載入模版資料');
+                }
+
+                // 清空所有預設骨架屏
+                modelGrid.innerHTML = '';
+
+                // 添加實際的模版卡片
+                Object.entries(models).forEach(([id, model]) => {
+                    model.id = id;
+                    modelGrid.innerHTML += createModelCard(model);
+                });
+
+                // 隱藏載入元素
+                document.getElementById('loading-overlay').style.display = 'none';
+
+            } catch (error) {
+                console.error('更新頁面內容失敗:', error);
+                modelGrid.innerHTML = `
+                    <div class="model-card">
+                        <h3>載入失敗</h3>
+                        <div class="description">
+                            無法載入模版資料，請稍後再試。
+                        </div>
+                    </div>
+                `;
+                // 隱藏載入元素
+                document.getElementById('loading-overlay').style.display = 'none';
+            }
+        }
+
+        // 當頁面載入完成時初始化
+        document.addEventListener('DOMContentLoaded', updatePageContent);
+    </script>
+</body>
+</html> 

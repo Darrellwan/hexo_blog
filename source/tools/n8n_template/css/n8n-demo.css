@@ -1,0 +1,67 @@
+/* n8n-demo 組件樣式 */
+:root {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --accent-color: #007bff;
+}
+
+/* 設定全域變數 */
+:root {
+    --n8n-frame-background-color: black;
+    --n8n-json-background-color: lightgray;
+    --n8n-copy-button-background-color: gray;
+    --n8n-iframe-border-radius: 30px;
+}
+
+/* n8n-demo 元件樣式 */
+n8n-demo {
+    display: block;
+    width: 100%;
+    height: 800px;
+    min-height: 800px;
+    max-height: 800px;
+    border-radius: var(--n8n-iframe-border-radius);
+    overflow: hidden;
+    background-color: var(--n8n-frame-background-color);
+}
+
+/* 確保 iframe 樣式也能讀取到變數 */
+n8n-demo::part(workflow-iframe) {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: var(--n8n-iframe-border-radius);
+}
+
+/* 針對 Shadow DOM 內部的元素設定樣式 */
+n8n-demo .embedded_workflow_iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: var(--n8n-iframe-border-radius);
+}
+
+/* RWD 調整 */
+@media (max-width: 1024px) {
+    n8n-demo {
+        height: 700px;
+        min-height: 700px;
+        max-height: 700px;
+    }
+}
+
+@media (max-width: 768px) {
+    n8n-demo {
+        height: 600px;
+        min-height: 600px;
+        max-height: 600px;
+    }
+}
+
+@media (max-width: 480px) {
+    n8n-demo {
+        height: 500px;
+        min-height: 500px;
+        max-height: 500px;
+    }
+} 
