@@ -19,6 +19,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2.0.0/webcomponentsloader.js"></script>
     <script src="https://www.unpkg.com/lit@2.0.0-rc.2/polyfill-support.js"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/@n8n_io/n8n-demo-component/n8n-demo.bundled.js"></script>
+    <script src="js/header.js"></script>
     <style>
         :root {
             --bg-primary: #1a1a1a;
@@ -136,10 +137,15 @@
 </head>
 <body>
     <header>
-        <h1><span style="color: #ea4b71;">n8n</span> 模版JSON視覺化工具</h1>
+        <h1>Darrell <span style="color: #ea4b71;">n8n</span> 模版分享</h1>
+        <button class="menu-toggle" aria-label="選單">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
         <div class="nav-buttons">
-            <a href="visualize.html" class="nav-button glassmorphism active">視覺化工具</a>
-            <a href="models.html" class="nav-button glassmorphism">模版列表</a>
+            <a href="visualize.html" class="nav-button active">視覺化工具</a>
+            <a href="models.html" class="nav-button">模版列表</a>
         </div>
     </header>
 

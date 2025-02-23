@@ -21,6 +21,7 @@
     <script type="module" src="https://cdn.jsdelivr.net/npm/@n8n_io/n8n-demo-component/n8n-demo.bundled.js"></script>
     <!-- 添加自動化模版視覺化工具 -->
     <script src="js/workflow-visualizer.js"></script>
+    <script src="js/header.js"></script>
     <style>
         :root {
             --bg-primary: #1a1a1a;
@@ -469,10 +470,15 @@
 </head>
 <body>
     <header>
-        <a href="models.html" class="nav-button"><h1>Darrell <span style="color: #ea4b71;">n8n</span> 模版分享</h1></a>
+        <h1>Darrell <span style="color: #ea4b71;">n8n</span> 模版分享</h1>
+        <button class="menu-toggle" aria-label="選單">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
         <div class="nav-buttons">
-            <a href="visualize.html" class="nav-button glassmorphism">JSON轉模版</a>
-            <a href="models.html" class="nav-button glassmorphism">模版列表</a>
+            <a href="visualize.html" class="nav-button">視覺化工具</a>
+            <a href="models.html" class="nav-button">模版列表</a>
         </div>
     </header>
 
