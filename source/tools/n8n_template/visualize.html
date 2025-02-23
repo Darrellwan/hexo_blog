@@ -16,8 +16,10 @@
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <!-- 載入 Web Components 支援 -->
-    <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2.0.0/webcomponentsloader.js"></script>
-    <script src="https://www.unpkg.com/lit@2.0.0-rc.2/polyfill-support.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2.6.0/webcomponents-loader.js"></script>
+    
+    <!-- 確保 lit 元素在 n8n-demo 之前載入 -->
+    <script src="https://unpkg.com/lit@2.7.0/polyfill-support.js"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/@n8n_io/n8n-demo-component/n8n-demo.bundled.js"></script>
     <script src="js/header.js"></script>
     <style>
@@ -163,7 +165,7 @@
             </div>
         </div>
         <div id="visualization">
-            <n8n-demo id="workflow-demo"></n8n-demo>
+            <n8n-demo workflow='{"nodes":[{"name":"Workflow-Created","type":"n8n-nodes-base.webhook","position":[512,369],"parameters":{"path":"webhook","httpMethod":"POST"},"typeVersion":1}],"connections":{}}'></n8n-demo>
         </div>
     </div>
 
@@ -204,17 +206,36 @@
     </footer>
 
     <script>
-        function visualizeWorkflow() {
-            const jsonInput = document.getElementById('jsonInput').value;
-            const n8nDemo = document.getElementById('workflow-demo');
-            
+        async function visualizeWorkflow() {
             try {
-                // 驗證 JSON 格式
+                const jsonInput = document.getElementById('jsonInput').value;
                 const workflowData = JSON.parse(jsonInput);
-                // 更新 workflow 屬性
-                n8nDemo.setAttribute('workflow', JSON.stringify(workflowData));
+                
+                // 確保 workflow 物件具有必要的屬性
+                if (!workflowData.nodes || !workflowData.connections) {
+                    throw new Error('無效的 workflow 格式：缺少必要的 nodes 或 connections 屬性');
+                }
+
+                // 移除舊的 n8n-demo 元件
+                const oldDemo = document.querySelector('n8n-demo');
+                if (oldDemo) {
+                    oldDemo.remove();
+                }
+
+                // 創建新的 n8n-demo 元件
+                const newDemo = document.createElement('n8n-demo');
+                newDemo.setAttribute('workflow', JSON.stringify(workflowData));
+                // 設置其他有用的屬性
+                newDemo.setAttribute('frame', 'true');
+                newDemo.setAttribute('hidecanvaserrors', 'true');
+                
+                // 將新元件添加到容器中
+                const visualizationDiv = document.getElementById('visualization');
+                visualizationDiv.appendChild(newDemo);
+
             } catch (e) {
-                alert('請輸入有效的 JSON 格式！');
+                alert('錯誤：' + e.message);
+                console.error('Workflow 視覺化錯誤：', e);
             }
         }
 
@@ -235,18 +256,20 @@
             "connections": {}
         };
 
-        // 載入頁面時設置預設值
-        window.onload = function() {
+        // 初始化函數
+        function initializeWorkflow() {
             document.getElementById('jsonInput').value = JSON.stringify(defaultWorkflow, null, 2);
-            // 設置預設 workflow
-            const n8nDemo = document.getElementById('workflow-demo');
+            const n8nDemo = document.querySelector('n8n-demo');
             n8nDemo.setAttribute('workflow', JSON.stringify(defaultWorkflow));
         }
 
-        // 添加重置功能
+        // 當 DOM 載入完成後初始化
+        document.addEventListener('DOMContentLoaded', initializeWorkflow);
+
+        // 重置功能
         function resetWorkflow() {
             document.getElementById('jsonInput').value = JSON.stringify(defaultWorkflow, null, 2);
-            const n8nDemo = document.getElementById('workflow-demo');
+            const n8nDemo = document.querySelector('n8n-demo');
             n8nDemo.setAttribute('workflow', JSON.stringify(defaultWorkflow));
         }
     </script>
