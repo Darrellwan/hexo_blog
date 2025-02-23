@@ -125,6 +125,8 @@ menu:
   #schedule: /schedule/ || fa fa-calendar
   #sitemap: /sitemap.xml || fa fa-sitemap
   #commonweal: /404/ || fa fa-heartbeat
+  n8n_template: https://www.darrelltw.com/tools/n8n_template/models.html || fa fa-solid fa-n highlight-n8n
+
 
 # Enable / Disable menu icons / item badges.
 menu_settings:
@@ -189,6 +191,7 @@ social:
   GitHub: https://github.com/Darrellwan/ || fab fa-brands fa-square-github
   E-Mail: https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=info@darrelltw.com&su=請填入問題或主旨 || fa fa-solid fa-envelope
   #Skype: skype:yourname?call|chat || fab fa-skype
+  n8n_template: https://www.darrelltw.com/tools/n8n_template/models.html || fa fa-solid fa-n highlight-n8n
 
 social_icons:
   enable: true
