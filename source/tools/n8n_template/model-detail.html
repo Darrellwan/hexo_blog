@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Darrell n8n 模版分享</title>
-    <meta name="description" content="探索 n8n Workflow 的各種預設模版，包含自動化自動化模版範例">
+    <title>Darrell n8n 模板分享</title>
+    <meta name="description" content="探索 n8n Workflow 的各種預設模板，包含自動化自動化模板範例">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
@@ -19,7 +19,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2.0.0/webcomponentsloader.js"></script>
     <script src="https://www.unpkg.com/lit@2.0.0-rc.2/polyfill-support.js"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/@n8n_io/n8n-demo-component/n8n-demo.bundled.js"></script>
-    <!-- 添加自動化模版視覺化工具 -->
+    <!-- 添加自動化模板視覺化工具 -->
     <script src="js/workflow-visualizer.js"></script>
     <script src="js/header.js"></script>
     <style>
@@ -459,7 +459,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2.0.0/webcomponentsloader.js"></script>
     <script src="https://www.unpkg.com/lit@2.0.0-rc.2/polyfill-support.js"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/@n8n_io/n8n-demo-component/n8n-demo.bundled.js"></script>
-    <!-- 添加自動化模版視覺化工具 -->
+    <!-- 添加自動化模板視覺化工具 -->
     <script src="js/workflow-visualizer.js"></script>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -470,7 +470,7 @@
 </head>
 <body>
     <header>
-        <h1>Darrell <span style="color: #ea4b71;">n8n</span> 模版分享</h1>
+        <h1>Darrell <span style="color: #ea4b71;">n8n</span> 模板分享</h1>
         <button class="menu-toggle" aria-label="選單">
             <span></span>
             <span></span>
@@ -478,7 +478,7 @@
         </button>
         <div class="nav-buttons">
             <a href="visualize.html" class="nav-button">視覺化工具</a>
-            <a href="models.html" class="nav-button">模版列表</a>
+            <a href="models.html" class="nav-button">模板列表</a>
         </div>
     </header>
 
@@ -489,21 +489,21 @@
                     <ul class="sidebar-nav">
                         <li><a href="#overview" class="active">概述</a></li>
                         <li><a href="#setup">設置說明</a></li>
-                        <li><a href="#workflow">自動化模版</a></li>
+                        <li><a href="#workflow">自動化模板</a></li>
                     </ul>
                 </nav>
             </aside>
 
             <main class="main-content">
                 <section id="overview">
-                    <h1 class="model-title">基礎自動化自動化模版</h1>
+                    <h1 class="model-title">基礎自動化自動化模板</h1>
                     <div class="tag-container">
                         <span class="tag">入門級</span>
                         <span class="tag">自動化</span>
                         <span class="tag">基礎流程</span>
                     </div>
                     <div class="model-description">
-                        <p>適合初學者的基礎自動化流程，包含最常用的觸發器和動作。這個自動化模版展示了如何：</p>
+                        <p>適合初學者的基礎自動化流程，包含最常用的觸發器和動作。這個自動化模板展示了如何：</p>
                         <ul>
                             <li>設置基本的觸發條件</li>
                             <li>處理和轉換數據</li>
@@ -526,9 +526,9 @@
 
                 <section id="workflow" style="display: none;">
                     <div class="workflow-header">
-                        <h2>自動化模版</h2>
+                        <h2>自動化模板</h2>
                         <button id="downloadWorkflowBtn" class="action-button" style="margin: 0;">
-                            下載模版 JSON
+                            下載模板 JSON
                         </button>
                     </div>
                     <div class="workflow-section">
@@ -538,7 +538,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
                                     </svg>
-                                    <span>點擊載入模版</span>
+                                    <span>點擊載入模板</span>
                                 </div>
                             </div>
                         </div>
@@ -585,14 +585,14 @@
     </footer>
 
     <script>
-        // 從 JSON 檔案載入模版資料
+        // 從 JSON 檔案載入模板資料
         async function loadModelData() {
             try {
                 const response = await fetch('data/workflow-models.json');
                 const data = await response.json();
                 return data.models;
             } catch (error) {
-                console.error('載入模版資料失敗:', error);
+                console.error('載入模板資料失敗:', error);
                 return null;
             }
         }
@@ -611,10 +611,10 @@
                 document.querySelector('.model-description').innerHTML = '<p>載入中...</p>';
                 document.querySelector('.tag-container').innerHTML = '<span class="tag">載入中...</span>';
 
-                // 載入模版資料
+                // 載入模板資料
                 const models = await loadModelData();
                 if (!models || !models[modelId]) {
-                    throw new Error('找不到模版資料');
+                    throw new Error('找不到模板資料');
                 }
 
                 const model = models[modelId];
@@ -624,7 +624,7 @@
 
                 // 確保所有必要的屬性都存在，如果不存在則使用預設值
                 const safeModel = {
-                    title: model.title || '未命名自動化模版',
+                    title: model.title || '未命名自動化模板',
                     description: model.description || '暫無描述',
                     features: Array.isArray(model.features) ? model.features : [],
                     tags: Array.isArray(model.tags) ? model.tags : ['基礎'],
@@ -664,7 +664,7 @@
 
                 // 更新設置說明
                 document.getElementById('setup-content').innerHTML = model.setup ? `
-                    <p>此自動化模版包含以下設置步驟：</p>
+                    <p>此自動化模板包含以下設置步驟：</p>
                     <ol>
                         ${model.setup.steps.map(step => `
                             <li>
@@ -684,7 +684,7 @@
                     </div>
                 ` : '<p>暫無設置說明</p>';
 
-                // 準備自動化模版預覽區域
+                // 準備自動化模板預覽區域
                 const container = document.getElementById('workflow-visualization');
                 container.innerHTML = `
                     <div class="preview-placeholder" onclick="loadWorkflowVisualization()">
@@ -692,12 +692,12 @@
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
                             </svg>
-                            <span>點擊載入自動化模版預覽</span>
+                            <span>點擊載入自動化模板預覽</span>
                         </div>
                     </div>
                 `;
 
-                // 新增下載模版 JSON 按鈕的點擊事件處理
+                // 新增下載模板 JSON 按鈕的點擊事件處理
                 document.getElementById('downloadWorkflowBtn').addEventListener('click', async function() {
                     try {
                         const response = await fetch(`data/workflows/${modelId}.json`);
@@ -714,8 +714,8 @@
                         a.click();
                         URL.revokeObjectURL(url);
                     } catch (error) {
-                        console.error('下載模版 JSON 失敗:', error);
-                        alert('無法下載模版 JSON，請稍後再試。');
+                        console.error('下載模板 JSON 失敗:', error);
+                        alert('無法下載模板 JSON，請稍後再試。');
                     }
                 });
 
@@ -729,7 +729,7 @@
                 console.error('更新頁面內容失敗:', error);
                 // 顯示錯誤訊息
                 document.querySelector('.model-title').textContent = '載入失敗';
-                document.querySelector('.model-description').innerHTML = '<p>無法載入模版資料，請稍後再試。</p>';
+                document.querySelector('.model-description').innerHTML = '<p>無法載入模板資料，請稍後再試。</p>';
                 document.querySelector('.tag-container').innerHTML = '';
             }
         }
@@ -741,7 +741,7 @@
             updatePageContent(modelId);
         }
 
-        // 載入自動化模版視覺化
+        // 載入自動化模板視覺化
         async function loadWorkflowVisualization() {
             const urlParams = new URLSearchParams(window.location.search);
             const modelId = urlParams.get('model') || 'basic';
@@ -753,10 +753,10 @@
             }
 
             // 顯示載入中狀態
-            container.innerHTML = '<div class="preview-placeholder">載入自動化模版中...</div>';
+            container.innerHTML = '<div class="preview-placeholder">載入自動化模板中...</div>';
             
             try {
-                // 載入自動化模版數據
+                // 載入自動化模板數據
                 const response = await fetch(`data/workflows/${modelId}.json`);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -776,7 +776,7 @@
                 container.classList.remove('preview-placeholder');
                 
             } catch (error) {
-                console.error('載入自動化模版失敗:', error);
+                console.error('載入自動化模板失敗:', error);
                 container.innerHTML = `
                     <div class="preview-placeholder" onclick="loadWorkflowVisualization()">
                         <div class="preview-content">

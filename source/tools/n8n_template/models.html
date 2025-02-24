@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Darrell n8n 模版分享 Templates Sharing</title>
-    <meta name="description" content="免費 n8n 自動化模版(模板)資源，包含多種實用工作流程範例，一鍵下載立即使用。探索提升效率的自動化解決方案！">
+    <title>Darrell n8n 模板分享 Templates Sharing</title>
+    <meta name="description" content="免費 n8n 自動化模板(模板)資源，包含多種實用工作流程範例，一鍵下載立即使用。探索提升效率的自動化解決方案！">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
@@ -19,7 +19,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2.0.0/webcomponents-loader.js"></script>
     <script src="https://www.unpkg.com/lit@2.0.0-rc.2/polyfill-support.js"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/@n8n_io/n8n-demo-component/n8n-demo.bundled.js"></script>
-    <!-- 添加自動化模版視覺化工具 -->
+    <!-- 添加自動化模板視覺化工具 -->
     <script src="js/workflow-visualizer.js"></script>
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -531,7 +531,7 @@
 </head>
 <body>
     <header>
-        <h1>Darrell <span style="color: #ea4b71;">n8n</span> 模版分享</h1>
+        <h1>Darrell <span style="color: #ea4b71;">n8n</span> 模板分享</h1>
         <button class="menu-toggle" aria-label="選單">
             <span></span>
             <span></span>
@@ -539,7 +539,7 @@
         </button>
         <div class="nav-buttons">
             <a href="visualize.html" class="nav-button">視覺化工具</a>
-            <a href="models.html" class="nav-button active">模版列表</a>
+            <a href="models.html" class="nav-button active">模板列表</a>
         </div>
     </header>
 
@@ -731,13 +731,13 @@
                 hideLoading();
                 return data.models;
             } catch (error) {
-                console.error('載入模版資料失敗:', error);
+                console.error('載入模板資料失敗:', error);
                 hideLoading();
                 return null;
             }
         }
 
-        // 創建模版卡片的 HTML
+        // 創建模板卡片的 HTML
         function createModelCard(model) {
             return `
                 <div class="model-card">
@@ -749,7 +749,7 @@
                     </div>
                     <div class="workflow-preview" id="workflow-preview-${model.id}">
                         <div class="preview-placeholder" onclick="previewWorkflow('${model.id}', event)">
-                            點擊預覽自動化模版
+                            點擊預覽自動化模板
                         </div>
                     </div>
                     <div class="card-content" onclick="window.location.href='model-detail.html?model=${model.id}'">
@@ -795,7 +795,7 @@
             </ul>`;
         }
 
-        // 預覽自動化模版
+        // 預覽自動化模板
         async function previewWorkflow(modelId, event) {
             event.stopPropagation(); // 防止事件冒泡到卡片
             const previewContainer = document.getElementById(`workflow-preview-${modelId}`);
@@ -805,7 +805,7 @@
                     const visualizer = new WorkflowVisualizer(`workflow-preview-${modelId}`);
                     await visualizer.visualizeWorkflow(modelId);
                 } catch (error) {
-                    console.error(`模版 ${modelId} 視覺化失敗:`, error);
+                    console.error(`模板 ${modelId} 視覺化失敗:`, error);
                     previewContainer.innerHTML = `
                         <div class="preview-placeholder" onclick="previewWorkflow('${modelId}', event)">
                             載入失敗，點擊重試
@@ -822,7 +822,7 @@
             try {
                 const models = await loadModelData();
                 if (!models) {
-                    throw new Error('無法載入模版資料');
+                    throw new Error('無法載入模板資料');
                 }
 
                 // 清空所有預設骨架屏
@@ -832,12 +832,12 @@
                 const itemListElements = [];
                 let position = 1;
 
-                // 添加實際的模版卡片
+                // 添加實際的模板卡片
                 Object.entries(models).forEach(([id, model]) => {
                     model.id = id;
                     modelGrid.innerHTML += createModelCard(model);
 
-                    // 為每個模版建立結構化資料項目
+                    // 為每個模板建立結構化資料項目
                     itemListElements.push({
                         "@type": "ListItem",
                         "position": position++,
@@ -871,7 +871,7 @@
                     <div class="model-card">
                         <h3>載入失敗</h3>
                         <div class="description">
-                            無法載入模版資料，請稍後再試。
+                            無法載入模板資料，請稍後再試。
                         </div>
                     </div>
                 `;
