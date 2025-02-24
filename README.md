@@ -61,7 +61,7 @@
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-80-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-179643+-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-179651+-blue?style=flat-square)
 ![已發布天數](https://img.shields.io/badge/已發布天數-963-blue?style=flat-square)
 
 ## 📈 近期熱門文章
