@@ -2,6 +2,11 @@
 
 ## 📚 最新文章
 
+### [Glows.ai 雲端 GPU 運算服務，輕鬆取得算力實現 AI 私有運算](https://www.darrelltw.com/glows-ai-cloud-gpu-service/?utm_source=github_readme&utm_medium=referral)
+- 發布時間: 2025/02/22
+> Glows.ai 提供方便的雲端 GPU 運算服務，讓你輕鬆取得高效能算力，實現 AI 私有化運算。無需自建機房，即可享有穩定、安全的 GPU 資源，是企業和個人開發 AI 應用的最佳選擇。
+
+
 ### [n8n 小撇步 - Timezone 問題如何在 Zeabur 設定](https://www.darrelltw.com/n8n-with-zeabur-timezone-issue/?utm_source=github_readme&utm_medium=referral)
 - 發布時間: 2025/02/06
 > 記錄一下在 Zeabur 上處理 n8n 時區問題的方法，從單一 workflow 到一次性解決，讓你的自動化流程不再跑錯時間！
@@ -47,15 +52,16 @@
 > 學習如何在 Google App Script 中使用 HTML 發送美觀的電子郵件，並運用 ChatGPT 快速生成電子郵件模板
 
 
-### [n8n If 和 Switch](https://www.darrelltw.com/n8n-if-switch/?utm_source=github_readme&utm_medium=referral)
-- 發布時間: 2024/12/12
-> 深入了解 n8n 的 If 和 Switch 節點，條件判斷是每個自動化腳本都會遇到的
-
-
 ## 📊 部落格統計
+<<<<<<< HEAD
 ![文章總數](https://img.shields.io/badge/文章總數-79-blue?style=flat-square)
 ![總字數](https://img.shields.io/badge/總字數-176500+-blue?style=flat-square)
 ![已發布天數](https://img.shields.io/badge/已發布天數-962-blue?style=flat-square)
+=======
+![文章總數](https://img.shields.io/badge/文章總數-80-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-179651+-blue?style=flat-square)
+![已發布天數](https://img.shields.io/badge/已發布天數-963-blue?style=flat-square)
+>>>>>>> new-post-glows-ai
 
 ## 📈 近期熱門文章
 ```text
@@ -76,7 +82,7 @@
 11月 ████░░░░░░ 4篇
 12月 █████░░░░░ 5篇
 01月 ████░░░░░░ 4篇
-02月 ███░░░░░░░ 3篇
+02月 ████░░░░░░ 4篇
 ```
 
 ## 🔍 更多資訊
