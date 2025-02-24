@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Darrell n8n 模版分享</title>
-    <meta name="description" content="探索 n8n Workflow 的各種預設模版，包含自動化自動化模版範例">
+    <meta name="description" content="免費 n8n 自動化模版資源，包含多種實用工作流程範例，一鍵下載立即使用。探索提升效率的自動化解決方案！">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
@@ -706,6 +706,9 @@
             <div class="loading-spinner"></div>
         </div>
     </div>
+
+    <script type="application/ld+json" id="workflow-models-schema"></script>
+
     <script>
         function showLoading() {
             document.getElementById('loading-overlay').style.display = 'flex';
@@ -825,11 +828,39 @@
                 // 清空所有預設骨架屏
                 modelGrid.innerHTML = '';
 
+                // 初始化 itemListElement 陣列，用於存放結構化資料
+                const itemListElements = [];
+                let position = 1;
+
                 // 添加實際的模版卡片
                 Object.entries(models).forEach(([id, model]) => {
                     model.id = id;
                     modelGrid.innerHTML += createModelCard(model);
+
+                    // 為每個模版建立結構化資料項目
+                    itemListElements.push({
+                        "@type": "ListItem",
+                        "position": position++,
+                        "item": {
+                            "@type": "Thing", // 或是更具體的類型，例如 CreativeWork
+                            "name": model.title,
+                            "description": model.detailedDescription,
+                            "url": `https://darrelltw.com/tools/n8n_template/model-detail.html?model=${model.id}`, // 替換成你的網域名稱
+                            "keywords": model.tags.join(', ') // 將標籤陣列轉換為逗號分隔的字串
+                        }
+                    });
                 });
+
+                // 建立完整的結構化資料 JSON-LD 物件
+                const schemaData = {
+                    "@context": "https://schema.org",
+                    "@type": "ItemList",
+                    "itemListElement": itemListElements
+                };
+
+                // 將 JSON-LD 資料轉換為字串並插入到 script 標籤中
+                const schemaScript = document.getElementById('workflow-models-schema');
+                schemaScript.textContent = JSON.stringify(schemaData, null, 2); // 使用 2 個空格縮排，方便閱讀
 
                 // 隱藏載入元素
                 document.getElementById('loading-overlay').style.display = 'none';
