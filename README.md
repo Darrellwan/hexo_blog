@@ -4,7 +4,7 @@
 
 ### [Glows.ai 雲端 GPU 運算服務，輕鬆取得算力實現 AI 私有運算](https://www.darrelltw.com/glows-ai-cloud-gpu-service/?utm_source=github_readme&utm_medium=referral)
 - 發布時間: 2025/02/22
-> Glows.ai 提供便捷的雲端 GPU 運算服務，讓你輕鬆取得高效能算力，實現 AI 私有化運算。無需自建機房，即可享有穩定、安全的 GPU 資源，是企業和個人開發 AI 應用的最佳選擇。
+> Glows.ai 提供方便的雲端 GPU 運算服務，讓你輕鬆取得高效能算力，實現 AI 私有化運算。無需自建機房，即可享有穩定、安全的 GPU 資源，是企業和個人開發 AI 應用的最佳選擇。
 
 
 ### [n8n 小撇步 - Timezone 問題如何在 Zeabur 設定](https://www.darrelltw.com/n8n-with-zeabur-timezone-issue/?utm_source=github_readme&utm_medium=referral)
@@ -61,8 +61,8 @@
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-80-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-179365+-blue?style=flat-square)
-![已發布天數](https://img.shields.io/badge/已發布天數-961-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-179643+-blue?style=flat-square)
+![已發布天數](https://img.shields.io/badge/已發布天數-963-blue?style=flat-square)
 
 ## 📈 近期熱門文章
 ```text
