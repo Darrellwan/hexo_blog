@@ -1,9 +1,11 @@
 ---
-description: Rules for AI-generated commit messages
+description: Rules for AI-generated commit message
 globs: *
+alwaysApply: false
 ---
-- 生成的 commit 訊息必須簡潔，限制在 50 字元以內。
-- 使用動詞開頭，例如 "UPDATE", "FIX"。
+- 生成的 commit 訊息必須簡潔，限制在 50 字元以內，只能用英文。
+- 使用動詞開頭，例如 "[UPDATE]", "[FIX]"。
 - 避免冗長描述，只包含核心變更內容。
 - 如果有多個變更，用分號分隔，例如 "Add login; Fix bug"。
 - 新文章的話用 [NEW POST] {post_id}
+- exampel :[UPDATE] Simplify code; Enhance readability

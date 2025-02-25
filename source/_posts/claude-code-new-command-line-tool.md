@@ -52,7 +52,7 @@ claude
 {% darrellImage800 claude_code_init claude_code_init.png max-800 %}
 
 
-### Claude md
+### Claude.md 檔案
 
 `Claude.md` 像是一個專案的簡介
 我不確定是給專案成員閱讀的
