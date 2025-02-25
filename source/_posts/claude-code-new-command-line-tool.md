@@ -6,7 +6,7 @@ tags:
   - AI
   - 開發工具
 page_type: post
-description: 探索 Claude Code 如何協助開發流程，提升工作效率和程式碼品質
+description: 快速嘗試 Claude Code，介紹安裝和指令，以及一些簡易的操作方式，也分享測試時的花費
 categories: 
   - 工具
 bgImage: claude_code.jpg
