@@ -2,6 +2,11 @@
 
 ## 📚 最新文章
 
+### [Claude Code 全新發表 工程師 Command Line 的新工具](https://www.darrelltw.com/claude-code-new-command-line-tool/?utm_source=github_readme&utm_medium=referral)
+- 發布時間: 2025/02/25
+> 探索 Claude Code 如何協助開發流程，提升工作效率和程式碼品質
+
+
 ### [Glows.ai 雲端 GPU 運算服務，輕鬆取得算力實現 AI 私有運算](https://www.darrelltw.com/glows-ai-cloud-gpu-service/?utm_source=github_readme&utm_medium=referral)
 - 發布時間: 2025/02/22
 > Glows.ai 提供方便的雲端 GPU 運算服務，讓你輕鬆取得高效能算力，實現 AI 私有化運算。無需自建機房，即可享有穩定、安全的 GPU 資源，是企業和個人開發 AI 應用的最佳選擇。
@@ -47,21 +52,10 @@
 > 為什麼要在 Google App Script 中使用快取，什麼場景可以用快取來加速服務，並且避免可能遇到的限制。CacheService 是個簡單好用的方式，能幫助你輕鬆快取資料。
 
 
-### [Google App Script 用 Gmail 發有質感美觀的信](https://www.darrelltw.com/google-app-script-gmail-nice-email-template/?utm_source=github_readme&utm_medium=referral)
-- 發布時間: 2024/12/15
-> 學習如何在 Google App Script 中使用 HTML 發送美觀的電子郵件，並運用 ChatGPT 快速生成電子郵件模板
-
-
 ## 📊 部落格統計
-<<<<<<< HEAD
-![文章總數](https://img.shields.io/badge/文章總數-79-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-176500+-blue?style=flat-square)
-![已發布天數](https://img.shields.io/badge/已發布天數-962-blue?style=flat-square)
-=======
-![文章總數](https://img.shields.io/badge/文章總數-80-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-179651+-blue?style=flat-square)
-![已發布天數](https://img.shields.io/badge/已發布天數-963-blue?style=flat-square)
->>>>>>> new-post-glows-ai
+![文章總數](https://img.shields.io/badge/文章總數-81-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-181382+-blue?style=flat-square)
+![已發布天數](https://img.shields.io/badge/已發布天數-964-blue?style=flat-square)
 
 ## 📈 近期熱門文章
 ```text
@@ -82,7 +76,7 @@
 11月 ████░░░░░░ 4篇
 12月 █████░░░░░ 5篇
 01月 ████░░░░░░ 4篇
-02月 ████░░░░░░ 4篇
+02月 █████░░░░░ 5篇
 ```
 
 ## 🔍 更多資訊
