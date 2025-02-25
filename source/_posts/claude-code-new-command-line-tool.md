@@ -1,5 +1,5 @@
 ---
-title: Claude Code 全新發表 工程師 Command Line 的新工具
+title: Claude Code 發佈 Command Line 的新工具
 date: 2025-02-25 08:49:50
 tags:
   - Claude
