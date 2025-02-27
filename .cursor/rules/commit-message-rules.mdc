@@ -8,4 +8,5 @@ alwaysApply: false
 - 避免冗長描述，只包含核心變更內容。
 - 如果有多個變更，用分號分隔，例如 "Add login; Fix bug"。
 - 新文章的話用 [NEW POST] {post_id}
-- exampel :[UPDATE] Simplify code; Enhance readability
+- example :[UPDATE] Simplify code; Enhance readability
+- example :[NEW POST] {post_id}
