@@ -227,4 +227,10 @@ ${(() => {
   }
 }
 
-generateReadme(); 
+// 只有當直接運行此文件時才執行 generateReadme
+if (require.main === module) {
+  generateReadme();
+}
+
+// 導出函數以便其他文件可以引用但不自動執行
+module.exports = generateReadme; 
