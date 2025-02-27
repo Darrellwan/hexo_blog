@@ -8,14 +8,14 @@ categories:
 page_type: post
 id: send_push_to_me
 description: Line Notify 宣布要停止服務，如果正在使用或是打算使用，替代方案和如何串接 Slack、Telegram、Discord 
-bgImage: push_yourself_bg.png
+bgImage: push_yourself_bg.jpg
 preload:
-  - push_yourself_bg.png
+  - push_yourself_bg.jpg
 date: 2024-10-07 22:36:11
 modified: 2025-01-22 11:18:11
 ---
 
-{% darrellImage800 push_yourself_bg push_yourself_bg.png max-800 %}
+{% darrellImageCover push_yourself_bg push_yourself_bg.jpg max-800 %}
 
 ## 前言
 

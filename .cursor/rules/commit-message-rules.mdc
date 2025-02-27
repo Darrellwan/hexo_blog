@@ -1,7 +1,7 @@
 ---
 description: Rules for auto generated commit message
 globs: *
-alwaysApply: true
+alwaysApply: false
 ---
 - 生成的 commit 訊息必須簡潔，限制在 50 字元以內，只能用英文。
 - 使用動詞開頭，例如 "[UPDATE]", "[FIX]"。
@@ -10,3 +10,4 @@ alwaysApply: true
 - 新文章的話用 [NEW POST] {post_id}
 - example :[UPDATE] Simplify code; Enhance readability
 - example :[NEW POST] {post_id}
+ 
