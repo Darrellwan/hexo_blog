@@ -4,20 +4,28 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'source/_posts/*.md'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   tweet-new-article:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 0
 
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v5
       with:
         python-version: '3.8'
+        cache: 'pip'
 
     - name: Install Python dependencies
       run: |
@@ -26,17 +34,26 @@ jobs:
     - name: Check for New Markdown Files
       id: check-new-md-files
       run: |
-        echo "Total commits: $(git rev-list --count HEAD)"
         if [ $(git rev-list --count HEAD) -gt 1 ]; then
-          LAST_COMMIT=$(git rev-parse HEAD)
-          SECOND_LAST_COMMIT=$(git rev-parse HEAD~1)
-          echo "Last commit: $LAST_COMMIT"
-          echo "Second last commit: $SECOND_LAST_COMMIT"
-          NEW_FILES=$(git diff --name-only --diff-filter=A $SECOND_LAST_COMMIT $LAST_COMMIT -- './source/_posts/*.md')
+          # 使用 github.event 變數更精確地檢測變更
+          NEW_FILES=$(git diff --name-only --diff-filter=A ${{ github.event.before || 'HEAD~1' }} ${{ github.sha }} -- './source/_posts/*.md')
           echo "New markdown files: $NEW_FILES"
           if [ -n "$NEW_FILES" ]; then
-          echo "new_files=$NEW_FILES" >> $GITHUB_OUTPUT
-          echo "new_files_py=$NEW_FILES" >> $GITHUB_ENV
+            echo "new_files=$NEW_FILES" >> $GITHUB_OUTPUT
+            echo "new_files_py=$NEW_FILES" >> $GITHUB_ENV
+            
+            # 從檔名擷取文章 ID 以構建 URL
+            for file in $NEW_FILES; do
+              FILENAME=$(basename "$file" .md)
+              echo "article_id=$FILENAME" >> $GITHUB_OUTPUT
+              echo "article_id=$FILENAME" >> $GITHUB_ENV
+              echo "Article ID: $FILENAME"
+            done
+            
+            # 生成當前日期格式為 YYYYMMDD
+            TODAY=$(date +"%Y%m%d")
+            echo "post_date=$TODAY" >> $GITHUB_OUTPUT
+            echo "post_date=$TODAY" >> $GITHUB_ENV
           fi
         else
           echo "Not enough commits to compare."
@@ -45,15 +62,31 @@ jobs:
     - name: Process and Tweet New Articles
       if: steps.check-new-md-files.outputs.new_files
       run: |
+        set -e  # 確保任何錯誤都會導致步驟失敗
+        
+        # 構建完整網址含 UTM 參數
+        WEBSITE_URL="${{ secrets.WEBSITE_URL || 'https://www.darrelltw.com' }}"
+        ARTICLE_ID="${{ steps.check-new-md-files.outputs.article_id }}"
+        POST_DATE="${{ steps.check-new-md-files.outputs.post_date }}"
+        FULL_URL="$WEBSITE_URL/$ARTICLE_ID/?utm_source=x_post&utm_medium=social&utm_campaign=$POST_DATE"
+        
+        # 將 URL 傳遞給 Python 腳本
+        export FULL_URL="$FULL_URL"
+        echo "Article URL with UTM: $FULL_URL"
+        
         python .github/scripts/tweet_article.py
-        ls -l
       env:
         X_API_KEY: ${{ secrets.X_API_KEY }}
         X_API_SECRET: ${{ secrets.X_API_SECRET }}
         X_ACCESS_KEY: ${{ secrets.X_ACCESS_KEY }}
         X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}    
-        X_BEARER: ${{ secrets.X_BEARER }}    
+        X_BEARER: ${{ secrets.X_BEARER }}
+        WEBSITE_URL: ${{ secrets.WEBSITE_URL || 'https://www.darrelltw.com' }}
+        ARTICLE_ID: ${{ steps.check-new-md-files.outputs.article_id }}
+        POST_DATE: ${{ steps.check-new-md-files.outputs.post_date }}
+    
     - name: Print Log File
+      if: always()
       run: |
         if [ -f log.txt ]; then
           cat log.txt
