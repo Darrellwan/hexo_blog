@@ -55,9 +55,20 @@ def upload_to_twitter_and_tweet(file_path, socialText, cover_url):
         client_v1 = twitter_v1_api()
         media = client_v1.media_upload(image_url)
         media_id = media.media_id 
-        x_api = twitter_api()    
-        tweet_article(x_api, socialText, media_id)        
-        logger.error(f"Successfully tweet it")
+        x_api = twitter_api()
+
+        # 檢查是否有完整 URL 環境變數
+        full_url = os.environ.get('FULL_URL')
+        
+        # 如果有完整 URL，將其添加到社交文本中
+        if full_url and not full_url in socialText:
+            tweet_text = f"{socialText}\n\n{full_url}"
+        else:
+            tweet_text = socialText
+            
+        logger.info(f"Tweet text: {tweet_text}")
+        tweet_article(x_api, tweet_text, media_id)        
+        logger.info(f"Successfully tweet it")
     except Exception as e:
         logger.error(f"Error uploading to Twitter: {e}")
 

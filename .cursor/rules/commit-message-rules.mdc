@@ -1,7 +1,7 @@
 ---
-description: Rules for AI-generated commit message
+description: Rules for auto generated commit message
 globs: *
-alwaysApply: false
+alwaysApply: true
 ---
 - 生成的 commit 訊息必須簡潔，限制在 50 字元以內，只能用英文。
 - 使用動詞開頭，例如 "[UPDATE]", "[FIX]"。
