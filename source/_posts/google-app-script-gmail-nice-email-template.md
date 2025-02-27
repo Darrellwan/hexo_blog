@@ -9,12 +9,12 @@ categories:
 page_type: post
 id: google-app-script-gmail-nice-email-template
 description: 學習如何在 Google App Script 中使用 HTML 發送美觀的電子郵件，並運用 ChatGPT 快速生成電子郵件模板
-bgImage: google-app-script-gmail-nice-email-template_bg.jpg
+bgImage: google-app-script-gmail-nice-email-template_bg.webp
 preload:
-  - google-app-script-gmail-nice-email-template_bg.jpg
+  - google-app-script-gmail-nice-email-template_bg.webp
 date: 2024-12-14 23:01:47
 ---
-{% darrellImageCover google-app-script-gmail-nice-email-template_bg google-app-script-gmail-nice-email-template_bg.jpg max-800 %}
+{% darrellImageCover google-app-script-gmail-nice-email-template_bg google-app-script-gmail-nice-email-template_bg.webp max-800 %}
 
 在 Google App Script 中用 Gmail 來發送 Email 是大家蠻常做的
 但你知道在 App Script 中，其實可以利用 Html 來發送好看的電子郵件嗎?
