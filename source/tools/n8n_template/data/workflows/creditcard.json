@@ -1,1786 +1,1775 @@
 {
-    "nodes": [
-      {
-        "parameters": {},
-        "type": "n8n-nodes-base.manualTrigger",
-        "typeVersion": 1,
-        "position": [
-          -1900,
-          -640
-        ],
-        "id": "77260765-7e9c-4174-89ff-e5a3a67dde5b",
-        "name": "When clicking 'Test workflow'"
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "pdf",
+        "binaryPropertyName": "data_0",
+        "options": {
+          "joinPages": true,
+          "maxPages": 1,
+          "password": ""
+        }
       },
-      {
-        "parameters": {
-          "operation": "pdf",
-          "binaryPropertyName": "data_0",
-          "options": {
-            "joinPages": true,
-            "maxPages": 1,
-            "password": ""
-          }
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -880,
+        -1240
+      ],
+      "id": "3afc8c32-1e7c-46ec-9596-a4d4732ed238",
+      "name": "永豐PDF"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1gedwZokI7IDF_FYgVb_wMECe75OryWL8pn3WEYsNzgQ",
+          "mode": "list",
+          "cachedResultName": "n8n-信用卡繳款提醒",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gedwZokI7IDF_FYgVb_wMECe75OryWL8pn3WEYsNzgQ/edit?usp=drivesdk"
         },
-        "type": "n8n-nodes-base.extractFromFile",
-        "typeVersion": 1,
-        "position": [
-          -880,
-          -1240
-        ],
-        "id": "3afc8c32-1e7c-46ec-9596-a4d4732ed238",
-        "name": "永豐PDF"
-      },
-      {
-        "parameters": {
-          "operation": "append",
-          "documentId": {
-            "__rl": true,
-            "value": "1gedwZokI7IDF_FYgVb_wMECe75OryWL8pn3WEYsNzgQ",
-            "mode": "list",
-            "cachedResultName": "n8n-信用卡繳款提醒",
-            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gedwZokI7IDF_FYgVb_wMECe75OryWL8pn3WEYsNzgQ/edit?usp=drivesdk"
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "工作表1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gedwZokI7IDF_FYgVb_wMECe75OryWL8pn3WEYsNzgQ/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "calendar_id": "={{ $json.id }}",
+            "已繳款": "false",
+            "年月期別": "={{ $('統整').item.json.payment_due_date.toDateTime().format('yyyy-MM') }}",
+            "金額": "={{ $('統整').item.json.payment_amount }}",
+            "最低應繳金額": "={{ $('統整').item.json.minimum_payment }}",
+            "email_id": "={{ $('統整').item.json.email_id }}",
+            "銀行": "={{ $('統整').item.json.bank }}",
+            "n8n_id": "={{ $('統整').item.json.payment_due_date.toDateTime().format('yyyy-MM').concat($('統整').item.json.bank).hash() }}"
           },
-          "sheetName": {
-            "__rl": true,
-            "value": "gid=0",
-            "mode": "list",
-            "cachedResultName": "工作表1",
-            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gedwZokI7IDF_FYgVb_wMECe75OryWL8pn3WEYsNzgQ/edit#gid=0"
-          },
-          "columns": {
-            "mappingMode": "defineBelow",
-            "value": {
-              "calendar_id": "={{ $json.id }}",
-              "已繳款": "false",
-              "年月期別": "={{ $('統整').item.json.payment_due_date.toDateTime().format('yyyy-MM') }}",
-              "金額": "={{ $('統整').item.json.payment_amount }}",
-              "最低應繳金額": "={{ $('統整').item.json.minimum_payment }}",
-              "email_id": "={{ $('統整').item.json.email_id }}",
-              "銀行": "={{ $('統整').item.json.bank }}",
-              "n8n_id": "={{ $('統整').item.json.payment_due_date.toDateTime().format('yyyy-MM').concat($('統整').item.json.bank).hash() }}"
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "n8n_id",
+              "displayName": "n8n_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
             },
-            "matchingColumns": [],
-            "schema": [
-              {
-                "id": "n8n_id",
-                "displayName": "n8n_id",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true,
-                "removed": false
-              },
-              {
-                "id": "年月期別",
-                "displayName": "年月期別",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "銀行",
-                "displayName": "銀行",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "金額",
-                "displayName": "金額",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "最低應繳金額",
-                "displayName": "最低應繳金額",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "email_id",
-                "displayName": "email_id",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "calendar_id",
-                "displayName": "calendar_id",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "已繳款",
-                "displayName": "已繳款",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              }
-            ],
-            "attemptToConvertTypes": false,
-            "convertFieldsToString": false
-          },
-          "options": {}
-        },
-        "type": "n8n-nodes-base.googleSheets",
-        "typeVersion": 4.5,
-        "position": [
-          -40,
-          -740
-        ],
-        "id": "b4ddcdf1-1762-4c8e-8693-3554c4336948",
-        "name": "Google Sheets",
-        "credentials": {
-          "googleSheetsOAuth2Api": {
-            "id": "tufEzuSTEveV3tuA",
-            "name": "(Personal)Google Sheets account"
-          }
-        }
-      },
-      {
-        "parameters": {
-          "assignments": {
-            "assignments": [
-              {
-                "id": "5d1636d2-7a91-4f8b-8bcd-10e2ca13af5c",
-                "name": "payment_due_date",
-                "value": "={{ \n  $json[\"html\"].match(/<b><font color=\"#00283d\">繳款截止日<\\/font><\\/b>[\\s\\S]*?<span[^>]*>([^<]+)<\\/span>/)\n    ? (([roc, mth, day]) => `${parseInt(roc,10)+1911}-${mth}-${day}`)(\n        $json[\"html\"].match(/<b><font color=\"#00283d\">繳款截止日<\\/font><\\/b>[\\s\\S]*?<span[^>]*>([^<]+)<\\/span>/)[1].trim().split('/')\n      )\n    : null\n}}",
-                "type": "string"
-              },
-              {
-                "id": "b9218689-e079-4cb5-87e9-17b10e4cf880",
-                "name": "payment_amount",
-                "value": "={{ $json[\"html\"].match(/<b><font color=\"#00283d\">本期應繳總金額<\\/font><\\/b>[\\s\\S]*?<span[^>]*>([^<]+)<\\/span>/)?.[1].trim().replace(/,/g, \"\") }}",
-                "type": "number"
-              },
-              {
-                "id": "2e077de1-2d14-4993-aed9-94838058c1fb",
-                "name": "minimum_payment",
-                "value": "={{ $json[\"html\"].match(/<b><font color=\"#00283d\">最低應繳總金額<\\/font><\\/b>[\\s\\S]*?<span[^>]*>([^<]+)<\\/span>/)?.[1].trim().replace(/,/g, \"\") }}",
-                "type": "number"
-              },
-              {
-                "id": "7c1cc924-53d9-41a9-a3d8-2405cd8152d9",
-                "name": "email_id",
-                "value": "={{ $('國泰信').item.json.id }}",
-                "type": "string"
-              },
-              {
-                "id": "a813f49f-c6fa-4a2d-8b50-899a6c77e0c4",
-                "name": "email_threads_id",
-                "value": "={{ $('國泰信').item.json.threadId }}",
-                "type": "string"
-              },
-              {
-                "id": "1b6c6bc1-1677-41d1-9844-6d8e2d713d8a",
-                "name": "email_subject",
-                "value": "={{ $('國泰信').item.json.subject }}",
-                "type": "string"
-              },
-              {
-                "id": "df0f1593-43e7-4bbf-b2db-d460a7157943",
-                "name": "bank",
-                "value": "國泰銀行",
-                "type": "string"
-              }
-            ]
-          },
-          "options": {}
-        },
-        "type": "n8n-nodes-base.set",
-        "typeVersion": 3.4,
-        "position": [
-          -680,
-          -1080
-        ],
-        "id": "22a37771-b6b1-43b4-b2ea-8229c0987d3c",
-        "name": "國泰_取得帳單應繳金額日期"
-      },
-      {
-        "parameters": {
-          "assignments": {
-            "assignments": [
-              {
-                "id": "5d1636d2-7a91-4f8b-8bcd-10e2ca13af5c",
-                "name": "payment_due_date",
-                "value": "={{ $json[\"text\"].match(/繳款截止日\\s(\\d{4}\\/\\d{2}\\/\\d{2})/)[1].replace(/\\//g, \"-\") }}",
-                "type": "string"
-              },
-              {
-                "id": "b9218689-e079-4cb5-87e9-17b10e4cf880",
-                "name": "payment_amount",
-                "value": "={{ parseInt($json[\"text\"].match(/本期應繳總金額\\s(\\d{1,3}(?:,\\d{3})*)/)[1].replace(/,/g, \"\"))\n }}",
-                "type": "number"
-              },
-              {
-                "id": "2e077de1-2d14-4993-aed9-94838058c1fb",
-                "name": "minimum_payment",
-                "value": "={{ parseInt($json[\"text\"].match(/本期最低應繳金額\\s(\\d{1,3}(?:,\\d{3})*)/)[1].replace(/,/g, \"\"))\n }}",
-                "type": "number"
-              },
-              {
-                "id": "7c1cc924-53d9-41a9-a3d8-2405cd8152d9",
-                "name": "email_id",
-                "value": "={{ $('永豐信').item.json.id }}",
-                "type": "string"
-              },
-              {
-                "id": "a813f49f-c6fa-4a2d-8b50-899a6c77e0c4",
-                "name": "email_threads_id",
-                "value": "={{ $('永豐信').item.json.threadId }}",
-                "type": "string"
-              },
-              {
-                "id": "1b6c6bc1-1677-41d1-9844-6d8e2d713d8a",
-                "name": "email_subject",
-                "value": "={{ $('永豐信').item.json.subject }}",
-                "type": "string"
-              },
-              {
-                "id": "e3cfb218-f15f-4724-a0e5-32aa3ca36cfb",
-                "name": "bank",
-                "value": "永豐銀行",
-                "type": "string"
-              }
-            ]
-          },
-          "options": {}
-        },
-        "type": "n8n-nodes-base.set",
-        "typeVersion": 3.4,
-        "position": [
-          -680,
-          -1240
-        ],
-        "id": "d5f7eee8-bcb2-49eb-b309-13187e0c7274",
-        "name": "永豐_取得帳單應繳金額日期"
-      },
-      {
-        "parameters": {
-          "assignments": {
-            "assignments": [
-              {
-                "id": "5d1636d2-7a91-4f8b-8bcd-10e2ca13af5c",
-                "name": "payment_due_date",
-                "value": "={{ $json.payment_due_date }}",
-                "type": "string"
-              },
-              {
-                "id": "b9218689-e079-4cb5-87e9-17b10e4cf880",
-                "name": "payment_amount",
-                "value": "={{ $json.payment_amount }}",
-                "type": "number"
-              },
-              {
-                "id": "2e077de1-2d14-4993-aed9-94838058c1fb",
-                "name": "minimum_payment",
-                "value": "={{ $json.minimum_payment }}",
-                "type": "number"
-              },
-              {
-                "id": "7c1cc924-53d9-41a9-a3d8-2405cd8152d9",
-                "name": "email_id",
-                "value": "={{ $json.email_id }}",
-                "type": "string"
-              },
-              {
-                "id": "a813f49f-c6fa-4a2d-8b50-899a6c77e0c4",
-                "name": "email_threads_id",
-                "value": "={{ $json.email_threads_id }}",
-                "type": "string"
-              },
-              {
-                "id": "1b6c6bc1-1677-41d1-9844-6d8e2d713d8a",
-                "name": "email_subject",
-                "value": "={{ $json.email_subject }}",
-                "type": "string"
-              },
-              {
-                "id": "df0f1593-43e7-4bbf-b2db-d460a7157943",
-                "name": "bank",
-                "value": "={{ $json.bank }}",
-                "type": "string"
-              },
-              {
-                "id": "344eea07-d0ac-4288-a00e-54e1aeb69d1e",
-                "name": "click_link",
-                "value": "=https://darrellinfo-n8n.hnd1.zeabur.app/webhook-test/a9244308-8488-49ff-92fc-3bb042580bfa?id+{{ $json.email_id }}",
-                "type": "string"
-              }
-            ]
-          },
-          "options": {}
-        },
-        "type": "n8n-nodes-base.set",
-        "typeVersion": 3.4,
-        "position": [
-          -440,
-          -740
-        ],
-        "id": "26fc148a-184b-4cfc-9590-21030745e254",
-        "name": "統整"
-      },
-      {
-        "parameters": {
-          "assignments": {
-            "assignments": [
-              {
-                "id": "5d1636d2-7a91-4f8b-8bcd-10e2ca13af5c",
-                "name": "payment_due_date",
-                "value": "={{ \n  (() => {\n    const m = $json[\"html\"].match(/form-2\\.gif\"[^>]*>[\\s\\S]*?<div[^>]*>([^<]+)<\\/div>/);\n    if(m){\n      const dateStr = m[1].replace(/&#47;/g, '/').trim();\n      const [roc, mon, day] = dateStr.split('/');\n      return `${parseInt(roc,10)+1911}-${mon}-${day}`;\n    }\n    return null;\n  })()\n}}",
-                "type": "string"
-              },
-              {
-                "id": "b9218689-e079-4cb5-87e9-17b10e4cf880",
-                "name": "payment_amount",
-                "value": "={{ \n  $json[\"html\"].match(/<img[^>]*src=\"https:\\/\\/mr1\\.estats\\.ctbcbank\\.com\\/images\\/CreditCard\\/202501\\/01\\/form-3\\.gif\"[^>]*>[\\s\\S]*?<div[^>]*>([^<]+)<\\/div>/)\n    ? $json[\"html\"].match(/<img[^>]*src=\"https:\\/\\/mr1\\.estats\\.ctbcbank\\.com\\/images\\/CreditCard\\/202501\\/01\\/form-3\\.gif\"[^>]*>[\\s\\S]*?<div[^>]*>([^<]+)<\\/div>/)[1].trim().replace(/,/g, \"\")\n    : null\n}}",
-                "type": "number"
-              },
-              {
-                "id": "2e077de1-2d14-4993-aed9-94838058c1fb",
-                "name": "minimum_payment",
-                "value": "={{ \n  $json[\"html\"].match(/<img[^>]*src=\"https:\\/\\/mr1\\.estats\\.ctbcbank\\.com\\/images\\/CreditCard\\/202501\\/01\\/form-4\\.gif\"[^>]*>[\\s\\S]*?<div[^>]*>([^<]+)<\\/div>/)\n    ? $json[\"html\"].match(/<img[^>]*src=\"https:\\/\\/mr1\\.estats\\.ctbcbank\\.com\\/images\\/CreditCard\\/202501\\/01\\/form-4\\.gif\"[^>]*>[\\s\\S]*?<div[^>]*>([^<]+)<\\/div>/)[1].trim().replace(/,/g, \"\")\n    : null\n}}",
-                "type": "number"
-              },
-              {
-                "id": "7c1cc924-53d9-41a9-a3d8-2405cd8152d9",
-                "name": "email_id",
-                "value": "={{ $json.id }}",
-                "type": "string"
-              },
-              {
-                "id": "a813f49f-c6fa-4a2d-8b50-899a6c77e0c4",
-                "name": "email_threads_id",
-                "value": "={{ $json.threadId }}",
-                "type": "string"
-              },
-              {
-                "id": "1b6c6bc1-1677-41d1-9844-6d8e2d713d8a",
-                "name": "email_subject",
-                "value": "={{ $json.subject }}",
-                "type": "string"
-              },
-              {
-                "id": "df0f1593-43e7-4bbf-b2db-d460a7157943",
-                "name": "bank",
-                "value": "中國信託",
-                "type": "string"
-              }
-            ]
-          },
-          "options": {}
-        },
-        "type": "n8n-nodes-base.set",
-        "typeVersion": 3.4,
-        "position": [
-          -680,
-          -900
-        ],
-        "id": "031f0288-0d1d-41e5-bf78-2c28c149bed5",
-        "name": "中信_取得帳單應繳金額日期"
-      },
-      {
-        "parameters": {
-          "operation": "pdf",
-          "binaryPropertyName": "data_0",
-          "options": {
-            "joinPages": true,
-            "maxPages": 1,
-            "password": ""
-          }
-        },
-        "type": "n8n-nodes-base.extractFromFile",
-        "typeVersion": 1,
-        "position": [
-          -880,
-          -740
-        ],
-        "id": "82869b68-3062-4478-8544-d1729c075388",
-        "name": "富邦PDF"
-      },
-      {
-        "parameters": {
-          "assignments": {
-            "assignments": [
-              {
-                "id": "5d1636d2-7a91-4f8b-8bcd-10e2ca13af5c",
-                "name": "payment_due_date",
-                "value": "={{ \n  (() => {\n    const dates = $json[\"text\"].match(/\\d{3}\\/\\d{2}\\/\\d{2}/g);\n    if(dates && dates.length >= 2){\n      const [roc, mon, day] = dates[1].split('/');\n      return `${parseInt(roc,10)+1911}-${mon}-${day}`;\n    }\n    return null;\n  })()\n}}",
-                "type": "string"
-              },
-              {
-                "id": "b9218689-e079-4cb5-87e9-17b10e4cf880",
-                "name": "payment_amount",
-                "value": "={{ \n  $json[\"text\"].match(/本期應繳金額\\s+([\\d,]+)/)?.[1].replace(/,/g, \"\")\n}}",
-                "type": "number"
-              },
-              {
-                "id": "2e077de1-2d14-4993-aed9-94838058c1fb",
-                "name": "minimum_payment",
-                "value": "={{ \n  $json[\"text\"].match(/最低應繳金額[\\s\\S]*?\\n([\\d,]+)/)?.[1].replace(/,/g, \"\")\n}}",
-                "type": "number"
-              },
-              {
-                "id": "7c1cc924-53d9-41a9-a3d8-2405cd8152d9",
-                "name": "email_id",
-                "value": "={{ $('富邦信').item.json.id }}",
-                "type": "string"
-              },
-              {
-                "id": "a813f49f-c6fa-4a2d-8b50-899a6c77e0c4",
-                "name": "email_threads_id",
-                "value": "={{ $('富邦信').item.json.threadId }}",
-                "type": "string"
-              },
-              {
-                "id": "1b6c6bc1-1677-41d1-9844-6d8e2d713d8a",
-                "name": "email_subject",
-                "value": "={{ $('富邦信').item.json.subject }}",
-                "type": "string"
-              },
-              {
-                "id": "df0f1593-43e7-4bbf-b2db-d460a7157943",
-                "name": "bank",
-                "value": "富邦銀行",
-                "type": "string"
-              }
-            ]
-          },
-          "options": {}
-        },
-        "type": "n8n-nodes-base.set",
-        "typeVersion": 3.4,
-        "position": [
-          -680,
-          -740
-        ],
-        "id": "f5ea0d86-1f69-44bd-ad1d-aaabade0c9a7",
-        "name": "富邦_取得帳單應繳金額日期"
-      },
-      {
-        "parameters": {
-          "operation": "pdf",
-          "binaryPropertyName": "data_0",
-          "options": {
-            "joinPages": true,
-            "maxPages": 3
-          }
-        },
-        "type": "n8n-nodes-base.extractFromFile",
-        "typeVersion": 1,
-        "position": [
-          -880,
-          -580
-        ],
-        "id": "3487dd0e-cf0f-4489-b1a7-90832c4bc109",
-        "name": "玉山PDF"
-      },
-      {
-        "parameters": {
-          "assignments": {
-            "assignments": [
-              {
-                "id": "5d1636d2-7a91-4f8b-8bcd-10e2ca13af5c",
-                "name": "payment_due_date",
-                "value": "={{ \n  (() => {\n    const m = $json[\"text\"].match(/(\\d{3}\\/\\d{2}\\/\\d{2})/);\n    if(m){\n      const [roc, mon, day] = m[1].split('/');\n      return `${parseInt(roc,10)+1911}-${mon}-${day}`;\n    }\n    return null;\n  })()\n}}",
-                "type": "string"
-              },
-              {
-                "id": "b9218689-e079-4cb5-87e9-17b10e4cf880",
-                "name": "payment_amount",
-                "value": "={{ \n  $json[\"text\"].match(/TWD\\s+\\S+\\s+\\S+\\s+(\\S+)\\s+(\\S+)/)\n    ? $json[\"text\"].match(/TWD\\s+\\S+\\s+\\S+\\s+(\\S+)\\s+(\\S+)/)[1].replace(/,/g, \"\")\n    : null\n}}",
-                "type": "number"
-              },
-              {
-                "id": "2e077de1-2d14-4993-aed9-94838058c1fb",
-                "name": "minimum_payment",
-                "value": "={{ \n  $json[\"text\"].match(/TWD\\s+\\S+\\s+\\S+\\s+(\\S+)\\s+(\\S+)/)\n    ? $json[\"text\"].match(/TWD\\s+\\S+\\s+\\S+\\s+(\\S+)\\s+(\\S+)/)[2].replace(/,/g, \"\")\n    : null\n}}",
-                "type": "number"
-              },
-              {
-                "id": "7c1cc924-53d9-41a9-a3d8-2405cd8152d9",
-                "name": "email_id",
-                "value": "={{ $('玉山信').item.json.id }}",
-                "type": "string"
-              },
-              {
-                "id": "a813f49f-c6fa-4a2d-8b50-899a6c77e0c4",
-                "name": "email_threads_id",
-                "value": "={{ $('玉山信').item.json.threadId }}",
-                "type": "string"
-              },
-              {
-                "id": "1b6c6bc1-1677-41d1-9844-6d8e2d713d8a",
-                "name": "email_subject",
-                "value": "={{ $('玉山信').item.json.subject }}",
-                "type": "string"
-              },
-              {
-                "id": "df0f1593-43e7-4bbf-b2db-d460a7157943",
-                "name": "bank",
-                "value": "玉山銀行",
-                "type": "string"
-              }
-            ]
-          },
-          "options": {}
-        },
-        "type": "n8n-nodes-base.set",
-        "typeVersion": 3.4,
-        "position": [
-          -680,
-          -580
-        ],
-        "id": "72d71707-97a0-4ad8-98c0-8bf9d2ee7fbc",
-        "name": "玉山_取得帳單應繳金額日期"
-      },
-      {
-        "parameters": {
-          "operation": "pdf",
-          "binaryPropertyName": "data_0",
-          "options": {
-            "joinPages": true,
-            "maxPages": 3,
-            "password": ""
-          }
-        },
-        "type": "n8n-nodes-base.extractFromFile",
-        "typeVersion": 1,
-        "position": [
-          -880,
-          -420
-        ],
-        "id": "f2e0e244-03ad-41cf-9152-0cb94124a832",
-        "name": "星展PDF"
-      },
-      {
-        "parameters": {
-          "assignments": {
-            "assignments": [
-              {
-                "id": "5d1636d2-7a91-4f8b-8bcd-10e2ca13af5c",
-                "name": "payment_due_date",
-                "value": "={{ \n  (() => {\n    const m = $json[\"text\"].match(/繳交截止日：(\\d{4})年(\\d{2})月(\\d{2})日/);\n    return m ? `${m[1]}-${m[2]}-${m[3]}` : null;\n  })()\n}}",
-                "type": "string"
-              },
-              {
-                "id": "b9218689-e079-4cb5-87e9-17b10e4cf880",
-                "name": "payment_amount",
-                "value": "={{ \n  $json[\"text\"].match(/應繳總金額\\s+([\\d,]+)/)?.[1].replace(/,/g, \"\")\n}}",
-                "type": "number"
-              },
-              {
-                "id": "2e077de1-2d14-4993-aed9-94838058c1fb",
-                "name": "minimum_payment",
-                "value": "={{ \n  $json[\"text\"].match(/最低應繳金額\\s+([\\d,]+)/)?.[1].replace(/,/g, \"\")\n}}",
-                "type": "number"
-              },
-              {
-                "id": "7c1cc924-53d9-41a9-a3d8-2405cd8152d9",
-                "name": "email_id",
-                "value": "={{ $('星展信').item.json.id }}",
-                "type": "string"
-              },
-              {
-                "id": "a813f49f-c6fa-4a2d-8b50-899a6c77e0c4",
-                "name": "email_threads_id",
-                "value": "={{ $('星展信').item.json.threadId }}",
-                "type": "string"
-              },
-              {
-                "id": "1b6c6bc1-1677-41d1-9844-6d8e2d713d8a",
-                "name": "email_subject",
-                "value": "={{ $('星展信').item.json.subject }}",
-                "type": "string"
-              },
-              {
-                "id": "df0f1593-43e7-4bbf-b2db-d460a7157943",
-                "name": "bank",
-                "value": "星展銀行",
-                "type": "string"
-              }
-            ]
-          },
-          "options": {}
-        },
-        "type": "n8n-nodes-base.set",
-        "typeVersion": 3.4,
-        "position": [
-          -680,
-          -420
-        ],
-        "id": "1347a604-0cb3-4377-8a9d-5462000a5d90",
-        "name": "星展_取得帳單應繳金額日期"
-      },
-      {
-        "parameters": {
-          "operation": "pdf",
-          "binaryPropertyName": "data_0",
-          "options": {
-            "joinPages": true,
-            "maxPages": 1,
-            "password": ""
-          }
-        },
-        "type": "n8n-nodes-base.extractFromFile",
-        "typeVersion": 1,
-        "position": [
-          -880,
-          -240
-        ],
-        "id": "4e10f061-d666-4d4c-b025-8deae4ce7a7a",
-        "name": "聯邦PDF"
-      },
-      {
-        "parameters": {
-          "assignments": {
-            "assignments": [
-              {
-                "id": "5d1636d2-7a91-4f8b-8bcd-10e2ca13af5c",
-                "name": "payment_due_date",
-                "value": "={{ \n  (() => {\n    const m = $json[\"text\"].match(/(\\d{3}\\/\\d{2}\\/\\d{2})/);\n    if(m){\n      const [roc, mon, day] = m[1].split('/');\n      return `${parseInt(roc,10)+1911}-${mon}-${day}`;\n    }\n    return null;\n  })()\n}}",
-                "type": "string"
-              },
-              {
-                "id": "b9218689-e079-4cb5-87e9-17b10e4cf880",
-                "name": "payment_amount",
-                "value": "={{ \n  (() => {\n    const re = /([\\d,]+)\\s*\\n\\s*([\\d,]+)\\s*\\n\\s*\\d{3}\\/\\d{2}\\/\\d{2}\\s*\\n\\s*\\d{3}\\/\\d{2}\\/\\d{2}\\s*\\n\\s*([\\d,]+)\\s*\\n\\s*([\\d,]+)\\s*\\n\\s*([\\d,]+)/;\n    const m = $json[\"text\"].match(re);\n    return m ? m[5].replace(/,/g, \"\") : null;\n  })()\n}}",
-                "type": "number"
-              },
-              {
-                "id": "2e077de1-2d14-4993-aed9-94838058c1fb",
-                "name": "minimum_payment",
-                "value": "={{ \n  (() => {\n    const m = $json[\"text\"].match(/^\\s*([\\d,]+)\\s*$/m);\n    return m ? m[1].replace(/,/g, \"\") : null;\n  })()\n}}",
-                "type": "number"
-              },
-              {
-                "id": "7c1cc924-53d9-41a9-a3d8-2405cd8152d9",
-                "name": "email_id",
-                "value": "={{ $('聯邦信').item.json.id }}",
-                "type": "string"
-              },
-              {
-                "id": "a813f49f-c6fa-4a2d-8b50-899a6c77e0c4",
-                "name": "email_threads_id",
-                "value": "={{ $('聯邦信').item.json.threadId }}",
-                "type": "string"
-              },
-              {
-                "id": "1b6c6bc1-1677-41d1-9844-6d8e2d713d8a",
-                "name": "email_subject",
-                "value": "={{ $('聯邦信').item.json.subject }}",
-                "type": "string"
-              },
-              {
-                "id": "df0f1593-43e7-4bbf-b2db-d460a7157943",
-                "name": "bank",
-                "value": "聯邦銀行",
-                "type": "string"
-              }
-            ]
-          },
-          "options": {}
-        },
-        "type": "n8n-nodes-base.set",
-        "typeVersion": 3.4,
-        "position": [
-          -680,
-          -240
-        ],
-        "id": "28bf9f11-09e4-4409-bcde-6f7d77ead16a",
-        "name": "聯邦_取得帳單應繳金額日期"
-      },
-      {
-        "parameters": {
-          "operation": "pdf",
-          "binaryPropertyName": "data_0",
-          "options": {
-            "joinPages": true,
-            "maxPages": 1,
-            "password": ""
-          }
-        },
-        "type": "n8n-nodes-base.extractFromFile",
-        "typeVersion": 1,
-        "position": [
-          -880,
-          -80
-        ],
-        "id": "e40f3f1b-04cf-4e4a-96b2-3ab9e61eb4e2",
-        "name": "台新PDF"
-      },
-      {
-        "parameters": {
-          "assignments": {
-            "assignments": [
-              {
-                "id": "5d1636d2-7a91-4f8b-8bcd-10e2ca13af5c",
-                "name": "payment_due_date",
-                "value": "={{ (() => { const m = $json[\"text\"].match(/繳款截止日\\s+(\\d{3})\\/(\\d{2})\\/(\\d{2})/); return m ? `${parseInt(m[1],10)+1911}-${m[2]}-${m[3]}` : null; })() }}",
-                "type": "string"
-              },
-              {
-                "id": "b9218689-e079-4cb5-87e9-17b10e4cf880",
-                "name": "payment_amount",
-                "value": "={{ $json[\"text\"].match(/本期累計應繳金額\\s+([\\d,]+)/)?.[1].replace(/,/g, \"\") }}",
-                "type": "number"
-              },
-              {
-                "id": "2e077de1-2d14-4993-aed9-94838058c1fb",
-                "name": "minimum_payment",
-                "value": "={{ $json[\"text\"].match(/本期最低應繳金額\\s+([\\d,]+)/)?.[1].replace(/,/g, \"\") }}",
-                "type": "number"
-              },
-              {
-                "id": "7c1cc924-53d9-41a9-a3d8-2405cd8152d9",
-                "name": "email_id",
-                "value": "={{ $('台新信').item.json.id }}",
-                "type": "string"
-              },
-              {
-                "id": "a813f49f-c6fa-4a2d-8b50-899a6c77e0c4",
-                "name": "email_threads_id",
-                "value": "={{ $('台新信').item.json.threadId }}",
-                "type": "string"
-              },
-              {
-                "id": "1b6c6bc1-1677-41d1-9844-6d8e2d713d8a",
-                "name": "email_subject",
-                "value": "={{ $('台新信').item.json.subject }}",
-                "type": "string"
-              },
-              {
-                "id": "df0f1593-43e7-4bbf-b2db-d460a7157943",
-                "name": "bank",
-                "value": "台新銀行",
-                "type": "string"
-              }
-            ]
-          },
-          "options": {}
-        },
-        "type": "n8n-nodes-base.set",
-        "typeVersion": 3.4,
-        "position": [
-          -680,
-          -80
-        ],
-        "id": "b9ba4866-4237-4725-bf96-512073c25164",
-        "name": "台新_取得帳單應繳金額日期"
-      },
-      {
-        "parameters": {
-          "path": "darrell_demo_creditcard_pay_update_path",
-          "options": {}
-        },
-        "type": "n8n-nodes-base.webhook",
-        "typeVersion": 2,
-        "position": [
-          -1120,
-          260
-        ],
-        "id": "fe79cee4-15f4-4785-ac75-2658f3a47912",
-        "name": "Webhook",
-        "webhookId": "3516a92a-a24a-42eb-be10-121b8c797846"
-      },
-      {
-        "parameters": {
-          "operation": "update",
-          "calendar": {
-            "__rl": true,
-            "value": "4a374cec6eb01b99adac52078dd335c7e3a90236b233c417fee59773485a93c3@group.calendar.google.com",
-            "mode": "list",
-            "cachedResultName": "信用卡繳費"
-          },
-          "eventId": "={{ $json.id }}",
-          "useDefaultReminders": false,
-          "updateFields": {
-            "summary": "=[已繳費]{{ $json.summary }}"
-          }
-        },
-        "type": "n8n-nodes-base.googleCalendar",
-        "typeVersion": 1.3,
-        "position": [
-          -660,
-          260
-        ],
-        "id": "306d739b-1250-460b-b32c-08ded4220fab",
-        "name": "更新繳費_Google Calendar",
-        "credentials": {
-          "googleCalendarOAuth2Api": {
-            "id": "jlYJABKTqgAFRLu1",
-            "name": "(Personal)Google Calendar"
-          }
-        }
-      },
-      {
-        "parameters": {
-          "operation": "get",
-          "calendar": {
-            "__rl": true,
-            "value": "4a374cec6eb01b99adac52078dd335c7e3a90236b233c417fee59773485a93c3@group.calendar.google.com",
-            "mode": "list",
-            "cachedResultName": "信用卡繳費"
-          },
-          "eventId": "={{ $json.query.calendar_id }}",
-          "options": {}
-        },
-        "type": "n8n-nodes-base.googleCalendar",
-        "typeVersion": 1.3,
-        "position": [
-          -860,
-          260
-        ],
-        "id": "19d0244a-b6e1-45c9-bd6a-8f82a396f7e9",
-        "name": "取得日曆_Google Calendar",
-        "credentials": {
-          "googleCalendarOAuth2Api": {
-            "id": "jlYJABKTqgAFRLu1",
-            "name": "(Personal)Google Calendar"
-          }
-        }
-      },
-      {
-        "parameters": {
-          "operation": "update",
-          "documentId": {
-            "__rl": true,
-            "value": "1gedwZokI7IDF_FYgVb_wMECe75OryWL8pn3WEYsNzgQ",
-            "mode": "list",
-            "cachedResultName": "n8n-信用卡繳款提醒",
-            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gedwZokI7IDF_FYgVb_wMECe75OryWL8pn3WEYsNzgQ/edit?usp=drivesdk"
-          },
-          "sheetName": {
-            "__rl": true,
-            "value": "gid=0",
-            "mode": "list",
-            "cachedResultName": "工作表1",
-            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gedwZokI7IDF_FYgVb_wMECe75OryWL8pn3WEYsNzgQ/edit#gid=0"
-          },
-          "columns": {
-            "mappingMode": "defineBelow",
-            "value": {
-              "calendar_id": "={{ $json.id }}",
-              "已繳款": "true"
+            {
+              "id": "年月期別",
+              "displayName": "年月期別",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
             },
-            "matchingColumns": [
-              "calendar_id"
-            ],
-            "schema": [
-              {
-                "id": "n8n_id",
-                "displayName": "n8n_id",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true,
-                "removed": true
-              },
-              {
-                "id": "年月期別",
-                "displayName": "年月期別",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true,
-                "removed": true
-              },
-              {
-                "id": "銀行",
-                "displayName": "銀行",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true,
-                "removed": true
-              },
-              {
-                "id": "金額",
-                "displayName": "金額",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true,
-                "removed": true
-              },
-              {
-                "id": "最低應繳金額",
-                "displayName": "最低應繳金額",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true,
-                "removed": true
-              },
-              {
-                "id": "email_id",
-                "displayName": "email_id",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true,
-                "removed": true
-              },
-              {
-                "id": "calendar_id",
-                "displayName": "calendar_id",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true,
-                "removed": false
-              },
-              {
-                "id": "已繳款",
-                "displayName": "已繳款",
-                "required": false,
-                "defaultMatch": false,
-                "display": true,
-                "type": "string",
-                "canBeUsedToMatch": true
-              }
-            ],
-            "attemptToConvertTypes": false,
-            "convertFieldsToString": false
-          },
-          "options": {}
+            {
+              "id": "銀行",
+              "displayName": "銀行",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "金額",
+              "displayName": "金額",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "最低應繳金額",
+              "displayName": "最低應繳金額",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "email_id",
+              "displayName": "email_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "calendar_id",
+              "displayName": "calendar_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "已繳款",
+              "displayName": "已繳款",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
         },
-        "type": "n8n-nodes-base.googleSheets",
-        "typeVersion": 4.5,
-        "position": [
-          -440,
-          260
-        ],
-        "id": "7e06a2b3-6dbf-4484-b5eb-eb41cd394ce8",
-        "name": "更新繳費狀態 Google Sheets",
-        "credentials": {
-          "googleSheetsOAuth2Api": {
-            "id": "tufEzuSTEveV3tuA",
-            "name": "(Personal)Google Sheets account"
-          }
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -40,
+        -740
+      ],
+      "id": "b4ddcdf1-1762-4c8e-8693-3554c4336948",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "tufEzuSTEveV3tuA",
+          "name": "(Personal)Google Sheets account"
         }
-      },
-      {
-        "parameters": {
-          "pollTimes": {
-            "item": [
-              {
-                "mode": "custom",
-                "cronExpression": "30 55 2 * * *"
-              }
-            ]
-          },
-          "simple": false,
-          "filters": {
-            "q": "from:(newebill.banksinopac.com.tw) 永豐銀行信用卡 電子帳單通知"
-          },
-          "options": {
-            "dataPropertyAttachmentsPrefixName": "data_",
-            "downloadAttachments": true
-          }
-        },
-        "type": "n8n-nodes-base.gmailTrigger",
-        "typeVersion": 1.2,
-        "position": [
-          -1100,
-          -1240
-        ],
-        "id": "c0399b68-dec0-4f8d-85b1-8240bda30360",
-        "name": "永豐信",
-        "notesInFlow": true,
-        "credentials": {
-          "gmailOAuth2": {
-            "id": "GThDvv7aRdBQyg1e",
-            "name": "Gmail account personal"
-          }
-        },
-        "notes": "Email coming from sinopac creditcard email"
-      },
-      {
-        "parameters": {
-          "pollTimes": {
-            "item": [
-              {
-                "mode": "custom",
-                "cronExpression": "30 55 2 * * *"
-              }
-            ]
-          },
-          "simple": false,
-          "filters": {
-            "q": "from:(service@pxbillrc01.cathaybk.com.tw) 國泰世華銀行 月電子帳單"
-          },
-          "options": {
-            "dataPropertyAttachmentsPrefixName": "data_",
-            "downloadAttachments": true
-          }
-        },
-        "type": "n8n-nodes-base.gmailTrigger",
-        "typeVersion": 1.2,
-        "position": [
-          -1100,
-          -1080
-        ],
-        "id": "1dd58e52-b62d-4ceb-9399-66e1309c9536",
-        "name": "國泰信",
-        "credentials": {
-          "gmailOAuth2": {
-            "id": "GThDvv7aRdBQyg1e",
-            "name": "Gmail account personal"
-          }
-        }
-      },
-      {
-        "parameters": {
-          "pollTimes": {
-            "item": [
-              {
-                "mode": "custom",
-                "cronExpression": "30 55 2 * * *"
-              }
-            ]
-          },
-          "simple": false,
-          "filters": {
-            "q": "from:(ebill@estats.ctbcbank.com) 中國信託信用卡電子帳單"
-          },
-          "options": {
-            "dataPropertyAttachmentsPrefixName": "data_",
-            "downloadAttachments": true
-          }
-        },
-        "type": "n8n-nodes-base.gmailTrigger",
-        "typeVersion": 1.2,
-        "position": [
-          -1100,
-          -900
-        ],
-        "id": "4094db92-e1df-48e0-9b56-1f9596053f01",
-        "name": "中信信",
-        "credentials": {
-          "gmailOAuth2": {
-            "id": "GThDvv7aRdBQyg1e",
-            "name": "Gmail account personal"
-          }
-        }
-      },
-      {
-        "parameters": {
-          "pollTimes": {
-            "item": [
-              {
-                "mode": "custom",
-                "cronExpression": "30 55 2 * * *"
-              }
-            ]
-          },
-          "simple": false,
-          "filters": {
-            "q": "from:(rs@cf.taipeifubon.com.tw) 台北富邦銀行 信用卡帳單"
-          },
-          "options": {
-            "dataPropertyAttachmentsPrefixName": "data_",
-            "downloadAttachments": true
-          }
-        },
-        "type": "n8n-nodes-base.gmailTrigger",
-        "typeVersion": 1.2,
-        "position": [
-          -1100,
-          -740
-        ],
-        "id": "3bdb8742-0653-4b24-9090-eb0d25d6e3e0",
-        "name": "富邦信",
-        "credentials": {
-          "gmailOAuth2": {
-            "id": "GThDvv7aRdBQyg1e",
-            "name": "Gmail account personal"
-          }
-        }
-      },
-      {
-        "parameters": {
-          "pollTimes": {
-            "item": [
-              {
-                "mode": "custom",
-                "cronExpression": "30 55 2 * * *"
-              }
-            ]
-          },
-          "simple": false,
-          "filters": {
-            "q": "from:(estatement@esunbank.com) 玉山銀行 信用卡電子帳單"
-          },
-          "options": {
-            "dataPropertyAttachmentsPrefixName": "data_",
-            "downloadAttachments": true
-          }
-        },
-        "type": "n8n-nodes-base.gmailTrigger",
-        "typeVersion": 1.2,
-        "position": [
-          -1100,
-          -580
-        ],
-        "id": "75479755-9108-40ac-934e-bb05c680fbb1",
-        "name": "玉山信",
-        "credentials": {
-          "gmailOAuth2": {
-            "id": "GThDvv7aRdBQyg1e",
-            "name": "Gmail account personal"
-          }
-        }
-      },
-      {
-        "parameters": {
-          "pollTimes": {
-            "item": [
-              {
-                "mode": "custom",
-                "cronExpression": "30 55 2 * * *"
-              }
-            ]
-          },
-          "simple": false,
-          "filters": {
-            "q": "from:(eservicetw@dbs.com) 星展銀行 信用卡電子對帳單"
-          },
-          "options": {
-            "dataPropertyAttachmentsPrefixName": "data_",
-            "downloadAttachments": true
-          }
-        },
-        "type": "n8n-nodes-base.gmailTrigger",
-        "typeVersion": 1.2,
-        "position": [
-          -1100,
-          -420
-        ],
-        "id": "8979b90e-6af3-44a8-ba31-6dae6263cfce",
-        "name": "星展信",
-        "credentials": {
-          "gmailOAuth2": {
-            "id": "GThDvv7aRdBQyg1e",
-            "name": "Gmail account personal"
-          }
-        }
-      },
-      {
-        "parameters": {
-          "pollTimes": {
-            "item": [
-              {
-                "mode": "custom",
-                "cronExpression": "30 55 2 * * *"
-              }
-            ]
-          },
-          "simple": false,
-          "filters": {
-            "q": "from:(聯邦銀行信用卡) 聯邦銀行信用卡電子帳單(年 月)"
-          },
-          "options": {
-            "dataPropertyAttachmentsPrefixName": "data_",
-            "downloadAttachments": true
-          }
-        },
-        "type": "n8n-nodes-base.gmailTrigger",
-        "typeVersion": 1.2,
-        "position": [
-          -1100,
-          -240
-        ],
-        "id": "31e7bd4c-6e2e-456c-8dd5-a3f8d28d9840",
-        "name": "聯邦信",
-        "credentials": {
-          "gmailOAuth2": {
-            "id": "GThDvv7aRdBQyg1e",
-            "name": "Gmail account personal"
-          }
-        }
-      },
-      {
-        "parameters": {
-          "pollTimes": {
-            "item": [
-              {
-                "mode": "custom",
-                "cronExpression": "30 55 2 * * *"
-              }
-            ]
-          },
-          "simple": false,
-          "filters": {
-            "q": "from:(webmaster@bhurecv.taishinbank.com.tw) 台新信用卡電子帳單"
-          },
-          "options": {
-            "dataPropertyAttachmentsPrefixName": "data_",
-            "downloadAttachments": true
-          }
-        },
-        "type": "n8n-nodes-base.gmailTrigger",
-        "typeVersion": 1.2,
-        "position": [
-          -1100,
-          -80
-        ],
-        "id": "a98e7c96-e822-4b7a-9a3e-7c2a6adacab0",
-        "name": "台新信",
-        "credentials": {
-          "gmailOAuth2": {
-            "id": "GThDvv7aRdBQyg1e",
-            "name": "Gmail account personal"
-          }
-        }
-      },
-      {
-        "parameters": {
-          "content": "## Processing Credit Card Statement Emails\nCurrently supports eight Taiwanese banks. Extracts payment amount and due date from emails or PDFs, and automatically converts them into Google Calendar events",
-          "height": 1440,
-          "width": 1780
-        },
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
-        "position": [
-          -1200,
-          -1340
-        ],
-        "id": "4db75298-7001-428d-9ab9-4de0daad940c",
-        "name": "Sticky Note"
-      },
-      {
-        "parameters": {
-          "content": "## Update Payment Status\nIf payment has been completed, you can update the Google Calendar event title and remove reminders here",
-          "height": 280,
-          "width": 1000,
-          "color": 7
-        },
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
-        "position": [
-          -1200,
-          160
-        ],
-        "id": "445d686d-5fb5-4291-a2f1-64481f5a63dc",
-        "name": "Sticky Note1"
-      },
-      {
-        "parameters": {
-          "calendar": {
-            "__rl": true,
-            "value": "4a374cec6eb01b99adac52078dd335c7e3a90236b233c417fee59773485a93c3@group.calendar.google.com",
-            "mode": "list",
-            "cachedResultName": "信用卡繳費"
-          },
-          "start": "={{ $json.payment_due_date.toDateTime() }}",
-          "end": "={{ $json.payment_due_date.toDateTime().plus(1, \"days\").minus(1, \"minute\") }}",
-          "useDefaultReminders": false,
-          "additionalFields": {
-            "allday": "yes",
-            "description": "=email_id: {{ $json.email_id }}\nemail_threads_id: {{ $json.email_threads_id }}",
-            "summary": "={{ $json.email_subject }}"
-          },
-          "remindersUi": {
-            "remindersValues": [
-              {
-                "method": "popup",
-                "minutes": 30
-              },
-              {
-                "method": "popup",
-                "minutes": 60
-              },
-              {
-                "method": "popup",
-                "minutes": 3600
-              },
-              {
-                "method": "popup",
-                "minutes": 1800
-              }
-            ]
-          }
-        },
-        "type": "n8n-nodes-base.googleCalendar",
-        "typeVersion": 1.3,
-        "position": [
-          -240,
-          -740
-        ],
-        "id": "e0a51007-72f8-4903-85ec-1777c2795705",
-        "name": "建立 Google Calendar",
-        "credentials": {
-          "googleCalendarOAuth2Api": {
-            "id": "jlYJABKTqgAFRLu1",
-            "name": "(Personal)Google Calendar"
-          }
-        }
-      },
-      {
-        "parameters": {
-          "operation": "update",
-          "calendar": {
-            "__rl": true,
-            "value": "4a374cec6eb01b99adac52078dd335c7e3a90236b233c417fee59773485a93c3@group.calendar.google.com",
-            "mode": "list",
-            "cachedResultName": "信用卡繳費"
-          },
-          "eventId": "={{ $json.calendar_id }}",
-          "updateFields": {
-            "description": "=已繳款請點: \nhttps://darrellinfo-n8n.hnd1.zeabur.app/webhook/darrell_demo_creditcard_pay_update_path={{$json.calendar_id }}"
-          }
-        },
-        "type": "n8n-nodes-base.googleCalendar",
-        "typeVersion": 1.3,
-        "position": [
-          180,
-          -740
-        ],
-        "id": "237b85b4-285c-4963-a773-433af4c13052",
-        "name": "更新繳款網址-Google Calendar",
-        "credentials": {
-          "googleCalendarOAuth2Api": {
-            "id": "jlYJABKTqgAFRLu1",
-            "name": "(Personal)Google Calendar"
-          }
-        }
-      },
-      {
-        "parameters": {
-          "content": "## Sinopac PDF Password: {ID card}",
-          "height": 80,
-          "width": 400,
-          "color": 4
-        },
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
-        "position": [
-          -1620,
-          -1220
-        ],
-        "id": "0d74689d-f3de-4737-b1e3-c65614525297",
-        "name": "Sticky Note2"
-      },
-      {
-        "parameters": {
-          "content": "## Fubon Password: {ID card}",
-          "height": 80,
-          "width": 380,
-          "color": 4
-        },
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
-        "position": [
-          -1600,
-          -740
-        ],
-        "id": "c64b2b6d-e50d-47d0-b65e-39e878e451b8",
-        "name": "Sticky Note4"
-      },
-      {
-        "parameters": {
-          "content": "## E.SUN Password: No password needed!\n👍👍👍",
-          "height": 80,
-          "width": 380,
-          "color": 4
-        },
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
-        "position": [
-          -1600,
-          -580
-        ],
-        "id": "4bf0f437-70b5-4e4c-873f-598a2053edaf",
-        "name": "Sticky Note5"
-      },
-      {
-        "parameters": {
-          "content": "## DBS Password: Last 4 characters of ID card + last 4 digits of birth date (MMDD)\n👎👎👎",
-          "height": 120,
-          "width": 380,
-          "color": 4
-        },
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
-        "position": [
-          -1600,
-          -420
-        ],
-        "id": "b6e30c1d-3906-4728-9a75-ffda4ed44d0e",
-        "name": "Sticky Note6"
-      },
-      {
-        "parameters": {
-          "content": "## Union Bank Password: {ID card}",
-          "height": 80,
-          "width": 380,
-          "color": 4
-        },
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
-        "position": [
-          -1600,
-          -240
-        ],
-        "id": "98dbc1dc-7df4-460a-bc41-79c98fa63d36",
-        "name": "Sticky Note7"
-      },
-      {
-        "parameters": {
-          "content": "## Taishin Password: Last 2 characters of ID card + 4 digits of birth month and day\n👎👎👎",
-          "height": 120,
-          "width": 380,
-          "color": 4
-        },
-        "type": "n8n-nodes-base.stickyNote",
-        "typeVersion": 1,
-        "position": [
-          -1600,
-          -80
-        ],
-        "id": "e959f6c5-c210-42d1-8754-ecfd1b488f85",
-        "name": "Sticky Note8"
-      }
-    ],
-    "connections": {
-      "永豐PDF": {
-        "main": [
-          [
-            {
-              "node": "永豐_取得帳單應繳金額日期",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Google Sheets": {
-        "main": [
-          [
-            {
-              "node": "更新繳款網址-Google Calendar",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "國泰_取得帳單應繳金額日期": {
-        "main": [
-          [
-            {
-              "node": "統整",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "永豐_取得帳單應繳金額日期": {
-        "main": [
-          [
-            {
-              "node": "統整",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "統整": {
-        "main": [
-          [
-            {
-              "node": "建立 Google Calendar",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "中信_取得帳單應繳金額日期": {
-        "main": [
-          [
-            {
-              "node": "統整",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "富邦PDF": {
-        "main": [
-          [
-            {
-              "node": "富邦_取得帳單應繳金額日期",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "富邦_取得帳單應繳金額日期": {
-        "main": [
-          [
-            {
-              "node": "統整",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "玉山PDF": {
-        "main": [
-          [
-            {
-              "node": "玉山_取得帳單應繳金額日期",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "玉山_取得帳單應繳金額日期": {
-        "main": [
-          [
-            {
-              "node": "統整",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "星展PDF": {
-        "main": [
-          [
-            {
-              "node": "星展_取得帳單應繳金額日期",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "星展_取得帳單應繳金額日期": {
-        "main": [
-          [
-            {
-              "node": "統整",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "聯邦PDF": {
-        "main": [
-          [
-            {
-              "node": "聯邦_取得帳單應繳金額日期",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "聯邦_取得帳單應繳金額日期": {
-        "main": [
-          [
-            {
-              "node": "統整",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "台新PDF": {
-        "main": [
-          [
-            {
-              "node": "台新_取得帳單應繳金額日期",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "台新_取得帳單應繳金額日期": {
-        "main": [
-          [
-            {
-              "node": "統整",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Webhook": {
-        "main": [
-          [
-            {
-              "node": "取得日曆_Google Calendar",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "更新繳費_Google Calendar": {
-        "main": [
-          [
-            {
-              "node": "更新繳費狀態 Google Sheets",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "取得日曆_Google Calendar": {
-        "main": [
-          [
-            {
-              "node": "更新繳費_Google Calendar",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "永豐信": {
-        "main": [
-          [
-            {
-              "node": "永豐PDF",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "國泰信": {
-        "main": [
-          [
-            {
-              "node": "國泰_取得帳單應繳金額日期",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "中信信": {
-        "main": [
-          [
-            {
-              "node": "中信_取得帳單應繳金額日期",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "富邦信": {
-        "main": [
-          [
-            {
-              "node": "富邦PDF",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "玉山信": {
-        "main": [
-          [
-            {
-              "node": "玉山PDF",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "星展信": {
-        "main": [
-          [
-            {
-              "node": "星展PDF",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "聯邦信": {
-        "main": [
-          [
-            {
-              "node": "聯邦PDF",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "台新信": {
-        "main": [
-          [
-            {
-              "node": "台新PDF",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "建立 Google Calendar": {
-        "main": [
-          [
-            {
-              "node": "Google Sheets",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
       }
     },
-    "pinData": {},
-    "meta": {
-      "templateCredsSetupCompleted": true,
-      "instanceId": "fddb3e91967f1012c95dd02bf5ad21f279fc44715f47a7a96a33433621caa253"
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5d1636d2-7a91-4f8b-8bcd-10e2ca13af5c",
+              "name": "payment_due_date",
+              "value": "={{ \n  $json[\"html\"].match(/<b><font color=\"#00283d\">繳款截止日<\\/font><\\/b>[\\s\\S]*?<span[^>]*>([^<]+)<\\/span>/)\n    ? (([roc, mth, day]) => `${parseInt(roc,10)+1911}-${mth}-${day}`)(\n        $json[\"html\"].match(/<b><font color=\"#00283d\">繳款截止日<\\/font><\\/b>[\\s\\S]*?<span[^>]*>([^<]+)<\\/span>/)[1].trim().split('/')\n      )\n    : null\n}}",
+              "type": "string"
+            },
+            {
+              "id": "b9218689-e079-4cb5-87e9-17b10e4cf880",
+              "name": "payment_amount",
+              "value": "={{ $json[\"html\"].match(/<b><font color=\"#00283d\">本期應繳總金額<\\/font><\\/b>[\\s\\S]*?<span[^>]*>([^<]+)<\\/span>/)?.[1].trim().replace(/,/g, \"\") }}",
+              "type": "number"
+            },
+            {
+              "id": "2e077de1-2d14-4993-aed9-94838058c1fb",
+              "name": "minimum_payment",
+              "value": "={{ $json[\"html\"].match(/<b><font color=\"#00283d\">最低應繳總金額<\\/font><\\/b>[\\s\\S]*?<span[^>]*>([^<]+)<\\/span>/)?.[1].trim().replace(/,/g, \"\") }}",
+              "type": "number"
+            },
+            {
+              "id": "7c1cc924-53d9-41a9-a3d8-2405cd8152d9",
+              "name": "email_id",
+              "value": "={{ $('國泰信').item.json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "a813f49f-c6fa-4a2d-8b50-899a6c77e0c4",
+              "name": "email_threads_id",
+              "value": "={{ $('國泰信').item.json.threadId }}",
+              "type": "string"
+            },
+            {
+              "id": "1b6c6bc1-1677-41d1-9844-6d8e2d713d8a",
+              "name": "email_subject",
+              "value": "={{ $('國泰信').item.json.subject }}",
+              "type": "string"
+            },
+            {
+              "id": "df0f1593-43e7-4bbf-b2db-d460a7157943",
+              "name": "bank",
+              "value": "國泰銀行",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -680,
+        -1080
+      ],
+      "id": "22a37771-b6b1-43b4-b2ea-8229c0987d3c",
+      "name": "國泰_取得帳單應繳金額日期"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5d1636d2-7a91-4f8b-8bcd-10e2ca13af5c",
+              "name": "payment_due_date",
+              "value": "={{ $json[\"text\"].match(/繳款截止日\\s(\\d{4}\\/\\d{2}\\/\\d{2})/)[1].replace(/\\//g, \"-\") }}",
+              "type": "string"
+            },
+            {
+              "id": "b9218689-e079-4cb5-87e9-17b10e4cf880",
+              "name": "payment_amount",
+              "value": "={{ parseInt($json[\"text\"].match(/本期應繳總金額\\s(\\d{1,3}(?:,\\d{3})*)/)[1].replace(/,/g, \"\"))\n }}",
+              "type": "number"
+            },
+            {
+              "id": "2e077de1-2d14-4993-aed9-94838058c1fb",
+              "name": "minimum_payment",
+              "value": "={{ parseInt($json[\"text\"].match(/本期最低應繳金額\\s(\\d{1,3}(?:,\\d{3})*)/)[1].replace(/,/g, \"\"))\n }}",
+              "type": "number"
+            },
+            {
+              "id": "7c1cc924-53d9-41a9-a3d8-2405cd8152d9",
+              "name": "email_id",
+              "value": "={{ $('永豐信').item.json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "a813f49f-c6fa-4a2d-8b50-899a6c77e0c4",
+              "name": "email_threads_id",
+              "value": "={{ $('永豐信').item.json.threadId }}",
+              "type": "string"
+            },
+            {
+              "id": "1b6c6bc1-1677-41d1-9844-6d8e2d713d8a",
+              "name": "email_subject",
+              "value": "={{ $('永豐信').item.json.subject }}",
+              "type": "string"
+            },
+            {
+              "id": "e3cfb218-f15f-4724-a0e5-32aa3ca36cfb",
+              "name": "bank",
+              "value": "永豐銀行",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -680,
+        -1240
+      ],
+      "id": "d5f7eee8-bcb2-49eb-b309-13187e0c7274",
+      "name": "永豐_取得帳單應繳金額日期"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5d1636d2-7a91-4f8b-8bcd-10e2ca13af5c",
+              "name": "payment_due_date",
+              "value": "={{ $json.payment_due_date }}",
+              "type": "string"
+            },
+            {
+              "id": "b9218689-e079-4cb5-87e9-17b10e4cf880",
+              "name": "payment_amount",
+              "value": "={{ $json.payment_amount }}",
+              "type": "number"
+            },
+            {
+              "id": "2e077de1-2d14-4993-aed9-94838058c1fb",
+              "name": "minimum_payment",
+              "value": "={{ $json.minimum_payment }}",
+              "type": "number"
+            },
+            {
+              "id": "7c1cc924-53d9-41a9-a3d8-2405cd8152d9",
+              "name": "email_id",
+              "value": "={{ $json.email_id }}",
+              "type": "string"
+            },
+            {
+              "id": "a813f49f-c6fa-4a2d-8b50-899a6c77e0c4",
+              "name": "email_threads_id",
+              "value": "={{ $json.email_threads_id }}",
+              "type": "string"
+            },
+            {
+              "id": "1b6c6bc1-1677-41d1-9844-6d8e2d713d8a",
+              "name": "email_subject",
+              "value": "={{ $json.email_subject }}",
+              "type": "string"
+            },
+            {
+              "id": "df0f1593-43e7-4bbf-b2db-d460a7157943",
+              "name": "bank",
+              "value": "={{ $json.bank }}",
+              "type": "string"
+            },
+            {
+              "id": "344eea07-d0ac-4288-a00e-54e1aeb69d1e",
+              "name": "click_link",
+              "value": "=https://darrellinfo-n8n.hnd1.zeabur.app/webhook-test/a9244308-8488-49ff-92fc-3bb042580bfa?id+{{ $json.email_id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -440,
+        -740
+      ],
+      "id": "26fc148a-184b-4cfc-9590-21030745e254",
+      "name": "統整"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5d1636d2-7a91-4f8b-8bcd-10e2ca13af5c",
+              "name": "payment_due_date",
+              "value": "={{ \n  (() => {\n    const m = $json[\"html\"].match(/form-2\\.gif\"[^>]*>[\\s\\S]*?<div[^>]*>([^<]+)<\\/div>/);\n    if(m){\n      const dateStr = m[1].replace(/&#47;/g, '/').trim();\n      const [roc, mon, day] = dateStr.split('/');\n      return `${parseInt(roc,10)+1911}-${mon}-${day}`;\n    }\n    return null;\n  })()\n}}",
+              "type": "string"
+            },
+            {
+              "id": "b9218689-e079-4cb5-87e9-17b10e4cf880",
+              "name": "payment_amount",
+              "value": "={{ \n  $json[\"html\"].match(/<img[^>]*src=\"https:\\/\\/mr1\\.estats\\.ctbcbank\\.com\\/images\\/CreditCard\\/202501\\/01\\/form-3\\.gif\"[^>]*>[\\s\\S]*?<div[^>]*>([^<]+)<\\/div>/)\n    ? $json[\"html\"].match(/<img[^>]*src=\"https:\\/\\/mr1\\.estats\\.ctbcbank\\.com\\/images\\/CreditCard\\/202501\\/01\\/form-3\\.gif\"[^>]*>[\\s\\S]*?<div[^>]*>([^<]+)<\\/div>/)[1].trim().replace(/,/g, \"\")\n    : null\n}}",
+              "type": "number"
+            },
+            {
+              "id": "2e077de1-2d14-4993-aed9-94838058c1fb",
+              "name": "minimum_payment",
+              "value": "={{ \n  $json[\"html\"].match(/<img[^>]*src=\"https:\\/\\/mr1\\.estats\\.ctbcbank\\.com\\/images\\/CreditCard\\/202501\\/01\\/form-4\\.gif\"[^>]*>[\\s\\S]*?<div[^>]*>([^<]+)<\\/div>/)\n    ? $json[\"html\"].match(/<img[^>]*src=\"https:\\/\\/mr1\\.estats\\.ctbcbank\\.com\\/images\\/CreditCard\\/202501\\/01\\/form-4\\.gif\"[^>]*>[\\s\\S]*?<div[^>]*>([^<]+)<\\/div>/)[1].trim().replace(/,/g, \"\")\n    : null\n}}",
+              "type": "number"
+            },
+            {
+              "id": "7c1cc924-53d9-41a9-a3d8-2405cd8152d9",
+              "name": "email_id",
+              "value": "={{ $json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "a813f49f-c6fa-4a2d-8b50-899a6c77e0c4",
+              "name": "email_threads_id",
+              "value": "={{ $json.threadId }}",
+              "type": "string"
+            },
+            {
+              "id": "1b6c6bc1-1677-41d1-9844-6d8e2d713d8a",
+              "name": "email_subject",
+              "value": "={{ $json.subject }}",
+              "type": "string"
+            },
+            {
+              "id": "df0f1593-43e7-4bbf-b2db-d460a7157943",
+              "name": "bank",
+              "value": "中國信託",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -680,
+        -900
+      ],
+      "id": "031f0288-0d1d-41e5-bf78-2c28c149bed5",
+      "name": "中信_取得帳單應繳金額日期"
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "binaryPropertyName": "data_0",
+        "options": {
+          "joinPages": true,
+          "maxPages": 1,
+          "password": ""
+        }
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -880,
+        -740
+      ],
+      "id": "82869b68-3062-4478-8544-d1729c075388",
+      "name": "富邦PDF"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5d1636d2-7a91-4f8b-8bcd-10e2ca13af5c",
+              "name": "payment_due_date",
+              "value": "={{ \n  (() => {\n    const dates = $json[\"text\"].match(/\\d{3}\\/\\d{2}\\/\\d{2}/g);\n    if(dates && dates.length >= 2){\n      const [roc, mon, day] = dates[1].split('/');\n      return `${parseInt(roc,10)+1911}-${mon}-${day}`;\n    }\n    return null;\n  })()\n}}",
+              "type": "string"
+            },
+            {
+              "id": "b9218689-e079-4cb5-87e9-17b10e4cf880",
+              "name": "payment_amount",
+              "value": "={{ \n  $json[\"text\"].match(/本期應繳金額\\s+([\\d,]+)/)?.[1].replace(/,/g, \"\")\n}}",
+              "type": "number"
+            },
+            {
+              "id": "2e077de1-2d14-4993-aed9-94838058c1fb",
+              "name": "minimum_payment",
+              "value": "={{ \n  $json[\"text\"].match(/最低應繳金額[\\s\\S]*?\\n([\\d,]+)/)?.[1].replace(/,/g, \"\")\n}}",
+              "type": "number"
+            },
+            {
+              "id": "7c1cc924-53d9-41a9-a3d8-2405cd8152d9",
+              "name": "email_id",
+              "value": "={{ $('富邦信').item.json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "a813f49f-c6fa-4a2d-8b50-899a6c77e0c4",
+              "name": "email_threads_id",
+              "value": "={{ $('富邦信').item.json.threadId }}",
+              "type": "string"
+            },
+            {
+              "id": "1b6c6bc1-1677-41d1-9844-6d8e2d713d8a",
+              "name": "email_subject",
+              "value": "={{ $('富邦信').item.json.subject }}",
+              "type": "string"
+            },
+            {
+              "id": "df0f1593-43e7-4bbf-b2db-d460a7157943",
+              "name": "bank",
+              "value": "富邦銀行",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -680,
+        -740
+      ],
+      "id": "f5ea0d86-1f69-44bd-ad1d-aaabade0c9a7",
+      "name": "富邦_取得帳單應繳金額日期"
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "binaryPropertyName": "data_0",
+        "options": {
+          "joinPages": true,
+          "maxPages": 3
+        }
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -880,
+        -580
+      ],
+      "id": "3487dd0e-cf0f-4489-b1a7-90832c4bc109",
+      "name": "玉山PDF"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5d1636d2-7a91-4f8b-8bcd-10e2ca13af5c",
+              "name": "payment_due_date",
+              "value": "={{ \n  (() => {\n    const m = $json[\"text\"].match(/(\\d{3}\\/\\d{2}\\/\\d{2})/);\n    if(m){\n      const [roc, mon, day] = m[1].split('/');\n      return `${parseInt(roc,10)+1911}-${mon}-${day}`;\n    }\n    return null;\n  })()\n}}",
+              "type": "string"
+            },
+            {
+              "id": "b9218689-e079-4cb5-87e9-17b10e4cf880",
+              "name": "payment_amount",
+              "value": "={{ \n  $json[\"text\"].match(/TWD\\s+\\S+\\s+\\S+\\s+(\\S+)\\s+(\\S+)/)\n    ? $json[\"text\"].match(/TWD\\s+\\S+\\s+\\S+\\s+(\\S+)\\s+(\\S+)/)[1].replace(/,/g, \"\")\n    : null\n}}",
+              "type": "number"
+            },
+            {
+              "id": "2e077de1-2d14-4993-aed9-94838058c1fb",
+              "name": "minimum_payment",
+              "value": "={{ \n  $json[\"text\"].match(/TWD\\s+\\S+\\s+\\S+\\s+(\\S+)\\s+(\\S+)/)\n    ? $json[\"text\"].match(/TWD\\s+\\S+\\s+\\S+\\s+(\\S+)\\s+(\\S+)/)[2].replace(/,/g, \"\")\n    : null\n}}",
+              "type": "number"
+            },
+            {
+              "id": "7c1cc924-53d9-41a9-a3d8-2405cd8152d9",
+              "name": "email_id",
+              "value": "={{ $('玉山信').item.json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "a813f49f-c6fa-4a2d-8b50-899a6c77e0c4",
+              "name": "email_threads_id",
+              "value": "={{ $('玉山信').item.json.threadId }}",
+              "type": "string"
+            },
+            {
+              "id": "1b6c6bc1-1677-41d1-9844-6d8e2d713d8a",
+              "name": "email_subject",
+              "value": "={{ $('玉山信').item.json.subject }}",
+              "type": "string"
+            },
+            {
+              "id": "df0f1593-43e7-4bbf-b2db-d460a7157943",
+              "name": "bank",
+              "value": "玉山銀行",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -680,
+        -580
+      ],
+      "id": "72d71707-97a0-4ad8-98c0-8bf9d2ee7fbc",
+      "name": "玉山_取得帳單應繳金額日期"
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "binaryPropertyName": "data_0",
+        "options": {
+          "joinPages": true,
+          "maxPages": 3,
+          "password": ""
+        }
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -880,
+        -420
+      ],
+      "id": "f2e0e244-03ad-41cf-9152-0cb94124a832",
+      "name": "星展PDF"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5d1636d2-7a91-4f8b-8bcd-10e2ca13af5c",
+              "name": "payment_due_date",
+              "value": "={{ \n  (() => {\n    const m = $json[\"text\"].match(/繳交截止日：(\\d{4})年(\\d{2})月(\\d{2})日/);\n    return m ? `${m[1]}-${m[2]}-${m[3]}` : null;\n  })()\n}}",
+              "type": "string"
+            },
+            {
+              "id": "b9218689-e079-4cb5-87e9-17b10e4cf880",
+              "name": "payment_amount",
+              "value": "={{ \n  $json[\"text\"].match(/應繳總金額\\s+([\\d,]+)/)?.[1].replace(/,/g, \"\")\n}}",
+              "type": "number"
+            },
+            {
+              "id": "2e077de1-2d14-4993-aed9-94838058c1fb",
+              "name": "minimum_payment",
+              "value": "={{ \n  $json[\"text\"].match(/最低應繳金額\\s+([\\d,]+)/)?.[1].replace(/,/g, \"\")\n}}",
+              "type": "number"
+            },
+            {
+              "id": "7c1cc924-53d9-41a9-a3d8-2405cd8152d9",
+              "name": "email_id",
+              "value": "={{ $('星展信').item.json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "a813f49f-c6fa-4a2d-8b50-899a6c77e0c4",
+              "name": "email_threads_id",
+              "value": "={{ $('星展信').item.json.threadId }}",
+              "type": "string"
+            },
+            {
+              "id": "1b6c6bc1-1677-41d1-9844-6d8e2d713d8a",
+              "name": "email_subject",
+              "value": "={{ $('星展信').item.json.subject }}",
+              "type": "string"
+            },
+            {
+              "id": "df0f1593-43e7-4bbf-b2db-d460a7157943",
+              "name": "bank",
+              "value": "星展銀行",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -680,
+        -420
+      ],
+      "id": "1347a604-0cb3-4377-8a9d-5462000a5d90",
+      "name": "星展_取得帳單應繳金額日期"
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "binaryPropertyName": "data_0",
+        "options": {
+          "joinPages": true,
+          "maxPages": 1,
+          "password": ""
+        }
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -880,
+        -240
+      ],
+      "id": "4e10f061-d666-4d4c-b025-8deae4ce7a7a",
+      "name": "聯邦PDF"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5d1636d2-7a91-4f8b-8bcd-10e2ca13af5c",
+              "name": "payment_due_date",
+              "value": "={{ \n  (() => {\n    const m = $json[\"text\"].match(/(\\d{3}\\/\\d{2}\\/\\d{2})/);\n    if(m){\n      const [roc, mon, day] = m[1].split('/');\n      return `${parseInt(roc,10)+1911}-${mon}-${day}`;\n    }\n    return null;\n  })()\n}}",
+              "type": "string"
+            },
+            {
+              "id": "b9218689-e079-4cb5-87e9-17b10e4cf880",
+              "name": "payment_amount",
+              "value": "={{ \n  (() => {\n    const re = /([\\d,]+)\\s*\\n\\s*([\\d,]+)\\s*\\n\\s*\\d{3}\\/\\d{2}\\/\\d{2}\\s*\\n\\s*\\d{3}\\/\\d{2}\\/\\d{2}\\s*\\n\\s*([\\d,]+)\\s*\\n\\s*([\\d,]+)\\s*\\n\\s*([\\d,]+)/;\n    const m = $json[\"text\"].match(re);\n    return m ? m[5].replace(/,/g, \"\") : null;\n  })()\n}}",
+              "type": "number"
+            },
+            {
+              "id": "2e077de1-2d14-4993-aed9-94838058c1fb",
+              "name": "minimum_payment",
+              "value": "={{ \n  (() => {\n    const m = $json[\"text\"].match(/^\\s*([\\d,]+)\\s*$/m);\n    return m ? m[1].replace(/,/g, \"\") : null;\n  })()\n}}",
+              "type": "number"
+            },
+            {
+              "id": "7c1cc924-53d9-41a9-a3d8-2405cd8152d9",
+              "name": "email_id",
+              "value": "={{ $('聯邦信').item.json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "a813f49f-c6fa-4a2d-8b50-899a6c77e0c4",
+              "name": "email_threads_id",
+              "value": "={{ $('聯邦信').item.json.threadId }}",
+              "type": "string"
+            },
+            {
+              "id": "1b6c6bc1-1677-41d1-9844-6d8e2d713d8a",
+              "name": "email_subject",
+              "value": "={{ $('聯邦信').item.json.subject }}",
+              "type": "string"
+            },
+            {
+              "id": "df0f1593-43e7-4bbf-b2db-d460a7157943",
+              "name": "bank",
+              "value": "聯邦銀行",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -680,
+        -240
+      ],
+      "id": "28bf9f11-09e4-4409-bcde-6f7d77ead16a",
+      "name": "聯邦_取得帳單應繳金額日期"
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "binaryPropertyName": "data_0",
+        "options": {
+          "joinPages": true,
+          "maxPages": 1,
+          "password": ""
+        }
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -880,
+        -80
+      ],
+      "id": "e40f3f1b-04cf-4e4a-96b2-3ab9e61eb4e2",
+      "name": "台新PDF"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5d1636d2-7a91-4f8b-8bcd-10e2ca13af5c",
+              "name": "payment_due_date",
+              "value": "={{ (() => { const m = $json[\"text\"].match(/繳款截止日\\s+(\\d{3})\\/(\\d{2})\\/(\\d{2})/); return m ? `${parseInt(m[1],10)+1911}-${m[2]}-${m[3]}` : null; })() }}",
+              "type": "string"
+            },
+            {
+              "id": "b9218689-e079-4cb5-87e9-17b10e4cf880",
+              "name": "payment_amount",
+              "value": "={{ $json[\"text\"].match(/本期累計應繳金額\\s+([\\d,]+)/)?.[1].replace(/,/g, \"\") }}",
+              "type": "number"
+            },
+            {
+              "id": "2e077de1-2d14-4993-aed9-94838058c1fb",
+              "name": "minimum_payment",
+              "value": "={{ $json[\"text\"].match(/本期最低應繳金額\\s+([\\d,]+)/)?.[1].replace(/,/g, \"\") }}",
+              "type": "number"
+            },
+            {
+              "id": "7c1cc924-53d9-41a9-a3d8-2405cd8152d9",
+              "name": "email_id",
+              "value": "={{ $('台新信').item.json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "a813f49f-c6fa-4a2d-8b50-899a6c77e0c4",
+              "name": "email_threads_id",
+              "value": "={{ $('台新信').item.json.threadId }}",
+              "type": "string"
+            },
+            {
+              "id": "1b6c6bc1-1677-41d1-9844-6d8e2d713d8a",
+              "name": "email_subject",
+              "value": "={{ $('台新信').item.json.subject }}",
+              "type": "string"
+            },
+            {
+              "id": "df0f1593-43e7-4bbf-b2db-d460a7157943",
+              "name": "bank",
+              "value": "台新銀行",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -680,
+        -80
+      ],
+      "id": "b9ba4866-4237-4725-bf96-512073c25164",
+      "name": "台新_取得帳單應繳金額日期"
+    },
+    {
+      "parameters": {
+        "path": "darrell_demo_creditcard_pay_update_path",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -1120,
+        260
+      ],
+      "id": "fe79cee4-15f4-4785-ac75-2658f3a47912",
+      "name": "Webhook",
+      "webhookId": "3516a92a-a24a-42eb-be10-121b8c797846"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "calendar": {
+          "__rl": true,
+          "value": "4a374cec6eb01b99adac52078dd335c7e3a90236b233c417fee59773485a93c3@group.calendar.google.com",
+          "mode": "list",
+          "cachedResultName": "信用卡繳費"
+        },
+        "eventId": "={{ $json.id }}",
+        "useDefaultReminders": false,
+        "updateFields": {
+          "summary": "=[已繳費]{{ $json.summary }}"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        -660,
+        260
+      ],
+      "id": "306d739b-1250-460b-b32c-08ded4220fab",
+      "name": "更新繳費_Google Calendar",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "jlYJABKTqgAFRLu1",
+          "name": "(Personal)Google Calendar"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "calendar": {
+          "__rl": true,
+          "value": "4a374cec6eb01b99adac52078dd335c7e3a90236b233c417fee59773485a93c3@group.calendar.google.com",
+          "mode": "list",
+          "cachedResultName": "信用卡繳費"
+        },
+        "eventId": "={{ $json.query.calendar_id }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        -860,
+        260
+      ],
+      "id": "19d0244a-b6e1-45c9-bd6a-8f82a396f7e9",
+      "name": "取得日曆_Google Calendar",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "jlYJABKTqgAFRLu1",
+          "name": "(Personal)Google Calendar"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1gedwZokI7IDF_FYgVb_wMECe75OryWL8pn3WEYsNzgQ",
+          "mode": "list",
+          "cachedResultName": "n8n-信用卡繳款提醒",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gedwZokI7IDF_FYgVb_wMECe75OryWL8pn3WEYsNzgQ/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "工作表1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1gedwZokI7IDF_FYgVb_wMECe75OryWL8pn3WEYsNzgQ/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "calendar_id": "={{ $json.id }}",
+            "已繳款": "true"
+          },
+          "matchingColumns": [
+            "calendar_id"
+          ],
+          "schema": [
+            {
+              "id": "n8n_id",
+              "displayName": "n8n_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "年月期別",
+              "displayName": "年月期別",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "銀行",
+              "displayName": "銀行",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "金額",
+              "displayName": "金額",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "最低應繳金額",
+              "displayName": "最低應繳金額",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "email_id",
+              "displayName": "email_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "calendar_id",
+              "displayName": "calendar_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "已繳款",
+              "displayName": "已繳款",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -440,
+        260
+      ],
+      "id": "7e06a2b3-6dbf-4484-b5eb-eb41cd394ce8",
+      "name": "更新繳費狀態 Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "tufEzuSTEveV3tuA",
+          "name": "(Personal)Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "custom",
+              "cronExpression": "30 55 2 * * *"
+            }
+          ]
+        },
+        "simple": false,
+        "filters": {
+          "q": "from:(newebill.banksinopac.com.tw) 永豐銀行信用卡 電子帳單通知"
+        },
+        "options": {
+          "dataPropertyAttachmentsPrefixName": "data_",
+          "downloadAttachments": true
+        }
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1100,
+        -1240
+      ],
+      "id": "c0399b68-dec0-4f8d-85b1-8240bda30360",
+      "name": "永豐信",
+      "notesInFlow": true,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "GThDvv7aRdBQyg1e",
+          "name": "Gmail account personal"
+        }
+      },
+      "notes": "Email coming from sinopac creditcard email"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "custom",
+              "cronExpression": "30 55 2 * * *"
+            }
+          ]
+        },
+        "simple": false,
+        "filters": {
+          "q": "from:(service@pxbillrc01.cathaybk.com.tw) 國泰世華銀行 月電子帳單"
+        },
+        "options": {
+          "dataPropertyAttachmentsPrefixName": "data_",
+          "downloadAttachments": true
+        }
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1100,
+        -1080
+      ],
+      "id": "1dd58e52-b62d-4ceb-9399-66e1309c9536",
+      "name": "國泰信",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "GThDvv7aRdBQyg1e",
+          "name": "Gmail account personal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "custom",
+              "cronExpression": "30 55 2 * * *"
+            }
+          ]
+        },
+        "simple": false,
+        "filters": {
+          "q": "from:(ebill@estats.ctbcbank.com) 中國信託信用卡電子帳單"
+        },
+        "options": {
+          "dataPropertyAttachmentsPrefixName": "data_",
+          "downloadAttachments": true
+        }
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1100,
+        -900
+      ],
+      "id": "4094db92-e1df-48e0-9b56-1f9596053f01",
+      "name": "中信信",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "GThDvv7aRdBQyg1e",
+          "name": "Gmail account personal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "custom",
+              "cronExpression": "30 55 2 * * *"
+            }
+          ]
+        },
+        "simple": false,
+        "filters": {
+          "q": "from:(rs@cf.taipeifubon.com.tw) 台北富邦銀行 信用卡帳單"
+        },
+        "options": {
+          "dataPropertyAttachmentsPrefixName": "data_",
+          "downloadAttachments": true
+        }
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1100,
+        -740
+      ],
+      "id": "3bdb8742-0653-4b24-9090-eb0d25d6e3e0",
+      "name": "富邦信",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "GThDvv7aRdBQyg1e",
+          "name": "Gmail account personal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "custom",
+              "cronExpression": "30 55 2 * * *"
+            }
+          ]
+        },
+        "simple": false,
+        "filters": {
+          "q": "from:(estatement@esunbank.com) 玉山銀行 信用卡電子帳單"
+        },
+        "options": {
+          "dataPropertyAttachmentsPrefixName": "data_",
+          "downloadAttachments": true
+        }
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1100,
+        -580
+      ],
+      "id": "75479755-9108-40ac-934e-bb05c680fbb1",
+      "name": "玉山信",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "GThDvv7aRdBQyg1e",
+          "name": "Gmail account personal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "custom",
+              "cronExpression": "30 55 2 * * *"
+            }
+          ]
+        },
+        "simple": false,
+        "filters": {
+          "q": "from:(eservicetw@dbs.com) 星展銀行 信用卡電子對帳單"
+        },
+        "options": {
+          "dataPropertyAttachmentsPrefixName": "data_",
+          "downloadAttachments": true
+        }
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1100,
+        -420
+      ],
+      "id": "8979b90e-6af3-44a8-ba31-6dae6263cfce",
+      "name": "星展信",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "GThDvv7aRdBQyg1e",
+          "name": "Gmail account personal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "custom",
+              "cronExpression": "30 55 2 * * *"
+            }
+          ]
+        },
+        "simple": false,
+        "filters": {
+          "q": "from:(聯邦銀行信用卡) 聯邦銀行信用卡電子帳單(年 月)"
+        },
+        "options": {
+          "dataPropertyAttachmentsPrefixName": "data_",
+          "downloadAttachments": true
+        }
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1100,
+        -240
+      ],
+      "id": "31e7bd4c-6e2e-456c-8dd5-a3f8d28d9840",
+      "name": "聯邦信",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "GThDvv7aRdBQyg1e",
+          "name": "Gmail account personal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "custom",
+              "cronExpression": "30 55 2 * * *"
+            }
+          ]
+        },
+        "simple": false,
+        "filters": {
+          "q": "from:(webmaster@bhurecv.taishinbank.com.tw) 台新信用卡電子帳單"
+        },
+        "options": {
+          "dataPropertyAttachmentsPrefixName": "data_",
+          "downloadAttachments": true
+        }
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1100,
+        -80
+      ],
+      "id": "a98e7c96-e822-4b7a-9a3e-7c2a6adacab0",
+      "name": "台新信",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "GThDvv7aRdBQyg1e",
+          "name": "Gmail account personal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Processing Credit Card Statement Emails\nCurrently supports eight Taiwanese banks. Extracts payment amount and due date from emails or PDFs, and automatically converts them into Google Calendar events",
+        "height": 1440,
+        "width": 1780
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1200,
+        -1340
+      ],
+      "id": "4db75298-7001-428d-9ab9-4de0daad940c",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Update Payment Status\nIf payment has been completed, you can update the Google Calendar event title and remove reminders here",
+        "height": 280,
+        "width": 1000,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1200,
+        160
+      ],
+      "id": "445d686d-5fb5-4291-a2f1-64481f5a63dc",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "4a374cec6eb01b99adac52078dd335c7e3a90236b233c417fee59773485a93c3@group.calendar.google.com",
+          "mode": "list",
+          "cachedResultName": "信用卡繳費"
+        },
+        "start": "={{ $json.payment_due_date.toDateTime() }}",
+        "end": "={{ $json.payment_due_date.toDateTime().plus(1, \"days\").minus(1, \"minute\") }}",
+        "useDefaultReminders": false,
+        "additionalFields": {
+          "allday": "yes",
+          "description": "=email_id: {{ $json.email_id }}\nemail_threads_id: {{ $json.email_threads_id }}",
+          "summary": "={{ $json.email_subject }}"
+        },
+        "remindersUi": {
+          "remindersValues": [
+            {
+              "method": "popup",
+              "minutes": 30
+            },
+            {
+              "method": "popup",
+              "minutes": 60
+            },
+            {
+              "method": "popup",
+              "minutes": 3600
+            },
+            {
+              "method": "popup",
+              "minutes": 1800
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        -240,
+        -740
+      ],
+      "id": "e0a51007-72f8-4903-85ec-1777c2795705",
+      "name": "建立 Google Calendar",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "jlYJABKTqgAFRLu1",
+          "name": "(Personal)Google Calendar"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "calendar": {
+          "__rl": true,
+          "value": "4a374cec6eb01b99adac52078dd335c7e3a90236b233c417fee59773485a93c3@group.calendar.google.com",
+          "mode": "list",
+          "cachedResultName": "信用卡繳費"
+        },
+        "eventId": "={{ $json.calendar_id }}",
+        "updateFields": {
+          "description": "=已繳款請點: \nhttps://darrellinfo-n8n.hnd1.zeabur.app/webhook/darrell_demo_creditcard_pay_update_path?calendar_id={{$json.calendar_id }}"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        180,
+        -740
+      ],
+      "id": "237b85b4-285c-4963-a773-433af4c13052",
+      "name": "更新繳款網址-Google Calendar",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "jlYJABKTqgAFRLu1",
+          "name": "(Personal)Google Calendar"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Sinopac PDF Password: {ID card}",
+        "height": 80,
+        "width": 400,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1620,
+        -1220
+      ],
+      "id": "0d74689d-f3de-4737-b1e3-c65614525297",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Fubon Password: {ID card}",
+        "height": 80,
+        "width": 380,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1600,
+        -740
+      ],
+      "id": "c64b2b6d-e50d-47d0-b65e-39e878e451b8",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "## E.SUN Password: No password needed!\n👍👍👍",
+        "height": 80,
+        "width": 380,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1600,
+        -580
+      ],
+      "id": "4bf0f437-70b5-4e4c-873f-598a2053edaf",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "content": "## DBS Password: Last 4 characters of ID card + last 4 digits of birth date (MMDD)\n👎👎👎",
+        "height": 120,
+        "width": 380,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1600,
+        -420
+      ],
+      "id": "b6e30c1d-3906-4728-9a75-ffda4ed44d0e",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "content": "## Union Bank Password: {ID card}",
+        "height": 80,
+        "width": 380,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1600,
+        -240
+      ],
+      "id": "98dbc1dc-7df4-460a-bc41-79c98fa63d36",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "content": "## Taishin Password: Last 2 characters of ID card + 4 digits of birth month and day\n👎👎👎",
+        "height": 120,
+        "width": 380,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1600,
+        -80
+      ],
+      "id": "e959f6c5-c210-42d1-8754-ecfd1b488f85",
+      "name": "Sticky Note8"
     }
+  ],
+  "connections": {
+    "永豐PDF": {
+      "main": [
+        [
+          {
+            "node": "永豐_取得帳單應繳金額日期",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "更新繳款網址-Google Calendar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "國泰_取得帳單應繳金額日期": {
+      "main": [
+        [
+          {
+            "node": "統整",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "永豐_取得帳單應繳金額日期": {
+      "main": [
+        [
+          {
+            "node": "統整",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "統整": {
+      "main": [
+        [
+          {
+            "node": "建立 Google Calendar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "中信_取得帳單應繳金額日期": {
+      "main": [
+        [
+          {
+            "node": "統整",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "富邦PDF": {
+      "main": [
+        [
+          {
+            "node": "富邦_取得帳單應繳金額日期",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "富邦_取得帳單應繳金額日期": {
+      "main": [
+        [
+          {
+            "node": "統整",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "玉山PDF": {
+      "main": [
+        [
+          {
+            "node": "玉山_取得帳單應繳金額日期",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "玉山_取得帳單應繳金額日期": {
+      "main": [
+        [
+          {
+            "node": "統整",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "星展PDF": {
+      "main": [
+        [
+          {
+            "node": "星展_取得帳單應繳金額日期",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "星展_取得帳單應繳金額日期": {
+      "main": [
+        [
+          {
+            "node": "統整",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "聯邦PDF": {
+      "main": [
+        [
+          {
+            "node": "聯邦_取得帳單應繳金額日期",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "聯邦_取得帳單應繳金額日期": {
+      "main": [
+        [
+          {
+            "node": "統整",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "台新PDF": {
+      "main": [
+        [
+          {
+            "node": "台新_取得帳單應繳金額日期",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "台新_取得帳單應繳金額日期": {
+      "main": [
+        [
+          {
+            "node": "統整",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "取得日曆_Google Calendar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "更新繳費_Google Calendar": {
+      "main": [
+        [
+          {
+            "node": "更新繳費狀態 Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "取得日曆_Google Calendar": {
+      "main": [
+        [
+          {
+            "node": "更新繳費_Google Calendar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "永豐信": {
+      "main": [
+        [
+          {
+            "node": "永豐PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "國泰信": {
+      "main": [
+        [
+          {
+            "node": "國泰_取得帳單應繳金額日期",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "中信信": {
+      "main": [
+        [
+          {
+            "node": "中信_取得帳單應繳金額日期",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "富邦信": {
+      "main": [
+        [
+          {
+            "node": "富邦PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "玉山信": {
+      "main": [
+        [
+          {
+            "node": "玉山PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "星展信": {
+      "main": [
+        [
+          {
+            "node": "星展PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "聯邦信": {
+      "main": [
+        [
+          {
+            "node": "聯邦PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "台新信": {
+      "main": [
+        [
+          {
+            "node": "台新PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "建立 Google Calendar": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "fddb3e91967f1012c95dd02bf5ad21f279fc44715f47a7a96a33433621caa253"
   }
+}
