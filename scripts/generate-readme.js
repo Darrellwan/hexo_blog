@@ -19,7 +19,12 @@ function getAnalyticsData() {
     return JSON.parse(analyticsContent);
   } catch (error) {
     console.warn('無法讀取分析數據，使用空數據');
-    return { data: [], last_updated: new Date().toISOString() };
+    return { 
+      data: [], 
+      data_30days: [],
+      data_7days: [],
+      last_updated: new Date().toISOString() 
+    };
   }
 }
 
@@ -146,21 +151,40 @@ ${post.description ? `> ${post.description}` : ''}
 ![總字數](https://img.shields.io/badge/總字數-${totalWords}+-blue?style=flat-square)
 ![已發布天數](https://img.shields.io/badge/已發布天數-${Math.floor((new Date() - new Date(Math.min(...posts.map(p => new Date(p.date))))) / (1000 * 60 * 60 * 24))}-blue?style=flat-square)
 
-## 📈 近期熱門文章
+## 📈 近期 30 天熱門文章
 \`\`\`text
 ${(() => {
-  // 使用分析數據
-  const popularPosts = analyticsData.data.slice(0, 5);
+  // 使用 30 天分析數據
+  const popularPosts = analyticsData.data_30days?.slice(0, 5) || analyticsData.data.slice(0, 5);
   const ranks = ['🥇', '🥈', '🥉', '4️⃣', '5️⃣'];
   
   // 找出最大百分比作為基準
-  const maxPercentage = Math.max(...popularPosts.map(p => p.percentage));
+  const maxPercentage = Math.max(...popularPosts.map(p => p.percentage || 0), 1);
   const maxBarWidth = 30;
 
   return popularPosts.map((post, index) => {
-    const barLength = Math.floor((post.percentage / maxPercentage) * maxBarWidth);
+    const barLength = Math.floor(((post.percentage || 0) / maxPercentage) * maxBarWidth);
     const bar = '█'.repeat(barLength).padEnd(maxBarWidth, '░');
-    return `${bar} ${ranks[index]} ${post['customEvent:post_title']}`;
+    return `${bar} ${ranks[index]} ${post['customEvent:post_title'] || post.title || '無標題'}`;
+  }).join('\n');
+})()}
+\`\`\`
+
+## 📈 近期 7 天熱門文章
+\`\`\`text
+${(() => {
+  // 使用 7 天分析數據
+  const popularPosts = analyticsData.data_7days?.slice(0, 5) || analyticsData.data.slice(0, 5);
+  const ranks = ['🥇', '🥈', '🥉', '4️⃣', '5️⃣'];
+  
+  // 找出最大百分比作為基準
+  const maxPercentage = Math.max(...popularPosts.map(p => p.percentage || 0), 1);
+  const maxBarWidth = 30;
+
+  return popularPosts.map((post, index) => {
+    const barLength = Math.floor(((post.percentage || 0) / maxPercentage) * maxBarWidth);
+    const bar = '█'.repeat(barLength).padEnd(maxBarWidth, '░');
+    return `${bar} ${ranks[index]} ${post['customEvent:post_title'] || post.title || '無標題'}`;
   }).join('\n');
 })()}
 \`\`\`

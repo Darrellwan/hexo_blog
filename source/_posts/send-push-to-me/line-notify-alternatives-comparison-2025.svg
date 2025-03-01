@@ -1,0 +1,216 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes slideInRight {
+      from { transform: translateX(-15px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    
+    @keyframes fadeBox {
+      from { opacity: 0.4; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes drawBorder {
+      from { stroke-dashoffset: 1000; }
+      to { stroke-dashoffset: 0; }
+    }
+    
+    @keyframes subtlePulse {
+      0% { opacity: 0.7; }
+      50% { opacity: 1; }
+      100% { opacity: 0.7; }
+    }
+    
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 1s ease-out forwards;
+    }
+    
+    .slide-in {
+      opacity: 0;
+      animation: slideInRight 0.8s ease-out forwards;
+    }
+    
+    .box-fade {
+      opacity: 0.4;
+      animation: fadeBox 0.8s ease-out forwards;
+    }
+    
+    .border-draw {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      animation: drawBorder 1.5s ease-out forwards;
+    }
+    
+    .subtle-pulse {
+      animation: subtlePulse 3s infinite;
+    }
+    
+    .card text {
+      font-family: sans-serif;
+    }
+    
+    .delay-0 { animation-delay: 0s; }
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.4s; }
+    .delay-3 { animation-delay: 0.6s; }
+    .delay-4 { animation-delay: 0.8s; }
+    .delay-5 { animation-delay: 1.0s; }
+    .delay-6 { animation-delay: 1.2s; }
+    .delay-7 { animation-delay: 1.4s; }
+    .delay-8 { animation-delay: 1.6s; }
+
+    .discord-color { fill: #5865F2; stroke: #5865F2; }
+    .telegram-color { fill: #2AABEE; stroke: #2AABEE; }
+    .slack-color { fill: #4A154B; stroke: #4A154B; }
+    .line-color { fill: #06C755; stroke: #06C755; }
+  </style>
+
+  <!-- 背景 -->
+  <rect width="800" height="450" fill="#1A1B26" rx="5" ry="5" />
+  
+  <!-- 標題 -->
+  <text x="400" y="40" font-size="20" font-weight="bold" text-anchor="middle" fill="#E0E0E0" class="fade-in delay-0">Line Notify 替代方案比較</text>
+  
+  <!-- 四個服務區塊 -->
+  <g transform="translate(0, 60)">
+    <!-- Discord -->
+    <g class="card" transform="translate(30, 0)">
+      <rect width="170" height="320" rx="4" ry="4" fill="#252A41" class="box-fade delay-1" />
+      <rect x="0" y="0" width="170" height="320" rx="4" ry="4" fill="none" stroke="#5865F2" stroke-width="1.5" stroke-opacity="0.4" class="border-draw delay-1" />
+      
+      <text x="85" y="30" font-size="16" font-weight="bold" text-anchor="middle" fill="#E0E0E0" class="fade-in delay-1">Discord</text>
+      <line x1="40" y1="40" x2="130" y2="40" stroke="#5865F2" stroke-width="1" class="border-draw delay-1" />
+      
+      <g class="slide-in delay-2">
+        <text x="15" y="70" font-size="14" font-weight="bold" fill="#E0E0E0">設置難度</text>
+        <text x="15" y="90" font-size="12" fill="#B8E0B0">簡單</text>
+        <text x="15" y="110" font-size="10" fill="#AAAAAA">直接在伺服器設定中添加</text>
+        <text x="15" y="125" font-size="10" fill="#AAAAAA">webhook，過程簡單明瞭</text>
+      </g>
+      
+      <g class="slide-in delay-3">
+        <text x="15" y="160" font-size="14" font-weight="bold" fill="#E0E0E0">功能支持</text>
+        <text x="15" y="180" font-size="12" fill="#E0D0A0">良好</text>
+        <text x="15" y="200" font-size="10" fill="#AAAAAA">支援 Embed 格式</text>
+        <text x="15" y="215" font-size="10" fill="#AAAAAA">圖片、按鈕等元素</text>
+      </g>
+      
+      <g class="slide-in delay-4">
+        <text x="15" y="250" font-size="14" font-weight="bold" fill="#E0E0E0">費用</text>
+        <text x="15" y="270" font-size="12" fill="#B8E0B0">免費</text>
+        <text x="15" y="290" font-size="10" fill="#AAAAAA">沒有使用次數限制</text>
+        <text x="15" y="305" font-size="10" fill="#AAAAAA">適合長期使用</text>
+      </g>
+      
+      <circle cx="155" cy="15" r="3" class="discord-color subtle-pulse delay-8" />
+    </g>
+    
+    <!-- Telegram -->
+    <g class="card" transform="translate(220, 0)">
+      <rect width="170" height="320" rx="4" ry="4" fill="#252A41" class="box-fade delay-2" />
+      <rect x="0" y="0" width="170" height="320" rx="4" ry="4" fill="none" stroke="#2AABEE" stroke-width="1.5" stroke-opacity="0.4" class="border-draw delay-2" />
+      
+      <text x="85" y="30" font-size="16" font-weight="bold" text-anchor="middle" fill="#E0E0E0" class="fade-in delay-2">Telegram</text>
+      <line x1="40" y1="40" x2="130" y2="40" stroke="#2AABEE" stroke-width="1" class="border-draw delay-2" />
+      
+      <g class="slide-in delay-3">
+        <text x="15" y="70" font-size="14" font-weight="bold" fill="#E0E0E0">設置難度</text>
+        <text x="15" y="90" font-size="12" fill="#E0D0A0">中等</text>
+        <text x="15" y="110" font-size="10" fill="#AAAAAA">需要透過 BotFather</text>
+        <text x="15" y="125" font-size="10" fill="#AAAAAA">建立 Bot 及取得 chat_id</text>
+      </g>
+      
+      <g class="slide-in delay-4">
+        <text x="15" y="160" font-size="14" font-weight="bold" fill="#E0E0E0">功能支持</text>
+        <text x="15" y="180" font-size="12" fill="#E0D0A0">良好</text>
+        <text x="15" y="200" font-size="10" fill="#AAAAAA">支援 Markdown 格式</text>
+        <text x="15" y="215" font-size="10" fill="#AAAAAA">內聯鍵盤按鈕</text>
+      </g>
+      
+      <g class="slide-in delay-5">
+        <text x="15" y="250" font-size="14" font-weight="bold" fill="#E0E0E0">費用</text>
+        <text x="15" y="270" font-size="12" fill="#B8E0B0">免費</text>
+        <text x="15" y="290" font-size="10" fill="#AAAAAA">沒有使用次數限制</text>
+        <text x="15" y="305" font-size="10" fill="#AAAAAA">適合長期使用</text>
+      </g>
+      
+      <circle cx="155" cy="15" r="3" class="telegram-color subtle-pulse delay-8" />
+    </g>
+    
+    <!-- Slack -->
+    <g class="card" transform="translate(410, 0)">
+      <rect width="170" height="320" rx="4" ry="4" fill="#252A41" class="box-fade delay-3" />
+      <rect x="0" y="0" width="170" height="320" rx="4" ry="4" fill="none" stroke="#4A154B" stroke-width="1.5" stroke-opacity="0.4" class="border-draw delay-3" />
+      
+      <text x="85" y="30" font-size="16" font-weight="bold" text-anchor="middle" fill="#E0E0E0" class="fade-in delay-3">Slack</text>
+      <line x1="40" y1="40" x2="130" y2="40" stroke="#4A154B" stroke-width="1" class="border-draw delay-3" />
+      
+      <g class="slide-in delay-4">
+        <text x="15" y="70" font-size="14" font-weight="bold" fill="#E0E0E0">設置難度</text>
+        <text x="15" y="90" font-size="12" fill="#E0D0A0">中等</text>
+        <text x="15" y="110" font-size="10" fill="#AAAAAA">需要建立 App</text>
+        <text x="15" y="125" font-size="10" fill="#AAAAAA">啟用 Webhook 功能</text>
+      </g>
+      
+      <g class="slide-in delay-5">
+        <text x="15" y="160" font-size="14" font-weight="bold" fill="#E0E0E0">功能支持</text>
+        <text x="15" y="180" font-size="12" fill="#B8E0B0">優秀</text>
+        <text x="15" y="200" font-size="10" fill="#AAAAAA">Block Kit 格式</text>
+        <text x="15" y="215" font-size="10" fill="#AAAAAA">官方設計工具</text>
+      </g>
+      
+      <g class="slide-in delay-6">
+        <text x="15" y="250" font-size="14" font-weight="bold" fill="#E0E0E0">費用</text>
+        <text x="15" y="270" font-size="12" fill="#E0D0A0">部分免費</text>
+        <text x="15" y="290" font-size="10" fill="#AAAAAA">免費版有功能限制</text>
+        <text x="15" y="305" font-size="10" fill="#AAAAAA">高級功能需付費</text>
+      </g>
+      
+      <circle cx="155" cy="15" r="3" class="slack-color subtle-pulse delay-8" />
+    </g>
+    
+    <!-- Line Message API -->
+    <g class="card" transform="translate(600, 0)">
+      <rect width="170" height="320" rx="4" ry="4" fill="#252A41" class="box-fade delay-4" />
+      <rect x="0" y="0" width="170" height="320" rx="4" ry="4" fill="none" stroke="#06C755" stroke-width="1.5" stroke-opacity="0.4" class="border-draw delay-4" />
+      
+      <text x="85" y="30" font-size="16" font-weight="bold" text-anchor="middle" fill="#E0E0E0" class="fade-in delay-4">Line Message API</text>
+      <line x1="30" y1="40" x2="140" y2="40" stroke="#06C755" stroke-width="1" class="border-draw delay-4" />
+      
+      <g class="slide-in delay-5">
+        <text x="15" y="70" font-size="14" font-weight="bold" fill="#E0E0E0">設置難度</text>
+        <text x="15" y="90" font-size="12" fill="#E0B0B0">較複雜</text>
+        <text x="15" y="110" font-size="10" fill="#AAAAAA">需技術開發能力</text>
+        <text x="15" y="125" font-size="10" fill="#AAAAAA">開發者後台設置</text>
+      </g>
+      
+      <g class="slide-in delay-6">
+        <text x="15" y="160" font-size="14" font-weight="bold" fill="#E0E0E0">功能支持</text>
+        <text x="15" y="180" font-size="12" fill="#B8E0B0">最完整</text>
+        <text x="15" y="200" font-size="10" fill="#AAAAAA">Flex 訊息、卡片</text>
+        <text x="15" y="215" font-size="10" fill="#AAAAAA">完整 Line 原生體驗</text>
+      </g>
+      
+      <g class="slide-in delay-7">
+        <text x="15" y="250" font-size="14" font-weight="bold" fill="#E0E0E0">費用</text>
+        <text x="15" y="270" font-size="12" fill="#E0B0B0">付費</text>
+        <text x="15" y="290" font-size="10" fill="#AAAAAA">免費額度：200則/月</text>
+        <text x="15" y="305" font-size="10" fill="#AAAAAA">標準：NT$800起/月</text>
+      </g>
+      
+      <circle cx="155" cy="15" r="3" class="line-color subtle-pulse delay-8" />
+    </g>
+  </g>
+  
+  <!-- 底部說明 -->
+  <g class="fade-in delay-7">
+    <text x="400" y="410" font-size="12" text-anchor="middle" fill="#A0A0A0">以上為 Line Notify 將於 2025年3月31日 停止服務後的可用替代方案</text>
+    <text x="400" y="430" font-size="12" text-anchor="middle" fill="#A0A0A0">選擇時請考量設置難度、功能需求與預算</text>
+  </g>
+</svg>
