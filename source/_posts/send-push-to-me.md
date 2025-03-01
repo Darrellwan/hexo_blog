@@ -17,6 +17,23 @@ modified: 2025-01-22 11:18:11
 
 {% darrellImage800 push_yourself_bg push_yourself_bg.png max-800 %}
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ImageObject",
+  "contentUrl": "./line-notify-alternatives-comparison-2025.svg",
+  "name": "Line Notify替代方案比較圖表",
+  "description": "比較Discord、Telegram、Slack和Line Message API作為Line Notify停止服務後的替代選擇",
+  "datePublished": "2025-02-28"
+}
+</script>
+<figure>
+  <img src="./line-notify-alternatives-comparison-2025.svg" alt="Line Notify替代方案比較圖表：呈現Discord、Telegram、Slack和Line Message API四種服務在設置難度、功能支持和費用方面的對比。Discord設置簡單且免費；Telegram設置中等且免費；Slack功能豐富但部分付費；Line Message API功能最完整但設置複雜且需付費。適用於Line Notify將於2025年3月31日停止服務後的替代選擇。">
+  <figcaption>圖1: Line Notify替代方案比較 - 2025年3月服務終止後的選擇</figcaption>
+</figure>
+
+
+
 ## 前言
 
 [LINE Notify結束服務公告](https://notify-bot.line.me/closing-announce)
