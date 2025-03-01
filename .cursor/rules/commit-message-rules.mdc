@@ -1,5 +1,5 @@
 ---
-description: Rules for AI-generated commit message
+description: Rules for auto generated commit message
 globs: *
 alwaysApply: false
 ---
@@ -10,3 +10,4 @@ alwaysApply: false
 - 新文章的話用 [NEW POST] {post_id}
 - example :[UPDATE] Simplify code; Enhance readability
 - example :[NEW POST] {post_id}
+ 
