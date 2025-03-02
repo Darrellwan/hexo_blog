@@ -12,7 +12,7 @@ bgImage: push_yourself_bg.jpg
 preload:
   - push_yourself_bg.jpg
 date: 2024-10-07 22:36:11
-modified: 2025-01-22 11:18:11
+modified: 2025-03-02 22:01:11
 ---
 
 {% darrellImageCover push_yourself_bg push_yourself_bg.jpg max-800 %}
@@ -296,3 +296,15 @@ curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, World!"
   previewText="Line Notify 的替代方案之一 Line Message API，介紹怎麼用 n8n 的 Request 來發送和接收 webhook，也會提供模板範例" 
   thumbnail="https://www.darrelltw.com/n8n-line-message-api/n8n-line-message-api-bg.jpg" 
 %}
+
+### 用量注意事項
+
+另外有一點必須要特別注意!!!
+
+如果在群組發送 Line Message API
+會根據群組的人數來消耗次數
+當你用 Bot 發送 Message API 到該群組時
+例如**群組內有 10 個使用者，會消耗 10 次**
+
+所以大量發送訊息到群組會非常快消耗次數，要注意這件事情
+
