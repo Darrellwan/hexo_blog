@@ -308,3 +308,42 @@ curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, World!"
 
 所以大量發送訊息到群組會非常快消耗次數，要注意這件事情
 
+### 檢查目前 Line Message API 使用 Quota
+
+```python
+# python 版本
+
+def check_quota():
+    """查詢LINE Message API剩餘配額"""
+    with get_api_client() as api_client:
+        api_instance = MessagingApi(api_client)
+        try:
+            # 獲取配額上限
+            message_quota = api_instance.get_message_quota()
+            
+            # 獲取已使用配額
+            consumption = api_instance.get_message_quota_consumption()
+            
+            # 計算剩餘配額
+            total = message_quota.value
+            used = consumption.total_usage
+            remaining = total - used
+            
+            print("===== LINE配額資訊 =====")
+            print(f"配額類型: {message_quota.type}")
+            print(f"總配額: {total:,}")
+            print(f"已使用: {used:,}")
+            print(f"剩餘: {remaining:,} ({round((remaining/total)*100, 2)}%)")
+            print("=======================")
+            
+            return {
+                "type": message_quota.type,
+                "total": total,
+                "used": used,
+                "remaining": remaining
+            }
+        except ApiException as e:
+            print(f"✗ 查詢配額失敗: {e}")
+            return {"error": str(e)}
+
+```
