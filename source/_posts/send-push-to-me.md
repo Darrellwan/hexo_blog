@@ -308,7 +308,10 @@ curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, World!"
 
 所以大量發送訊息到群組會非常快消耗次數，要注意這件事情
 
-### 檢查目前 Line Message API 使用 Quota
+### 檢查目前剩餘餘額Quota
+
+
+#### Python
 
 ```python
 # python 版本
