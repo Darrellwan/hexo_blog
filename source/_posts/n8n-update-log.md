@@ -19,7 +19,41 @@ modified: 2025-03-04 12:50:55
 
 ## 1.82.0 Pre-release
 
+一些重要的新功能分享
+但必須先說 **資料夾功能還沒下放**
 
+### New Node: Azure Storage
+
+{% darrellImage800 n8n-1.82.0-azure_storage.png n8n-1.82.0-azure_storage.png max-400 %}
+
+### Workflow 自動對齊整理功能
+
+現在有了自動對齊整理 canva 的功能
+叫做 Tidy
+
+這是一個在各種自動化旅程 canva 中都會有的功能
+好不好用見仁見智!
+一但旅程變得複雜，有時候整理過後不見得是你要的長相
+
+{% darrellVideoSimple n8n-1.82.0-tidy n8n-1.82.0-tidy.webm max-800 %}
+
+### Node 編輯後變色提醒
+
+n8n-1.82.0-node_modity
+
+{% darrellImage800 n8n-1.82.0-node_modity n8n-1.82.0-node_modity.png max-800 %}
+
+執行過沒問題的節點會顯示綠色
+但要是後面去修改該節點，他就會以黃色警告的方式呈現
+讓你可以辨別哪些節點被修改過，可以觀察有沒有錯誤產生
+
+### 自動切換 Expression 語法
+
+{% darrellImage800 n8n-1.82.0-chnage_to_expression_automatically.png n8n-1.82.0-chnage_to_expression_automatically.png max-800 %}
+
+之前分享過 `=` 可以切換成 Expression
+但要是貼上 `{{ $now }}` 這種語法並不會自動切換
+在這個版本加上了這個功能!
 
 ## 1.81.4 Release
 
@@ -27,6 +61,8 @@ modified: 2025-03-04 12:50:55
 
 除了涵蓋 1.81.0 的新功能外
 更多的是一些調整修復
+
+### Fix
 
 - 1.81.4
 core: Do not validate email when LDAP is enabled
