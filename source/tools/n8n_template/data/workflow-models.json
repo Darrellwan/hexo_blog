@@ -401,6 +401,81 @@
                     }
                 }
             }
+        },
+        "demo_while_loop_example": {
+            "id": "demo_while_loop_example",
+            "title": "While True 迴圈範例：分頁資料處理",
+            "description": "這個工作流程展示如何在 n8n 中實現 while 迴圈功能，特別適用於處理分頁 API 資料。工作流程模擬 API 回傳分頁資料的情境，並透過條件判斷和迴圈結構來處理所有分頁。\n\n主要功能：\n\n動態參數設定：可自訂起始位置、每頁資料量和最大執行次數\n模擬 API 回傳：根據參數動態生成資料陣列\n條件判斷：檢測是否已到達最後一頁或達到最大執行次數\n迴圈實現：透過節點連接實現 while 迴圈功能",
+            "detailedDescription": [
+                "展示 n8n 中實現 while 迴圈的方法",
+                "模擬分頁 API 資料處理流程",
+                "提供可自訂的參數設定",
+                "使用條件判斷控制迴圈執行",
+                "適用於需要處理大量分頁資料的情境"
+            ],
+            "tags": ["自動化", "迴圈", "分頁", "API", "教學", "範例"],
+            "nodes": 7,
+            "createdAt": "2024-03-21",
+            "updatedAt": "2024-03-21",
+            "setup": {
+                "prerequisites": "基本了解 n8n 工作流程和 JavaScript",
+                "steps": [
+                    {
+                        "title": "參數設定",
+                        "description": "設定迴圈的基本參數",
+                        "options": [
+                            "設定起始位置 (start)",
+                            "設定每頁資料量 (limit)",
+                            "設定最大執行次數 (times)"
+                        ]
+                    },
+                    {
+                        "title": "條件判斷設定",
+                        "description": "設定迴圈終止條件",
+                        "options": [
+                            "檢查回傳資料長度是否小於限制值",
+                            "檢查執行次數是否超過最大值"
+                        ]
+                    }
+                ]
+            },
+            "examples": [
+                {
+                    "title": "基本設定範例",
+                    "description": "展示如何設定基本的 while 迴圈處理流程",
+                    "code": {
+                        "trigger": "manual",
+                        "actions": [
+                            "set_parameters",
+                            "generate_data",
+                            "check_condition",
+                            "loop_back"
+                        ]
+                    }
+                }
+            ],
+            "fields": {
+                "parameters": {
+                    "title": "迴圈參數設定",
+                    "fields": {
+                        "start": {
+                            "type": "number",
+                            "description": "起始位置",
+                            "default": 0
+                        },
+                        "limit": {
+                            "type": "number",
+                            "description": "每頁資料量",
+                            "default": 25
+                        },
+                        "times": {
+                            "type": "number",
+                            "description": "最大執行次數",
+                            "default": 10
+                        }
+                    }
+                }
+            }
         }
     }
 } 
