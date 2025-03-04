@@ -281,6 +281,126 @@
                     }
                 }
             }
+        },
+        "n8n_threads_fetch_data": {
+            "id": "n8n_threads_fetch_data",
+            "title": "Threads 數據自動擷取與分析",
+            "description": "這個工作流程自動化擷取 Threads 平台的帳號數據，包括貼文互動數據和用戶追蹤者統計。系統會定期從 Threads API 獲取資料，並將其儲存到 Google 試算表中，方便後續分析和視覺化。\n\n主要功能：\n\n貼文數據擷取：獲取所有發布貼文的詳細資訊\n互動數據分析：收集每篇貼文的觀看次數、讚好、回覆、轉發等數據\n用戶洞察：追蹤粉絲增長和每日互動統計\nGoogle 試算表整合：將所有數據自動儲存到結構化表格中",
+            "detailedDescription": [
+                "自動擷取 Threads 帳號所有貼文資料",
+                "收集每篇貼文的互動數據（觀看、讚好、回覆、轉發）",
+                "追蹤每日粉絲增長數據",
+                "自動儲存到 Google Sheets 進行分析",
+                "支援定時自動更新功能"
+            ],
+            "tags": ["自動化", "社交媒體", "數據分析", "Threads", "Google Sheets", "API"],
+            "nodes": 21,
+            "createdAt": "2024-03-20",
+            "updatedAt": "2024-03-20",
+            "setup": {
+                "prerequisites": "需要設定 Threads API Token 和 Google Sheets 的 API 存取權限",
+                "steps": [
+                    {
+                        "title": "Threads API 設定",
+                        "description": "設定 Threads API 存取權限",
+                        "options": [
+                            "建立 Query Auth Credential",
+                            "設定 Threads API Token",
+                            "測試 API 連接"
+                        ]
+                    },
+                    {
+                        "title": "Google Sheets 設定",
+                        "description": "準備數據儲存用的試算表",
+                        "options": [
+                            "建立新的試算表",
+                            "新增三個工作表：post、user_insights、user_follower_count",
+                            "設定存取權限"
+                        ]
+                    },
+                    {
+                        "title": "排程設定",
+                        "description": "設定自動執行排程",
+                        "options": [
+                            "設定每日執行時間",
+                            "調整時區設定",
+                            "設定錯誤通知"
+                        ]
+                    }
+                ]
+            },
+            "examples": [
+                {
+                    "title": "基本設定範例",
+                    "description": "展示如何設定基本的 Threads 數據擷取流程",
+                    "code": {
+                        "trigger": "schedule",
+                        "actions": [
+                            "fetch_posts",
+                            "fetch_post_insights",
+                            "fetch_user_insights",
+                            "save_to_sheets"
+                        ]
+                    }
+                }
+            ],
+            "fields": {
+                "threads": {
+                    "title": "Threads API 設定",
+                    "fields": {
+                        "apiToken": {
+                            "type": "string",
+                            "description": "Threads API Token",
+                            "example": "YOUR_THREADS_API_TOKEN"
+                        }
+                    }
+                },
+                "sheets": {
+                    "title": "Google Sheets 設定",
+                    "fields": {
+                        "spreadsheetId": {
+                            "type": "string",
+                            "description": "Google Sheets ID",
+                            "example": "122ElgZ83zduzaOyuyTiaetsbQkJ5NsOrPrFrF8_NhI0"
+                        },
+                        "postSheetName": {
+                            "type": "string",
+                            "description": "貼文數據工作表名稱",
+                            "default": "post"
+                        },
+                        "userInsightsSheetName": {
+                            "type": "string",
+                            "description": "用戶洞察工作表名稱",
+                            "default": "user_insights"
+                        },
+                        "followerCountSheetName": {
+                            "type": "string",
+                            "description": "粉絲數據工作表名稱",
+                            "default": "user_follower_count"
+                        }
+                    }
+                },
+                "schedule": {
+                    "title": "排程設定",
+                    "fields": {
+                        "hour": {
+                            "type": "number",
+                            "description": "每日執行小時 (0-23)",
+                            "default": 6
+                        },
+                        "minute": {
+                            "type": "number",
+                            "description": "每日執行分鐘 (0-59)",
+                            "default": 30
+                        },
+                        "timezone": {
+                            "type": "string",
+                            "description": "時區設定",
+                            "default": "Asia/Taipei"
+                        }
+                    }
+                }
+            }
         }
     }
 } 

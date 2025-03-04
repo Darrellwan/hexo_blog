@@ -1,0 +1,1116 @@
+{
+  "name": "n8n-threads demo",
+  "nodes": [
+    {
+      "parameters": {
+        "fieldToSplitOut": "data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        380,
+        -380
+      ],
+      "id": "0e113d44-8405-4e18-b008-73334e032ca6",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "url": "https://graph.threads.net/v1.0/me/threads",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendQuery": true,
+        "specifyQuery": "json",
+        "jsonQuery": "{\"fields\" : \"id,media_product_type,media_type,media_url,permalink,owner,username,text,timestamp,shortcode,thumbnail_url,children,is_quote_post\"}",
+        "options": {
+          "pagination": {
+            "pagination": {
+              "paginationMode": "responseContainsNextURL",
+              "nextURL": "={{ $response.body.paging.next }}",
+              "paginationCompleteWhen": "other",
+              "completeExpression": "={{ !$response.body.paging.next }}",
+              "limitPagesFetched": true,
+              "maxRequests": 10,
+              "requestInterval": 100
+            }
+          },
+          "timeout": 5000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        200,
+        -380
+      ],
+      "id": "dc4d946a-c9b6-4bb2-b989-4be57d6cf2ca",
+      "name": "Get All Threads POST",
+      "credentials": {
+        "httpQueryAuth": {
+          "id": "iKs6A8KLeDstUY4f",
+          "name": "Threads-darrell_tw_"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.threads.net/v1.0/{{$json.id}}/insights",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "metric",
+              "value": "views,likes,replies,reposts,quotes,shares"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        780,
+        -320
+      ],
+      "id": "174bb34e-ca39-4235-8231-e6d6524b760a",
+      "name": "Get Threads POST insight",
+      "credentials": {
+        "httpQueryAuth": {
+          "id": "iKs6A8KLeDstUY4f",
+          "name": "Threads-darrell_tw_"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        1160,
+        -380
+      ],
+      "id": "d7453933-bd20-4319-8501-595ab69ba920",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "url": "https://graph.threads.net/v1.0/me/threads_insights",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "metric",
+              "value": "views,likes,replies,reposts,quotes"
+            },
+            {
+              "name": "since",
+              "value": "={{ $json.startTime }}"
+            },
+            {
+              "name": "until",
+              "value": "={{ $json.endTime }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        540,
+        180
+      ],
+      "name": "Fetch Insights",
+      "id": "941a22ae-7aa1-4f5f-8adc-cb4879f3cf32",
+      "credentials": {
+        "httpQueryAuth": {
+          "id": "iKs6A8KLeDstUY4f",
+          "name": "Threads-darrell_tw_"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "functionCode": "const items = [];\n\n// 取得今天的日期 (UTC 時間)\nconst today = new Date();\n\n// 生成近 30 天的日期 (基於 UTC)\nfor (let i = 0; i < 30; i++) {\n  const date = new Date();\n  date.setUTCDate(today.getUTCDate() - i); // 設定日期為 UTC\n\n  items.push({\n    json: {\n      date: date.toISOString().split('T')[0], // 格式化為 YYYY-MM-DD\n      startTime: Math.floor(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), 0, 0, 0, 0) / 1000), // UTC 當天開始時間 (Unix 秒數)\n      endTime: Math.floor(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), 23, 59, 59, 999) / 1000) // UTC 當天結束時間 (Unix 秒數)\n    }\n  });\n}\n\nreturn items;\n"
+      },
+      "name": "Generate Dates",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        180,
+        120
+      ],
+      "id": "576dfb59-3f9a-4ef0-86fd-f53029c0e52a"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1",
+              "name": "likes",
+              "value": "={{$json[\"data\"].find(item => item.name === \"likes\")?.total_value?.value || 0}}",
+              "type": "number"
+            },
+            {
+              "id": "2",
+              "name": "replied",
+              "value": "={{$json[\"data\"].find(item => item.name === \"replies\")?.total_value?.value || 0}}",
+              "type": "number"
+            },
+            {
+              "id": "3",
+              "name": "views",
+              "value": "={{$json[\"data\"].find(item => item.name === \"views\")?.values?.[1]?.value || 0}}",
+              "type": "number"
+            },
+            {
+              "id": "4",
+              "name": "reposts",
+              "value": "={{$json[\"data\"].find(item => item.name === \"reposts\")?.total_value?.value || 0}}",
+              "type": "number"
+            },
+            {
+              "id": "5",
+              "name": "quotes",
+              "value": "={{$json[\"data\"].find(item => item.name === \"quotes\")?.total_value?.value || 0}}",
+              "type": "number"
+            },
+            {
+              "id": "6",
+              "name": "followers_count",
+              "value": "={{$json[\"data\"].find(item => item.name === \"followers_count\")?.total_value?.value || 0}}",
+              "type": "number"
+            },
+            {
+              "id": "4950670e-2fd0-4795-b516-3df654d2d2ec",
+              "name": "date",
+              "value": "={{ $('Loop Post Insights').item.json.date }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        700,
+        180
+      ],
+      "id": "a97ff158-0a1e-4d72-8557-246961e1bf8f",
+      "name": "Extract All Data"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        880,
+        200
+      ],
+      "id": "b2ce844d-15d4-4e6c-8627-b705bd8945b7",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {
+        "url": "https://graph.threads.net/v1.0/me/threads_insights",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "metric",
+              "value": "followers_count"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        200,
+        560
+      ],
+      "name": "Fetch User Insights",
+      "id": "706edfb6-7d3c-4a2d-b815-e921c7b72ea0",
+      "credentials": {
+        "httpQueryAuth": {
+          "id": "iKs6A8KLeDstUY4f",
+          "name": "Threads-darrell_tw_"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6",
+              "name": "followers_count",
+              "value": "={{$json[\"data\"].find(item => item.name === \"followers_count\")?.total_value?.value || 0}}",
+              "type": "number"
+            },
+            {
+              "id": "4950670e-2fd0-4795-b516-3df654d2d2ec",
+              "name": "date",
+              "value": "={{ $today.format('yyyy-MM-dd') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        380,
+        560
+      ],
+      "id": "653d76ee-772f-47b9-a2eb-6a81b66ad9f7",
+      "name": "Extract All Data1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        600,
+        -380
+      ],
+      "id": "5600caf6-c550-41a7-9fd4-e90a8c6acc7b",
+      "name": "Loop Posts"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        360,
+        120
+      ],
+      "id": "625b26fb-b7a4-4eea-b5c7-c01fbe9bf2ef",
+      "name": "Loop Post Insights"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 6,
+              "triggerAtMinute": 30
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -80,
+        120
+      ],
+      "id": "058c2e0e-6781-445d-a3ac-2751db4fd670",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1",
+              "name": "likes",
+              "value": "={{$json[\"data\"].find(item => item.name === \"likes\").values[0].value}}",
+              "type": "string"
+            },
+            {
+              "id": "2",
+              "name": "views",
+              "value": "={{$json[\"data\"].find(item => item.name === \"views\").values[0].value}}",
+              "type": "string"
+            },
+            {
+              "id": "3",
+              "name": "replies",
+              "value": "={{$json[\"data\"].find(item => item.name === \"replies\").values[0].value}}",
+              "type": "string"
+            },
+            {
+              "id": "4",
+              "name": "reposts",
+              "value": "={{$json[\"data\"].find(item => item.name === \"reposts\").values[0].value}}",
+              "type": "string"
+            },
+            {
+              "id": "5",
+              "name": "quotes",
+              "value": "={{$json[\"data\"].find(item => item.name === \"quotes\").values[0].value}}",
+              "type": "string"
+            },
+            {
+              "id": "6",
+              "name": "shares",
+              "value": "={{$json[\"data\"].find(item => item.name === \"shares\").values[0].value}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        960,
+        -320
+      ],
+      "id": "bdede2e3-b34f-4f3d-aada-c86e76d29d27",
+      "name": "Extract value from Data"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "122ElgZ83zduzaOyuyTiaetsbQkJ5NsOrPrFrF8_NhI0",
+          "mode": "list",
+          "cachedResultName": "n8n-threads-data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/122ElgZ83zduzaOyuyTiaetsbQkJ5NsOrPrFrF8_NhI0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "post",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/122ElgZ83zduzaOyuyTiaetsbQkJ5NsOrPrFrF8_NhI0/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "media_product_type",
+              "displayName": "media_product_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "media_type",
+              "displayName": "media_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "media_url",
+              "displayName": "media_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "permalink",
+              "displayName": "permalink",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "owner",
+              "displayName": "owner",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "username",
+              "displayName": "username",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "text",
+              "displayName": "text",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "timestamp",
+              "displayName": "timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "shortcode",
+              "displayName": "shortcode",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "children",
+              "displayName": "children",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "is_quote_post",
+              "displayName": "is_quote_post",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "thumbnail_url",
+              "displayName": "thumbnail_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "likes",
+              "displayName": "likes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "views",
+              "displayName": "views",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "replies",
+              "displayName": "replies",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "reposts",
+              "displayName": "reposts",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "quotes",
+              "displayName": "quotes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "shares",
+              "displayName": "shares",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "data",
+              "displayName": "data",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "paging",
+              "displayName": "paging",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        780,
+        -540
+      ],
+      "id": "825b16a1-cb4e-47d3-bb26-2e1bf11d7c51",
+      "name": "Save post data to Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "atsKA0m2aQXeL6i6",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "122ElgZ83zduzaOyuyTiaetsbQkJ5NsOrPrFrF8_NhI0",
+          "mode": "list",
+          "cachedResultName": "n8n-threads-data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/122ElgZ83zduzaOyuyTiaetsbQkJ5NsOrPrFrF8_NhI0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 24004070,
+          "mode": "list",
+          "cachedResultName": "user_insights",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/122ElgZ83zduzaOyuyTiaetsbQkJ5NsOrPrFrF8_NhI0/edit#gid=24004070"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "date": "={{ $json.date }}",
+            "views": "={{ $json.views }}",
+            "likes": "={{ $json.likes }}",
+            "replies": "={{ $json.replied }}",
+            "reposts": "={{ $json.reposts }}",
+            "followers_count": "={{ $json.followers_count }}",
+            "quotes": "={{ $json.quotes }}"
+          },
+          "matchingColumns": [
+            "date"
+          ],
+          "schema": [
+            {
+              "id": "date",
+              "displayName": "date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "views",
+              "displayName": "views",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "likes",
+              "displayName": "likes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "replies",
+              "displayName": "replies",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "reposts",
+              "displayName": "reposts",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "quotes",
+              "displayName": "quotes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "followers_count",
+              "displayName": "followers_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        880,
+        20
+      ],
+      "id": "db2b361f-4fd5-4200-9d72-512190af6555",
+      "name": "save user_insight to Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "atsKA0m2aQXeL6i6",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "122ElgZ83zduzaOyuyTiaetsbQkJ5NsOrPrFrF8_NhI0",
+          "mode": "list",
+          "cachedResultName": "n8n-threads-data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/122ElgZ83zduzaOyuyTiaetsbQkJ5NsOrPrFrF8_NhI0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 2068864986,
+          "mode": "list",
+          "cachedResultName": "user_follower_count",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/122ElgZ83zduzaOyuyTiaetsbQkJ5NsOrPrFrF8_NhI0/edit#gid=2068864986"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "date": "={{ $json.date }}",
+            "follower_count": "={{ $json.followers_count }}"
+          },
+          "matchingColumns": [
+            "date"
+          ],
+          "schema": [
+            {
+              "id": "date",
+              "displayName": "date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "follower_count",
+              "displayName": "follower_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        580,
+        560
+      ],
+      "id": "f6990a70-096b-42aa-9b0e-86c8f9b7fff6",
+      "name": "save user_follower_count",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "atsKA0m2aQXeL6i6",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Created by darrell_tw_ \n\nAn engineer now focus on AI and Automation\n\n### conatct me with following:\n[X](https://x.com/darrell_tw_)\n[Threads](https://www.threads.net/@darrell_tw_)\n[Instagram](https://www.instagram.com/darrell_tw_/)\n[Website](https://www.darrelltw.com/)",
+        "height": 240,
+        "width": 360,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -500,
+        -620
+      ],
+      "id": "7a7e6e2a-1f5b-4098-b3d3-042fd66aa415",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "## 處理 Post and Post insight\n1. 先取得目前所有發過的 Post\n2. 用 Post id 換該篇 Post 的 insight 數據",
+        "height": 500,
+        "width": 1260
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        120,
+        -640
+      ],
+      "id": "cdaff8a7-1d46-4ba3-a788-19bb27dc8f7d",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## 處理 User Insight\n更新近三十天，使用者的 Insight 數據",
+        "height": 440,
+        "width": 940,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        120,
+        -80
+      ],
+      "id": "2cdbd97b-c753-49c6-992d-a4cfbb095c30",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## 處理 User Followers Count\n該數據無法靠 API 回溯歷史，僅能只用 API 發出當下數據\n可以用 JS 在 Threads 頁面獲取近九十天歷史，該程式不方便公開，可以私訊討論",
+        "height": 360,
+        "width": 960,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        120,
+        400
+      ],
+      "id": "fe183dcf-b543-4fdc-b78f-0bf62f69ad51",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## 使用前必須修改:\n0. 建立一個 Query Auth Credential\n   放入 Threads API Token\n1. 建立一個 Google Sheet\n2. 新增 Sheet(Tab) Name:\n  - `post`\n  - `user_insights`\n  - `user_follower_count`\n3. 修改 workflow 的 Sheet 節點",
+        "height": 280,
+        "width": 360,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -500,
+        -360
+      ],
+      "id": "e48baf80-7a15-44ed-b0b3-4b37cdd2ab02",
+      "name": "Sticky Note3"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Loop Posts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get All Threads POST": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Threads POST insight": {
+      "main": [
+        [
+          {
+            "node": "Extract value from Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Loop Posts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Insights": {
+      "main": [
+        [
+          {
+            "node": "Extract All Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Dates": {
+      "main": [
+        [
+          {
+            "node": "Loop Post Insights",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract All Data": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Loop Post Insights",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch User Insights": {
+      "main": [
+        [
+          {
+            "node": "Extract All Data1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract All Data1": {
+      "main": [
+        [
+          {
+            "node": "save user_follower_count",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Posts": {
+      "main": [
+        [
+          {
+            "node": "Save post data to Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get Threads POST insight",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Loop Post Insights": {
+      "main": [
+        [
+          {
+            "node": "save user_insight to Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Fetch Insights",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get All Threads POST",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Generate Dates",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Fetch User Insights",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract value from Data": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save post data to Google Sheets": {
+      "main": [
+        []
+      ]
+    },
+    "save user_insight to Google Sheets": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Taipei",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "versionId": "bf7453aa-99e4-4a92-a86d-1db858be7d22",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "fddb3e91967f1012c95dd02bf5ad21f279fc44715f47a7a96a33433621caa253"
+  },
+  "id": "meOxPN6b6jijdTJR",
+  "tags": [
+    {
+      "createdAt": "2025-01-19T06:09:02.745Z",
+      "updatedAt": "2025-01-19T06:09:02.745Z",
+      "id": "xikUDzkBnHMO9C6y",
+      "name": "demo"
+    }
+  ]
+}
