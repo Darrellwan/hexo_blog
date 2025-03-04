@@ -7,16 +7,38 @@ categories:
   - Automation
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.81.0，正式版本為 1.80.3
+description: n8n 的更新記錄，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.82.0，正式版本為 1.81.4
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
+modified: 2025-03-04 12:50:55
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
 
-## 1.81.0 Pre-release
+## 1.82.0 Pre-release
+
+
+
+## 1.81.4 Release
+
+2025/03/03 正式把最新發布版本更新為 1.81.4
+
+除了涵蓋 1.81.0 的新功能外
+更多的是一些調整修復
+
+- 1.81.4
+core: Do not validate email when LDAP is enabled
+- 1.81.3
+core: Gracefully handle missing tasks metadata 
+n8n Form Trigger Node: Sanitize HTML for formNode
+- 1.81.2 
+editor: Add workflows to the store when fetching current page 
+editor: Undo keybinding changes related to window focus/blur events
+Postgres Node: Accommodate null values in query parameters for expressions
+
+## 1.81.0 
 
 <a href="https://github.com/n8n-io/n8n/releases/tag/n8n%401.81.0" style="color:rgb(116, 180, 249);"><i class="fa-solid fa-link"></i><span> Github 更新 </span></a>
 
