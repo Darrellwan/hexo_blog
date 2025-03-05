@@ -146,6 +146,6 @@ Claude Code 強大的地方在於他是指令模式
 
 ## 參考資料
 
-- [Claude Code](https://github.com/anthropics/claude-code)
+- [Claude Code Github](https://github.com/anthropics/claude-code)
 - [Claude Code 官方文件](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview)
 
