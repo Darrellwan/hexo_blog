@@ -6,7 +6,7 @@ tags:
   - AI
   - 開發工具
 page_type: post
-description: 測試 Claude Desktop MCP 的應用，包括 FileSystem、Fetch 和 Google Maps 的使用心得與注意事項，讓 Claude 幫上更多忙
+description: 測試 Claude Desktop MCP(model context protocol) 的應用，包括 FileSystem、Fetch 和 Google Maps 的使用心得與注意事項，讓 Claude 幫上更多忙
 categories: 
   - AI
 bgImage: claude_desktop_mcp_bg.jpg
