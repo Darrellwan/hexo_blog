@@ -1,5 +1,4 @@
 {
-  "name": "n8n-threads demo",
   "nodes": [
     {
       "parameters": {
@@ -739,7 +738,7 @@
       "typeVersion": 4.5,
       "position": [
         880,
-        20
+        40
       ],
       "id": "db2b361f-4fd5-4200-9d72-512190af6555",
       "name": "save user_insight to Google Sheets",
@@ -819,7 +818,7 @@
     },
     {
       "parameters": {
-        "content": "## Created by darrell_tw_ \n\nAn engineer now focus on AI and Automation\n\n### conatct me with following:\n[X](https://x.com/darrell_tw_)\n[Threads](https://www.threads.net/@darrell_tw_)\n[Instagram](https://www.instagram.com/darrell_tw_/)\n[Website](https://www.darrelltw.com/)",
+        "content": "## Created by darrell_tw_ \n\nAn engineer now focus on AI and Automation\n\n### contact me with following:\n[X](https://x.com/darrell_tw_)\n[Threads](https://www.threads.net/@darrell_tw_)\n[Instagram](https://www.instagram.com/darrell_tw_/)\n[Website](https://www.darrelltw.com/)",
         "height": 240,
         "width": 360,
         "color": 7
@@ -827,15 +826,15 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -500,
-        -620
+        -320,
+        -640
       ],
       "id": "7a7e6e2a-1f5b-4098-b3d3-042fd66aa415",
       "name": "Sticky Note4"
     },
     {
       "parameters": {
-        "content": "## 處理 Post and Post insight\n1. 先取得目前所有發過的 Post\n2. 用 Post id 換該篇 Post 的 insight 數據",
+        "content": "## 處理 Post and Post insight\n1. 先取得目前所有發過的 Post\n2. 用 Post id 換該篇 Post 的 insight 數據\n3. 預設抓前十頁數據，第一次想撈多一點可以修改 Max Pages - [Get All Threads POST]",
         "height": 500,
         "width": 1260
       },
@@ -850,7 +849,7 @@
     },
     {
       "parameters": {
-        "content": "## 處理 User Insight\n更新近三十天，使用者的 Insight 數據",
+        "content": "## 處理 User Insight\n1. 更新近三十天，使用者的 Insight 數據\n2. 第一次想往回多撈一點可以修改 let i = 0; i < 30; i++ - [Generate Dates]\n30 改成 n 就是 n 天前",
         "height": 440,
         "width": 940,
         "color": 6
@@ -890,14 +889,13 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -500,
-        -360
+        -320,
+        -380
       ],
       "id": "e48baf80-7a15-44ed-b0b3-4b37cdd2ab02",
       "name": "Sticky Note3"
     }
   ],
-  "pinData": {},
   "connections": {
     "Split Out": {
       "main": [
@@ -1093,24 +1091,9 @@
       ]
     }
   },
-  "active": false,
-  "settings": {
-    "executionOrder": "v1",
-    "timezone": "Asia/Taipei",
-    "callerPolicy": "workflowsFromSameOwner"
-  },
-  "versionId": "bf7453aa-99e4-4a92-a86d-1db858be7d22",
+  "pinData": {},
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "fddb3e91967f1012c95dd02bf5ad21f279fc44715f47a7a96a33433621caa253"
-  },
-  "id": "meOxPN6b6jijdTJR",
-  "tags": [
-    {
-      "createdAt": "2025-01-19T06:09:02.745Z",
-      "updatedAt": "2025-01-19T06:09:02.745Z",
-      "id": "xikUDzkBnHMO9C6y",
-      "name": "demo"
-    }
-  ]
+  }
 }
