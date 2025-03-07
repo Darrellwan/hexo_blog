@@ -7,14 +7,46 @@ categories:
   - ChatGPT
 page_type: post
 id: chatgpt-work-with-apps
-description: Work with Apps 一起運作，讓 ChatGPT 開始讀取 VSCode 的程式碼並且透過終端機來自動執行測試
+description: Work with Apps 一起運作，讓 ChatGPT 開始讀取 VSCode 的程式碼並且透過終端機來自動執行測試，更新 ChatGPT 可以直接編輯 VSCode, Cursor 的程式碼
 bgImage: chatgpt_work_with_apps_bg.png
 preload:
   - chatgpt_work_with_apps_bg.png
+modified: 2025-03-07 10:25:08
 date: 2024-11-25 15:07:13
-modified: 2024-11-28 12:25:08
 ---
 {% darrellImageCover chatgpt_work_with_apps_bg chatgpt_work_with_apps_bg.png max-800 %}
+
+## 2025/03/07 更新
+
+### 直接編輯 VSCode, Cursor 的程式碼
+
+OpenAI 在最近更新了消息
+**ChatGPT for macOS can now edit code directly in IDEs**
+
+代表 ChatGPT 終於不是只能讀取 IDE 的程式碼了，現在還能實現直接編輯的效果
+
+#### 安裝與更新
+
+安裝如下方文章提到，但如果是先前安裝過的人
+要檢查看看自己的 VSCode 套件是否有更新喔
+最新版本的檢查方式:
+
+{% darrellImage check_vscode_extension_version check_vscode_extension_version.png max-800 %}
+
+#### 運作效果
+
+實際運作效果不錯，就是真的省略了複製程式碼過去的步驟
+尤其當你的程式碼是比較長
+他會分段修改時，以前得一段一段複製
+現在他直接幫你處理好!
+
+{% darrellImage work_with_cursor_edit_code work_with_cursor_edit_code.png max-800 %}
+
+#### 缺點
+
+無法看到其他程式碼，還是只能處理 Cursor 當下開啟的程式碼檔案
+不像在 Cursor 能直接透過 Agent 或 Edit 來處理整個專案裡面的多隻程式碼
+
 
 ## 在 MacOS 讓 ChatGPT 和其他 App 一起運作
 
@@ -24,6 +56,7 @@ modified: 2024-11-28 12:25:08
 對開發者來說最棒的是現在 chatGPT 可以讀到 VSCode 裡面選取的程式碼了，
 再也不用複製貼上，但必須說和 CursorAI 相比還是有一段差距，
 畢竟 CursorAI 是有能力讀取整個專案或是多個程式碼文件來給建議或協作的。
+
 
 ## 目前支援的 Apps
 
