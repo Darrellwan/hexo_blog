@@ -131,6 +131,11 @@ Claude Desktop MCP 功能讓 Claude 從單純的聊天機器人變成更實用�
 
 很多，大家安裝前可以看一下列表
 
+其他列表網站
+
+[Portkey MCP Servers](https://portkey.ai/mcp-servers)
+[Github: punkpeye/awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers)
+
 ## 參考資料
 
 - [Claude Model Context Protocol (MCP)官方文件](https://docs.anthropic.com/en/docs/agents-and-tools/mcp)
