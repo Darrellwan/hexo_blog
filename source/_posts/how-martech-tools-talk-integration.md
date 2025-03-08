@@ -33,7 +33,7 @@ Built-in 內建串接會是最簡單的方法
 第一個例子用 Segment CDP
 {% darrellImage800 segment_cdp_builtin_integration segment_cdp_builtin_integration.png max-800 %}
 從這張圖片可以看到在 
-<a href="https://segment.com/"><i class="fa-solid fa-link"></i><span> Segment CDP </span></a> 這套系統中
+[Segment CDP](https://segment.com/) 這套系統中
 幾乎市面上較有國際知名的工具都已經是他內建串接的範圍內
 如果這些其他工具剛好都是你們公司或企業有在使用的
 那在串接上一切就會變得簡單
@@ -41,7 +41,7 @@ Built-in 內建串接會是最簡單的方法
 
 {% darrellImage800 segment_cdp_catalog segment_cdp_catalog.png max-800 %}
 這裡有提供他們列出的所有可串接的工具
-<a href="https://segment.com/catalog/"><i class="fa-solid fa-link"></i><span> Segment Catalog </span></a>
+[Segment Catalog](https://segment.com/catalog/)
 
 - 優點: 不需要工程師花費心力串接，也沒有額外維護費用
 - 缺點: 導入工具前就要評估好目前使用的工具是否都成串接，和該工具開發串接的速度與擴充性
@@ -79,54 +79,9 @@ Built-in 內建串接會是最簡單的方法
 
 Webhook 其實和 API 是一樣的方式，只是取得資料的方向不一樣
 這邊舉例 
-<a href="https://onesignal.com/"><i class="fa-solid fa-link"></i><span> OneSignal </span></a> 在文件中提到的 <a href="https://documentation.onesignal.com/docs/event-webhooks"><i class="fa-solid fa-link"></i><span>  Webhook 有支援的事件 </span></a>
+[OneSignal](https://onesignal.com/) 在文件中提到的 [Webhook 有支援的事件](https://documentation.onesignal.com/docs/event-webhooks)
 {% darrellImage800 onesignal_webhook_event onesignal_webhook_event.png max-800 %}
 
 流程有大概兩個步驟
 第一步驟是一樣需要設立一個 Server 或 Saas 服務當作 Endpoint 
 會像是一個網址
-```
-https://my-service-to-receive-webhook.a.run.app/onesignal
-```
-第二步驟是到行銷工具平台 如 OneSignal 在設定需要收到通知的事件
-以圖片舉例，簡訊或是Email 通知等等，要在發送、送達、點擊、發送失敗、取消訂閱的時候回傳這個事件到我們的 Endpoint 中
-我們就能在第一步驟啟動的 Server 中接收到這些事件，並且轉寫成我們其他平台需要的資料來回拋
-
-
-## 4. 其他串接方式：花錢買串接服務、省下工程人力和維護成本
-{% darrellImage800 martech_integraion_ipaas martech_integraion_ipaas.png max-800 %}
-
-Zapier 或許是一個蠻多人已經有聽過或是正在使用的工具，
-他其實屬於一種 iPaaS 的服務，iPaaS 是基於雲端的整合平台，
-提供簡單的拖放式介面，讓行銷人員也能輕鬆進行應用整合。
-
-{% darrellImage800 zapier_website_demo_mailchimp_hubspot zapier_website_demo_mailchimp_hubspot.png max-800 %}
-以這個圖片來說，Zapier 提供了 Mailchimp 和 Hubspot 的串接
-當 Mailchimp 有新的特定訂閱者時，Zapier 會接收到這個資訊，並且幫忙把這個新的聯絡人加入到 Hubspot 中
-背後的原理就是 Zapier 在接收 Mailchimp 的 Webhook 後，把資料轉換成 Hubspot 的 API 格式後送出給 Hubspot
-幫忙處理這些中間麻煩的串接，並收取費用
-
-## 5. 如何選擇適合的串接方式
-
-### 首選: 內建串接
-
-會優先選擇內建串接主要是因為它就是**最簡單方便且不用額外付費**
-相信 99% 的場景下使用內建串接都能解決問題
-特別案例只有內建串接的資料多了或少了另一個平台工具非常重要的資料或欄位
-才會放棄內建串接來選擇 API、Webhook 等其他方式串接
-
-### 替代選擇: API、Webhook、Zapier
-
-當使用的平台工具沒有提供內建串接，
-這時就只能選擇 API、Webhook、Zapier 等其他串接方式
-
-有工程資源: API 和 Webhook 
-好處是維護成本的費用較低，基本上都會低於 Zapier 這種服務
-只是也可能需要把工程師的時間成本也考量進去
-
-沒有工程資源且有預算: Zapier
-Zapier 應該能應付大部分的串接需求，台灣這邊如果使用的是一些台灣當地的行銷科技平台，
-就比較有可能不在 Zapier 的串接範圍內，雖然 Zapier 也有提供一些服務可以模擬 API Webhook 的功能來串接，但對於非技術背景的人來說就算有拖拉式的 UI 可能也沒那麼好上手
-
-
-

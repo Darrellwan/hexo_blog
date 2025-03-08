@@ -22,7 +22,7 @@ date: 2024-11-28 15:41:36
 
 其實 Google 是有提供文件教學的
 
-<a href="https://developers.google.com/gmail/promotab/overview?hl=zh-tw"><i class="fa-solid fa-link"></i><span> Gmail 註解 </span></a>
+[Gmail 註解](https://developers.google.com/gmail/promotab/overview?hl=zh-tw)
 
 {% darrellImage gmail_annotations_document gmail_annotations_document.png max-800 %}
 
@@ -83,7 +83,7 @@ POSITION (選用)：輪轉介面中卡片的位置。
 注意 Ratio 是 4:5、1:1、1.91:1
 如果沒有專業軟體的話，這裡用個線上服務示意
 
-<a href="https://croppola.com/"><i class="fa-solid fa-link"></i><span> croppola </span></a>
+[croppola](https://croppola.com/)
 
 - 1:1
 {% darrellImage image_ratio_1_1 image_ratio_1_1_400.png max-400 %}

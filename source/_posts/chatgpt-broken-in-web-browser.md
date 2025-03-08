@@ -19,11 +19,11 @@ preload:
 ## 快速檢查是否為 ChatGPT 端的問題
 
 ### OpenAI downdetector
-<a href="https://downdetector.com/status/openai/"><i class="fa-solid fa-link"></i><span> Downdetector OpenAI </span></a>
+[Downdetector OpenAI](https://downdetector.com/status/openai/)
 {% darrellImage800 down_detector_thumbnail down_detector_thumbnail.png max-800 %}
 
 ### Status OpenAI
-<a href="https://status.openai.com/"><i class="fa-solid fa-link"></i><span> Status OpenAI </span></a>
+[Status OpenAI](https://status.openai.com/)
 {% darrellImage800 openai_status_thumbnail openai_status_thumbnail.png max-800 %}
 
 ## 202406 ChatGPT is at capacity right now
@@ -68,14 +68,14 @@ Status: Identified - We have identified the issue and are working to roll out a 
 
 從這個網站也看到這一兩個小時有大量的使用者回報遇到錯誤
 
-<a href="https://downdetector.com/status/openai/"><i class="fa-solid fa-link"></i><span> Downdetector OpenAI </span></a>
+[Downdetector OpenAI](https://downdetector.com/status/openai/)
 
 官方的 Status 也提到目前有遇到問題
 ```
 Investigating - We are currently investigating this issue.
 May 03, 2024 - 00:18 PDT
 ```
-<a href="https://status.openai.com/"><i class="fa-solid fa-link"></i><span> Status OpenAI </span></a>
+[Status OpenAI](https://status.openai.com/)
 
 未來有遇到錯誤的人也可以參考上面兩個連結，看看是不是大規模性的問題
 而不是單純個人的電腦或瀏覽器造成錯誤!
@@ -94,7 +94,7 @@ May 03, 2024 - 00:18 PDT
 
 {% darrellImage800 chatgpt-community chatgpt-community.png max-800 %}
 
-<a href="https://community.openai.com/"><i class="fa-solid fa-link"></i><span> ChatGPT 官方論壇 </span></a>
+[ChatGPT 官方論壇](https://community.openai.com/)
 
 目前整理下來，可能有效的方式有兩種
 
