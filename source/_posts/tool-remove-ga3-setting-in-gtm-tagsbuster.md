@@ -37,7 +37,7 @@ GA3(UA) 已經在 2024/07 正式退場
 
 ## Tagsbuster 工具教學
 
-<a href="https://tagsbuster.analytics-debugger.com/"><i class="fa-solid fa-link"></i><span> Tagsbuster </span></a> 的方式是需要先匯出想要調整的 GTM JSON檔
+[Tagsbuster](https://tagsbuster.analytics-debugger.com/) 的方式是需要先匯出想要調整的 GTM JSON檔
 並且分析裡面的設定關聯後來找出可以移除的設定
 
 如何匯出 GTM 的設定檔案可以參考之前撰寫工具的教學影片
@@ -45,7 +45,7 @@ GA3(UA) 已經在 2024/07 正式退場
 <div style="padding:0;position:relative;"><iframe src="https://player.vimeo.com/video/994685225?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;byline=false&amp;title=false&amp;muted=true" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="GoogleTagManager export json file"></iframe></div><script async src="https://player.vimeo.com/api/player.js"></script>
 
 匯出後就可以到 
-<a href="https://tagsbuster.analytics-debugger.com/"><i class="fa-solid fa-link"></i><span> Tagsbuster </span></a> 的網站選擇那個 JSON 檔案並匯入
+[Tagsbuster](https://tagsbuster.analytics-debugger.com/) 的網站選擇那個 JSON 檔案並匯入
 
 {% darrellImage800 tagsbuster_page tagsbuster_page.png max-800 %}
 

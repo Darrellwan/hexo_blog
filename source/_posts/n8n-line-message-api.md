@@ -19,11 +19,11 @@ date: 2025-01-16 18:25:40
 ## n8n Line Message API Template
 
 
-<a href="https://n8n.io/workflows/2733-line-message-api-push-message-and-reply/"><i class="fa-solid fa-link"></i><span>Line Message API : Push Message & Reply </span></a>
+[Line Message API : Push Message & Reply](https://n8n.io/workflows/2733-line-message-api-push-message-and-reply/)
 
 {% darrellImage800 n8n_line_message_api_template n8n_line_message_api_template.png max-800 %}
 
-<a href="https://n8n.io/workflows/?q=line%20message%20api"><i class="fa-solid fa-link"></i><span>n8n workflow search result</span></a>
+[n8n workflow search result](https://n8n.io/workflows/?q=line%20message%20api)
 
 {% darrellImage800 n8n_line_message_api_template_search_result n8n_line_message_api_template_search_result.png max-800 %}
 
@@ -49,14 +49,14 @@ Line 的後台其實有兩種，但兩者都會用到
 有哪些要注意的地方
 
 1. 官方帳號
-<a href="https://manager.line.biz/"><i class="fa-solid fa-link"></i><span>Line OA 官方帳號 後台</span></a>
+[Line OA 官方帳號 後台](https://manager.line.biz/)
 
 {% darrellImage800 n8n_line_oa_platform n8n_line_oa_platform.png max-400 %}
 - \- 可以更改顯示名稱和頭像
 - \- 可以設定 Webhook
 
 2. 開發者後台
-<a href="https://developers.line.biz/console/"><i class="fa-solid fa-link"></i><span>Line Developer Console</span></a>
+[Line Developer Console](https://developers.line.biz/console/)
 {% darrellImage800 n8n_line_developer_console n8n_line_developer_console.png max-400 %}
 - \- 可以取得自己的 Line UID
 - \- 可以取得不過期的 Token

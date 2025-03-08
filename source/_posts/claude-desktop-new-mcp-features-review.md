@@ -120,7 +120,7 @@ Claude Desktop MCP 功能讓 Claude 從單純的聊天機器人變成更實用�
 
 {% darrellImage800 mcp_io_list mcp_io_list.png max-800 %}
 
-在 <a href="https://modelcontextprotocol.io/examples"><i class="fa-solid fa-link"></i><span> MCP Example Servers </span></a> 這個列表中
+在 [MCP Example Servers](https://modelcontextprotocol.io/examples) 這個列表中
 
 可以看到一些已經支援 MCP 協議的工具列表，以及可以提供什麼功能
 像是

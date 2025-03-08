@@ -76,7 +76,7 @@ Postgres Node: Accommodate null values in query parameters for expressions
 
 ## 1.81.0 
 
-<a href="https://github.com/n8n-io/n8n/releases/tag/n8n%401.81.0" style="color:rgb(116, 180, 249);"><i class="fa-solid fa-link"></i><span> Github 更新 </span></a>
+[Github 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.81.0)
 
 ### 資料夾功能內部測試
 

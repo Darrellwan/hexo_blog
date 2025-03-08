@@ -18,13 +18,13 @@ bgImage: google_chrome_3rd_party_cookie_bg.png
 ## 202407 更新 - 不會移除第三方 Cookie
 
 Google 官方宣布的文章
-<a href="https://privacysandbox.com/intl/en_us/news/privacy-sandbox-update/"><i class="fa-solid fa-link"></i><span> A new path for Privacy Sandbox on the web </span></a>
+[A new path for Privacy Sandbox on the web](https://privacysandbox.com/intl/en_us/news/privacy-sandbox-update/)
 
 DIGIDAY
-<a href="https://digiday.com/marketing/after-years-of-uncertainty-google-says-it-wont-be-deprecating-third-party-cookies-in-chrome/"><i class="fa-solid fa-link"></i><span> After years of uncertainty, Google says it won’t be ‘deprecating third-party cookies’ in Chrome </span></a>
+[After years of uncertainty, Google says it won't be 'deprecating third-party cookies' in Chrome](https://digiday.com/marketing/after-years-of-uncertainty-google-says-it-wont-be-deprecating-third-party-cookies-in-chrome/)
 
 數位時代
-<a href="https://www.bnext.com.tw/article/79840/cookies-awesome-google-2024"><i class="fa-solid fa-link"></i><span> Google重磅宣布：不淘汰Cookie了！什麼是Cookie？為何廣告投放要靠它？ </span></a>
+[Google重磅宣布：不淘汰Cookie了！什麼是Cookie？為何廣告投放要靠它？](https://www.bnext.com.tw/article/79840/cookies-awesome-google-2024)
 
 ---
 
