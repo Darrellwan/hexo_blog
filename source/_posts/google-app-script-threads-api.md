@@ -45,7 +45,7 @@ Threads API 的申請和文件 [Threads API 官方文件](https://developers.fac
 由於網路上蠻多類似的中文資源了，這邊就不想重新贅述一次
 但可以提供一些詳細的資訊:
 
-1. Threads - <a href="https://www.threads.net/@alfonsoho1995/post/DBWT2smyav_"><i class="fa-solid fa-link"></i><span> Alfonso 的 10 篇連載 </span></a>
+1. Threads - [Alfonso 的 10 篇連載](https://www.threads.net/@alfonsoho1995/post/DBWT2smyav_)
 {% darrellImage threads_alfonso_teach_threads_api threads_alfonso_teach_threads_api.png max-800 %}
 
 2. 利用發佈不久的 ChatGPT search 功能查詢: 
