@@ -137,7 +137,7 @@ AWS 每小時價格 $6.14
 那現在的確是個試試的好時機
 
 透過這個連結註冊 
-<a href="https://reurl.cc/eGrmGj" style="color:rgb(116, 180, 249);"><i class="fa-solid fa-link"></i><span> 優惠連結 </span></a>
+[優惠連結](https://reurl.cc/eGrmGj)
 就可以得到 10點，約可以測試 3 個小時的 4090
 
 趁現在有免費點數 + 算力優惠，可以體驗專屬於自己的 AI 算力

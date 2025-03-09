@@ -33,14 +33,14 @@ VWO 也是有名的 AB 測試工具
 
 上述舉例的工具都還有功能上的 Plan 差異，也就是說一樣的 MTU，選擇更多功能的話價格就會越高
 
-<a href="https://vwo.com/pricing/"><i class="fa-solid fa-link"></i><span> VWO 網站上的價格 </span></a>
+[VWO 網站上的價格](https://vwo.com/pricing/)
 
 另外 Mixpanel 也有 MTU 計價的方式，但低消是 $10,000 美金起跳!
 適合較大流量的網站，可以和 Mixpanel 討論是用 MTU 還是用 Events 計價比較划算
 
 {% darrellImage800 mixpanel_pricing_in_mtu_202404 mixpanel_pricing_in_mtu_202404.png max-800 %}
 
-<a href="https://amplitude.com/pricing"><i class="fa-solid fa-link"></i><span> Amplitude 網站上的價格 </span></a>
+[Amplitude 網站上的價格](https://amplitude.com/pricing)
 
 ### Segment CDP
 
@@ -57,7 +57,7 @@ CleverTap 是一個跨渠道行銷自動化工具，但網站上會是以 MAU �
 
 {% darrellImage800 clevertap_mau_defination clevertap_mau_defination.png max-800 %}
 
-<a href="https://clevertap.com/pricing/"><i class="fa-solid fa-link"></i><span> Clevertap 網站上的價格 </span></a>
+[Clevertap 網站上的價格](https://clevertap.com/pricing/)
 
 ## Events, Hits, API Calls
 
@@ -90,13 +90,13 @@ GA4 絕大多數的使用者都會是免費版本
 
 {% darrellImage800 ga4_360_difference ga4_360_difference.png max-800 %}
 
-<a href="https://support.google.com/analytics/answer/11202874?hl=zh-Hant"><i class="fa-solid fa-link"></i><span> [GA4] Google Analytics (分析) 360 (Google Analytics (分析) 4 資源) </span></a>
+[[GA4] Google Analytics (分析) 360 (Google Analytics (分析) 4 資源)](https://support.google.com/analytics/answer/11202874?hl=zh-Hant)
 
 另外 GA360 需要找指定的代理商購買喔!
 
 {% darrellImage800 ga4_360_analytics_partner ga4_360_analytics_partner.png max-800 %}
 
-<a href="https://enterprisemarketingportal.google/find-a-partner?certificationsFilters=Analytics&salesPartner=ANALYTICS&countriesFilter=TW&regionsFilter=APAC&a=2061857896"><i class="fa-solid fa-link"></i><span> GA360 Taiwan Partners 列表 </span></a>
+[GA360 Taiwan Partners 列表](https://enterprisemarketingportal.google/find-a-partner?certificationsFilters=Analytics&salesPartner=ANALYTICS&countriesFilter=TW&regionsFilter=APAC&a=2061857896)
 
 進入後將左方的 Country 篩選到自己需要的國家即可
 
@@ -124,7 +124,7 @@ GA4 絕大多數的使用者都會是免費版本
 
 {% darrellImage800 segment_api_calls_description segment_api_calls_description.png max-800 %}
 
-<a href="https://segment.com/docs/guides/usage-and-billing/mtus-and-throughput"><i class="fa-solid fa-link"></i><span> Segment - MTUs, Throughput and Billing </span></a>
+[Segment - MTUs, Throughput and Billing](https://segment.com/docs/guides/usage-and-billing/mtus-and-throughput)
 
 ## Subscription
 
@@ -141,7 +141,7 @@ Convertkit 是國外蠻常看到在使用作為蒐集名單一個工具，他蒐
 
 {% darrellImage800 convertkit_pricing_in_subscribers_202404 convertkit_pricing_in_subscribers_202404.png max-800 %}
 
-<a href="https://convertkit.com/pricing"><i class="fa-solid fa-link"></i><span> Convertkit 網站上的價格 </span></a>
+[Convertkit 網站上的價格](https://convertkit.com/pricing)
 
 ### MailChimp
 
@@ -151,7 +151,7 @@ MailChimp 應該是台灣大多數人都有聽過很有名的發信平台
 
 {% darrellImage800 mailchimp_pricing_in_subscribers_202404 mailchimp_pricing_in_subscribers_202404.png max-800 %}
 
-<a href="https://mailchimp.com/pricing/marketing"><i class="fa-solid fa-link"></i><span> MailChimp 網站上的價格 </span></a>
+[MailChimp 網站上的價格](https://mailchimp.com/pricing/marketing)
 
 ### OneSignal
 
@@ -169,7 +169,7 @@ Enterprise、Professional 就沒有提供估價
 
 雖然是個跨渠道行銷工具，每個渠道除了 AppPush 以外就會各自計價，但主要還是會以 Web and App push subscribers 為主
 
-<a href="https://onesignal.com/pricing#calculator"><i class="fa-solid fa-link"></i><span> OneSignal 網站上的價格 </span></a>
+[OneSignal 網站上的價格](https://onesignal.com/pricing#calculator)
 
 ## Send Volume
 
@@ -191,7 +191,7 @@ SendGrid 在台灣雖然沒有這麼有名，不過還是有時候會聽到公�
 
 {% darrellImage800 sendgrid_pricing_in_subscribers_202404 sendgrid_pricing_in_subscribers_202404.png max-800 %}
 
-<a href="https://sendgrid.com/en-us/marketing/sendgrid-services-cro"><i class="fa-solid fa-link"></i><span> SendGrid 網站上的價格 </span></a>
+[SendGrid 網站上的價格](https://sendgrid.com/en-us/marketing/sendgrid-services-cro)
 
 ## 技術面的計價: Hours
 
@@ -235,7 +235,7 @@ Zapier 計價的方式就是比較特別的類型
 每個月執行這個流程1000次的話
 就會消耗掉 2000 的 quota
 
-<a href="https://zapier.com/pricing"><i class="fa-solid fa-link"></i><span> Zapier 網站上的價格 </span></a>
+[Zapier 網站上的價格](https://zapier.com/pricing)
 
 ### Hotjar
 
@@ -250,5 +250,5 @@ Hotjar 是一個做使用者畫面錄製的工具，
 
 {% darrellImage800 hotjar_pricing_in_session_202404 hotjar_pricing_in_session_202404.png max-800 %}
 
-<a href="https://www.hotjar.com/pricing/"><i class="fa-solid fa-link"></i><span> Hotjar 網站上的價格 </span></a>
+[Hotjar 網站上的價格](https://www.hotjar.com/pricing/)
 

@@ -60,6 +60,6 @@ modified: 2024-06-19 21:35:00
 ### 好的範例
 
 
-<a href="https://stackoverflow.com/questions/75825394/google-tag-manager-gtm-click-element-not-firing-when-contains-matches-css-se/75829306#75829306"><i class="fa-solid fa-link"></i><span> Google Tag Manager GTM - Click Element not firing when contains / matches CSS selector </span></a>
+[Google Tag Manager GTM - Click Element not firing when contains / matches CSS selector](https://stackoverflow.com/questions/75825394/google-tag-manager-gtm-click-element-not-firing-when-contains-matches-css-se/75829306#75829306)
 
 {% darrellImage800 good_example_of_gtm_question good_example_of_gtm_question.png max-800 %}
