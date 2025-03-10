@@ -2,13 +2,28 @@
 
 ## 📚 最新文章
 
+### [在 Cursor 中打造 MCP Server，從實作中學習 MCP](https://www.darrelltw.com/cursor-mcp-server-guide/?utm_source=github_readme&utm_medium=referral)
+- 發布時間: 2025/03/09
+> Cursor 實作 MCP Server 學習筆記，一個模擬的蔬果查詢情境，並且直接在 Claude Desktop 和 Cursor 中使用。
+
+
+### [Claude MCP 應用測試心得 - Claude Desktop](https://www.darrelltw.com/claude-desktop-new-mcp-features-review/?utm_source=github_readme&utm_medium=referral)
+- 發布時間: 2025/03/07
+> 測試 Claude MCP(model context protocol) 的應用，包括 FileSystem、Fetch 和 Google Maps 的使用心得與注意事項，讓 Claude 幫上更多忙
+
+
+### [n8n 版本更新紀錄心得](https://www.darrelltw.com/n8n-update-log/?utm_source=github_readme&utm_medium=referral)
+- 發布時間: 2025/02/27
+> n8n 的更新記錄，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.82.0，正式版本為 1.81.4
+
+
 ### [Claude Code 發佈 Command Line 的新工具](https://www.darrelltw.com/claude-code-new-command-line-tool/?utm_source=github_readme&utm_medium=referral)
 - 發布時間: 2025/02/25
 > 快速嘗試 Claude Code，介紹安裝和指令，以及一些簡易的操作方式，也分享測試時的花費
 
 
 ### [Glows.ai 雲端 GPU 運算服務，輕鬆取得算力實現 AI 私有運算](https://www.darrelltw.com/glows-ai-cloud-gpu-service/?utm_source=github_readme&utm_medium=referral)
-- 發布時間: 2025/02/22
+- 發布時間: 2025/02/21
 > Glows.ai 提供方便的雲端 GPU 運算服務，讓你輕鬆取得高效能算力，實現 AI 私有化運算。無需自建機房，即可享有穩定、安全的 GPU 資源，是企業和個人開發 AI 應用的最佳選擇。
 
 
@@ -18,7 +33,7 @@
 
 
 ### [在 GTM 安裝 Line Tag Pixel](https://www.darrelltw.com/gtm-install-line-tag-pixel/?utm_source=github_readme&utm_medium=referral)
-- 發布時間: 2025/02/06
+- 發布時間: 2025/02/05
 > 完整介紹如何在 Google Tag Manager 中安裝 Line Tag，包含basecode、轉換事件、自定義事件以及 DPA 動態廣告所需的標準事件追蹤設定。
 
 
@@ -28,36 +43,30 @@
 
 
 ### [n8n 內建參數介紹](https://www.darrelltw.com/n8n-built-in-variables/?utm_source=github_readme&utm_medium=referral)
-- 發布時間: 2025/01/25
+- 發布時間: 2025/01/24
 > 解析 n8n 的內建變數，包含 $input、$json、$workflow 等重要參數的使用方法和應用場景，未來隨著使用的經驗持續更新
 
 
 ### [Storylane 網站新功能的導覽教學工具](https://www.darrelltw.com/storylane-demo-website-new-feature/?utm_source=github_readme&utm_medium=referral)
-- 發布時間: 2025/01/23
+- 發布時間: 2025/01/22
 > 探索 Storylane 網站導覽工具：無需寫程式碼，快速製作互動式新功能教學，免費版本適合小型網站
 
 
-### [n8n 用 Request 發送 LINE Message API](https://www.darrelltw.com/n8n-line-message-api/?utm_source=github_readme&utm_medium=referral)
-- 發布時間: 2025/01/17
-> Line Notify 的替代方案之一 Line Message API，介紹怎麼用 n8n 的 Request 來發送和接收 webhook，也會提供模板範例
-
-
-### [n8n Aggregate 和 Split Out](https://www.darrelltw.com/n8n-aggregate-split-out/?utm_source=github_readme&utm_medium=referral)
-- 發布時間: 2025/01/16
-> n8n 的 Aggregate 和 Split Out 節點，可以將多個資料合併成一個，或是相反將一個資料拆成多組資料，對於 n8n 的核心處理資料很重要也很常用到
-
-
-### [Google App Script - Cache Service 做快取](https://www.darrelltw.com/google-app-script-cache-service/?utm_source=github_readme&utm_medium=referral)
-- 發布時間: 2024/12/23
-> 為什麼要在 Google App Script 中使用快取，什麼場景可以用快取來加速服務，並且避免可能遇到的限制。CacheService 是個簡單好用的方式，能幫助你輕鬆快取資料。
-
-
 ## 📊 部落格統計
-![文章總數](https://img.shields.io/badge/文章總數-81-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-181384+-blue?style=flat-square)
-![已發布天數](https://img.shields.io/badge/已發布天數-966-blue?style=flat-square)
+![文章總數](https://img.shields.io/badge/文章總數-84-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-197494+-blue?style=flat-square)
+![已發布天數](https://img.shields.io/badge/已發布天數-977-blue?style=flat-square)
 
-## 📈 近期熱門文章
+## 📈 近期 30 天熱門文章
+```text
+██████████████████████████████ 🥇 Line Notify 結束服務，轉移到 Slack、Telegram、Discord
+████████████████████░░░░░░░░░░ 🥈 n8n 用 Request 發送 LINE Message API
+███████████████░░░░░░░░░░░░░░░ 🥉 ChatGPT 在網頁版無法使用，沒有錯誤訊息卻都無法回答問題
+███████░░░░░░░░░░░░░░░░░░░░░░░ 4️⃣ ChatGPT 新功能 - Work with Apps 一起運作
+██████░░░░░░░░░░░░░░░░░░░░░░░░ 5️⃣ n8n 串接 Slack、發送訊息、用 Slack 觸發 workflow
+```
+
+## 📈 近期 7 天熱門文章
 ```text
 ██████████████████████████████ 🥇 Line Notify 結束服務，轉移到 Slack、Telegram、Discord
 ████████████████████░░░░░░░░░░ 🥈 n8n 用 Request 發送 LINE Message API
@@ -67,16 +76,16 @@
 ```
 
 ## 🏷️ 熱門主題
-![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-14-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![Automation](https://img.shields.io/badge/Automation-7-orange?style=flat-square) ![Google App Script](https://img.shields.io/badge/Google%20App%20Script-5-orange?style=flat-square)
+![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-14-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![Automation](https://img.shields.io/badge/Automation-8-orange?style=flat-square) ![Google App Script](https://img.shields.io/badge/Google%20App%20Script-5-orange?style=flat-square)
 
 ## 📈 更新頻率
 ```text
-09月 ██░░░░░░░░ 2篇
 10月 ███░░░░░░░ 3篇
 11月 ████░░░░░░ 4篇
 12月 █████░░░░░ 5篇
 01月 ████░░░░░░ 4篇
-02月 █████░░░░░ 5篇
+02月 ██████░░░░ 6篇
+03月 ██░░░░░░░░ 2篇
 ```
 
 ## 🔍 更多資訊
