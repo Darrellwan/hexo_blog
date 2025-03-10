@@ -1,12 +1,12 @@
 ---
-title: Claude Desktop MCP 應用測試心得
+title: Claude MCP 應用測試心得 - Claude Desktop
 date: 2025-03-07 16:13:50
 tags:
   - Claude
   - AI
   - 開發工具
 page_type: post
-description: 測試 Claude Desktop MCP(model context protocol) 的應用，包括 FileSystem、Fetch 和 Google Maps 的使用心得與注意事項，讓 Claude 幫上更多忙
+description: 測試 Claude MCP(model context protocol) 的應用，包括 FileSystem、Fetch 和 Google Maps 的使用心得與注意事項，讓 Claude 幫上更多忙
 categories: 
   - AI
 bgImage: claude_desktop_mcp_bg.jpg
@@ -29,7 +29,7 @@ Model Context Protocol (MCP) 是一個讓 AI 可以變得更聰明的協議，
 
 {% darrellImage800 claude_mcp_image claude_mcp_image.jpg max-400 %}
 
-## Claude Desktop MCP 功能
+## Claude Desktop 的 MCP 功能
 
 手上的工具有 Cursor 跟 Claude Desktop，
 這次就先用 Claude Desktop 來試用看看，
