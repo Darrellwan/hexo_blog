@@ -247,14 +247,39 @@ ${(() => {
     console.log('✅ README 更新成功！');
   } catch (error) {
     console.error('❌ README 生成失敗：', error);
+    // 輸出更詳細的錯誤信息
+    console.error('錯誤詳情：', {
+      message: error.message,
+      stack: error.stack,
+      name: error.name
+    });
+    
+    // 嘗試檢查關鍵文件和變量
+    try {
+      console.error('檢查環境：');
+      console.error('- posts 目錄是否存在:', fs.existsSync(POSTS_DIR));
+      console.error('- README 文件是否可寫:', fs.existsSync(path.dirname(README_PATH)));
+      console.error('- 分析數據內容:', JSON.stringify(analyticsData).slice(0, 200) + '...');
+      
+      // 輸出處理的文章數量
+      if (typeof posts !== 'undefined') {
+        console.error('- 成功處理的文章數量:', posts.length);
+      } else {
+        console.error('- posts 變量未定義');
+      }
+    } catch (diagError) {
+      console.error('診斷過程中出現錯誤:', diagError);
+    }
+    
     process.exit(1);
   }
 }
 
-// 只有當直接運行此文件時才執行 generateReadme
-if (require.main === module) {
-  generateReadme();
-}
+// 執行函數
+generateReadme().catch(err => {
+  console.error('頂層錯誤:', err);
+  process.exit(1);
+});
 
 // 導出函數以便其他文件可以引用但不自動執行
 module.exports = generateReadme; 

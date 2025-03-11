@@ -199,7 +199,26 @@ jobs:
 
       - name: Generate README
         if: success()
-        run: node scripts/generate-readme.js
+        run: |
+          echo "開始生成 README..."
+          ls -la data/
+          echo "檢查 analytics.json 內容："
+          cat data/analytics.json | jq 'keys'
+          echo "data_30days 長度:" 
+          cat data/analytics.json | jq '.data_30days | length'
+          
+          # 使用更詳細的錯誤輸出運行腳本
+          NODE_DEBUG=fs,module,stream node scripts/generate-readme.js
+          
+          if [ $? -ne 0 ]; then
+            echo "README 生成失敗，查看錯誤原因"
+            ls -la ./
+            echo "檢查 source/_posts 目錄："
+            ls -la source/_posts | head -n 10
+            exit 1
+          else
+            echo "README 生成成功"
+          fi
 
       - name: Commit and Push
         if: success()
