@@ -31,11 +31,25 @@ jobs:
             echo "$test_data" > temp_data.json
           else
             echo "Using client_payload data" >&2
-            # 使用單引號包裹整個 JSON 字串
-            echo '${{ toJSON(github.event.client_payload.data) }}' > temp_data.json
+            payload='${{ toJSON(github.event.client_payload.data) }}'
+            if [ "$payload" = "null" ] || [ -z "$payload" ]; then
+              echo "Client payload is empty or null, using fallback data" >&2
+              if [ -f "data/analytics.json" ]; then
+                echo "Using existing data as fallback..." >&2
+                existing_data=$(cat data/analytics.json)
+                echo "$existing_data" | jq '{"30days": (.data_30days // .data // []), "7days": (.data_7days // [])}' > temp_data.json
+              else
+                echo "No existing data found, using empty object..." >&2
+                echo '{"30days":[],"7days":[]}' > temp_data.json
+              fi
+            else
+              echo "$payload" > temp_data.json
+            fi
           fi
           
           raw_data=$(cat temp_data.json)
+          echo "Raw data content:" >&2
+          echo "$raw_data" >&2
           
           # 如果數據為空或是 null，使用之前的數據或是空物件
           if [ "$raw_data" = "null" ] || [ -z "$raw_data" ]; then
