@@ -29,36 +29,59 @@ jobs:
           # 如果數據為空或是 null，使用之前的數據或是空物件
           if [ "$raw_data" = "null" ] || [ -z "$raw_data" ]; then
             if [ -f "data/analytics.json" ]; then
-              echo "Using existing data as fallback..."
+              echo "Using existing data as fallback..." >&2
               raw_data=$(jq -r '.data' data/analytics.json)
             else
-              echo "No existing data found, using empty object..."
+              echo "No existing data found, using empty object..." >&2
               raw_data='{"30days":[],"7days":[]}'
             fi
           fi
           
           # 驗證數據格式
           if ! echo "$raw_data" | jq empty 2>/dev/null; then
-            echo "Warning: Invalid JSON format, using empty structure..."
+            echo "Warning: Invalid JSON format, using empty structure..." >&2
             raw_data='{"30days":[],"7days":[]}'
           fi
           
           # 驗證數據結構
           if ! echo "$raw_data" | jq '.30days' >/dev/null 2>&1 || ! echo "$raw_data" | jq '.7days' >/dev/null 2>&1; then
-            echo "Warning: Invalid data structure, using empty structure..."
+            echo "Warning: Invalid data structure, using empty structure..." >&2
             raw_data='{"30days":[],"7days":[]}'
           fi
           
           # 處理時期數據
           process_period_data() {
             local period=$1
-            local data=$(echo "$raw_data" | jq -r ".${period}")
+            echo "處理 $period 數據..." >&2
+            
+            # 驗證 period 數據存在
+            if ! echo "$raw_data" | jq "has(\"$period\")" > /dev/null 2>&1; then
+              echo "錯誤：找不到 $period 數據" >&2
+              return 1
+            fi
+            
+            local data
+            data=$(echo "$raw_data" | jq --arg period "$period" '.[$period]')
+            
+            # 驗證數據格式
+            if [ -z "$data" ] || [ "$data" = "null" ]; then
+              echo "錯誤：$period 數據為空或 null" >&2
+              return 1
+            fi
             
             # 計算總訪問量
-            local total_sessions=$(echo "$data" | jq '[.[].sessions | tonumber] | add // 0')
+            local total_sessions
+            total_sessions=$(echo "$data" | jq '[.[].sessions | tonumber] | add // 0')
+            
+            # 驗證總訪問量
+            if [ -z "$total_sessions" ] || [ "$total_sessions" = "null" ]; then
+              echo "錯誤：無法計算總訪問量" >&2
+              return 1
+            fi
             
             # 添加百分比並排序
-            local processed_data=$(echo "$data" | jq --arg total "$total_sessions" '
+            local processed_data
+            processed_data=$(echo "$data" | jq --arg total "$total_sessions" '
               map(
                 . + {
                   "sessions": (.sessions | tonumber),
@@ -67,35 +90,60 @@ jobs:
               ) | sort_by(-.sessions)
             ')
             
+            # 驗證處理後的數據
+            if ! echo "$processed_data" | jq empty 2>/dev/null; then
+              echo "錯誤：處理後的數據不是有效的 JSON" >&2
+              return 1
+            fi
+            
             echo "$processed_data"
           }
           
           # 處理兩個時期的數據
+          echo "開始處理 30 天數據..." >&2
           processed_30days=$(process_period_data "30days")
+          if [ $? -ne 0 ]; then
+            echo "處理 30 天數據時發生錯誤" >&2
+            exit 1
+          fi
+          
+          echo "開始處理 7 天數據..." >&2
           processed_7days=$(process_period_data "7days")
+          if [ $? -ne 0 ]; then
+            echo "處理 7 天數據時發生錯誤" >&2
+            exit 1
+          fi
           
           # 添加時間戳記和完整數據
           timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-          json_with_timestamp=$(cat << EOF
-          {
-            "data": {
-              "30days": $processed_30days,
-              "7days": $processed_7days
-            },
-            "last_updated": "$timestamp",
-            "status": "success"
-          }
-          EOF
-          )
+          
+          # 使用 jq 來建構最終的 JSON
+          echo "建構最終 JSON..." >&2
+          json_with_timestamp=$(jq -n \
+            --arg timestamp "$timestamp" \
+            --argjson data30 "$processed_30days" \
+            --argjson data7 "$processed_7days" \
+            '{
+              data: [],
+              data_30days: $data30,
+              data_7days: $data7,
+              last_updated: $timestamp
+            }')
           
           # 確保輸出是有效的 JSON
+          echo "驗證最終 JSON..." >&2
           if echo "$json_with_timestamp" | jq empty 2>/dev/null; then
             echo "$json_with_timestamp" > data/analytics.json
-            echo "Analytics data updated successfully"
+            echo "Analytics data updated successfully" >&2
           else
-            echo "Error: Failed to generate valid JSON output"
+            echo "Error: Failed to generate valid JSON output" >&2
+            echo "最終 JSON 內容：" >&2
+            echo "$json_with_timestamp" >&2
             exit 1
           fi
+          
+          # 清理臨時文件
+          rm temp_data.json
 
       - name: Install dependencies
         if: success()
