@@ -124,10 +124,11 @@ jobs:
             --argjson data30 "$processed_30days" \
             --argjson data7 "$processed_7days" \
             '{
-              data: [],
-              data_30days: $data30,
-              data_7days: $data7,
-              last_updated: $timestamp
+              data: $data30,
+              "data_30days": $data30,
+              "data_7days": $data7,
+              last_updated: $timestamp,
+              status: "success"
             }')
           
           # 確保輸出是有效的 JSON
