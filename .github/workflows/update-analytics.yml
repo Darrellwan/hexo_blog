@@ -26,48 +26,58 @@ jobs:
           if [ "$raw_data" = "null" ] || [ -z "$raw_data" ]; then
             if [ -f "data/analytics.json" ]; then
               echo "Using existing data as fallback..."
-              raw_data=$(jq -r '.data' data/analytics.json)
+              raw_data=$(jq -r '.' data/analytics.json)
             else
               echo "No existing data found, using empty array..."
-              raw_data='[]'
+              raw_data='[{"30days":[],"7days":[]}]'
             fi
           fi
           
           # 驗證數據格式
           if ! echo "$raw_data" | jq empty 2>/dev/null; then
-            echo "Warning: Invalid JSON format, using empty array..."
-            raw_data='[]'
-          elif [ "$(echo "$raw_data" | jq 'type')" != "\"array\"" ]; then
-            echo "Warning: Data is not an array, using empty array..."
-            raw_data='[]'
+            echo "Warning: Invalid JSON format, using empty structure..."
+            raw_data='[{"30days":[],"7days":[]}]'
           fi
           
-          # 計算總訪問量（加入錯誤處理）
-          total_sessions=$(echo "$raw_data" | jq '[.[].sessions | select(type == "number" or type == "string") | tonumber] | add // 0')
-          
-          if [ "$total_sessions" = "0" ]; then
-            echo "Warning: No valid session data found"
+          # 驗證數據結構
+          if ! echo "$raw_data" | jq '.[0].30days' >/dev/null 2>&1 || ! echo "$raw_data" | jq '.[0].7days' >/dev/null 2>&1; then
+            echo "Warning: Invalid data structure, using empty structure..."
+            raw_data='[{"30days":[],"7days":[]}]'
           fi
           
-          # 添加百分比到數據中（加入錯誤處理）
-          processed_data=$(echo "$raw_data" | jq --arg total "$total_sessions" '
-            map(
-              if (.sessions | tonumber > 0) then
+          # 處理 30 天數據
+          process_period_data() {
+            local period=$1
+            local data=$(echo "$raw_data" | jq -r ".[0].${period}")
+            
+            # 計算總訪問量
+            local total_sessions=$(echo "$data" | jq '[.[].sessions | tonumber] | add // 0')
+            
+            # 添加百分比並排序
+            local processed_data=$(echo "$data" | jq --arg total "$total_sessions" '
+              map(
                 . + {
+                  "sessions": (.sessions | tonumber),
                   "percentage": ((.sessions | tonumber) / ($total | tonumber) * 100 | round * 0.1)
                 }
-              else
-                . + { "percentage": 0 }
-              end
-            ) | sort_by(-.percentage)
-          ')
+              ) | sort_by(-.sessions)
+            ')
+            
+            echo "$processed_data"
+          }
           
-          # 添加時間戳記和元數據
+          # 處理兩個時期的數據
+          processed_30days=$(process_period_data "30days")
+          processed_7days=$(process_period_data "7days")
+          
+          # 添加時間戳記和完整數據
           timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
           json_with_timestamp=$(echo "{
-            \"data\": $processed_data,
+            \"data\": [{
+              \"30days\": $processed_30days,
+              \"7days\": $processed_7days
+            }],
             \"last_updated\": \"$timestamp\",
-            \"total_sessions\": $total_sessions,
             \"status\": \"success\"
           }")
           
