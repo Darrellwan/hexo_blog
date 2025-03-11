@@ -4,11 +4,6 @@ on:
   repository_dispatch:
     types: [update-analytics]
   workflow_dispatch:
-    inputs:
-      test_data:
-        description: '測試數據 (JSON 格式)'
-        required: false
-        default: '{"30days":[{"customEvent:post_title":"測試文章","sessions":"100"}],"7days":[{"customEvent:post_title":"測試文章","sessions":"30"}]}'
 
 jobs:
   update-readme:
@@ -24,58 +19,39 @@ jobs:
       - name: Process Analytics Data
         id: process-data
         run: |
-          # 使用 workflow_dispatch 輸入的測試數據或實際的 client_payload
-          test_data='${{ github.event.inputs.test_data }}'
-          if [ -n "$test_data" ]; then
-            echo "Using test data from workflow_dispatch" >&2
-            echo "$test_data" > temp_data.json
-          else
-            echo "Using client_payload data" >&2
-            payload='${{ toJSON(github.event.client_payload.data) }}'
-            if [ "$payload" = "null" ] || [ -z "$payload" ]; then
-              echo "Client payload is empty or null, using fallback data" >&2
-              if [ -f "data/analytics.json" ]; then
-                echo "Using existing data as fallback..." >&2
-                existing_data=$(cat data/analytics.json)
-                echo "$existing_data" | jq '{"30days": (.data_30days // .data // []), "7days": (.data_7days // [])}' > temp_data.json
-              else
-                echo "No existing data found, using empty object..." >&2
-                echo '{"30days":[],"7days":[]}' > temp_data.json
-              fi
-            else
-              echo "$payload" > temp_data.json
-            fi
-          fi
+          echo "使用 client_payload 數據" >&2
+          payload='${{ toJSON(github.event.client_payload.data) }}'
+          echo "Payload 長度: ${#payload}" >&2
+          echo "Payload 內容: $payload" >&2
           
-          raw_data=$(cat temp_data.json)
-          echo "Raw data content:" >&2
-          echo "$raw_data" >&2
-          
-          # 如果數據為空或是 null，使用之前的數據或是空物件
-          if [ "$raw_data" = "null" ] || [ -z "$raw_data" ]; then
+          if [ "$payload" = "null" ] || [ -z "$payload" ]; then
             if [ -f "data/analytics.json" ]; then
-              echo "Using existing data as fallback..." >&2
-              # 從舊數據中讀取正確的欄位
+              echo "使用現有數據作為備用..." >&2
               existing_data=$(cat data/analytics.json)
               raw_data=$(echo "$existing_data" | jq '{
                 "30days": (.data_30days // .data // []),
                 "7days": (.data_7days // [])
               }')
             else
-              echo "No existing data found, using empty object..." >&2
+              echo "找不到現有數據，使用空物件..." >&2
               raw_data='{"30days":[],"7days":[]}'
             fi
+          else
+            echo "$payload" > temp_data.json
+            raw_data=$(cat temp_data.json)
           fi
+          
+          echo "Raw data 長度: ${#raw_data}" >&2
           
           # 驗證數據格式
           if ! echo "$raw_data" | jq empty 2>/dev/null; then
-            echo "Warning: Invalid JSON format, using empty structure..." >&2
+            echo "警告：無效的 JSON 格式，使用空結構..." >&2
             raw_data='{"30days":[],"7days":[]}'
           fi
           
           # 驗證數據結構
           if ! echo "$raw_data" | jq '.30days' >/dev/null 2>&1 || ! echo "$raw_data" | jq '.7days' >/dev/null 2>&1; then
-            echo "Warning: Invalid data structure, using empty structure..." >&2
+            echo "警告：無效的數據結構，使用空結構..." >&2
             raw_data='{"30days":[],"7days":[]}'
           fi
           
@@ -92,6 +68,7 @@ jobs:
             
             local data
             data=$(echo "$raw_data" | jq --arg period "$period" '.[$period]')
+            echo "$period 數據內容: $data" >&2
             
             # 驗證數據格式
             if [ -z "$data" ] || [ "$data" = "null" ]; then
@@ -102,6 +79,7 @@ jobs:
             # 計算總訪問量
             local total_sessions
             total_sessions=$(echo "$data" | jq '[.[].sessions | tonumber] | add // 0')
+            echo "$period 總訪問量: $total_sessions" >&2
             
             # 驗證總訪問量
             if [ -z "$total_sessions" ] || [ "$total_sessions" = "null" ]; then
@@ -166,6 +144,14 @@ jobs:
           if echo "$json_with_timestamp" | jq empty 2>/dev/null; then
             echo "$json_with_timestamp" > data/analytics.json
             echo "Analytics data updated successfully" >&2
+            
+            # 輸出最終 JSON 的結構
+            echo "最終 JSON 結構:" >&2
+            jq 'keys' data/analytics.json >&2
+            echo "data_30days 長度:" >&2
+            jq '.data_30days | length' data/analytics.json >&2
+            echo "data_7days 長度:" >&2
+            jq '.data_7days | length' data/analytics.json >&2
           else
             echo "Error: Failed to generate valid JSON output" >&2
             echo "最終 JSON 內容：" >&2
@@ -174,7 +160,7 @@ jobs:
           fi
           
           # 清理臨時文件
-          rm temp_data.json
+          [ -f temp_data.json ] && rm temp_data.json
 
       - name: Install dependencies
         if: success()
