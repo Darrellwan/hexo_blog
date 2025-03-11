@@ -195,10 +195,25 @@ jobs:
 
       - name: Install dependencies
         if: success()
-        run: npm ci
+        run: |
+          echo "開始安裝依賴項..."
+          npm --version
+          node --version
+          echo "列出 package.json 中的依賴項："
+          cat package.json | grep -A 20 "dependencies"
+          cat package.json | grep -A 10 "devDependencies" 
+          
+          # 使用 --verbose 以獲得更詳細的安裝信息
+          npm ci --verbose || {
+            echo "NPM CI 命令失敗，詳細錯誤如下："
+            npm list --depth=0
+            echo "檢查 node_modules 目錄："
+            ls -la node_modules || echo "node_modules 目錄不存在"
+            echo "繼續執行工作流程..."
+            # 即使失敗也不要立即退出
+          }
 
       - name: Generate README
-        if: success()
         run: |
           echo "開始生成 README..."
           ls -la data/
@@ -206,6 +221,18 @@ jobs:
           cat data/analytics.json | jq 'keys'
           echo "data_30days 長度:" 
           cat data/analytics.json | jq '.data_30days | length'
+          
+          # 檢查 node_modules 是否完整安裝
+          echo "檢查 node_modules 是否包含所需模組："
+          [ -d "node_modules/dayjs" ] && echo "✅ dayjs 已安裝" || echo "❌ dayjs 未安裝"
+          [ -d "node_modules/gray-matter" ] && echo "✅ gray-matter 已安裝" || echo "❌ gray-matter 未安裝"
+          [ -d "node_modules/js-yaml" ] && echo "✅ js-yaml 已安裝" || echo "❌ js-yaml 未安裝"
+          
+          # 嘗試手動安裝所需依賴
+          if [ ! -d "node_modules/dayjs" ] || [ ! -d "node_modules/gray-matter" ] || [ ! -d "node_modules/js-yaml" ]; then
+            echo "缺少必要依賴，嘗試手動安裝..."
+            npm install --no-save dayjs gray-matter js-yaml
+          fi
           
           # 使用更詳細的錯誤輸出運行腳本
           NODE_DEBUG=fs,module,stream node scripts/generate-readme.js
