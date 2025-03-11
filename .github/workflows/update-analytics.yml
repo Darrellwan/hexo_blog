@@ -31,9 +31,9 @@ jobs:
             echo "$test_data" > temp_data.json
           else
             echo "Using client_payload data" >&2
-            cat << 'EOF' > temp_data.json
-            ${{ toJSON(github.event.client_payload.data) }}
-            EOF
+            cat << EOF > temp_data.json
+${{ toJSON(github.event.client_payload.data) }}
+EOF
           fi
           
           raw_data=$(cat temp_data.json)
