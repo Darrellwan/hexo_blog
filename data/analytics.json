@@ -2,12 +2,12 @@
   "data": [
     {
       "customEvent:post_title": "Line Notify 結束服務，轉移到 Slack、Telegram、Discord",
-      "sessions": 758,
+      "sessions": 759,
       "percentage": 2.2
     },
     {
       "customEvent:post_title": "Claude Code 發佈 Command Line 的新工具",
-      "sessions": 680,
+      "sessions": 682,
       "percentage": 1.9000000000000001
     },
     {
@@ -37,7 +37,7 @@
     },
     {
       "customEvent:post_title": "n8n 串接 Slack、發送訊息、用 Slack 觸發 workflow",
-      "sessions": 110,
+      "sessions": 111,
       "percentage": 0.30000000000000004
     },
     {
@@ -62,7 +62,7 @@
     },
     {
       "customEvent:post_title": "n8n 小撇步 - Timezone 問題如何在 Zeabur 設定",
-      "sessions": 58,
+      "sessions": 59,
       "percentage": 0.2
     },
     {
@@ -102,7 +102,7 @@
     },
     {
       "customEvent:post_title": "Claude MCP 應用測試心得 - Claude Desktop",
-      "sessions": 28,
+      "sessions": 29,
       "percentage": 0.1
     },
     {
@@ -154,12 +154,12 @@
   "data_30days": [
     {
       "customEvent:post_title": "Line Notify 結束服務，轉移到 Slack、Telegram、Discord",
-      "sessions": 758,
+      "sessions": 759,
       "percentage": 2.2
     },
     {
       "customEvent:post_title": "Claude Code 發佈 Command Line 的新工具",
-      "sessions": 680,
+      "sessions": 682,
       "percentage": 1.9000000000000001
     },
     {
@@ -189,7 +189,7 @@
     },
     {
       "customEvent:post_title": "n8n 串接 Slack、發送訊息、用 Slack 觸發 workflow",
-      "sessions": 110,
+      "sessions": 111,
       "percentage": 0.30000000000000004
     },
     {
@@ -214,7 +214,7 @@
     },
     {
       "customEvent:post_title": "n8n 小撇步 - Timezone 問題如何在 Zeabur 設定",
-      "sessions": 58,
+      "sessions": 59,
       "percentage": 0.2
     },
     {
@@ -254,7 +254,7 @@
     },
     {
       "customEvent:post_title": "Claude MCP 應用測試心得 - Claude Desktop",
-      "sessions": 28,
+      "sessions": 29,
       "percentage": 0.1
     },
     {
@@ -306,12 +306,12 @@
   "data_7days": [
     {
       "customEvent:post_title": "Claude Code 發佈 Command Line 的新工具",
-      "sessions": 408,
+      "sessions": 410,
       "percentage": 2.9000000000000004
     },
     {
       "customEvent:post_title": "Line Notify 結束服務，轉移到 Slack、Telegram、Discord",
-      "sessions": 228,
+      "sessions": 229,
       "percentage": 1.6
     },
     {
@@ -340,13 +340,13 @@
       "percentage": 0.4
     },
     {
-      "customEvent:post_title": "Google App Script 測試 Webhook 的串接",
+      "customEvent:post_title": "Claude MCP 應用測試心得 - Claude Desktop",
       "sessions": 29,
       "percentage": 0.2
     },
     {
-      "customEvent:post_title": "Claude MCP 應用測試心得 - Claude Desktop",
-      "sessions": 28,
+      "customEvent:post_title": "Google App Script 測試 Webhook 的串接",
+      "sessions": 29,
       "percentage": 0.2
     },
     {
@@ -356,13 +356,13 @@
     },
     {
       "customEvent:post_title": "n8n 串接 Slack、發送訊息、用 Slack 觸發 workflow",
-      "sessions": 25,
+      "sessions": 26,
       "percentage": 0.2
     },
     {
       "customEvent:post_title": "Facebook Pixel 利用 GTM 安裝和注意事項避免重複觸發",
       "sessions": 21,
-      "percentage": 0.2
+      "percentage": 0.1
     },
     {
       "customEvent:post_title": "n8n 內建參數介紹",
@@ -386,7 +386,7 @@
     },
     {
       "customEvent:post_title": "n8n 小撇步 - Timezone 問題如何在 Zeabur 設定",
-      "sessions": 12,
+      "sessions": 13,
       "percentage": 0.1
     },
     {
@@ -402,7 +402,7 @@
     {
       "customEvent:post_title": "Google Analytics 4 支援資料直接匯出到 Google Sheet (Google 官方釋出)",
       "sessions": 7,
-      "percentage": 0.1
+      "percentage": 0
     },
     {
       "customEvent:post_title": "GA4 更新 - 使用者購物歷程 一眼看出使用者在購物過程中的流失",
@@ -455,6 +455,6 @@
       "percentage": 0
     }
   ],
-  "last_updated": "2025-03-11T12:57:51Z",
+  "last_updated": "2025-03-11T14:26:28Z",
   "status": "success"
 }
