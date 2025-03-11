@@ -31,12 +31,13 @@ jobs:
             echo "$test_data" > temp_data.json
           else
             echo "Using client_payload data" >&2
-            cat << EOF > temp_data.json
-${{ toJSON(github.event.client_payload.data) }}
-EOF
+            echo "Client payload data: ${{ toJSON(github.event.client_payload.data) }}" >&2
+            echo '${{ toJSON(github.event.client_payload.data) }}' > temp_data.json
           fi
           
           raw_data=$(cat temp_data.json)
+          echo "Raw data content:" >&2
+          echo "$raw_data" >&2
           
           # 如果數據為空或是 null，使用之前的數據或是空物件
           if [ "$raw_data" = "null" ] || [ -z "$raw_data" ]; then
