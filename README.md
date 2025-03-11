@@ -59,12 +59,20 @@
 
 ## 📈 近期 30 天熱門文章
 ```text
-
+██████████████████████████████ 🥇 Line Notify 結束服務，轉移到 Slack、Telegram、Discord
+█████████████████████████░░░░░ 🥈 Claude Code 發佈 Command Line 的新工具
+█████████████████░░░░░░░░░░░░░ 🥉 n8n 用 Request 發送 LINE Message API
+████████░░░░░░░░░░░░░░░░░░░░░░ 4️⃣ ChatGPT 在網頁版無法使用，沒有錯誤訊息卻都無法回答問題
+██████░░░░░░░░░░░░░░░░░░░░░░░░ 5️⃣ ChatGPT 新功能 - Work with Apps 一起運作
 ```
 
 ## 📈 近期 7 天熱門文章
 ```text
-
+██████████████████████████████ 🥇 Claude Code 發佈 Command Line 的新工具
+████████████████░░░░░░░░░░░░░░ 🥈 Line Notify 結束服務，轉移到 Slack、Telegram、Discord
+████████████░░░░░░░░░░░░░░░░░░ 🥉 Claude Desktop MCP 應用測試心得
+█████████░░░░░░░░░░░░░░░░░░░░░ 4️⃣ n8n 用 Request 發送 LINE Message API
+█████░░░░░░░░░░░░░░░░░░░░░░░░░ 5️⃣ 在 Cursor 中打造 MCP Server，從實作中學習 MCP
 ```
 
 ## 🏷️ 熱門主題
