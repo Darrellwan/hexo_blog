@@ -22,33 +22,33 @@ jobs:
           # 從 event payload 獲取原始數據
           raw_data='${{ toJSON(github.event.client_payload.data) }}'
           
-          # 如果數據為空或是 null，使用之前的數據或是空陣列
+          # 如果數據為空或是 null，使用之前的數據或是空物件
           if [ "$raw_data" = "null" ] || [ -z "$raw_data" ]; then
             if [ -f "data/analytics.json" ]; then
               echo "Using existing data as fallback..."
-              raw_data=$(jq -r '.' data/analytics.json)
+              raw_data=$(jq -r '.data' data/analytics.json)
             else
-              echo "No existing data found, using empty array..."
-              raw_data='[{"30days":[],"7days":[]}]'
+              echo "No existing data found, using empty object..."
+              raw_data='{"30days":[],"7days":[]}'
             fi
           fi
           
           # 驗證數據格式
           if ! echo "$raw_data" | jq empty 2>/dev/null; then
             echo "Warning: Invalid JSON format, using empty structure..."
-            raw_data='[{"30days":[],"7days":[]}]'
+            raw_data='{"30days":[],"7days":[]}'
           fi
           
           # 驗證數據結構
-          if ! echo "$raw_data" | jq '.[0].30days' >/dev/null 2>&1 || ! echo "$raw_data" | jq '.[0].7days' >/dev/null 2>&1; then
+          if ! echo "$raw_data" | jq '.30days' >/dev/null 2>&1 || ! echo "$raw_data" | jq '.7days' >/dev/null 2>&1; then
             echo "Warning: Invalid data structure, using empty structure..."
-            raw_data='[{"30days":[],"7days":[]}]'
+            raw_data='{"30days":[],"7days":[]}'
           fi
           
-          # 處理 30 天數據
+          # 處理時期數據
           process_period_data() {
             local period=$1
-            local data=$(echo "$raw_data" | jq -r ".[0].${period}")
+            local data=$(echo "$raw_data" | jq -r ".${period}")
             
             # 計算總訪問量
             local total_sessions=$(echo "$data" | jq '[.[].sessions | tonumber] | add // 0')
@@ -73,10 +73,10 @@ jobs:
           # 添加時間戳記和完整數據
           timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
           json_with_timestamp=$(echo "{
-            \"data\": [{
+            \"data\": {
               \"30days\": $processed_30days,
               \"7days\": $processed_7days
-            }],
+            },
             \"last_updated\": \"$timestamp\",
             \"status\": \"success\"
           }")
