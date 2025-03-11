@@ -22,41 +22,77 @@ jobs:
           # 從 event payload 獲取原始數據
           raw_data='${{ toJSON(github.event.client_payload.data) }}'
           
-          # 驗證數據格式
-          if [ "$(echo "$raw_data" | jq 'type')" != "\"array\"" ]; then
-            echo "Error: Invalid data format"
-            exit 1
+          # 如果數據為空或是 null，使用之前的數據或是空陣列
+          if [ "$raw_data" = "null" ] || [ -z "$raw_data" ]; then
+            if [ -f "data/analytics.json" ]; then
+              echo "Using existing data as fallback..."
+              raw_data=$(jq -r '.data' data/analytics.json)
+            else
+              echo "No existing data found, using empty array..."
+              raw_data='[]'
+            fi
           fi
           
-          # 計算總訪問量
-          total_sessions=$(echo "$raw_data" | jq '[.[].sessions | tonumber] | add')
+          # 驗證數據格式
+          if ! echo "$raw_data" | jq empty 2>/dev/null; then
+            echo "Warning: Invalid JSON format, using empty array..."
+            raw_data='[]'
+          elif [ "$(echo "$raw_data" | jq 'type')" != "\"array\"" ]; then
+            echo "Warning: Data is not an array, using empty array..."
+            raw_data='[]'
+          fi
           
-          # 添加百分比到數據中
+          # 計算總訪問量（加入錯誤處理）
+          total_sessions=$(echo "$raw_data" | jq '[.[].sessions | select(type == "number" or type == "string") | tonumber] | add // 0')
+          
+          if [ "$total_sessions" = "0" ]; then
+            echo "Warning: No valid session data found"
+          fi
+          
+          # 添加百分比到數據中（加入錯誤處理）
           processed_data=$(echo "$raw_data" | jq --arg total "$total_sessions" '
-            map(. + {
-              "percentage": ((.sessions | tonumber) / ($total | tonumber) * 100 | round * 0.1)
-            }) | sort_by(-.percentage)
+            map(
+              if (.sessions | tonumber > 0) then
+                . + {
+                  "percentage": ((.sessions | tonumber) / ($total | tonumber) * 100 | round * 0.1)
+                }
+              else
+                . + { "percentage": 0 }
+              end
+            ) | sort_by(-.percentage)
           ')
           
-          # 添加時間戳記
+          # 添加時間戳記和元數據
           timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
           json_with_timestamp=$(echo "{
             \"data\": $processed_data,
-            \"last_updated\": \"$timestamp\"
+            \"last_updated\": \"$timestamp\",
+            \"total_sessions\": $total_sessions,
+            \"status\": \"success\"
           }")
           
-          echo "$json_with_timestamp" > data/analytics.json
+          # 確保輸出是有效的 JSON
+          if echo "$json_with_timestamp" | jq empty 2>/dev/null; then
+            echo "$json_with_timestamp" > data/analytics.json
+            echo "Analytics data updated successfully"
+          else
+            echo "Error: Failed to generate valid JSON output"
+            exit 1
+          fi
 
       - name: Install dependencies
+        if: success()
         run: npm ci
 
       - name: Generate README
+        if: success()
         run: node scripts/generate-readme.js
 
       - name: Commit and Push
+        if: success()
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add data/analytics.json README.md
-          git commit -m "chore: update analytics data and README" || exit 0
-          git push 
+          git commit -m "[UPDATE] Analytics data and README" || echo "No changes to commit"
+          git push || echo "No changes to push" 
