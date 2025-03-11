@@ -37,8 +37,24 @@ jobs:
               raw_data='{"30days":[],"7days":[]}'
             fi
           else
-            echo "$payload" > temp_data.json
-            raw_data=$(cat temp_data.json)
+            echo "直接使用 payload 數據..." >&2
+            # 檢查 payload 是否已經是 JSON 格式
+            if echo "$payload" | jq empty 2>/dev/null; then
+              echo "Payload 是有效的 JSON 格式" >&2
+              # 檢查 payload 是否已經包含 30days 和 7days
+              if echo "$payload" | jq 'has("30days") and has("7days")' | grep -q "true"; then
+                echo "Payload 已包含所需的數據結構" >&2
+                raw_data="$payload"
+              else
+                echo "Payload 不包含所需的數據結構，嘗試解析..." >&2
+                # 嘗試直接使用 payload
+                raw_data="$payload"
+              fi
+            else
+              echo "Payload 不是有效的 JSON 格式，嘗試寫入臨時文件..." >&2
+              echo "$payload" > temp_data.json
+              raw_data=$(cat temp_data.json)
+            fi
           fi
           
           echo "Raw data 長度: ${#raw_data}" >&2
@@ -49,9 +65,18 @@ jobs:
             raw_data='{"30days":[],"7days":[]}'
           fi
           
-          # 驗證數據結構
-          if ! echo "$raw_data" | jq '.30days' >/dev/null 2>&1 || ! echo "$raw_data" | jq '.7days' >/dev/null 2>&1; then
+          # 驗證數據結構並輸出更多調試信息
+          echo "驗證 30days 數據結構..." >&2
+          has_30days=$(echo "$raw_data" | jq 'has("30days")')
+          echo "has_30days: $has_30days" >&2
+          
+          echo "驗證 7days 數據結構..." >&2
+          has_7days=$(echo "$raw_data" | jq 'has("7days")')
+          echo "has_7days: $has_7days" >&2
+          
+          if [ "$has_30days" != "true" ] || [ "$has_7days" != "true" ]; then
             echo "警告：無效的數據結構，使用空結構..." >&2
+            echo "原始數據：$raw_data" >&2
             raw_data='{"30days":[],"7days":[]}'
           fi
           
@@ -61,6 +86,10 @@ jobs:
             echo "處理 $period 數據..." >&2
             
             # 驗證 period 數據存在
+            echo "檢查 $period 是否存在於 raw_data 中..." >&2
+            echo "raw_data 類型: $(echo "$raw_data" | jq 'type')" >&2
+            echo "raw_data 內容: $raw_data" >&2
+            
             if ! echo "$raw_data" | jq "has(\"$period\")" > /dev/null 2>&1; then
               echo "錯誤：找不到 $period 數據" >&2
               return 1
@@ -69,6 +98,8 @@ jobs:
             local data
             data=$(echo "$raw_data" | jq --arg period "$period" '.[$period]')
             echo "$period 數據內容: $data" >&2
+            echo "$period 數據類型: $(echo "$data" | jq 'type')" >&2
+            echo "$period 數據長度: $(echo "$data" | jq 'length')" >&2
             
             # 驗證數據格式
             if [ -z "$data" ] || [ "$data" = "null" ]; then
