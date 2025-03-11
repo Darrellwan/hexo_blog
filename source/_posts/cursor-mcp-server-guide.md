@@ -76,7 +76,7 @@ mcp --version
 我的做法是先到 Github 上看 MCP 的 SDK 文件
 其實不是我看，我是下載下來準備給 Cursor 看
 
-[MCP Quick Start for Server Developers](https://github.com/modelcontextprotocol/mcp-sdk)
+[MCP Quick Start for Server Developers](https://github.com/modelcontextprotocol/python-sdk)
 
 {% darrellImage800 cursor_mcp_server-server_developer_sdk cursor_mcp_server-server_developer_sdk.png max-800 %}
 
