@@ -3,6 +3,7 @@ Allow: /
 Allow: /archives/
 Allow: /categories/
 Allow: /tags/
+Allow: /tools/n8n_template/model-detail.html?model=*
 
 Disallow: /vendors/
 Disallow: /fonts/
@@ -16,3 +17,4 @@ Disallow:
 
 
 Sitemap: https://www.darrelltw.com/sitemap.xml
+Sitemap: https://www.darrelltw.com/tools/n8n_template/sitemap.xml

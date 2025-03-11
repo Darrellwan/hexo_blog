@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- 主頁 -->
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/models.html</loc>
+    <lastmod>2025-03-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- 模型詳情頁 - n8n_remember_to_drink_water -->
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=n8n_remember_to_drink_water</loc>
+    <lastmod>2025-03-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- 模型詳情頁 - creditcard -->
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=creditcard</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- 模型詳情頁 - line_message -->
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=line_message</loc>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- 模型詳情頁 - food_delivery_easy_expense -->
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=food_delivery_easy_expense</loc>
+    <lastmod>2024-03-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- 模型詳情頁 - n8n_threads_fetch_data -->
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=n8n_threads_fetch_data</loc>
+    <lastmod>2025-03-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- 模型詳情頁 - demo_while_loop_example -->
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=demo_while_loop_example</loc>
+    <lastmod>2024-03-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- 視覺化頁面 -->
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/visualize.html</loc>
+    <lastmod>2025-03-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+</urlset>
