@@ -3,7 +3,12 @@ name: Update Analytics Data
 on:
   repository_dispatch:
     types: [update-analytics]
-  workflow_dispatch:  # 保留手動觸發選項
+  workflow_dispatch:
+    inputs:
+      test_data:
+        description: '測試數據 (JSON 格式)'
+        required: false
+        default: '{"30days":[{"customEvent:post_title":"測試文章","sessions":"100"}],"7days":[{"customEvent:post_title":"測試文章","sessions":"30"}]}'
 
 jobs:
   update-readme:
@@ -19,10 +24,17 @@ jobs:
       - name: Process Analytics Data
         id: process-data
         run: |
-          # 從 event payload 獲取原始數據，使用 heredoc 來處理多行 JSON
-          cat << 'EOF' > temp_data.json
-          ${{ toJSON(github.event.client_payload.data) }}
-          EOF
+          # 使用 workflow_dispatch 輸入的測試數據或實際的 client_payload
+          test_data='${{ github.event.inputs.test_data }}'
+          if [ -n "$test_data" ]; then
+            echo "Using test data from workflow_dispatch" >&2
+            echo "$test_data" > temp_data.json
+          else
+            echo "Using client_payload data" >&2
+            cat << 'EOF' > temp_data.json
+            ${{ toJSON(github.event.client_payload.data) }}
+            EOF
+          fi
           
           raw_data=$(cat temp_data.json)
           
@@ -30,7 +42,12 @@ jobs:
           if [ "$raw_data" = "null" ] || [ -z "$raw_data" ]; then
             if [ -f "data/analytics.json" ]; then
               echo "Using existing data as fallback..." >&2
-              raw_data=$(jq -r '.data' data/analytics.json)
+              # 從舊數據中讀取正確的欄位
+              existing_data=$(cat data/analytics.json)
+              raw_data=$(echo "$existing_data" | jq '{
+                "30days": (.data_30days // .data // []),
+                "7days": (.data_7days // [])
+              }')
             else
               echo "No existing data found, using empty object..." >&2
               raw_data='{"30days":[],"7days":[]}'
