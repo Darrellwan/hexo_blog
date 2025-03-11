@@ -1,5 +1,166 @@
 {
     "models": {
+        "n8n_remember_to_drink_water": {
+            "id": "n8n_remember_to_drink_water",
+            "title": "Slack自動喝水提醒",
+            "description": "這個工作流程自動發送智能喝水提醒到Slack頻道，透過OpenAI生成專業中醫風格的提醒訊息，並提供按鈕記錄喝水量。系統會追蹤使用者的喝水習慣，記錄到Google Sheets，並提供iOS捷徑連結將資料同步到Health App。\n\n主要功能：\n\n定時提醒：每小時隨機時間發送喝水提醒\n智能決策：避免短時間內重複提醒，智能調整提醒頻率\n中醫風格訊息：使用OpenAI生成專業且有說服力的喝水建議\n簡便記錄：提供多種容量選項按鈕，方便快速記錄\n數據追蹤：自動記錄所有喝水量到Google試算表\niOS健康整合：提供捷徑連結自動同步到iOS健康App",
+            "detailedDescription": [
+                "使用OpenAI生成專業中醫風格的喝水提醒訊息",
+                "每小時隨機時間自動發送Slack提醒",
+                "提供多種容量選項按鈕記錄喝水量",
+                "視覺化顯示每日喝水進度（水滴進度條）",
+                "自動記錄喝水時間和容量到Google Sheets",
+                "提供iOS捷徑連結自動同步到健康App",
+                "智能避免短時間重複提醒功能"
+            ],
+            "tags": ["自動化", "健康", "Slack", "喝水提醒", "OpenAI", "Google Sheets", "iOS捷徑"],
+            "nodes": 20,
+            "createdAt": "2025-03-09",
+            "updatedAt": "2025-03-09",
+            "setup": {
+                "prerequisites": "需要設定Slack API、OpenAI API和Google Sheets的API存取權限",
+                "steps": [
+                    {
+                        "title": "Slack設定",
+                        "description": "設定Slack API存取權限，建立專用的喝水提醒頻道",
+                        "options": [
+                            "建立Slack App",
+                            "設定Bot Token",
+                            "建立喝水提醒頻道",
+                            "設定互動按鈕權限"
+                        ]
+                    },
+                    {
+                        "title": "OpenAI設定",
+                        "description": "設定OpenAI API用於生成提醒訊息",
+                        "options": [
+                            "設定API金鑰",
+                            "選擇適當的模型",
+                            "測試訊息生成"
+                        ]
+                    },
+                    {
+                        "title": "Google Sheets設定",
+                        "description": "準備用於記錄喝水資料的試算表",
+                        "options": [
+                            "建立記錄表格",
+                            "設定兩個工作表：log和setting",
+                            "在setting表中設定每日目標"
+                        ]
+                    },
+                    {
+                        "title": "iOS捷徑設定",
+                        "description": "（選用）建立iOS捷徑用於記錄到健康App",
+                        "options": [
+                            "建立「darrell_water」捷徑",
+                            "設定接收喝水量參數",
+                            "連結至健康App"
+                        ]
+                    }
+                ]
+            },
+            "examples": [
+                {
+                    "title": "基本設定範例",
+                    "description": "展示如何設定基本的喝水提醒流程",
+                    "code": {
+                        "trigger": "schedule",
+                        "actions": [
+                            "fetch_data",
+                            "check_last_drink",
+                            "generate_message",
+                            "send_to_slack"
+                        ]
+                    }
+                },
+                {
+                    "title": "互動回覆範例",
+                    "description": "展示如何處理使用者的喝水記錄互動",
+                    "code": {
+                        "trigger": "webhook",
+                        "actions": [
+                            "process_button_click",
+                            "record_to_sheets",
+                            "generate_confirmation",
+                            "send_confirmation",
+                            "provide_ios_shortcut"
+                        ]
+                    }
+                }
+            ],
+            "fields": {
+                "slack": {
+                    "title": "Slack設定",
+                    "fields": {
+                        "channelId": {
+                            "type": "string",
+                            "description": "Slack頻道ID",
+                            "example": "C08DKA4QF28"
+                        },
+                        "webhookPath": {
+                            "type": "string",
+                            "description": "Webhook路徑",
+                            "default": "slack-water-webhook"
+                        }
+                    }
+                },
+                "openai": {
+                    "title": "OpenAI設定",
+                    "fields": {
+                        "model": {
+                            "type": "string",
+                            "description": "OpenAI模型ID",
+                            "default": "o3-mini"
+                        },
+                        "temperature": {
+                            "type": "number",
+                            "description": "創意度參數(0-2)",
+                            "default": 1
+                        }
+                    }
+                },
+                "sheets": {
+                    "title": "Google Sheets設定",
+                    "fields": {
+                        "documentId": {
+                            "type": "string",
+                            "description": "Google Sheets ID",
+                            "example": "1NRPq87zvNiBGKzVJaT0YYc55qp-6-9kGA4VpqkylpbI"
+                        },
+                        "logSheetName": {
+                            "type": "string",
+                            "description": "記錄工作表名稱",
+                            "default": "log"
+                        },
+                        "settingSheetName": {
+                            "type": "string",
+                            "description": "設定工作表名稱",
+                            "default": "setting"
+                        }
+                    }
+                },
+                "schedule": {
+                    "title": "排程設定",
+                    "fields": {
+                        "cronExpression": {
+                            "type": "string",
+                            "description": "Cron表達式（於每小時的隨機分鐘觸發）",
+                            "example": "0 {{ Math.floor(Math.random() * 11) }} 8-23 * * *"
+                        }
+                    }
+                },
+                "ios": {
+                    "title": "iOS捷徑設定",
+                    "fields": {
+                        "shortcutName": {
+                            "type": "string",
+                            "description": "iOS捷徑名稱",
+                            "default": "darrell_water"
+                        }
+                    }
+                }
+            }
+        },
         "creditcard": {
             "id": "creditcard",
             "title": "別忘記繳費:信用卡帳單自動建日曆提醒",

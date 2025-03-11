@@ -3,8 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Darrell n8n 模板分享</title>
-    <meta name="description" content="探索 n8n Workflow 的各種預設模板，包含自動化自動化模板範例">
+    <title>n8n 自動化模板詳情 - Darrell 自動化工具</title>
+    <meta name="description" content="探索 n8n Workflow 的各種預設模板，包含自動化工作流程範例">
+    
+    <!-- 動態 SEO 標籤 - 直接使用 workflow-models.json 資料 -->
+    <meta id="meta-title" property="og:title" content="n8n 自動化模板詳情 - Darrell 自動化工具">
+    <meta id="meta-description" property="og:description" content="探索 n8n Workflow 的各種預設模板，包含自動化工作流程範例">
+    <meta id="meta-url" property="og:url" content="https://www.darrelltw.com/tools/n8n_template/model-detail.html">
+    <meta id="meta-image" property="og:image" content="https://www.darrelltw.com/images/darrell_icon_512.png">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Darrell 自動化工具">
+    <meta property="og:locale" content="zh_TW">
+    
+    <!-- Twitter Card -->
+    <meta id="meta-twitter-title" name="twitter:title" content="n8n 自動化模板詳情 - Darrell 自動化工具">
+    <meta id="meta-twitter-description" name="twitter:description" content="探索 n8n Workflow 的各種預設模板，包含自動化工作流程範例">
+    <meta id="meta-twitter-image" name="twitter:image" content="https://www.darrelltw.com/images/darrell_icon_512.png">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- 模型特定資訊的靜態替代 Meta 標籤 (在 JavaScript 加載前提供基本資訊) -->
+    <link id="canonical-link" rel="canonical" href="https://www.darrelltw.com/tools/n8n_template/model-detail.html">
+    
+    <!-- Schema.org 標記 - 初始空值，將由 JavaScript 動態填充 -->
+    <script type="application/ld+json" id="schema-data">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "n8n 自動化模板",
+      "applicationCategory": "工作流程自動化",
+      "operatingSystem": "跨平台",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "TWD"
+      },
+      "description": "探索 n8n Workflow 的各種預設模板，包含自動化工作流程範例"
+    }
+    </script>
+    
+    <!-- Google 爬蟲輔助腳本，不需要等待完整 JS 執行即可提取關鍵資訊 -->
+    <script type="text/javascript">
+        (function() {
+            // 獲取模型 ID
+            var urlParams = new URLSearchParams(window.location.search);
+            var modelId = urlParams.get('model');
+            
+            if (modelId) {
+                // 更新規範鏈接
+                var canonicalLink = document.getElementById('canonical-link');
+                if (canonicalLink) {
+                    canonicalLink.href = 'https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=' + modelId;
+                }
+                
+                // 向搜索引擎爬蟲提示此頁面需要 JavaScript 進行完整渲染
+                var hint = document.createElement('meta');
+                hint.name = 'google';
+                hint.content = 'notranslate';
+                document.head.appendChild(hint);
+                
+                // 預載模型資料 - 協助搜索引擎爬蟲獲取資訊，即使完整 JS 未執行
+                fetch('data/workflow-models.json')
+                    .then(function(response) { return response.json(); })
+                    .then(function(data) {
+                        if (data.models && data.models[modelId]) {
+                            var model = data.models[modelId];
+                            
+                            // 更新頁面標題
+                            document.title = model.title + " - n8n 自動化模板 | Darrell 自動化工具";
+                            
+                            // 更新描述
+                            var metaDesc = document.querySelector('meta[name="description"]');
+                            if (metaDesc) {
+                                metaDesc.content = model.description.substring(0, 150) + 
+                                    (model.description.length > 150 ? '...' : '');
+                            }
+                            
+                            // 更新 Open Graph 和 Twitter Card 標籤
+                            document.getElementById('meta-title').setAttribute('content', 
+                                model.title + " - n8n 自動化模板 | Darrell 自動化工具");
+                            document.getElementById('meta-description').setAttribute('content', 
+                                model.description.substring(0, 150) + (model.description.length > 150 ? '...' : ''));
+                            document.getElementById('meta-url').setAttribute('content', 
+                                'https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=' + modelId);
+                                
+                            document.getElementById('meta-twitter-title').setAttribute('content', 
+                                model.title + " - n8n 自動化模板 | Darrell 自動化工具");
+                            document.getElementById('meta-twitter-description').setAttribute('content', 
+                                model.description.substring(0, 150) + (model.description.length > 150 ? '...' : ''));
+                            
+                            // 更新 Schema.org 結構化數據
+                            var schemaData = {
+                                "@context": "https://schema.org",
+                                "@type": "SoftwareApplication",
+                                "name": model.title,
+                                "applicationCategory": "工作流程自動化",
+                                "operatingSystem": "跨平台",
+                                "offers": {
+                                    "@type": "Offer",
+                                    "price": "0",
+                                    "priceCurrency": "TWD"
+                                },
+                                "description": model.description,
+                                "datePublished": model.createdAt,
+                                "dateModified": model.updatedAt,
+                                "keywords": model.tags.join(", "),
+                                "url": 'https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=' + modelId
+                            };
+                            
+                            var schemaScript = document.getElementById('schema-data');
+                            if (schemaScript) {
+                                schemaScript.textContent = JSON.stringify(schemaData, null, 2);
+                            }
+                        }
+                    })
+                    .catch(function(error) {
+                        console.error('預載模型資料失敗:', error);
+                    });
+            }
+        })();
+    </script>
+    
+    <!-- 基本標籤 -->
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
@@ -455,12 +574,6 @@
             color: #ea4b71; /* 保持玫瑰紅顏色 */
         }
     </style>
-    <!-- 載入 Web Components 支援 -->
-    <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2.0.0/webcomponentsloader.js"></script>
-    <script src="https://www.unpkg.com/lit@2.0.0-rc.2/polyfill-support.js"></script>
-    <script type="module" src="https://cdn.jsdelivr.net/npm/@n8n_io/n8n-demo-component/n8n-demo.bundled.js"></script>
-    <!-- 添加自動化模板視覺化工具 -->
-    <script src="js/workflow-visualizer.js"></script>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -637,6 +750,55 @@
                         settings: Array.isArray(model.advanced?.settings) ? model.advanced.settings : []
                     }
                 };
+
+                // 更新頁面標題和 Meta 標籤
+                document.title = `${safeModel.title} - n8n 自動化模板 | Darrell 自動化工具`;
+                
+                // 更新描述 meta 標籤
+                const metaDesc = document.querySelector('meta[name="description"]');
+                if (metaDesc) {
+                    metaDesc.content = safeModel.description.substring(0, 150) + (safeModel.description.length > 150 ? '...' : '');
+                }
+                
+                // 更新 Open Graph 標籤
+                document.getElementById('meta-title').setAttribute('content', `${safeModel.title} - n8n 自動化模板 | Darrell 自動化工具`);
+                document.getElementById('meta-description').setAttribute('content', safeModel.description.substring(0, 150) + (safeModel.description.length > 150 ? '...' : ''));
+                document.getElementById('meta-url').setAttribute('content', `https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=${modelId}`);
+                
+                // 更新 Twitter Card 標籤
+                document.getElementById('meta-twitter-title').setAttribute('content', `${safeModel.title} - n8n 自動化模板 | Darrell 自動化工具`);
+                document.getElementById('meta-twitter-description').setAttribute('content', safeModel.description.substring(0, 150) + (safeModel.description.length > 150 ? '...' : ''));
+                
+                // 更新規範連結
+                const canonicalLink = document.getElementById('canonical-link');
+                if (canonicalLink) {
+                    canonicalLink.href = `https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=${modelId}`;
+                }
+                
+                // 更新 Schema.org 結構化數據
+                const schemaData = {
+                    "@context": "https://schema.org",
+                    "@type": "SoftwareApplication",
+                    "name": safeModel.title,
+                    "applicationCategory": "工作流程自動化",
+                    "operatingSystem": "跨平台",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "TWD"
+                    },
+                    "description": safeModel.description,
+                    "datePublished": safeModel.createdAt,
+                    "dateModified": safeModel.updatedAt,
+                    "keywords": safeModel.tags.join(", "),
+                    "url": `https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=${modelId}`
+                };
+                
+                // 更新結構化數據 script 標籤
+                const schemaScript = document.getElementById('schema-data');
+                if (schemaScript) {
+                    schemaScript.textContent = JSON.stringify(schemaData, null, 2);
+                }
 
                 // 更新標題和描述
                 document.querySelector('.model-title').textContent = safeModel.title;

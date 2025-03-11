@@ -1,0 +1,816 @@
+{
+  "name": "slack喝水提醒",
+  "nodes": [
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "= {{ $json.body.payload }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1080,
+        -120
+      ],
+      "id": "52cf8336-859a-405c-b7e9-854ca5e6a87c",
+      "name": "slack_action_payload"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3d208143-1b80-4701-bff7-fc1dfbf9b89c",
+              "name": "value",
+              "value": "={{ $json.actions[0].value }}",
+              "type": "string"
+            },
+            {
+              "id": "1600b553-8ef1-44ac-9ae7-d33be8e539e5",
+              "name": "message_text",
+              "value": "={{ $json.message.text }}",
+              "type": "string"
+            },
+            {
+              "id": "5ea5f093-7e36-4de0-aa14-fb2bc0788e84",
+              "name": "shortcut_url",
+              "value": "=shortcuts://run-shortcut?name=darrell_water&input=",
+              "type": "string"
+            },
+            {
+              "id": "5d9e4946-10eb-48ed-87d8-978235d44ec1",
+              "name": "shortcut_url_data",
+              "value": "={\"value\":{{ $json.actions[0].value }},\"time\":\"{{ $now.format(\"yyyy-MM-dd\") }}T{{ $now.format(\"HH:mm:ss\") }}\"}",
+              "type": "string"
+            },
+            {
+              "id": "625258d8-55eb-4252-b313-b4954da57de1",
+              "name": "message_ts",
+              "value": "={{ $json.container.message_ts }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -860,
+        -120
+      ],
+      "id": "b705eca0-5a5d-4589-8688-88eb190ae1c3",
+      "name": "slack_action_drink_data"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "o3-mini",
+          "mode": "list",
+          "cachedResultName": "O3-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Remind to drink water, the last time you drank water was {{ DateTime.fromISO($('combine data').item.json.date +\"T\"+$('combine data').item.json.time).format('yyyy-MM-dd HH:mm:ss') }}\nThe current time is {{ $now.format('yyyy-MM-dd HH:mm:ss') }}\nThe user has drunk water {{ $('combine data').item.json.count_date }} times today"
+            },
+            {
+              "content": "你是溫和且專業的中醫師，以親切、鼓勵的語氣提供健康建議，用繁體中文回應。請生成 JSON 格式回應，結構為 {\"message\": \"...\"}，訊息簡短 (<100-200 字)、具說服力，提醒我喝水，明確指出間隔（如 2 小時），並同時提及至少一個喝水好處（如補氣）和一個缺水壞處（如血瘀），促進我喝水行動，結尾加行動提示。直接開始，不用稱呼。",
+              "role": "assistant"
+            },
+            {
+              "content": "must return {\\\"message\\\": \\\"...\\\"} and in Traditional Chinese",
+              "role": "system"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {
+          "temperature": 1
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        140,
+        -800
+      ],
+      "id": "82a194f8-20f6-4f69-9478-9d92f81941c2",
+      "name": "OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "AE7fbXM0LWEUpaUf",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "=0 {{ Math.floor(Math.random() * 11) }} 8-23 * * *"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1200,
+        -800
+      ],
+      "id": "a49cba55-e0f5-42be-bd54-c7e87816c326",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "keep": "lastItems"
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -840,
+        -640
+      ],
+      "id": "e1c1ae59-e46d-436c-ab5d-ca4c62930745",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1NRPq87zvNiBGKzVJaT0YYc55qp-6-9kGA4VpqkylpbI",
+          "mode": "list",
+          "cachedResultName": "n8n-drink-water",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1NRPq87zvNiBGKzVJaT0YYc55qp-6-9kGA4VpqkylpbI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 2141999480,
+          "mode": "list",
+          "cachedResultName": "setting",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1NRPq87zvNiBGKzVJaT0YYc55qp-6-9kGA4VpqkylpbI/edit#gid=2141999480"
+        },
+        "options": {
+          "returnFirstMatch": false
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -1040,
+        -800
+      ],
+      "id": "74cded88-5046-41bb-8fe8-a4bb40cb349a",
+      "name": "Google Sheets - Get Target",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "atsKA0m2aQXeL6i6",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1NRPq87zvNiBGKzVJaT0YYc55qp-6-9kGA4VpqkylpbI",
+          "mode": "list",
+          "cachedResultName": "n8n-drink-water",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1NRPq87zvNiBGKzVJaT0YYc55qp-6-9kGA4VpqkylpbI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "log",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1NRPq87zvNiBGKzVJaT0YYc55qp-6-9kGA4VpqkylpbI/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "date",
+              "lookupValue": "={{ $now.format('yyyy-MM-dd') }}"
+            }
+          ]
+        },
+        "options": {
+          "returnFirstMatch": false
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -1040,
+        -640
+      ],
+      "id": "62a39c76-e2f6-4c5a-8314-049418488c1c",
+      "name": "Google Sheets1Google Sheets - Get Log",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "atsKA0m2aQXeL6i6",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldsToSummarize": {
+          "values": [
+            {
+              "aggregation": "sum",
+              "field": "value"
+            },
+            {
+              "field": "date"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.summarize",
+      "typeVersion": 1.1,
+      "position": [
+        -840,
+        -500
+      ],
+      "id": "fd1d6851-e115-4736-9b25-731e0867625c",
+      "name": "Summarize"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1NRPq87zvNiBGKzVJaT0YYc55qp-6-9kGA4VpqkylpbI",
+          "mode": "list",
+          "cachedResultName": "n8n-drink-water",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1NRPq87zvNiBGKzVJaT0YYc55qp-6-9kGA4VpqkylpbI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1NRPq87zvNiBGKzVJaT0YYc55qp-6-9kGA4VpqkylpbI/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "date": "={{ $now.format('yyyy-MM-dd') }}",
+            "time": "={{ $now.format('HH:mm:ss') }}",
+            "value": "={{ $json.value }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "date",
+              "displayName": "date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "time",
+              "displayName": "time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "value",
+              "displayName": "value",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -620,
+        -40
+      ],
+      "id": "4d955eff-9036-409f-99c6-69e49c492695",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "atsKA0m2aQXeL6i6",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "numberInputs": 3,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        -620,
+        -800
+      ],
+      "id": "03741ce4-cc37-45c3-917e-087667174486",
+      "name": "combine data"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "350fc192-3049-407a-b468-bfdcfbdde966",
+              "leftValue": "={{ DateTime.fromISO($('combine data').item.json.date +\"T\"+$('combine data').item.json.time).format('yyyy-MM-dd HH:mm:ss') }}",
+              "rightValue": "={{ $now.minus(30, \"minutes\") }}",
+              "operator": {
+                "type": "dateTime",
+                "operation": "after"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -200,
+        -800
+      ],
+      "id": "8c105ee0-4c97-4f25-8146-4638e7d924a0",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "amount": "={{ Math.floor(Math.random() * 11) + 21 }}",
+        "unit": "minutes"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -20,
+        -640
+      ],
+      "id": "d720663a-69ef-43fb-b413-db2fbcb7d7d6",
+      "name": "Wait",
+      "webhookId": "afba6f08-affb-42c7-9a67-f8ad95c5a310",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "slack-water-webhook",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -1260,
+        -120
+      ],
+      "id": "b2e29236-b514-4b70-badc-060115fc5669",
+      "name": "slack drink webhook",
+      "webhookId": "4eeedbca-b185-4bd3-98a5-07df007389b9"
+    },
+    {
+      "parameters": {
+        "content": "## Grab recent drink data\n",
+        "height": 620,
+        "width": 1060
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1320,
+        -960
+      ],
+      "id": "458f7920-2405-4de2-9417-257ef8544da1",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "If already drink recently. Delay the notification in 3x minutes randomly\n",
+        "height": 500,
+        "width": 340,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        -960
+      ],
+      "id": "e88fcf00-be62-44a0-ba10-a0b6095f6bf9",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Send the slack notification with AI wording. Also have the drink water action buttons",
+        "height": 360,
+        "width": 580,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        120,
+        -960
+      ],
+      "id": "b3b196c2-9494-4064-8150-ed5dad635ba5",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## When User interact the drink button. Record the drink value to sheet and send back the iOS health log water url to start the shortcut",
+        "height": 440,
+        "width": 1300,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1320,
+        -320
+      ],
+      "id": "962576bf-108e-4682-8a0f-5ea02047f470",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "## Created by darrell_tw_ \n\nAn engineer now focus on AI and Automation\n\n### conatct me with following:\n[X](https://x.com/darrell_tw_)\n[Threads](https://www.threads.net/@darrell_tw_)\n[Instagram](https://www.instagram.com/darrell_tw_/)\n[Website](https://www.darrelltw.com/)",
+        "height": 240,
+        "width": 340,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1700,
+        -960
+      ],
+      "id": "97265278-a117-4011-a897-72372eafd5f4",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C08DKA4QF28",
+          "mode": "list",
+          "cachedResultName": "n8n-喝水提醒"
+        },
+        "messageType": "block",
+        "blocksUi": "={\n\t\"blocks\": [\n\t\t{\n\t\t\t\"type\": \"section\",\n\t\t\t\"text\": {\n\t\t\t\t\"type\": \"mrkdwn\",\n\t\t\t\t\"text\": \"{{ $json.message.content.message ? $json.message.content.message : 'Time to drink！' }}\"\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"type\": \"section\",\n\t\t\t\"text\": {\n\t\t\t\t\"type\": \"mrkdwn\",\n\t\t\t\t\"text\": \"{{ $('Edit Fields').item.json.progress_image }}\"\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"type\": \"actions\",\n\t\t\t\"elements\": [\n\t\t\t\t{\n\t\t\t\t\t\"type\": \"button\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"type\": \"plain_text\",\n\t\t\t\t\t\t\"emoji\": true,\n\t\t\t\t\t\t\"text\": \"100\"\n\t\t\t\t\t},\n\t\t\t\t\t\"style\": \"primary\",\n\t\t\t\t\t\"value\": \"100\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"type\": \"button\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"type\": \"plain_text\",\n\t\t\t\t\t\t\"emoji\": true,\n\t\t\t\t\t\t\"text\": \"150\"\n\t\t\t\t\t},\n\t\t\t\t\t\"style\": \"primary\",\n\t\t\t\t\t\"value\": \"150\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"type\": \"button\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"type\": \"plain_text\",\n\t\t\t\t\t\t\"emoji\": true,\n\t\t\t\t\t\t\"text\": \"200\"\n\t\t\t\t\t},\n\t\t\t\t\t\"style\": \"primary\",\n\t\t\t\t\t\"value\": \"200\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"type\": \"button\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"type\": \"plain_text\",\n\t\t\t\t\t\t\"emoji\": true,\n\t\t\t\t\t\t\"text\": \"250\"\n\t\t\t\t\t},\n\t\t\t\t\t\"style\": \"primary\",\n\t\t\t\t\t\"value\": \"250\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"type\": \"button\",\n\t\t\t\t\t\"text\": {\n\t\t\t\t\t\t\"type\": \"plain_text\",\n\t\t\t\t\t\t\"emoji\": true,\n\t\t\t\t\t\t\"text\": \"300\"\n\t\t\t\t\t},\n\t\t\t\t\t\"style\": \"primary\",\n\t\t\t\t\t\"value\": \"300\"\n\t\t\t\t}\n\t\t\t]\n\t\t}\n\t]\n}",
+        "text": "喝水提醒",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        480,
+        -800
+      ],
+      "id": "d1b4b883-8bb8-46ef-bb82-6556c3a66d3c",
+      "name": "Slack send drink notification",
+      "webhookId": "51fc46e9-e90e-4015-9f8b-936633c20cda",
+      "credentials": {
+        "slackApi": {
+          "id": "85DVbvZqboknzwVz",
+          "name": "Slack-drink water"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C08DKA4QF28",
+          "mode": "list",
+          "cachedResultName": "n8n-喝水提醒"
+        },
+        "messageType": "block",
+        "blocksUi": "={\n\t\"blocks\": [\n        {\n\t\t\t\"type\": \"divider\"\n\t\t},\n\t\t{\n\t\t\t\"type\": \"section\",\n\t\t\t\"text\": {\n\t\t\t\t\"type\": \"mrkdwn\",\n\t\t\t\t\"text\": \"{{ $json.message.content.message }} \"\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"type\": \"section\",\n\t\t\t\"text\": {\n\t\t\t\t\"type\": \"mrkdwn\",\n\t\t\t\t\"text\": \"Click me to Shortcut\"\n\t\t\t},\n\t\t\t\"accessory\": {\n\t\t\t\t\"type\": \"button\",\n\t\t\t\t\"text\": {\n\t\t\t\t\t\"type\": \"plain_text\",\n\t\t\t\t\t\"text\": \"iOS Health\",\n\t\t\t\t\t\"emoji\": true\n\t\t\t\t},\n\t\t\t\t\"value\": \"click\",\n\t\t\t\t\"url\": \"{{ $('slack_action_drink_data').item.json.shortcut_url}}{{ $('slack_action_drink_data').item.json.shortcut_url_data.urlEncode() }}\",\n\t\t\t\t\"action_id\": \"button-action\"\n\t\t\t}\n\t\t}\n\t]\n}",
+        "text": "=Already log",
+        "otherOptions": {
+          "thread_ts": {
+            "replyValues": {
+              "thread_ts": "={{ $('slack_action_drink_data').item.json.message_ts }}"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        -280,
+        -200
+      ],
+      "id": "cd434879-56d1-45b4-af48-4cb4ec97dca3",
+      "name": "Send to Slack with confirm",
+      "webhookId": "0e812732-74d2-4924-8db3-6b9234965937",
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "sD1J9ZLyEhcglrRa",
+          "name": "Slack account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "427f1878-99a0-446a-b4a2-2c49c919c809",
+              "name": "progress_percent",
+              "value": "={{ ($json.sum_value/$json.target) }}",
+              "type": "number"
+            },
+            {
+              "id": "3fd85387-6ad3-4f4a-92ee-1db7e84f065b",
+              "name": "progress_image",
+              "value": "={{ (function() {    let p = $json.sum_value / $json.target;    let n = Math.round(p * 10);    n = Math.max(0, Math.min(10, n));    return '💧'.repeat(n) + '⬜'.repeat(10 - n);  })() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -420,
+        -800
+      ],
+      "id": "a61706c9-0dab-42a3-b1ee-3cdda945811a",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "o3-mini",
+          "mode": "list",
+          "cachedResultName": "O3-MINI"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "="
+            },
+            {
+              "content": "請生成 JSON 格式回應，結構為 {\"message\": \"...\"}。因為使用者已經紀錄喝水狀況，請以溫和、專業的中醫師口吻加入適當鼓勵，不用稱呼。",
+              "role": "assistant"
+            },
+            {
+              "content": "must return {\\\"message\\\": \\\"...\\\"} and in Traditional Chinese",
+              "role": "system"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {
+          "temperature": 1
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        -620,
+        -200
+      ],
+      "id": "09169f01-522d-4413-abaf-b8bebf048923",
+      "name": "OpenAI1",
+      "credentials": {
+        "openAiApi": {
+          "id": "AE7fbXM0LWEUpaUf",
+          "name": "OpenAi account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "slack_action_payload": {
+      "main": [
+        [
+          {
+            "node": "slack_action_drink_data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "slack_action_drink_data": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "OpenAI1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "Slack send drink notification",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets - Get Target",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Google Sheets1Google Sheets - Get Log",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "combine data",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Google Sheets1Google Sheets - Get Log": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Summarize",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets - Get Target": {
+      "main": [
+        [
+          {
+            "node": "combine data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Summarize": {
+      "main": [
+        [
+          {
+            "node": "combine data",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "combine data": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "slack drink webhook": {
+      "main": [
+        [
+          {
+            "node": "slack_action_payload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send to Slack with confirm": {
+      "main": [
+        []
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI1": {
+      "main": [
+        [
+          {
+            "node": "Send to Slack with confirm",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "08298ae4-e6e6-44b6-ae46-b0d39f4bca84",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "fddb3e91967f1012c95dd02bf5ad21f279fc44715f47a7a96a33433621caa253"
+  },
+  "id": "QKs6NfMgyzKVFerN",
+  "tags": []
+}
