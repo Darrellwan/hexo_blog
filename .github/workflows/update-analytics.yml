@@ -19,8 +19,12 @@ jobs:
       - name: Process Analytics Data
         id: process-data
         run: |
-          # 從 event payload 獲取原始數據
-          raw_data='${{ toJSON(github.event.client_payload.data) }}'
+          # 從 event payload 獲取原始數據，使用 heredoc 來處理多行 JSON
+          cat << 'EOF' > temp_data.json
+          ${{ toJSON(github.event.client_payload.data) }}
+          EOF
+          
+          raw_data=$(cat temp_data.json)
           
           # 如果數據為空或是 null，使用之前的數據或是空物件
           if [ "$raw_data" = "null" ] || [ -z "$raw_data" ]; then
@@ -72,14 +76,17 @@ jobs:
           
           # 添加時間戳記和完整數據
           timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-          json_with_timestamp=$(echo "{
-            \"data\": {
-              \"30days\": $processed_30days,
-              \"7days\": $processed_7days
+          json_with_timestamp=$(cat << EOF
+          {
+            "data": {
+              "30days": $processed_30days,
+              "7days": $processed_7days
             },
-            \"last_updated\": \"$timestamp\",
-            \"status\": \"success\"
-          }")
+            "last_updated": "$timestamp",
+            "status": "success"
+          }
+          EOF
+          )
           
           # 確保輸出是有效的 JSON
           if echo "$json_with_timestamp" | jq empty 2>/dev/null; then
