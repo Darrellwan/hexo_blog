@@ -7,15 +7,38 @@ categories:
   - Automation
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.82.0，正式版本為 1.81.4
+description: n8n 的更新記錄，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.83.1，正式版本為 1.82.2
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-03-04 12:50:55
+modified: 2025-03-12 22:50:55
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 1.83.1 Pre-release
+
+### Bug Fix 居多
+
+1. Pin Data 後會出現 Unpin 的 button，原本沒有
+
+{% darrellImage800 n8n-1.83.0-unpin n8n-1.83.0-unpin.png max-400 %}
+
+2. Error view 現在可以完整寬度檢視
+3. 貼上 `=test1234` 後會維持 `=test1234`，原本會因為判定成 expression 所以變成 test1234
+
+{% darrellImage800 n8n-1.83.0-equals n8n-1.83.0-equals.png max-400 %}
+
+4. 有些狀況 (沒 focus 到，Expression 全螢幕修改時) 用 ctrl+s 無法存檔，已調整優化
+
+{% darrellImage800 n8n-1.83.0-save n8n-1.83.0-save.png max-400 %}
+
+[github_n8n@1.83.0](https://github.com/n8n-io/n8n/releases)
+
+## 1.82.2 Release
+
+目前正式版已經更新到 1.82.2
 
 ## 1.82.0 Pre-release
 
