@@ -4,6 +4,8 @@ const matter = require('gray-matter');
 const dayjs = require('dayjs');
 const yaml = require('js-yaml');
 require('dayjs/locale/zh-tw');
+const relativeTime = require('dayjs/plugin/relativeTime');
+dayjs.extend(relativeTime); // 添加相對時間插件
 
 // 設定時區和語言
 dayjs.locale('zh-tw');
@@ -140,16 +142,20 @@ async function generateReadme() {
     const readmeContent = `# ${blogConfig.title}
 
 ## 📚 最新文章
-${posts.slice(0, 10).map(post => `
+${posts.slice(0, 10).map(post => {
+  // 估算閱讀時間：假設平均閱讀速度每分鐘 500 個字
+  const readingTime = Math.max(1, Math.ceil(post.wordCount / 500));
+  
+  return `
 ### [${post.title}](${post.url})
-- 發布時間: ${dayjs(post.date).format('YYYY/MM/DD')}
+📅 ${dayjs(post.date).format('YYYY/MM/DD')} · ${dayjs(post.date).fromNow()}
+
 ${post.description ? `> ${post.description}` : ''}
-`).join('\n')}
+`}).join('\n')}
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-${posts.length}-blue?style=flat-square)
 ![總字數](https://img.shields.io/badge/總字數-${totalWords}+-blue?style=flat-square)
-![已發布天數](https://img.shields.io/badge/已發布天數-${Math.floor((new Date() - new Date(Math.min(...posts.map(p => new Date(p.date))))) / (1000 * 60 * 60 * 24))}-blue?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 \`\`\`text

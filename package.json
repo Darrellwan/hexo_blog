@@ -17,8 +17,8 @@
     "add_post": "hexo new gtm %npm_config_posttitle%",
     "test-readme": "node scripts/test-readme-generation.js",
     "restore-readme": "node scripts/restore-readme.js",
-    "n8n-sitemap": "node scripts/generate-n8n-sitemap.js",
-    "n8n-snapshots": "node scripts/generate-html-snapshots.js"
+    "n8n-sitemap": "node bin/generate-n8n-sitemap.js",
+    "n8n-snapshots": "node bin/generate-html-snapshots.js"
   },
   "hexo": {
     "version": "7.3.0"
