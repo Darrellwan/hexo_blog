@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>聯絡我們 - Darrell n8n 模板分享</title>
+    <meta name="description" content="聯絡 Darrell，獲取 n8n 自動化模板相關協助和支援。">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/n8n-demo.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-WH2WS5GF');</script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <style>
+        :root {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --accent-color: #007bff;
+            --border-color: #404040;
+            --card-hover: #3d3d3d;
+            --title-color: #ff8c00;
+            --animation-duration: 0.5s;
+            --accent-hover: #0056b3;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: var(--text-primary);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 90%;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+
+        /* 更新聯絡方式卡片樣式 */
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            animation: fadeInUp var(--animation-duration) ease-out;
+        }
+
+        .contact-method {
+            flex: 0 1 300px;
+            animation: fadeIn var(--animation-duration) ease-out;
+            animation-delay: 0.3s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .contact-method:hover {
+            transform: translateY(-5px);
+            background-color: var(--card-hover);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            border-color: var(--accent-color);
+        }
+
+        .contact-method img {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 1rem;
+        }
+
+        .contact-method h3 {
+            color: var(--title-color);
+            margin: 0.5rem 0;
+        }
+
+        .contact-method p {
+            color: var(--text-secondary);
+            margin: 0.5rem 0;
+        }
+
+        /* 更新表單樣式 */
+        .form-container {
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto 3rem;
+            background-color: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            animation: slideInDown 0.6s ease-out;
+            position: relative;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .form-container:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(
+                90deg,
+                var(--accent-color),
+                var(--title-color),
+                var(--accent-color)
+            );
+            background-size: 200% 100%;
+            animation: flowingBorder 3s linear infinite;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent-color);
+            outline: none;
+        }
+
+        button[type="submit"] {
+            background: linear-gradient(45deg, var(--accent-color), var(--accent-hover));
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button[type="submit"]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+        }
+
+        button[type="submit"]::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+
+        button[type="submit"]:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+
+        /* 更新訊息樣式 */
+        .success-message,
+        .error-message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-align: center;
+            display: none;
+        }
+
+        .success-message {
+            background-color: rgba(76, 175, 80, 0.1);
+            border: 1px solid #4CAF50;
+            color: #4CAF50;
+        }
+
+        .error-message {
+            background-color: rgba(244, 67, 54, 0.1);
+            border: 1px solid #f44336;
+            color: #f44336;
+        }
+
+        /* 更新社交證明樣式 */
+        .social-proof {
+            margin-top: 2rem;
+            text-align: center;
+            color: var(--text-secondary);
+            padding: 1rem;
+            background-color: var(--bg-secondary);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 1440px) {
+            .container {
+                padding: 2rem;
+                margin: 1rem auto;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .container {
+                padding: 1.5rem;
+            }
+            
+            .form-container {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                max-width: 95%;
+                padding: 1rem;
+                margin: 0.5rem auto;
+            }
+
+            .form-container {
+                padding: 1rem;
+                margin: 0 auto 2rem;
+            }
+
+            .contact-methods {
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem;
+            }
+
+            .contact-method {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .floating-label input,
+            .floating-label textarea {
+                padding: 0.8rem;
+                font-size: 16px; /* 防止 iOS 縮放 */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                width: 100%;
+                padding: 0.5rem;
+                margin: 0;
+            }
+            
+            .form-container {
+                border-radius: 8px;
+                padding: 1rem;
+            }
+            
+            .contact-methods {
+                gap: 1rem;
+            }
+            
+            .page-title {
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+        }
+
+        /* 表單驗證提示樣式 */
+        .validation-message {
+            color: #f44336;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        input:invalid:not(:placeholder-shown) + .validation-message,
+        textarea:invalid:not(:placeholder-shown) + .validation-message {
+            display: block;
+        }
+
+        /* 更新頁面標題樣式 */
+        .page-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            animation: fadeInDown var(--animation-duration) ease-out;
+        }
+
+        .page-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+            margin: 0.5rem auto;
+            border-radius: 2px;
+        }
+
+        /* 浮動標籤效果 */
+        .floating-label {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .floating-label input,
+        .floating-label textarea {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .floating-label label {
+            position: absolute;
+            left: 1rem;
+            top: 1rem;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            font-size: 1rem;
+        }
+
+        .floating-label input:focus ~ label,
+        .floating-label input:not(:placeholder-shown) ~ label,
+        .floating-label textarea:focus ~ label,
+        .floating-label textarea:not(:placeholder-shown) ~ label {
+            top: -0.5rem;
+            left: 0.8rem;
+            font-size: 0.8rem;
+            padding: 0 0.3rem;
+            background-color: var(--bg-primary);
+            color: var(--accent-color);
+        }
+
+        /* 動畫關鍵幀 */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(20, 20);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* 添加流動邊框動畫 */
+        @keyframes flowingBorder {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        /* 可選：當表單獲得焦點時加快動畫速度 */
+        .form-container:focus-within:before {
+            animation: flowingBorder 1.5s linear infinite;
+        }
+
+        /* 添加 Turnstile 樣式 */
+        .cf-turnstile {
+            margin: 1rem 0;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+    <script src="js/header.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Darrell <span style="color: #ea4b71;">n8n</span> 模板分享</h1>
+        <button class="menu-toggle" aria-label="選單">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-buttons">
+            <a href="visualize.html" class="nav-button">視覺化工具</a>
+            <a href="models.html" class="nav-button">模板列表</a>
+            <a href="contact.html" class="nav-button active">聯絡我們</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1 class="page-title">聯絡我們</h1>
+
+        <div class="form-container">
+            <div class="success-message" id="successMessage">
+                感謝您的訊息！我們會盡快回覆您。
+            </div>
+            <div class="error-message" id="errorMessage">
+                發送失敗，請稍後再試。
+            </div>
+
+            <form id="contactForm" onsubmit="return handleSubmit(event)">
+                <div class="floating-label">
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        required 
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                        placeholder=" "
+                        data-tracking="email_input">
+                    <label for="email">電子郵件</label>
+                    <div class="validation-message">請輸入有效的電子郵件地址</div>
+                </div>
+                
+                <div class="floating-label">
+                    <textarea 
+                        id="message" 
+                        name="message" 
+                        required 
+                        placeholder=" "
+                        minlength="10"
+                        rows="5"
+                        data-tracking="message_input"></textarea>
+                    <label for="message">您的問題或建議</label>
+                    <div class="validation-message">請至少輸入10個字</div>
+                </div>
+                <div class="cf-turnstile" data-sitekey="0x4AAAAAABAkrCdPBH-9dmAs" data-theme="dark"></div>
+                <button type="submit" data-tracking="submit_form">送出訊息</button>
+            </form>
+        </div>
+
+        <div class="contact-methods">
+            <div class="contact-method" 
+                 data-tracking="line_qr" 
+                 data-link="https://lin.ee/N31gpM2"
+                 onclick="window.open('https://lin.ee/N31gpM2', '_blank')">
+                <img src="https://qr-official.line.me/gs/M_710zzzcu_BW.png?oat_content=qr" alt="Line QR Code">
+                <h3>加入 Line 好友</h3>
+                <p>掃描 QR Code 立即加入好友</p>
+            </div>
+            <div class="contact-method" 
+                 data-tracking="threads_profile" 
+                 data-link="https://www.threads.net/@darrell_tw_"
+                 onclick="window.open('https://www.threads.net/@darrell_tw_', '_blank')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" fill="currentColor" class="bi bi-threads" viewBox="0 0 16 16">
+                    <path d="M6.321 6.016c-.27-.18-1.166-.802-1.166-.802.756-1.081 1.753-1.502 3.132-1.502.975 0 1.803.327 2.394.948s.928 1.509 1.005 2.644q.492.207.905.484c1.109.745 1.719 1.86 1.719 3.137 0 2.716-2.226 5.075-6.256 5.075C4.594 16 1 13.987 1 7.994 1 2.034 4.482 0 8.044 0 9.69 0 13.55.243 15 5.036l-1.36.353C12.516 1.974 10.163 1.43 8.006 1.43c-3.565 0-5.582 2.171-5.582 6.79 0 4.143 2.254 6.343 5.63 6.343 2.777 0 4.847-1.443 4.847-3.556 0-1.438-1.208-2.127-1.27-2.127-.236 1.234-.868 3.31-3.644 3.31-1.618 0-3.013-1.118-3.013-2.582 0-2.09 1.984-2.847 3.55-2.847.586 0 1.294.04 1.663.114 0-.637-.54-1.728-1.9-1.728-1.25 0-1.566.405-1.967.868ZM8.716 8.19c-2.04 0-2.304.87-2.304 1.416 0 .878 1.043 1.168 1.6 1.168 1.02 0 2.067-.282 2.232-2.423a6.2 6.2 0 0 0-1.528-.161"/>
+                </svg>
+                <h3>追蹤 Threads</h3>
+                <p>關注最新消息與更新</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="copyright">© 2025 DarrellTW. All rights reserved.</div>
+            <div class="social-buttons">
+                <a href="https://www.linkedin.com/in/darrell-wang-tw/" class="social-button" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                </a>
+                <a href="mailto:darrell.tw.martech@gmail.com" class="social-button" target="_blank" rel="noopener noreferrer" title="Gmail">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/darrell_tw_/" class="social-button" target="_blank" rel="noopener noreferrer" title="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.281-.059 1.689-.073 4.948-.073zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+                <a href="https://www.threads.net/@darrell_tw_" class="social-button" target="_blank" rel="noopener noreferrer" title="Threads">
+                    <svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 440 511.43"><path fill="#fff" fill-rule="nonzero" d="M342.383 237.038a177.282 177.282 0 00-6.707-3.046c-3.948-72.737-43.692-114.379-110.429-114.805-38.505-.255-72.972 15.445-94.454 48.041l36.702 25.178c15.265-23.159 39.221-28.096 56.864-28.096.204 0 .408 0 .61.002 21.974.14 38.555 6.529 49.287 18.987 7.81 9.071 13.034 21.606 15.621 37.425-19.483-3.311-40.553-4.329-63.077-3.038-63.45 3.655-104.24 40.661-101.501 92.08 1.391 26.083 14.385 48.523 36.587 63.181 18.772 12.391 42.95 18.45 68.077 17.079 33.183-1.819 59.215-14.48 77.377-37.63 13.793-17.58 22.516-40.363 26.368-69.069 15.814 9.544 27.535 22.103 34.007 37.2 11.006 25.665 11.648 67.84-22.764 102.223-30.15 30.121-66.392 43.151-121.164 43.554-60.758-.45-106.708-19.935-136.583-57.915-27.976-35.562-42.434-86.93-42.973-152.674.539-65.746 14.997-117.114 42.973-152.676 29.875-37.979 75.824-57.463 136.582-57.914 61.197.455 107.948 20.033 138.967 58.195 15.21 18.713 26.676 42.248 34.236 69.688L440 161.532c-9.163-33.775-23.582-62.881-43.203-87.017C357.031 25.59 298.872.519 223.936 0h-.3C148.851.518 91.344 25.683 52.709 74.795 18.331 118.499.598 179.308.002 255.535l-.002.18.002.18c.596 76.225 18.329 137.037 52.707 180.741 38.635 49.11 96.142 74.277 170.927 74.794h.3c66.486-.462 113.352-17.868 151.96-56.442 50.51-50.463 48.99-113.718 32.342-152.549-11.945-27.847-34.716-50.463-65.855-65.401zM227.587 344.967c-27.808 1.567-56.699-10.916-58.124-37.651-1.056-19.823 14.108-41.942 59.831-44.577a266.87 266.87 0 0115.422-.45c16.609 0 32.145 1.613 46.271 4.701-5.268 65.798-36.172 76.483-63.4 77.977z"/></svg>
+                </a>
+                <a href="https://www.darrelltw.com/" class="social-button" target="_blank" rel="noopener noreferrer" title="Website">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                    </svg>
+                </a>
+                <a href="https://buymeacoffee.com/darrellmartechtw" class="social-button" target="_blank" rel="noopener noreferrer" title="Buy Me a Coffee">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    // 更新追蹤函數
+    function trackEvent(eventName, parameters = {}) {
+        if (typeof dataLayer !== 'undefined') {
+            // 加入共同參數
+            const commonParams = {
+                page_location: 'contact_page',
+                timestamp: new Date().toISOString()
+            };
+
+            dataLayer.push({
+                event: eventName,
+                ...commonParams,
+                ...parameters
+            });
+        }
+    }
+
+    // 更新表單欄位追蹤
+    document.querySelectorAll('[data-tracking]').forEach(element => {
+        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+            element.addEventListener('focus', () => {
+                trackEvent('form_field_focus', {
+                    field_name: element.name,
+                    field_type: element.tagName.toLowerCase()
+                });
+            });
+
+            element.addEventListener('blur', () => {
+                if (element.value) {
+                    trackEvent('form_field_complete', {
+                        field_name: element.name,
+                        field_type: element.tagName.toLowerCase()
+                    });
+                }
+            });
+        } else if (element.classList.contains('contact-method')) {
+            element.addEventListener('click', () => {
+                trackEvent('click_contact_cta', {
+                    cta_type: element.dataset.tracking,
+                    cta_url: element.dataset.link,
+                    outbound: true
+                });
+            });
+        }
+    });
+
+    // 更新表單提交追蹤
+    async function handleSubmit(event) {
+        event.preventDefault();
+        
+        const form = event.target;
+        const email = form.email.value;
+        const message = form.message.value;
+        
+        // 獲取 turnstile token
+        const token = turnstile.getResponse();
+        
+        if (!token) {
+            document.getElementById('errorMessage').textContent = '請完成安全確認';
+            document.getElementById('errorMessage').style.display = 'block';
+            return false;
+        }
+
+        // 追蹤表單提交
+        trackEvent('form_submit', {
+            email_domain: email.split('@')[1],
+            message_length: message.length,
+            form_id: 'contact_form'
+        });
+
+        try {
+            // 顯示載入狀態
+            const submitButton = form.querySelector('button[type="submit"]');
+            submitButton.disabled = true;
+            submitButton.textContent = '傳送中...';
+
+            // 先驗證 turnstile token
+            const validateResponse = await fetch('https://turnsite-validate-n8n-template.api-worker-darrell-martech.workers.dev/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ token })
+            });
+
+            const validateResult = await validateResponse.json();
+
+            if (!validateResult.success) {
+                throw new Error('人機驗證失敗');
+            }
+
+            // 驗證成功後發送表單資料
+            const webhookUrl = 'https://darrellinfo-n8n.hnd1.zeabur.app/webhook-test/80c589e6-8c16-441c-a89c-aef6fefe872c';
+            const params = new URLSearchParams({
+                email,
+                message,
+                timestamp: new Date().toISOString(),
+                source: 'contact_form'
+            });
+
+            const response = await fetch(`${webhookUrl}?${params.toString()}`, {
+                method: 'GET',
+                mode: 'no-cors'
+            });
+
+            document.getElementById('successMessage').style.display = 'block';
+            document.getElementById('errorMessage').style.display = 'none';
+            form.reset();
+            trackEvent('form_submit_complete', {
+                status: 'success',
+                form_id: 'contact_form'
+            });
+            
+            // 重置 turnstile
+            turnstile.reset();
+
+        } catch (error) {
+            console.error('提交表單時發生錯誤:', error);
+            document.getElementById('errorMessage').textContent = error.message === '人機驗證失敗' 
+                ? '人機驗證失敗，請重試' 
+                : '發送失敗，請稍後再試';
+            document.getElementById('errorMessage').style.display = 'block';
+            document.getElementById('successMessage').style.display = 'none';
+            trackEvent('form_submit_complete', {
+                status: 'error',
+                error_message: error.message,
+                form_id: 'contact_form'
+            });
+            
+            // 重置 turnstile
+            turnstile.reset();
+
+        } finally {
+            const submitButton = form.querySelector('button[type="submit"]');
+            submitButton.disabled = false;
+            submitButton.textContent = '送出訊息';
+        }
+
+        return false;
+    }
+    </script>
+</body>
+</html>
