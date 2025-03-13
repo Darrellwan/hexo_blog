@@ -614,100 +614,87 @@
         }
     });
 
-    // 更新表單提交追蹤
     async function handleSubmit(event) {
-        event.preventDefault();
-        
-        const form = event.target;
-        const email = form.email.value;
-        const message = form.message.value;
-        
-        // 獲取 turnstile token
-        const token = turnstile.getResponse();
-        
-        if (!token) {
-            document.getElementById('errorMessage').textContent = '請完成安全確認';
-            document.getElementById('errorMessage').style.display = 'block';
-            return false;
-        }
+    event.preventDefault();
 
-        // 追蹤表單提交
-        trackEvent('form_submit', {
-            email_domain: email.split('@')[1],
-            message_length: message.length,
-            form_id: 'contact_form'
-        });
+    const form = document.getElementById('contactForm');
+    const email = form.email.value;
+    const message = form.message.value;
+    const token = turnstile.getResponse();
 
-        try {
-            // 顯示載入狀態
-            const submitButton = form.querySelector('button[type="submit"]');
-            submitButton.disabled = true;
-            submitButton.textContent = '傳送中...';
-
-            // 先驗證 turnstile token
-            const validateResponse = await fetch('https://turnsite-validate-n8n-template.api-worker-darrell-martech.workers.dev/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ token })
-            });
-
-            const validateResult = await validateResponse.json();
-
-            if (!validateResult.success) {
-                throw new Error('人機驗證失敗');
-            }
-
-            // 驗證成功後發送表單資料
-            const webhookUrl = 'https://darrellinfo-n8n.hnd1.zeabur.app/webhook-test/80c589e6-8c16-441c-a89c-aef6fefe872c';
-            const params = new URLSearchParams({
-                email,
-                message,
-                timestamp: new Date().toISOString(),
-                source: 'contact_form'
-            });
-
-            const response = await fetch(`${webhookUrl}?${params.toString()}`, {
-                method: 'GET',
-                mode: 'no-cors'
-            });
-
-            document.getElementById('successMessage').style.display = 'block';
-            document.getElementById('errorMessage').style.display = 'none';
-            form.reset();
-            trackEvent('form_submit_complete', {
-                status: 'success',
-                form_id: 'contact_form'
-            });
-            
-            // 重置 turnstile
-            turnstile.reset();
-
-        } catch (error) {
-            console.error('提交表單時發生錯誤:', error);
-            document.getElementById('errorMessage').textContent = error.message === '人機驗證失敗' 
-                ? '人機驗證失敗，請重試' 
-                : '發送失敗，請稍後再試';
-            document.getElementById('errorMessage').style.display = 'block';
-            document.getElementById('successMessage').style.display = 'none';
-            trackEvent('form_submit_complete', {
-                status: 'error',
-                error_message: error.message,
-                form_id: 'contact_form'
-            });
-            
-            // 重置 turnstile
-            turnstile.reset();
-
-        } finally {
-            const submitButton = form.querySelector('button[type="submit"]');
-            submitButton.disabled = false;
-            submitButton.textContent = '送出訊息';
-        }
-
+    if (!token) {
+        document.getElementById('errorMessage').textContent = '請完成安全確認';
+        document.getElementById('errorMessage').style.display = 'block';
         return false;
     }
+
+    // 追蹤表單提交
+    trackEvent('form_submit', {
+        email_domain: email.split('@')[1],
+        form_id: 'contact_form'
+    });
+
+    const submitButton = form.querySelector('button[type="submit"]');
+    submitButton.disabled = true;
+    submitButton.textContent = '傳送中...';
+
+    try {
+        // 向 Cloudflare Worker 發送驗證 token 的 POST 請求（使用 URLSearchParams）
+        const validateResponse = await fetch(
+            'https://turnsite-validate-n8n-template.api-worker-darrell-martech.workers.dev/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams({
+                    'cf-turnstile-response': token
+                })
+            }
+        );
+
+        const validateResultText = await validateResponse.text();
+
+        if (validateResponse.status !== 200) {
+            throw new Error(validateResultText);
+        }
+
+        // 驗證成功後發送表單資料到 webhook
+        const webhookUrl = 'https://darrellinfo-n8n.hnd1.zeabur.app/webhook-test/80c589e6-8c16-441c-a89c-aef6fefe872c';
+
+        const webhookResponse = await fetch(webhookUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: new URLSearchParams({
+                email,
+                message
+            })
+        });
+
+        document.getElementById('successMessage').style.display = 'block';
+        document.getElementById('errorMessage').style.display = 'none';
+        form.reset();
+
+        trackEvent('form_submit_complete', { status: 'success' });
+
+        turnstile.reset();
+
+    } catch (error) {
+        console.error(error);
+        document.getElementById('errorMessage').textContent = error.message || '發送失敗，請稍後再試';
+        document.getElementById('errorMessage').style.display = 'block';
+        document.getElementById('successMessage').style.display = 'none';
+
+        trackEvent('form_submit_complete', { status: 'error', message: error.message });
+    } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = '送出訊息';
+        turnstile.reset();
+    }
+
+    return false;
+}
     </script>
 </body>
 </html>
