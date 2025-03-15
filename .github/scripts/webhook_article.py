@@ -6,6 +6,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+WEBHOOK_URL = "https://darrellinfo-n8n.hnd1.zeabur.app/webhook-test/8d0c3815-dd5f-46b3-827c-7bfb2ae4f75d"
+
 def setup_logging():
     logger.add("log.txt", rotation="1 day")
 
@@ -25,11 +27,6 @@ def read_markdown_file(file_path):
 
 def send_webhook(file_path, metadata, body):
     try:
-        # 檢查必要的環境變數
-        webhook_url = os.environ.get('WEBHOOK_URL')
-        if not webhook_url:
-            raise ValueError("WEBHOOK_URL environment variable is not set")
-            
         # 檢查是否有完整 URL 環境變數
         full_url = os.environ.get('FULL_URL')
         
@@ -48,7 +45,7 @@ def send_webhook(file_path, metadata, body):
         logger.info(f"Sending webhook with payload: {payload}")
         
         # 發送 POST 請求
-        response = requests.post(webhook_url, json=payload)
+        response = requests.post(WEBHOOK_URL, json=payload)
         response.raise_for_status()
         
         logger.info(f"Successfully sent webhook, status code: {response.status_code}")
