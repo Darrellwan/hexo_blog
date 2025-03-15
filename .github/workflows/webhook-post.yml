@@ -26,10 +26,12 @@ jobs:
       with:
         python-version: '3.8'
         cache: 'pip'
+        cache-dependency-path: 'requirements.txt'
 
     - name: Install Python dependencies
       run: |
-        pip install requests PyYAML loguru python-dotenv
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
 
     - name: Check for New Markdown Files
       id: check-new-md-files
