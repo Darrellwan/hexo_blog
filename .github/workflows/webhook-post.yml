@@ -15,18 +15,46 @@ concurrency:
 jobs:
   webhook-new-article:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ github.workspace }}
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v4
       with:
         fetch-depth: 0
+        path: .
+
+    - name: Debug Directory Structure
+      run: |
+        echo "GitHub Workspace: $GITHUB_WORKSPACE"
+        echo "Current directory: $(pwd)"
+        echo "Directory contents:"
+        ls -la
+        echo "Parent directory contents:"
+        ls -la ..
+        echo "Requirements.txt location attempt 1:"
+        find . -name requirements.txt
+        echo "Requirements.txt location attempt 2:"
+        find $GITHUB_WORKSPACE -name requirements.txt
+
+    - name: Create requirements.txt
+      run: |
+        echo "requests==2.31.0" > requirements.txt
+        echo "PyYAML==6.0.1" >> requirements.txt
+        echo "loguru==0.7.2" >> requirements.txt
+        echo "python-dotenv==1.0.1" >> requirements.txt
+        echo "Created requirements.txt with contents:"
+        cat requirements.txt
 
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.8'
         cache: 'pip'
-        cache-dependency-path: 'requirements.txt'
+        cache-dependency-path: |
+          requirements.txt
 
     - name: Install Python dependencies
       run: |
