@@ -1,12 +1,12 @@
 ---
-title: Busy Tag 開箱，忙碌中勿擾
+title: BusyTag 開箱 忙碌中勿擾
 tags:
-  - Busy Tag
+  - BusyTag
 categories:
   - Unboxing
 page_type: post
 id: unboxing-busytag
-description: Busy Tag 是一款帶有高解析度螢幕與內建忙碌指示燈的智慧裝置，用來向同事或家人清楚地顯示您的狀態，避免不必要的干擾，還可自訂顯示 GIF、圖片或文字，與各種應用程式整合。
+description: BusyTag 是一款帶有高解析度螢幕與內建忙碌指示燈的智慧裝置，用來向同事或家人清楚地顯示您的狀態，避免不必要的干擾，還可自訂顯示 GIF、圖片或文字，與各種應用程式整合。
 bgImage: busytag_bg.jpg
 preload:
   - busytag_bg.jpg
