@@ -1,4 +1,4 @@
-name: Twitter Post on New Article
+name: Webhook Post on New Article
 
 on:
   push:
@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  tweet-new-article:
+  webhook-new-article:
     runs-on: ubuntu-latest
 
     steps:
@@ -29,7 +29,7 @@ jobs:
 
     - name: Install Python dependencies
       run: |
-        pip install tweepy PyYAML gitpython loguru python-dotenv
+        pip install requests PyYAML loguru python-dotenv
 
     - name: Check for New Markdown Files
       id: check-new-md-files
@@ -59,7 +59,7 @@ jobs:
           echo "Not enough commits to compare."
         fi
 
-    - name: Process and Tweet New Articles
+    - name: Process and Send Webhook
       if: steps.check-new-md-files.outputs.new_files
       run: |
         set -e  # 確保任何錯誤都會導致步驟失敗
@@ -68,19 +68,15 @@ jobs:
         WEBSITE_URL="${{ secrets.WEBSITE_URL || 'https://www.darrelltw.com' }}"
         ARTICLE_ID="${{ steps.check-new-md-files.outputs.article_id }}"
         POST_DATE="${{ steps.check-new-md-files.outputs.post_date }}"
-        FULL_URL="$WEBSITE_URL/$ARTICLE_ID/?utm_source=x_post&utm_medium=social&utm_campaign=$POST_DATE"
+        FULL_URL="$WEBSITE_URL/$ARTICLE_ID/?utm_source=webhook&utm_medium=automation&utm_campaign=$POST_DATE"
         
         # 將 URL 傳遞給 Python 腳本
         export FULL_URL="$FULL_URL"
         echo "Article URL with UTM: $FULL_URL"
         
-        python .github/scripts/tweet_article.py
+        python .github/scripts/webhook_article.py
       env:
-        X_API_KEY: ${{ secrets.X_API_KEY }}
-        X_API_SECRET: ${{ secrets.X_API_SECRET }}
-        X_ACCESS_KEY: ${{ secrets.X_ACCESS_KEY }}
-        X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}    
-        X_BEARER: ${{ secrets.X_BEARER }}
+        WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
         WEBSITE_URL: ${{ secrets.WEBSITE_URL || 'https://www.darrelltw.com' }}
         ARTICLE_ID: ${{ steps.check-new-md-files.outputs.article_id }}
         POST_DATE: ${{ steps.check-new-md-files.outputs.post_date }}
