@@ -48,3 +48,10 @@ log.txt
 .vscode/
 *.swp
 *.swo
+
+# Local testing files
+venv/
+.env
+log.txt
+.secrets
+source/_posts/test-article.md
