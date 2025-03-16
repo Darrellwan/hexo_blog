@@ -77,7 +77,16 @@ jobs:
               FILENAME=$(basename "$file" .md)
               echo "article_id=$FILENAME" >> $GITHUB_OUTPUT
               echo "article_id=$FILENAME" >> $GITHUB_ENV
+              
+              # 提取背景圖片資訊
+              BG_IMAGE=$(grep "^bgImage:" "$file" | cut -d' ' -f2-)
+              if [ -n "$BG_IMAGE" ]; then
+                echo "bg_image=$BG_IMAGE" >> $GITHUB_OUTPUT
+                echo "bg_image=$BG_IMAGE" >> $GITHUB_ENV
+              fi
+              
               echo "Article ID: $FILENAME"
+              echo "Background Image: $BG_IMAGE"
             done
             
             # 生成當前日期格式為 YYYYMMDD
@@ -98,11 +107,14 @@ jobs:
         WEBSITE_URL="${{ secrets.WEBSITE_URL || 'https://www.darrelltw.com' }}"
         ARTICLE_ID="${{ steps.check-new-md-files.outputs.article_id }}"
         POST_DATE="${{ steps.check-new-md-files.outputs.post_date }}"
-        FULL_URL="$WEBSITE_URL/$ARTICLE_ID/?utm_source=webhook&utm_medium=automation&utm_campaign=$POST_DATE"
+        BG_IMAGE="${{ steps.check-new-md-files.outputs.bg_image }}"
+        FULL_URL="$WEBSITE_URL/$ARTICLE_ID/"
         
         # 將 URL 傳遞給 Python 腳本
         export FULL_URL="$FULL_URL"
+        export BG_IMAGE="$BG_IMAGE"
         echo "Article URL with UTM: $FULL_URL"
+        echo "Background Image: $BG_IMAGE"
         
         python .github/scripts/webhook_article.py
       env:
@@ -110,6 +122,7 @@ jobs:
         WEBSITE_URL: ${{ secrets.WEBSITE_URL || 'https://www.darrelltw.com' }}
         ARTICLE_ID: ${{ steps.check-new-md-files.outputs.article_id }}
         POST_DATE: ${{ steps.check-new-md-files.outputs.post_date }}
+        BG_IMAGE: ${{ steps.check-new-md-files.outputs.bg_image }}
     
     - name: Print Log File
       if: always()

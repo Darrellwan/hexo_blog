@@ -3,10 +3,12 @@ import yaml
 import requests
 from loguru import logger
 from dotenv import load_dotenv
+from datetime import datetime
 
 load_dotenv()
 
-WEBHOOK_URL = "https://darrellinfo-n8n.hnd1.zeabur.app/webhook-test/8d0c3815-dd5f-46b3-827c-7bfb2ae4f75d"
+# 從環境變數讀取 WEBHOOK_URL
+WEBHOOK_URL = os.environ.get('WEBHOOK_URL')
 
 def setup_logging():
     logger.add("log.txt", rotation="1 day")
@@ -30,6 +32,15 @@ def send_webhook(file_path, metadata, body):
         # 檢查是否有完整 URL 環境變數
         full_url = os.environ.get('FULL_URL')
         
+        # 將所有可能的 datetime 對象轉換為 ISO 格式字符串
+        date = metadata.get('date')
+        if isinstance(date, datetime):
+            date = date.strftime('%Y-%m-%dT%H:%M:%S')
+        
+        updated = metadata.get('updated')
+        if isinstance(updated, datetime):
+            updated = updated.strftime('%Y-%m-%dT%H:%M:%S')
+        
         # 準備要發送的數據
         payload = {
             'title': metadata.get('title'),
@@ -38,8 +49,10 @@ def send_webhook(file_path, metadata, body):
             'body': body,
             'tags': metadata.get('tags', []),
             'categories': metadata.get('categories', []),
-            'date': metadata.get('date'),
-            'id': metadata.get('id')
+            'date': date,
+            'updated': updated,
+            'id': metadata.get('id'),
+            'bgImage': metadata.get('bgImage')  # 直接從 metadata 中獲取 bgImage
         }
             
         logger.info(f"Sending webhook with payload: {payload}")
