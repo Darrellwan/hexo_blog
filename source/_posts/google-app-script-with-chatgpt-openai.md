@@ -10,7 +10,7 @@ page_type: post
 date: 2022-12-13 20:51:22
 ---
 
-{% darrellImageCover 來自chatGpt官網 chat_gpt_bg.png max-800 %}
+{% darrellImageCover chat_gpt_bg chat_gpt_bg.jpg max-800 %}
 
 本文參考 [Script para integrar OpenAI en Google Sheet](https://txetxu.dev/script-para-integrar-openai-en-google-sheet/)
 他用了一個表格並先組合 X 和 Y 得到問題後，請 chatGPT 回答
