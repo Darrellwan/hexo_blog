@@ -7,15 +7,42 @@ categories:
   - Automation
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.83.1，正式版本為 1.82.2
+description: n8n 的更新記錄，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.84.0，正式版本為 1.83.2
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-03-12 22:50:55
+modified: 2025-03-18 18:00:15
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 1.84.0 Pre-release
+
+
+### MongoDB Atlas Vector Store Node
+
+新增了 MongoDB 向量資料庫節點
+
+### 日誌視窗彈出功能
+
+現在可以將日誌視窗彈出到獨立視窗中檢視，方便在處理複雜工作流程時同時監控運行情況
+   {% darrellImage800 n8n-1.84.0-log_popup n8n-1.84.0-log_popup.png max-800 %}
+
+### Merge Node 增強
+
+在 combineBySql 操作中，如果使用 SELECT 查詢，現在有更好的 pairedItem 映射功能，讓資料合併更精準
+
+### WhatsApp Trigger Node 更新
+
+新增可選擇退出訊息狀態更新的選項，讓使用者有更多控制權
+   {% darrellImage800 n8n-1.84.0-whatsapp n8n-1.84.0-whatsapp.png max-800 %}
+
+[完整更新內容 github_n8n@1.84.0](https://github.com/n8n-io/n8n/releases)
+
+## 1.83.2 Release
+
+目前正式版已經更新到 1.83.2
 
 ## 1.83.1 Pre-release
 
