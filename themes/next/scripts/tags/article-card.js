@@ -7,7 +7,7 @@
 function articleCard(args) {
   const urlMatch = args.join(' ').match(/url=["']?([^"'\s]+)["']?/);
   const titleMatch = args.join(' ').match(/title=["']?([^"']+?)["']?(?=\s+\w+=|$)/);
-  const previewTextMatch = args.join(' ').match(/previewText=["']?([^"']+?)["']?(?=\s+\w+=|$)/);
+  const previewTextMatch = args.join(' ').match(/previewText=["']?(.*?)["']?(?=\s+\w+=|$)/);
   const thumbnailMatch = args.join(' ').match(/thumbnail=["']?([^"']+?)["']?(?=\s+\w+=|$)/);
 
   const url = urlMatch ? urlMatch[1] : '';
@@ -20,7 +20,7 @@ function articleCard(args) {
       <div class="article-card-content">
         <div class="article-card-text">
           <div class="article-card-title">${title}</div>
-          <p class="article-card-preview">${previewText}</p>
+          ${previewText ? `<p class="article-card-preview">${previewText}</p>` : ''}
         </div>
         <div class="article-card-image">
           <img src="${thumbnail}" alt="${title}">
