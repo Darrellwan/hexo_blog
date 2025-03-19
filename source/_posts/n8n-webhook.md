@@ -165,6 +165,17 @@ n8n <-> Line Message API 在先前的文章有提過
   thumbnail="https://www.darrelltw.com/n8n-tips-pin/n8n_pin_bg.jpg" 
 %}
 
+### 常見問題:不能用 localhost 當作網域
+
+如果你的 n8n 不是用 cloud 版本也不是建立在 zeabur 等服務上
+而是在本機運行，那通常你可能會覺得你的網域就是 `localhost`
+
+**這個網域是沒辦法當作 webhook 的網址!**
+
+這時候你會需要像是 ngrok 來建立一個臨時的網域
+並用這個網域來當作 webhook 的網址
+
+
 
 ## n8n Webhook Options
 
