@@ -9,7 +9,7 @@ id: chatgpt-broken-in-web-browser
 bgImage: ChatGPT-broken-in-browser-bg.jpg
 description: ChatGPT 壞掉或是問答沒有反應嗎? 最近的錯誤狀況和網路上搜尋的狀態都不太相同，沒有明顯的錯誤訊息，但就是一直無法問答，最後發現可能只是語言的設定問題!
 date: 2024-03-10 23:28:37
-modified: 2024-12-12 10:53:03
+modified: 2025-03-24 23:08:03
 preload: 
  - ChatGPT-broken-in-browser-bg.jpg
 ---
@@ -25,6 +25,20 @@ preload:
 ### Status OpenAI
 [Status OpenAI](https://status.openai.com/)
 {% darrellImage800 openai_status_thumbnail openai_status_thumbnail.png max-800 %}
+
+## 20250324 
+
+{% darrellImage800 chatgpt_down_20250324 chatgpt_down_20250324.png max-800 %}
+
+Increased error rates in ChatGPT
+
+又是一次全面性的出問題，使用者很多反應會遇到橘色錯誤訊息
+
+此次事件看起來蠻嚴重的
+可以從這事件網址來觀察目前的處理狀況
+[OpenAI Status Page-01JQ48ZPWGCH0462VZK9FGBMK5](https://status.openai.com/incidents/01JQ48ZPWGCH0462VZK9FGBMK5)
+
+
 
 ## 202406 ChatGPT is at capacity right now
 
