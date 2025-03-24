@@ -3,13 +3,13 @@
 ## 📚 最新文章
 
 ### [n8n Webhook 節點](https://www.darrelltw.com/n8n-webhook/?utm_source=github_readme&utm_medium=referral)
-📅 2025/03/19 · 4 天前
+📅 2025/03/19 · 5 天前
 
 > 一起來學 n8n Webhook 打造自動化流程！設定接收、處理資料，並提供案例和程式碼範例。
 
 
 ### [BusyTag 開箱 忙碌中勿擾](https://www.darrelltw.com/unboxing-busytag/?utm_source=github_readme&utm_medium=referral)
-📅 2025/03/12 · 11 天前
+📅 2025/03/12 · 12 天前
 
 > BusyTag 是一款帶有高解析度螢幕與內建忙碌指示燈的智慧裝置，用來向同事或家人清楚地顯示您的狀態，避免不必要的干擾，還可自訂顯示 GIF、圖片或文字，與各種應用程式整合。
 
@@ -21,13 +21,13 @@
 
 
 ### [Claude MCP 應用測試心得 - Claude Desktop](https://www.darrelltw.com/claude-desktop-new-mcp-features-review/?utm_source=github_readme&utm_medium=referral)
-📅 2025/03/07 · 16 天前
+📅 2025/03/07 · 17 天前
 
 > 測試 Claude MCP(model context protocol) 的應用，包括 FileSystem、Fetch 和 Google Maps 的使用心得與注意事項，讓 Claude 幫上更多忙
 
 
 ### [n8n 版本更新紀錄心得](https://www.darrelltw.com/n8n-update-log/?utm_source=github_readme&utm_medium=referral)
-📅 2025/02/27 · 24 天前
+📅 2025/02/27 · 25 天前
 
 > n8n 的更新記錄，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.84.0，正式版本為 1.83.2
 
@@ -45,7 +45,7 @@
 
 
 ### [n8n 小撇步 - Timezone 問題如何在 Zeabur 設定](https://www.darrelltw.com/n8n-with-zeabur-timezone-issue/?utm_source=github_readme&utm_medium=referral)
-📅 2025/02/06 · 1 個月前
+📅 2025/02/06 · 2 個月前
 
 > 記錄一下在 Zeabur 上處理 n8n 時區問題的方法，從單一 workflow 到一次性解決，讓你的自動化流程不再跑錯時間！
 
@@ -69,9 +69,9 @@
 ## 📈 近期 30 天熱門文章
 ```text
 ██████████████████████████████ 🥇 在 Cursor 中打造 MCP Server，從實作中學習 MCP
-████████████████░░░░░░░░░░░░░░ 🥈 Claude Code 發佈 Command Line 的新工具
-████████████████░░░░░░░░░░░░░░ 🥉 Claude MCP 應用測試心得 - Claude Desktop
-█████████████░░░░░░░░░░░░░░░░░ 4️⃣ Line Notify 結束服務，轉移到 Slack、Telegram、Discord
+███████████████░░░░░░░░░░░░░░░ 🥈 Claude MCP 應用測試心得 - Claude Desktop
+███████████████░░░░░░░░░░░░░░░ 🥉 Claude Code 發佈 Command Line 的新工具
+████████████░░░░░░░░░░░░░░░░░░ 4️⃣ Line Notify 結束服務，轉移到 Slack、Telegram、Discord
 ██████████░░░░░░░░░░░░░░░░░░░░ 5️⃣ n8n 用 Request 發送 LINE Message API
 ```
 
@@ -79,8 +79,8 @@
 ```text
 ██████████████████████████████ 🥇 在 Cursor 中打造 MCP Server，從實作中學習 MCP
 ████████████░░░░░░░░░░░░░░░░░░ 🥈 Claude MCP 應用測試心得 - Claude Desktop
-███░░░░░░░░░░░░░░░░░░░░░░░░░░░ 🥉 n8n 用 Request 發送 LINE Message API
-███░░░░░░░░░░░░░░░░░░░░░░░░░░░ 4️⃣ Claude Code 發佈 Command Line 的新工具
+███░░░░░░░░░░░░░░░░░░░░░░░░░░░ 🥉 Claude Code 發佈 Command Line 的新工具
+███░░░░░░░░░░░░░░░░░░░░░░░░░░░ 4️⃣ n8n 用 Request 發送 LINE Message API
 ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 5️⃣ Line Notify 結束服務，轉移到 Slack、Telegram、Discord
 ```
 
