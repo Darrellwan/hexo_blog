@@ -33,10 +33,10 @@ modified: 2025-03-25 18:00:15
 另外對於資料夾功能的介紹有另外寫一篇文章
 
 {% articleCard 
-  url="/n8n-folder/" 
+  url="/n8n-new-feature-folders/" 
   title="n8n 資料夾功能介紹" 
   previewText="n8n 的資料夾功能正式釋出，這邊分享如何使用資料夾功能，以及一些使用心得" 
-  thumbnail="https://www.darrelltw.com/n8n-folder/folder.png" 
+  thumbnail="https://www.darrelltw.com/n8n-new-feature-folders/n8n_folder-bg.jpg" 
 %}
 
 ### 節省多少時間?
