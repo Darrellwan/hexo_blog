@@ -154,3 +154,15 @@ a.sidebar-category-post-list-link{
     text-decoration: underline;
   }
 }
+
+// 移除特定元素的圖示
+div.article .post-body a,
+.article-card a,
+.article-card-link,
+a.article-card-link {
+  padding-left: 0 !important;
+  
+  &::before {
+    display: none !important;
+  }
+}
