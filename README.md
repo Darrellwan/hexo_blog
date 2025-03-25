@@ -9,7 +9,7 @@
 
 
 ### [n8n Webhook 節點](https://www.darrelltw.com/n8n-webhook/?utm_source=github_readme&utm_medium=referral)
-📅 2025/03/19 · 6 天前
+📅 2025/03/20 · 5 天前
 
 > 一起來學 n8n Webhook 打造自動化流程！設定接收、處理資料，並提供案例和程式碼範例。
 
@@ -21,13 +21,13 @@
 
 
 ### [在 Cursor 中打造 MCP Server，從實作中學習 MCP](https://www.darrelltw.com/cursor-mcp-server-guide/?utm_source=github_readme&utm_medium=referral)
-📅 2025/03/09 · 15 天前
+📅 2025/03/10 · 15 天前
 
 > Cursor 實作 MCP Server 學習筆記，一個模擬的蔬果查詢情境，並且直接在 Claude Desktop 和 Cursor 中使用。
 
 
 ### [Claude MCP 應用測試心得 - Claude Desktop](https://www.darrelltw.com/claude-desktop-new-mcp-features-review/?utm_source=github_readme&utm_medium=referral)
-📅 2025/03/07 · 18 天前
+📅 2025/03/08 · 18 天前
 
 > 測試 Claude MCP(model context protocol) 的應用，包括 FileSystem、Fetch 和 Google Maps 的使用心得與注意事項，讓 Claude 幫上更多忙
 
@@ -64,7 +64,7 @@
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-87-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-205965+-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-205962+-blue?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
