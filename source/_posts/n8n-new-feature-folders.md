@@ -15,7 +15,8 @@ preload:
   - n8n_folder-bg.jpg
 date: 2025-03-22 15:01:23
 ---
-{% darrellImageCover n8n_folder-bg n8n_folder-bg.jpg max-400 %}
+
+{% darrellImageCover n8n_folder-bg n8n_folder-bg.jpg %}
 
 萬眾期盼的 n8n 資料夾功能終於推出!
 來看看如何使用資料夾整理一下已經混亂爆炸的 n8n workflows
