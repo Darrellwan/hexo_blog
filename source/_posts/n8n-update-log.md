@@ -7,17 +7,98 @@ categories:
   - Automation
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.84.0，正式版本為 1.83.2
+description: n8n 的更新記錄，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.85.0，正式版本為 1.84.1
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-03-18 18:00:15
+modified: 2025-03-25 18:00:15
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
 
-## 1.84.0 Pre-release
+## 1.85.0 Pre-release - 2025-03-25
+
+### 資料夾功能正式釋出!
+
+{% darrellImage800 n8n-1.85.0-folder n8n-1.85.0-folder.png max-400 %}
+
+終於有資料夾功能了，如果是自己部署版本，例如 zeabur
+請注意你是否有去啟用 community version 才會出現資料夾的功能
+
+沒有的還可以填入 Email 送出申請，系統會寄一封帶有啟用序號的信給你
+
+{% darrellImage800 n8n-1.85.0-folder_need_registered n8n-1.85.0-folder_need_registered.png max-400 %}
+
+另外對於資料夾功能的介紹有另外寫一篇文章
+
+{% articleCard 
+  url="/n8n-folder/" 
+  title="n8n 資料夾功能介紹" 
+  previewText="n8n 的資料夾功能正式釋出，這邊分享如何使用資料夾功能，以及一些使用心得" 
+  thumbnail="https://www.darrelltw.com/n8n-folder/folder.png" 
+%}
+
+### 節省多少時間?
+
+{% darrellImage800 n8n-1.85.0-time_save_per_execution n8n-1.85.0-time_save_per_execution.png max-800 %}
+
+有趣的功能，當你辛辛苦苦把 workflow 做完上線
+並且每次大約節省你五分鐘的時候
+記得填上這個節省的時間
+
+看來是在未來的報表功能上會顯示 **你總共省下多少時間**
+
+### Editor 顯示變數
+
+{% darrellImage800 n8n-1.85.0-var_in_context n8n-1.85.0-var_in_context.png max-400 %}
+
+這也很方便!
+現在可以直接在 Editor 看到變數的 value 是多少，想用的時候可以直接參考
+以前都要先放在 expression 中再來猜它是什麼
+
+### 新增 xAI Grok Chat Model
+
+{% darrellImage800 n8n-1.85.0-var_in_context n8n-1.85.0-var_in_context.png max-400 %}
+
+終於可以好好利用馬斯克送的 API 點數了
+AI 節點可以使用另一個 model 總是比較方便
+
+
+### sendAndWait 節點增加 appendN8nAttribution 選項
+
+{% darrellImage800 n8n-1.85.0-send_and_wait_append_n8n n8n-1.85.0-send_and_wait_append_n8n.png max-400 %}
+
+在 sendAndWait 節點中，可以勾選要不要顯示 "This message was sent automatically with n8n"
+
+有時候多這一行覺得蠻冗的
+
+
+### 新增 command 可以移除 community node
+
+從文件上來看，是指說可以用 n8n command 來移除 community node
+
+n8n command 很強大，未來可以多做介紹
+
+{% darrellImage800 n8n-1.85.0-delete_community_node_in_command_line n8n-1.85.0-delete_community_node_in_command_line.png max-400 %}
+
+
+### Insight 測試中
+
+```
+core: Implement API to retrieve summary metrics (#13927) (b616ceb)
+核心：實作 API 以檢索摘要指標（#13927）（b616ceb）
+editor: Insights summary banner (#13424) (df474f3)
+編輯：Insights 摘要橫幅 (#13424) (df474f3)
+```
+
+從這些更新 log 中，看來 n8n 後續就會有 insight 的功能 
+可以當作是 n8n 的儀表板，檢視整體的運作狀況!
+
+
+## 1.84.1 release
+
+## 1.84.0 
 
 
 ### MongoDB Atlas Vector Store Node
@@ -40,11 +121,11 @@ modified: 2025-03-18 18:00:15
 
 [完整更新內容 github_n8n@1.84.0](https://github.com/n8n-io/n8n/releases)
 
-## 1.83.2 Release
+## 1.83.2 
 
 目前正式版已經更新到 1.83.2
 
-## 1.83.1 Pre-release
+## 1.83.1 
 
 ### Bug Fix 居多
 
@@ -63,11 +144,11 @@ modified: 2025-03-18 18:00:15
 
 [github_n8n@1.83.0](https://github.com/n8n-io/n8n/releases)
 
-## 1.82.2 Release
+## 1.82.2 
 
 目前正式版已經更新到 1.82.2
 
-## 1.82.0 Pre-release
+## 1.82.0 
 
 一些重要的新功能分享
 但必須先說 **資料夾功能還沒下放**
