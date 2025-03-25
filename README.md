@@ -29,7 +29,7 @@
 ### [n8n 版本更新紀錄心得](https://www.darrelltw.com/n8n-update-log/?utm_source=github_readme&utm_medium=referral)
 📅 2025/02/27 · 1 個月前
 
-> n8n 的更新記錄，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.84.0，正式版本為 1.83.2
+> n8n 的更新記錄，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.85.0，正式版本為 1.84.1
 
 
 ### [Claude Code 發佈 Command Line 的新工具](https://www.darrelltw.com/claude-code-new-command-line-tool/?utm_source=github_readme&utm_medium=referral)
@@ -64,7 +64,7 @@
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-86-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-204921+-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-204884+-blue?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
