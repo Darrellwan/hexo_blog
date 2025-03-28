@@ -85,5 +85,37 @@ Sora 平台同樣整合了 GPT-4o 的圖像生成能力，帶來更多創意可�
 
 {% darrellImage800 chatgpt_sora-4_comics_prompt_by_chatgpt chatgpt_sora-4_comics_prompt_by_chatgpt.jpg max-800 %}
 
+## Sora 預設八種 Preset
 
+其實 Sora 在產生圖片或影片時，是有預設 Preset 可以套用的
+比較像是一種風格的定義
+在下 prompt 的時候有個選項
+
+{% darrellImage800 chatgpt_sora-presets_options chatgpt_sora-presets_options.png max-800 %}
+
+下面介紹這些 Preset 的效果
+也附上這些效果的原圖:
+
+{% darrellImage800 chatgpt_sora-original_for_presets chatgpt_sora-original_for_presets.jpg max-800 %}
+
+### Cartoonify
+{% darrellImage800 sora_preset_cartoonify_1 sora_preset_cartoonify_1.jpg max-800 %}
+
+### Superbowl Commercial
+{% darrellImage800 sora_preset_superbowl_commercial_1 sora_preset_superbowl_commercial_1.jpg max-800 %}
+
+### Balloon World
+{% darrellImage800 sora_preset_balloon_world_1 sora_preset_balloon_world_1.jpg max-800 %}
+
+### Whimsical Stop Motion
+{% darrellImage800 sora_preset_whimsical_stop_motion_1 sora_preset_whimsical_stop_motion_1.jpg max-800 %}
+
+### Cardboard Papercraft
+{% darrellImage800 sora_preset_cardboard_papercraft_1 sora_preset_cardboard_papercraft_1.jpg max-800 %}
+
+### Film Noir
+{% darrellImage800 sora_preset_film_noir_1 sora_preset_film_noir_1.jpg max-800 %}
+
+### Archival
+{% darrellImage800 sora_preset_archival_1 sora_preset_archival_1.jpg max-800 %}
 
