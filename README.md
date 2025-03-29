@@ -3,37 +3,37 @@
 ## 📚 最新文章
 
 ### [ChatGPT 4o 與 Sora 的全新文生圖功能](https://www.darrelltw.com/chatgpt-sora-create-image-with-text/?utm_source=github_readme&utm_medium=referral)
-📅 2025/03/27 · 19 小時前
+📅 2025/03/27 · 2 天前
 
 > AI畫圖超方便！ChatGPT 4o能產生超逼真帶文字的圖片，Sora一次給你四張各種比例！哪個更好用？Plus和Pro差在哪？
 
 
 ### [n8n 新功能 - 資料夾 Folders](https://www.darrelltw.com/n8n-new-feature-folders/?utm_source=github_readme&utm_medium=referral)
-📅 2025/03/22 · 6 天前
+📅 2025/03/22 · 7 天前
 
 > 終於等到了！n8n 資料夾功能開放，如何整理混亂的工作流程、建立多層資料夾結構，以及避免踩雷。
 
 
 ### [n8n Webhook 節點](https://www.darrelltw.com/n8n-webhook/?utm_source=github_readme&utm_medium=referral)
-📅 2025/03/19 · 9 天前
+📅 2025/03/19 · 10 天前
 
 > 一起來學 n8n Webhook 打造自動化流程！設定接收、處理資料，並提供案例和程式碼範例。
 
 
 ### [BusyTag 開箱 忙碌中勿擾](https://www.darrelltw.com/unboxing-busytag/?utm_source=github_readme&utm_medium=referral)
-📅 2025/03/12 · 16 天前
+📅 2025/03/12 · 17 天前
 
 > BusyTag 是一款帶有高解析度螢幕與內建忙碌指示燈的智慧裝置，用來向同事或家人清楚地顯示您的狀態，避免不必要的干擾，還可自訂顯示 GIF、圖片或文字，與各種應用程式整合。
 
 
 ### [在 Cursor 中打造 MCP Server，從實作中學習 MCP](https://www.darrelltw.com/cursor-mcp-server-guide/?utm_source=github_readme&utm_medium=referral)
-📅 2025/03/09 · 18 天前
+📅 2025/03/09 · 19 天前
 
 > Cursor 實作 MCP Server 學習筆記，一個模擬的蔬果查詢情境，並且直接在 Claude Desktop 和 Cursor 中使用。
 
 
 ### [Claude MCP 應用測試心得 - Claude Desktop](https://www.darrelltw.com/claude-desktop-new-mcp-features-review/?utm_source=github_readme&utm_medium=referral)
-📅 2025/03/07 · 21 天前
+📅 2025/03/07 · 22 天前
 
 > 測試 Claude MCP(model context protocol) 的應用，包括 FileSystem、Fetch 和 Google Maps 的使用心得與注意事項，讓 Claude 幫上更多忙
 
@@ -64,7 +64,7 @@
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-88-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-207139+-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-208059+-blue?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -93,7 +93,7 @@
 11月 ████░░░░░░ 4篇
 12月 █████░░░░░ 5篇
 01月 ████░░░░░░ 4篇
-02月 ██████░░░░ 6篇
+03月 ██████░░░░ 6篇
 03月 ██████░░░░ 6篇
 ```
 
