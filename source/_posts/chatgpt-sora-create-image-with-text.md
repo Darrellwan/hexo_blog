@@ -16,6 +16,17 @@ date: 2025-03-27 13:00:39
 
 {% darrellImageCover chatgpt-sora-create-image-with-text-bg chatgpt-sora-create-image-with-text-bg.png %}
 
+## 更新: Sora 調降 Premium Plan 產圖 4 -> 2
+
+{% darrellImage800 sora_downgrade_image_4to2 sora_downgrade_image_4to2.png max-800 %}
+
+Sora 在 2025/03/28 開始調降了產圖的能力
+
+原本一次可以產四張！
+但現在調整只能產生兩張惹
+
+**請在思考付費的使用者們特別注意**
+
 ## ChatGPT 更新 4o 來文生圖
 
 4o-model 文生圖是近期 OpenAI 更新中讓大家最有感的
