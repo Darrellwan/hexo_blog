@@ -3,7 +3,7 @@
 ## 📚 最新文章
 
 ### [ChatGPT 4o 與 Sora 的全新文生圖功能](https://www.darrelltw.com/chatgpt-sora-create-image-with-text/?utm_source=github_readme&utm_medium=referral)
-📅 2025/03/27 · 2 天前
+📅 2025/03/27 · 3 天前
 
 > AI畫圖超方便！ChatGPT 4o能產生超逼真帶文字的圖片，Sora一次給你四張各種比例！哪個更好用？Plus和Pro差在哪？
 
@@ -27,7 +27,7 @@
 
 
 ### [在 Cursor 中打造 MCP Server，從實作中學習 MCP](https://www.darrelltw.com/cursor-mcp-server-guide/?utm_source=github_readme&utm_medium=referral)
-📅 2025/03/09 · 19 天前
+📅 2025/03/09 · 20 天前
 
 > Cursor 實作 MCP Server 學習筆記，一個模擬的蔬果查詢情境，並且直接在 Claude Desktop 和 Cursor 中使用。
 
