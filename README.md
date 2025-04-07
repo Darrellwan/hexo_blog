@@ -3,25 +3,25 @@
 ## 📚 最新文章
 
 ### [ChatGPT 4o 與 Sora 的全新文生圖功能](https://www.darrelltw.com/chatgpt-sora-create-image-with-text/?utm_source=github_readme&utm_medium=referral)
-📅 2025/03/27 · 10 天前
+📅 2025/03/27 · 11 天前
 
 > AI畫圖超方便！ChatGPT 4o能產生超逼真帶文字的圖片，Sora一次給你四張各種比例！哪個更好用？Plus和Pro差在哪？
 
 
 ### [n8n 新功能 - 資料夾 Folders](https://www.darrelltw.com/n8n-new-feature-folders/?utm_source=github_readme&utm_medium=referral)
-📅 2025/03/22 · 15 天前
+📅 2025/03/22 · 16 天前
 
 > 終於等到了！n8n 資料夾功能開放，如何整理混亂的工作流程、建立多層資料夾結構，以及避免踩雷。
 
 
 ### [n8n Webhook 節點](https://www.darrelltw.com/n8n-webhook/?utm_source=github_readme&utm_medium=referral)
-📅 2025/03/19 · 18 天前
+📅 2025/03/19 · 19 天前
 
 > 一起來學 n8n Webhook 打造自動化流程！設定接收、處理資料，並提供案例和程式碼範例。
 
 
 ### [BusyTag 開箱 忙碌中勿擾](https://www.darrelltw.com/unboxing-busytag/?utm_source=github_readme&utm_medium=referral)
-📅 2025/03/12 · 25 天前
+📅 2025/03/12 · 1 個月前
 
 > BusyTag 是一款帶有高解析度螢幕與內建忙碌指示燈的智慧裝置，用來向同事或家人清楚地顯示您的狀態，避免不必要的干擾，還可自訂顯示 GIF、圖片或文字，與各種應用程式整合。
 
@@ -69,19 +69,19 @@
 ## 📈 近期 30 天熱門文章
 ```text
 ██████████████████████████████ 🥇 在 Cursor 中打造 MCP Server，從實作中學習 MCP
-██████████████░░░░░░░░░░░░░░░░ 🥈 Claude MCP 應用測試心得 - Claude Desktop
-██████░░░░░░░░░░░░░░░░░░░░░░░░ 🥉 Claude Code 發佈 Command Line 的新工具
-██████░░░░░░░░░░░░░░░░░░░░░░░░ 4️⃣ n8n 用 Request 發送 LINE Message API
+█████████████░░░░░░░░░░░░░░░░░ 🥈 Claude MCP 應用測試心得 - Claude Desktop
+██████░░░░░░░░░░░░░░░░░░░░░░░░ 🥉 n8n 用 Request 發送 LINE Message API
+██████░░░░░░░░░░░░░░░░░░░░░░░░ 4️⃣ Claude Code 發佈 Command Line 的新工具
 █████░░░░░░░░░░░░░░░░░░░░░░░░░ 5️⃣ ChatGPT 在網頁版無法使用，沒有錯誤訊息卻都無法回答問題
 ```
 
 ## 📈 近期 7 天熱門文章
 ```text
 ██████████████████████████████ 🥇 在 Cursor 中打造 MCP Server，從實作中學習 MCP
-█████████████░░░░░░░░░░░░░░░░░ 🥈 Claude MCP 應用測試心得 - Claude Desktop
-██████████░░░░░░░░░░░░░░░░░░░░ 🥉 n8n 用 Request 發送 LINE Message API
-██████░░░░░░░░░░░░░░░░░░░░░░░░ 4️⃣ ChatGPT 在網頁版無法使用，沒有錯誤訊息卻都無法回答問題
-█████░░░░░░░░░░░░░░░░░░░░░░░░░ 5️⃣ Claude Code 發佈 Command Line 的新工具
+████████████░░░░░░░░░░░░░░░░░░ 🥈 Claude MCP 應用測試心得 - Claude Desktop
+█████████░░░░░░░░░░░░░░░░░░░░░ 🥉 n8n 用 Request 發送 LINE Message API
+████░░░░░░░░░░░░░░░░░░░░░░░░░░ 4️⃣ ChatGPT 在網頁版無法使用，沒有錯誤訊息卻都無法回答問題
+████░░░░░░░░░░░░░░░░░░░░░░░░░░ 5️⃣ Claude Code 發佈 Command Line 的新工具
 ```
 
 ## 🏷️ 熱門主題
