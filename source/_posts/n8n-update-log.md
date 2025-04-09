@@ -22,7 +22,7 @@ modified: 2025-04-09 15:01:15
 
 ### Insights 儀表板功能程式碼實裝
 
-{% darrellImage800 n8n-1.87.1-insights_shows_up n8n-1.87.1-insights_shows_up.png max-400 %}
+{% darrellImage800 n8n-1.87.1-insights_shows_up n8n-1.87.1-insights_shows_up.png max-800 %}
 
 前幾版更新中一直有提到的 Insights 儀表板
 在更新紀錄裡提到已經有相關程式碼
@@ -40,7 +40,7 @@ docker 部署的話需要在 docker-compose.yml 中加入
 
 那在變數中加上
 
-{% darrellImage800 n8n-1.87.1-enable_insights_in_zeabur n8n-1.87.1-enable_insights_in_zeabur.png max-400 %}
+{% darrellImage800 n8n-1.87.1-enable_insights_in_zeabur n8n-1.87.1-enable_insights_in_zeabur.png max-800 %}
 
 加上就會看到前面第一張圖的分析結果
 
@@ -60,7 +60,7 @@ docker 部署的話需要在 docker-compose.yml 中加入
 而是需要自己到 workflow 的設定中輸入
 預計這個旅程執行一次可以省下多少時間
 
-{% darrellImage800 n8n-1.87.1-workflow_setting_time_saved n8n-1.87.1-workflow_setting_time_saved.png max-400 %}
+{% darrellImage800 n8n-1.87.1-workflow_setting_time_saved n8n-1.87.1-workflow_setting_time_saved.png max-800 %}
 
 未來如果有人問你，阿自動化幫你省下多少時間
 就不用在那邊自己心算或用感覺
@@ -85,7 +85,7 @@ docker 部署的話需要在 docker-compose.yml 中加入
 而這個 Think Tool 不同
 他是在產生答案的時候，再思考自已的答案是否有需要補充的地方
 
-{% darrellImage800 n8n-1.87.1-think_tool n8n-1.87.1-think_tool.jpg max-400 %}
+{% darrellImage800 n8n-1.87.1-think_tool n8n-1.87.1-think_tool.jpg max-800 %}
 
 n8n 在更新 Update 上有附 Anthropic 的這份文件[The "think" tool: Enabling Claude to stop and think in complex tool use situations](https://www.anthropic.com/engineering/claude-think-tool)
 
