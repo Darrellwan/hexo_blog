@@ -7,15 +7,92 @@ categories:
   - Automation
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.85.0，正式版本為 1.84.1
+description: n8n 的更新記錄，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.87.1，正式版本為 1.86.0
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-03-25 18:00:15
+modified: 2025-04-09 15:01:15
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+
+## 1.87.1 Pre-release - 2025-04-09
+
+### Insights 儀表板功能程式碼實裝
+
+{% darrellImage800 n8n-1.87.1-insights_shows_up n8n-1.87.1-insights_shows_up.png max-400 %}
+
+前幾版更新中一直有提到的 Insights 儀表板
+在更新紀錄裡提到已經有相關程式碼
+但需要參數才能啟用
+
+在 Github 相關程式碼找尋一番後(AI 沒幫我找到)
+最終測試出應該是下列這個變數
+
+```
+N8N_ENABLED_MODULES=insights
+```
+
+docker 部署的話需要在 docker-compose.yml 中加入
+如果你跟我一樣是在是使用 Zeabur 部署
+
+那在變數中加上
+
+{% darrellImage800 n8n-1.87.1-enable_insights_in_zeabur n8n-1.87.1-enable_insights_in_zeabur.png max-400 %}
+
+加上就會看到前面第一張圖的分析結果
+
+會有幾個指標 (近七天中)
+1. 執行成功的次數
+2. 執行失敗的次數
+3. 失敗率
+4. **節省下的時間**
+5. **平均的執行時間**
+
+由於只有在測試的 n8n 環境升級到這個版本，故沒有太多的 run data 可以呈現
+特別提一下這兩個指標蠻有意思的
+
+#### Time saved
+
+這不是什麼神奇的 AI 運算
+而是需要自己到 workflow 的設定中輸入
+預計這個旅程執行一次可以省下多少時間
+
+{% darrellImage800 n8n-1.87.1-workflow_setting_time_saved n8n-1.87.1-workflow_setting_time_saved.png max-400 %}
+
+未來如果有人問你，阿自動化幫你省下多少時間
+就不用在那邊自己心算或用感覺
+這個指標可以給一個明確的參考數字
+
+#### Run time （avg.）
+
+這指標是指說 workflow 的平均執行時間
+如果你的 server 是租借的，而且用 CPU 時間等等來計費
+那執行時間就是會關係到你的帳單有多貴
+
+另外也有些人會想要優化自己的 workflow 執行的狀況
+例如怎麼樣設計可以讓他更快完成工作
+或是讓他更直覺簡單，那就會用這個指標當作參考依據
+
+### Think Tool Node
+
+這是一個連接在 AI Agent 的 Tool 節點
+我們知道最近有很多模型開始會有 thinking 的功能
+比較像是在開始動手處理前，先思考要怎麼做
+
+而這個 Think Tool 不同
+他是在產生答案的時候，再思考自已的答案是否有需要補充的地方
+
+{% darrellImage800 n8n-1.87.1-think_tool n8n-1.87.1-think_tool.jpg max-400 %}
+
+n8n 在更新 Update 上有附 Anthropic 的這份文件[The "think" tool: Enabling Claude to stop and think in complex tool use situations](https://www.anthropic.com/engineering/claude-think-tool)
+
+{% darrellImage800 n8n-1.87.1-think_tool_vs_extend_thinking n8n-1.87.1-think_tool_vs_extend_thinking.png max-400 %}
+
+之後有使用心得會再分享更新在這！
+
 
 ## 1.85.0 Pre-release - 2025-03-25
 
