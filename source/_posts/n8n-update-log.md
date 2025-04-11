@@ -7,7 +7,7 @@ categories:
   - Automation
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.87.1，正式版本為 1.86.0
+description: n8n 的更新記錄，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.88.0，正式版本為 1.86.0
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
@@ -16,6 +16,36 @@ modified: 2025-04-09 15:01:15
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+
+## 1.88.0 Pre-release - 2025-04-10
+
+這是目前看過最快更新的一次
+前兩天才出 1.87，馬上就推出了 1.88
+
+而且是重要的一次更新
+包含了 MCP 的官方支援
+
+### MCP Server & Client
+
+{% darrellImage800 n8n-1.88.0-mcp_server_client n8n-1.88.0-mcp_server_client.png max-800 %}
+
+**新增 MCP Server 節點**
+**新增 MCP Client 節點**
+
+之前其實已經有 MCP 相關的社群節點，
+但這次是官方原生支援！
+
+需要注意的事項
+官方這次的 MCP 只支援 SSE
+Stdio 尚未支援，但市面上大部分的 MCP Server 都是使用 Stdio
+這也會讓 n8n 的官方 MCP 節點暫時無法發揮最大潛力
+不確定未來是否會支援 Stdio
+
+另外放上 Stdio 和 SSE 的比較
+
+{% darrellImage800 n8n-1.88.0-mcp_sse_vs_stdio n8n-1.88.0-mcp_sse_vs_stdio.png max-800 %}
+
 
 
 ## 1.87.1 Pre-release - 2025-04-09
