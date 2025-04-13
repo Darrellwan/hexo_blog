@@ -2,93 +2,93 @@
   "data": [
     {
       "customEvent:post_title": "在 Cursor 中打造 MCP Server，從實作中學習 MCP",
-      "sessions": 4040,
+      "sessions": 4083,
       "percentage": 4.1000000000000005
     },
     {
       "customEvent:post_title": "Claude MCP 應用測試心得 - Claude Desktop",
-      "sessions": 1846,
-      "percentage": 1.9000000000000001
+      "sessions": 1789,
+      "percentage": 1.8
     },
     {
       "customEvent:post_title": "n8n 用 Request 發送 LINE Message API",
-      "sessions": 727,
+      "sessions": 728,
       "percentage": 0.7000000000000001
     },
     {
       "customEvent:post_title": "ChatGPT 在網頁版無法使用，沒有錯誤訊息卻都無法回答問題",
-      "sessions": 629,
+      "sessions": 631,
       "percentage": 0.6000000000000001
     },
     {
       "customEvent:post_title": "Claude Code 發佈 Command Line 的新工具",
-      "sessions": 523,
+      "sessions": 521,
       "percentage": 0.5
     },
     {
       "customEvent:post_title": "Line Notify 結束服務，轉移到 Slack、Telegram、Discord",
-      "sessions": 382,
+      "sessions": 363,
       "percentage": 0.4
     },
     {
       "customEvent:post_title": "ChatGPT 新功能 - Work with Apps 一起運作",
-      "sessions": 253,
-      "percentage": 0.30000000000000004
+      "sessions": 244,
+      "percentage": 0.2
     },
     {
       "customEvent:post_title": "n8n Webhook 節點",
-      "sessions": 218,
+      "sessions": 219,
       "percentage": 0.2
     },
     {
       "customEvent:post_title": "ChatGPT 4o 與 Sora 的全新文生圖功能",
-      "sessions": 160,
+      "sessions": 162,
       "percentage": 0.2
     },
     {
       "customEvent:post_title": "n8n 版本更新紀錄心得",
-      "sessions": 145,
-      "percentage": 0.1
+      "sessions": 158,
+      "percentage": 0.2
     },
     {
       "customEvent:post_title": "Google App Script 測試 Webhook 的串接",
-      "sessions": 119,
+      "sessions": 117,
       "percentage": 0.1
     },
     {
       "customEvent:post_title": "n8n 串接 Slack、發送訊息、用 Slack 觸發 workflow",
-      "sessions": 110,
-      "percentage": 0.1
-    },
-    {
-      "customEvent:post_title": "n8n 內建參數介紹",
-      "sessions": 89,
+      "sessions": 108,
       "percentage": 0.1
     },
     {
       "customEvent:post_title": "n8n 新功能 - 資料夾 Folders",
+      "sessions": 88,
+      "percentage": 0.1
+    },
+    {
+      "customEvent:post_title": "n8n 內建參數介紹",
       "sessions": 87,
       "percentage": 0.1
     },
     {
       "customEvent:post_title": "BusyTag 開箱 忙碌中勿擾",
-      "sessions": 77,
-      "percentage": 0.1
-    },
-    {
-      "customEvent:post_title": "Facebook Pixel 利用 GTM 安裝和注意事項避免重複觸發",
-      "sessions": 53,
+      "sessions": 82,
       "percentage": 0.1
     },
     {
       "customEvent:post_title": "n8n 小撇步 - Timezone 問題如何在 Zeabur 設定",
-      "sessions": 52,
+      "sessions": 56,
+      "percentage": 0.1
+    },
+    {
+      "customEvent:post_title": "Facebook Pixel 利用 GTM 安裝和注意事項避免重複觸發",
+      "sessions": 51,
       "percentage": 0.1
     },
     {
       "customEvent:post_title": "n8n Aggregate 和 Split Out",
-      "sessions": 47,
-      "percentage": 0
+      "sessions": 50,
+      "percentage": 0.1
     },
     {
       "customEvent:post_title": "Glows.ai 雲端 GPU 運算服務，輕鬆取得算力實現 AI 私有運算",
@@ -97,27 +97,17 @@
     },
     {
       "customEvent:post_title": "利用 Google App Script 串接 Threads API 並且用 Looker Studio 視覺化",
-      "sessions": 40,
+      "sessions": 39,
       "percentage": 0
     },
     {
       "customEvent:post_title": "n8n If 和 Switch",
-      "sessions": 35,
+      "sessions": 34,
       "percentage": 0
     },
     {
       "customEvent:post_title": "Google App Script 用 Gmail 發有質感美觀的信",
-      "sessions": 27,
-      "percentage": 0
-    },
-    {
-      "customEvent:post_title": "Google Tag Manager - 觸發條件 自訂事件 (Custom Event)",
-      "sessions": 26,
-      "percentage": 0
-    },
-    {
-      "customEvent:post_title": "n8n 小撇步 - Pin Data",
-      "sessions": 26,
+      "sessions": 28,
       "percentage": 0
     },
     {
@@ -126,7 +116,17 @@
       "percentage": 0
     },
     {
+      "customEvent:post_title": "Google Tag Manager - 觸發條件 自訂事件 (Custom Event)",
+      "sessions": 25,
+      "percentage": 0
+    },
+    {
       "customEvent:post_title": "Google Tag Manager - 觸發條件 點擊和連結點擊 (All Click, Link Click)",
+      "sessions": 25,
+      "percentage": 0
+    },
+    {
+      "customEvent:post_title": "n8n 小撇步 - Pin Data",
       "sessions": 25,
       "percentage": 0
     },
@@ -141,106 +141,106 @@
       "percentage": 0
     },
     {
-      "customEvent:post_title": "Google Tag Manager - 容器版本的回復和代碼的還原",
+      "customEvent:post_title": "Google App Script 在 Google Sheet 和 ChatGPT 問答",
       "sessions": 13,
       "percentage": 0
     },
     {
-      "customEvent:post_title": "Google App Script 在 Google Sheet 和 ChatGPT 問答",
-      "sessions": 12,
+      "customEvent:post_title": "Google Analytics 4 支援資料直接匯出到 Google Sheet (Google 官方釋出)",
+      "sessions": 11,
       "percentage": 0
     }
   ],
   "data_30days": [
     {
       "customEvent:post_title": "在 Cursor 中打造 MCP Server，從實作中學習 MCP",
-      "sessions": 4040,
+      "sessions": 4083,
       "percentage": 4.1000000000000005
     },
     {
       "customEvent:post_title": "Claude MCP 應用測試心得 - Claude Desktop",
-      "sessions": 1846,
-      "percentage": 1.9000000000000001
+      "sessions": 1789,
+      "percentage": 1.8
     },
     {
       "customEvent:post_title": "n8n 用 Request 發送 LINE Message API",
-      "sessions": 727,
+      "sessions": 728,
       "percentage": 0.7000000000000001
     },
     {
       "customEvent:post_title": "ChatGPT 在網頁版無法使用，沒有錯誤訊息卻都無法回答問題",
-      "sessions": 629,
+      "sessions": 631,
       "percentage": 0.6000000000000001
     },
     {
       "customEvent:post_title": "Claude Code 發佈 Command Line 的新工具",
-      "sessions": 523,
+      "sessions": 521,
       "percentage": 0.5
     },
     {
       "customEvent:post_title": "Line Notify 結束服務，轉移到 Slack、Telegram、Discord",
-      "sessions": 382,
+      "sessions": 363,
       "percentage": 0.4
     },
     {
       "customEvent:post_title": "ChatGPT 新功能 - Work with Apps 一起運作",
-      "sessions": 253,
-      "percentage": 0.30000000000000004
+      "sessions": 244,
+      "percentage": 0.2
     },
     {
       "customEvent:post_title": "n8n Webhook 節點",
-      "sessions": 218,
+      "sessions": 219,
       "percentage": 0.2
     },
     {
       "customEvent:post_title": "ChatGPT 4o 與 Sora 的全新文生圖功能",
-      "sessions": 160,
+      "sessions": 162,
       "percentage": 0.2
     },
     {
       "customEvent:post_title": "n8n 版本更新紀錄心得",
-      "sessions": 145,
-      "percentage": 0.1
+      "sessions": 158,
+      "percentage": 0.2
     },
     {
       "customEvent:post_title": "Google App Script 測試 Webhook 的串接",
-      "sessions": 119,
+      "sessions": 117,
       "percentage": 0.1
     },
     {
       "customEvent:post_title": "n8n 串接 Slack、發送訊息、用 Slack 觸發 workflow",
-      "sessions": 110,
-      "percentage": 0.1
-    },
-    {
-      "customEvent:post_title": "n8n 內建參數介紹",
-      "sessions": 89,
+      "sessions": 108,
       "percentage": 0.1
     },
     {
       "customEvent:post_title": "n8n 新功能 - 資料夾 Folders",
+      "sessions": 88,
+      "percentage": 0.1
+    },
+    {
+      "customEvent:post_title": "n8n 內建參數介紹",
       "sessions": 87,
       "percentage": 0.1
     },
     {
       "customEvent:post_title": "BusyTag 開箱 忙碌中勿擾",
-      "sessions": 77,
-      "percentage": 0.1
-    },
-    {
-      "customEvent:post_title": "Facebook Pixel 利用 GTM 安裝和注意事項避免重複觸發",
-      "sessions": 53,
+      "sessions": 82,
       "percentage": 0.1
     },
     {
       "customEvent:post_title": "n8n 小撇步 - Timezone 問題如何在 Zeabur 設定",
-      "sessions": 52,
+      "sessions": 56,
+      "percentage": 0.1
+    },
+    {
+      "customEvent:post_title": "Facebook Pixel 利用 GTM 安裝和注意事項避免重複觸發",
+      "sessions": 51,
       "percentage": 0.1
     },
     {
       "customEvent:post_title": "n8n Aggregate 和 Split Out",
-      "sessions": 47,
-      "percentage": 0
+      "sessions": 50,
+      "percentage": 0.1
     },
     {
       "customEvent:post_title": "Glows.ai 雲端 GPU 運算服務，輕鬆取得算力實現 AI 私有運算",
@@ -249,27 +249,17 @@
     },
     {
       "customEvent:post_title": "利用 Google App Script 串接 Threads API 並且用 Looker Studio 視覺化",
-      "sessions": 40,
+      "sessions": 39,
       "percentage": 0
     },
     {
       "customEvent:post_title": "n8n If 和 Switch",
-      "sessions": 35,
+      "sessions": 34,
       "percentage": 0
     },
     {
       "customEvent:post_title": "Google App Script 用 Gmail 發有質感美觀的信",
-      "sessions": 27,
-      "percentage": 0
-    },
-    {
-      "customEvent:post_title": "Google Tag Manager - 觸發條件 自訂事件 (Custom Event)",
-      "sessions": 26,
-      "percentage": 0
-    },
-    {
-      "customEvent:post_title": "n8n 小撇步 - Pin Data",
-      "sessions": 26,
+      "sessions": 28,
       "percentage": 0
     },
     {
@@ -278,7 +268,17 @@
       "percentage": 0
     },
     {
+      "customEvent:post_title": "Google Tag Manager - 觸發條件 自訂事件 (Custom Event)",
+      "sessions": 25,
+      "percentage": 0
+    },
+    {
       "customEvent:post_title": "Google Tag Manager - 觸發條件 點擊和連結點擊 (All Click, Link Click)",
+      "sessions": 25,
+      "percentage": 0
+    },
+    {
+      "customEvent:post_title": "n8n 小撇步 - Pin Data",
       "sessions": 25,
       "percentage": 0
     },
@@ -293,50 +293,55 @@
       "percentage": 0
     },
     {
-      "customEvent:post_title": "Google Tag Manager - 容器版本的回復和代碼的還原",
+      "customEvent:post_title": "Google App Script 在 Google Sheet 和 ChatGPT 問答",
       "sessions": 13,
       "percentage": 0
     },
     {
-      "customEvent:post_title": "Google App Script 在 Google Sheet 和 ChatGPT 問答",
-      "sessions": 12,
+      "customEvent:post_title": "Google Analytics 4 支援資料直接匯出到 Google Sheet (Google 官方釋出)",
+      "sessions": 11,
       "percentage": 0
     }
   ],
   "data_7days": [
     {
       "customEvent:post_title": "在 Cursor 中打造 MCP Server，從實作中學習 MCP",
-      "sessions": 952,
+      "sessions": 958,
       "percentage": 4.4
     },
     {
       "customEvent:post_title": "Claude MCP 應用測試心得 - Claude Desktop",
-      "sessions": 408,
-      "percentage": 1.9000000000000001
+      "sessions": 431,
+      "percentage": 2
     },
     {
       "customEvent:post_title": "n8n 用 Request 發送 LINE Message API",
-      "sessions": 142,
-      "percentage": 0.7000000000000001
+      "sessions": 136,
+      "percentage": 0.6000000000000001
     },
     {
       "customEvent:post_title": "ChatGPT 在網頁版無法使用，沒有錯誤訊息卻都無法回答問題",
-      "sessions": 93,
+      "sessions": 78,
       "percentage": 0.4
     },
     {
       "customEvent:post_title": "Claude Code 發佈 Command Line 的新工具",
-      "sessions": 77,
-      "percentage": 0.4
-    },
-    {
-      "customEvent:post_title": "ChatGPT 新功能 - Work with Apps 一起運作",
-      "sessions": 56,
+      "sessions": 74,
       "percentage": 0.30000000000000004
     },
     {
       "customEvent:post_title": "n8n 版本更新紀錄心得",
-      "sessions": 54,
+      "sessions": 68,
+      "percentage": 0.30000000000000004
+    },
+    {
+      "customEvent:post_title": "ChatGPT 新功能 - Work with Apps 一起運作",
+      "sessions": 58,
+      "percentage": 0.30000000000000004
+    },
+    {
+      "customEvent:post_title": "Line Notify 結束服務，轉移到 Slack、Telegram、Discord",
+      "sessions": 52,
       "percentage": 0.2
     },
     {
@@ -345,13 +350,8 @@
       "percentage": 0.2
     },
     {
-      "customEvent:post_title": "Line Notify 結束服務，轉移到 Slack、Telegram、Discord",
-      "sessions": 51,
-      "percentage": 0.2
-    },
-    {
       "customEvent:post_title": "ChatGPT 4o 與 Sora 的全新文生圖功能",
-      "sessions": 44,
+      "sessions": 37,
       "percentage": 0.2
     },
     {
@@ -360,28 +360,28 @@
       "percentage": 0.2
     },
     {
+      "customEvent:post_title": "BusyTag 開箱 忙碌中勿擾",
+      "sessions": 24,
+      "percentage": 0.1
+    },
+    {
       "customEvent:post_title": "n8n 新功能 - 資料夾 Folders",
-      "sessions": 23,
+      "sessions": 24,
       "percentage": 0.1
     },
     {
       "customEvent:post_title": "Google App Script 測試 Webhook 的串接",
-      "sessions": 22,
-      "percentage": 0.1
-    },
-    {
-      "customEvent:post_title": "BusyTag 開箱 忙碌中勿擾",
       "sessions": 20,
       "percentage": 0.1
     },
     {
-      "customEvent:post_title": "n8n 小撇步 - Timezone 問題如何在 Zeabur 設定",
-      "sessions": 19,
+      "customEvent:post_title": "n8n Aggregate 和 Split Out",
+      "sessions": 18,
       "percentage": 0.1
     },
     {
-      "customEvent:post_title": "n8n Aggregate 和 Split Out",
-      "sessions": 15,
+      "customEvent:post_title": "n8n 小撇步 - Timezone 問題如何在 Zeabur 設定",
+      "sessions": 18,
       "percentage": 0.1
     },
     {
@@ -390,7 +390,7 @@
       "percentage": 0.1
     },
     {
-      "customEvent:post_title": "Google Tag Manager - 觸發條件 自訂事件 (Custom Event)",
+      "customEvent:post_title": "n8n 內建參數介紹",
       "sessions": 12,
       "percentage": 0.1
     },
@@ -400,18 +400,18 @@
       "percentage": 0.1
     },
     {
-      "customEvent:post_title": "n8n 內建參數介紹",
-      "sessions": 10,
+      "customEvent:post_title": "Google App Script 用 Gmail 發有質感美觀的信",
+      "sessions": 9,
       "percentage": 0
     },
     {
-      "customEvent:post_title": "Google App Script 用 Gmail 發有質感美觀的信",
-      "sessions": 8,
+      "customEvent:post_title": "Google Tag Manager - 觸發條件 自訂事件 (Custom Event)",
+      "sessions": 9,
       "percentage": 0
     },
     {
       "customEvent:post_title": "n8n If 和 Switch",
-      "sessions": 8,
+      "sessions": 9,
       "percentage": 0
     },
     {
@@ -430,22 +430,22 @@
       "percentage": 0
     },
     {
-      "customEvent:post_title": "Google Analytics 4 支援資料直接匯出到 Google Sheet (Google 官方釋出)",
-      "sessions": 5,
-      "percentage": 0
-    },
-    {
       "customEvent:post_title": "檢查網站是否安裝 GA4",
       "sessions": 5,
       "percentage": 0
     },
     {
-      "customEvent:post_title": "GA4 找到並移除不想要的 referral 網域",
-      "sessions": 3,
+      "customEvent:post_title": "Google Analytics 4 支援資料直接匯出到 Google Sheet (Google 官方釋出)",
+      "sessions": 4,
       "percentage": 0
     },
     {
       "customEvent:post_title": "Google App Script 在 Google Sheet 和 ChatGPT 問答",
+      "sessions": 4,
+      "percentage": 0
+    },
+    {
+      "customEvent:post_title": "GA4 找到並移除不想要的 referral 網域",
       "sessions": 3,
       "percentage": 0
     },
@@ -455,6 +455,6 @@
       "percentage": 0
     }
   ],
-  "last_updated": "2025-04-12T08:16:21Z",
+  "last_updated": "2025-04-13T08:17:09Z",
   "status": "success"
 }
