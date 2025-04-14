@@ -7,16 +7,41 @@ categories:
   - Automation
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.88.0，正式版本為 1.86.0
+description: n8n 的更新記錄，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.89.0，正式版本為 1.86.0
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-04-09 15:01:15
+modified: 2025-04-14 15:01:15
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
 
+## 1.89.0 Pre-release - 2025-04-14
+
+[Github 1.89.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.89.0)
+
+### xAI Grok Chat Model Node: Remove stream_options parameter
+
+Grok3 API 終於在最近開放
+但 n8n 最近版本中，會遇到一些 parameter error 的問題
+看來這版已經修正！
+
+{% darrellImage800 n8n-1.89.0-xai_grok_fix_parameter n8n-1.89.0-xai_grok_fix_parameter.png max-400 %}
+
+### editor: Add telemetry to Insights
+
+蠻有趣的更新，開始追蹤使用者使用 Insights 的狀況
+
+{% darrellImage800 n8n-1.89.0-track_user_using_insights n8n-1.89.0-track_user_using_insights.png max-400 %}
+
+### editor: Make logs applicable for all nodes
+
+現在 Log 介面中會出現所有的節點
+只是好像不會出現節點的詳細資料內容
+有點可惜，不確定未來會不會有其他優化
+
+{% darrellImage800 n8n-1.89.0-logs_for_all_node n8n-1.89.0-logs_for_all_node.png max-400 %}
 
 ## 1.88.0 Pre-release - 2025-04-10
 
