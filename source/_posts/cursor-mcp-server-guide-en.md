@@ -1,5 +1,5 @@
 ---
-title: Building an MCP Server in Cursor: Learning MCP Through Practice
+title: Building an MCP Server in Cursor - Learning MCP Through Practice
 date: 2025-03-09 22:44:20
 tags:
   - Cursor
