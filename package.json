@@ -6,22 +6,24 @@
     "node": "^20.17.0 || >=22.9.0"
   },
   "scripts": {
-    "build": "hexo generate --config 'main.yml' && npm run n8n-sitemap && npm run n8n-snapshots",
+    "build": "npm run images:process && hexo generate --config 'main.yml' && npm run n8n-sitemap && npm run n8n-snapshots",
     "clean": "hexo clean",
     "deploy": "hexo deploy",
     "server": "hexo server --config 'main.yml'",
-    "test": "npm run clean && npm run generate_custom && npm run server_custom ",
+    "test": "npm run clean && npm run images:process && npm run generate_custom && npm run server_custom ",
     "generate_custom": "hexo generate --config './main.yml'",
     "server_custom": "hexo server --config './main.yml'",
     "server_custom_draft": "hexo server --drafts --config './main.yml'",
-    "generate": "hexo clean && hexo generate --config 'main.yml' && npm run n8n-sitemap && npm run n8n-snapshots && hexo server --config 'main.yml' ",
+    "generate": "hexo clean && npm run images:process && hexo generate --config 'main.yml' && npm run n8n-sitemap && npm run n8n-snapshots && hexo server --config 'main.yml' ",
     "add_post": "hexo new gtm %npm_config_posttitle%",
     "test-readme": "node scripts/test-readme-generation.js",
     "restore-readme": "node scripts/restore-readme.js",
     "n8n-sitemap": "node bin/generate-n8n-sitemap.js",
     "n8n-snapshots": "node bin/generate-html-snapshots.js",
     "add_draft": "hexo new draft %npm_config_posttitle%",
-    "test_draft": "npm run clean && npm run generate_custom && npm run server_custom_draft"
+    "test_draft": "npm run clean && npm run images:process && npm run generate_custom && npm run server_custom_draft",
+    "images:process": "node scripts/generate-image-dimensions.js",
+    "images:force-process": "node scripts/generate-image-dimensions.js --force"
   },
   "hexo": {
     "version": "7.3.0"
@@ -30,7 +32,6 @@
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
     "dotenv": "^16.4.7",
-    "glob": "^11.0.1",
     "hexo": "^7.3.0",
     "hexo-algoliasearch": "^2.0.1",
     "hexo-clean-css": "^2.0.0",
@@ -59,7 +60,9 @@
   },
   "devDependencies": {
     "dayjs": "^1.11.13",
+    "glob": "^11.0.1",
     "gray-matter": "^4.0.3",
+    "image-size": "^2.0.2",
     "js-yaml": "^4.1.0"
   }
 }

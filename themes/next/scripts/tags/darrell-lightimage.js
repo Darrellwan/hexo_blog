@@ -96,64 +96,203 @@ function generateVideoPlaceholder(width, height) {
 
 function customLightGallery(args, content) {
   let altText = args[0];
-  let imageSrc = args[1];
-  let className = args[2];
-  // 預設尺寸 1024x576（16:9）
-  let width = 1024;
-  let height = 576;
+  let originalImageSrc = args[1]; // 先保存原始路徑
+  let imageSrc = originalImageSrc; // 使用 imageSrc 進行後續處理
+  let className = args[2] || "max-1024";
 
-  if(!className || className == ""){
-    className = "max-1024";
+  let width = 1024; // 預設寬度
+  let height = 576; // 預設高度
+
+  const imageDimensionsData = hexo.locals.get('data')?.image_dimensions;
+  const debugMode = false; // 保持關閉
+  
+  let imageSrcVariants = [];
+  let imageSrcForLookup = imageSrc; // 用於查找的路徑
+  
+  // 準備查找用的路徑變體
+  if (imageSrcForLookup && !imageSrcForLookup.startsWith('/') && !imageSrcForLookup.startsWith('http')) {
+    imageSrcForLookup = '/' + imageSrcForLookup;
+    imageSrcVariants.push(imageSrcForLookup);
+    // console.warn(`[darrellImage] Path adjusted for lookup: ${originalImageSrc} -> ${imageSrcForLookup}`);
+  } else {
+    imageSrcVariants.push(imageSrcForLookup);
+  }
+  
+  if (imageSrcForLookup && !imageSrcForLookup.startsWith('/_posts/') && !imageSrcForLookup.startsWith('http')) {
+    imageSrcVariants.push(`/_posts${imageSrcForLookup}`);
+  }
+  
+  if (imageSrcForLookup && imageSrcForLookup.startsWith('/') && !imageSrcForLookup.startsWith('http')) {
+    // Consider the path without the leading slash if it exists
+    const noSlashVariant = imageSrcForLookup.substring(1);
+    if (!imageSrcVariants.includes(noSlashVariant)) { // Avoid duplicates
+        imageSrcVariants.push(noSlashVariant);
+    }
+  }
+  
+  if (debugMode) {
+    console.log(`[DEBUG] Original path: ${originalImageSrc}`);
+    console.log(`[DEBUG] Lookup variants: ${JSON.stringify(imageSrcVariants)}`);
+    console.log(`[DEBUG] Dimensions data exists: ${!!imageDimensionsData}`);
+    if (imageDimensionsData) {
+      console.log(`[DEBUG] Dimensions data items: ${Object.keys(imageDimensionsData).length}`);
+    }
   }
 
-  if(!altText || !imageSrc){
-    return ``
+  let dimensionsFound = false;
+  
+  if (imageDimensionsData) {
+    for (const variant of imageSrcVariants) {
+      if (imageDimensionsData[variant]) {
+        const dims = imageDimensionsData[variant];
+        width = dims.width;
+        height = dims.height;
+        dimensionsFound = true;
+        if (debugMode) {
+          console.log(`[DEBUG] Found exact match: ${variant}, Dimensions: ${width}x${height}`);
+        }
+        break;
+      }
+    }
+    
+    if (!dimensionsFound && originalImageSrc && !originalImageSrc.startsWith('http')) {
+      const imageName = originalImageSrc.split('/').pop();
+      if (debugMode) console.log(`[DEBUG] No exact match, trying filename lookup: ${imageName}`);
+      const keys = Object.keys(imageDimensionsData);
+      // Match keys ending with /imagename.ext
+      const similarKeys = keys.filter(key => key.endsWith('/' + imageName));
+      
+      if (similarKeys.length > 0) {
+        const bestMatch = similarKeys[0]; // Use the first similar key found
+        const dims = imageDimensionsData[bestMatch];
+        width = dims.width;
+        height = dims.height;
+        dimensionsFound = true;
+        console.log(`[darrellImage] Found similar path by filename: ${originalImageSrc} -> ${bestMatch} (${width}x${height})`);
+        if (debugMode) console.log(`[DEBUG] All similar keys found: ${JSON.stringify(similarKeys)}`);
+      }
+    }
   }
+  
+  if (!dimensionsFound && originalImageSrc && !originalImageSrc.startsWith('http')) {
+    console.warn(`[darrellImage] Could not find dimensions for: ${originalImageSrc}. Using default ${width}x${height}. Run 'npm run images:process'.`);
+    if (debugMode && imageDimensionsData) {
+      const keys = Object.keys(imageDimensionsData);
+      console.log(`[DEBUG] Sample keys in JSON: ${JSON.stringify(keys.slice(0, 5))}`);
+    }
+  }
+
+  if (!altText || !originalImageSrc) {
+    return ``;
+  }
+
+  const placeholder = generatePlaceholder(width, height);
+  const aspectRatio = `${width} / ${height}`;
+
+  // 使用 originalImageSrc 進行渲染
   return `
-  <figure lg-background-color="#282828" class="blog-images" data-src="${imageSrc}" style="aspect-ratio: ${width}/${height};">
-    <img 
-      alt="${altText}" 
-      data-src="${imageSrc}" 
-      src="${generatePlaceholder(width, height)}"
-      class="lazyload ${className}" 
+  <figure lg-background-color="#282828" class="blog-images ${className}" data-src="${originalImageSrc}" style="aspect-ratio: ${aspectRatio}; background-color: #282828; overflow: hidden;">
+    <img
+      alt="${altText}"
+      data-src="${originalImageSrc}"
+      src="${placeholder}"
+      class="lazyload"
+      width="${width}"
+      height="${height}"
+      loading="lazy"
+      decoding="async"
       sizes="(min-width: 1000px) 930px, 90vw"
-      style="background-color: #f0f0f0;">
-  </figure>`
+      style="display: block;height: auto; background-color: #f0f0f0">
+  </figure>`;
 }
 
 function customLightGallery800(args, content) {
   let altText = args[0];
-  let imageSrc = args[1];
+  let originalImageSrc = args[1];
   let className = args[2];
-  // 預設尺寸 800x450（16:9）
   let width = 800;
-  let height = 200;
+  let height = 450;
 
   if(!className || className == ""){
     className = "max-800";
   }
 
-  if(!altText || !imageSrc){
-    return ``
+  const imageDimensionsData = hexo.locals.get('data')?.image_dimensions;
+  let imageSrcVariants = [];
+  let imageSrcForLookup = originalImageSrc;
+
+  if (imageSrcForLookup && !imageSrcForLookup.startsWith('/') && !imageSrcForLookup.startsWith('http')) {
+    imageSrcForLookup = '/' + imageSrcForLookup;
+    imageSrcVariants.push(imageSrcForLookup);
+  } else {
+    imageSrcVariants.push(imageSrcForLookup);
+  }
+  if (imageSrcForLookup && !imageSrcForLookup.startsWith('/_posts/') && !imageSrcForLookup.startsWith('http')) {
+    imageSrcVariants.push(`/_posts${imageSrcForLookup}`);
+  }
+  if (imageSrcForLookup && imageSrcForLookup.startsWith('/') && !imageSrcForLookup.startsWith('http')) {
+     const noSlashVariant = imageSrcForLookup.substring(1);
+     if (!imageSrcVariants.includes(noSlashVariant)) imageSrcVariants.push(noSlashVariant);
+  }
+
+  let dimensionsFound = false;
+  if (imageDimensionsData) {
+    for (const variant of imageSrcVariants) {
+      if (imageDimensionsData[variant]) {
+        const dims = imageDimensionsData[variant];
+        width = dims.width;
+        height = dims.height;
+        dimensionsFound = true;
+        break;
+      }
+    }
+    if (!dimensionsFound && originalImageSrc && !originalImageSrc.startsWith('http')) {
+      const imageName = originalImageSrc.split('/').pop();
+      const keys = Object.keys(imageDimensionsData);
+      const similarKeys = keys.filter(key => key.endsWith('/' + imageName));
+      if (similarKeys.length > 0) {
+        const bestMatch = similarKeys[0];
+        const dims = imageDimensionsData[bestMatch];
+        width = dims.width;
+        height = dims.height;
+        dimensionsFound = true;
+        console.log(`[darrellImage800] Found similar path by filename: ${originalImageSrc} -> ${bestMatch} (${width}x${height})`);
+      }
+    }
   }
   
+  if (!dimensionsFound && originalImageSrc && !originalImageSrc.startsWith('http')) {
+    console.warn(`[darrellImage800] Could not find dimensions for: ${originalImageSrc}. Using default ${width}x${height}.`);
+  }
+
+  if(!altText || !originalImageSrc){
+    return ``
+  }
+
+  const placeholder = generatePlaceholder(width, height);
+  const aspectRatio = `${width} / ${height}`;
+
+  // 使用 originalImageSrc 進行渲染
   return `
-  <figure lg-background-color="#282828" class="blog-images" data-src="${imageSrc}" style="aspect-ratio: ${width}/${height};">
-    <img 
-      alt="${altText}" 
-      data-src="${imageSrc}"
-      src="${generatePlaceholder(width, height)}"
-      class="lazyload ${className}" 
+  <figure lg-background-color="#282828" class="blog-images ${className}" data-src="${originalImageSrc}" style="aspect-ratio: ${aspectRatio}; background-color: #282828; overflow: hidden;">
+    <img
+      alt="${altText}"
+      data-src="${originalImageSrc}"
+      src="${placeholder}"
+      class="lazyload"
+      width="${width}"
+      height="${height}"
+      loading="lazy"
+      decoding="async"
       sizes="(min-width: 800px) 930px, 90vw"
-      style="background-color: #f0f0f0;">
+      style="display: block;height: auto; background-color: #f0f0f0">
   </figure>`
 }
 
 function customLightGallery800h(args, content) {
   let altText = args[0];
-  let imageSrc = args[1];
+  let originalImageSrc = args[1];
   let className = args[2];
-  // 預設尺寸 800x800（1:1）
   let width = 800;
   let height = 800;
 
@@ -161,56 +300,162 @@ function customLightGallery800h(args, content) {
     className = "max-800h";
   }
 
-  if(!altText || !imageSrc){
-    return ``
+  const imageDimensionsData = hexo.locals.get('data')?.image_dimensions;
+  let imageSrcVariants = [];
+  let imageSrcForLookup = originalImageSrc;
+  
+  if (imageSrcForLookup && !imageSrcForLookup.startsWith('/') && !imageSrcForLookup.startsWith('http')) {
+    imageSrcForLookup = '/' + imageSrcForLookup;
+    imageSrcVariants.push(imageSrcForLookup);
+  } else {
+    imageSrcVariants.push(imageSrcForLookup);
+  }
+  if (imageSrcForLookup && !imageSrcForLookup.startsWith('/_posts/') && !imageSrcForLookup.startsWith('http')) {
+    imageSrcVariants.push(`/_posts${imageSrcForLookup}`);
+  }
+  if (imageSrcForLookup && imageSrcForLookup.startsWith('/') && !imageSrcForLookup.startsWith('http')) {
+     const noSlashVariant = imageSrcForLookup.substring(1);
+     if (!imageSrcVariants.includes(noSlashVariant)) imageSrcVariants.push(noSlashVariant);
   }
   
+  let dimensionsFound = false;
+  if (imageDimensionsData) {
+    for (const variant of imageSrcVariants) {
+      if (imageDimensionsData[variant]) {
+        const dims = imageDimensionsData[variant];
+        width = dims.width;
+        height = dims.height;
+        dimensionsFound = true;
+        break;
+      }
+    }
+    if (!dimensionsFound && originalImageSrc && !originalImageSrc.startsWith('http')) {
+      const imageName = originalImageSrc.split('/').pop();
+      const keys = Object.keys(imageDimensionsData);
+      const similarKeys = keys.filter(key => key.endsWith('/' + imageName));
+      if (similarKeys.length > 0) {
+        const bestMatch = similarKeys[0];
+        const dims = imageDimensionsData[bestMatch];
+        width = dims.width;
+        height = dims.height;
+        dimensionsFound = true;
+        console.log(`[darrellImageh800] Found similar path by filename: ${originalImageSrc} -> ${bestMatch} (${width}x${height})`);
+      }
+    }
+  }
+
+  if (!dimensionsFound && originalImageSrc && !originalImageSrc.startsWith('http')) {
+      console.warn(`[darrellImageh800] Could not find dimensions for: ${originalImageSrc}. Using default ${width}x${height}.`);
+  }
+
+  if(!altText || !originalImageSrc){
+    return ``
+  }
+
+  const placeholder = generatePlaceholder(width, height);
+  const aspectRatio = `${width} / ${height}`;
+
+  // 使用 originalImageSrc 進行渲染
   return `
-  <figure lg-background-color="#282828" class="blog-images" data-src="${imageSrc}" style="aspect-ratio: ${width}/${height};">
-    <img 
-      alt="${altText}" 
-      data-src="${imageSrc}"
-      src="${generatePlaceholder(width, height)}"
-      class="lazyload ${className}" 
-      sizes="(max-width: 100%) 930px, 90vw"
-      style="background-color: #f0f0f0;">
+  <figure lg-background-color="#282828" class="blog-images ${className}" data-src="${originalImageSrc}" style="aspect-ratio: ${aspectRatio}; background-color: #282828; overflow: hidden;">
+    <img
+      alt="${altText}"
+      data-src="${originalImageSrc}"
+      src="${placeholder}"
+      class="lazyload"
+      width="${width}"
+      height="${height}"
+      loading="lazy"
+      decoding="async"
+      sizes="(%) 930px, 90vw"
+      style="display: block;height: auto; background-color: #f0f0f0">
   </figure>`
 }
 
 function customLightGalleryCover(args) {
   let altText = args[0];
-  let imageSrc = args[1];
+  let originalImageSrc = args[1];
   let className = args[2];
   let width = 800;
-  let height = 600;
+  let height = 450;
 
   if(!className || className == ""){
     className = "max-1024";
   }
 
-  if(!altText || !imageSrc){
+  const imageDimensionsData = hexo.locals.get('data')?.image_dimensions;
+  let imageSrcVariants = [];
+  let imageSrcForLookup = originalImageSrc;
+
+  if (imageSrcForLookup && !imageSrcForLookup.startsWith('/') && !imageSrcForLookup.startsWith('http')) {
+    imageSrcForLookup = '/' + imageSrcForLookup;
+    imageSrcVariants.push(imageSrcForLookup);
+  } else {
+    imageSrcVariants.push(imageSrcForLookup);
+  }
+  if (imageSrcForLookup && !imageSrcForLookup.startsWith('/_posts/') && !imageSrcForLookup.startsWith('http')) {
+    imageSrcVariants.push(`/_posts${imageSrcForLookup}`);
+  }
+  if (imageSrcForLookup && imageSrcForLookup.startsWith('/') && !imageSrcForLookup.startsWith('http')) {
+     const noSlashVariant = imageSrcForLookup.substring(1);
+     if (!imageSrcVariants.includes(noSlashVariant)) imageSrcVariants.push(noSlashVariant);
+  }
+
+  let dimensionsFound = false;
+  if (imageDimensionsData) {
+    for (const variant of imageSrcVariants) {
+      if (imageDimensionsData[variant]) {
+        const dims = imageDimensionsData[variant];
+        width = dims.width;
+        height = dims.height;
+        dimensionsFound = true;
+        break;
+      }
+    }
+    if (!dimensionsFound && originalImageSrc && !originalImageSrc.startsWith('http')) {
+      const imageName = originalImageSrc.split('/').pop();
+      const keys = Object.keys(imageDimensionsData);
+      const similarKeys = keys.filter(key => key.endsWith('/' + imageName));
+      if (similarKeys.length > 0) {
+        const bestMatch = similarKeys[0];
+        const dims = imageDimensionsData[bestMatch];
+        width = dims.width;
+        height = dims.height;
+        dimensionsFound = true;
+        console.log(`[darrellImageCover] Found similar path by filename: ${originalImageSrc} -> ${bestMatch} (${width}x${height})`);
+      }
+    }
+  }
+
+  if (!dimensionsFound && originalImageSrc && !originalImageSrc.startsWith('http')) {
+    console.warn(`[darrellImageCover] Could not find dimensions for: ${originalImageSrc}. Using default ${width}x${height}.`);
+  }
+
+  if(!altText || !originalImageSrc){
     return ``
   }
-  
+
+  const aspectRatio = `${width} / ${height}`;
+
+  // Cover 圖使用原始 src
   return `
-  <figure lg-background-color="#282828" class="blog-images" data-src="${imageSrc}" style="aspect-ratio: ${width}/${height};">
-    <img 
-      alt="${altText}" 
-      data-src="${imageSrc}" 
-      src="${imageSrc}"
-      class="${className}" 
-      sizes="(min-width: 1000px) 930px, 90vw" 
-      width="800"
-      height="450"
-      style="background-color: #f0f0f0;">
+  <figure lg-background-color="#282828" class="blog-images blog-cover-image ${className}" data-src="${originalImageSrc}" style="aspect-ratio: ${aspectRatio}; background-color: #f0f0f0; overflow: hidden;">
+    <img
+      alt="${altText}"
+      src="${originalImageSrc}"
+      class=""
+      width="${width}"
+      height="${height}"
+      decoding="async"
+      sizes="(min-width: 1000px) 930px, 90vw"
+      style="display: block; width: 100%; height: 100%; object-fit: cover; background-color: #f0f0f0">
   </figure>`
 }
 
 function customOnlyImage(args) {
   let altText = args[0];
-  let imageSrc = args[1];
+  let originalImageSrc = args[1];
   let className = args[2];
-  // 預設尺寸 1024x576（16:9）
   let width = 1024;
   let height = 576;
 
@@ -218,17 +463,73 @@ function customOnlyImage(args) {
     className = "max-1024";
   }
 
-  if(!altText || !imageSrc){
-    return ``
+  const imageDimensionsData = hexo.locals.get('data')?.image_dimensions;
+  let imageSrcVariants = [];
+  let imageSrcForLookup = originalImageSrc;
+  
+  if (imageSrcForLookup && !imageSrcForLookup.startsWith('/') && !imageSrcForLookup.startsWith('http')) {
+    imageSrcForLookup = '/' + imageSrcForLookup;
+    imageSrcVariants.push(imageSrcForLookup);
+  } else {
+    imageSrcVariants.push(imageSrcForLookup);
+  }
+  if (imageSrcForLookup && !imageSrcForLookup.startsWith('/_posts/') && !imageSrcForLookup.startsWith('http')) {
+    imageSrcVariants.push(`/_posts${imageSrcForLookup}`);
+  }
+  if (imageSrcForLookup && imageSrcForLookup.startsWith('/') && !imageSrcForLookup.startsWith('http')) {
+     const noSlashVariant = imageSrcForLookup.substring(1);
+     if (!imageSrcVariants.includes(noSlashVariant)) imageSrcVariants.push(noSlashVariant);
   }
   
+  let dimensionsFound = false;
+  if (imageDimensionsData) {
+    for (const variant of imageSrcVariants) {
+      if (imageDimensionsData[variant]) {
+        const dims = imageDimensionsData[variant];
+        width = dims.width;
+        height = dims.height;
+        dimensionsFound = true;
+        break;
+      }
+    }
+    if (!dimensionsFound && originalImageSrc && !originalImageSrc.startsWith('http')) {
+      const imageName = originalImageSrc.split('/').pop();
+      const keys = Object.keys(imageDimensionsData);
+      const similarKeys = keys.filter(key => key.endsWith('/' + imageName));
+      if (similarKeys.length > 0) {
+        const bestMatch = similarKeys[0];
+        const dims = imageDimensionsData[bestMatch];
+        width = dims.width;
+        height = dims.height;
+        dimensionsFound = true;
+        console.log(`[darrellOnlyImage] Found similar path by filename: ${originalImageSrc} -> ${bestMatch} (${width}x${height})`);
+      }
+    }
+  }
+
+  if (!dimensionsFound && originalImageSrc && !originalImageSrc.startsWith('http')) {
+      console.warn(`[darrellOnlyImage] Could not find dimensions for: ${originalImageSrc}. Using default ${width}x${height}.`);
+  }
+
+  if(!altText || !originalImageSrc){
+    return ``
+  }
+
+  const placeholder = generatePlaceholder(width, height);
+  const aspectRatio = `${width} / ${height}`;
+
+  // 使用 originalImageSrc 進行渲染
   return `
-  <img 
-    alt="${altText}" 
-    data-src="${imageSrc}" 
-    src="${generatePlaceholder(width, height)}"
-    class="${className}"
-    style="aspect-ratio: ${width}/${height}; background-color: #f0f0f0;">`
+  <img
+    alt="${altText}"
+    data-src="${originalImageSrc}"
+    src="${placeholder}"
+    class="${className} lazyload"
+    width="${width}"
+    height="${height}"
+    loading="lazy"
+    decoding="async"
+    style="aspect-ratio: ${aspectRatio}; display: block;height: auto; background-color: #f0f0f0">`
 }
 
 function customVideoSimple(args) {
@@ -253,7 +554,7 @@ function customVideoSimple(args) {
       document.getElementById('${uniqueId}-cover').style.display='none';
       document.getElementById('${uniqueId}').style.display='block';
       document.getElementById('${uniqueId}').play();">
-      <img src="${posterSrc}" alt="${altText}" style="width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 8px;">
+      <img src="${posterSrc}" alt="${altText}" style="width: 100%; height: 100%; object-fit: cover; display: block">
       <div class="play-button" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; height: 60px; background-color: rgba(0, 0, 0, 0.7); border-radius: 50%; display: flex; justify-content: center; align-items: center;">
         <div style="width: 0; height: 0; border-style: solid; border-width: 10px 0 10px 20px; border-color: transparent transparent transparent #ffffff; margin-left: 5px;"></div>
       </div>
@@ -262,7 +563,7 @@ function customVideoSimple(args) {
       id="${uniqueId}"
       controls
       width="100%"
-      style="display: none; max-width: 100%; border-radius: 8px; aspect-ratio: 16/9;"
+      style="display: non aspect-ratio: 16/9;"
       src="${videoSrc}">
       您的瀏覽器不支援影片播放。
     </video>
@@ -347,7 +648,7 @@ function customVideoGradient(args) {
   
   return `
   <div class="darrell-video-container" style="max-width: 800px; margin: 0 auto; position: relative;">
-    <div id="${uniqueId}-cover" class="video-cover" style="position: relative; cursor: pointer; overflow: hidden; border-radius: 8px;" onclick="
+    <div id="${uniqueId}-cover" class="video-cover" style="position: relative; cursor: pointer; overflow: hidden" onclick="
       document.getElementById('${uniqueId}-cover').style.display='none';
       document.getElementById('${uniqueId}').style.display='block';
       document.getElementById('${uniqueId}').play();">
@@ -363,7 +664,7 @@ function customVideoGradient(args) {
       id="${uniqueId}"
       controls
       width="100%"
-      style="display: none; max-width: 100%; border-radius: 8px;"
+      style="display: non"
       src="${videoSrc}">
       您的瀏覽器不支援影片播放。
     </video>
@@ -398,7 +699,7 @@ function customVideoLightbox(args) {
   
   return `
   <div class="darrell-video-lightbox" style="max-width: 800px; margin: 0 auto;">
-    <div class="video-thumbnail" style="position: relative; cursor: pointer; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);" onclick="openVideoModal('${uniqueId}')">
+    <div class="video-thumbnail" style="position: relative; cursor: pointer overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);" onclick="openVideoModal('${uniqueId}')">
       <img src="${posterSrc}" alt="${altText}" style="width: 100%; display: block; transition: all 0.3s ease;">
       <div class="play-indicator" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.2); display: flex; justify-content: center; align-items: center; transition: background-color 0.3s ease;">
         <div class="play-button" style="width: 80px; height: 80px; background-color: rgba(255,255,255,0.85); border-radius: 50%; display: flex; justify-content: center; align-items: center; transition: transform 0.2s ease, background-color 0.2s ease;">
