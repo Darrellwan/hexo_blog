@@ -3,19 +3,19 @@
 ## 📚 最新文章
 
 ### [ChatGPT 4o 與 Sora 的全新文生圖功能](https://www.darrelltw.com/chatgpt-sora-create-image-with-text/?utm_source=github_readme&utm_medium=referral)
-📅 2025/03/27 · 17 天前
+📅 2025/03/27 · 18 天前
 
 > AI畫圖超方便！ChatGPT 4o能產生超逼真帶文字的圖片，Sora一次給你四張各種比例！哪個更好用？Plus和Pro差在哪？
 
 
 ### [n8n 新功能 - 資料夾 Folders](https://www.darrelltw.com/n8n-new-feature-folders/?utm_source=github_readme&utm_medium=referral)
-📅 2025/03/22 · 22 天前
+📅 2025/03/22 · 23 天前
 
 > 終於等到了！n8n 資料夾功能開放，如何整理混亂的工作流程、建立多層資料夾結構，以及避免踩雷。
 
 
 ### [n8n Webhook 節點](https://www.darrelltw.com/n8n-webhook/?utm_source=github_readme&utm_medium=referral)
-📅 2025/03/19 · 25 天前
+📅 2025/03/19 · 1 個月前
 
 > 一起來學 n8n Webhook 打造自動化流程！設定接收、處理資料，並提供案例和程式碼範例。
 
@@ -39,7 +39,7 @@
 
 
 ### [n8n 版本更新紀錄心得](https://www.darrelltw.com/n8n-update-log/?utm_source=github_readme&utm_medium=referral)
-📅 2025/02/27 · 1 個月前
+📅 2025/02/27 · 2 個月前
 
 > n8n 的更新記錄，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.88.0，正式版本為 1.86.0
 
@@ -69,7 +69,7 @@
 ## 📈 近期 30 天熱門文章
 ```text
 ██████████████████████████████ 🥇 在 Cursor 中打造 MCP Server，從實作中學習 MCP
-█████████████░░░░░░░░░░░░░░░░░ 🥈 Claude MCP 應用測試心得 - Claude Desktop
+████████████░░░░░░░░░░░░░░░░░░ 🥈 Claude MCP 應用測試心得 - Claude Desktop
 █████░░░░░░░░░░░░░░░░░░░░░░░░░ 🥉 n8n 用 Request 發送 LINE Message API
 ████░░░░░░░░░░░░░░░░░░░░░░░░░░ 4️⃣ ChatGPT 在網頁版無法使用，沒有錯誤訊息卻都無法回答問題
 ███░░░░░░░░░░░░░░░░░░░░░░░░░░░ 5️⃣ Claude Code 發佈 Command Line 的新工具
@@ -78,10 +78,10 @@
 ## 📈 近期 7 天熱門文章
 ```text
 ██████████████████████████████ 🥇 在 Cursor 中打造 MCP Server，從實作中學習 MCP
-█████████████░░░░░░░░░░░░░░░░░ 🥈 Claude MCP 應用測試心得 - Claude Desktop
+████████████░░░░░░░░░░░░░░░░░░ 🥈 Claude MCP 應用測試心得 - Claude Desktop
 ████░░░░░░░░░░░░░░░░░░░░░░░░░░ 🥉 n8n 用 Request 發送 LINE Message API
 ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 4️⃣ ChatGPT 在網頁版無法使用，沒有錯誤訊息卻都無法回答問題
-██░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 5️⃣ Claude Code 發佈 Command Line 的新工具
+██░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 5️⃣ n8n 版本更新紀錄心得
 ```
 
 ## 🏷️ 熱門主題
