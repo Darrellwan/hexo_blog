@@ -9,6 +9,7 @@ page_type: post
 description: 透過實作 LINE MCP Server，讓 Claude 等 AI 模型直接操作 LINE Messaging API 來發送訊息，並介紹幾個測試的場景
 categories: 
   - AI
+id: line-mcp-server
 bgImage: line_mcp_server_bg.jpg
 preload:
   - line_mcp_server_bg.jpg
