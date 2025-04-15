@@ -3,7 +3,7 @@
 ## 📚 最新文章
 
 ### [LINE MCP Server 測試心得 - 一個 prompt 就讓 Line 發訊息給你](https://www.darrelltw.com/line-mcp-server/?utm_source=github_readme&utm_medium=referral)
-📅 2025/04/14 · 12 小時前
+📅 2025/04/14 · 18 小時前
 
 > 透過實作 LINE MCP Server，讓 Claude 等 AI 模型直接操作 LINE Messaging API 來發送訊息，並介紹幾個測試的場景
 
