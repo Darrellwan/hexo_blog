@@ -2,14 +2,20 @@
 
 ## 📚 最新文章
 
+### [LINE MCP Server 測試心得 - 一個 prompt 就讓 Line 發訊息給你](https://www.darrelltw.com/line-mcp-server/?utm_source=github_readme&utm_medium=referral)
+📅 2025/04/14 · 12 小時前
+
+> 透過實作 LINE MCP Server，讓 Claude 等 AI 模型直接操作 LINE Messaging API 來發送訊息，並介紹幾個測試的場景
+
+
 ### [ChatGPT 4o 與 Sora 的全新文生圖功能](https://www.darrelltw.com/chatgpt-sora-create-image-with-text/?utm_source=github_readme&utm_medium=referral)
-📅 2025/03/27 · 18 天前
+📅 2025/03/27 · 19 天前
 
 > AI畫圖超方便！ChatGPT 4o能產生超逼真帶文字的圖片，Sora一次給你四張各種比例！哪個更好用？Plus和Pro差在哪？
 
 
 ### [n8n 新功能 - 資料夾 Folders](https://www.darrelltw.com/n8n-new-feature-folders/?utm_source=github_readme&utm_medium=referral)
-📅 2025/03/22 · 23 天前
+📅 2025/03/22 · 24 天前
 
 > 終於等到了！n8n 資料夾功能開放，如何整理混亂的工作流程、建立多層資料夾結構，以及避免踩雷。
 
@@ -41,7 +47,7 @@
 ### [n8n 版本更新紀錄心得](https://www.darrelltw.com/n8n-update-log/?utm_source=github_readme&utm_medium=referral)
 📅 2025/02/27 · 2 個月前
 
-> n8n 的更新記錄，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.88.0，正式版本為 1.86.0
+> n8n 的更新記錄，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.89.0，正式版本為 1.86.0
 
 
 ### [Claude Code 發佈 Command Line 的新工具](https://www.darrelltw.com/claude-code-new-command-line-tool/?utm_source=github_readme&utm_medium=referral)
@@ -56,22 +62,16 @@
 > Glows.ai 提供方便的雲端 GPU 運算服務，讓你輕鬆取得高效能算力，實現 AI 私有化運算。無需自建機房，即可享有穩定、安全的 GPU 資源，是企業和個人開發 AI 應用的最佳選擇。
 
 
-### [n8n 小撇步 - Timezone 問題如何在 Zeabur 設定](https://www.darrelltw.com/n8n-with-zeabur-timezone-issue/?utm_source=github_readme&utm_medium=referral)
-📅 2025/02/06 · 2 個月前
-
-> 記錄一下在 Zeabur 上處理 n8n 時區問題的方法，從單一 workflow 到一次性解決，讓你的自動化流程不再跑錯時間！
-
-
 ## 📊 部落格統計
-![文章總數](https://img.shields.io/badge/文章總數-88-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-209527+-blue?style=flat-square)
+![文章總數](https://img.shields.io/badge/文章總數-89-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-212069+-blue?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
 ██████████████████████████████ 🥇 在 Cursor 中打造 MCP Server，從實作中學習 MCP
 ████████████░░░░░░░░░░░░░░░░░░ 🥈 Claude MCP 應用測試心得 - Claude Desktop
 █████░░░░░░░░░░░░░░░░░░░░░░░░░ 🥉 n8n 用 Request 發送 LINE Message API
-████░░░░░░░░░░░░░░░░░░░░░░░░░░ 4️⃣ ChatGPT 在網頁版無法使用，沒有錯誤訊息卻都無法回答問題
+█████░░░░░░░░░░░░░░░░░░░░░░░░░ 4️⃣ ChatGPT 在網頁版無法使用，沒有錯誤訊息卻都無法回答問題
 ███░░░░░░░░░░░░░░░░░░░░░░░░░░░ 5️⃣ Claude Code 發佈 Command Line 的新工具
 ```
 
@@ -80,12 +80,12 @@
 ██████████████████████████████ 🥇 在 Cursor 中打造 MCP Server，從實作中學習 MCP
 ████████████░░░░░░░░░░░░░░░░░░ 🥈 Claude MCP 應用測試心得 - Claude Desktop
 ████░░░░░░░░░░░░░░░░░░░░░░░░░░ 🥉 n8n 用 Request 發送 LINE Message API
-██░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 4️⃣ ChatGPT 在網頁版無法使用，沒有錯誤訊息卻都無法回答問題
+███░░░░░░░░░░░░░░░░░░░░░░░░░░░ 4️⃣ ChatGPT 在網頁版無法使用，沒有錯誤訊息卻都無法回答問題
 ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 5️⃣ n8n 版本更新紀錄心得
 ```
 
 ## 🏷️ 熱門主題
-![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-14-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![Automation](https://img.shields.io/badge/Automation-10-orange?style=flat-square) ![Google App Script](https://img.shields.io/badge/Google%20App%20Script-5-orange?style=flat-square)
+![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-14-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![Automation](https://img.shields.io/badge/Automation-10-orange?style=flat-square) ![AI](https://img.shields.io/badge/AI-5-orange?style=flat-square)
 
 ## 📈 更新頻率
 ```text
@@ -94,7 +94,7 @@
 01月 ████░░░░░░ 4篇
 02月 ██████░░░░ 6篇
 03月 ██████░░░░ 6篇
-04月 ░░░░░░░░░░ 0篇
+04月 █░░░░░░░░░ 1篇
 ```
 
 ## 🔍 更多資訊
