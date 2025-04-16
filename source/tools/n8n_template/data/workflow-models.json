@@ -651,8 +651,8 @@
             ],
             "tags": ["自動化", "社交媒體", "Instagram", "API", "貼文發佈", "範例"],
             "nodes": 8,
-            "createdAt": "2025-03-21",
-            "updatedAt": "2025-03-21",
+            "createdAt": "2025-04-16",
+            "updatedAt": "2025-04-16",
             "setup": {
                 "prerequisites": "需要設定 Instagram Business 帳號和 Facebook Developer 應用程式",
                 "steps": [
