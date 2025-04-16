@@ -637,6 +637,97 @@
                     }
                 }
             }
+        },
+        "instagram_api_demo_publish": {
+            "id": "instagram_api_demo_publish",
+            "title": "Instagram API 貼文發佈範例",
+            "description": "這個工作流程展示如何使用 Instagram Graph API 發佈圖片貼文。流程首先驗證 Access Token 是否有效，接著建立內容容器（container），最後將容器發佈為正式貼文。適合用於自動化內容發佈和社群媒體排程。\n\n主要功能：\n\nToken 驗證：確認 API Access Token 有效性\n內容容器建立：上傳圖片 URL 並準備貼文內容\n貼文發佈：將準備好的容器正式發佈至 Instagram",
+            "detailedDescription": [
+                "使用 Instagram Graph API 發佈貼文",
+                "支援透過圖片 URL 上傳圖片",
+                "可自訂貼文說明文字",
+                "包含 token 驗證機制",
+                "支援時間戳記功能"
+            ],
+            "tags": ["自動化", "社交媒體", "Instagram", "API", "貼文發佈", "範例"],
+            "nodes": 8,
+            "createdAt": "2025-03-21",
+            "updatedAt": "2025-03-21",
+            "setup": {
+                "prerequisites": "需要設定 Instagram Business 帳號和 Facebook Developer 應用程式",
+                "steps": [
+                    {
+                        "title": "Facebook Developer 設定",
+                        "description": "設定 Facebook 應用程式並取得 Instagram API Access Token",
+                        "options": [
+                            "建立 Facebook 應用程式",
+                            "設定 Instagram Graph API",
+                            "取得長期 Access Token",
+                            "設定應用程式權限"
+                        ]
+                    },
+                    {
+                        "title": "Instagram 帳號設定",
+                        "description": "確認 Instagram 帳號已轉為商業帳號並連結至 Facebook 專頁",
+                        "options": [
+                            "轉換為商業帳號",
+                            "連結 Facebook 專頁",
+                            "開啟內容發佈權限"
+                        ]
+                    }
+                ]
+            },
+            "examples": [
+                {
+                    "title": "基本發佈範例",
+                    "description": "展示如何發佈基本的圖片貼文",
+                    "code": {
+                        "trigger": "manual",
+                        "actions": [
+                            "verify_token",
+                            "create_container",
+                            "publish_post"
+                        ]
+                    }
+                }
+            ],
+            "fields": {
+                "instagram": {
+                    "title": "Instagram API 設定",
+                    "fields": {
+                        "accessToken": {
+                            "type": "string",
+                            "description": "Instagram Graph API Access Token",
+                            "example": "YOUR_INSTAGRAM_ACCESS_TOKEN"
+                        },
+                        "apiVersion": {
+                            "type": "string",
+                            "description": "API 版本",
+                            "default": "v22.0"
+                        }
+                    }
+                },
+                "content": {
+                    "title": "貼文內容設定",
+                    "fields": {
+                        "imageUrl": {
+                            "type": "string",
+                            "description": "圖片 URL",
+                            "example": "https://images.unsplash.com/photo-example"
+                        },
+                        "caption": {
+                            "type": "string",
+                            "description": "貼文說明文字",
+                            "example": "這是一篇自動發佈的貼文"
+                        },
+                        "includeTimestamp": {
+                            "type": "boolean",
+                            "description": "是否在貼文中加入時間戳記",
+                            "default": true
+                        }
+                    }
+                }
+            }
         }
     }
 } 
