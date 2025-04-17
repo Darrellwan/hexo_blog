@@ -3,19 +3,19 @@
 ## 📚 最新文章
 
 ### [LINE MCP Server 測試心得 - 一個 prompt 就讓 Line 發訊息給你](https://www.darrelltw.com/line-mcp-server/?utm_source=github_readme&utm_medium=referral)
-📅 2025/04/14 · 1 天前
+📅 2025/04/14 · 2 天前
 
 > 透過實作 LINE MCP Server，讓 Claude 等 AI 模型直接操作 LINE Messaging API 來發送訊息，並介紹幾個測試的場景
 
 
 ### [ChatGPT 4o 與 Sora 的全新文生圖功能](https://www.darrelltw.com/chatgpt-sora-create-image-with-text/?utm_source=github_readme&utm_medium=referral)
-📅 2025/03/27 · 20 天前
+📅 2025/03/27 · 21 天前
 
 > AI畫圖超方便！ChatGPT 4o能產生超逼真帶文字的圖片，Sora一次給你四張各種比例！哪個更好用？Plus和Pro差在哪？
 
 
 ### [n8n 新功能 - 資料夾 Folders](https://www.darrelltw.com/n8n-new-feature-folders/?utm_source=github_readme&utm_medium=referral)
-📅 2025/03/22 · 25 天前
+📅 2025/03/22 · 1 個月前
 
 > 終於等到了！n8n 資料夾功能開放，如何整理混亂的工作流程、建立多層資料夾結構，以及避免踩雷。
 
@@ -69,7 +69,7 @@
 ## 📈 近期 30 天熱門文章
 ```text
 ██████████████████████████████ 🥇 在 Cursor 中打造 MCP Server，從實作中學習 MCP
-█████████████░░░░░░░░░░░░░░░░░ 🥈 Claude MCP 應用測試心得 - Claude Desktop
+████████████░░░░░░░░░░░░░░░░░░ 🥈 Claude MCP 應用測試心得 - Claude Desktop
 █████░░░░░░░░░░░░░░░░░░░░░░░░░ 🥉 n8n 用 Request 發送 LINE Message API
 █████░░░░░░░░░░░░░░░░░░░░░░░░░ 4️⃣ ChatGPT 在網頁版無法使用，沒有錯誤訊息卻都無法回答問題
 ███░░░░░░░░░░░░░░░░░░░░░░░░░░░ 5️⃣ Claude Code 發佈 Command Line 的新工具
@@ -78,8 +78,8 @@
 ## 📈 近期 7 天熱門文章
 ```text
 ██████████████████████████████ 🥇 在 Cursor 中打造 MCP Server，從實作中學習 MCP
-█████████████░░░░░░░░░░░░░░░░░ 🥈 Claude MCP 應用測試心得 - Claude Desktop
-█████░░░░░░░░░░░░░░░░░░░░░░░░░ 🥉 LINE MCP Server 測試心得 - 一個 prompt 就讓 Line 發訊息給你
+██████████████░░░░░░░░░░░░░░░░ 🥈 Claude MCP 應用測試心得 - Claude Desktop
+███████░░░░░░░░░░░░░░░░░░░░░░░ 🥉 LINE MCP Server 測試心得 - 一個 prompt 就讓 Line 發訊息給你
 ████░░░░░░░░░░░░░░░░░░░░░░░░░░ 4️⃣ n8n 用 Request 發送 LINE Message API
 ███░░░░░░░░░░░░░░░░░░░░░░░░░░░ 5️⃣ ChatGPT 在網頁版無法使用，沒有錯誤訊息卻都無法回答問題
 ```
