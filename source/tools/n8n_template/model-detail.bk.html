@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>n8n 自動化模板詳情 - Darrell 自動化工具</title>
+    <meta name="description" content="探索 n8n Workflow 的各種預設模板，包含自動化工作流程範例">
+    
+    <!-- 動態 SEO 標籤 - 直接使用 workflow-models.json 資料 -->
+    <meta id="meta-title" property="og:title" content="n8n 自動化模板詳情 - Darrell 自動化工具">
+    <meta id="meta-description" property="og:description" content="探索 n8n Workflow 的各種預設模板，包含自動化工作流程範例">
+    <meta id="meta-url" property="og:url" content="https://www.darrelltw.com/tools/n8n_template/model-detail.html">
+    <meta id="meta-image" property="og:image" content="https://www.darrelltw.com/images/darrell_icon_512.png">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Darrell 自動化工具">
+    <meta property="og:locale" content="zh_TW">
+    
+    <!-- Twitter Card -->
+    <meta id="meta-twitter-title" name="twitter:title" content="n8n 自動化模板詳情 - Darrell 自動化工具">
+    <meta id="meta-twitter-description" name="twitter:description" content="探索 n8n Workflow 的各種預設模板，包含自動化工作流程範例">
+    <meta id="meta-twitter-image" name="twitter:image" content="https://www.darrelltw.com/images/darrell_icon_512.png">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- 模型特定資訊的靜態替代 Meta 標籤 (在 JavaScript 加載前提供基本資訊) -->
+    <link id="canonical-link" rel="canonical" href="https://www.darrelltw.com/tools/n8n_template/model-detail.html">
+    
+    <!-- Schema.org 標記 - 初始空值，將由 JavaScript 動態填充 -->
+    <script type="application/ld+json" id="schema-data">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "n8n 自動化模板",
+      "applicationCategory": "工作流程自動化",
+      "operatingSystem": "跨平台",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "TWD"
+      },
+      "description": "探索 n8n Workflow 的各種預設模板，包含自動化工作流程範例"
+    }
+    </script>
+    
+    <!-- Google 爬蟲輔助腳本，不需要等待完整 JS 執行即可提取關鍵資訊 -->
+    <script type="text/javascript">
+        (function() {
+            // 獲取模型 ID
+            var urlParams = new URLSearchParams(window.location.search);
+            var modelId = urlParams.get('model');
+            
+            if (modelId) {
+                // 更新規範鏈接
+                var canonicalLink = document.getElementById('canonical-link');
+                if (canonicalLink) {
+                    canonicalLink.href = 'https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=' + modelId;
+                }
+                
+                // 向搜索引擎爬蟲提示此頁面需要 JavaScript 進行完整渲染
+                var hint = document.createElement('meta');
+                hint.name = 'google';
+                hint.content = 'notranslate';
+                document.head.appendChild(hint);
+                
+                // 預載模型資料 - 協助搜索引擎爬蟲獲取資訊，即使完整 JS 未執行
+                fetch('data/workflow-models.json')
+                    .then(function(response) { return response.json(); })
+                    .then(function(data) {
+                        if (data.models && data.models[modelId]) {
+                            var model = data.models[modelId];
+                            
+                            // 更新頁面標題
+                            document.title = model.title + " - n8n 自動化模板 | Darrell 自動化工具";
+                            
+                            // 更新描述
+                            var metaDesc = document.querySelector('meta[name="description"]');
+                            if (metaDesc) {
+                                metaDesc.content = model.description.substring(0, 150) + 
+                                    (model.description.length > 150 ? '...' : '');
+                            }
+                            
+                            // 更新 Open Graph 和 Twitter Card 標籤
+                            document.getElementById('meta-title').setAttribute('content', 
+                                model.title + " - n8n 自動化模板 | Darrell 自動化工具");
+                            document.getElementById('meta-description').setAttribute('content', 
+                                model.description.substring(0, 150) + (model.description.length > 150 ? '...' : ''));
+                            document.getElementById('meta-url').setAttribute('content', 
+                                'https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=' + modelId);
+                                
+                            document.getElementById('meta-twitter-title').setAttribute('content', 
+                                model.title + " - n8n 自動化模板 | Darrell 自動化工具");
+                            document.getElementById('meta-twitter-description').setAttribute('content', 
+                                model.description.substring(0, 150) + (model.description.length > 150 ? '...' : ''));
+                            
+                            // 更新 Schema.org 結構化數據
+                            var schemaData = {
+                                "@context": "https://schema.org",
+                                "@type": "SoftwareApplication",
+                                "name": model.title,
+                                "applicationCategory": "工作流程自動化",
+                                "operatingSystem": "跨平台",
+                                "offers": {
+                                    "@type": "Offer",
+                                    "price": "0",
+                                    "priceCurrency": "TWD"
+                                },
+                                "description": model.description,
+                                "datePublished": model.createdAt,
+                                "dateModified": model.updatedAt,
+                                "keywords": model.tags.join(", "),
+                                "url": 'https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=' + modelId
+                            };
+                            
+                            var schemaScript = document.getElementById('schema-data');
+                            if (schemaScript) {
+                                schemaScript.textContent = JSON.stringify(schemaData, null, 2);
+                            }
+                        }
+                    })
+                    .catch(function(error) {
+                        console.error('預載模型資料失敗:', error);
+                    });
+            }
+        })();
+    </script>
+    
+    <!-- 基本標籤 -->
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/n8n-demo.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <!-- 載入 Web Components 支援 -->
+    <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2.0.0/webcomponentsloader.js"></script>
+    <script src="https://www.unpkg.com/lit@2.0.0-rc.2/polyfill-support.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@n8n_io/n8n-demo-component/n8n-demo.bundled.js"></script>
+    <!-- 添加自動化模板視覺化工具 -->
+    <script src="js/workflow-visualizer.js"></script>
+    <script src="js/header.js"></script>
+    <style>
+        :root {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --accent-color: #ea4b71;  /* 玫瑰紅 */
+            --accent-hover: #d63d61;  /* 深玫瑰紅 */
+            --border-color: #404040;
+            --card-hover: #3d3d3d;
+            --title-color: #ff8c00;   /* 橘色 */
+            --tag-bg: rgba(255, 140, 0, 0.1);  /* 半透明橘色 */
+            --tag-text: #ff8c00;      /* 橘色 */
+            --active-bg: #ea4b71;     /* 保持按鈕為玫瑰紅 */
+            --active-text: #ffffff;
+            --code-bg: #2d2d2d;
+            --n8n-workflow-min-height: 800px;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: var(--text-primary);
+        }
+
+        .container {
+            max-width: 90%;
+            margin: 2rem auto;
+            padding: 2rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .content-wrapper {
+            background-color: var(--bg-secondary);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            padding: 2rem;
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 200px minmax(0, 1fr);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .sidebar {
+            background-color: var(--bg-primary);
+            border-radius: 8px;
+            padding: 1rem;
+            position: sticky;
+            top: 5rem;
+            height: fit-content;
+            border: 1px solid var(--border-color);
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 0.9rem;
+        }
+
+        .main-content {
+            background-color: var(--bg-primary);
+            border-radius: 8px;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            width: 100%;
+            box-sizing: border-box;
+            min-width: 0;
+        }
+
+        .model-title {
+            color: var(--title-color);
+            font-size: 2rem;
+            margin: 0 0 1.5rem 0;
+            font-weight: 600;
+        }
+
+        .model-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            white-space: pre-wrap;
+        }
+
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .tag {
+            background-color: #2f2f2f;
+            color: var(--text-secondary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .workflow-section {
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .workflow-download {
+            position: absolute;
+            top: -3rem;
+            right: 0;
+            z-index: 1;
+        }
+
+        .workflow-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .workflow-header h2 {
+            margin: 0;
+        }
+
+        .workflow-preview {
+            background-color: var(--bg-primary);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 0;
+            min-height: 800px;
+            position: relative;
+        }
+
+        .workflow-fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--bg-primary);
+            z-index: 1000;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+
+        .fullscreen-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .fullscreen-button svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .exit-fullscreen {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1001;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: block;
+            padding: 0.8rem 1rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .sidebar-nav a:hover {
+            background-color: var(--tag-bg);
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
+        .sidebar-nav a.active {
+            background-color: var(--active-bg);
+            color: var(--active-text);
+            border-color: var(--active-bg);
+            box-shadow: 0 2px 8px rgba(234, 75, 113, 0.2);
+        }
+
+        @media (max-width: 1024px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+                margin-bottom: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+                margin: 1rem;
+            }
+
+            .content-wrapper {
+                padding: 1rem;
+            }
+
+            .main-content {
+                padding: 1rem;
+            }
+
+            .model-title {
+                font-size: 1.5rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .social-buttons {
+                justify-content: center;
+            }
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        .text-link {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .text-link:hover {
+            text-decoration: underline;
+        }
+
+        .action-button {
+            background-color: var(--accent-color);
+            color: var(--text-primary);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 1rem 0;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .action-button:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(234, 75, 113, 0.2);
+        }
+
+        .example-cards {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .example-card {
+            background-color: var(--bg-secondary);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            width: 100%;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        .example-card:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 1px var(--accent-color);
+        }
+
+        .example-card h3 {
+            color: var(--accent-color);
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .example-card pre {
+            background-color: var(--bg-primary);
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+
+        .example-card code {
+            color: var(--text-secondary);
+            font-family: monospace;
+        }
+
+        .workflow-details {
+            margin-top: 2rem;
+        }
+
+        .advanced-settings ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .advanced-settings li {
+            margin-bottom: 1.5rem;
+        }
+
+        .advanced-settings strong {
+            color: var(--title-color);
+        }
+
+        pre {
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        code {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .metadata {
+            margin: 1rem 0;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .date {
+            margin-right: 1.5rem;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .date::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+
+        /* 添加預覽區域的樣式 */
+        .preview-placeholder {
+            width: 100%;
+            height: 100%;
+            min-height: var(--n8n-workflow-min-height);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            text-align: center;
+            cursor: pointer;
+            background-color: var(--bg-secondary);
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .preview-placeholder:hover {
+            background-color: var(--card-hover);
+            border-color: var(--accent-color);
+            color: var(--text-primary);
+        }
+
+        .preview-placeholder svg {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .preview-placeholder .preview-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        n8n-demo {
+            height: 800px !important;
+            min-height: 800px !important;
+            max-height: 800px !important;
+        }
+
+        /* 覆蓋 a 標籤的預設樣式 */
+        a {
+            color: inherit; /* 繼承父元素的顏色 */
+            text-decoration: none; /* 移除下劃線 */
+            cursor: default; /* 設置為預設鼠標樣式 */
+        }
+
+        /* 特別針對標題的 a 標籤 */
+        header a {
+            color: inherit; /* 繼承父元素的顏色 */
+            text-decoration: none; /* 移除下劃線 */
+            cursor: pointer; /* 設置為手型鼠標樣式 */
+        }
+
+        /* 確保 h1 內的 span 保持原來的顏色 */
+        header a h1 span {
+            color: #ea4b71; /* 保持玫瑰紅顏色 */
+        }
+    </style>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WH2WS5GF');</script>
+</head>
+<body>
+    <header>
+        <h1>Darrell <span style="color: #ea4b71;">n8n</span> 模板分享</h1>
+        <button class="menu-toggle" aria-label="選單">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-buttons">
+            <a href="visualize.html" class="nav-button">視覺化工具</a>
+            <a href="models.html" class="nav-button">模板列表</a>
+            <a href="contact.html" class="nav-button">聯絡我們</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="content-wrapper">
+            <aside class="sidebar">
+                <nav>
+                    <ul class="sidebar-nav">
+                        <li><a href="#overview" class="active">概述</a></li>
+                        <li><a href="#setup">設置說明</a></li>
+                        <li><a href="#workflow">自動化模板</a></li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <main class="main-content">
+                <section id="overview">
+                    <h1 class="model-title">基礎自動化自動化模板</h1>
+                    <div class="tag-container">
+                        <span class="tag">入門級</span>
+                        <span class="tag">自動化</span>
+                        <span class="tag">基礎流程</span>
+                    </div>
+                    <div class="model-description">
+                        <p>適合初學者的基礎自動化流程，包含最常用的觸發器和動作。這個自動化模板展示了如何：</p>
+                        <ul>
+                            <li>設置基本的觸發條件</li>
+                            <li>處理和轉換數據</li>
+                            <li>執行自動化操作</li>
+                            <li>處理執行結果</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="setup" style="display: none;">
+                    <h2>設置說明</h2>
+                    <div class="metadata">
+                        <span class="date" id="createdAt">載入中...</span>
+                        <span class="date" id="updatedAt">載入中...</span>
+                    </div>
+                    <div id="setup-content">
+                        <p>載入中...</p>
+                    </div>
+                </section>
+
+                <section id="workflow" style="display: none;">
+                    <div class="workflow-header">
+                        <h2>自動化模板</h2>
+                        <button id="downloadWorkflowBtn" class="action-button" style="margin: 0;">
+                            下載模板 JSON
+                        </button>
+                    </div>
+                    <div class="workflow-section">
+                        <div class="workflow-preview">
+                            <div id="workflow-visualization" class="preview-placeholder" onclick="loadWorkflowVisualization()">
+                                <div class="preview-content">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+                                    </svg>
+                                    <span>點擊載入模板</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>                
+            </main>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="copyright">© 2025 DarrellTW. All rights reserved.</div>
+            <div class="social-buttons">
+                <a href="https://www.linkedin.com/in/darrell-wang-tw/" class="social-button" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                </a>
+                <a href="mailto:darrell.tw.martech@gmail.com" class="social-button" target="_blank" rel="noopener noreferrer" title="Gmail">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/darrell_tw_/" class="social-button" target="_blank" rel="noopener noreferrer" title="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+                <a href="https://www.threads.net/@darrell_tw_" class="social-button" target="_blank" rel="noopener noreferrer" title="Threads">
+                    <svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 440 511.43"><path fill="#fff" fill-rule="nonzero" d="M342.383 237.038a177.282 177.282 0 00-6.707-3.046c-3.948-72.737-43.692-114.379-110.429-114.805-38.505-.255-72.972 15.445-94.454 48.041l36.702 25.178c15.265-23.159 39.221-28.096 56.864-28.096.204 0 .408 0 .61.002 21.974.14 38.555 6.529 49.287 18.987 7.81 9.071 13.034 21.606 15.621 37.425-19.483-3.311-40.553-4.329-63.077-3.038-63.45 3.655-104.24 40.661-101.501 92.08 1.391 26.083 14.385 48.523 36.587 63.181 18.772 12.391 42.95 18.45 68.077 17.079 33.183-1.819 59.215-14.48 77.377-37.63 13.793-17.58 22.516-40.363 26.368-69.069 15.814 9.544 27.535 22.103 34.007 37.2 11.006 25.665 11.648 67.84-22.764 102.223-30.15 30.121-66.392 43.151-121.164 43.554-60.758-.45-106.708-19.935-136.583-57.915-27.976-35.562-42.434-86.93-42.973-152.674.539-65.746 14.997-117.114 42.973-152.676 29.875-37.979 75.824-57.463 136.582-57.914 61.197.455 107.948 20.033 138.967 58.195 15.21 18.713 26.676 42.248 34.236 69.688L440 161.532c-9.163-33.775-23.582-62.881-43.203-87.017C357.031 25.59 298.872.519 223.936 0h-.3C148.851.518 91.344 25.683 52.709 74.795 18.331 118.499.598 179.308.002 255.535l-.002.18.002.18c.596 76.225 18.329 137.037 52.707 180.741 38.635 49.11 96.142 74.277 170.927 74.794h.3c66.486-.462 113.352-17.868 151.96-56.442 50.51-50.463 48.99-113.718 32.342-152.549-11.945-27.847-34.716-50.463-65.855-65.401zM227.587 344.967c-27.808 1.567-56.699-10.916-58.124-37.651-1.056-19.823 14.108-41.942 59.831-44.577a266.87 266.87 0 0115.422-.45c16.609 0 32.145 1.613 46.271 4.701-5.268 65.798-36.172 76.483-63.4 77.977z"/></svg>
+                </a>
+                <a href="https://www.darrelltw.com/" class="social-button" target="_blank" rel="noopener noreferrer" title="Website">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                    </svg>
+                </a>
+                <a href="https://buymeacoffee.com/darrellmartechtw" class="social-button" target="_blank" rel="noopener noreferrer" title="Buy Me a Coffee">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 從 JSON 檔案載入模板資料
+        async function loadModelData() {
+            try {
+                const response = await fetch('data/workflow-models.json');
+                const data = await response.json();
+                return data.models;
+            } catch (error) {
+                console.error('載入模板資料失敗:', error);
+                return null;
+            }
+        }
+
+        // 初始化頁面
+        async function updatePageContent(modelId) {
+            try {
+                // 設置所有區塊為隱藏狀態
+                document.querySelectorAll('main section').forEach(section => {
+                    section.style.display = 'none';
+                });
+                
+                // 只顯示概述區塊，並設置載入狀態
+                document.getElementById('overview').style.display = 'block';
+                document.querySelector('.model-title').textContent = '載入中...';
+                document.querySelector('.model-description').innerHTML = '<p>載入中...</p>';
+                document.querySelector('.tag-container').innerHTML = '<span class="tag">載入中...</span>';
+
+                // 載入模板資料
+                const models = await loadModelData();
+                if (!models || !models[modelId]) {
+                    throw new Error('找不到模板資料');
+                }
+
+                const model = models[modelId];
+
+                // 確保 dataLayer 存在，如果不存在則創建它
+                window.dataLayer = window.dataLayer || [];
+
+                // 確保所有必要的屬性都存在，如果不存在則使用預設值
+                const safeModel = {
+                    title: model.title || '未命名自動化模板',
+                    description: model.description || '暫無描述',
+                    features: Array.isArray(model.features) ? model.features : [],
+                    tags: Array.isArray(model.tags) ? model.tags : ['基礎'],
+                    createdAt: model.createdAt || '未知',
+                    updatedAt: model.updatedAt || '未知',
+                    setup: Array.isArray(model.setup) ? model.setup : [],
+                    examples: Array.isArray(model.examples) ? model.examples : [],
+                    advanced: {
+                        description: model.advanced?.description || '暫無進階設定',
+                        settings: Array.isArray(model.advanced?.settings) ? model.advanced.settings : []
+                    }
+                };
+
+                // 更新頁面標題和 Meta 標籤
+                document.title = `${safeModel.title} - n8n 自動化模板 | Darrell 自動化工具`;
+                
+                // 更新描述 meta 標籤
+                const metaDesc = document.querySelector('meta[name="description"]');
+                if (metaDesc) {
+                    metaDesc.content = safeModel.description.substring(0, 150) + (safeModel.description.length > 150 ? '...' : '');
+                }
+                
+                // 更新 Open Graph 標籤
+                document.getElementById('meta-title').setAttribute('content', `${safeModel.title} - n8n 自動化模板 | Darrell 自動化工具`);
+                document.getElementById('meta-description').setAttribute('content', safeModel.description.substring(0, 150) + (safeModel.description.length > 150 ? '...' : ''));
+                document.getElementById('meta-url').setAttribute('content', `https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=${modelId}`);
+                
+                // 更新 Twitter Card 標籤
+                document.getElementById('meta-twitter-title').setAttribute('content', `${safeModel.title} - n8n 自動化模板 | Darrell 自動化工具`);
+                document.getElementById('meta-twitter-description').setAttribute('content', safeModel.description.substring(0, 150) + (safeModel.description.length > 150 ? '...' : ''));
+                
+                // 更新規範連結
+                const canonicalLink = document.getElementById('canonical-link');
+                if (canonicalLink) {
+                    canonicalLink.href = `https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=${modelId}`;
+                }
+                
+                // 更新 Schema.org 結構化數據
+                const schemaData = {
+                    "@context": "https://schema.org",
+                    "@type": "SoftwareApplication",
+                    "name": safeModel.title,
+                    "applicationCategory": "工作流程自動化",
+                    "operatingSystem": "跨平台",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "TWD"
+                    },
+                    "description": safeModel.description,
+                    "datePublished": safeModel.createdAt,
+                    "dateModified": safeModel.updatedAt,
+                    "keywords": safeModel.tags.join(", "),
+                    "url": `https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=${modelId}`
+                };
+                
+                // 更新結構化數據 script 標籤
+                const schemaScript = document.getElementById('schema-data');
+                if (schemaScript) {
+                    schemaScript.textContent = JSON.stringify(schemaData, null, 2);
+                }
+
+                // 更新標題和描述
+                document.querySelector('.model-title').textContent = safeModel.title;
+                document.querySelector('.model-description').innerHTML = `
+                    <p>${safeModel.description.replace(/\n/g, '<br>')}</p>
+                    ${safeModel.features.length > 0 ? `
+                        <ul>
+                            ${safeModel.features.map(feature => `<li>${feature.replace(/\n/g, '<br>')}</li>`).join('')}
+                        </ul>
+                    ` : ''}
+                `;
+
+                // 更新標籤
+                document.querySelector('.tag-container').innerHTML = 
+                    safeModel.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+
+                // 顯示其他區塊
+                document.querySelectorAll('main section').forEach(section => {
+                    section.style.display = 'block';
+                });
+
+                // 更新日期
+                document.getElementById('createdAt').textContent = `建立於：${safeModel.createdAt}`;
+                document.getElementById('updatedAt').textContent = `更新於：${safeModel.updatedAt}`;
+
+                // 更新設置說明
+                document.getElementById('setup-content').innerHTML = model.setup ? `
+                    <p>此自動化模板包含以下設置步驟：</p>
+                    <ol>
+                        ${model.setup.steps.map(step => `
+                            <li>
+                                <h3>${step.title || '未命名步驟'}</h3>
+                                <p>${step.description || '暫無描述'}</p>
+                                ${step.options ? `
+                                    <ul>
+                                        ${step.options.map(option => `<li>${option}</li>`).join('')}
+                                    </ul>
+                                ` : ''}
+                            </li>
+                        `).join('')}
+                    </ol>
+                    <div class="setup-prerequisites">
+                        <h3>前置需求</h3>
+                        <p>${model.setup.prerequisites}</p>
+                    </div>
+                ` : '<p>暫無設置說明</p>';
+
+                // 準備自動化模板預覽區域
+                const container = document.getElementById('workflow-visualization');
+                container.innerHTML = `
+                    <div class="preview-placeholder" onclick="loadWorkflowVisualization()">
+                        <div class="preview-content">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+                            </svg>
+                            <span>點擊載入自動化模板預覽</span>
+                        </div>
+                    </div>
+                `;
+
+                // 新增下載模板 JSON 按鈕的點擊事件處理
+                document.getElementById('downloadWorkflowBtn').addEventListener('click', async function() {
+                    try {
+                        const response = await fetch(`data/workflows/${modelId}.json`);
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        const workflowData = await response.json();
+                        
+                        const blob = new Blob([JSON.stringify(workflowData, null, 2)], { type: 'application/json' });
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = `${modelId}.json`;
+                        a.click();
+                        URL.revokeObjectURL(url);
+                    } catch (error) {
+                        console.error('下載模板 JSON 失敗:', error);
+                        alert('無法下載模板 JSON，請稍後再試。');
+                    }
+                });
+
+                // 將模型數據推送到 dataLayer
+                window.dataLayer.push({
+                    'event': 'modelLoaded',
+                    'modelData': safeModel
+                });
+
+            } catch (error) {
+                console.error('更新頁面內容失敗:', error);
+                // 顯示錯誤訊息
+                document.querySelector('.model-title').textContent = '載入失敗';
+                document.querySelector('.model-description').innerHTML = '<p>無法載入模板資料，請稍後再試。</p>';
+                document.querySelector('.tag-container').innerHTML = '';
+            }
+        }
+
+        // 當頁面載入完成時初始化
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const modelId = urlParams.get('model') || 'basic';
+            updatePageContent(modelId);
+        }
+
+        // 載入自動化模板視覺化
+        async function loadWorkflowVisualization() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const modelId = urlParams.get('model') || 'basic';
+            const container = document.getElementById('workflow-visualization');
+            
+            // 如果已經載入過，就不要重複載入
+            if (container.querySelector('n8n-demo')) {
+                return;
+            }
+
+            // 顯示載入中狀態
+            container.innerHTML = '<div class="preview-placeholder">載入自動化模板中...</div>';
+            
+            try {
+                // 載入自動化模板數據
+                const response = await fetch(`data/workflows/${modelId}.json`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const workflowData = await response.json();
+                
+                // 創建 n8n-demo 元素
+                const n8nDemo = document.createElement('n8n-demo');
+                n8nDemo.setAttribute('workflow', JSON.stringify(workflowData));
+                
+                // 清空容器並添加 n8n-demo 元素
+                container.innerHTML = '';
+                container.appendChild(n8nDemo);
+                
+                // 移除點擊事件和預覽樣式
+                container.onclick = null;
+                container.classList.remove('preview-placeholder');
+                
+            } catch (error) {
+                console.error('載入自動化模板失敗:', error);
+                container.innerHTML = `
+                    <div class="preview-placeholder" onclick="loadWorkflowVisualization()">
+                        <div class="preview-content">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                            </svg>
+                            <span>載入失敗，點擊重試</span>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // 處理導航點擊事件
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.sidebar-nav a');
+            const sections = document.querySelectorAll('main section');
+
+            // 顯示預設區塊
+            showSection('overview');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // 移除所有 active 類別
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    
+                    // 添加 active 類別到當前點擊的連結
+                    this.classList.add('active');
+                    
+                    // 獲取目標區塊 ID
+                    const targetId = this.getAttribute('href').substring(1);
+                    
+                    // 顯示目標區塊
+                    showSection(targetId);
+                });
+            });
+        });
+
+        // 顯示指定區塊
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('main section');
+            sections.forEach(section => {
+                section.style.display = section.id === sectionId ? 'block' : 'none';
+            });
+        }        
+    </script>
+</body>
+</html> 
