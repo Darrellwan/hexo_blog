@@ -728,6 +728,82 @@
                     }
                 }
             }
+        },
+        "demo_limit_the_workflow_execution_by_supabase": {
+            "id": "demo_limit_the_workflow_execution_by_supabase",
+            "title": "Supabase限制工作流程執行次數",
+            "description": "這個工作流程展示如何使用Supabase數據庫來限制n8n工作流程的執行次數。系統會在Supabase資料表中記錄和追蹤每個工作流程的執行次數，並在達到設定的最大次數（預設50次）後停止執行。\n\n主要功能：\n\n執行次數追蹤：記錄每個工作流程的執行次數\n資料庫整合：使用Supabase儲存和檢索計數器資料\n條件判斷：自動檢查是否超過執行限制\n可自訂上限：輕鬆調整最大執行次數",
+            "detailedDescription": [
+                "使用Supabase資料庫記錄工作流程執行次數",
+                "當執行次數達到上限（預設50次）時自動停止",
+                "展示Supabase與n8n的整合方式",
+                "提供清晰的條件判斷和資料操作流程",
+                "包含完整的表結構和流程說明",
+                "支援可擴展的使用者限制功能"
+            ],
+            "tags": ["自動化", "資料庫", "Supabase", "執行限制", "計數器", "條件判斷", "範例"],
+            "nodes": 9,
+            "createdAt": "2025-04-17",
+            "updatedAt": "2025-04-17",
+            "setup": {
+                "prerequisites": "需要設定Supabase資料庫和API存取權限",
+                "steps": [
+                    {
+                        "title": "Supabase設定",
+                        "description": "設定Supabase資料庫和建立必要的資料表",
+                        "options": [
+                            "建立Supabase專案",
+                            "設定API存取權限",
+                            "建立journey_counters資料表"
+                        ]
+                    },
+                    {
+                        "title": "資料表結構設定",
+                        "description": "使用以下SQL語句建立資料表",
+                        "options": [
+                            "CREATE TABLE journey_counters (journey_id TEXT PRIMARY KEY, count INTEGER NOT NULL DEFAULT 0, updated_at timestamptz NOT NULL DEFAULT now());"
+                        ]
+                    }
+                ]
+            },
+            "examples": [
+                {
+                    "title": "基本設定範例",
+                    "description": "展示如何設定基本的執行限制流程",
+                    "code": {
+                        "trigger": "manual",
+                        "actions": [
+                            "check_counter",
+                            "create_if_not_exists",
+                            "verify_limit",
+                            "execute_workflow",
+                            "update_counter"
+                        ]
+                    }
+                }
+            ],
+            "fields": {
+                "supabase": {
+                    "title": "Supabase設定",
+                    "fields": {
+                        "tableId": {
+                            "type": "string",
+                            "description": "Supabase資料表名稱",
+                            "default": "journey_counters"
+                        }
+                    }
+                },
+                "limit": {
+                    "title": "限制設定",
+                    "fields": {
+                        "maxExecutions": {
+                            "type": "number",
+                            "description": "最大執行次數",
+                            "default": 50
+                        }
+                    }
+                }
+            }
         }
     }
 } 
