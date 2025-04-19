@@ -86,6 +86,50 @@
             border-radius: 3px;
         }
         
+        /* 排序選項樣式 */
+        .sort-options {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+        
+        .sort-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        
+        .sort-btn:hover {
+            border-color: var(--accent-color);
+            color: var(--text-primary);
+        }
+        
+        .sort-btn.active {
+            background: rgba(255, 140, 0, 0.1);
+            border-color: var(--title-color);
+            color: var(--title-color);
+        }
+        
+        .sort-btn svg {
+            width: 14px;
+            height: 14px;
+            opacity: 0.7;
+        }
+        
+        .sort-btn.active svg {
+            opacity: 1;
+        }
+        
         .model-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -321,6 +365,37 @@
         <div class="page-header">
             <h2 class="page-title">n8n 自動化模板列表</h2>
         </div>
+        
+        <!-- 排序選項區域 -->
+        <div class="sort-options">
+            <button class="sort-btn active" data-sort="default">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                </svg>
+                默認排序
+            </button>
+            <button class="sort-btn" data-sort="title-asc">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M10.082 5.629 9.664 7H8.598l1.789-5.332h1.234L13.402 7h-1.12l-.419-1.371h-1.781zm1.57-.785L11 2.687h-.047l-.652 2.157h1.351z"/>
+                    <path d="M12.96 14H9.028v-.691l2.579-3.72v-.054H9.098v-.867h3.785v.691l-2.567 3.72v.054h2.645V14zm-8.46-.5a.5.5 0 0 1-1 0V3.707L2.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.498.498 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L4.5 3.707V13.5z"/>
+                </svg>
+                標題 (A-Z)
+            </button>
+            <button class="sort-btn" data-sort="nodes-desc">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M3 2h10a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/>
+                    <path d="M9 9V5H7v4H5.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1H9z"/>
+                </svg>
+                節點數 (多到少)
+            </button>
+            <button class="sort-btn" data-sort="date-desc">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M11 2.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0zM4.5 7.5A.5.5 0 0 0 4 8v4a.5.5 0 0 0 1 0V8a.5.5 0 0 0-.5-.5zm7 0a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 1 0V8a.5.5 0 0 0-.5-.5z"/>
+                </svg>
+                更新日期 (新到舊)
+            </button>
+        </div>
+        
         <div class="model-grid"></div>
     </div>
 
@@ -370,6 +445,21 @@
     <script type="application/ld+json" id="workflow-models-schema"></script>
 
     <script>
+        const SORT_CONFIG = {
+            defaultSortBy: 'none', // 可選值: 'nodes', 'date', 'title', 'none'
+            defaultSortDirection: 'desc', // 可選值: 'asc', 'desc'
+            
+            pinnedModels: [
+                'n8n_remember_to_drink_water', // 最優先顯示
+                'creditcard'                    // 第二優先顯示
+            ],
+            
+            modelWeights: {
+                // 'model_id': 100, // 高權重模板示例
+                // 'another_id': 50 // 中等權重模板示例
+            }
+        };
+        
         function showLoading() {
             document.getElementById('loading-overlay').style.display = 'flex';
         }
@@ -396,12 +486,12 @@
         
         function createModelCard(model) {
             return `
-                <div class="model-card">
+                <div class="model-card" data-nodes="${model.nodes || 0}" data-title="${model.title}" data-date="${model.updatedAt}">
                     <div class="card-banner"></div>
                     <div class="card-header">
                         <h3 class="card-title">${model.title}</h3>
                     </div>
-                    <div class="card-image">
+                    <div class="card-image" id="card-image-${model.id}">
                         即將上傳 1:1 比例圖片
                     </div>
                     <div class="card-content">
@@ -436,6 +526,39 @@
             return descStr.split('\n').join(' ');
         }
         
+        // 檢查圖片是否存在，存在則替換顯示，不存在則保持原樣
+        function checkImageExists(modelId) {
+            // 修正圖片路徑為 data/bg/ 和 .webp 格式
+            const imageUrl = `data/bg/${modelId}.webp`;
+            const imageContainer = document.getElementById(`card-image-${modelId}`);
+            if (!imageContainer) return;
+            
+            const img = new Image();
+            img.onload = function() {
+                // 圖片存在，替換顯示
+                imageContainer.innerHTML = `<img src="${imageUrl}" alt="模板圖片" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">`;
+            };
+            img.onerror = function() {
+                // 可選：檢查其他可能的格式 (jpg, png 等)
+                const jpgUrl = `data/bg/${modelId}.jpg`;
+                const jpgImg = new Image();
+                jpgImg.onload = function() {
+                    imageContainer.innerHTML = `<img src="${jpgUrl}" alt="模板圖片" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">`;
+                };
+                jpgImg.onerror = function() {
+                    const pngUrl = `data/bg/${modelId}.png`;
+                    const pngImg = new Image();
+                    pngImg.onload = function() {
+                        imageContainer.innerHTML = `<img src="${pngUrl}" alt="模板圖片" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">`;
+                    };
+                    pngImg.src = pngUrl;
+                };
+                jpgImg.src = jpgUrl;
+                // 如果所有格式都不存在，保持原始文字
+            };
+            img.src = imageUrl;
+        }
+        
         async function updatePageContent() {
             const modelGrid = document.querySelector('.model-grid');
             try {
@@ -445,8 +568,77 @@
                 const itemListElements = [];
                 let position = 1;
                 
-                Object.entries(models).forEach(([id, model]) => {
+                // 創建模型陣列，方便後續排序
+                let modelEntries = Object.entries(models).map(([id, model]) => {
                     model.id = id;
+                    return { id, model };
+                });
+                
+                // 智能排序模型
+                modelEntries.sort((a, b) => {
+                    // 1. 檢查是否為置頂模型 (pinnedModels)
+                    const aPinIndex = SORT_CONFIG.pinnedModels.indexOf(a.id);
+                    const bPinIndex = SORT_CONFIG.pinnedModels.indexOf(b.id);
+                    
+                    // 如果兩個都是置頂模型，按置頂順序排序
+                    if (aPinIndex !== -1 && bPinIndex !== -1) {
+                        return aPinIndex - bPinIndex;
+                    }
+                    
+                    // 如果只有一個是置頂模型，置頂模型優先
+                    if (aPinIndex !== -1) return -1;
+                    if (bPinIndex !== -1) return 1;
+                    
+                    // 2. 檢查模型自帶的優先級 (priority)
+                    const aPriority = a.model.priority || 0;
+                    const bPriority = b.model.priority || 0;
+                    
+                    // 如果兩個模型都有優先級且不相等，按優先級排序
+                    if (aPriority !== bPriority) {
+                        return bPriority - aPriority; // 高優先級在前
+                    }
+                    
+                    // 3. 檢查特殊權重設定 (modelWeights)
+                    const aWeight = SORT_CONFIG.modelWeights[a.id] || 0;
+                    const bWeight = SORT_CONFIG.modelWeights[b.id] || 0;
+                    
+                    if (aWeight !== bWeight) {
+                        return bWeight - aWeight; // 高權重在前
+                    }
+                    
+                    // 4. 使用默認排序方式
+                    if (SORT_CONFIG.defaultSortBy === 'none') {
+                        return 0; // 不做額外排序
+                    }
+                    
+                    // 根據默認排序方式排序
+                    const isAsc = SORT_CONFIG.defaultSortDirection === 'asc';
+                    
+                    switch (SORT_CONFIG.defaultSortBy) {
+                        case 'nodes':
+                            const aNodes = a.model.nodes || 0;
+                            const bNodes = b.model.nodes || 0;
+                            return isAsc ? aNodes - bNodes : bNodes - aNodes;
+                        
+                        case 'date':
+                            const aDate = a.model.updatedAt || a.model.createdAt || '';
+                            const bDate = b.model.updatedAt || b.model.createdAt || '';
+                            return isAsc 
+                                ? aDate.localeCompare(bDate)
+                                : bDate.localeCompare(aDate);
+                        
+                        case 'title':
+                            return isAsc 
+                                ? a.model.title.localeCompare(b.model.title)
+                                : b.model.title.localeCompare(a.model.title);
+                            
+                        default:
+                            return 0;
+                    }
+                });
+                
+                // 渲染排序後的模型卡片
+                modelEntries.forEach(({ id, model }) => {
                     modelGrid.innerHTML += createModelCard(model);
                     itemListElements.push({
                         "@type": "ListItem",
@@ -461,6 +653,11 @@
                     });
                 });
                 
+                // 檢查每個模型是否有圖片
+                modelEntries.forEach(({ id }) => {
+                    checkImageExists(id);
+                });
+                
                 const schemaData = {
                     "@context": "https://schema.org",
                     "@type": "ItemList",
@@ -469,6 +666,12 @@
                 
                 const schemaScript = document.getElementById('workflow-models-schema');
                 schemaScript.textContent = JSON.stringify(schemaData, null, 2);
+                
+                // 隱藏排序按鈕區域 (因為我們使用智能排序)
+                const sortOptions = document.querySelector('.sort-options');
+                if (sortOptions) {
+                    sortOptions.style.display = 'none';
+                }
             } catch (error) {
                 console.error('更新頁面內容失敗:', error);
                 modelGrid.innerHTML = `

@@ -1,5 +1,125 @@
 {
     "models": {
+        "n8n_threads_fetch_data": {
+            "id": "n8n_threads_fetch_data",
+            "title": "Threads 數據自動抓取與分析",
+            "description": "這個工作流程自動化抓取 Threads 平台的帳號數據，包括貼文互動數據和用戶追蹤者統計。系統會定期從 Threads API 獲取資料，並將其儲存到 Google 試算表中，方便後續分析和視覺化。\n\n主要功能：\n\n貼文數據抓取：獲取所有發布貼文的詳細資訊\n互動數據分析：收集每篇貼文的觀看次數、讚好、回覆、轉發等數據\n用戶洞察：追蹤粉絲增長和每日互動統計\nGoogle 試算表整合：將所有數據自動儲存到結構化表格中",
+            "detailedDescription": [
+                "自動抓取 Threads 帳號所有貼文資料",
+                "收集每篇貼文的互動數據（觀看、讚好、回覆、轉發）",
+                "追蹤每日粉絲增長數據",
+                "自動儲存到 Google Sheets 進行分析",
+                "支援定時自動更新功能"
+            ],
+            "tags": ["自動化", "社交媒體", "數據分析", "Threads", "Google Sheets"],
+            "nodes": 21,
+            "createdAt": "2025-03-06",
+            "updatedAt": "2025-03-06",
+            "setup": {
+                "prerequisites": "需要設定 Threads API Token 和 Google Sheets 的 API 存取權限",
+                "steps": [
+                    {
+                        "title": "Threads API 設定",
+                        "description": "設定 Threads API 存取權限",
+                        "options": [
+                            "建立 Query Auth Credential",
+                            "設定 Threads API Token",
+                            "測試 API 連接"
+                        ]
+                    },
+                    {
+                        "title": "Google Sheets 設定",
+                        "description": "準備數據儲存用的試算表",
+                        "options": [
+                            "建立新的試算表",
+                            "新增三個工作表：post、user_insights、user_follower_count",
+                            "設定存取權限"
+                        ]
+                    },
+                    {
+                        "title": "排程設定",
+                        "description": "設定自動執行排程",
+                        "options": [
+                            "設定每日執行時間",
+                            "調整時區設定",
+                            "設定錯誤通知"
+                        ]
+                    }
+                ]
+            },
+            "examples": [
+                {
+                    "title": "基本設定範例",
+                    "description": "展示如何設定基本的 Threads 數據擷取流程",
+                    "code": {
+                        "trigger": "schedule",
+                        "actions": [
+                            "fetch_posts",
+                            "fetch_post_insights",
+                            "fetch_user_insights",
+                            "save_to_sheets"
+                        ]
+                    }
+                }
+            ],
+            "fields": {
+                "threads": {
+                    "title": "Threads API 設定",
+                    "fields": {
+                        "apiToken": {
+                            "type": "string",
+                            "description": "Threads API Token",
+                            "example": "YOUR_THREADS_API_TOKEN"
+                        }
+                    }
+                },
+                "sheets": {
+                    "title": "Google Sheets 設定",
+                    "fields": {
+                        "spreadsheetId": {
+                            "type": "string",
+                            "description": "Google Sheets ID",
+                            "example": "122ElgZ83zduzaOyuyTiaetsbQkJ5NsOrPrFrF8_NhI0"
+                        },
+                        "postSheetName": {
+                            "type": "string",
+                            "description": "貼文數據工作表名稱",
+                            "default": "post"
+                        },
+                        "userInsightsSheetName": {
+                            "type": "string",
+                            "description": "用戶洞察工作表名稱",
+                            "default": "user_insights"
+                        },
+                        "followerCountSheetName": {
+                            "type": "string",
+                            "description": "粉絲數據工作表名稱",
+                            "default": "user_follower_count"
+                        }
+                    }
+                },
+                "schedule": {
+                    "title": "排程設定",
+                    "fields": {
+                        "hour": {
+                            "type": "number",
+                            "description": "每日執行小時 (0-23)",
+                            "default": 6
+                        },
+                        "minute": {
+                            "type": "number",
+                            "description": "每日執行分鐘 (0-59)",
+                            "default": 30
+                        },
+                        "timezone": {
+                            "type": "string",
+                            "description": "時區設定",
+                            "default": "Asia/Taipei"
+                        }
+                    }
+                }
+            }
+        },
         "n8n_remember_to_drink_water": {
             "id": "n8n_remember_to_drink_water",
             "title": "Slack自動喝水提醒",
@@ -161,6 +281,76 @@
                 }
             }
         },
+        "line_message": {
+            "id": "line_message",
+            "title": "Line Message API 和 Webhook 回覆",
+            "description": "這個工作流程自動化處理來自 Line 的訊息，並提供兩種主要功能：自動回覆和主動推送訊息。當使用者傳送訊息時，系統會自動回覆相同的內容；另外也可以透過 Line UID 主動發送訊息給特定使用者。\n\n主要功能：\n\n自動回覆：接收使用者訊息並自動回覆\n推送訊息：透過 Line UID 主動發送訊息給特定使用者",
+            "detailedDescription": [
+                "接收 Line Webhook 訊息",
+                "自動回覆相同內容給使用者",
+                "支援主動推送訊息功能",
+                "使用 Line Messaging API"
+            ],
+            "tags": ["自動化", "Line", "訊息", "Webhook", "API"],
+            "nodes": 7,
+            "createdAt": "2025-02-17",
+            "updatedAt": "2025-02-17",
+            "setup": {
+                "prerequisites": "需要設定 Line Channel 和取得 Channel Access Token",
+                "steps": [
+                    {
+                        "title": "Line Developer 設定",
+                        "description": "在 Line Developer Console 設定 Webhook URL",
+                        "options": [
+                            "建立 Line Channel",
+                            "設定 Webhook URL",
+                            "取得 Channel Access Token"
+                        ]
+                    }
+                ]
+            },
+            "examples": [
+                {
+                    "title": "基本設定範例",
+                    "description": "展示如何設定基本的 Line 訊息處理流程",
+                    "code": {
+                        "trigger": "webhook",
+                        "actions": [
+                            "check_message_type",
+                            "reply_message",
+                            "push_message"
+                        ]
+                    }
+                }
+            ],
+            "fields": {
+                "webhook": {
+                    "title": "Webhook 設定",
+                    "fields": {
+                        "path": {
+                            "type": "string",
+                            "description": "Webhook 路徑",
+                            "example": "638c118e-1c98-4491-b6ff-14e2e75380b6"
+                        }
+                    }
+                },
+                "line": {
+                    "title": "Line 設定",
+                    "fields": {
+                        "channelAccessToken": {
+                            "type": "string",
+                            "description": "Line Channel Access Token",
+                            "example": "YOUR_CHANNEL_ACCESS_TOKEN"
+                        },
+                        "lineUid": {
+                            "type": "string",
+                            "description": "接收者的 Line UID",
+                            "example": "Uxxxxxxxxxxxx"
+                        }
+                    }
+                }
+            }
+        },
         "creditcard": {
             "id": "creditcard",
             "title": "別忘記繳費:信用卡帳單自動建日曆提醒",
@@ -300,76 +490,6 @@
                 }
             }
         },
-        "line_message": {
-            "id": "line_message",
-            "title": "Line Message API 和 Webhook 回覆",
-            "description": "這個工作流程自動化處理來自 Line 的訊息，並提供兩種主要功能：自動回覆和主動推送訊息。當使用者傳送訊息時，系統會自動回覆相同的內容；另外也可以透過 Line UID 主動發送訊息給特定使用者。\n\n主要功能：\n\n自動回覆：接收使用者訊息並自動回覆\n推送訊息：透過 Line UID 主動發送訊息給特定使用者",
-            "detailedDescription": [
-                "接收 Line Webhook 訊息",
-                "自動回覆相同內容給使用者",
-                "支援主動推送訊息功能",
-                "使用 Line Messaging API"
-            ],
-            "tags": ["自動化", "Line", "訊息", "Webhook", "API"],
-            "nodes": 7,
-            "createdAt": "2025-02-17",
-            "updatedAt": "2025-02-17",
-            "setup": {
-                "prerequisites": "需要設定 Line Channel 和取得 Channel Access Token",
-                "steps": [
-                    {
-                        "title": "Line Developer 設定",
-                        "description": "在 Line Developer Console 設定 Webhook URL",
-                        "options": [
-                            "建立 Line Channel",
-                            "設定 Webhook URL",
-                            "取得 Channel Access Token"
-                        ]
-                    }
-                ]
-            },
-            "examples": [
-                {
-                    "title": "基本設定範例",
-                    "description": "展示如何設定基本的 Line 訊息處理流程",
-                    "code": {
-                        "trigger": "webhook",
-                        "actions": [
-                            "check_message_type",
-                            "reply_message",
-                            "push_message"
-                        ]
-                    }
-                }
-            ],
-            "fields": {
-                "webhook": {
-                    "title": "Webhook 設定",
-                    "fields": {
-                        "path": {
-                            "type": "string",
-                            "description": "Webhook 路徑",
-                            "example": "638c118e-1c98-4491-b6ff-14e2e75380b6"
-                        }
-                    }
-                },
-                "line": {
-                    "title": "Line 設定",
-                    "fields": {
-                        "channelAccessToken": {
-                            "type": "string",
-                            "description": "Line Channel Access Token",
-                            "example": "YOUR_CHANNEL_ACCESS_TOKEN"
-                        },
-                        "lineUid": {
-                            "type": "string",
-                            "description": "接收者的 Line UID",
-                            "example": "Uxxxxxxxxxxxx"
-                        }
-                    }
-                }
-            }
-        },
         "food_delivery_easy_expense": {
             "id": "food_delivery_easy_expense",
             "title": "外送記帳自動化",
@@ -438,126 +558,6 @@
                             "type": "string",
                             "description": "Slack 頻道 ID",
                             "example": "C0883CJM1UH"
-                        }
-                    }
-                }
-            }
-        },
-        "n8n_threads_fetch_data": {
-            "id": "n8n_threads_fetch_data",
-            "title": "Threads 數據自動抓取與分析",
-            "description": "這個工作流程自動化抓取 Threads 平台的帳號數據，包括貼文互動數據和用戶追蹤者統計。系統會定期從 Threads API 獲取資料，並將其儲存到 Google 試算表中，方便後續分析和視覺化。\n\n主要功能：\n\n貼文數據抓取：獲取所有發布貼文的詳細資訊\n互動數據分析：收集每篇貼文的觀看次數、讚好、回覆、轉發等數據\n用戶洞察：追蹤粉絲增長和每日互動統計\nGoogle 試算表整合：將所有數據自動儲存到結構化表格中",
-            "detailedDescription": [
-                "自動抓取 Threads 帳號所有貼文資料",
-                "收集每篇貼文的互動數據（觀看、讚好、回覆、轉發）",
-                "追蹤每日粉絲增長數據",
-                "自動儲存到 Google Sheets 進行分析",
-                "支援定時自動更新功能"
-            ],
-            "tags": ["自動化", "社交媒體", "數據分析", "Threads", "Google Sheets"],
-            "nodes": 21,
-            "createdAt": "2025-03-06",
-            "updatedAt": "2025-03-06",
-            "setup": {
-                "prerequisites": "需要設定 Threads API Token 和 Google Sheets 的 API 存取權限",
-                "steps": [
-                    {
-                        "title": "Threads API 設定",
-                        "description": "設定 Threads API 存取權限",
-                        "options": [
-                            "建立 Query Auth Credential",
-                            "設定 Threads API Token",
-                            "測試 API 連接"
-                        ]
-                    },
-                    {
-                        "title": "Google Sheets 設定",
-                        "description": "準備數據儲存用的試算表",
-                        "options": [
-                            "建立新的試算表",
-                            "新增三個工作表：post、user_insights、user_follower_count",
-                            "設定存取權限"
-                        ]
-                    },
-                    {
-                        "title": "排程設定",
-                        "description": "設定自動執行排程",
-                        "options": [
-                            "設定每日執行時間",
-                            "調整時區設定",
-                            "設定錯誤通知"
-                        ]
-                    }
-                ]
-            },
-            "examples": [
-                {
-                    "title": "基本設定範例",
-                    "description": "展示如何設定基本的 Threads 數據擷取流程",
-                    "code": {
-                        "trigger": "schedule",
-                        "actions": [
-                            "fetch_posts",
-                            "fetch_post_insights",
-                            "fetch_user_insights",
-                            "save_to_sheets"
-                        ]
-                    }
-                }
-            ],
-            "fields": {
-                "threads": {
-                    "title": "Threads API 設定",
-                    "fields": {
-                        "apiToken": {
-                            "type": "string",
-                            "description": "Threads API Token",
-                            "example": "YOUR_THREADS_API_TOKEN"
-                        }
-                    }
-                },
-                "sheets": {
-                    "title": "Google Sheets 設定",
-                    "fields": {
-                        "spreadsheetId": {
-                            "type": "string",
-                            "description": "Google Sheets ID",
-                            "example": "122ElgZ83zduzaOyuyTiaetsbQkJ5NsOrPrFrF8_NhI0"
-                        },
-                        "postSheetName": {
-                            "type": "string",
-                            "description": "貼文數據工作表名稱",
-                            "default": "post"
-                        },
-                        "userInsightsSheetName": {
-                            "type": "string",
-                            "description": "用戶洞察工作表名稱",
-                            "default": "user_insights"
-                        },
-                        "followerCountSheetName": {
-                            "type": "string",
-                            "description": "粉絲數據工作表名稱",
-                            "default": "user_follower_count"
-                        }
-                    }
-                },
-                "schedule": {
-                    "title": "排程設定",
-                    "fields": {
-                        "hour": {
-                            "type": "number",
-                            "description": "每日執行小時 (0-23)",
-                            "default": 6
-                        },
-                        "minute": {
-                            "type": "number",
-                            "description": "每日執行分鐘 (0-59)",
-                            "default": 30
-                        },
-                        "timezone": {
-                            "type": "string",
-                            "description": "時區設定",
-                            "default": "Asia/Taipei"
                         }
                     }
                 }
