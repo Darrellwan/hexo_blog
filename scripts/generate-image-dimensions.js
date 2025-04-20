@@ -189,8 +189,19 @@ async function main() {
     }
 }
 
-// 執行主函數
+// 將這段程式碼
 main().catch(err => {
     console.error('程式執行失敗:', err);
     process.exit(1);
-}); 
+});
+
+// 修改為：
+if (require.main === module) {
+  // 只有當此檔案被直接執行時才會運行
+  main().catch(err => {
+    console.error('程式執行失敗:', err);
+    process.exit(1);
+  });
+}
+
+module.exports = main; 

@@ -60,7 +60,16 @@ sitemapContent += `  <!-- 視覺化頁面 -->
   </url>
 </urlset>`;
 
-// 寫入 sitemap.xml
-fs.writeFileSync(sitemapPath, sitemapContent);
+// 把現有的執行邏輯包裝成函數
+function generateSitemap() {
+  // 寫入 sitemap.xml
+  fs.writeFileSync(sitemapPath, sitemapContent);
+  console.log('N8N Workflows Sitemap 已生成完成!');
+}
 
-console.log('N8N Workflows Sitemap 已生成完成!'); 
+// 只有當此檔案被直接執行時才會運行
+if (require.main === module) {
+  generateSitemap();
+}
+
+module.exports = generateSitemap; 

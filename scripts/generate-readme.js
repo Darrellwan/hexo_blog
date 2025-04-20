@@ -281,11 +281,12 @@ ${(() => {
   }
 }
 
-// 執行函數
-generateReadme().catch(err => {
-  console.error('頂層錯誤:', err);
-  process.exit(1);
-});
+if (require.main === module) {
+  // 只有當此檔案被直接執行時才會運行
+  generateReadme().catch(err => {
+    console.error('頂層錯誤:', err);
+    process.exit(1);
+  });
+}
 
-// 導出函數以便其他文件可以引用但不自動執行
 module.exports = generateReadme; 

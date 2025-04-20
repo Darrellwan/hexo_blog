@@ -66,4 +66,4 @@ async function testReadmeGeneration() {
   }
 }
 
-testReadmeGeneration(); 
+// testReadmeGeneration(); 

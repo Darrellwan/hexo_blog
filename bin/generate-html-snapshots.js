@@ -109,5 +109,13 @@ async function generateSnapshots() {
   console.log('HTML 快照生成完成!');
 }
 
-// 執行生成過程
-generateSnapshots().catch(console.error); 
+// 將這段程式碼
+generateSnapshots().catch(console.error);
+
+// 修改為：
+if (require.main === module) {
+  // 只有當此檔案被直接執行時才會運行
+  generateSnapshots().catch(console.error);
+}
+
+module.exports = generateSnapshots; 
