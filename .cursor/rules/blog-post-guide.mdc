@@ -1,0 +1,34 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# 部落格文章指南
+
+## 文章結構
+Hexo 部落格文章位於 `source/_posts/` 目錄中，使用 Markdown 格式。每篇文章都應包含以下 front matter:
+
+```yaml
+---
+title: 文章標題
+date: YYYY-MM-DD HH:MM:SS
+updated: YYYY-MM-DD HH:MM:SS
+tags: [標籤1, 標籤2]
+categories: [分類1, 分類2]
+thumbnail: /path/to/thumbnail.jpg
+description: 文章摘要
+---
+```
+
+## 創建新文章
+使用 `npm run add_post --posttitle="文章標題"` 來創建新文章，或使用 `npm run add_draft --posttitle="文章標題"` 來創建新草稿。
+
+## 文章資產
+文章的資產（如圖片）應放在與文章同名的目錄中：
+- 文章: `source/_posts/my-post.md`
+- 圖片: `source/_posts/my-post/image.jpg`
+
+在文章中引用圖片時，使用相對路徑：`![Alt text](image.jpg)`。
+
+## 預覽
+使用 `npm run server_custom` 來啟動本地伺服器，或使用 `npm run server_custom_draft` 來包含草稿。

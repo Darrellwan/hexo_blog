@@ -1,0 +1,33 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# 項目結構指南
+
+這是一個基於 Hexo 的部落格專案，主結構如下：
+
+- `source/`: 包含所有源文件
+  - `_posts/`: 部落格文章
+  - `_drafts/`: 草稿文章
+  - `tools/`: 工具頁面
+    - `n8n_template/`: n8n 工作流程模板網站
+- `themes/`: Hexo 主題
+- `public/`: 生成的靜態文件（由 Hexo 生成）
+- `scripts/`: 自定義腳本
+- `_config.yml`: Hexo 主配置文件
+- `main.yml`: 主要配置文件
+
+## 關鍵文件
+- 主配置文件: [_config.yml](mdc:_config.yml)
+- 包管理: [package.json](mdc:package.json)
+
+## 部署流程
+使用 `npm run build` 來生成靜態文件，這將處理圖片並生成網站。
+
+## n8n 模板網站
+n8n 模板網站位於 `source/tools/n8n_template/` 目錄中，主要文件包括：
+- [models.html](mdc:source/tools/n8n_template/models.html): 模板列表頁面
+- [model-detail.html](mdc:source/tools/n8n_template/model-detail.html): 模板詳情頁面
+- [visualize.html](mdc:source/tools/n8n_template/visualize.html): 模板視覺化工具頁面
+- [contact.html](mdc:source/tools/n8n_template/contact.html): 聯繫頁面

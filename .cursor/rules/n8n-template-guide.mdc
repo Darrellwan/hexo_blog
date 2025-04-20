@@ -1,0 +1,36 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# n8n 模板頁面指南
+
+## 目錄結構
+n8n 模板網站位於 `source/tools/n8n_template/` 目錄中，包含以下主要文件：
+
+- [models.html](mdc:source/tools/n8n_template/models.html): 模板列表頁面
+- [model-detail.html](mdc:source/tools/n8n_template/model-detail.html): 模板詳情頁面
+- [visualize.html](mdc:source/tools/n8n_template/visualize.html): 模板視覺化工具頁面
+- [contact.html](mdc:source/tools/n8n_template/contact.html): 聯繫頁面
+
+## 模板數據
+模板數據位於 `source/tools/n8n_template/data/` 目錄中，以 JSON 格式存儲：
+- `workflow-models.json`: 包含所有模板的描述和元數據
+
+## 頁面組件
+每個頁面都包含以下主要部分：
+- 頁眉（Header）: 頂部導航欄
+- 內容（Content）: 主要頁面內容
+- 頁腳（Footer）: 底部版權和社交媒體連結
+
+## 模板列表頁面
+模板列表頁面（models.html）使用 JavaScript 從 `workflow-models.json` 文件加載模板數據，並根據數據動態生成模板卡片。排序選項允許用戶以不同方式排序模板。
+
+## 模板詳情頁面
+模板詳情頁面（model-detail.html）根據 URL 參數 `model` 加載特定模板的詳細信息，並顯示工作流程詳情與下載選項。
+
+## 視覺化工具頁面
+視覺化工具頁面（visualize.html）使用 n8n 官方的可視化元件來顯示工作流程的視覺化。
+
+## 頁面樣式
+所有頁面共享相同的樣式表，位於 `source/tools/n8n_template/css/` 目錄中。
