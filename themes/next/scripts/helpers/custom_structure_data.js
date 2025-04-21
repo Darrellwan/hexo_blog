@@ -41,7 +41,7 @@ function darrellOrgStructuredData() {
   schema = {
     "@context": "https://schema.org",
     "@type": "OnlineBusiness",
-    "name": "Darrell Martech TW",
+    "name": "Darrell TW",
     "url": "https://www.darrelltw.com/",
     "logo": "https://www.darrelltw.com/images/darrell_icon_512.png",
     "contactPoint": {
@@ -67,10 +67,10 @@ function darrellWebStructuredData() {
   schema = {
     "@context" : "https://schema.org",
     "@type" : "WebSite",
-    "name" : "Darrell Martech TW",
+    "name" : "Darrell TW",
     "url" : "https://www.darrelltw.com/",
     "sameAs" : [
-      "https://x.com/DarrellMarTech",
+      "https://x.com/darrell_tw_",
       "https://www.threads.net/@darrell_tw_",
       "https://www.instagram.com/darrell_tw_/",
       "https://medium.com/@darrell.tw.martech"
