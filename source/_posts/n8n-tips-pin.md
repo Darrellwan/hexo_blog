@@ -4,7 +4,7 @@ tags:
   - n8n
   - n8n Tips
 categories:
-  - Automation
+  - n8n
 page_type: post
 id: n8n-tips-pin
 description: 了解 n8n 的小撇步：利用 Pin 功能鎖定輸出資料，降低 API 重複呼叫的風險，提升自動化流程測試效率並節省資源。

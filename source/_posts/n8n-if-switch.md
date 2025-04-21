@@ -5,7 +5,7 @@ tags:
   - Integration
   - Webhook
 categories:
-  - Automation
+  - n8n
 page_type: post
 id: n8n-if-switch
 description: 深入了解 n8n 的 If 和 Switch 節點，條件判斷是每個自動化腳本都會遇到的

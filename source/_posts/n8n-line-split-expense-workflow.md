@@ -3,17 +3,16 @@ title: n8n 模板分享 - 打造 LINE 共同記帳機器人 自動處理日本�
 date: 2025-04-20 15:30:00
 tags:
   - n8n
-  - n8n 模板
+  - n8n模板
   - LINE
 categories:
-  - Automation
+  - n8n
 page_type: post
 id: n8n-line-split-expense-workflow
 description: 透過 n8n 工作流平台結合 LINE 機器人和 AI 技術，打造一個專為日本旅行設計的自動化記帳系統。只需拍照上傳日本收據，就會自動翻譯日文、換算匯率，並提供分帳功能，讓旅行的記帳變得簡單。
 bgImage: blog-n8n-line_expense_japan-bg.jpg
 preload:
   - blog-n8n-line_expense_japan-bg.jpg
-thumbnail: /gallery/thumbnails/n8n-line-split-expense.jpg
 ---
 
 {% darrellImageCover blog-n8n-line_expense_japan-bg blog-n8n-line_expense_japan-bg.jpg max-800 %}

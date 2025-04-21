@@ -1,11 +1,12 @@
 ---
 title: n8n 串接 Slack、發送訊息、用 Slack 觸發 workflow
 tags:
-  - n8n
   - Integration
   - Webhook
+  - n8n模板
+  - n8n
 categories:
-  - Automation
+  - n8n
 page_type: post
 id: n8n-with-slack
 description: Slack 應該是蠻多人使用的通訊工具，也很多開發者拿來串接作為通知訊息，用 n8n 串接 Slack 對非技術人員來說算是相當簡單，可以真的不需要學會程式碼用 no-code 的方式來達成，希望這篇 n8n 串 slack 的教學會對你有幫助，也介紹了 Slack Trigger 該怎麼使用

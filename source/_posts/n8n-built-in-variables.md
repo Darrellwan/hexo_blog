@@ -4,7 +4,7 @@ tags:
   - n8n
   - n8n 介紹
 categories:
-  - Automation
+  - n8n
 page_type: post
 id: n8n-built-in-variables
 description: 解析 n8n 的內建變數，包含 $input、$json、$workflow 等重要參數的使用方法和應用場景，未來隨著使用的經驗持續更新

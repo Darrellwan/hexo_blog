@@ -6,7 +6,7 @@ tags:
   - API
   - 自動化
 categories:
-  - Automation
+  - n8n
 page_type: post
 id: n8n-webhook
 description: 一起來學 n8n Webhook 打造自動化流程！設定接收、處理資料，並提供案例和程式碼範例。

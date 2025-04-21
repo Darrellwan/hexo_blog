@@ -4,7 +4,7 @@ tags:
   - n8n
   - update_log
 categories:
-  - Automation
+  - n8n
 page_type: post
 id: n8n-update-log
 description: n8n 的更新記錄，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.89.0，正式版本為 1.86.0

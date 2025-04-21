@@ -6,7 +6,7 @@ tags:
   - API
   - 自動化
 categories:
-  - Automation
+  - n8n
 page_type: post
 id: n8n-new-feature-folders
 description: 終於等到了！n8n 資料夾功能開放，如何整理混亂的工作流程、建立多層資料夾結構，以及避免踩雷。

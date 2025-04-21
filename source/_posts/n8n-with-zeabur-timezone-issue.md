@@ -4,7 +4,7 @@ tags:
   - n8n
   - n8n Tips
 categories:
-  - Automation
+  - n8n
 page_type: post
 id: n8n-with-zeabur-timezone-issue
 description: 記錄一下在 Zeabur 上處理 n8n 時區問題的方法，從單一 workflow 到一次性解決，讓你的自動化流程不再跑錯時間！
