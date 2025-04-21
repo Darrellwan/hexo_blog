@@ -207,11 +207,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     line-height: 1.5;
     color: var(--n8n-text);
     background-color: var(--n8n-background);
+    font-size: 16px;
   }
 
   .n8n-resources-header {
     background-color: var(--n8n-card-bg);
-    padding: 20px;
+    padding: 25px 15px;
     text-align: center;
     margin-bottom: 20px;
   }
@@ -219,19 +220,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   .n8n-resources-header h1 {
     margin: 0;
     color: var(--n8n-primary);
-    font-size: 1.8rem;
+    font-size: 2.2rem;
   }
   
-  @media (max-width: 768px) {
-    .n8n-resources-header h1 {
-      font-size: 1.5rem;
-    }
-  }
-
   .n8n-resources-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 15px;
   }
 
   .n8n-nav {
@@ -239,7 +234,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     border-radius: 8px;
     box-shadow: 0 2px 8px var(--n8n-box-shadow);
     margin-bottom: 20px;
-    padding: 15px;
+    padding: 15px 10px;
     z-index: 100;
     width: 100%;
     box-sizing: border-box;
@@ -264,7 +259,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     list-style: none;
     margin: 0;
     padding: 0;
-    gap: 20px;
+    gap: 12px;
     flex-wrap: wrap;
     justify-content: center;
     max-width: 1200px;
@@ -275,10 +270,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     text-decoration: none;
     color: var(--n8n-text);
     font-weight: 500;
-    padding: 5px 10px;
+    padding: 8px 12px;
     border-radius: 4px;
     transition: background-color 0.3s;
     white-space: nowrap;
+    font-size: 16px;
+    display: block;
   }
 
   .n8n-nav a:hover, .n8n-nav a.active {
@@ -296,11 +293,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     background-color: var(--n8n-card-bg);
     border-radius: 8px;
     box-shadow: 0 2px 8px var(--n8n-box-shadow);
-    padding: 20px;
+    padding: 20px 15px;
   }
 
   .n8n-section {
-    margin-bottom: 60px;
+    margin-bottom: 40px;
     scroll-margin-top: 80px;
   }
 
@@ -310,28 +307,100 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     color: var(--n8n-primary);
     border-bottom: 2px solid var(--n8n-border);
     padding-bottom: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
   }
 
   .n8n-articles {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 25px;
   }
 
   @media (max-width: 1100px) {
     .n8n-articles {
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
+    
+    .n8n-resources-header h1 {
+      font-size: 1.9rem;
+    }
+    
+    .n8n-section h2 {
+      font-size: 1.6rem;
     }
   }
 
   @media (max-width: 768px) {
+    .n8n-resources-header h1 {
+      font-size: 1.7rem;
+    }
+    
+    body {
+      font-size: 15px;
+    }
+  
+    .n8n-nav {
+      padding: 10px 5px;
+    }
+    
     .n8n-nav ul {
-      gap: 10px;
+      gap: 8px;
+    }
+    
+    .n8n-nav a {
+      padding: 7px 10px;
+      font-size: 15px;
     }
     
     .n8n-articles {
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 15px;
+    }
+    
+    .n8n-section {
+      margin-bottom: 30px;
+    }
+    
+    .n8n-section h2 {
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+    }
+    
+    .n8n-main-content {
+      padding: 15px 12px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .n8n-resources-header {
+      padding: 20px 10px;
+    }
+    
+    .n8n-resources-header h1 {
+      font-size: 1.5rem;
+    }
+    
+    .n8n-resources-container {
+      padding: 10px;
+    }
+    
+    .n8n-articles {
+      grid-template-columns: 1fr;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+    
+    .n8n-article-card {
+      max-width: 100%;
+    }
+    
+    .n8n-nav a {
+      font-size: 14px;
+      padding: 6px 8px;
+    }
+    
+    .n8n-section h2 {
+      font-size: 1.3rem;
     }
   }
 
@@ -342,7 +411,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     transition: transform 0.3s, box-shadow 0.3s;
     height: 100%;
     position: relative;
-    max-width: 280px;
+    max-width: 320px;
     margin: 0 auto;
   }
 
@@ -364,7 +433,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     position: relative;
     overflow: hidden;
     background-color: rgba(0, 0, 0, 0.2);
-    padding-top: 100%; /* 改回 1:1 正方形 */
+    padding-top: 100%; /* 1:1 正方形比例 */
     width: 100%;
   }
 
@@ -383,7 +452,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   .n8n-article-info {
-    padding: 12px;
+    padding: 15px;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -404,8 +473,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   .n8n-article-info h3 {
     margin-top: 5px;
-    margin-bottom: 8px;
-    font-size: 1.1rem;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
     line-height: 1.4;
     color: var(--n8n-text);
   }
@@ -414,7 +483,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     margin: 0 0 12px;
     color: var(--n8n-text);
     opacity: 0.8;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     line-height: 1.5;
     flex: 1;
     overflow: hidden;
@@ -439,10 +508,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   .n8n-external-links a {
     background-color: var(--n8n-secondary); 
     color: white;
-    padding: 8px 15px; 
+    padding: 10px 18px; 
     border-radius: 4px; 
     text-decoration: none;
     transition: background-color .3s;
+    font-size: 1rem;
   }
   
   .n8n-external-links a:hover { 
@@ -455,6 +525,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     margin-top: 40px;
     background-color: var(--n8n-card-bg);
     color: var(--n8n-text);
+  }
+  
+  @media (max-width: 480px) {
+    .n8n-external-links a {
+      padding: 8px 15px;
+      font-size: 0.9rem;
+    }
+    
+    .n8n-article-info h3 {
+      font-size: 1.1rem;
+    }
+    
+    .n8n-article-info p {
+      font-size: 0.85rem;
+    }
+    
+    .n8n-footer {
+      padding: 15px 10px;
+      font-size: 0.9rem;
+    }
   }
 </style>
 </body>
