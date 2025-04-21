@@ -51,7 +51,7 @@ hexo.extend.helper.register('get_n8n_post_category_section', function(post) {
   // 定義分類關鍵詞映射
   const categoryKeywords = {
     templates: ['模板', 'template', 'workflow', '範例', '工作流'],
-    'node-intro': ['節點', 'node', 'webhook'],
+    'node-intro': ['節點', 'node'],
     tips: ['撇步', '技巧', 'tip', 'tips'],
     updates: ['更新', '新功能', 'update', 'feature'],
     deployment: ['部署', '設定', 'deploy', 'config', 'setup']
