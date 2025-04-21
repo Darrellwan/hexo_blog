@@ -95,6 +95,12 @@ function buildSchemaOrgStructure(models) {
         "@type": "Person",
         "name": "DarrellTW"
       },
+      "offers": {
+       "@type": "Offer",
+       "price": "0",
+       "priceCurrency": "TWD",
+       "availability": "https://schema.org/InStock"
+      },
       "datePublished": model.createdAt || "",
       "dateModified": model.updatedAt || model.createdAt || "",
       "softwareVersion": "1.0",
