@@ -45,6 +45,8 @@ for $inject_mixin in hexo-config('injects.mixin')
 for $inject_style in hexo-config('injects.style')
   @import $inject_style;
 
+// Custom styles.
+@import "_custom/template-card";
 
 .roboto_fonts {
   font-family: 'Roboto Mono';

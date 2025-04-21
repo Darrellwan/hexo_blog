@@ -134,7 +134,7 @@ a.sidebar-category-post-list-link{
   color: #ea4b71;
 }
 
-.post-body a{
+.post-body p > a{
   color: #3498db;
   background-image: linear-gradient(to right, #2980b9, #3498db);
   background-clip: text;
@@ -173,3 +173,35 @@ a.article-card-link {
     display: none !important;
   }
 }
+
+
+.post-body img {
+  max-width: 100%;
+  height: auto;
+}
+
+// 文章分類和標籤樣式優化
+.posts-expand .post-meta .post-category-list,
+.posts-expand .post-meta .post-tag-list {
+  display: inline-block;
+}
+
+// 允許長文字自動換行
+pre, code {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+// 移除特定元素的底線
+.post-body a.template-card-link,
+.post-body a.template-card-link:hover,
+.post-body a.template-card-link:active,
+.post-body a.template-card-link:focus,
+.post-body a.article-card-link,
+.post-body a.article-card-link:hover,
+.post-body a.article-card-link:active,
+.post-body a.article-card-link:focus {
+  text-decoration: none !important;
+  border-bottom: none !important;
+  outline: none !important;
+} 
