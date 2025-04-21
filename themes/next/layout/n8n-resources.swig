@@ -136,7 +136,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </main>
 
 <footer class="n8n-footer">
-  <p>&copy; {% if date %}{{ date(now, 'YYYY') }}{% else %}2023{% endif %} n8n資源中心 - 提供專業的n8n自動化工作流程教學與資源</p>
+  <p>&copy; {% if date %}{{ date(now, 'YYYY') }}{% else %}2023{% endif %} Darrell TW - n8n 教學文章 </p>
 </footer>
 
 <script>
@@ -312,8 +312,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   .n8n-articles {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+  }
+
+  @media (min-width: 1200px) {
+    .n8n-articles {
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 18px;
+    }
   }
 
   @media (max-width: 1100px) {
@@ -353,7 +360,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
     
     .n8n-articles {
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
       gap: 15px;
     }
     
@@ -381,17 +388,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
     
     .n8n-resources-container {
-      padding: 10px;
+      padding: 0;
+    }
+    
+    .n8n-main-content {
+      border-radius: 0;
     }
     
     .n8n-articles {
-      grid-template-columns: 1fr;
-      max-width: 320px;
-      margin: 0 auto;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      max-width: none;
+      margin: 0;
     }
     
     .n8n-article-card {
-      max-width: 100%;
+      max-width: none;
     }
     
     .n8n-nav a {
@@ -401,6 +413,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     
     .n8n-section h2 {
       font-size: 1.3rem;
+    }
+    
+    .n8n-article-info {
+      padding: 10px;
+    }
+    
+    .n8n-article-info h3 {
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+    }
+    
+    .n8n-article-info p {
+      font-size: 0.8rem;
+      -webkit-line-clamp: 2;
     }
   }
 
