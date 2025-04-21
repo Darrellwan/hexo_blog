@@ -655,14 +655,33 @@
                     checkImageExists(id);
                 });
                 
-                const schemaData = {
+                // 生成簡單的結構化數據（ItemList）
+                const itemListSchema = {
                     "@context": "https://schema.org",
                     "@type": "ItemList",
                     "itemListElement": itemListElements
                 };
                 
-                const schemaScript = document.getElementById('workflow-models-schema');
-                schemaScript.textContent = JSON.stringify(schemaData, null, 2);
+                // 使用 schema-generator.js 中的函數生成更完整的結構化數據
+                try {
+                    // 如果 schema-generator.js 已加載
+                    if (typeof buildSchemaOrgStructure === 'function') {
+                        console.log('使用 schema-generator.js 生成完整結構化數據');
+                        const schemaData = buildSchemaOrgStructure(models);
+                        const schemaScript = document.getElementById('workflow-models-schema');
+                        schemaScript.textContent = JSON.stringify(schemaData, null, 2);
+                    } else {
+                        // 否則使用簡單的 ItemList 格式
+                        console.log('使用簡單格式生成結構化數據');
+                        const schemaScript = document.getElementById('workflow-models-schema');
+                        schemaScript.textContent = JSON.stringify(itemListSchema, null, 2);
+                    }
+                } catch (e) {
+                    console.error('生成結構化數據時出錯:', e);
+                    // 使用簡單的 ItemList 格式作為備用
+                    const schemaScript = document.getElementById('workflow-models-schema');
+                    schemaScript.textContent = JSON.stringify(itemListSchema, null, 2);
+                }
                 
                 // 隱藏排序按鈕區域 (因為我們使用智能排序)
                 const sortOptions = document.querySelector('.sort-options');
@@ -684,7 +703,14 @@
             }
         }
         
+        // 頁面加載完成後執行
         document.addEventListener('DOMContentLoaded', updatePageContent);
+        
+        // 防止 schema-generator.js 再次執行生成結構化數據
+        window.schemaGeneratorExecuted = true;
     </script>
+    
+    <!-- 在頁面處理完成後加載結構化數據生成腳本 -->
+    <script src="js/schema-generator.js"></script>
 </body>
 </html> 
