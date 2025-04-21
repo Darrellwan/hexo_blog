@@ -3,6 +3,30 @@ title: {{ page.title }}
 date: {{ page.date }}
 layout: false
 ---
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} - n8n資源中心 | 自動化工作流程工具</title>
+  <meta name="description" content="{{ page.description or '探索n8n自動化工作流程工具的各種資源，包括節點介紹、使用技巧、模板分享、功能更新及部署設定指南。' }}">
+  <meta name="keywords" content="n8n, 工作流程自動化, 自動化工具, 節點介紹, n8n模板, n8n部署">
+  <link rel="canonical" href="{{ url_for(page.permalink) }}">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ url_for(page.permalink) }}">
+  <meta property="og:title" content="{{ page.title }} - n8n資源中心">
+  <meta property="og:description" content="{{ page.description or '探索n8n自動化工作流程工具的各種資源，包括節點介紹、使用技巧、模板分享、功能更新及部署設定指南。' }}">
+  <meta property="og:image" content="{{ get_n8n_post_thumbnail(page) or url_for('/images/n8n-logo.png') }}">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="{{ url_for(page.permalink) }}">
+  <meta name="twitter:title" content="{{ page.title }} - n8n資源中心">
+  <meta name="twitter:description" content="{{ page.description or '探索n8n自動化工作流程工具的各種資源，包括節點介紹、使用技巧、模板分享、功能更新及部署設定指南。' }}">
+  <meta name="twitter:image" content="{{ get_n8n_post_thumbnail(page) or url_for('/images/n8n-logo.png') }}">
+
 <script>
 (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -11,7 +35,34 @@ layout: false
 })(window,document,'script','dataLayer','GTM-WRZDBFS')
 </script>
 
-<div class="n8n-resources-container">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "{{ page.title }} - n8n資源中心",
+  "description": "{{ page.description or '探索n8n自動化工作流程工具的各種資源，包括節點介紹、使用技巧、模板分享、功能更新及部署設定指南。' }}",
+  "publisher": {
+    "@type": "Organization",
+    "name": "n8n資源中心",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ url_for('/images/n8n-logo.png') }}"
+    }
+  }
+}
+</script>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WRZDBFS"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="n8n-resources-header">
+  <h1>n8n教學文章</h1>
+</header>
+
+<main class="n8n-resources-container">
   {% set sections = [
     { id: 'node-intro', title: 'n8n 節點介紹' },
     { id: 'tips', title: 'n8n 小撇步' },
@@ -20,7 +71,7 @@ layout: false
     { id: 'deployment', title: 'n8n 部署與設定' }
   ] %}
 
-  <nav class="n8n-nav">
+  <nav class="n8n-nav" aria-label="主導航">
     <ul>
       <li><a href="/" class="active">首頁</a></li>
       {% for section in sections %}
@@ -45,10 +96,10 @@ layout: false
           {% set counter2 = 0 %}
           {% for post in list %}
             {% if counter2 < 6 %}
-              <div class="n8n-article-card">
+              <article class="n8n-article-card">
                 <a href="{{ url_for(post.path) }}" class="n8n-article-link">
                   <div class="n8n-article-image">
-                    <img src="{{ get_n8n_post_thumbnail(post) }}" alt="{{ post.title }}">
+                    <img src="{{ get_n8n_post_thumbnail(post) }}" alt="{{ post.title }} - n8n資源文章封面圖" loading="lazy">
                   </div>
                   <div class="n8n-article-info">
                     {# <div class="n8n-article-date">{{ format_n8n_date(post.date) }}</div> #}
@@ -56,7 +107,7 @@ layout: false
                     <p>{{ get_n8n_post_description(post) }}</p>
                   </div>
                 </a>
-              </div>
+              </article>
               {% set counter2 = counter2 + 1 %}
             {% endif %}
           {% endfor %}
@@ -73,16 +124,20 @@ layout: false
         <h2>相關連結</h2>
         <div class="n8n-about-content">
           <div class="n8n-external-links">
-            <a href="https://n8n.io/" target="_blank">官方網站</a>
-            <a href="https://docs.n8n.io/" target="_blank">官方文件</a>
-            <a href="https://github.com/n8n-io/n8n" target="_blank">GitHub</a>
+            <a href="https://n8n.io/" target="_blank" rel="noopener">官方網站</a>
+            <a href="https://docs.n8n.io/" target="_blank" rel="noopener">官方文件</a>
+            <a href="https://github.com/n8n-io/n8n" target="_blank" rel="noopener">GitHub</a>
           </div>
         </div>
       </section>
 
     </div>
   </div>
-</div>
+</main>
+
+<footer class="n8n-footer">
+  <p>&copy; {% if date %}{{ date(now, 'YYYY') }}{% else %}2023{% endif %} n8n資源中心 - 提供專業的n8n自動化工作流程教學與資源</p>
+</footer>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
@@ -152,6 +207,25 @@ layout: false
     line-height: 1.5;
     color: var(--n8n-text);
     background-color: var(--n8n-background);
+  }
+
+  .n8n-resources-header {
+    background-color: var(--n8n-card-bg);
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .n8n-resources-header h1 {
+    margin: 0;
+    color: var(--n8n-primary);
+    font-size: 1.8rem;
+  }
+  
+  @media (max-width: 768px) {
+    .n8n-resources-header h1 {
+      font-size: 1.5rem;
+    }
   }
 
   .n8n-resources-container {
@@ -374,4 +448,14 @@ layout: false
   .n8n-external-links a:hover { 
     background-color: var(--n8n-primary); 
   }
+  
+  .n8n-footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    background-color: var(--n8n-card-bg);
+    color: var(--n8n-text);
+  }
 </style>
+</body>
+</html>
