@@ -31,7 +31,7 @@ preload:
 於是就用 n8n 直接做成一個可以在 Line 的群組上使用的 Bot
 讓我們可以直接拍照上傳收據，他就接著處理完辨識和紀錄到需要的地方(模板會以 Google Sheet 示範)
 
-{% templateCard id="line-receipt-auto-record" title="Line 收據AI辨識自動記帳工作流" description="自動處理收據照片並提取資訊進行記帳的 n8n 工作流模板" thumbnail="/tools/n8n_template/data/bg/n8n_japan_receipt_ai_recognition_expense_sharing.webp" tags="Line,AI,記帳,自動化" nodeCount="12" updatedAt="2025-04-21" %} 
+{% templateCard id="n8n_japan_receipt_ai_recognition_expense_sharing" title="Line 收據AI辨識自動記帳工作流" description="自動處理收據照片並提取資訊進行記帳的 n8n 工作流模板" thumbnail="/tools/n8n_template/data/bg/n8n_japan_receipt_ai_recognition_expense_sharing.webp" tags="Line,AI,記帳,自動化" nodeCount="12" updatedAt="2025-04-21" %} 
 
 ## 主要功能
 
