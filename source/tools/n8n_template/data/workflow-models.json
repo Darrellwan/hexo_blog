@@ -1,5 +1,136 @@
 {
     "models": {
+        "n8n_japan_receipt_ai_recognition_expense_sharing": {
+            "id": "n8n_japan_receipt_ai_recognition_expense_sharing",
+            "title": "Line 收據AI辨識自動記帳",
+            "description": "這個工作流程透過 Line 機器人接收使用者上傳的日本收據圖片，使用 AI 自動辨識收據上的金額、品項和店家資訊，並提供拆帳功能，可以在多人之間平均分攤費用。系統會將所有資料記錄到 Google 試算表中，方便後續查詢和管理。\n\n主要功能：\n\n收據辨識：使用 OpenAI 模型辨識日文收據上的文字和金額\n資料擷取：自動提取品項、金額、店家和日期等資訊\n自動記帳：所有消費記錄自動儲存到 Google 試算表\n拆帳功能：可選擇單人記帳或多人拆帳，自動計算每人應付金額",
+            "detailedDescription": [
+                "透過 Line 接收圖片或直接輸入資訊",
+                "使用 OpenAI 辨識日文收據上的關鍵資訊",
+                "自動提取品項、金額、店家和日期資訊",
+                "提供單人記帳和多人拆帳選項",
+                "自動儲存所有交易記錄到 Google 試算表",
+                "支援重試機制，處理辨識錯誤情況"
+            ],
+            "tags": ["自動化", "AI", "記帳", "拆帳", "Line", "收據辨識", "Google Sheets"],
+            "nodes": 32,
+            "createdAt": "2025-04-21",
+            "updatedAt": "2025-04-21",
+            "setup": {
+                "prerequisites": "需要設定 Line Messaging API、OpenAI API 和 Google Sheets 的 API 存取權限",
+                "steps": [
+                    {
+                        "title": "Line Bot 設定",
+                        "description": "設定 Line 機器人和 Webhook",
+                        "options": [
+                            "建立 Line Developer 帳號",
+                            "設定 Messaging API",
+                            "取得 Channel Access Token",
+                            "設定 Webhook URL"
+                        ]
+                    },
+                    {
+                        "title": "OpenAI 設定",
+                        "description": "設定 OpenAI API 用於收據辨識",
+                        "options": [
+                            "取得 OpenAI API 金鑰",
+                            "選擇適當的模型（推薦使用支援圖像辨識的模型）"
+                        ]
+                    },
+                    {
+                        "title": "Google Sheets 設定",
+                        "description": "準備用於記錄交易資料的試算表",
+                        "options": [
+                            "建立 Google 試算表",
+                            "設定「expense」和「user」兩個工作表",
+                            "設定適當的欄位格式"
+                        ]
+                    }
+                ]
+            },
+            "examples": [
+                {
+                    "title": "基本設定範例",
+                    "description": "展示如何設定基本的收據辨識流程",
+                    "code": {
+                        "trigger": "webhook",
+                        "actions": [
+                            "receive_line_message",
+                            "process_image",
+                            "extract_data",
+                            "save_to_sheets",
+                            "reply_confirmation"
+                        ]
+                    }
+                },
+                {
+                    "title": "拆帳流程範例",
+                    "description": "展示如何處理拆帳選項",
+                    "code": {
+                        "trigger": "webhook",
+                        "actions": [
+                            "process_postback",
+                            "fetch_expense_data",
+                            "split_amount",
+                            "update_user_expenses",
+                            "send_confirmation"
+                        ]
+                    }
+                }
+            ],
+            "fields": {
+                "line": {
+                    "title": "Line Bot 設定",
+                    "fields": {
+                        "channelAccessToken": {
+                            "type": "string",
+                            "description": "Line Channel Access Token",
+                            "example": "YOUR_LINE_CHANNEL_ACCESS_TOKEN"
+                        },
+                        "webhookPath": {
+                            "type": "string",
+                            "description": "Webhook 路徑",
+                            "example": "5f7e16fd-da83-420d-a491-3df046f640d8"
+                        }
+                    }
+                },
+                "openai": {
+                    "title": "OpenAI 設定",
+                    "fields": {
+                        "apiKey": {
+                            "type": "string",
+                            "description": "OpenAI API 金鑰",
+                            "example": "YOUR_OPENAI_API_KEY"
+                        },
+                        "model": {
+                            "type": "string",
+                            "description": "OpenAI 模型名稱",
+                            "default": "gpt-4-vision"
+                        }
+                    }
+                },
+                "sheets": {
+                    "title": "Google Sheets 設定",
+                    "fields": {
+                        "documentId": {
+                            "type": "string",
+                            "description": "Google Sheets ID",
+                            "example": "1-6TOSROxfwigpYWRgV3USo8xXgbGqXHDFsc69ZDlVTM"
+                        },
+                        "expenseSheetName": {
+                            "type": "string",
+                            "description": "支出記錄工作表名稱",
+                            "default": "expense"
+                        },
+                        "userSheetName": {
+                            "type": "string",
+                            "description": "使用者資料工作表名稱",
+                            "default": "user"
+                        }
+                    }
+                }
+            }
+        },
         "n8n_threads_fetch_data": {
             "id": "n8n_threads_fetch_data",
             "title": "Threads 數據自動抓取與分析",
