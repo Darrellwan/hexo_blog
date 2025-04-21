@@ -133,31 +133,6 @@ layout: false
       }
       */
       
-      // 漢堡菜單控制
-      const menuToggle = document.getElementById('menu-toggle');
-      const nav = document.querySelector('.n8n-nav');
-      
-      menuToggle.addEventListener('click', function() {
-        nav.classList.toggle('show');
-        this.classList.toggle('active');
-        
-        // 設置 aria-expanded 屬性以增加無障礙性
-        const expanded = this.getAttribute('aria-expanded') === 'true' || false;
-        this.setAttribute('aria-expanded', !expanded);
-      });
-      
-      // 點擊菜單項後自動關閉菜單（行動裝置）
-      const menuItems = document.querySelectorAll('.n8n-nav a');
-      menuItems.forEach(item => {
-        item.addEventListener('click', function() {
-          if (window.innerWidth <= 768) {
-            nav.classList.remove('show');
-            menuToggle.classList.remove('active');
-            menuToggle.setAttribute('aria-expanded', 'false');
-          }
-        });
-      });
-      
       // 平滑滾動效果
       document.querySelectorAll('a[href^="#"]').forEach(a => {
         a.addEventListener('click', e => {
@@ -168,21 +143,13 @@ layout: false
       });
       
       // 導航欄固定效果
+      const nav = document.querySelector('.n8n-nav');
       const navTop = nav.offsetTop;
-      const header = document.querySelector('.n8n-resources-header');
       
       window.addEventListener('scroll', () => {
-        // 在移動設備上不應用固定效果
-        if (window.innerWidth <= 768) {
-          nav.classList.remove('n8n-nav-fixed');
-          return;
-        }
-        
         if (window.scrollY >= navTop) {
-          header.classList.add('header-scrolled');
           nav.classList.add('n8n-nav-fixed');
         } else {
-          header.classList.remove('header-scrolled');
           nav.classList.remove('n8n-nav-fixed');
         }
         
@@ -244,31 +211,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 <header class="n8n-resources-header">
-  <div class="header-container">
-    <h1>n8n教學文章</h1>
-    <div class="nav-toggle">
-      <button id="menu-toggle" aria-label="開啟主選單">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-  </div>
-  
-  <nav class="n8n-nav" aria-label="主導航">
-    <ul>
-      <li><a href="/" class="active">首頁</a></li>
-      {% for section in sections %}
-        {% set list = get_n8n_posts_by_category(section.id) %}
-        {% if list.length > 0 %}
-        <li><a href="#{{ section.id }}">{{ section.title }}</a></li>
-        {% endif %}
-      {% endfor %}
-      <li><a href="#tutorials">外部教學</a></li>
-      <li><a href="#about">相關連結</a></li>
-    </ul>
-  </nav>
-  
+  <h1>n8n教學文章</h1>
   <div class="n8n-search-container">
     <!-- Algolia 搜尋功能暫時關閉 
     <div id="algolia-search-box"></div>
@@ -309,6 +252,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       description: "35頁完整的 n8n 新手指南！"
     }
   ] %}
+
+  <nav class="n8n-nav" aria-label="主導航">
+    <ul>
+      <li><a href="/" class="active">首頁</a></li>
+      {% for section in sections %}
+        {% set list = get_n8n_posts_by_category(section.id) %}
+        {% if list.length > 0 %}
+        <li><a href="#{{ section.id }}">{{ section.title }}</a></li>
+        {% endif %}
+      {% endfor %}
+      <li><a href="#tutorials">外部教學</a></li>
+      <li><a href="#about">相關連結</a></li>
+    </ul>
+  </nav>
 
   <div class="n8n-resources-content">
     <div class="n8n-main-content">
@@ -430,27 +387,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   .n8n-resources-header {
     background-color: var(--n8n-card-bg);
-    padding: 15px;
+    padding: 25px 15px;
+    text-align: center;
     margin-bottom: 20px;
-    transition: padding 0.3s;
-  }
-  
-  .header-scrolled {
-    padding-bottom: 70px; /* 為固定導航騰出空間 */
-  }
-  
-  .header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
   }
   
   .n8n-resources-header h1 {
     margin: 0;
     color: var(--n8n-primary);
-    font-size: 1.8rem;
+    font-size: 2.2rem;
   }
   
   .n8n-resources-container {
@@ -461,12 +406,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   .n8n-nav {
     background-color: var(--n8n-card-bg);
-    padding: 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px var(--n8n-box-shadow);
+    margin-bottom: 20px;
+    padding: 15px 10px;
     z-index: 100;
     width: 100%;
     box-sizing: border-box;
-    max-width: 1200px;
-    margin: 15px auto 0;
   }
   
   .n8n-nav-fixed {
@@ -474,12 +420,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     top: 0;
     left: 0;
     right: 0;
-    margin-top: 0;
-    padding: 10px;
-    box-shadow: 0 2px 8px var(--n8n-box-shadow);
+    border-radius: 0;
+    margin-bottom: 0;
+    max-width: none;
   }
   
-  .n8n-nav-fixed + .n8n-search-container {
+  .n8n-nav-fixed + .n8n-resources-content {
     margin-top: 70px;
   }
 
@@ -491,6 +437,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     gap: 12px;
     flex-wrap: wrap;
     justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   .n8n-nav a {
@@ -508,111 +456,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   .n8n-nav a:hover, .n8n-nav a.active {
     background-color: var(--n8n-primary);
     color: white;
-  }
-  
-  /* 漢堡菜單按鈕 */
-  .nav-toggle {
-    display: none;
-  }
-  
-  #menu-toggle {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 24px;
-    width: 30px;
-  }
-  
-  #menu-toggle span {
-    display: block;
-    height: 3px;
-    width: 100%;
-    background-color: var(--n8n-text);
-    border-radius: 3px;
-    transition: all 0.3s;
-  }
-  
-  /* 漢堡菜單激活狀態 (X 符號) */
-  #menu-toggle.active span:nth-child(1) {
-    transform: translateY(10px) rotate(45deg);
-  }
-  
-  #menu-toggle.active span:nth-child(2) {
-    opacity: 0;
-  }
-  
-  #menu-toggle.active span:nth-child(3) {
-    transform: translateY(-10px) rotate(-45deg);
-  }
-  
-  /* 響應式設計 */
-  @media (max-width: 1100px) {
-    .n8n-resources-header h1 {
-      font-size: 1.6rem;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .header-container {
-      width: 100%;
-    }
-    
-    .n8n-resources-header h1 {
-      font-size: 1.5rem;
-    }
-    
-    .nav-toggle {
-      display: block;
-    }
-    
-    .n8n-nav {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease-out;
-      padding: 0;
-      margin-top: 10px;
-    }
-    
-    .n8n-nav.show {
-      max-height: 500px;
-      padding: 10px;
-      border-top: 1px solid var(--n8n-border);
-    }
-    
-    .n8n-nav ul {
-      flex-direction: column;
-      align-items: center;
-      gap: 5px;
-    }
-    
-    .n8n-nav a {
-      width: 100%;
-      text-align: center;
-      padding: 10px;
-    }
-    
-    .n8n-nav-fixed {
-      position: static;
-      box-shadow: none;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .n8n-resources-header {
-      padding: 15px 10px;
-    }
-    
-    .n8n-resources-header h1 {
-      font-size: 1.3rem;
-    }
-    
-    .n8n-nav a {
-      font-size: 15px;
-    }
   }
 
   .n8n-resources-content {
@@ -670,6 +513,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   @media (max-width: 768px) {
+    .n8n-resources-header h1 {
+      font-size: 1.7rem;
+    }
+    
+    body {
+      font-size: 15px;
+    }
+  
+    .n8n-nav {
+      padding: 10px 5px;
+    }
+    
+    .n8n-nav ul {
+      gap: 8px;
+    }
+    
+    .n8n-nav a {
+      padding: 7px 10px;
+      font-size: 15px;
+    }
+    
     .n8n-articles {
       grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
       gap: 15px;
