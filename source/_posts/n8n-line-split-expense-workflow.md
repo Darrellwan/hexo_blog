@@ -4,17 +4,12 @@ date: 2025-04-20 15:30:00
 tags:
   - n8n
   - LINE
-  - AI
-  - Automation
-  - 工作流
-  - 拆帳
-  - 日本旅行
+  - 記帳
 categories:
-  - 技術分享
-  - 自動化工具
+  - Automation
 page_type: post
 id: n8n-line-split-expense-workflow
-description: 透過 n8n 工作流平台結合 LINE 機器人和 AI 技術，打造一個專為日本旅行設計的自動化記帳系統。只需拍照上傳日本收據，系統會自動翻譯日文、換算日圓匯率，並提供拆帳功能，讓日本旅行的記帳變得簡單高效。
+description: 透過 n8n 工作流平台結合 LINE 機器人和 AI 技術，打造一個專為日本旅行設計的自動化記帳系統。只需拍照上傳日本收據，就會自動翻譯日文、換算匯率，並提供分帳功能，讓旅行的記帳變得簡單。
 bgImage: blog-n8n-line_expense_japan-bg.jpg
 preload:
   - blog-n8n-line_expense_japan-bg.jpg
@@ -25,9 +20,9 @@ thumbnail: /gallery/thumbnails/n8n-line-split-expense.jpg
 
 ## 前因
 
-這次自動化的契機是發現會去日本大約一週以上
-記得在日本任何消費幾乎都會有收據
-只是收據上幾乎都是日文
+這次自動化的原因是發現會去日本大約一週以上
+記得在日本任何消費大部分都會有收據
+但收據上都是日文
 
 記帳這件事情就變得很麻煩
 1. 你得拍照給 AI 請他翻譯項目和取得金額
