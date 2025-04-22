@@ -32,23 +32,23 @@ layout: false
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ page.title }} - n8n資源中心 | 自動化工作流程工具</title>
-  <meta name="description" content="{{ page.description or '探索n8n自動化工作流程工具的各種資源，包括節點介紹、使用技巧、模板分享、功能更新及部署設定指南。' }}">
+  <title>n8n 教學文件 | Darrell TW</title>
+  <meta name="description" content="{{ page.description or '探索n8n自動化工作流程工具的各種文件，包括節點介紹、使用技巧、模板分享、功能更新及部署設定指南。' }}">
   <meta name="keywords" content="n8n, 工作流程自動化, 自動化工具, 節點介紹, n8n模板, n8n部署">
   <link rel="canonical" href="{{ url_for(page.permalink) }}">
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ url_for(page.permalink) }}">
-  <meta property="og:title" content="{{ page.title }} - n8n資源中心">
-  <meta property="og:description" content="{{ page.description or '探索n8n自動化工作流程工具的各種資源，包括節點介紹、使用技巧、模板分享、功能更新及部署設定指南。' }}">
+  <meta property="og:title" content="n8n 教學文件 | Darrell TW">
+  <meta property="og:description" content="{{ page.description or '探索n8n自動化工作流程工具的各種文件，包括節點介紹、使用技巧、模板分享、功能更新及部署設定指南。' }}">
   <meta property="og:image" content="{{ get_n8n_post_thumbnail(page) or url_for('/gallery/n8n_resource_og.jpg') }}">
   
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="{{ url_for(page.permalink) }}">
-  <meta name="twitter:title" content="{{ page.title }} - n8n資源中心">
-  <meta name="twitter:description" content="{{ page.description or '探索n8n自動化工作流程工具的各種資源，包括節點介紹、使用技巧、模板分享、功能更新及部署設定指南。' }}">
+  <meta name="twitter:title" content="n8n 教學文件 | Darrell TW">
+  <meta name="twitter:description" content="{{ page.description or '探索n8n自動化工作流程工具的各種文件，包括節點介紹、使用技巧、模板分享、功能更新及部署設定指南。' }}">
   <meta name="twitter:image" content="{{ get_n8n_post_thumbnail(page) or url_for('/gallery/n8n_resource_og.jpg') }}">
 
   <!-- 
@@ -215,8 +215,8 @@ layout: false
 {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "{{ page.title }} - n8n資源中心",
-  "description": "{{ page.description or '探索n8n自動化工作流程工具的各種資源，包括節點介紹、使用技巧、模板分享、功能更新及部署設定指南。' }}",
+  "name": "n8n 教學文件 | Darrell TW",
+  "description": "{{ page.description or '探索n8n自動化工作流程工具的各種文件，包括節點介紹、使用技巧、模板分享、功能更新及部署設定指南。' }}",
   "publisher": {
     "@type": "Organization",
     "name": "n8n資源中心",
