@@ -40,15 +40,15 @@ layout: false
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ url_for(page.permalink) }}">
-  <meta property="og:title" content="n8n 教學文件 | Darrell TW">
-  <meta property="og:description" content="{{ page.description or '探索n8n自動化工作流程工具的各種文件，包括節點介紹、使用技巧、模板分享、功能更新及部署設定指南。' }}">
+  <meta property="og:title" content="n8n教學文件大集合 | Darrell TW">
+  <meta property="og:description" content="{{ page.description or '探索n8n自動化工作流程工具的各種教學文分享，包括節點介紹、使用技巧、模板分享、功能更新及部署設定指南。' }}">
   <meta property="og:image" content="{{ url_for('/gallery/n8n_resource_og.jpg') }}">
   
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="{{ url_for(page.permalink) }}">
-  <meta name="twitter:title" content="n8n 教學文件 | Darrell TW">
-  <meta name="twitter:description" content="{{ page.description or '探索n8n自動化工作流程工具的各種文件，包括節點介紹、使用技巧、模板分享、功能更新及部署設定指南。' }}">
+  <meta name="twitter:title" content="n8n教學文件大集合 | Darrell TW">
+  <meta name="twitter:description" content="{{ page.description or '探索n8n自動化工作流程工具的各種教學文分享，包括節點介紹、使用技巧、模板分享、功能更新及部署設定指南。' }}">
   <meta name="twitter:image" content="{{ url_for('/gallery/n8n_resource_og.jpg') }}">
 
   <!-- 
@@ -235,7 +235,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 <header class="n8n-resources-header">
-  <h1>n8n教學文章</h1>
+  <h1>n8n教學文件大集合</h1>
   <div class="n8n-search-container">
     <!-- Algolia 搜尋功能暫時關閉 
     <div id="algolia-search-box"></div>
