@@ -42,14 +42,14 @@ layout: false
   <meta property="og:url" content="{{ url_for(page.permalink) }}">
   <meta property="og:title" content="n8n 教學文件 | Darrell TW">
   <meta property="og:description" content="{{ page.description or '探索n8n自動化工作流程工具的各種文件，包括節點介紹、使用技巧、模板分享、功能更新及部署設定指南。' }}">
-  <meta property="og:image" content="{{ get_n8n_post_thumbnail(page) or url_for('/gallery/n8n_resource_og.jpg') }}">
+  <meta property="og:image" content="url_for('/gallery/n8n_resource_og.jpg') }}">
   
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="{{ url_for(page.permalink) }}">
   <meta name="twitter:title" content="n8n 教學文件 | Darrell TW">
   <meta name="twitter:description" content="{{ page.description or '探索n8n自動化工作流程工具的各種文件，包括節點介紹、使用技巧、模板分享、功能更新及部署設定指南。' }}">
-  <meta name="twitter:image" content="{{ get_n8n_post_thumbnail(page) or url_for('/gallery/n8n_resource_og.jpg') }}">
+  <meta name="twitter:image" content="url_for('/gallery/n8n_resource_og.jpg') }}">
 
   <!-- 
   <script src="https://cdn.jsdelivr.net/npm/algoliasearch@5.23.4/dist/algoliasearch.umd.js"></script>
