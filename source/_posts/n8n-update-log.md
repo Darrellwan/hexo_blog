@@ -7,15 +7,108 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.89.2，正式版本為 1.88.0
+description: n8n 的更新記錄(2025/04/22更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.90.0，正式版本為 1.88.0
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-04-14 15:01:15
+modified: 2025-04-22 15:01:15
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 1.90.0 Pre-release - 2025-04-22
+
+[Github 1.90.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.90.0)
+
+### core: Add scopes to API Keys
+core: 為 API Keys 添加 scopes (但是 Community Edition 無法使用)
+
+{% darrellImage800 n8n-1.90.0-api_scope n8n-1.90.0-api_scope.png max-800 %}
+
+
+列出所有權限給大家參考
+```
+- **USER**
+  - `user:read`
+  - `user:list`
+  - `user:create`
+  - `user:changeRole`
+  - `user:delete`
+- **SOURCE CONTROL**
+  - `sourceControl:pull`
+- **SECURITY AUDIT**
+  - `securityAudit:generate`
+- **PROJECT**
+  - `project:create`
+  - `project:update`
+  - `project:delete`
+  - `project:list`
+- **VARIABLE**
+  - `variable:create`
+  - `variable:delete`
+  - `variable:list`
+- **TAG**
+  - `tag:create`
+  - `tag:read`
+  - `tag:update`
+  - `tag:delete`
+  - `tag:list`
+- **WORKFLOW TAGS**
+  - `workflowTags:update`
+  - `workflowTags:list`
+- **WORKFLOW**
+  - `workflow:create`
+  - `workflow:read`
+  - `workflow:update`
+  - `workflow:delete`
+  - `workflow:list`
+  - `workflow:move`
+  - `workflow:activate`
+  - `workflow:deactivate`
+- **EXECUTION**
+  - `execution:delete`
+  - `execution:read`
+  - `execution:list`
+  - `execution:get`
+- **CREDENTIAL**
+  - `credential:create`
+  - `credential:move`
+  - `credential:delete`
+```
+
+### editor: Add drag n drop support for folders
+編輯器：新增對資料夾的拖放支援
+
+如影片支援，但我還是比較期待**可以批次轉移到資料夾，一個一個拉還是太慢了**
+
+<div style="padding:0;position:relative;"><iframe src="https://player.vimeo.com/video/1077581024?badge=0&&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;byline=false&amp;title=false&amp;muted=true" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="n8n update folder drop and drop"></iframe></div><script async src="https://player.vimeo.com/api/player.js"></script>
+
+### editor: Show logs panel in execution history page
+編輯器: 日誌詳細面板
+### editor: Log details panel
+編輯器: 在執行歷史頁面顯示日誌面板
+
+兩個放在一起說明
+現在連執行的歷史紀錄，都會顯示 logs 
+
+{% darrellImage800 n8n-1.90.0-logs_show_for_execution n8n-1.90.0-logs_show_for_execution.png max-800 %}
+
+沒有顯示的話記得要在 localStorage 中把 `N8N_LOGS_2025_SPRING` 設定為 `true`
+
+### HTTP Request Node: Replace HttpRequest Tool with tool version of standalone HttpRequest Node
+HTTP Request Node: 取代 HttpRequest Tool 為 standalone HttpRequest Node 的工具版本
+
+新增 HttpRequest Tool 
+讓 AI Agent 可以直接調用 Request 請求
+
+{% darrellImage800 n8n-1.90.0-add_request_tool_node n8n-1.90.0-add_request_tool_node.png max-800 %}
+
+
+
+
+
+
 
 ## 1.89.0 Pre-release - 2025-04-14
 
