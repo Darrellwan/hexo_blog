@@ -3,6 +3,30 @@ title: {{ page.title }}
 date: {{ page.date }}
 layout: false
 ---
+
+{%- if theme.favicon.apple_touch_icon %}
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for(theme.favicon.apple_touch_icon) }}">
+{%- endif %}
+{%- if theme.favicon.medium %}
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for(theme.favicon.medium) }}">
+{%- endif %}
+{%- if theme.favicon.small %}
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for(theme.favicon.small) }}">
+{%- endif %}
+{%- if theme.favicon.safari_pinned_tab %}
+  <link rel="mask-icon" href="{{ url_for(theme.favicon.safari_pinned_tab) }}" color="{{ theme.android_chrome_color }}">
+{%- endif %}
+{%- if theme.favicon.android_manifest %}
+  <link rel="manifest" href="{{ url_for(theme.favicon.android_manifest) }}">
+{%- endif %}
+{%- if theme.favicon.ms_browserconfig %}
+  <meta name="msapplication-config" content="{{ url_for(theme.favicon.ms_browserconfig) }}">
+{%- endif %}
+
+{%- if theme.google_site_verification %}
+  <meta name="google-site-verification" content="{{ theme.google_site_verification }}">
+{%- endif %}
+
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 <head>
@@ -18,14 +42,14 @@ layout: false
   <meta property="og:url" content="{{ url_for(page.permalink) }}">
   <meta property="og:title" content="{{ page.title }} - n8n資源中心">
   <meta property="og:description" content="{{ page.description or '探索n8n自動化工作流程工具的各種資源，包括節點介紹、使用技巧、模板分享、功能更新及部署設定指南。' }}">
-  <meta property="og:image" content="{{ get_n8n_post_thumbnail(page) or url_for('/images/n8n-logo.png') }}">
+  <meta property="og:image" content="{{ get_n8n_post_thumbnail(page) or url_for('/gallery/n8n_resource_og.jpg') }}">
   
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="{{ url_for(page.permalink) }}">
   <meta name="twitter:title" content="{{ page.title }} - n8n資源中心">
   <meta name="twitter:description" content="{{ page.description or '探索n8n自動化工作流程工具的各種資源，包括節點介紹、使用技巧、模板分享、功能更新及部署設定指南。' }}">
-  <meta name="twitter:image" content="{{ get_n8n_post_thumbnail(page) or url_for('/images/n8n-logo.png') }}">
+  <meta name="twitter:image" content="{{ get_n8n_post_thumbnail(page) or url_for('/gallery/n8n_resource_og.jpg') }}">
 
   <!-- 
   <script src="https://cdn.jsdelivr.net/npm/algoliasearch@5.23.4/dist/algoliasearch.umd.js"></script>
@@ -198,7 +222,7 @@ layout: false
     "name": "n8n資源中心",
     "logo": {
       "@type": "ImageObject",
-      "url": "{{ url_for('/images/n8n-logo.png') }}"
+      "url": "{{ url_for('/gallery/n8n_resource_og.jpg') }}"
     }
   }
 }
@@ -235,6 +259,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       link: "https://raymondhouch.com/lifehacker/digital-workflow/n8n-deploy-guide/",
       image: "https://raymondhouch.com/wp-content/uploads/2024/11/n8n-zeabur-deploy.compressed.jpg",
       author: "侯智薰（雷蒙）",
+      authorLink: "https://www.threads.net/@raymond0917",
       description: "完整中文圖文步驟式教學，如何一鍵用 Zeabur 自行部署安裝 n8n，獲得無限量的自動化工作流額度，並免費領取企業版升級功能。（含影片手把手教學）個人自部署的注意事項、伺服器選擇和 n8n 學習資源整理"
     },
     {
@@ -242,6 +267,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       link: "https://raymondhouch.com/lifehacker/digital-workflow/n8n-google-credentials-guide/",
       image: "https://raymondhouch.com/wp-content/uploads/2025/01/n8n-google-credentials-guide_compressed.jpg",
       author: "侯智薰（雷蒙）",
+      authorLink: "https://www.threads.net/@raymond0917",
       description: "想整合 Google 服務到 n8n 自動化工作流程？本篇教學帶你逐步了解 Google API 憑證申請流程。包含如何設定 OAuth 2.0、取得 API Key，到成功串接 Gmail、Sheets、Drive 等 Google 服務。完整圖文詳細解說，幫助自動化新手，輕鬆完成設定整合，開始享受專屬的 AI 自動化工作流。"
     },
     {
@@ -249,6 +275,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       link: "https://drive.google.com/file/d/10Txuls1-PgLdcYMGMl85MKljJP7CTngd/view",
       image: "/gallery/merfy_lee_n8n_doc.png",
       author: "mengfengl",
+      authorLink: "https://www.threads.net/@mengfengl",
       description: "35頁完整的 n8n 新手指南！"
     }
   ] %}
@@ -305,23 +332,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       {% endfor %}
       
       <section id="tutorials" class="n8n-section">
-        <h2>精選外部教學</h2>
+        <h2>推薦外部教學文件</h2>
         <div class="n8n-tutorials">
           {% for tutorial in tutorials %}
             <article class="n8n-tutorial-card">
-              <a href="{{ tutorial.link }}" class="n8n-tutorial-link" target="_blank" rel="noopener"
-                 onclick="trackClick('{{ tutorial.link }}', '{{ tutorial.title }}', '{{ tutorial.author }}', 'external')">
-                <div class="n8n-tutorial-image" style="--bg-image: url('{{ tutorial.image }}');">
+              <div class="n8n-tutorial-image" style="--bg-image: url('{{ tutorial.image }}');">
+                <a href="{{ tutorial.link }}" class="n8n-tutorial-image-link" target="_blank" rel="noopener"
+                   onclick="trackClick('{{ tutorial.link }}', '{{ tutorial.title }}', '{{ tutorial.author }}', 'external')">
                   <img src="{{ tutorial.image }}" alt="{{ tutorial.title }} - n8n教學" loading="lazy">
-                </div>
-                <div class="n8n-tutorial-info">
+                </a>
+              </div>
+              <div class="n8n-tutorial-info">
+                <a href="{{ tutorial.link }}" class="n8n-tutorial-title-link" target="_blank" rel="noopener"
+                   onclick="trackClick('{{ tutorial.link }}', '{{ tutorial.title }}', '{{ tutorial.author }}', 'external')">
                   <h3>{{ tutorial.title }}</h3>
+                </a>
+                <div class="n8n-tutorial-content-wrapper">
                   <div class="n8n-tutorial-meta">
-                    <span class="n8n-tutorial-author">{{ tutorial.author }}</span>
+                    <a href="{{ tutorial.authorLink }}" class="n8n-tutorial-author" target="_blank" rel="noopener"
+                       onclick="trackClick('{{ tutorial.authorLink }}', '{{ tutorial.author }}', '{{ tutorial.author }}', 'author')">
+                      {{ tutorial.author }}
+                    </a>
                   </div>
                   <p>{{ tutorial.description }}</p>
                 </div>
-              </a>
+              </div>
             </article>
           {% endfor %}
         </div>
@@ -358,8 +393,63 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         'category': category
       });
     }
-    // 所有連結都在新分頁打開，不需要阻止默認行為
   }
+
+  // 卡片懸停隨機動畫效果
+  document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.n8n-tutorial-card');
+    const animations = [
+      'anim-border-pulse',
+      'anim-border-glow',
+      'anim-border-spin',
+      'anim-border-marquee',
+      'anim-border-spotlight',
+      'anim-border-rainbow'
+    ];
+    
+    cards.forEach(card => {
+      let currentAnimation = '';
+      
+      card.addEventListener('mouseenter', function() {
+        // 隨機選擇一個動畫效果
+        const randomIndex = Math.floor(Math.random() * animations.length);
+        currentAnimation = animations[randomIndex];
+        
+        // 移除所有動畫類，然後添加選中的動畫
+        animations.forEach(anim => card.classList.remove(anim));
+        card.classList.add(currentAnimation);
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        // 在滑鼠離開時移除動畫
+        if (currentAnimation) {
+          card.classList.remove(currentAnimation);
+          currentAnimation = '';
+        }
+      });
+    });
+  });
+
+  // 確保點擊圖片區域也能導向文章連結
+  document.addEventListener('DOMContentLoaded', function() {
+    const tutorialImages = document.querySelectorAll('.n8n-tutorial-image');
+    tutorialImages.forEach(image => {
+      image.addEventListener('click', function(e) {
+        // 獲取圖片容器內的連結
+        const link = this.querySelector('a.n8n-tutorial-image-link');
+        if (link) {
+          const href = link.getAttribute('href');
+          const target = link.getAttribute('target') || '_self';
+          const onclick = link.getAttribute('onclick');
+          if (onclick) {
+            // 執行原本的onclick事件
+            eval(onclick.replace('return false', ''));
+          }
+          window.open(href, target);
+        }
+      });
+    });
+  });
 </script>
 
 <style>
@@ -771,21 +861,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   /* 教學卡片樣式 */
   .n8n-tutorials {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   @media (min-width: 1200px) {
     .n8n-tutorials {
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+  }
+  
+  @media (max-width: 1100px) {
+    .n8n-tutorials {
+      grid-template-columns: repeat(3, 1fr);
       gap: 18px;
     }
   }
   
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     .n8n-tutorials {
-      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-      gap: 15px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
     }
   }
   
@@ -794,32 +893,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       grid-template-columns: repeat(2, 1fr);
       gap: 12px;
     }
-    
-    .n8n-tutorial-info h3 {
-      font-size: 0.95rem;
-      margin-bottom: 8px;
-    }
-    
-    .n8n-tutorial-info p {
-      font-size: 0.8rem;
-      -webkit-line-clamp: 2;
-    }
-    
-    .n8n-tutorial-meta {
-      font-size: 0.75rem;
-    }
   }
 
   .n8n-tutorial-card {
     border-radius: 8px;
     overflow: hidden;
     background-color: rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s, box-shadow 0.3s;
-    height: 100%;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    width: 100%;
     position: relative;
-    max-width: 320px;
-    margin: 0 auto;
     border: 1px solid var(--n8n-border);
+    user-select: none;
+    display: flex;
+    flex-direction: column;
   }
 
   .n8n-tutorial-card:hover {
@@ -828,21 +914,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     border-color: var(--n8n-primary);
   }
 
-  .n8n-tutorial-link {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    text-decoration: none;
-    color: var(--n8n-text);
-  }
-
   .n8n-tutorial-image {
     position: relative;
     overflow: hidden;
     background-color: rgba(0, 0, 0, 0.2);
-    padding-top: 100%; /* 1:1 正方形比例 */
+    padding-top: 56.25%; /* 16:9 比例 */
     width: 100%;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .n8n-tutorial-image-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    text-decoration: none;
+    z-index: 10;
   }
 
   .n8n-tutorial-image::before {
@@ -861,43 +951,79 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   .n8n-tutorial-image img {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 85%;
-    max-height: 85%;
-    width: auto;
-    height: auto;
-    object-fit: contain;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
     z-index: 2;
     border-radius: 3px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
     transition: transform 0.5s;
+    pointer-events: none;
   }
 
   .n8n-tutorial-card:hover .n8n-tutorial-image img {
-    transform: translate(-50%, -50%) scale(1.05);
+    transform: scale(1.1);
   }
 
   .n8n-tutorial-info {
     padding: 15px;
-    flex: 1;
     display: flex;
     flex-direction: column;
     position: relative;
+    flex-grow: 1;
+    justify-content: space-between;
+    min-height: 180px;
+  }
+
+  .n8n-tutorial-title-link {
+    text-decoration: none;
+    color: var(--n8n-text);
+    cursor: pointer;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .n8n-tutorial-info h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    color: var(--n8n-text);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 3.1em;
+  }
+
+  .n8n-tutorial-content-wrapper {
+    margin-top: auto;
   }
 
   .n8n-tutorial-meta {
     margin-bottom: 8px;
     font-size: 0.85rem;
-    color: var(--n8n-secondary);
     display: flex;
     align-items: center;
+    height: 20px; /* 固定作者區域高度 */
   }
 
   .n8n-tutorial-author {
     position: relative;
     padding-left: 20px;
+    color: var(--n8n-secondary);
+    text-decoration: none;
+    display: inline-block;
+    z-index: 3;
+    cursor: pointer;
+  }
+  
+  .n8n-tutorial-author:hover {
+    color: var(--n8n-secondary);
+    text-decoration: none;
   }
 
   .n8n-tutorial-author:before {
@@ -911,27 +1037,54 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2320a0ff'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z'/%3E%3C/svg%3E");
     background-size: contain;
     background-repeat: no-repeat;
-  }
-
-  .n8n-tutorial-info h3 {
-    margin-top: 5px;
-    margin-bottom: 10px;
-    font-size: 1.2rem;
-    line-height: 1.4;
-    color: var(--n8n-text);
+    pointer-events: none;
   }
 
   .n8n-tutorial-info p {
-    margin: 0 0 12px;
+    margin: 0;
     color: var(--n8n-text);
     opacity: 0.8;
     font-size: 0.9rem;
     line-height: 1.5;
-    flex: 1;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+    height: 4.5em; /* 固定三行的高度 = 行高 * 3 */
+  }
+  
+  @media (max-width: 480px) {
+    .n8n-tutorials {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    
+    .n8n-tutorial-info {
+      padding: 12px;
+      min-height: 140px;
+    }
+    
+    .n8n-tutorial-info h3 {
+      font-size: 0.9rem;
+      margin-bottom: 0;
+      -webkit-line-clamp: 2;
+      max-height: 2.5em;
+    }
+    
+    .n8n-tutorial-info p {
+      font-size: 0.8rem;
+      -webkit-line-clamp: 2;
+      height: 3em;
+    }
+    
+    .n8n-tutorial-meta {
+      font-size: 0.75rem;
+      height: 18px;
+    }
+    
+    .n8n-tutorial-title-link {
+      margin-bottom: 8px;
+    }
   }
 
   /* 共享的圖片容器模糊背景效果 */
@@ -1127,6 +1280,102 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     margin: 20px auto 0;
     max-width: 600px;
     position: relative;
+  }
+
+  /* 卡片懸停動畫效果 */
+  @keyframes border-pulse {
+    0% { box-shadow: 0 0 0 1px var(--n8n-border); border-color: transparent; }
+    50% { box-shadow: 0 0 0 3px var(--n8n-primary); border-color: transparent; }
+    100% { box-shadow: 0 0 0 1px var(--n8n-border); border-color: transparent; }
+  }
+  
+  @keyframes border-glow {
+    0% { box-shadow: 0 0 0 rgba(255, 109, 90, 0), 0 0 0 rgba(32, 160, 255, 0); border-color: var(--n8n-border); }
+    50% { box-shadow: 0 0 15px rgba(255, 109, 90, 0.7), 0 0 15px rgba(32, 160, 255, 0); border-color: var(--n8n-primary); }
+    100% { box-shadow: 0 0 0 rgba(255, 109, 90, 0), 0 0 0 rgba(32, 160, 255, 0); border-color: var(--n8n-border); }
+  }
+  
+  @keyframes border-spin {
+    0% { background: linear-gradient(0deg, transparent 0%, var(--n8n-primary) 50%, transparent 100%) border-box; border: 2px solid transparent; }
+    100% { background: linear-gradient(360deg, transparent 0%, var(--n8n-primary) 50%, transparent 100%) border-box; border: 2px solid transparent; }
+  }
+  
+  @keyframes border-marquee {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 200% 0%; }
+  }
+  
+  @keyframes border-spotlight {
+    0% { background-position: -100% 0%; }
+    100% { background-position: 200% 0%; }
+  }
+  
+  @keyframes border-rainbow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+  }
+
+  .n8n-tutorial-card {
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    width: 100%;
+    position: relative;
+    border: 1px solid var(--n8n-border);
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .n8n-tutorial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px var(--n8n-box-shadow-hover);
+    border-color: var(--n8n-primary);
+  }
+  
+  /* 使用JavaScript為每個卡片添加隨機動畫類 */
+  .anim-border-pulse { animation: border-pulse 1.5s infinite; }
+  
+  .anim-border-glow { animation: border-glow 1.5s infinite; }
+  
+  .anim-border-spin { 
+    animation: border-spin 4s linear infinite; 
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  
+  .anim-border-marquee { 
+    border: 2px solid transparent;
+    background: linear-gradient(90deg, 
+      rgba(150, 50, 40, 0.9) 25%, 
+      rgba(20, 80, 120, 0.9) 50%, 
+      rgba(150, 50, 40, 0.9) 75%) 0 0 / 200% 100%;
+    animation: border-marquee 3s linear infinite;
+    background-clip: border-box;
+  }
+  
+  .anim-border-spotlight { 
+    border: 2px solid transparent;
+    background: linear-gradient(90deg, 
+      rgba(10, 10, 10, 0.95), 
+      rgba(150, 50, 40, 0.9), 
+      rgba(10, 10, 10, 0.95)) 0 0 / 200% 100%;
+    animation: border-spotlight 2.5s infinite;
+    background-clip: border-box;
+  }
+  
+  .anim-border-rainbow { 
+    border: 2px solid transparent;
+    background: linear-gradient(90deg, 
+      rgba(120, 30, 30, 0.9), 
+      rgba(120, 80, 0, 0.9), 
+      rgba(0, 80, 0, 0.9), 
+      rgba(0, 60, 100, 0.9), 
+      rgba(70, 0, 80, 0.9), 
+      rgba(120, 30, 30, 0.9)) 0 0 / 400% 100%;
+    animation: border-rainbow 3s infinite linear;
+    background-clip: border-box;
   }
 </style>
 </body>
