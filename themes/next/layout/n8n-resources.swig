@@ -32,7 +32,7 @@ layout: false
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>n8n 教學文件 | Darrell TW</title>
+  <title>n8n 教學文件 - 節點、模板、部署和小撇步 | Darrell TW</title>
   <meta name="description" content="{{ page.description or '探索n8n自動化工作流程工具的各種文件，包括節點介紹、使用技巧、模板分享、功能更新及部署設定指南。' }}">
   <meta name="keywords" content="n8n, 工作流程自動化, 自動化工具, 節點介紹, n8n模板, n8n部署">
   <link rel="canonical" href="{{ url_for(page.permalink) }}">
@@ -40,14 +40,14 @@ layout: false
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ url_for(page.permalink) }}">
-  <meta property="og:title" content="n8n教學文件大集合 | Darrell TW">
+  <meta property="og:title" content="n8n 教學文件 - 節點、模板、部署和小撇步 | Darrell TW">
   <meta property="og:description" content="{{ page.description or '探索n8n自動化工作流程工具的各種教學文分享，包括節點介紹、使用技巧、模板分享、功能更新及部署設定指南。' }}">
   <meta property="og:image" content="{{ url_for('/gallery/n8n_resource_og.jpg') }}">
   
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="{{ url_for(page.permalink) }}">
-  <meta name="twitter:title" content="n8n教學文件大集合 | Darrell TW">
+  <meta name="twitter:title" content="n8n 教學文件 - 節點、模板、部署和小撇步 | Darrell TW">
   <meta name="twitter:description" content="{{ page.description or '探索n8n自動化工作流程工具的各種教學文分享，包括節點介紹、使用技巧、模板分享、功能更新及部署設定指南。' }}">
   <meta name="twitter:image" content="{{ url_for('/gallery/n8n_resource_og.jpg') }}">
 
