@@ -32,7 +32,7 @@ date: 2025-04-24 12:33:52
 
 文字 input $5.00 / 1M tokens
 圖片 input $10.00 / 1M tokens
-圖片 output $15.00 / 1M tokens
+圖片 output $40.00 / 1M tokens
 
 ## API Curl 語法
 
