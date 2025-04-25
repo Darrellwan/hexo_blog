@@ -94,8 +94,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        840,
-        -120
+        860,
+        -20
       ],
       "id": "0ead70d0-9e3b-4f19-afee-b5d4a7b532e9",
       "name": "Google Drive",
@@ -133,8 +133,8 @@
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        620,
-        -120
+        640,
+        -20
       ],
       "id": "c8090e15-b9b9-4999-89f0-97d45e6176d6",
       "name": "Convert to File"
@@ -149,8 +149,8 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        180,
-        -120
+        200,
+        -20
       ],
       "id": "692a71fb-6fe3-4728-a588-f9283f5ab968",
       "name": "Loop Over Items",
@@ -179,8 +179,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        400,
-        -120
+        420,
+        -20
       ],
       "id": "dfa88c15-4d38-4670-9c5a-4e52a9ce9d33",
       "name": "Edit Fields-file_name"
@@ -220,8 +220,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1060,
-        -120
+        1080,
+        -20
       ],
       "id": "c34c1a91-2601-4750-8134-d31cf377c349",
       "name": "Edit Fields1"
@@ -290,8 +290,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        1280,
-        -45
+        1300,
+        -20
       ],
       "id": "6bd8f7dc-1006-4d7f-b3eb-0a3aaa1b9a84",
       "name": "Google Sheets",
@@ -424,8 +424,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        620,
-        -320
+        700,
+        -400
       ],
       "id": "1e687fde-8465-4490-8738-c9832904f2b5",
       "name": "Google Sheets1",
@@ -444,11 +444,74 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        400,
-        -320
+        480,
+        -400
       ],
       "id": "5e1f6dd3-6c1a-4838-86c7-2a3c0cf05c3d",
       "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "content": "## Created by darrell_tw_ \n\nAn engineer now focus on AI and Automation\n\n### contact me with following:\n[X](https://x.com/darrell_tw_)\n[Threads](https://www.threads.net/@darrell_tw_)\n[Instagram](https://www.instagram.com/darrell_tw_/)\n[Website](https://www.darrelltw.com/)",
+        "height": 240,
+        "width": 340,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -540,
+        -600
+      ],
+      "id": "f14edb71-0778-40dc-9f2d-4cfc72b8a351",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "## 可以利用 Chat 來輸入產圖的 Prompt",
+        "height": 480,
+        "width": 660
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -540,
+        -340
+      ],
+      "id": "6bbe2346-287b-491d-bf20-a76d39a6e297",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## 用 Loop 處理 Data 中的陣列圖片\n因為不管單張或是多張\n都會在 data[] 中\n直接用 Loop 去處理即可\n\n中間會把圖片上傳到 Drive 中，並且儲存一列到 Sheet 裡面呈現連結跟縮圖",
+        "height": 420,
+        "width": 1260,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        160,
+        -200
+      ],
+      "id": "8dd6607a-16cf-424d-902a-04c43e68f424",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## 全部處理完後，儲存 Cost 到 Sheet ",
+        "height": 260,
+        "width": 480,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        400,
+        -480
+      ],
+      "id": "f8d0819a-e38a-4f7a-aa79-594ebca465a0",
+      "name": "Sticky Note2"
     }
   ],
   "pinData": {},
@@ -586,7 +649,7 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "342775b6-e05e-4ac1-95c6-b416b5e5dbfa",
+  "versionId": "cf533114-4aa9-4b06-8247-3c06f9dcbc79",
   "meta": {
     "instanceId": "fddb3e91967f1012c95dd02bf5ad21f279fc44715f47a7a96a33433621caa253"
   },
