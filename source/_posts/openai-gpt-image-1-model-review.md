@@ -63,12 +63,15 @@ curl --location 'https://api.openai.com/v1/images/generations' \
 
 ```
 let jsonData = pm.response.json();
-let base64 = jsonData.data[0].b64_json;
+
+let images = jsonData.data.map(item => {
+  return `<img src="data:image/png;base64,${item.b64_json}" style="max-width: 50%; margin-bottom: 10px;" />`;
+}).join("");  
 
 let html = `
   <html>
     <body>
-      <img src="data:image/png;base64,${base64}" style="max-width: 100%;"/>
+      ${images}
     </body>
   </html>
 `;
