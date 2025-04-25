@@ -1,5 +1,131 @@
 {
     "models": {
+        "n8n_gpt_image_1_with_drive_and_sheet": {
+            "id": "n8n_gpt_image_1_with_drive_and_sheet",
+            "title": "ChatGPT Image-1 圖像生成與自動儲存",
+            "description": "這個工作流程使用 ChatGPT Image-1 模型生成高品質圖像，並自動將圖像儲存到 Google Drive 和記錄到 Google Sheets 中。系統接收使用者的文字提示，透過 OpenAI API 生成多張圖片，然後將這些圖片儲存到指定的 Google Drive 資料夾，同時在 Google Sheets 建立記錄，包含提示文字、圖片連結和消耗的 token 統計資訊。\n\n主要功能：\n\n圖像生成：使用最新的 GPT-Image-1 模型根據文字提示生成高品質圖像\n自動儲存：將生成的圖片自動儲存到 Google Drive 指定資料夾\n數據追蹤：記錄所有圖片生成記錄，包含提示文字和圖片連結\nToken 用量追蹤：自動計算並記錄每次生成的 token 用量和估計成本",
+            "detailedDescription": [
+                "接收使用者的文字提示透過 ChatGPT 聊天介面",
+                "使用 OpenAI GPT-Image-1 模型生成多張圖片",
+                "自動將圖片存儲到 Google Drive 指定資料夾",
+                "在 Google Sheets 記錄圖片生成歷史和連結",
+                "自動計算並追蹤 token 使用量和成本",
+                "支援圖片縮圖預覽功能"
+            ],
+            "tags": ["自動化", "AI", "圖像生成", "OpenAI", "Google Drive", "Google Sheets"],
+            "nodes": 12,
+            "createdAt": "2025-04-25",
+            "updatedAt": "2025-04-25",
+            "setup": {
+                "prerequisites": "需要設定 OpenAI API、Google Drive 和 Google Sheets 的 API 存取權限",
+                "steps": [
+                    {
+                        "title": "OpenAI 設定",
+                        "description": "設定 OpenAI API 用於圖像生成",
+                        "options": [
+                            "取得 OpenAI API 金鑰",
+                            "確認有權限使用 GPT-Image-1 模型",
+                            "設定適當的隱私和使用設定"
+                        ]
+                    },
+                    {
+                        "title": "Google Drive 設定",
+                        "description": "準備用於儲存圖片的雲端資料夾",
+                        "options": [
+                            "建立專用資料夾用於存放生成的圖片",
+                            "設定適當的存取權限",
+                            "取得資料夾 ID"
+                        ]
+                    },
+                    {
+                        "title": "Google Sheets 設定",
+                        "description": "準備用於記錄生成歷史的試算表",
+                        "options": [
+                            "建立新的試算表",
+                            "設定「工作表1」用於記錄圖片歷史",
+                            "設定「usage」工作表用於記錄 token 使用量"
+                        ]
+                    }
+                ]
+            },
+            "examples": [
+                {
+                    "title": "基本設定範例",
+                    "description": "展示如何設定基本的圖片生成和儲存流程",
+                    "code": {
+                        "trigger": "chat",
+                        "actions": [
+                            "generate_image",
+                            "convert_to_file",
+                            "save_to_drive",
+                            "record_to_sheets"
+                        ]
+                    }
+                }
+            ],
+            "fields": {
+                "openai": {
+                    "title": "OpenAI 設定",
+                    "fields": {
+                        "model": {
+                            "type": "string",
+                            "description": "圖像生成模型",
+                            "default": "gpt-image-1"
+                        },
+                        "size": {
+                            "type": "string",
+                            "description": "圖片尺寸",
+                            "default": "1024x1024"
+                        },
+                        "quality": {
+                            "type": "string",
+                            "description": "圖片品質",
+                            "default": "low"
+                        },
+                        "outputFormat": {
+                            "type": "string",
+                            "description": "輸出格式",
+                            "default": "jpeg"
+                        },
+                        "imageCount": {
+                            "type": "number",
+                            "description": "生成圖片數量",
+                            "default": 1
+                        }
+                    }
+                },
+                "googleDrive": {
+                    "title": "Google Drive 設定",
+                    "fields": {
+                        "folderId": {
+                            "type": "string",
+                            "description": "存儲圖片的資料夾 ID",
+                            "example": "1sIbMHDtcOafBVdCq0gTEuGvnT63s8Fdy"
+                        }
+                    }
+                },
+                "googleSheets": {
+                    "title": "Google Sheets 設定",
+                    "fields": {
+                        "documentId": {
+                            "type": "string",
+                            "description": "Google Sheets ID",
+                            "example": "11K1tui8itMzcSZqHOmzvFnM0G-ihn1uiLUZ_o478j88"
+                        },
+                        "imageHistorySheet": {
+                            "type": "string",
+                            "description": "記錄圖片歷史的工作表",
+                            "default": "工作表1"
+                        },
+                        "usageHistorySheet": {
+                            "type": "string",
+                            "description": "記錄使用量的工作表",
+                            "default": "usage"
+                        }
+                    }
+                }
+            }
+        },
         "n8n_japan_receipt_ai_recognition_expense_sharing": {
             "id": "n8n_japan_receipt_ai_recognition_expense_sharing",
             "title": "Line 收據AI辨識自動記帳",
