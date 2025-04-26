@@ -9,10 +9,6 @@ Darrell Wang | contact@darrelltw.com
 ## License
 CC BY 4.0 — 歡迎引用並註明來源。
 
-# Darrell TW
-
-> Darrell TW 是一個專注於自動化、行銷科技及 AI 應用的技術部落格，提供實用教學與工具評測。
-
 ## 核心內容
 
 - [n8n 教學文件 - 節點、模板、部署和小撇步](https://www.darrelltw.com/n8n-resources/): 探索n8n自動化工作流程工具的各種文件，包括節點介紹、使用技巧、模板分享、功能更新及部署設定指南。
