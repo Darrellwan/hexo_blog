@@ -1,5 +1,16 @@
 # Darrell TW
 
+## About
+Darrell TW 是一個專注於自動化、行銷科技及 AI 應用的技術部落格，分享實用教學、工具評測及整合實作經驗。網站以 Hexo 架設，並持續更新相關資源。
+
+## Author
+Darrell Wang | contact@darrelltw.com
+
+## License
+CC BY 4.0 — 歡迎引用並註明來源。
+
+# Darrell TW
+
 > Darrell TW 是一個專注於自動化、行銷科技及 AI 應用的技術部落格，提供實用教學與工具評測。
 
 ## 核心內容
