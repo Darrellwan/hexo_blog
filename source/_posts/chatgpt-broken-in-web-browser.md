@@ -16,6 +16,26 @@ preload:
 
 {% darrellImageCover ChatGPT-broken-in-browser-bg ChatGPT-broken-in-browser-bg.jpg max-800 %}
 
+## 202504 500 error
+
+這次最新的錯誤是在網頁版會顯示 500 error
+
+{% darrellImage800 chatgpt_down_202504-500_error chatgpt_down_202504-500_error.png max-800 %}
+
+### 錯誤訊息：
+這個網頁無法正常運作
+chatgpt.com 目前無法處理這項要求。
+HTTP ERROR 500
+
+### 解決方法：
+這次算是網路那方面的問題
+ChatGPT 桌面版本是可以正常使用的
+只要到下列網址下載安裝即可！
+
+<a href="https://openai.com/chatgpt/download/" target="_blank"> ChatGPT 下載連結 </a>
+{% darrellImage800 chatgpt_down_202504-download chatgpt_down_202504-download.jpg max-800 %}
+
+
 ## 快速檢查是否為 ChatGPT 端的問題
 
 ### OpenAI downdetector
