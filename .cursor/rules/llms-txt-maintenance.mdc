@@ -1,0 +1,42 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# llms.txt 維護與測試流程
+
+> 這個規則文件提供 llms.txt 的維護和測試最佳實踐，確保您的 AI 導航檔案保持更新並有效運作。
+
+## 自動化產生
+
+- 用 Sitemap → Parser 的腳本自動匯出 llms.txt
+- Hexo 網站可在 after_generate hook 產生 Markdown 清單並寫到 public/llms.txt
+- 建立自動化流程，在內容更新時同步更新 llms.txt
+
+## CI/CD 整合
+
+- 加入 Lint 檢查：驗證 H1、Blockquote、H2 清單結構是否齊全
+- 設定檔案大小檢查：如超過 50 KB 自動警告
+- 檢查連結有效性：確保所有 URL 可訪問
+
+## 監控與分析
+
+- 在日誌中篩選 GPTBot、ClaudeBot、PerplexityBot 等 AI 爬蟲
+- 分析 AI 爬蟲對 llms.txt 和其列出資源的訪問模式
+- 追蹤 AI 助手對您內容引用的準確性
+
+## 定期測試與更新
+
+- 把 llms.txt 貼進 ChatGPT、Claude 等測試常見問題
+- 觀察回覆是否引用正確頁面，內容有誤即在 llms.txt 補充
+- 每次版本發佈或文件搬家後 24 小時內同步更新 llms.txt
+- 每季複查 Optional 區段，確認內容優先級
+
+## 避免常見陷阱
+
+- **內容過度**: 不要把整份文檔貼入，只保留摘要和連結
+- **不同步更新**: 將 llms.txt 更新納入發布流程自動化
+- **格式不一致**: 使用固定模板，提交前用 Markdown Linter 檢查
+- **過度期待**: 目前主流 LLM 尚未全面採用該標準，效果以實驗為主
+
+參考 [llms-rules.md](mdc:llms-rules.md) 了解完整的維護與測試流程。

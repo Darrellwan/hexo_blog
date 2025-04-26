@@ -1,0 +1,42 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# llms.txt 最佳實踐指南
+
+> 這個規則文件提供 llms.txt 的格式和內容準則，協助開發者製作對大型語言模型友善的網站導航檔案。參考 [llms-rules.md](mdc:llms-rules.md) 和 [llms.txt](mdc:llms.txt) 取得完整範例。
+
+## 基本結構要素
+
+llms.txt 必須遵循以下結構：
+
+1. **H1 標題**：網站或專案名稱，每個檔案只能有一個
+2. **Blockquote 摘要**：緊接 H1 後，以 > 起首，20〜60字描述網站宗旨
+3. **H2 區段 + 清單**：各區塊以 H2 命名（如 Docs、API），下方使用 Markdown 清單
+4. **Optional 區段**：標註次要資源，爬蟲可酌情跳過
+
+## 內容選擇原則
+
+- 優先收錄高價值頁面：API 參考、快速開始、FAQ、政策條款
+- 每條連結附一句話說明用途，避免行話與縮寫
+- 優先使用 Markdown 版本連結，比 HTML 更易處理
+- 控制檔案大小 < 50 KB，冗長內容移至 Optional 或 llms-full.txt
+- 使用穩定 URL，避免重導向造成 404
+
+## 格式細節
+
+- 將最重要區塊（Docs、API）放最前面
+- 每行只列一個資源，便於解析
+- 使用 UTF-8 編碼、LF 換行
+- 避免使用 HTML/JS，保持純文字 Markdown
+
+## 檢查清單
+
+- [ ] 格式符合規格（H1→Blockquote→H2 清單）
+- [ ] 檔案 < 50 KB，且只含關鍵連結與 1 行說明
+- [ ] URL 可在瀏覽器直接下載 .md 或 HTML 頁
+- [ ] 每季自動更新且通過 CI 檢查
+- [ ] 貼進 ChatGPT/Claude 能正確回答 3 個常見問題
+
+完整參考：查看 [llms-rules.md](mdc:llms-rules.md) 了解詳細規範和範例。

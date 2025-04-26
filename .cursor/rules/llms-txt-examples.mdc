@@ -1,0 +1,56 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# llms.txt 範例與模板
+
+> 這個規則文件提供 llms.txt 的標準結構範例和模板，方便快速建立符合規範的 AI 導航檔案。
+
+## 標準模板結構
+
+```markdown
+# 網站名稱
+
+> 這是一個關於某領域的網站，專注於提供高質量的內容和服務。
+
+## 文件
+
+- [快速入門](https://example.com/docs/quickstart.md): 五分鐘內了解如何使用我們的產品
+- [API 參考](https://example.com/docs/api/reference.md): 完整的 API 端點和參數說明
+- [常見問題](https://example.com/docs/faq.md): 使用者最常遇到的問題及解答
+
+## 政策
+
+- [服務條款](https://example.com/policies/terms.md): 使用我們服務的法律條款
+- [隱私政策](https://example.com/policies/privacy.md): 我們如何收集和處理用戶數據
+
+## Optional
+
+- [開發者博客](https://example.com/blog): 技術更新和案例分享
+- [社區貢獻指南](https://example.com/community/guidelines.md): 如何參與開源項目
+```
+
+## 實際範例分析
+
+查看 [llms.txt](mdc:llms.txt) 了解一個實際實現的範例。這個範例展示了：
+
+1. 清晰的 H1 標題
+2. 簡潔的摘要說明
+3. 分類良好的 H2 區段
+4. 每個連結都有單行說明
+5. Optional 區段標示次要資源
+
+## 自訂化建議
+
+根據您的網站類型，可以考慮以下 H2 區段：
+
+- **技術文檔網站**: Docs, API, Tutorials, Reference
+- **產品網站**: Products, Features, Support, Pricing
+- **公司網站**: About, Services, Portfolio, Contact
+- **學術網站**: Papers, Research, Courses, Publications
+
+## 進階應用：llms-full.txt
+
+若您的網站內容豐富，可考慮提供 llms-full.txt 作為補充，包含所有 Markdown 內容。
+查看 [llms-rules.md](mdc:llms-rules.md) 了解詳細規範和更多範例。
