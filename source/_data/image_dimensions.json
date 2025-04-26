@@ -4063,5 +4063,35 @@
     "width": 1416,
     "height": 742,
     "mtimeMs": 1745464757335.187
+  },
+  "/_posts/n8n-node-s3-with-cloudflare-r2/n8n_s3_node-s3_capability.png": {
+    "width": 2568,
+    "height": 934,
+    "mtimeMs": 1745652941355.8564
+  },
+  "/_posts/n8n-node-s3-with-cloudflare-r2/n8n_s3_node-get_keys_in_cloudflare_r2.png": {
+    "width": 1423,
+    "height": 1086,
+    "mtimeMs": 1745652251921.999
+  },
+  "/_posts/n8n-node-s3-with-cloudflare-r2/n8n_s3_node-ai_image_upload_line_demo.jpg": {
+    "width": 1024,
+    "height": 1024,
+    "mtimeMs": 1745654974548.255
+  },
+  "/_posts/n8n-node-s3-with-cloudflare-r2/n8n_s3_node-s3_upload_file_demo.png": {
+    "width": 2120,
+    "height": 1952,
+    "mtimeMs": 1745653443181.344
+  },
+  "/_posts/n8n-node-s3-with-cloudflare-r2/n8n_s3_node-line_prompt_to_image_demo.png": {
+    "width": 1646,
+    "height": 982,
+    "mtimeMs": 1745655469090.421
+  },
+  "/_posts/n8n-node-s3-with-cloudflare-r2/n8n_s3_node-cloudflare_r2_pricing.png": {
+    "width": 1526,
+    "height": 788,
+    "mtimeMs": 1745655989518.403
   }
 }
