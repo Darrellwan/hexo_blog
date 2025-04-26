@@ -9,9 +9,9 @@ categories:
 page_type: post
 id: n8n-node-s3-with-cloudflare-r2
 description: 介紹如何在 n8n 中使用 s3 節點連接 Cloudflare R2 儲存服務，包含 API Token 申請、權限設定、上傳下載檔案，適合想將自動化流程與雲端儲存整合的使用者。
-bgImage: blog-n8n-s3-node-bg
+bgImage: blog-n8n-s3-node-bg.jpg
 preload:
-  - blog-n8n-s3-node-bg
+  - blog-n8n-s3-node-bg.jpg
 date: 2025-04-25 00:02:03
 ---
 {% darrellImageCover n8n-node-s3-with-cloudflare-r2-bg blog-n8n-s3-node-bg.jpg max-800 %}
