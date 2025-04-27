@@ -1,4 +1,5 @@
 {
+  "name": "n8napi-check-workflow-which-model-is-using",
   "nodes": [
     {
       "parameters": {},
@@ -22,8 +23,7 @@
         -40
       ],
       "id": "0aafc781-6847-4b5d-8f80-3bd457f16db3",
-      "name": "Loop Over Items",
-      "disabled": true
+      "name": "Loop Over Items"
     },
     {
       "parameters": {
@@ -36,15 +36,9 @@
               "type": "string"
             },
             {
-              "id": "3bbd6936-6941-4520-a8d9-e4ed05be5078",
-              "name": "modelId_value",
-              "value": "={{ $json.parameters.modelId.value }}",
-              "type": "string"
-            },
-            {
-              "id": "89fc4e59-fdb7-4316-8a10-c7170a3b6f5e",
-              "name": "modelId_name",
-              "value": "={{ $json.parameters.modelId.cachedResultName }}",
+              "id": "9b060fdb-f6a6-444a-a28d-deeacb21b3d3",
+              "name": "model",
+              "value": "={{ $json?.parameters?.model?.value || $json?.parameters?.model ||  $json?.parameters?.modelId?.cachedResultName }}",
               "type": "string"
             },
             {
@@ -62,7 +56,7 @@
             {
               "id": "8a8a2a83-d742-4450-b5ed-2089047076d8",
               "name": "workflow_url",
-              "value": "={{ Your n8n domain }}/workflow/{{ $('Loop Over Items').item.json.id }}",
+              "value": "={Your n8n domain}/workflow/{{ $('Loop Over Items').item.json.id }}",
               "type": "string"
             }
           ]
@@ -183,7 +177,7 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        40,
+        -40,
         80
       ],
       "id": "727dd95d-c788-4cae-8b25-4ffeff705579",
@@ -202,23 +196,33 @@
           "conditions": [
             {
               "id": "5c06371f-9bc4-4fdd-bac2-9b9cdc28f77c",
-              "leftValue": "={{ $json.parameters.modelId }}",
+              "leftValue": "={{ $json.parameters.modelId.value.toString() }}",
               "rightValue": "",
               "operator": {
-                "type": "object",
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "6888c3a4-c988-48a1-aefc-d359f2ffeef5",
+              "leftValue": "={{ $json.parameters.model.toString() }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
                 "operation": "exists",
                 "singleValue": true
               }
             }
           ],
-          "combinator": "and"
+          "combinator": "or"
         },
         "options": {}
       },
       "type": "n8n-nodes-base.filter",
       "typeVersion": 2.2,
       "position": [
-        220,
+        180,
         80
       ],
       "id": "5a9d8012-a559-4c06-a3f9-be1a7b8f7ce6",
@@ -376,6 +380,7 @@
       "name": "Sticky Note4"
     }
   ],
+  "pinData": {},
   "connections": {
     "When clicking ‘Test workflow’": {
       "main": [
@@ -472,9 +477,15 @@
       ]
     }
   },
-  "pinData": {},
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "8c129490-0fba-4519-9ec3-ddabd0a843b0",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "fddb3e91967f1012c95dd02bf5ad21f279fc44715f47a7a96a33433621caa253"
-  }
+  },
+  "id": "I2qMAcQET7isaqYD",
+  "tags": []
 }
