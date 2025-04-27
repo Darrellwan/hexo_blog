@@ -1,501 +1,480 @@
 {
-    "id": "I2qMAcQET7isaqYD",
-    "meta": {
-      "instanceId": "fddb3e91967f1012c95dd02bf5ad21f279fc44715f47a7a96a33433621caa253",
-      "templateCredsSetupCompleted": true
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -880,
+        -40
+      ],
+      "id": "a027dc3c-b3a2-45f6-9126-dbec39f55b39",
+      "name": "When clicking ‘Test workflow’"
     },
-    "name": "check-which-ai-models-are-used-in-your-workflows",
-    "tags": [
-      {
-        "id": "8QamEElERskZqfRl",
-        "name": "官方template",
-        "createdAt": "2025-04-25T14:04:39.627Z",
-        "updatedAt": "2025-04-25T14:04:39.627Z"
+    {
+      "parameters": {
+        "options": {}
       },
-      {
-        "id": "5XRIpCCc7ekBy9Ka",
-        "name": "Darrell-template",
-        "createdAt": "2025-04-25T14:04:49.168Z",
-        "updatedAt": "2025-04-25T14:04:49.168Z"
-      }
-    ],
-    "nodes": [
-      {
-        "id": "a027dc3c-b3a2-45f6-9126-dbec39f55b39",
-        "name": "When clicking ‘Test workflow’",
-        "type": "n8n-nodes-base.manualTrigger",
-        "position": [
-          -880,
-          -40
-        ],
-        "parameters": {},
-        "typeVersion": 1
-      },
-      {
-        "id": "0aafc781-6847-4b5d-8f80-3bd457f16db3",
-        "name": "Loop Over Items",
-        "type": "n8n-nodes-base.splitInBatches",
-        "disabled": true,
-        "position": [
-          -220,
-          -40
-        ],
-        "parameters": {
-          "options": {}
-        },
-        "typeVersion": 3
-      },
-      {
-        "id": "242d1965-d1e3-4b74-8064-53ea56118e94",
-        "name": "Edit Fields-set_model_data",
-        "type": "n8n-nodes-base.set",
-        "position": [
-          460,
-          80
-        ],
-        "parameters": {
-          "options": {},
-          "assignments": {
-            "assignments": [
-              {
-                "id": "3c08b3a3-092d-4f88-81ef-7a7b3acf47b2",
-                "name": "node_name",
-                "type": "string",
-                "value": "={{ $json.name }}"
-              },
-              {
-                "id": "3bbd6936-6941-4520-a8d9-e4ed05be5078",
-                "name": "modelId_value",
-                "type": "string",
-                "value": "={{ $json.parameters.modelId.value }}"
-              },
-              {
-                "id": "89fc4e59-fdb7-4316-8a10-c7170a3b6f5e",
-                "name": "modelId_name",
-                "type": "string",
-                "value": "={{ $json.parameters.modelId.cachedResultName }}"
-              },
-              {
-                "id": "848c0e23-0aa6-4cf5-8a64-abe38351b63a",
-                "name": "workflow_name",
-                "type": "string",
-                "value": "={{ $('Loop Over Items').item.json.name }}"
-              },
-              {
-                "id": "cf3fea4e-4e22-4bd5-930b-6b8d25afbf9a",
-                "name": "workflow_id",
-                "type": "string",
-                "value": "={{ $('Loop Over Items').item.json.id }}"
-              },
-              {
-                "id": "8a8a2a83-d742-4450-b5ed-2089047076d8",
-                "name": "workflow_url",
-                "type": "string",
-                "value": "={{ Your n8n domain }}/workflow/{{ $('Loop Over Items').item.json.id }}"
-              }
-            ]
-          }
-        },
-        "typeVersion": 3.4
-      },
-      {
-        "id": "9693eb8b-4ce5-4d4b-984d-a77098896bc3",
-        "name": "Google Sheets-Clear Sheet Data",
-        "type": "n8n-nodes-base.googleSheets",
-        "position": [
-          -440,
-          -220
-        ],
-        "parameters": {
-          "operation": "clear",
-          "sheetName": {
-            "__rl": true,
-            "mode": "list",
-            "value": "gid=0",
-            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1iMh0C-Niu1ko4-u2BHo0cgGeVQKcYHflBzRxtbWJiRI/edit#gid=0",
-            "cachedResultName": "data"
-          },
-          "documentId": {
-            "__rl": true,
-            "mode": "list",
-            "value": "1iMh0C-Niu1ko4-u2BHo0cgGeVQKcYHflBzRxtbWJiRI",
-            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1iMh0C-Niu1ko4-u2BHo0cgGeVQKcYHflBzRxtbWJiRI/edit?usp=drivesdk",
-            "cachedResultName": "n8n-check-workflow-use-what-ai-model"
-          }
-        },
-        "credentials": {
-          "googleSheetsOAuth2Api": {
-            "id": "tufEzuSTEveV3tuA",
-            "name": "(Personal)Google Sheets account"
-          }
-        },
-        "executeOnce": true,
-        "typeVersion": 4.5,
-        "alwaysOutputData": false
-      },
-      {
-        "id": "d325597e-b12f-427c-ba18-f69fa6ec9ed4",
-        "name": "n8n-get all workflow",
-        "type": "n8n-nodes-base.n8n",
-        "position": [
-          -660,
-          -40
-        ],
-        "parameters": {
-          "filters": {},
-          "requestOptions": {}
-        },
-        "credentials": {
-          "n8nApi": {
-            "id": "dXWG3XrAfEA64tjh",
-            "name": "n8n account"
-          }
-        },
-        "typeVersion": 1
-      },
-      {
-        "id": "f8fba3ae-f4f3-4db3-bd0f-7caa84fd6cee",
-        "name": "Filter-get workflow contain modelid",
-        "type": "n8n-nodes-base.filter",
-        "position": [
-          -440,
-          -40
-        ],
-        "parameters": {
-          "options": {},
-          "conditions": {
-            "options": {
-              "version": 2,
-              "leftValue": "",
-              "caseSensitive": true,
-              "typeValidation": "strict"
-            },
-            "combinator": "and",
-            "conditions": [
-              {
-                "id": "f7433843-53c6-4e77-8f51-c70921342a0f",
-                "operator": {
-                  "type": "string",
-                  "operation": "contains"
-                },
-                "leftValue": "={{ $json.nodes.toJsonString() }}",
-                "rightValue": "modelId"
-              },
-              {
-                "id": "8a9ff036-dc80-4b55-919b-e2dba22667cf",
-                "operator": {
-                  "type": "string",
-                  "operation": "notEquals"
-                },
-                "leftValue": "={{ $json.id }}",
-                "rightValue": "={{ $workflow.id }}"
-              }
-            ]
-          }
-        },
-        "typeVersion": 2.2
-      },
-      {
-        "id": "727dd95d-c788-4cae-8b25-4ffeff705579",
-        "name": "Split Out-nodes",
-        "type": "n8n-nodes-base.splitOut",
-        "position": [
-          40,
-          80
-        ],
-        "parameters": {
-          "options": {},
-          "fieldToSplitOut": "nodes"
-        },
-        "typeVersion": 1,
-        "alwaysOutputData": true
-      },
-      {
-        "id": "5a9d8012-a559-4c06-a3f9-be1a7b8f7ce6",
-        "name": "Filter-node contain modelId",
-        "type": "n8n-nodes-base.filter",
-        "position": [
-          220,
-          80
-        ],
-        "parameters": {
-          "options": {},
-          "conditions": {
-            "options": {
-              "version": 2,
-              "leftValue": "",
-              "caseSensitive": true,
-              "typeValidation": "strict"
-            },
-            "combinator": "and",
-            "conditions": [
-              {
-                "id": "5c06371f-9bc4-4fdd-bac2-9b9cdc28f77c",
-                "operator": {
-                  "type": "object",
-                  "operation": "exists",
-                  "singleValue": true
-                },
-                "leftValue": "={{ $json.parameters.modelId }}",
-                "rightValue": ""
-              }
-            ]
-          }
-        },
-        "typeVersion": 2.2,
-        "alwaysOutputData": true
-      },
-      {
-        "id": "d4301765-8855-46fe-b2a2-06b03577a3b9",
-        "name": "Google Sheets-Save node and workflow data",
-        "type": "n8n-nodes-base.googleSheets",
-        "position": [
-          700,
-          80
-        ],
-        "parameters": {
-          "columns": {
-            "value": {},
-            "schema": [
-              {
-                "id": "node_name",
-                "type": "string",
-                "display": true,
-                "removed": false,
-                "required": false,
-                "displayName": "node_name",
-                "defaultMatch": false,
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "modelId_value",
-                "type": "string",
-                "display": true,
-                "removed": false,
-                "required": false,
-                "displayName": "modelId_value",
-                "defaultMatch": false,
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "modelId_name",
-                "type": "string",
-                "display": true,
-                "removed": false,
-                "required": false,
-                "displayName": "modelId_name",
-                "defaultMatch": false,
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "workflow_name",
-                "type": "string",
-                "display": true,
-                "removed": false,
-                "required": false,
-                "displayName": "workflow_name",
-                "defaultMatch": false,
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "workflow_id",
-                "type": "string",
-                "display": true,
-                "removed": false,
-                "required": false,
-                "displayName": "workflow_id",
-                "defaultMatch": false,
-                "canBeUsedToMatch": true
-              },
-              {
-                "id": "workflow_url",
-                "type": "string",
-                "display": true,
-                "removed": false,
-                "required": false,
-                "displayName": "workflow_url",
-                "defaultMatch": false,
-                "canBeUsedToMatch": true
-              }
-            ],
-            "mappingMode": "autoMapInputData",
-            "matchingColumns": [],
-            "attemptToConvertTypes": false,
-            "convertFieldsToString": false
-          },
-          "options": {},
-          "operation": "append",
-          "sheetName": {
-            "__rl": true,
-            "mode": "list",
-            "value": "gid=0",
-            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1iMh0C-Niu1ko4-u2BHo0cgGeVQKcYHflBzRxtbWJiRI/edit#gid=0",
-            "cachedResultName": "data"
-          },
-          "documentId": {
-            "__rl": true,
-            "mode": "list",
-            "value": "1iMh0C-Niu1ko4-u2BHo0cgGeVQKcYHflBzRxtbWJiRI",
-            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1iMh0C-Niu1ko4-u2BHo0cgGeVQKcYHflBzRxtbWJiRI/edit?usp=drivesdk",
-            "cachedResultName": "n8n-check-workflow-use-what-ai-model"
-          }
-        },
-        "credentials": {
-          "googleSheetsOAuth2Api": {
-            "id": "tufEzuSTEveV3tuA",
-            "name": "(Personal)Google Sheets account"
-          }
-        },
-        "typeVersion": 4.5
-      },
-      {
-        "id": "78ae0f64-d6fa-46f6-a09f-e0a6bd6d21df",
-        "name": "Sticky Note",
-        "type": "n8n-nodes-base.stickyNote",
-        "position": [
-          380,
-          -40
-        ],
-        "parameters": {
-          "width": 260,
-          "height": 320,
-          "content": "## Change to your n8n domain here\n\n"
-        },
-        "typeVersion": 1
-      },
-      {
-        "id": "2b8853d8-0436-4347-9c44-df45fcacfbd4",
-        "name": "Sticky Note1",
-        "type": "n8n-nodes-base.stickyNote",
-        "position": [
-          -920,
-          -160
-        ],
-        "parameters": {
-          "color": 3,
-          "width": 420,
-          "height": 320,
-          "content": "## Be careful\nif you have more than 100 workflows. It might have performance issue.\n"
-        },
-        "typeVersion": 1
-      },
-      {
-        "id": "611a6d7f-3955-43b5-b029-e738be2372cd",
-        "name": "Sticky Note4",
-        "type": "n8n-nodes-base.stickyNote",
-        "position": [
-          -920,
-          -440
-        ],
-        "parameters": {
-          "color": 7,
-          "width": 340,
-          "height": 240,
-          "content": "## Created by darrell_tw_ \n\nAn engineer now focus on AI and Automation\n\n### contact me with following:\n[X](https://x.com/darrell_tw_)\n[Threads](https://www.threads.net/@darrell_tw_)\n[Instagram](https://www.instagram.com/darrell_tw_/)\n[Website](https://www.darrelltw.com/)"
-        },
-        "typeVersion": 1
-      }
-    ],
-    "active": false,
-    "pinData": {},
-    "settings": {
-      "executionOrder": "v1"
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -220,
+        -40
+      ],
+      "id": "0aafc781-6847-4b5d-8f80-3bd457f16db3",
+      "name": "Loop Over Items",
+      "disabled": true
     },
-    "versionId": "15ab60ee-37fc-48ad-af6e-c4798b7eecc5",
-    "connections": {
-      "Loop Over Items": {
-        "main": [
-          [],
-          [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
             {
-              "node": "Split Out-nodes",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Split Out-nodes": {
-        "main": [
-          [
-            {
-              "node": "Filter-node contain modelId",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "n8n-get all workflow": {
-        "main": [
-          [
-            {
-              "node": "Filter-get workflow contain modelid",
-              "type": "main",
-              "index": 0
+              "id": "3c08b3a3-092d-4f88-81ef-7a7b3acf47b2",
+              "name": "node_name",
+              "value": "={{ $json.name }}",
+              "type": "string"
             },
             {
-              "node": "Google Sheets-Clear Sheet Data",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Edit Fields-set_model_data": {
-        "main": [
-          [
+              "id": "3bbd6936-6941-4520-a8d9-e4ed05be5078",
+              "name": "modelId_value",
+              "value": "={{ $json.parameters.modelId.value }}",
+              "type": "string"
+            },
             {
-              "node": "Google Sheets-Save node and workflow data",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Filter-node contain modelId": {
-        "main": [
-          [
+              "id": "89fc4e59-fdb7-4316-8a10-c7170a3b6f5e",
+              "name": "modelId_name",
+              "value": "={{ $json.parameters.modelId.cachedResultName }}",
+              "type": "string"
+            },
             {
-              "node": "Edit Fields-set_model_data",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "When clicking ‘Test workflow’": {
-        "main": [
-          [
+              "id": "848c0e23-0aa6-4cf5-8a64-abe38351b63a",
+              "name": "workflow_name",
+              "value": "={{ $('Loop Over Items').item.json.name }}",
+              "type": "string"
+            },
             {
-              "node": "n8n-get all workflow",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Filter-get workflow contain modelid": {
-        "main": [
-          [
+              "id": "cf3fea4e-4e22-4bd5-930b-6b8d25afbf9a",
+              "name": "workflow_id",
+              "value": "={{ $('Loop Over Items').item.json.id }}",
+              "type": "string"
+            },
             {
-              "node": "Loop Over Items",
-              "type": "main",
-              "index": 0
+              "id": "8a8a2a83-d742-4450-b5ed-2089047076d8",
+              "name": "workflow_url",
+              "value": "={{ Your n8n domain }}/workflow/{{ $('Loop Over Items').item.json.id }}",
+              "type": "string"
             }
           ]
-        ]
+        },
+        "options": {}
       },
-      "Google Sheets-Save node and workflow data": {
-        "main": [
-          [
-            {
-              "node": "Loop Over Items",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        460,
+        80
+      ],
+      "id": "242d1965-d1e3-4b74-8064-53ea56118e94",
+      "name": "Edit Fields-set_model_data"
+    },
+    {
+      "parameters": {
+        "operation": "clear",
+        "documentId": {
+          "__rl": true,
+          "value": "1iMh0C-Niu1ko4-u2BHo0cgGeVQKcYHflBzRxtbWJiRI",
+          "mode": "list",
+          "cachedResultName": "n8n-check-workflow-use-what-ai-model",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1iMh0C-Niu1ko4-u2BHo0cgGeVQKcYHflBzRxtbWJiRI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1iMh0C-Niu1ko4-u2BHo0cgGeVQKcYHflBzRxtbWJiRI/edit#gid=0"
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -440,
+        -220
+      ],
+      "id": "9693eb8b-4ce5-4d4b-984d-a77098896bc3",
+      "name": "Google Sheets-Clear Sheet Data",
+      "alwaysOutputData": false,
+      "executeOnce": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "tufEzuSTEveV3tuA",
+          "name": "(Personal)Google Sheets account"
+        }
       }
+    },
+    {
+      "parameters": {
+        "filters": {},
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-base.n8n",
+      "typeVersion": 1,
+      "position": [
+        -660,
+        -40
+      ],
+      "id": "d325597e-b12f-427c-ba18-f69fa6ec9ed4",
+      "name": "n8n-get all workflow",
+      "credentials": {
+        "n8nApi": {
+          "id": "dXWG3XrAfEA64tjh",
+          "name": "n8n account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "f7433843-53c6-4e77-8f51-c70921342a0f",
+              "leftValue": "={{ $json.nodes.toJsonString() }}",
+              "rightValue": "modelId",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            },
+            {
+              "id": "8a9ff036-dc80-4b55-919b-e2dba22667cf",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "={{ $workflow.id }}",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -440,
+        -40
+      ],
+      "id": "f8fba3ae-f4f3-4db3-bd0f-7caa84fd6cee",
+      "name": "Filter-get workflow contain modelid"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "nodes",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        40,
+        80
+      ],
+      "id": "727dd95d-c788-4cae-8b25-4ffeff705579",
+      "name": "Split Out-nodes",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "5c06371f-9bc4-4fdd-bac2-9b9cdc28f77c",
+              "leftValue": "={{ $json.parameters.modelId }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        220,
+        80
+      ],
+      "id": "5a9d8012-a559-4c06-a3f9-be1a7b8f7ce6",
+      "name": "Filter-node contain modelId",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1iMh0C-Niu1ko4-u2BHo0cgGeVQKcYHflBzRxtbWJiRI",
+          "mode": "list",
+          "cachedResultName": "n8n-check-workflow-use-what-ai-model",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1iMh0C-Niu1ko4-u2BHo0cgGeVQKcYHflBzRxtbWJiRI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1iMh0C-Niu1ko4-u2BHo0cgGeVQKcYHflBzRxtbWJiRI/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "node_name",
+              "displayName": "node_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "modelId_value",
+              "displayName": "modelId_value",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "modelId_name",
+              "displayName": "modelId_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "workflow_name",
+              "displayName": "workflow_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "workflow_id",
+              "displayName": "workflow_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "workflow_url",
+              "displayName": "workflow_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        700,
+        80
+      ],
+      "id": "d4301765-8855-46fe-b2a2-06b03577a3b9",
+      "name": "Google Sheets-Save node and workflow data",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "tufEzuSTEveV3tuA",
+          "name": "(Personal)Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Change to your n8n domain here\n\n",
+        "height": 320,
+        "width": 260
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        380,
+        -40
+      ],
+      "id": "78ae0f64-d6fa-46f6-a09f-e0a6bd6d21df",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Be careful\nif you have more than 100 workflows. It might have performance issue.\n",
+        "height": 320,
+        "width": 420,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -920,
+        -160
+      ],
+      "id": "2b8853d8-0436-4347-9c44-df45fcacfbd4",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Created by darrell_tw_ \n\nAn engineer now focus on AI and Automation\n\n### contact me with following:\n[X](https://x.com/darrell_tw_)\n[Threads](https://www.threads.net/@darrell_tw_)\n[Instagram](https://www.instagram.com/darrell_tw_/)\n[Website](https://www.darrelltw.com/)",
+        "height": 240,
+        "width": 340,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -920,
+        -440
+      ],
+      "id": "611a6d7f-3955-43b5-b029-e738be2372cd",
+      "name": "Sticky Note4"
     }
+  ],
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "n8n-get all workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Split Out-nodes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields-set_model_data": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets-Save node and workflow data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "n8n-get all workflow": {
+      "main": [
+        [
+          {
+            "node": "Filter-get workflow contain modelid",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Google Sheets-Clear Sheet Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter-get workflow contain modelid": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out-nodes": {
+      "main": [
+        [
+          {
+            "node": "Filter-node contain modelId",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter-node contain modelId": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields-set_model_data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets-Save node and workflow data": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "fddb3e91967f1012c95dd02bf5ad21f279fc44715f47a7a96a33433621caa253"
   }
+}
