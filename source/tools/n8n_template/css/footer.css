@@ -84,11 +84,13 @@ footer {
     
     .social-buttons {
         justify-content: center;
+        order: 1;
     }
     
     .copyright {
         font-size: 0.85rem;
         text-align: center;
         line-height: normal;
+        order: 2;
     }
 } 
