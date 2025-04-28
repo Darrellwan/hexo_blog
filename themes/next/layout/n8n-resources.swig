@@ -235,7 +235,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 <header class="n8n-resources-header">
-  <h1>n8n教學文件大集合</h1>
+  <div class="n8n-header-wrapper">
+    <h1>n8n教學文件大集合</h1>
+    <div class="social-buttons">
+      <a href="https://www.darrelltw.com/" class="social-button" target="_blank" rel="noopener noreferrer" title="Website">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41z"></path></svg>
+      </a>
+      <a href="https://www.threads.net/@darrell_tw_" class="social-button" target="_blank" rel="noopener noreferrer" title="Threads">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 440 511.43" fill="currentColor"><path d="M342.383 237.038a177.282 177.282 0 00-6.707-3.046c-3.948-72.737-43.692-114.379-110.429-114.805-38.505-.255-72.972 15.445-94.454 48.041l36.702 25.178c15.265-23.159 39.221-28.096 56.864-28.096.204 0 .408 0 .61.002 21.974.14 38.555 6.529 49.287 18.987 7.81 9.071 13.034 21.606 15.621 37.425-19.483-3.311-40.553-4.329-63.077-3.038-63.45 3.655-104.24 40.661-101.501 92.08 1.391 26.083 14.385 48.523 36.587 63.181 18.772 12.391 42.95 18.45 68.077 17.079 33.183-1.819 59.215-14.48 77.377-37.63 13.793-17.58 22.516-40.363 26.368-69.069 15.814 9.544 27.535 22.103 34.007 37.2 11.006 25.665 11.648 67.84-22.764 102.223-30.15 30.121-66.392 43.151-121.164 43.554-60.758-.45-106.708-19.935-136.583-57.915-27.976-35.562-42.434-86.93-42.973-152.674.539-65.746 14.997-117.114 42.973-152.676 29.875-37.979 75.824-57.463 136.582-57.914 61.197.455 107.948 20.033 138.967 58.195 15.21 18.713 26.676 42.248 34.236 69.688L440 161.532c-9.163-33.775-23.582-62.881-43.203-87.017C357.031 25.59 298.872.519 223.936 0h-.3C148.851.518 91.344 25.683 52.709 74.795 18.331 118.499.598 179.308.002 255.535l-.002.18.002.18c.596 76.225 18.329 137.037 52.707 180.741 38.635 49.11 96.142 74.277 170.927 74.794h.3c66.486-.462 113.352-17.868 151.96-56.442 50.51-50.463 48.99-113.718 32.342-152.549-11.945-27.847-34.716-50.463-65.855-65.401zM227.587 344.967c-27.808 1.567-56.699-10.916-58.124-37.651-1.056-19.823 14.108-41.942 59.831-44.577a266.87 266.87 0 0115.422-.45c16.609 0 32.145 1.613 46.271 4.701-5.268 65.798-36.172 76.483-63.4 77.977z"></path></svg>
+      </a>
+      <a href="mailto:darrell.tw.martech@gmail.com" class="social-button" target="_blank" rel="noopener noreferrer" title="Gmail">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg>
+      </a>
+      <a href="https://www.instagram.com/darrell_tw_/" class="social-button" target="_blank" rel="noopener noreferrer" title="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.281-.057 1.689-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+      </a>
+      <a href="https://buymeacoffee.com/darrellmartechtw" class="social-button" target="_blank" rel="noopener noreferrer" title="Buy Me a Coffee">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"></path></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/darrell-wang-tw/" class="social-button" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+      </a>
+    </div>
+  </div>
   <div class="n8n-search-container">
     <!-- Algolia 搜尋功能暫時關閉 
     <div id="algolia-search-box"></div>
@@ -493,18 +515,101 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   .n8n-resources-header {
-    background-color: var(--n8n-card-bg);
+    background-color: var(--n8n-card-bg, #2a2a2a);
     padding: 25px 15px;
-    text-align: center;
     margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .n8n-header-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
   }
   
   .n8n-resources-header h1 {
     margin: 0;
-    color: var(--n8n-primary);
+    color: var(--n8n-primary, #ff6d5a);
     font-size: 2.2rem;
   }
   
+  .social-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  
+  .social-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #333;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    border: 1px solid #444;
+    color: #fff;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+  
+  .social-button:hover {
+    background: var(--n8n-primary, #ff6d5a);
+    color: #fff;
+    border-color: var(--n8n-primary, #ff6d5a);
+    box-shadow: 0 4px 16px rgba(255,109,90,0.3);
+    transform: translateY(-2px) scale(1.08);
+  }
+  
+  .social-button svg {
+    width: 22px;
+    height: 22px;
+    display: block;
+  }
+  
+  @media (max-width: 768px) {
+    .n8n-header-wrapper {
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .n8n-resources-header h1 {
+      font-size: 1.8rem;
+      text-align: center;
+    }
+    
+    .social-buttons {
+      justify-content: center;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .n8n-resources-header {
+      padding: 20px 10px;
+    }
+    
+    .n8n-resources-header h1 {
+      font-size: 1.6rem;
+    }
+    
+    .social-button {
+      width: 36px;
+      height: 36px;
+    }
+    
+    .social-button svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
   .n8n-resources-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -1394,6 +1499,103 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     animation: border-rainbow 3s infinite linear;
     background-clip: border-box;
   }
+
+  /* Header 樣式 - 深色主題適配 */
+.n8n-resources-header {
+  background-color: var(--n8n-card-bg, #2a2a2a);
+  padding: 25px 15px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.n8n-header-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.n8n-resources-header h1 {
+  margin: 0;
+  color: var(--n8n-primary, #ff6d5a);
+  font-size: 2.2rem;
+}
+
+.social-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.social-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #333;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  border: 1px solid #444;
+  color: #fff;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.social-button:hover {
+  background: var(--n8n-primary, #ff6d5a);
+  color: #fff;
+  border-color: var(--n8n-primary, #ff6d5a);
+  box-shadow: 0 4px 16px rgba(255,109,90,0.3);
+  transform: translateY(-2px) scale(1.08);
+}
+
+.social-button svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .n8n-header-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .n8n-resources-header h1 {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+  
+  .social-buttons {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .n8n-resources-header {
+    padding: 20px 10px;
+  }
+  
+  .n8n-resources-header h1 {
+    font-size: 1.6rem;
+  }
+  
+  .social-button {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .social-button svg {
+    width: 18px;
+    height: 18px;
+  }
+}
 </style>
 </body>
 </html>

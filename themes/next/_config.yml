@@ -122,13 +122,12 @@ menu:
   categories: /categories/ || fa fa-th
   archives: /archives/ || fa fa-archive
   emailSubscribe: /email_subscribe/ || fa fa-envelope
-  n8nResource: /n8n-resources/ || fa fa-solid fa-n highlight-n8n
-
+  n8nResource: https://www.darrelltw.com/n8n-resources/ || fa fa-solid fa-n highlight-n8n
+  n8n_template: https://www.darrelltw.com/tools/n8n_template/models.html || fa fa-solid fa-layer-group highlight-n8n
+  support_darrell: https://buymeacoffee.com/darrellmartechtw || fa fa-solid fa-sack-dollar support-dollar
   #schedule: /schedule/ || fa fa-calendar
   #sitemap: /sitemap.xml || fa fa-sitemap
   #commonweal: /404/ || fa fa-heartbeat
-  n8n_template: https://www.darrelltw.com/tools/n8n_template/models.html || fa fa-solid fa-layer-group highlight-n8n
-
 
 # Enable / Disable menu icons / item badges.
 menu_settings:
@@ -736,7 +735,7 @@ busuanzi_count:
 # Algolia Search
 # For more information: https://www.algolia.com
 algolia_search:
-  enable: true
+  enable: false
   hits:
     per_page: 8
   labels:
