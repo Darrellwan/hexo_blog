@@ -277,7 +277,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       author: "mengfengl",
       authorLink: "https://www.threads.net/@mengfengl",
       description: "35頁完整的 n8n 新手指南！"
+    },
+    {
+      title: "資訊小白也可架設本地n8n",
+      link: "https://elisha0918.notion.site/n8n-1cedb692053680dca3bafef10d1907ca",
+      image: "/gallery/n8n_resource-elisha_n8n_docker.png",
+      author: "Elisha_0918",
+      authorLink: "https://www.threads.com/@elisha_0918",
+      description: "一起來學習如何用 Docker 安裝 n8n"
+    },
+    {
+      title: "我成功利用Zeabur部署n8n小助理",
+      link: "https://elisha0918.notion.site/Zeabur-n8n-1d7db692053680c2b996ef8234b0d09c",
+      image: "/gallery/n8n_resource-elisha_n8n_zeabur.png",
+      author: "Elisha_0918",
+      authorLink: "https://www.threads.com/@elisha_0918",
+      description: "Zeabur + Google OAuth + Line Request 完整的經驗分享"
     }
+    
   ] %}
 
   <nav class="n8n-nav" aria-label="主導航">
