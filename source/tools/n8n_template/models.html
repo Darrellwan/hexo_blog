@@ -310,14 +310,29 @@
             .container {
                 padding: 1.5rem 0.75rem;
             }
-            
             .model-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
             }
-            
             .card-header, .card-content, .card-footer {
                 padding-left: 1rem;
                 padding-right: 1rem;
+            }
+            .tag-container {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                white-space: nowrap;
+                gap: 0.4rem;
+                margin-bottom: 1rem;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+            }
+            .tag-container::-webkit-scrollbar {
+                display: none;
+            }
+            .card-title {
+                -webkit-line-clamp: 3;
+                height: 5.1rem;
             }
         }
 
