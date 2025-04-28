@@ -271,4 +271,57 @@
 
 .n8n-search button:hover {
   color: var(--n8n-primary);
+}
+
+.n8n-header-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.social-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.social-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  border: 1px solid var(--n8n-border);
+  color: var(--n8n-secondary);
+  transition: box-shadow 0.2s, border 0.2s, background 0.2s, color 0.2s;
+  font-size: 1.2rem;
+  position: relative;
+}
+
+.social-button:hover {
+  background: var(--n8n-primary);
+  color: #fff;
+  border-color: var(--n8n-primary);
+  box-shadow: 0 4px 16px rgba(255,109,90,0.15);
+  transform: translateY(-2px) scale(1.08);
+}
+
+.social-button svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .n8n-header-flex {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .social-buttons {
+    align-self: flex-end;
+  }
 } 
