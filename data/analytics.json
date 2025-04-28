@@ -2,87 +2,92 @@
   "data": [
     {
       "customEvent:post_title": "在 Cursor 中打造 MCP Server，從實作中學習 MCP",
-      "sessions": 3585,
-      "percentage": 3.4000000000000004
+      "sessions": 3526,
+      "percentage": 3.3000000000000003
     },
     {
       "customEvent:post_title": "Claude MCP 應用測試心得 - Claude Desktop",
-      "sessions": 1750,
+      "sessions": 1745,
       "percentage": 1.7000000000000002
     },
     {
       "customEvent:post_title": "n8n 用 Request 發送 LINE Message API",
-      "sessions": 763,
+      "sessions": 767,
       "percentage": 0.7000000000000001
     },
     {
       "customEvent:post_title": "ChatGPT 在網頁版無法使用，沒有錯誤訊息卻都無法回答問題",
-      "sessions": 601,
+      "sessions": 605,
       "percentage": 0.6000000000000001
     },
     {
       "customEvent:post_title": "n8n 模板分享 - 打造 LINE 共同記帳機器人 自動處理日本收據",
-      "sessions": 527,
+      "sessions": 554,
       "percentage": 0.5
     },
     {
       "customEvent:post_title": "LINE MCP Server 測試心得 - 一個 prompt 就讓 Line 發訊息給你",
-      "sessions": 515,
+      "sessions": 526,
       "percentage": 0.5
     },
     {
       "customEvent:post_title": "Claude Code 發佈 Command Line 的新工具",
-      "sessions": 322,
+      "sessions": 307,
       "percentage": 0.30000000000000004
     },
     {
       "customEvent:post_title": "n8n Webhook 節點",
-      "sessions": 268,
+      "sessions": 274,
       "percentage": 0.30000000000000004
     },
     {
-      "customEvent:post_title": "ChatGPT 新功能 - Work with Apps 一起運作",
-      "sessions": 255,
+      "customEvent:post_title": "n8n 版本更新紀錄心得",
+      "sessions": 269,
+      "percentage": 0.30000000000000004
+    },
+    {
+      "customEvent:post_title": "OpenAI GPT-Image-1 API 產圖 API 發布，測試心得和參數介紹",
+      "sessions": 248,
       "percentage": 0.2
     },
     {
-      "customEvent:post_title": "n8n 版本更新紀錄心得",
-      "sessions": 254,
+      "customEvent:post_title": "ChatGPT 新功能 - Work with Apps 一起運作",
+      "sessions": 247,
       "percentage": 0.2
     },
     {
       "customEvent:post_title": "Line Notify 結束服務，轉移到 Slack、Telegram、Discord",
-      "sessions": 212,
+      "sessions": 206,
       "percentage": 0.2
     },
     {
       "customEvent:post_title": "ChatGPT 4o 與 Sora 的全新文生圖功能",
-      "sessions": 200,
-      "percentage": 0.2
-    },
-    {
-      "customEvent:post_title": "OpenAI GPT-Image-1 API 產圖 API 發布，測試心得和參數介紹",
-      "sessions": 194,
+      "sessions": 179,
       "percentage": 0.2
     },
     {
       "customEvent:post_title": "n8n 串接 Slack、發送訊息、用 Slack 觸發 workflow",
-      "sessions": 145,
+      "sessions": 152,
       "percentage": 0.1
     },
     {
       "customEvent:post_title": "n8n 內建參數介紹",
-      "sessions": 113,
-      "percentage": 0.1
-    },
-    {
-      "customEvent:post_title": "Google App Script 測試 Webhook 的串接",
-      "sessions": 103,
+      "sessions": 117,
       "percentage": 0.1
     },
     {
       "customEvent:post_title": "n8n 小撇步 - Timezone 問題如何在 Zeabur 設定",
-      "sessions": 101,
+      "sessions": 103,
+      "percentage": 0.1
+    },
+    {
+      "customEvent:post_title": "Google App Script 測試 Webhook 的串接",
+      "sessions": 96,
+      "percentage": 0.1
+    },
+    {
+      "customEvent:post_title": "BusyTag 開箱 忙碌中勿擾",
+      "sessions": 85,
       "percentage": 0.1
     },
     {
@@ -91,33 +96,28 @@
       "percentage": 0.1
     },
     {
-      "customEvent:post_title": "BusyTag 開箱 忙碌中勿擾",
-      "sessions": 76,
-      "percentage": 0.1
-    },
-    {
       "customEvent:post_title": "n8n 新功能 - 資料夾 Folders",
-      "sessions": 71,
+      "sessions": 74,
       "percentage": 0.1
     },
     {
       "customEvent:post_title": "n8n Aggregate 和 Split Out",
-      "sessions": 63,
+      "sessions": 70,
       "percentage": 0.1
     },
     {
       "customEvent:post_title": "Glows.ai 雲端 GPU 運算服務，輕鬆取得算力實現 AI 私有運算",
-      "sessions": 54,
-      "percentage": 0.1
+      "sessions": 51,
+      "percentage": 0
     },
     {
       "customEvent:post_title": "n8n If 和 Switch",
-      "sessions": 41,
+      "sessions": 44,
       "percentage": 0
     },
     {
       "customEvent:post_title": "Facebook Pixel 利用 GTM 安裝和注意事項避免重複觸發",
-      "sessions": 38,
+      "sessions": 35,
       "percentage": 0
     },
     {
@@ -131,18 +131,18 @@
       "percentage": 0
     },
     {
+      "customEvent:post_title": "利用 n8n 的 s3 節點連接 Cloudflare R2 儲存服務",
+      "sessions": 27,
+      "percentage": 0
+    },
+    {
       "customEvent:post_title": "Google Tag Manager - 觸發條件 點擊和連結點擊 (All Click, Link Click)",
       "sessions": 26,
       "percentage": 0
     },
     {
       "customEvent:post_title": "Google Tag Manager - 觸發條件 自訂事件 (Custom Event)",
-      "sessions": 25,
-      "percentage": 0
-    },
-    {
-      "customEvent:post_title": "GA4 更新 - 每個工作階段的瀏覽次數 和 平均單次工作階段參與時間",
-      "sessions": 22,
+      "sessions": 24,
       "percentage": 0
     },
     {
@@ -154,87 +154,92 @@
   "data_30days": [
     {
       "customEvent:post_title": "在 Cursor 中打造 MCP Server，從實作中學習 MCP",
-      "sessions": 3585,
-      "percentage": 3.4000000000000004
+      "sessions": 3526,
+      "percentage": 3.3000000000000003
     },
     {
       "customEvent:post_title": "Claude MCP 應用測試心得 - Claude Desktop",
-      "sessions": 1750,
+      "sessions": 1745,
       "percentage": 1.7000000000000002
     },
     {
       "customEvent:post_title": "n8n 用 Request 發送 LINE Message API",
-      "sessions": 763,
+      "sessions": 767,
       "percentage": 0.7000000000000001
     },
     {
       "customEvent:post_title": "ChatGPT 在網頁版無法使用，沒有錯誤訊息卻都無法回答問題",
-      "sessions": 601,
+      "sessions": 605,
       "percentage": 0.6000000000000001
     },
     {
       "customEvent:post_title": "n8n 模板分享 - 打造 LINE 共同記帳機器人 自動處理日本收據",
-      "sessions": 527,
+      "sessions": 554,
       "percentage": 0.5
     },
     {
       "customEvent:post_title": "LINE MCP Server 測試心得 - 一個 prompt 就讓 Line 發訊息給你",
-      "sessions": 515,
+      "sessions": 526,
       "percentage": 0.5
     },
     {
       "customEvent:post_title": "Claude Code 發佈 Command Line 的新工具",
-      "sessions": 322,
+      "sessions": 307,
       "percentage": 0.30000000000000004
     },
     {
       "customEvent:post_title": "n8n Webhook 節點",
-      "sessions": 268,
+      "sessions": 274,
       "percentage": 0.30000000000000004
     },
     {
-      "customEvent:post_title": "ChatGPT 新功能 - Work with Apps 一起運作",
-      "sessions": 255,
+      "customEvent:post_title": "n8n 版本更新紀錄心得",
+      "sessions": 269,
+      "percentage": 0.30000000000000004
+    },
+    {
+      "customEvent:post_title": "OpenAI GPT-Image-1 API 產圖 API 發布，測試心得和參數介紹",
+      "sessions": 248,
       "percentage": 0.2
     },
     {
-      "customEvent:post_title": "n8n 版本更新紀錄心得",
-      "sessions": 254,
+      "customEvent:post_title": "ChatGPT 新功能 - Work with Apps 一起運作",
+      "sessions": 247,
       "percentage": 0.2
     },
     {
       "customEvent:post_title": "Line Notify 結束服務，轉移到 Slack、Telegram、Discord",
-      "sessions": 212,
+      "sessions": 206,
       "percentage": 0.2
     },
     {
       "customEvent:post_title": "ChatGPT 4o 與 Sora 的全新文生圖功能",
-      "sessions": 200,
-      "percentage": 0.2
-    },
-    {
-      "customEvent:post_title": "OpenAI GPT-Image-1 API 產圖 API 發布，測試心得和參數介紹",
-      "sessions": 194,
+      "sessions": 179,
       "percentage": 0.2
     },
     {
       "customEvent:post_title": "n8n 串接 Slack、發送訊息、用 Slack 觸發 workflow",
-      "sessions": 145,
+      "sessions": 152,
       "percentage": 0.1
     },
     {
       "customEvent:post_title": "n8n 內建參數介紹",
-      "sessions": 113,
-      "percentage": 0.1
-    },
-    {
-      "customEvent:post_title": "Google App Script 測試 Webhook 的串接",
-      "sessions": 103,
+      "sessions": 117,
       "percentage": 0.1
     },
     {
       "customEvent:post_title": "n8n 小撇步 - Timezone 問題如何在 Zeabur 設定",
-      "sessions": 101,
+      "sessions": 103,
+      "percentage": 0.1
+    },
+    {
+      "customEvent:post_title": "Google App Script 測試 Webhook 的串接",
+      "sessions": 96,
+      "percentage": 0.1
+    },
+    {
+      "customEvent:post_title": "BusyTag 開箱 忙碌中勿擾",
+      "sessions": 85,
       "percentage": 0.1
     },
     {
@@ -243,33 +248,28 @@
       "percentage": 0.1
     },
     {
-      "customEvent:post_title": "BusyTag 開箱 忙碌中勿擾",
-      "sessions": 76,
-      "percentage": 0.1
-    },
-    {
       "customEvent:post_title": "n8n 新功能 - 資料夾 Folders",
-      "sessions": 71,
+      "sessions": 74,
       "percentage": 0.1
     },
     {
       "customEvent:post_title": "n8n Aggregate 和 Split Out",
-      "sessions": 63,
+      "sessions": 70,
       "percentage": 0.1
     },
     {
       "customEvent:post_title": "Glows.ai 雲端 GPU 運算服務，輕鬆取得算力實現 AI 私有運算",
-      "sessions": 54,
-      "percentage": 0.1
+      "sessions": 51,
+      "percentage": 0
     },
     {
       "customEvent:post_title": "n8n If 和 Switch",
-      "sessions": 41,
+      "sessions": 44,
       "percentage": 0
     },
     {
       "customEvent:post_title": "Facebook Pixel 利用 GTM 安裝和注意事項避免重複觸發",
-      "sessions": 38,
+      "sessions": 35,
       "percentage": 0
     },
     {
@@ -283,18 +283,18 @@
       "percentage": 0
     },
     {
+      "customEvent:post_title": "利用 n8n 的 s3 節點連接 Cloudflare R2 儲存服務",
+      "sessions": 27,
+      "percentage": 0
+    },
+    {
       "customEvent:post_title": "Google Tag Manager - 觸發條件 點擊和連結點擊 (All Click, Link Click)",
       "sessions": 26,
       "percentage": 0
     },
     {
       "customEvent:post_title": "Google Tag Manager - 觸發條件 自訂事件 (Custom Event)",
-      "sessions": 25,
-      "percentage": 0
-    },
-    {
-      "customEvent:post_title": "GA4 更新 - 每個工作階段的瀏覽次數 和 平均單次工作階段參與時間",
-      "sessions": 22,
+      "sessions": 24,
       "percentage": 0
     },
     {
@@ -306,141 +306,141 @@
   "data_7days": [
     {
       "customEvent:post_title": "在 Cursor 中打造 MCP Server，從實作中學習 MCP",
-      "sessions": 827,
+      "sessions": 855,
       "percentage": 2.5
     },
     {
       "customEvent:post_title": "n8n 模板分享 - 打造 LINE 共同記帳機器人 自動處理日本收據",
-      "sessions": 527,
+      "sessions": 554,
       "percentage": 1.6
     },
     {
       "customEvent:post_title": "Claude MCP 應用測試心得 - Claude Desktop",
-      "sessions": 452,
-      "percentage": 1.4000000000000001
+      "sessions": 429,
+      "percentage": 1.2000000000000002
     },
     {
       "customEvent:post_title": "OpenAI GPT-Image-1 API 產圖 API 發布，測試心得和參數介紹",
-      "sessions": 194,
-      "percentage": 0.6000000000000001
+      "sessions": 248,
+      "percentage": 0.7000000000000001
     },
     {
       "customEvent:post_title": "n8n 用 Request 發送 LINE Message API",
-      "sessions": 180,
-      "percentage": 0.5
+      "sessions": 202,
+      "percentage": 0.6000000000000001
     },
     {
       "customEvent:post_title": "LINE MCP Server 測試心得 - 一個 prompt 就讓 Line 發訊息給你",
-      "sessions": 171,
+      "sessions": 172,
       "percentage": 0.5
     },
     {
       "customEvent:post_title": "n8n Webhook 節點",
-      "sessions": 123,
+      "sessions": 122,
       "percentage": 0.4
     },
     {
       "customEvent:post_title": "ChatGPT 在網頁版無法使用，沒有錯誤訊息卻都無法回答問題",
-      "sessions": 91,
+      "sessions": 102,
       "percentage": 0.30000000000000004
     },
     {
       "customEvent:post_title": "n8n 版本更新紀錄心得",
-      "sessions": 86,
+      "sessions": 99,
       "percentage": 0.30000000000000004
     },
     {
       "customEvent:post_title": "打造 LINE 共同記帳機器人 - 使用 n8n 和 AI 自動處理日本收據",
-      "sessions": 84,
-      "percentage": 0.30000000000000004
-    },
-    {
-      "customEvent:post_title": "ChatGPT 新功能 - Work with Apps 一起運作",
-      "sessions": 63,
-      "percentage": 0.2
-    },
-    {
-      "customEvent:post_title": "Claude Code 發佈 Command Line 的新工具",
-      "sessions": 58,
+      "sessions": 82,
       "percentage": 0.2
     },
     {
       "customEvent:post_title": "n8n 串接 Slack、發送訊息、用 Slack 觸發 workflow",
-      "sessions": 58,
+      "sessions": 67,
       "percentage": 0.2
     },
     {
-      "customEvent:post_title": "ChatGPT 4o 與 Sora 的全新文生圖功能",
-      "sessions": 53,
+      "customEvent:post_title": "ChatGPT 新功能 - Work with Apps 一起運作",
+      "sessions": 64,
       "percentage": 0.2
     },
     {
       "customEvent:post_title": "n8n 內建參數介紹",
-      "sessions": 53,
+      "sessions": 62,
+      "percentage": 0.2
+    },
+    {
+      "customEvent:post_title": "ChatGPT 4o 與 Sora 的全新文生圖功能",
+      "sessions": 59,
+      "percentage": 0.2
+    },
+    {
+      "customEvent:post_title": "Claude Code 發佈 Command Line 的新工具",
+      "sessions": 57,
       "percentage": 0.2
     },
     {
       "customEvent:post_title": "n8n 小撇步 - Timezone 問題如何在 Zeabur 設定",
-      "sessions": 46,
+      "sessions": 45,
       "percentage": 0.1
     },
     {
       "customEvent:post_title": "Line Notify 結束服務，轉移到 Slack、Telegram、Discord",
-      "sessions": 38,
+      "sessions": 41,
       "percentage": 0.1
     },
     {
       "customEvent:post_title": "BusyTag 開箱 忙碌中勿擾",
-      "sessions": 23,
+      "sessions": 33,
       "percentage": 0.1
     },
     {
       "customEvent:post_title": "n8n Aggregate 和 Split Out",
-      "sessions": 23,
-      "percentage": 0.1
-    },
-    {
-      "customEvent:post_title": "n8n 新功能 - 資料夾 Folders",
-      "sessions": 22,
-      "percentage": 0.1
-    },
-    {
-      "customEvent:post_title": "Google App Script 測試 Webhook 的串接",
-      "sessions": 21,
+      "sessions": 29,
       "percentage": 0.1
     },
     {
       "customEvent:post_title": "利用 n8n 的 s3 節點連接 Cloudflare R2 儲存服務",
-      "sessions": 21,
+      "sessions": 27,
+      "percentage": 0.1
+    },
+    {
+      "customEvent:post_title": "n8n 新功能 - 資料夾 Folders",
+      "sessions": 26,
       "percentage": 0.1
     },
     {
       "customEvent:post_title": "n8n If 和 Switch",
+      "sessions": 21,
+      "percentage": 0.1
+    },
+    {
+      "customEvent:post_title": "Google App Script 測試 Webhook 的串接",
       "sessions": 18,
       "percentage": 0.1
     },
     {
       "customEvent:post_title": "Glows.ai 雲端 GPU 運算服務，輕鬆取得算力實現 AI 私有運算",
-      "sessions": 14,
+      "sessions": 13,
       "percentage": 0
     },
     {
       "customEvent:post_title": "n8n 小撇步 - Pin Data",
-      "sessions": 12,
+      "sessions": 13,
       "percentage": 0
     },
     {
       "customEvent:post_title": "Google Tag Manager - 觸發條件 點擊和連結點擊 (All Click, Link Click)",
-      "sessions": 11,
-      "percentage": 0
-    },
-    {
-      "customEvent:post_title": "Facebook Pixel 利用 GTM 安裝和注意事項避免重複觸發",
-      "sessions": 7,
+      "sessions": 12,
       "percentage": 0
     },
     {
       "customEvent:post_title": "Google Analytics 4 支援資料直接匯出到 Google Sheet (Google 官方釋出)",
+      "sessions": 8,
+      "percentage": 0
+    },
+    {
+      "customEvent:post_title": "GA4 證照的準備方向",
       "sessions": 7,
       "percentage": 0
     },
@@ -450,11 +450,11 @@
       "percentage": 0
     },
     {
-      "customEvent:post_title": "GA4 證照的準備方向",
+      "customEvent:post_title": "Google Tag Manager - 觸發條件 自訂事件 (Custom Event)",
       "sessions": 6,
       "percentage": 0
     }
   ],
-  "last_updated": "2025-04-27T08:16:29Z",
+  "last_updated": "2025-04-28T08:17:33Z",
   "status": "success"
 }
