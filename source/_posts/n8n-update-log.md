@@ -7,15 +7,100 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2025/04/22更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.90.0，正式版本為 1.88.0
+description: n8n 的更新記錄(2025/04/29更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.91.0，正式版本為 1.89.2
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-04-22 15:01:15
+modified: 2025-04-29 11:01:15
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 1.91.0 Pre-release - 2025-04-29
+
+[Github 1.91.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.91.0)
+
+### OpenAI Node
+
+> OpenAI Node: Filter available models by blacklisting rather than whitelisting
+> 透過黑名單過濾可用模型，而不是透過白名單
+
+未來如果 OpenAI 推出新模型，將會自動出現在 n8n OpenAI 節點中
+以前是用白名單的方式，所以新模型需要等到 n8n 那邊更新才會出現
+未來就沒有這個問題了！
+
+> Support gpt-image-1 for image generation
+> 支援 gpt-image-1 用於影像生成
+
+{% darrellImage800 n8n-1.91.0-chatgpt_generate_image_1_model_in_openai_node n8n-1.91.0-chatgpt_generate_image_1_model_in_openai_node.jpg max-800 %}
+
+之前因為沒辦法在 OpneAI 選擇 gpt-image-1 模型
+所以都用 `Request` 節點來串 API
+
+現在可以在 OpenAI Generate Image 中直接選這個新模型來使用了喔！
+
+⚠️ 經測試
+這個節點的選項貌似沒有正確更新或調整
+現在選擇 Quality 好像也沒有讓圖片品質調降
+-> 目前已回報給官方，之後有後續會再跟進！
+
+{% darrellImage800 n8n-1.91.0-chatgpt_generate_image_1_model_in_openai_node_options_error n8n-1.91.0-chatgpt_generate_image_1_model_in_openai_node_options_error.png max-400 %}
+
+### Fix: Google Sheet Trigger
+
+> Google Sheets Trigger Node: Filter by first data row on rowAdded event 
+> 過濾第一資料列於 rowAdded 事件
+
+[Github Issue](https://github.com/n8n-io/n8n/issues/13322)
+
+蠻久以前的一個 Issue
+使用者指定了 Sheet `Row Added` 的監聽事件
+並且指定了資料欄位
+
+可是他在 Google Sheet 新增了 200 行資料，會啟用 200 次 Trigger
+他原本期待是只會觸發他指定的資料行數那筆
+目前這問題已修正
+
+{% darrellImage800 n8n-1.91.0-sheet_trigger_fix n8n-1.91.0-sheet_trigger_fix.png max-400 %}
+
+### insights date ranges
+> core: Add insights date ranges option to frontend settings
+> 添加見解日期範圍選項到前端設定 
+
+付費版本限定😭
+可以在 `insight` 切換時間的大小，但 Community 版本只會出現 Lock
+
+{% darrellImage800 n8n-1.91.0-insight_date_range_options n8n-1.91.0-insight_date_range_options.png max-400 %}
+
+
+### editor 節點用 URL 也能直接開啟
+
+> editor: Include NodeDetailsView in URL
+> 在 URL 中包含 NodeDetailsView
+
+以往 n8n 的連結都只能開啟 Workflow
+現在新增了一個規則
+可以直接用 `/workflow/{workflow_Id}/{node_id}` 來直接開啟節點的編輯畫面
+
+{% darrellImage800 n8n-1.91.0-open_node_editor_with_url n8n-1.91.0-open_node_editor_with_url.png max-400 %}
+
+這點對我來說超級有用，因為最近才做了一個模板是可以列出所有使用 AI Model 的節點列表
+現在可以組合成節點的 url 讓使用者直接開啟編輯器來調整
+
+### Prevent webhook url takeover
+> 防止 Webhook URL 接管 
+
+最近才在 Threads 跟別人聊到這個話題
+如果同一個 webhook url 設定在多個 workflow 中並啟用
+以前的測試結果是，最後設定的那個 workflow 才會被觸發
+
+現在 n8n 增加一個檢查
+如果新的 workflow 想要啟用，但發現這個 webhook 已經被用過
+他就會跳出提示，跟你說已經被使用過，請你調整
+
+{% darrellImage800 n8n-1.91.0-prevent_webhook_url_takeover n8n-1.91.0-prevent_webhook_url_takeover.png max-800 %}
+
 
 ## 1.90.0 Pre-release - 2025-04-22
 

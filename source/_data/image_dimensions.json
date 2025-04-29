@@ -4108,5 +4108,35 @@
     "width": 800,
     "height": 800,
     "mtimeMs": 1745764370414.9897
+  },
+  "/_posts/n8n-update-log/n8n-1.91.0-chatgpt_generate_image_1_model_in_openai_node.jpg": {
+    "width": 1000,
+    "height": 860,
+    "mtimeMs": 1745896501610.029
+  },
+  "/_posts/n8n-update-log/n8n-1.91.0-sheet_trigger_fix.png": {
+    "width": 856,
+    "height": 936,
+    "mtimeMs": 1745898039510.368
+  },
+  "/_posts/n8n-update-log/n8n-1.91.0-prevent_webhook_url_takeover.png": {
+    "width": 1070,
+    "height": 610,
+    "mtimeMs": 1745899032269.906
+  },
+  "/_posts/n8n-update-log/n8n-1.91.0-open_node_editor_with_url.png": {
+    "width": 1444,
+    "height": 1430,
+    "mtimeMs": 1745898849621.795
+  },
+  "/_posts/n8n-update-log/n8n-1.91.0-insight_date_range_options.png": {
+    "width": 910,
+    "height": 862,
+    "mtimeMs": 1745898493366.215
+  },
+  "/_posts/n8n-update-log/n8n-1.91.0-chatgpt_generate_image_1_model_in_openai_node_options_error.png": {
+    "width": 842,
+    "height": 640,
+    "mtimeMs": 1745896616983.299
   }
 }
