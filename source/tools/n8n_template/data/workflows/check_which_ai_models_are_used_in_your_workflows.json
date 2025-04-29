@@ -56,7 +56,7 @@
             {
               "id": "8a8a2a83-d742-4450-b5ed-2089047076d8",
               "name": "workflow_url",
-              "value": "={Your n8n domain}/workflow/{{ $('Loop Over Items').item.json.id }}",
+              "value": "={Your-n8n-domain}/workflow/{{ $('Loop Over Items').item.json.id }}/{{ $json.id }}",
               "type": "string"
             }
           ]
@@ -479,9 +479,11 @@
   },
   "active": false,
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "timeSavedPerExecution": 3
   },
-  "versionId": "8c129490-0fba-4519-9ec3-ddabd0a843b0",
+  "versionId": "30ea02b5-e1a3-4789-86a3-cdd937e2ce82",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "fddb3e91967f1012c95dd02bf5ad21f279fc44715f47a7a96a33433621caa253"
