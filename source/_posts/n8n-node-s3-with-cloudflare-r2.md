@@ -128,6 +128,17 @@ Class B 操作 : 每月 1000 萬次免費
 
 5. 點選 **Save** 儲存憑證
 
+### 設定公開存取
+
+{% darrellImage800 n8n_r2_setting_url_domain n8n_r2_setting_url_domain.png max-800 %}
+
+這邊也要記得開啟，如果沒有自訂網域的話
+也能啟用 R2 子網域作為網址使用
+
+{% darrellImage800 n8n_r2_setting_url_domain_compare_custom_domain n8n_r2_setting_url_domain_compare_custom_domain.png max-800 %}
+
+自訂網域和 R2 子網域的一個比較表
+
 ### Cloudflare R2 API + n8n s3 憑證設定 影片教學
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/DTvC6upM3CQ?si=ostw5zI0UGHsDBRA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
