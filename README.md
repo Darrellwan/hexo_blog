@@ -3,25 +3,25 @@
 ## 📚 最新文章
 
 ### [利用 n8n 的 s3 節點連接 Cloudflare R2 儲存服務](https://www.darrelltw.com/n8n-node-s3-with-cloudflare-r2/?utm_source=github_readme&utm_medium=referral)
-📅 2025/04/25 · 5 天前
+📅 2025/04/25 · 6 天前
 
 > 介紹如何在 n8n 中使用 s3 節點連接 Cloudflare R2 儲存服務，包含 API Token 申請、權限設定、上傳下載檔案，適合想將自動化流程與雲端儲存整合的使用者。
 
 
 ### [OpenAI GPT-Image-1 API 產圖 API 發布，測試心得和參數介紹](https://www.darrelltw.com/openai-gpt-image-1-model-review/?utm_source=github_readme&utm_medium=referral)
-📅 2025/04/24 · 6 天前
+📅 2025/04/24 · 7 天前
 
 > 詳解OpenAI最新GPT-Image-1模型！完整介紹API參數設置、價格結構、實用範例和Postman整合技巧，一起快速上手。
 
 
 ### [n8n 模板分享 - 打造 LINE 共同記帳機器人 自動處理日本收據](https://www.darrelltw.com/n8n-line-split-expense-workflow/?utm_source=github_readme&utm_medium=referral)
-📅 2025/04/20 · 10 天前
+📅 2025/04/20 · 11 天前
 
 > 透過 n8n 工作流平台結合 LINE 機器人和 AI 技術，打造一個專為日本旅行設計的自動化記帳系統。只需拍照上傳日本收據，就會自動翻譯日文、換算匯率，並提供分帳功能，讓旅行的記帳變得簡單。
 
 
 ### [LINE MCP Server 測試心得 - 一個 prompt 就讓 Line 發訊息給你](https://www.darrelltw.com/line-mcp-server/?utm_source=github_readme&utm_medium=referral)
-📅 2025/04/14 · 15 天前
+📅 2025/04/14 · 16 天前
 
 > 透過實作 LINE MCP Server，讓 Claude 等 AI 模型直接操作 LINE Messaging API 來發送訊息，並介紹幾個測試的場景
 
@@ -70,7 +70,7 @@
 ```text
 ██████████████████████████████ 🥇 在 Cursor 中打造 MCP Server，從實作中學習 MCP
 ██████████████░░░░░░░░░░░░░░░░ 🥈 Claude MCP 應用測試心得 - Claude Desktop
-███████░░░░░░░░░░░░░░░░░░░░░░░ 🥉 n8n 用 Request 發送 LINE Message API
+██████░░░░░░░░░░░░░░░░░░░░░░░░ 🥉 n8n 用 Request 發送 LINE Message API
 █████░░░░░░░░░░░░░░░░░░░░░░░░░ 4️⃣ n8n 模板分享 - 打造 LINE 共同記帳機器人 自動處理日本收據
 ████░░░░░░░░░░░░░░░░░░░░░░░░░░ 5️⃣ LINE MCP Server 測試心得 - 一個 prompt 就讓 Line 發訊息給你
 ```
@@ -78,10 +78,10 @@
 ## 📈 近期 7 天熱門文章
 ```text
 ██████████████████████████████ 🥇 在 Cursor 中打造 MCP Server，從實作中學習 MCP
-█████████████░░░░░░░░░░░░░░░░░ 🥈 OpenAI GPT-Image-1 API 產圖 API 發布，測試心得和參數介紹
+███████████████░░░░░░░░░░░░░░░ 🥈 OpenAI GPT-Image-1 API 產圖 API 發布，測試心得和參數介紹
 ████████████░░░░░░░░░░░░░░░░░░ 🥉 Claude MCP 應用測試心得 - Claude Desktop
-██████████░░░░░░░░░░░░░░░░░░░░ 4️⃣ n8n 模板分享 - 打造 LINE 共同記帳機器人 自動處理日本收據
-████████░░░░░░░░░░░░░░░░░░░░░░ 5️⃣ n8n 用 Request 發送 LINE Message API
+█████████░░░░░░░░░░░░░░░░░░░░░ 4️⃣ n8n 模板分享 - 打造 LINE 共同記帳機器人 自動處理日本收據
+█████████░░░░░░░░░░░░░░░░░░░░░ 5️⃣ n8n 用 Request 發送 LINE Message API
 ```
 
 ## 🏷️ 熱門主題
@@ -89,12 +89,12 @@
 
 ## 📈 更新頻率
 ```text
-11月 ████░░░░░░ 4篇
 12月 █████░░░░░ 5篇
 01月 ████░░░░░░ 4篇
-03月 ██████░░░░ 6篇
+02月 ██████░░░░ 6篇
 03月 ██████░░░░ 6篇
 04月 ████░░░░░░ 4篇
+05月 ░░░░░░░░░░ 0篇
 ```
 
 ## 🔍 更多資訊
