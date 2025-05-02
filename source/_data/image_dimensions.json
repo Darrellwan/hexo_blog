@@ -4142,11 +4142,66 @@
   "/_posts/n8n-node-s3-with-cloudflare-r2/n8n_r2_setting_url_domain_compare_custom_domain.png": {
     "width": 1432,
     "height": 850,
-    "mtimeMs": 1745918957310.194
+    "mtimeMs": 1745919101779.9673
   },
   "/_posts/n8n-node-s3-with-cloudflare-r2/n8n_r2_setting_url_domain.png": {
     "width": 2600,
     "height": 1130,
-    "mtimeMs": 1745915708323.154
+    "mtimeMs": 1745919101779.7686
+  },
+  "/_posts/cloudflare-worker-url-shortener/cloudflare_worker-redirect_flow.png": {
+    "width": 1260,
+    "height": 1528,
+    "mtimeMs": 1746109518277.459
+  },
+  "/_posts/cloudflare-worker-url-shortener/cloudflare_worker-edit_code.png": {
+    "width": 3380,
+    "height": 2180,
+    "mtimeMs": 1746105752069.797
+  },
+  "/_posts/cloudflare-worker-url-shortener/cloudflare_worker-create_a_worker.png": {
+    "width": 1855,
+    "height": 2124,
+    "mtimeMs": 1746105517852.005
+  },
+  "/_posts/cloudflare-worker-url-shortener/cloudflare_worker-api_flow.png": {
+    "width": 1456,
+    "height": 1716,
+    "mtimeMs": 1746109554204.126
+  },
+  "/_posts/cloudflare-worker-url-shortener/cloudflare_worker-kv-select_from_sidebar.png": {
+    "width": 1045,
+    "height": 755,
+    "mtimeMs": 1746112145110.715
+  },
+  "/_posts/cloudflare-worker-url-shortener/cloudflare_worker-kv-create_and_binding.png": {
+    "width": 1864,
+    "height": 3620,
+    "mtimeMs": 1746113888503.764
+  },
+  "/_posts/cloudflare-worker-url-shortener/cloudflare_worker-kv-testing_add_index.png": {
+    "width": 1842,
+    "height": 1240,
+    "mtimeMs": 1746114498978.727
+  },
+  "/_posts/cloudflare-worker-url-shortener/cloudflare_worker-kv-show_variables.png": {
+    "width": 2242,
+    "height": 1070,
+    "mtimeMs": 1746153526021.394
+  },
+  "/_posts/cloudflare-worker-url-shortener/bg-blog-cloudflare-worker-shortenurl.png": {
+    "width": 1080,
+    "height": 1080,
+    "mtimeMs": 1746158676848.687
+  },
+  "/_posts/cloudflare-worker-url-shortener/cloudflare_worker-shortenurl_in_n8n.png": {
+    "width": 2018,
+    "height": 1676,
+    "mtimeMs": 1746159522889.832
+  },
+  "/_posts/cloudflare-worker-url-shortener/cloudflare_worker-kv_worker_pricing.png": {
+    "width": 3048,
+    "height": 1180,
+    "mtimeMs": 1746159267422.985
   }
 }
