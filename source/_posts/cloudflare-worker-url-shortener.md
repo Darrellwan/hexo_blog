@@ -39,10 +39,10 @@ KV = 類似 Redis 的 Key-Value 儲存
 
 {% darrellImage800 cloudflare_worker-kv_worker_pricing cloudflare_worker-kv_worker_pricing.png max-800 %}
 
-雖然 KV + Worker 免費方案的讀取是到十萬，
+雖然 KV + Worker 免費方案的讀取是到十萬/每日，
 但如果未來會有其他 Worker 的用量
 就要建議不要抓太緊
-**不建議用這種短網址去投廣告，如果廣告流量暴增，可能會造成免費版本不夠使用**
+**不建議用這種短網址去投廣告，如果廣告流量突然暴增，可能會造成免費版本不夠使用**
 
 ## 短網址系統架構與流程
 
