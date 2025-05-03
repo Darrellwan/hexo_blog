@@ -1,0 +1,915 @@
+{
+  "name": "電子發票轉存 Google Sheet + AI 分析消費",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "hour": 20,
+              "minute": 20
+            }
+          ]
+        },
+        "simple": false,
+        "filters": {
+          "q": "subject=財政部電子發票整合服務平台",
+          "sender": "einvoice@einvoice.nat.gov.tw"
+        },
+        "options": {
+          "dataPropertyAttachmentsPrefixName": "attachment_",
+          "downloadAttachments": true
+        }
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -640,
+        -60
+      ],
+      "id": "3f201716-42ae-48b6-af9b-c54e353c07c7",
+      "name": "Gmail Trigger",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "GThDvv7aRdBQyg1e",
+          "name": "Gmail account personal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "text",
+        "binaryPropertyName": "attachment_0",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -260,
+        -620
+      ],
+      "id": "219994ff-af3e-4cb1-9ac0-d4554995535e",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "bb64e5ef-a023-410f-9dbe-2c6d4b9de27b",
+                    "leftValue": "={{ $json.type }}",
+                    "rightValue": "M",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "M"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.type }}",
+                    "rightValue": "D",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "c9b53b63-ce1e-423a-ad0e-dabc5308de26"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "D"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -100,
+        -60
+      ],
+      "id": "dd1fa723-2f1e-4df2-a171-8655ad491f61",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "75ccad65-16eb-460c-896b-68dd7d0c8188",
+              "name": "type",
+              "value": "={{ $json.values()[0].split(\"|\")[0] }}",
+              "type": "string"
+            },
+            {
+              "id": "0a4316c4-e80d-4eff-a7ea-96e14329c7fa",
+              "name": "text",
+              "value": "={{ $json.values()[0] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -260,
+        -60
+      ],
+      "id": "caf093eb-38e1-487d-bd79-5c22fe8dd6fb",
+      "name": "整理資料"
+    },
+    {
+      "parameters": {
+        "content": "## 發票細項\n| 發票號碼 | 小計 | 品項名稱 |",
+        "height": 300,
+        "width": 680
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        240,
+        20
+      ],
+      "id": "7d41f9a8-e3a1-45b3-8814-b1c767147988",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## 發票\n| 載具名稱 | 載具號碼 | 發票日期 | 商店統編 | 商店店名 | 發票號碼 | 總金額 | 發票狀態 |",
+        "height": 260,
+        "width": 680
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        240,
+        -340
+      ],
+      "id": "cea65af6-eb07-4a77-819b-d864d5459392",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6b33cfb2-2131-47b7-9ba5-cd3f38eef0f9",
+              "name": "text",
+              "value": "={{ $json.text.split(\"|\") }}",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        280,
+        -240
+      ],
+      "id": "2b9f26e7-d1d6-4b62-a102-86f40a23c1ef",
+      "name": "m-文字轉Array"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6b33cfb2-2131-47b7-9ba5-cd3f38eef0f9",
+              "name": "text",
+              "value": "={{ $json.text.split(\"|\") }}",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        260,
+        140
+      ],
+      "id": "e6ec93d7-b3e5-4051-9b2a-6cd31525acbd",
+      "name": "d-文字轉Array"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1xrCCQIbkp6z6JXwMWJBf8zqf45-xXgh_P2D6UBaUoGI",
+          "mode": "list",
+          "cachedResultName": "n8n-電子發票_每月紀錄",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xrCCQIbkp6z6JXwMWJBf8zqf45-xXgh_P2D6UBaUoGI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 667728629,
+          "mode": "list",
+          "cachedResultName": "發票",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xrCCQIbkp6z6JXwMWJBf8zqf45-xXgh_P2D6UBaUoGI/edit#gid=667728629"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "invoice_no"
+          ],
+          "schema": [
+            {
+              "id": "invoice_no",
+              "displayName": "invoice_no",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "company",
+              "displayName": "company",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "sub_total",
+              "displayName": "sub_total",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "useAppend": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        720,
+        -240
+      ],
+      "id": "eb1a8ef9-603a-47dc-8c64-0f6cddb94a78",
+      "name": "m-存sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "tufEzuSTEveV3tuA",
+          "name": "(Personal)Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1xrCCQIbkp6z6JXwMWJBf8zqf45-xXgh_P2D6UBaUoGI",
+          "mode": "list",
+          "cachedResultName": "n8n-電子發票_每月紀錄",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xrCCQIbkp6z6JXwMWJBf8zqf45-xXgh_P2D6UBaUoGI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "細項",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xrCCQIbkp6z6JXwMWJBf8zqf45-xXgh_P2D6UBaUoGI/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "invoice_no",
+              "displayName": "invoice_no",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "item",
+              "displayName": "item",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "price",
+              "displayName": "price",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "useAppend": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        700,
+        140
+      ],
+      "id": "7b86d239-d23e-41f4-b355-711b49f694ca",
+      "name": "d-存sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "tufEzuSTEveV3tuA",
+          "name": "(Personal)Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.1,
+      "position": [
+        1000,
+        -40
+      ],
+      "id": "64585604-c02f-404c-a824-9d52f7c92fc6",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7a707904-f8fb-4712-b266-3953e51c6178",
+              "name": "data",
+              "value": "={{ $json.values().join() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1180,
+        -40
+      ],
+      "id": "e0f047b2-d6d5-457d-a482-70bb815bca30",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "data"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1360,
+        -40
+      ],
+      "id": "c46625a1-3b00-4d14-a2c4-f95a2cd31634",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.data.join() }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=你是一位資料分析師。根據下列 CSV 文字（每列格式：\n發票號碼,店家名稱,金額,發票日期,載具號碼,載具名稱,發票狀態），\n完成以下 6 項任務，並全部以繁體中文輸出；不用產生異常發票：\n\n1. 【摘要】150 字內：總花費、最高單筆金額（含店家）、主要消費類型。\n2. 【類別統計】Markdown 表格：類別（便利商店 / 外送 / 電商 / 餐飲實體 / 其他）、筆數、消費總額、平均客單、佔比 (% )。\n3. 【Top 5 店家】花費最高前 5 名：格式「1. 店家（NT$ 總額，筆數）」。\n4. 【常買‧高額店家矩陣】將每家店分為四象限：  \n   - 高頻高額、低頻高額、高頻低額、低頻低額（以整體筆數中位數與總額中位數為分界），  \n   列出各象限的店家清單（店名＋筆數＋總額）。\n\n輸出格式範例：\n【摘要】\n...\n【類別統計】\n| 類別 | 筆數 | 消費總額 | 平均客單 | 佔比 |\n|------|-----:|---------:|---------:|-----:|\n| 外送 | 10 | NT$… | NT$… | 40% |\n...\n【Top 5 店家】\n1. XXX（NT$ …，5 筆）\n...\n【常買‧高額店家矩陣】\n- **高頻高額**：A 店（12 筆 / NT$8,000）、B 店…\n- **低頻高額**：C 店（2 筆 / NT$5,000）…\n- **高頻低額**：D 店…\n- **低頻低額**：E 店…\n\n以下是資料："
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.6,
+      "position": [
+        1560,
+        -40
+      ],
+      "id": "38eea912-472d-43f7-b91a-8bd7800d6770",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "model": "grok-3-fast-beta",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatXAiGrok",
+      "typeVersion": 1,
+      "position": [
+        1480,
+        140
+      ],
+      "id": "54ff9034-b91a-42b5-83f1-76235d7d551e",
+      "name": "xAI Grok Chat Model",
+      "credentials": {
+        "xAiApi": {
+          "id": "IM4rBBfozzb7K8uB",
+          "name": "xAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C084G3HU3ED",
+          "mode": "list",
+          "cachedResultName": "測試"
+        },
+        "text": "={{ $json.text }}",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        1900,
+        -40
+      ],
+      "id": "1570cab5-317c-47a4-b232-5284f567de85",
+      "name": "Slack",
+      "webhookId": "b03abb2c-0236-47c9-9c51-0bedec17e482",
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "sD1J9ZLyEhcglrRa",
+          "name": "Slack account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## AI 分析消費資料\n將資料整理為一大筆，交給 AI 分析觀察",
+        "height": 540,
+        "width": 1100,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        980,
+        -240
+      ],
+      "id": "cf892735-2a1a-4964-910b-563fb95fa403",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Gmail 取得附件 -> 整理資料格式",
+        "height": 260,
+        "width": 720,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -680,
+        -160
+      ],
+      "id": "4b2e7743-f31f-4bbc-be38-9f723bc89796",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6b33cfb2-2131-47b7-9ba5-cd3f38eef0f9",
+              "name": "invoice_no",
+              "value": "={{ $json.text[6] }}",
+              "type": "string"
+            },
+            {
+              "id": "342df3e3-a263-4d97-bd27-4d4e177e69ac",
+              "name": "company",
+              "value": "={{ $json.text[5] }}",
+              "type": "string"
+            },
+            {
+              "id": "1f6d3575-8d59-4fdb-9c01-083f608b6269",
+              "name": "sub_total",
+              "value": "={{ $json.text[7] }}",
+              "type": "string"
+            },
+            {
+              "id": "6c8b6151-5c59-416c-bf9e-0852eb1b0013",
+              "name": "date",
+              "value": "={{ $json.text[3] }}",
+              "type": "string"
+            },
+            {
+              "id": "f6145822-acdf-47dd-974a-b4042abd5897",
+              "name": "code",
+              "value": "={{ $json.text[2] }}",
+              "type": "string"
+            },
+            {
+              "id": "c514ea43-ef44-47cc-ad80-0616072023c0",
+              "name": "code_from",
+              "value": "={{ $json.text[1] }}",
+              "type": "string"
+            },
+            {
+              "id": "2d67ea36-2fa8-41e8-903d-9c2b59cf1fd8",
+              "name": "status",
+              "value": "={{ $json.text[8] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        500,
+        -240
+      ],
+      "id": "3fcc1c79-d081-4aca-9746-562c8fb10765",
+      "name": "m-整理欄位資料"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6b33cfb2-2131-47b7-9ba5-cd3f38eef0f9",
+              "name": "invoice_no",
+              "value": "={{ $json.text[1] }}",
+              "type": "string"
+            },
+            {
+              "id": "342df3e3-a263-4d97-bd27-4d4e177e69ac",
+              "name": "item",
+              "value": "={{ $json.text[3] }}",
+              "type": "string"
+            },
+            {
+              "id": "1f6d3575-8d59-4fdb-9c01-083f608b6269",
+              "name": "price",
+              "value": "={{ Math.round($json.text[2]) }}",
+              "type": "number"
+            },
+            {
+              "id": "05ba6bd0-4ded-4f36-90af-f725c7612a9c",
+              "name": "id",
+              "value": "={{ ($json.text[1]+$json.text[3]).hash('sha256') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        500,
+        140
+      ],
+      "id": "dd10f3b2-7a88-4300-a07c-fad48cd6b1c5",
+      "name": "d-整理欄位資料"
+    },
+    {
+      "parameters": {
+        "binaryPropertyName": "attachment_0",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -440,
+        -60
+      ],
+      "id": "9a2057f8-afd6-4326-9651-15af82a95480",
+      "name": "Extract from File1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const document = items[0].json.data; \nconst lines = document.split(\"\\n\");\n\n// 提前過濾掉無效行（例如標題行）\nconst validLines = lines.filter(line => line.startsWith(\"M|\") || line.startsWith(\"D|\"));\n\nreturn validLines.map(line => {\n  const fields = line.split(\"|\");\n  const type = fields[0];\n\n  if (type === \"M\") {\n    return {\n      json: {\n        type: \"M\",\n        carrier_name: fields[1],\n        carrier_number: fields[2],\n        invoice_date: fields[3],\n        store_tax_id: fields[4],\n        store_name: fields[5],\n        invoice_number: fields[6],\n        total_amount: fields[7],\n        invoice_status: fields[8]\n      }\n    };\n  } else if (type === \"D\") {\n    return {\n      json: {\n        type: \"D\",\n        invoice_number: fields[1],\n        subtotal: fields[2],\n        item_name: fields[3]\n      }\n    };\n  }\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -80,
+        -620
+      ],
+      "id": "11651ac8-533e-45a3-8063-7c18c327d6fd",
+      "name": "整理"
+    },
+    {
+      "parameters": {
+        "jsCode": "let invoices = [];\nlet currentInvoice = null;\n\nfor (let item of items) {\n    const data = item.json;\n\n    if (data.type === \"M\") {\n        if (currentInvoice) {\n            invoices.push(currentInvoice);\n        }\n        currentInvoice = {\n            header: data,\n            items: []\n        };\n    } else if (data.type === \"D\") {\n        if (currentInvoice) {\n            currentInvoice.items.push(data);\n        }\n    }\n}\n\nif (currentInvoice) {\n    invoices.push(currentInvoice);\n}\n\nreturn invoices.map(invoice => ({ json: invoice }));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        100,
+        -620
+      ],
+      "id": "67c6ef63-bf7f-448c-a944-5e6872c0477a",
+      "name": "組合"
+    },
+    {
+      "parameters": {
+        "content": "## 另一種資料格式，提供給需要的人\n```\n{\n   // 發票主資料\n   \"header\":{\n      \"type\":\"M\",\n      \"carrier_name\":\"手機條碼\",\n      \"carrier_number\":\"{載具編號}\",\n      \"invoice_date\":\"{發票日期}\",\n      \"store_tax_id\":\"{商家統編}\",\n      \"store_name\":\"{商家}\",\n      \"invoice_number\":\"{發票號碼}\",\n      \"total_amount\":\"{發票金額}\",\n      \"invoice_status\":\"開立\"\n   },\n   // 發票商品項目資料\n   \"items\":[\n      {\n         \"type\":\"D\",\n         \"invoice_number\":\"{發票號碼}\",\n         \"subtotal\":\"{商品金額}\",\n         \"item_name\":\"{商品名稱}\"\n      }\n   ]\n}\n```",
+        "height": 640,
+        "width": 720,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -300,
+        -1100
+      ],
+      "id": "d4068428-d933-4e43-8e5f-d65f4514380a",
+      "name": "Sticky Note4"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Gmail Trigger": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Extract from File1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "整理",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "m-文字轉Array",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "d-文字轉Array",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "整理資料": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "m-文字轉Array": {
+      "main": [
+        [
+          {
+            "node": "m-整理欄位資料",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "d-文字轉Array": {
+      "main": [
+        [
+          {
+            "node": "d-整理欄位資料",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "m-存sheet": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "d-存sheet": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "xAI Grok Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "m-整理欄位資料": {
+      "main": [
+        [
+          {
+            "node": "m-存sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "d-整理欄位資料": {
+      "main": [
+        [
+          {
+            "node": "d-存sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File1": {
+      "main": [
+        [
+          {
+            "node": "整理資料",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "整理": {
+      "main": [
+        [
+          {
+            "node": "組合",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "4575bc46-94d1-4081-9c23-2c4df20b9aff",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "fddb3e91967f1012c95dd02bf5ad21f279fc44715f47a7a96a33433621caa253"
+  },
+  "id": "CbYxSkT3iePlmf5U",
+  "tags": []
+}
