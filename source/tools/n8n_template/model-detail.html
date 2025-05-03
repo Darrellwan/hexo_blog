@@ -288,10 +288,25 @@
             document.getElementById('tagContainer').innerHTML = (model.tags || []).map(tag => `<span class="tag">${tag}</span>`).join('');
             document.getElementById('nodeCount').textContent = (model.nodes || 0) + ' 個節點';
             document.getElementById('updatedAt').textContent = '更新於 ' + (model.updatedAt || '-');
-            document.getElementById('featureList').innerHTML = (model.features || []).map(f => `<li>${f}</li>`).join('') || '<li>暫無資料</li>';
-            document.getElementById('setupContent').innerHTML = (model.setup && model.setup.length)
-                ? `<ol>${model.setup.map(s => `<li>${s}</li>`).join('')}</ol>`
-                : '暫無設置說明';
+            
+            if (Array.isArray(model.detailedDescription)) {
+                document.getElementById('featureList').innerHTML = model.detailedDescription.map(f => `<li>${f}</li>`).join('');
+            } else {
+                document.getElementById('featureList').innerHTML = '<li>暫無特色資料</li>';
+            }
+            
+            if (model.setup) {
+                if (Array.isArray(model.setup.steps)) {
+                    document.getElementById('setupContent').innerHTML = `
+                        <p><strong>先決條件：</strong>${model.setup.prerequisites || '無'}</p>
+                        <ol>${model.setup.steps.map(step => `<li><strong>${step.title}</strong>: ${step.description}<ul>${step.options.map(opt => `<li>${opt}</li>`).join('')}</ul></li>`).join('')}</ol>
+                    `;
+                } else {
+                    document.getElementById('setupContent').innerHTML = '暫無詳細設置說明';
+                }
+            } else {
+                document.getElementById('setupContent').innerHTML = '暫無設置說明';
+            }
         } catch (e) {
             document.getElementById('modelTitle').textContent = '載入失敗';
             document.getElementById('modelDescription').textContent = '無法載入模板資料，請稍後再試。';
