@@ -1,5 +1,4 @@
 {
-  "name": "電子發票轉存 Google Sheet + AI 分析消費",
   "nodes": [
     {
       "parameters": {
@@ -531,7 +530,7 @@
         "content": "## Gmail 取得附件 -> 整理資料格式",
         "height": 260,
         "width": 720,
-        "color": 7
+        "color": 2
       },
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
@@ -697,9 +696,39 @@
       ],
       "id": "d4068428-d933-4e43-8e5f-d65f4514380a",
       "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "### 附件\n#### [Google Sheet](https://docs.google.com/spreadsheets/d/1CmRQpquCcG-VfTLG7qOFNZkzSH7QPRDM3QDPRuF9quk/copy)",
+        "width": 440,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -780,
+        -780
+      ],
+      "id": "8115b73a-dd54-4545-b29f-c78f43bb1ef0",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "content": "## Created by darrell_tw_ \n\nI’m a software engineer specializing in **workflow automation**, leveraging tools like n8n and cloud APIs to optimize processes.\nI now focus on AI-driven automation to deliver intelligent, scalable solutions.\n\n### contact me with following:\n[X](https://x.com/darrell_tw_)\n[Threads](https://www.threads.net/@darrell_tw_)\n[Instagram](https://www.instagram.com/darrell_tw_/)\n[Website](https://www.darrelltw.com/)",
+        "height": 300,
+        "width": 440,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -780,
+        -1100
+      ],
+      "id": "d0609e02-04e7-4a16-83fd-40066847638c",
+      "name": "Sticky Note6"
     }
   ],
-  "pinData": {},
   "connections": {
     "Gmail Trigger": {
       "main": [
@@ -823,17 +852,6 @@
         ]
       ]
     },
-    "xAI Grok Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Basic LLM Chain",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Aggregate": {
       "main": [
         [
@@ -851,6 +869,17 @@
           {
             "node": "Slack",
             "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "xAI Grok Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -901,15 +930,9 @@
       ]
     }
   },
-  "active": false,
-  "settings": {
-    "executionOrder": "v1"
-  },
-  "versionId": "4575bc46-94d1-4081-9c23-2c4df20b9aff",
+  "pinData": {},
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "fddb3e91967f1012c95dd02bf5ad21f279fc44715f47a7a96a33433621caa253"
-  },
-  "id": "CbYxSkT3iePlmf5U",
-  "tags": []
+  }
 }

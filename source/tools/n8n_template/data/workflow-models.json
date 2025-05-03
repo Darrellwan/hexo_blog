@@ -1,5 +1,179 @@
 {
     "models": {
+        "gmail_parse_invoice_to_sheet_and_analyze": {
+            "id": "gmail_parse_invoice_to_sheet_and_analyze",
+            "title": "Gmail 電子發票轉存 Google Sheet + AI 分析消費",
+            "description": "這個工作流程自動處理來自「財政部電子發票整合服務平台」的郵件，擷取電子發票資料並將其儲存到 Google Sheets 中，再使用 AI 進行消費分析。系統每天指定時間會監控 Gmail 中特定發件人的郵件，提取附件中的發票資訊，辨識「發票主資料(M)」和「商品明細(D)」，分別整理並存入兩個不同的工作表。最後，它會使用 xAI Grok 模型分析所有消費資料，生成包含摘要、類別統計、Top 5 店家和消費矩陣分析的深入報告，並將分析結果自動發送到 Slack 頻道，方便快速查看消費趨勢。\n\n主要功能：\n\n郵件監控：每日固定時間自動檢查財政部電子發票郵件\n資料提取：智能解析附件內容取得發票資訊和商品明細\n資料分類：自動區分「發票主資料(M)」和「商品明細(D)」\nGoogle Sheets 整合：將不同類型資料存入對應工作表\nAI 消費分析：使用 xAI Grok 模型生成多維度消費分析\nSlack 通知：將完整分析報告即時發送到指定頻道",
+            "detailedDescription": [
+                "每日定時監控財政部電子發票整合服務平台郵件",
+                "自動辨識並提取郵件附件中的發票資料",
+                "智能區分「發票主資料(M)」和「商品明細(D)」",
+                "將發票主資料存入「發票」工作表（載具資訊、發票資訊、商店資訊等）",
+                "將商品明細存入「細項」工作表（發票號碼、品項名稱、價格等）",
+                "使用 xAI Grok 模型分析消費模式與趨勢",
+                "生成包含摘要、類別統計、Top 5 店家和消費矩陣的詳細報告",
+                "自動將分析結果發送到 Slack 頻道，方便隨時查看"
+            ],
+            "tags": ["自動化", "發票", "記帳", "Gmail", "Google Sheets", "AI", "消費分析", "Slack"],
+            "nodes": 22,
+            "createdAt": "2025-05-02",
+            "updatedAt": "2025-05-02",
+            "setup": {
+                "prerequisites": "需要設定 Gmail、Google Sheets、AI 模型 (xAI Grok) 和 Slack 的 API 存取權限",
+                "steps": [
+                    {
+                        "title": "Gmail 設定",
+                        "description": "設定 Gmail API 存取權限，用於讀取電子發票郵件",
+                        "options": [
+                            "設定 OAuth 2.0 認證",
+                            "授予郵件讀取權限",
+                            "設定郵件過濾條件為 'subject=財政部電子發票整合服務平台' 和 'from=einvoice@einvoice.nat.gov.tw'"
+                        ]
+                    },
+                    {
+                        "title": "Google Sheets 設定",
+                        "description": "準備用於儲存發票資料的試算表",
+                        "options": [
+                            "建立 Google 試算表",
+                            "設定「發票」工作表儲存主資料（載具名稱、載具號碼、發票日期、商店資訊、發票號碼、總金額、發票狀態）",
+                            "設定「細項」工作表儲存商品明細（品項ID、發票號碼、品項名稱、價格）"
+                        ]
+                    },
+                    {
+                        "title": "AI 模型設定",
+                        "description": "設定 xAI Grok 模型用於消費分析",
+                        "options": [
+                            "取得 xAI API 金鑰",
+                            "選擇 grok-3-fast-beta 模型",
+                            "設定分析提示詞以生成消費報告"
+                        ]
+                    },
+                    {
+                        "title": "Slack 設定",
+                        "description": "設定 Slack 整合用於發送分析結果",
+                        "options": [
+                            "建立 Slack App",
+                            "設定 Bot Token",
+                            "選擇目標頻道接收分析報告"
+                        ]
+                    }
+                ]
+            },
+            "examples": [
+                {
+                    "title": "基本設定範例",
+                    "description": "展示如何設定基本的電子發票處理流程",
+                    "code": {
+                        "trigger": "gmail",
+                        "actions": [
+                            "extract_file",
+                            "parse_data",
+                            "separate_invoice_types",
+                            "save_to_sheets",
+                            "analyze_with_ai",
+                            "send_to_slack"
+                        ]
+                    }
+                },
+                {
+                    "title": "進階資料處理範例",
+                    "description": "展示如何使用程式碼節點處理複雜的發票資料",
+                    "code": {
+                        "trigger": "gmail",
+                        "actions": [
+                            "extract_file",
+                            "process_with_code",
+                            "organize_invoice_structure",
+                            "save_structured_data",
+                            "generate_ai_report",
+                            "send_to_slack"
+                        ]
+                    }
+                }
+            ],
+            "fields": {
+                "gmail": {
+                    "title": "Gmail 設定",
+                    "fields": {
+                        "searchQuery": {
+                            "type": "string",
+                            "description": "Gmail 搜尋條件",
+                            "default": "subject=財政部電子發票整合服務平台 from=einvoice@einvoice.nat.gov.tw"
+                        },
+                        "pollTimes": {
+                            "type": "array",
+                            "description": "檢查郵件的時間",
+                            "default": [{"hour": 20, "minute": 20}]
+                        }
+                    }
+                },
+                "sheets": {
+                    "title": "Google Sheets 設定",
+                    "fields": {
+                        "documentId": {
+                            "type": "string",
+                            "description": "Google Sheets ID",
+                            "example": "1xrCCQIbkp6z6JXwMWJBf8zqf45-xXgh_P2D6UBaUoGI"
+                        },
+                        "invoiceSheetName": {
+                            "type": "string",
+                            "description": "發票主資料工作表名稱",
+                            "default": "發票"
+                        },
+                        "detailSheetName": {
+                            "type": "string",
+                            "description": "發票細項工作表名稱",
+                            "default": "細項"
+                        }
+                    }
+                },
+                "ai": {
+                    "title": "AI 設定",
+                    "fields": {
+                        "model": {
+                            "type": "string",
+                            "description": "AI 模型名稱",
+                            "default": "grok-3-fast-beta"
+                        },
+                        "analysisPrompt": {
+                            "type": "string",
+                            "description": "分析提示詞",
+                            "default": "根據下列 CSV 文字（每列格式：發票號碼,店家名稱,金額,發票日期,載具號碼,載具名稱,發票狀態），完成以下任務：1. 【摘要】2. 【類別統計】3. 【Top 5 店家】4. 【常買‧高額店家矩陣】"
+                        }
+                    }
+                },
+                "slack": {
+                    "title": "Slack 設定",
+                    "fields": {
+                        "channelId": {
+                            "type": "string",
+                            "description": "Slack 頻道 ID",
+                            "example": "C084G3HU3ED"
+                        }
+                    }
+                },
+                "dataProcessing": {
+                    "title": "資料處理設定",
+                    "fields": {
+                        "splitPattern": {
+                            "type": "string",
+                            "description": "資料分割符號",
+                            "default": "|"
+                        },
+                        "headerType": {
+                            "type": "string",
+                            "description": "發票主資料標識符",
+                            "default": "M"
+                        },
+                        "detailType": {
+                            "type": "string",
+                            "description": "發票細項標識符",
+                            "default": "D"
+                        }
+                    }
+                }
+            }
+        },
         "n8n_gpt_image_1_with_drive_and_sheet": {
             "id": "n8n_gpt_image_1_with_drive_and_sheet",
             "title": "ChatGPT Image-1 圖像生成與自動儲存",
@@ -179,180 +353,6 @@
                             "type": "string",
                             "description": "記錄結果的工作表名稱",
                             "default": "data"
-                        }
-                    }
-                }
-            }
-        },
-        "gmail_parse_invoice_to_sheet_and_analyze": {
-            "id": "gmail_parse_invoice_to_sheet_and_analyze",
-            "title": "Gmail 電子發票轉存 Google Sheet + AI 分析消費",
-            "description": "這個工作流程自動處理來自「財政部電子發票整合服務平台」的郵件，擷取電子發票資料並將其儲存到 Google Sheets 中，再使用 AI 進行消費分析。系統每天指定時間會監控 Gmail 中特定發件人的郵件，提取附件中的發票資訊，辨識「發票主資料(M)」和「商品明細(D)」，分別整理並存入兩個不同的工作表。最後，它會使用 xAI Grok 模型分析所有消費資料，生成包含摘要、類別統計、Top 5 店家和消費矩陣分析的深入報告，並將分析結果自動發送到 Slack 頻道，方便快速查看消費趨勢。\n\n主要功能：\n\n郵件監控：每日固定時間自動檢查財政部電子發票郵件\n資料提取：智能解析附件內容取得發票資訊和商品明細\n資料分類：自動區分「發票主資料(M)」和「商品明細(D)」\nGoogle Sheets 整合：將不同類型資料存入對應工作表\nAI 消費分析：使用 xAI Grok 模型生成多維度消費分析\nSlack 通知：將完整分析報告即時發送到指定頻道",
-            "detailedDescription": [
-                "每日定時監控財政部電子發票整合服務平台郵件",
-                "自動辨識並提取郵件附件中的發票資料",
-                "智能區分「發票主資料(M)」和「商品明細(D)」",
-                "將發票主資料存入「發票」工作表（載具資訊、發票資訊、商店資訊等）",
-                "將商品明細存入「細項」工作表（發票號碼、品項名稱、價格等）",
-                "使用 xAI Grok 模型分析消費模式與趨勢",
-                "生成包含摘要、類別統計、Top 5 店家和消費矩陣的詳細報告",
-                "自動將分析結果發送到 Slack 頻道，方便隨時查看"
-            ],
-            "tags": ["自動化", "發票", "記帳", "Gmail", "Google Sheets", "AI", "消費分析", "Slack"],
-            "nodes": 22,
-            "createdAt": "2025-05-02",
-            "updatedAt": "2025-05-02",
-            "setup": {
-                "prerequisites": "需要設定 Gmail、Google Sheets、AI 模型 (xAI Grok) 和 Slack 的 API 存取權限",
-                "steps": [
-                    {
-                        "title": "Gmail 設定",
-                        "description": "設定 Gmail API 存取權限，用於讀取電子發票郵件",
-                        "options": [
-                            "設定 OAuth 2.0 認證",
-                            "授予郵件讀取權限",
-                            "設定郵件過濾條件為 'subject=財政部電子發票整合服務平台' 和 'from=einvoice@einvoice.nat.gov.tw'"
-                        ]
-                    },
-                    {
-                        "title": "Google Sheets 設定",
-                        "description": "準備用於儲存發票資料的試算表",
-                        "options": [
-                            "建立 Google 試算表",
-                            "設定「發票」工作表儲存主資料（載具名稱、載具號碼、發票日期、商店資訊、發票號碼、總金額、發票狀態）",
-                            "設定「細項」工作表儲存商品明細（品項ID、發票號碼、品項名稱、價格）"
-                        ]
-                    },
-                    {
-                        "title": "AI 模型設定",
-                        "description": "設定 xAI Grok 模型用於消費分析",
-                        "options": [
-                            "取得 xAI API 金鑰",
-                            "選擇 grok-3-fast-beta 模型",
-                            "設定分析提示詞以生成消費報告"
-                        ]
-                    },
-                    {
-                        "title": "Slack 設定",
-                        "description": "設定 Slack 整合用於發送分析結果",
-                        "options": [
-                            "建立 Slack App",
-                            "設定 Bot Token",
-                            "選擇目標頻道接收分析報告"
-                        ]
-                    }
-                ]
-            },
-            "examples": [
-                {
-                    "title": "基本設定範例",
-                    "description": "展示如何設定基本的電子發票處理流程",
-                    "code": {
-                        "trigger": "gmail",
-                        "actions": [
-                            "extract_file",
-                            "parse_data",
-                            "separate_invoice_types",
-                            "save_to_sheets",
-                            "analyze_with_ai",
-                            "send_to_slack"
-                        ]
-                    }
-                },
-                {
-                    "title": "進階資料處理範例",
-                    "description": "展示如何使用程式碼節點處理複雜的發票資料",
-                    "code": {
-                        "trigger": "gmail",
-                        "actions": [
-                            "extract_file",
-                            "process_with_code",
-                            "organize_invoice_structure",
-                            "save_structured_data",
-                            "generate_ai_report",
-                            "send_to_slack"
-                        ]
-                    }
-                }
-            ],
-            "fields": {
-                "gmail": {
-                    "title": "Gmail 設定",
-                    "fields": {
-                        "searchQuery": {
-                            "type": "string",
-                            "description": "Gmail 搜尋條件",
-                            "default": "subject=財政部電子發票整合服務平台 from=einvoice@einvoice.nat.gov.tw"
-                        },
-                        "pollTimes": {
-                            "type": "array",
-                            "description": "檢查郵件的時間",
-                            "default": [{"hour": 20, "minute": 20}]
-                        }
-                    }
-                },
-                "sheets": {
-                    "title": "Google Sheets 設定",
-                    "fields": {
-                        "documentId": {
-                            "type": "string",
-                            "description": "Google Sheets ID",
-                            "example": "1xrCCQIbkp6z6JXwMWJBf8zqf45-xXgh_P2D6UBaUoGI"
-                        },
-                        "invoiceSheetName": {
-                            "type": "string",
-                            "description": "發票主資料工作表名稱",
-                            "default": "發票"
-                        },
-                        "detailSheetName": {
-                            "type": "string",
-                            "description": "發票細項工作表名稱",
-                            "default": "細項"
-                        }
-                    }
-                },
-                "ai": {
-                    "title": "AI 設定",
-                    "fields": {
-                        "model": {
-                            "type": "string",
-                            "description": "AI 模型名稱",
-                            "default": "grok-3-fast-beta"
-                        },
-                        "analysisPrompt": {
-                            "type": "string",
-                            "description": "分析提示詞",
-                            "default": "根據下列 CSV 文字（每列格式：發票號碼,店家名稱,金額,發票日期,載具號碼,載具名稱,發票狀態），完成以下任務：1. 【摘要】2. 【類別統計】3. 【Top 5 店家】4. 【常買‧高額店家矩陣】"
-                        }
-                    }
-                },
-                "slack": {
-                    "title": "Slack 設定",
-                    "fields": {
-                        "channelId": {
-                            "type": "string",
-                            "description": "Slack 頻道 ID",
-                            "example": "C084G3HU3ED"
-                        }
-                    }
-                },
-                "dataProcessing": {
-                    "title": "資料處理設定",
-                    "fields": {
-                        "splitPattern": {
-                            "type": "string",
-                            "description": "資料分割符號",
-                            "default": "|"
-                        },
-                        "headerType": {
-                            "type": "string",
-                            "description": "發票主資料標識符",
-                            "default": "M"
-                        },
-                        "detailType": {
-                            "type": "string",
-                            "description": "發票細項標識符",
-                            "default": "D"
                         }
                     }
                 }

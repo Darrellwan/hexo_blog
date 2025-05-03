@@ -298,7 +298,7 @@
             if (model.setup) {
                 if (Array.isArray(model.setup.steps)) {
                     document.getElementById('setupContent').innerHTML = `
-                        <p><strong>先決條件：</strong>${model.setup.prerequisites || '無'}</p>
+                        <p><strong>預先設定：</strong>${model.setup.prerequisites || '無'}</p>
                         <ol>${model.setup.steps.map(step => `<li><strong>${step.title}</strong>: ${step.description}<ul>${step.options.map(opt => `<li>${opt}</li>`).join('')}</ul></li>`).join('')}</ol>
                     `;
                 } else {
