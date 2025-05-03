@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darrell 電子發票 csv 轉換</title>
+    <meta name="description" content="免費電子發票 CSV 轉換工具，快速解析台灣電子發票資料，輕鬆匯出為 CSV 或是 Google Sheet 格式。">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+    <!-- 添加 Chart.js 庫 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary-color: #7db0de;
+            --secondary-color: #4a6fa5;
+            --accent-color: #166088;
+            --background-color: #202124;
+            --card-background: #2d2d30;
+            --text-color: #e8eaed;
+            --border-color: #444;
+            --success-color: #28a745;
+            --error-color: #dc3545;
+            --scrollbar-width: 8px;
+            --scrollbar-track: rgba(0, 0, 0, 0.1);
+            --scrollbar-thumb: rgba(125, 176, 222, 0.3);
+            --scrollbar-thumb-hover: rgba(125, 176, 222, 0.5);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* 新增的 header 樣式 */
+        .n8n-resources-header {
+            background-color: var(--card-background);
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .n8n-header-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .n8n-header-wrapper h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+        
+        .social-buttons {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .social-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        
+        .social-button:hover {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            transform: translateY(-2px);
+        }
+        
+        .n8n-search-container {
+            max-width: 1200px;
+            margin: 10px auto 0;
+        }
+        
+        /* 原有樣式繼續 */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: var(--card-background);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            flex: 1;
+        }
+        
+        h1 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .upload-section {
+            text-align: center;
+            padding: 40px 20px;
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            background-color: rgba(125, 176, 222, 0.05);
+        }
+        
+        .upload-section:hover {
+            border-color: var(--accent-color);
+            background-color: rgba(125, 176, 222, 0.1);
+        }
+        
+        .upload-section.dragover {
+            border-color: var(--primary-color);
+            background-color: rgba(125, 176, 222, 0.2);
+        }
+        
+        .file-input {
+            display: none;
+        }
+        
+        .file-label {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        
+        .file-label:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .file-name {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        .loader-container {
+            display: none;
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .loader {
+            border: 5px solid #444;
+            border-top: 5px solid var(--primary-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loader-text {
+            margin-top: 15px;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        .results-section {
+            display: none;
+            margin-top: 30px;
+            width: 100%;
+        }
+        
+        .tab-container {
+            display: flex;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        
+        .tab-button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: var(--text-color);
+            border: none;
+            cursor: pointer;
+            border-radius: 4px 4px 0 0;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            border: 1px solid var(--border-color);
+            border-bottom: none;
+            margin-right: 5px;
+        }
+        
+        .tab-button.active {
+            background-color: var(--card-background);
+            color: var(--primary-color);
+            border-bottom: 1px solid var(--card-background);
+            position: relative;
+            top: 1px;
+        }
+        
+        .table-container {
+            position: relative;
+            overflow-x: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            max-height: 500px;
+            overflow-y: auto;
+            width: 100%;
+            scrollbar-width: thin;
+            scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+        }
+        
+        .table-container::-webkit-scrollbar {
+            width: var(--scrollbar-width);
+            height: var(--scrollbar-width);
+        }
+        
+        .table-container::-webkit-scrollbar-track {
+            background: var(--scrollbar-track);
+            border-radius: 4px;
+        }
+        
+        .table-container::-webkit-scrollbar-thumb {
+            background-color: var(--scrollbar-thumb);
+            border-radius: 4px;
+        }
+        
+        .table-container::-webkit-scrollbar-thumb:hover {
+            background-color: var(--scrollbar-thumb-hover);
+        }
+        
+        .export-buttons {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 10px;
+            gap: 10px;
+        }
+        
+        .export-button {
+            padding: 8px 12px;
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            white-space: nowrap;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .export-button:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .export-button svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        th {
+            background-color: #333;
+            color: var(--primary-color);
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+            white-space: nowrap;
+        }
+        
+        th:hover {
+            background-color: #3a3a3a;
+        }
+        
+        tr:hover {
+            background-color: rgba(125, 176, 222, 0.05);
+        }
+        
+        .sort-icon {
+            display: inline-block;
+            margin-left: 5px;
+            font-size: 0.8rem;
+            opacity: 0.7;
+            transition: opacity 0.2s ease;
+        }
+        
+        th:hover .sort-icon {
+            opacity: 1;
+        }
+        
+        .notification {
+            padding: 15px;
+            background-color: var(--success-color);
+            color: white;
+            border-radius: 4px;
+            text-align: center;
+            opacity: 0;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            transition: opacity 0.3s ease;
+        }
+        
+        .show-notification {
+            opacity: 1;
+        }
+        
+        header {
+            background-color: var(--card-background);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        footer {
+            background-color: var(--card-background);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #aaa;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        #logContainer {
+            scrollbar-width: thin;
+            scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+        }
+        
+        #logContainer::-webkit-scrollbar {
+            width: var(--scrollbar-width);
+        }
+        
+        #logContainer::-webkit-scrollbar-track {
+            background: var(--scrollbar-track);
+            border-radius: 4px;
+        }
+        
+        #logContainer::-webkit-scrollbar-thumb {
+            background-color: var(--scrollbar-thumb);
+            border-radius: 4px;
+        }
+        
+        #logContainer::-webkit-scrollbar-thumb:hover {
+            background-color: var(--scrollbar-thumb-hover);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            th, td {
+                padding: 8px 10px;
+                font-size: 0.9rem;
+            }
+            
+            .export-buttons {
+                position: static;
+                display: flex;
+                justify-content: flex-end;
+                margin-bottom: 10px;
+            }
+            
+            .n8n-header-wrapper {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .social-buttons {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 新增的頂部導航欄 -->
+    <header class="n8n-resources-header">
+        <div class="n8n-header-wrapper">
+            <h1>Darrell 電子發票 csv 轉換</h1>
+            <div class="social-buttons">
+                <a href="https://www.darrelltw.com/" class="social-button" target="_blank" rel="noopener noreferrer" title="Website">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41z"></path></svg>
+                </a>
+                <a href="https://www.threads.net/@darrell_tw_" class="social-button" target="_blank" rel="noopener noreferrer" title="Threads">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 440 511.43" fill="currentColor"><path d="M342.383 237.038a177.282 177.282 0 00-6.707-3.046c-3.948-72.737-43.692-114.379-110.429-114.805-38.505-.255-72.972 15.445-94.454 48.041l36.702 25.178c15.265-23.159 39.221-28.096 56.864-28.096.204 0 .408 0 .61.002 21.974.14 38.555 6.529 49.287 18.987 7.81 9.071 13.034 21.606 15.621 37.425-19.483-3.311-40.553-4.329-63.077-3.038-63.45 3.655-104.24 40.661-101.501 92.08 1.391 26.083 14.385 48.523 36.587 63.181 18.772 12.391 42.95 18.45 68.077 17.079 33.183-1.819 59.215-14.48 77.377-37.63 13.793-17.58 22.516-40.363 26.368-69.069 15.814 9.544 27.535 22.103 34.007 37.2 11.006 25.665 11.648 67.84-22.764 102.223-30.15 30.121-66.392 43.151-121.164 43.554-60.758-.45-106.708-19.935-136.583-57.915-27.976-35.562-42.434-86.93-42.973-152.674.539-65.746 14.997-117.114 42.973-152.676 29.875-37.979 75.824-57.463 136.582-57.914 61.197.455 107.948 20.033 138.967 58.195 15.21 18.713 26.676 42.248 34.236 69.688L440 161.532c-9.163-33.775-23.582-62.881-43.203-87.017C357.031 25.59 298.872.519 223.936 0h-.3C148.851.518 91.344 25.683 52.709 74.795 18.331 118.499.598 179.308.002 255.535l-.002.18.002.18c.596 76.225 18.329 137.037 52.707 180.741 38.635 49.11 96.142 74.277 170.927 74.794h.3c66.486-.462 113.352-17.868 151.96-56.442 50.51-50.463 48.99-113.718 32.342-152.549-11.945-27.847-34.716-50.463-65.855-65.401zM227.587 344.967c-27.808 1.567-56.699-10.916-58.124-37.651-1.056-19.823 14.108-41.942 59.831-44.577a266.87 266.87 0 0115.422-.45c16.609 0 32.145 1.613 46.271 4.701-5.268 65.798-36.172 76.483-63.4 77.977z"></path></svg>
+                </a>
+                <a href="mailto:darrell.tw.martech@gmail.com" class="social-button" target="_blank" rel="noopener noreferrer" title="Gmail">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg>
+                </a>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=darrell.tw.martech@gmail.com" class="social-button" target="_blank" rel="noopener noreferrer" title="Gmail 新郵件">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"></path></svg>
+                </a>
+                <a href="https://www.instagram.com/darrell_tw_/" class="social-button" target="_blank" rel="noopener noreferrer" title="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.281-.057 1.689-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+                </a>
+                <a href="https://buymeacoffee.com/darrellmartechtw" class="social-button" target="_blank" rel="noopener noreferrer" title="Buy Me a Coffee">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"></path></svg>
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="upload-section" id="uploadSection">
+            <input type="file" id="fileInput" class="file-input" accept=".txt,.csv">
+            <label for="fileInput" class="file-label">選擇發票檔案</label>
+            <div class="file-name" id="fileName">尚未選擇檔案</div>
+        </div>
+        
+        <div class="loader-container" id="loaderContainer">
+            <div class="loader"></div>
+            <div class="loader-text">處理中，請稍候...</div>
+        </div>
+        
+        <div id="logContainer" style="display: none; margin: 20px 0; padding: 15px; background-color: #333; border-radius: 4px; max-height: 300px; overflow-y: auto;">
+            <h3 style="color: var(--primary-color); margin-bottom: 10px;">處理日誌</h3>
+            <pre id="processLog" style="color: var(--text-color); white-space: pre-wrap; font-family: monospace;"></pre>
+        </div>
+        
+        <div class="results-section" id="resultsSection">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <div class="tab-container">
+                    <button class="tab-button active" id="masterTabButton">發票主表</button>
+                    <button class="tab-button" id="detailTabButton">發票明細表</button>
+                </div>
+                
+                <div id="masterExportButtons" class="export-buttons">
+                    <button class="export-button" id="exportCsvButton">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 2 5 5h-5V4zM7 15h10v2H7v-2zm0-4h10v2H7v-2zm0-3h7v1H7V8z"/></svg>
+                        匯出 CSV
+                    </button>
+                    <button class="export-button" id="copyToSheetButton">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12zm-9-6h4v1H9v-1zm0-2h8v1H9v-1zm0-2h8v1H9v-1zm0-5h4v3H9V7zm6 0h3v1h-3V7zm0 2h3v1h-3V9z"/></svg>
+                        複製到 Google Sheets
+                    </button>
+                </div>
+                
+                <div id="detailExportButtons" class="export-buttons" style="display: none;">
+                    <button class="export-button" id="exportDetailCsvButton">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 2 5 5h-5V4zM7 15h10v2H7v-2zm0-4h10v2H7v-2zm0-3h7v1H7V8z"/></svg>
+                        匯出 CSV
+                    </button>
+                    <button class="export-button" id="copyDetailToSheetButton">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 22a2 2 0 0 0 2-2V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12zm-9-6h4v1H9v-1zm0-2h8v1H9v-1zm0-2h8v1H9v-1zm0-5h4v3H9V7zm6 0h3v1h-3V7zm0 2h3v1h-3V9z"/></svg>
+                        複製到 Google Sheets
+                    </button>
+                </div>
+            </div>
+            
+            <div class="table-container" id="masterTableContainer">
+                <table id="masterTable">
+                    <thead>
+                        <tr></tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            
+            <div class="table-container" id="detailTableContainer" style="display: none;">
+                <table id="detailTable">
+                    <thead>
+                        <tr></tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            
+            <!-- 新增圖表區域 -->
+            <div class="charts-section" style="margin-top: 30px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+                    <div style="flex: 1; min-width: 300px; background-color: var(--card-background); padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);">
+                        <h3 style="color: var(--primary-color); margin-bottom: 15px; text-align: center; font-size: 1.2rem;">商店消費佔比</h3>
+                        <div style="position: relative; height: 350px;">
+                            <canvas id="storeChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 300px; background-color: var(--card-background); padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);">
+                        <h3 style="color: var(--primary-color); margin-bottom: 15px; text-align: center; font-size: 1.2rem;">前十大消費發票</h3>
+                        <div style="position: relative; height: 350px;">
+                            <canvas id="topInvoicesChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        © 2025 Darrell_tw_
+    </footer>
+    
+    <div class="notification" id="notification"></div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM元素
+            const fileInput = document.getElementById('fileInput');
+            const fileName = document.getElementById('fileName');
+            const uploadSection = document.getElementById('uploadSection');
+            const loaderContainer = document.getElementById('loaderContainer');
+            const resultsSection = document.getElementById('resultsSection');
+            const masterTabButton = document.getElementById('masterTabButton');
+            const detailTabButton = document.getElementById('detailTabButton');
+            const masterTableContainer = document.getElementById('masterTableContainer');
+            const detailTableContainer = document.getElementById('detailTableContainer');
+            const masterTable = document.getElementById('masterTable');
+            const detailTable = document.getElementById('detailTable');
+            const exportCsvButton = document.getElementById('exportCsvButton');
+            const copyToSheetButton = document.getElementById('copyToSheetButton');
+            const exportDetailCsvButton = document.getElementById('exportDetailCsvButton');
+            const copyDetailToSheetButton = document.getElementById('copyDetailToSheetButton');
+            const notification = document.getElementById('notification');
+            const logContainer = document.getElementById('logContainer');
+            const processLog = document.getElementById('processLog');
+            
+            // 欄位定義 - 使用英文作為key，避免編碼問題
+            const FIELD_MAPPING = {
+                // 主表欄位
+                carrierName: { key: 'carrierName', displayName: '載具名稱', index: 0 },
+                carrierId: { key: 'carrierId', displayName: '載具號碼', index: 1 },
+                date: { key: 'date', displayName: '發票日期', index: 2 },
+                sellerTaxId: { key: 'sellerTaxId', displayName: '商店統編', index: 3 },
+                sellerName: { key: 'sellerName', displayName: '商店店名', index: 4 },
+                invoiceNumber: { key: 'invoiceNumber', displayName: '發票號碼', index: 5 },
+                amount: { key: 'amount', displayName: '總金額', index: 6 },
+                status: { key: 'status', displayName: '發票狀態', index: 7 },
+                
+                // 明細表欄位
+                detailInvoiceNumber: { key: 'invoiceNumber', displayName: '發票號碼', index: 0 }, 
+                subTotal: { key: 'subTotal', displayName: '小計', index: 1 },
+                productName: { key: 'productName', displayName: '品項名稱', index: 2 }
+            };
+            
+            // 表頭定義
+            const MASTER_FIELDS = [
+                FIELD_MAPPING.date,
+                FIELD_MAPPING.invoiceNumber,
+                FIELD_MAPPING.sellerTaxId,
+                FIELD_MAPPING.sellerName,
+                FIELD_MAPPING.amount,
+                FIELD_MAPPING.carrierName,
+                FIELD_MAPPING.carrierId,
+                FIELD_MAPPING.status
+            ];
+            
+            const DETAIL_FIELDS = [
+                FIELD_MAPPING.detailInvoiceNumber,
+                FIELD_MAPPING.subTotal,
+                FIELD_MAPPING.productName
+            ];
+            
+            // 全局變量
+            let masterData = [];
+            let detailData = [];
+            let masterHeaders = [];
+            let detailHeaders = [];
+            
+            // 日誌功能
+            function log(message) {
+                const timestamp = new Date().toLocaleTimeString();
+                processLog.textContent += `[${timestamp}] ${message}\n`;
+                console.log(`[${timestamp}] ${message}`);
+                
+                // 顯示日誌容器（改為不自動顯示）
+                // logContainer.style.display = 'block';
+                
+                // 滾動到底部
+                processLog.scrollTop = processLog.scrollHeight;
+            }
+            
+            // 拖放功能
+            uploadSection.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                uploadSection.classList.add('dragover');
+            });
+            
+            uploadSection.addEventListener('dragleave', function() {
+                uploadSection.classList.remove('dragover');
+            });
+            
+            uploadSection.addEventListener('drop', function(e) {
+                e.preventDefault();
+                uploadSection.classList.remove('dragover');
+                
+                if (e.dataTransfer.files.length) {
+                    const file = e.dataTransfer.files[0];
+                    if (file.name.endsWith('.csv') || file.name.endsWith('.txt')) {
+                        fileInput.files = e.dataTransfer.files;
+                        handleFileUpload(file);
+                    } else {
+                        showNotification('請上傳 CSV 或 TXT 檔案', false);
+                    }
+                }
+            });
+            
+            // 文件上傳處理
+            fileInput.addEventListener('change', function() {
+                if (fileInput.files.length) {
+                    const file = fileInput.files[0];
+                    if (file.name.endsWith('.csv') || file.name.endsWith('.txt')) {
+                        handleFileUpload(file);
+                    } else {
+                        showNotification('請上傳 CSV 或 TXT 檔案', false);
+                        fileInput.value = '';
+                        fileName.textContent = '尚未選擇檔案';
+                    }
+                }
+            });
+            
+            function handleFileUpload(file) {
+                fileName.textContent = file.name;
+                
+                // 重置日誌
+                processLog.textContent = '';
+                log(`開始處理檔案: ${file.name}`);
+                
+                // 顯示加載動畫
+                loaderContainer.style.display = 'block';
+                resultsSection.style.display = 'none';
+                
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    log(`檔案讀取成功，大小: ${e.target.result.length} 字節`);
+                    // 至少顯示2秒加載動畫
+                    setTimeout(function() {
+                        processFileContent(e.target.result);
+                    }, 2000);
+                };
+                
+                reader.onerror = function() {
+                    log(`檔案讀取失敗: ${reader.error}`);
+                    showNotification('檔案讀取失敗', false);
+                    loaderContainer.style.display = 'none';
+                };
+                
+                reader.readAsText(file);
+            }
+            
+            // 處理檔案內容
+            function processFileContent(fileContent) {
+                // 分割行
+                const lines = fileContent.split('\n');
+                log(`檔案包含 ${lines.length} 行資料`);
+                
+                if (lines.length <= 1) {
+                    log('檔案格式不正確或為空');
+                    showNotification('檔案格式不正確或為空', false);
+                    loaderContainer.style.display = 'none';
+                    return;
+                }
+                
+                // 檢查是否為特殊格式（以 M| 或 D| 開頭）
+                const isSpecialFormat = lines.some(line => line.trim().startsWith('M|') || line.trim().startsWith('D|'));
+                log(`識別檔案格式: ${isSpecialFormat ? '特殊格式 (M|/D|)' : 'CSV 格式'}`);
+                
+                if (isSpecialFormat) {
+                    processSpecialFormat(lines);
+                } else {
+                    processCSV(fileContent);
+                }
+                
+                // 清空 file input
+                fileInput.value = '';
+            }
+            
+            // 處理特殊格式
+            function processSpecialFormat(lines) {
+                log('開始處理特殊格式檔案');
+                // 初始化主表和明細表
+                masterData = [];
+                detailData = [];
+                
+                // 獲取主表和明細表的 header
+                let masterHeaderLine = '';
+                let detailHeaderLine = '';
+                
+                for (let i = 0; i < lines.length; i++) {
+                    const line = lines[i].trim();
+                    if (line.startsWith('表頭=M|')) {
+                        masterHeaderLine = line.substring(5);
+                        log(`找到主表頭: ${masterHeaderLine}`);
+                    } else if (line.startsWith('明細=D|')) {
+                        detailHeaderLine = line.substring(5);
+                        log(`找到明細表頭: ${detailHeaderLine}`);
+                    }
+                    
+                    // 找到兩個表頭後跳出
+                    if (masterHeaderLine && detailHeaderLine) break;
+                }
+                
+                // 如果找不到表頭，使用默認的
+                if (!masterHeaderLine) {
+                    masterHeaderLine = 'M|載具名稱|載具號碼|發票日期|商店統編|商店店名|發票號碼|總金額|發票狀態|';
+                    log('未找到主表頭，使用默認值');
+                }
+                
+                if (!detailHeaderLine) {
+                    detailHeaderLine = 'D|發票號碼|小計|品項名稱|';
+                    log('未找到明細表頭，使用默認值');
+                }
+                
+                // 建立主表和明細表的欄位映射
+                const rawMasterHeaders = masterHeaderLine.split('|').slice(1, -1);
+                const rawDetailHeaders = detailHeaderLine.split('|').slice(1, -1);
+                
+                log(`解析後的主表頭: ${JSON.stringify(rawMasterHeaders)}`);
+                log(`解析後的明細表頭: ${JSON.stringify(rawDetailHeaders)}`);
+                
+                // 處理數據行
+                let masterCount = 0;
+                let detailCount = 0;
+                
+                for (let i = 0; i < lines.length; i++) {
+                    const line = lines[i].trim();
+                    if (!line) continue;
+                    
+                    if (line.startsWith('M|')) {
+                        const values = line.split('|').slice(1, -1);
+                        log(`處理主表行: ${line}`);
+                        
+                        const masterRow = {
+                            carrierName: values[0] || '',                  // 載具名稱
+                            carrierId: values[1] || '',                    // 載具號碼
+                            date: values[2] || '',                         // 發票日期
+                            sellerTaxId: values[3] || '',                  // 商店統編
+                            sellerName: values[4] || '',                   // 商店店名
+                            invoiceNumber: values[5] || '',                // 發票號碼
+                            amount: parseFloat(values[6] || '0'),          // 總金額
+                            status: values[7] || ''                        // 發票狀態
+                        };
+                        
+                        masterData.push(masterRow);
+                        masterCount++;
+                    } else if (line.startsWith('D|')) {
+                        const values = line.split('|').slice(1, -1);
+                        log(`處理明細行: ${line}`);
+                        
+                        // 確保至少有三個欄位
+                        if (values.length >= 2) {
+                            const detailRow = {
+                                invoiceNumber: values[0] || '',                        // 發票號碼
+                                subTotal: parseFloat(values[1] || '0'),                // 小計
+                                productName: values.length > 2 ? values[2] || '' : ''  // 品項名稱
+                            };
+                            
+                            detailData.push(detailRow);
+                            detailCount++;
+                        }
+                    }
+                }
+                
+                log(`處理完成：主表數據 ${masterCount} 筆，明細表數據 ${detailCount} 筆`);
+                
+                // 設置表頭顯示
+                masterHeaders = MASTER_FIELDS.map(field => field.displayName);
+                detailHeaders = DETAIL_FIELDS.map(field => field.displayName);
+                
+                // 顯示表格
+                displayTable(masterTable, masterData, MASTER_FIELDS);
+                displayTable(detailTable, detailData, DETAIL_FIELDS);
+                
+                // 顯示結果區域
+                loaderContainer.style.display = 'none';
+                resultsSection.style.display = 'block';
+                
+                // 生成圖表
+                generateCharts();
+                
+                showNotification('數據處理完成！', true);
+            }
+            
+            // 解析CSV (原有的功能，保留以兼容CSV文件)
+            function processCSV(csvContent) {
+                log('開始處理 CSV 格式檔案');
+                // 分割行和處理標題
+                const lines = csvContent.split('\n');
+                if (lines.length <= 1) {
+                    log('CSV 檔案格式不正確或為空');
+                    showNotification('CSV 檔案格式不正確或為空', false);
+                    loaderContainer.style.display = 'none';
+                    return;
+                }
+                
+                // 處理標題行
+                const headers = parseCSVLine(lines[0]);
+                log(`CSV 表頭: ${JSON.stringify(headers)}`);
+                
+                // 檢查必要的列是否存在
+                const requiredColumns = [ '發票號碼','商店店名', '總金額', '品項名稱', '發票日期', '商店統編', '小計','載具名稱', '載具號碼'];
+                const missingColumns = requiredColumns.filter(col => !headers.includes(col));
+                
+                if (missingColumns.length > 0) {
+                    log(`缺少必要的列: ${missingColumns.join(', ')}`);
+                    showNotification(`缺少必要的列: ${missingColumns.join(', ')}`, false);
+                    loaderContainer.style.display = 'none';
+                    return;
+                }
+                
+                // 處理數據行
+                const rawData = [];
+                let processedRows = 0;
+                let skippedRows = 0;
+                
+                for (let i = 1; i < lines.length; i++) {
+                    if (lines[i].trim() === '') {
+                        skippedRows++;
+                        continue;
+                    }
+                    
+                    try {
+                        const row = parseCSVLine(lines[i]);
+                        if (row.length !== headers.length) {
+                            log(`警告：第 ${i+1} 行欄位數量與表頭不符，已跳過`);
+                            log(`表頭欄位數: ${headers.length}, 數據欄位數: ${row.length}`);
+                            log(`數據行內容: ${lines[i]}`);
+                            skippedRows++;
+                            continue;
+                        }
+                        
+                        const rowData = {};
+                        for (let j = 0; j < headers.length; j++) {
+                            rowData[headers[j]] = row[j] || '';
+                        }
+                        
+                        rawData.push(rowData);
+                        processedRows++;
+                    } catch (e) {
+                        log(`處理第 ${i+1} 行時出錯: ${e.message}`);
+                        skippedRows++;
+                    }
+                }
+                
+                log(`CSV 解析完成：處理 ${processedRows} 行，跳過 ${skippedRows} 行`);
+                
+                // 數據清理與結構化
+                processData(rawData, headers);
+            }
+            
+            // 解析CSV行
+            function parseCSVLine(line) {
+                const result = [];
+                let currentValue = '';
+                let inQuotes = false;
+                
+                for (let i = 0; i < line.length; i++) {
+                    const char = line[i];
+                    
+                    if (char === '"') {
+                        inQuotes = !inQuotes;
+                    } else if (char === ',' && !inQuotes) {
+                        result.push(currentValue);
+                        currentValue = '';
+                    } else {
+                        currentValue += char;
+                    }
+                }
+                
+                result.push(currentValue);
+                return result;
+            }
+            
+            // 數據處理與結構化
+            function processData(rawData, headers) {
+                log('開始處理和結構化數據');
+                // 初始化主表和明細表
+                masterData = [];
+                detailData = [];
+                
+                // 檢查發票狀態字段
+                const statusColumn = headers.includes('發票狀態');
+                let allStatusSame = true;
+                
+                if (statusColumn) {
+                    const firstStatus = rawData[0]['發票狀態'];
+                    allStatusSame = rawData.every(row => row['發票狀態'] === firstStatus);
+                    log(`發票狀態欄位檢查: ${statusColumn ? '存在' : '不存在'}, 所有狀態相同: ${allStatusSame}`);
+                }
+                
+                // 處理主表和明細表
+                const invoiceMap = new Map();
+                let masterCount = 0;
+                let detailCount = 0;
+                
+                rawData.forEach((row, index) => {
+                    const invoiceNumber = row['發票號碼'];
+                    if (!invoiceNumber) {
+                        log(`警告：第 ${index+1} 筆數據沒有發票號碼，已跳過`);
+                        return;
+                    }
+                    
+                    // 轉換日期格式: YYYMMDD -> YYYY-MM-DD (台灣民國紀年轉西元)
+                    let invoiceDate = row['發票日期'];
+                    if (/^\d{7}$/.test(invoiceDate)) {
+                        const year = parseInt(invoiceDate.substring(0, 3)) + 1911;
+                        const month = invoiceDate.substring(3, 5);
+                        const day = invoiceDate.substring(5, 7);
+                        invoiceDate = `${year}-${month}-${day}`;
+                        log(`日期轉換: ${row['發票日期']} -> ${invoiceDate}`);
+                    }
+                    
+                    // 確保總金額為數值
+                    let totalAmount = row['總金額'];
+                    if (totalAmount) {
+                        totalAmount = parseFloat(totalAmount.replace(/,/g, ''));
+                    }
+                    
+                    // 統一商店店名
+                    let storeName = row['商店店名'] || '';
+                    storeName = storeName.trim();
+                    
+                    // 主表數據
+                    if (!invoiceMap.has(invoiceNumber)) {
+                        const masterRow = {
+                            carrierName: row['載具名稱'] || '',
+                            carrierId: row['載具號碼'] || '',
+                            date: invoiceDate,
+                            sellerTaxId: row['商店統編'] || '',
+                            sellerName: storeName,
+                            invoiceNumber: invoiceNumber,
+                            amount: totalAmount,
+                            status: statusColumn ? row['發票狀態'] || '' : ''
+                        };
+                        
+                        invoiceMap.set(invoiceNumber, masterRow);
+                        masterData.push(masterRow);
+                        masterCount++;
+                    }
+                    
+                    // 明細表數據
+                    if (row['品項名稱'] && row['小計']) {
+                        const detailRow = {
+                            invoiceNumber: invoiceNumber,
+                            subTotal: parseFloat((row['小計'] || '0').replace(/,/g, '')),
+                            productName: row['品項名稱'] || ''
+                        };
+                        detailData.push(detailRow);
+                        detailCount++;
+                    }
+                });
+                
+                log(`數據處理完成：主表資料 ${masterCount} 筆，明細表資料 ${detailCount} 筆`);
+                
+                // 設置表頭顯示
+                masterHeaders = MASTER_FIELDS.map(field => field.displayName);
+                detailHeaders = DETAIL_FIELDS.map(field => field.displayName);
+                
+                // 顯示表格
+                displayTable(masterTable, masterData, MASTER_FIELDS);
+                displayTable(detailTable, detailData, DETAIL_FIELDS);
+                
+                // 顯示結果區域
+                loaderContainer.style.display = 'none';
+                resultsSection.style.display = 'block';
+                
+                // 生成圖表
+                generateCharts();
+                
+                showNotification('數據處理完成！', true);
+            }
+            
+            // 顯示表格
+            function displayTable(table, data, fieldDefinitions) {
+                log(`顯示表格: ${table.id}, 數據筆數: ${data.length}`);
+                const thead = table.querySelector('thead tr');
+                const tbody = table.querySelector('tbody');
+                
+                // 清空表格
+                thead.innerHTML = '';
+                tbody.innerHTML = '';
+                
+                // 添加表頭
+                fieldDefinitions.forEach(field => {
+                    const th = document.createElement('th');
+                    th.textContent = field.displayName;
+                    th.setAttribute('data-field', field.key);
+                    th.addEventListener('click', () => sortTable(table, field.key));
+                    const sortIcon = document.createElement('span');
+                    sortIcon.className = 'sort-icon';
+                    sortIcon.textContent = '⇅';
+                    th.appendChild(sortIcon);
+                    thead.appendChild(th);
+                });
+                
+                // 添加數據行
+                data.forEach(row => {
+                    const tr = document.createElement('tr');
+                    fieldDefinitions.forEach(field => {
+                        const td = document.createElement('td');
+                        let cellValue = row[field.key];
+                        
+                        // 格式化數值
+                        if (typeof cellValue === 'number') {
+                            cellValue = cellValue.toLocaleString('zh-TW');
+                        }
+                        
+                        td.textContent = cellValue;
+                        tr.appendChild(td);
+                    });
+                    tbody.appendChild(tr);
+                });
+                
+                log(`表格顯示完成: ${table.id}`);
+                
+                // 確保顯示圖表區域
+                document.querySelector('.charts-section').style.display = 'block';
+            }
+            
+            // 排序表格
+            function sortTable(table, fieldKey) {
+                const tbody = table.querySelector('tbody');
+                const rows = Array.from(tbody.querySelectorAll('tr'));
+                const th = table.querySelector(`th[data-field="${fieldKey}"]`);
+                
+                if (!th) return;
+                
+                // 獲取當前排序方向
+                let sortDirection = th.getAttribute('data-sort') === 'asc' ? 'desc' : 'asc';
+                
+                // 清除所有表頭的排序指示器
+                table.querySelectorAll('th').forEach(header => {
+                    header.setAttribute('data-sort', '');
+                    header.querySelector('.sort-icon').textContent = '⇅';
+                });
+                
+                // 設置新的排序方向和指示器
+                th.setAttribute('data-sort', sortDirection);
+                th.querySelector('.sort-icon').textContent = sortDirection === 'asc' ? '↑' : '↓';
+                
+                // 獲取欄位索引
+                const columnIndex = Array.from(table.querySelectorAll('th')).findIndex(
+                    h => h.getAttribute('data-field') === fieldKey
+                );
+                
+                if (columnIndex === -1) return;
+                
+                // 排序行
+                rows.sort((a, b) => {
+                    let aValue = a.cells[columnIndex].textContent.trim();
+                    let bValue = b.cells[columnIndex].textContent.trim();
+                    
+                    // 嘗試轉換為數字
+                    const aNum = aValue.replace(/,/g, '') * 1;
+                    const bNum = bValue.replace(/,/g, '') * 1;
+                    
+                    if (!isNaN(aNum) && !isNaN(bNum)) {
+                        aValue = aNum;
+                        bValue = bNum;
+                    }
+                    
+                    // 排序
+                    if (aValue < bValue) {
+                        return sortDirection === 'asc' ? -1 : 1;
+                    } else if (aValue > bValue) {
+                        return sortDirection === 'asc' ? 1 : -1;
+                    } else {
+                        return 0;
+                    }
+                });
+                
+                // 重新插入排序後的行
+                rows.forEach(row => tbody.appendChild(row));
+            }
+            
+            // 獲取匯出按鈕容器
+            const masterExportButtons = document.getElementById('masterExportButtons');
+            const detailExportButtons = document.getElementById('detailExportButtons');
+            
+            // 切換表格
+            masterTabButton.addEventListener('click', function() {
+                masterTabButton.classList.add('active');
+                detailTabButton.classList.remove('active');
+                masterTableContainer.style.display = 'block';
+                detailTableContainer.style.display = 'none';
+                masterExportButtons.style.display = 'flex';
+                detailExportButtons.style.display = 'none';
+                
+                // 保持圖表可見
+                document.querySelector('.charts-section').style.display = 'block';
+            });
+            
+            detailTabButton.addEventListener('click', function() {
+                masterTabButton.classList.remove('active');
+                detailTabButton.classList.add('active');
+                masterTableContainer.style.display = 'none';
+                detailTableContainer.style.display = 'block';
+                masterExportButtons.style.display = 'none';
+                detailExportButtons.style.display = 'flex';
+                
+                // 保持圖表可見
+                document.querySelector('.charts-section').style.display = 'block';
+            });
+            
+            // 匯出CSV
+            exportCsvButton.addEventListener('click', function() {
+                exportCSV(masterData, MASTER_FIELDS, '發票主表');
+            });
+            
+            exportDetailCsvButton.addEventListener('click', function() {
+                exportCSV(detailData, DETAIL_FIELDS, '發票明細表');
+            });
+            
+            function exportCSV(data, fieldDefinitions, filename) {
+                if (data.length === 0) {
+                    showNotification('沒有數據可匯出', false);
+                    return;
+                }
+                
+                // 使用顯示名稱作為 CSV 表頭
+                const headers = fieldDefinitions.map(field => field.displayName);
+                let csvContent = headers.join(',') + '\n';
+                
+                data.forEach(row => {
+                    const rowData = fieldDefinitions.map(field => {
+                        let cellValue = row[field.key];
+                        // 格式化數值
+                        if (typeof cellValue === 'number') {
+                            cellValue = cellValue.toLocaleString('zh-TW');
+                        }
+                        if (typeof cellValue === 'string' && cellValue.includes(',')) {
+                            return `"${cellValue}"`;
+                        }
+                        return cellValue;
+                    });
+                    csvContent += rowData.join(',') + '\n';
+                });
+                
+                const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.setAttribute('href', url);
+                link.setAttribute('download', `${filename}_${formatDate(new Date())}.csv`);
+                link.style.visibility = 'hidden';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                showNotification('CSV 檔案匯出成功', true);
+            }
+            
+            // 複製到Google Sheets
+            copyToSheetButton.addEventListener('click', function() {
+                copyToClipboard(masterData, MASTER_FIELDS);
+            });
+            
+            copyDetailToSheetButton.addEventListener('click', function() {
+                copyToClipboard(detailData, DETAIL_FIELDS);
+            });
+            
+            function copyToClipboard(data, fieldDefinitions) {
+                if (data.length === 0) {
+                    showNotification('沒有數據可複製', false);
+                    return;
+                }
+                
+                // 使用顯示名稱作為表頭
+                const headers = fieldDefinitions.map(field => field.displayName);
+                let tsvContent = headers.join('\t') + '\n';
+                
+                data.forEach(row => {
+                    const rowData = fieldDefinitions.map(field => {
+                        let cellValue = row[field.key];
+                        // 格式化數值
+                        if (typeof cellValue === 'number') {
+                            cellValue = cellValue.toLocaleString('zh-TW');
+                        }
+                        return cellValue;
+                    });
+                    tsvContent += rowData.join('\t') + '\n';
+                });
+                
+                const textArea = document.createElement('textarea');
+                textArea.value = tsvContent;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-999999px';
+                textArea.style.top = '-999999px';
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                
+                try {
+                    const successful = document.execCommand('copy');
+                    if (successful) {
+                        showNotification('數據已複製到剪貼簿，可貼上到 Google Sheets', true);
+                    } else {
+                        showNotification('複製失敗，請稍後再試', false);
+                    }
+                } catch (err) {
+                    showNotification('複製失敗: ' + err, false);
+                }
+                
+                document.body.removeChild(textArea);
+            }
+            
+            // 顯示通知
+            function showNotification(message, isSuccess) {
+                notification.textContent = message;
+                notification.style.backgroundColor = isSuccess ? 'var(--success-color)' : 'var(--error-color)';
+                notification.classList.add('show-notification');
+                
+                setTimeout(function() {
+                    notification.classList.remove('show-notification');
+                }, 3000);
+            }
+            
+            // 格式化日期為 YYYYMMDD
+            function formatDate(date) {
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const day = String(date.getDate()).padStart(2, '0');
+                return `${year}${month}${day}`;
+            }
+            
+            // 生成圖表函數
+            function generateCharts() {
+                if (masterData.length === 0) return;
+                
+                // 生成商店消費佔比圖
+                generateStoreChart();
+                
+                // 生成前十大消費發票圖
+                generateTopInvoicesChart();
+            }
+            
+            // 生成商店消費佔比圖
+            function generateStoreChart() {
+                // 按商店分組數據
+                const storeData = {};
+                masterData.forEach(invoice => {
+                    const storeName = invoice.sellerName;
+                    if (!storeData[storeName]) {
+                        storeData[storeName] = 0;
+                    }
+                    storeData[storeName] += invoice.amount;
+                });
+                
+                // 將數據轉換為圖表所需格式
+                const storeLabels = [];
+                const storeAmounts = [];
+                
+                // 按金額排序
+                const sortedStores = Object.entries(storeData)
+                    .sort((a, b) => b[1] - a[1]);
+                
+                // 取前7名商店，其餘歸入"其他"
+                const topStores = sortedStores.slice(0, 7);
+                let othersAmount = 0;
+                
+                sortedStores.slice(7).forEach(store => {
+                    othersAmount += store[1];
+                });
+                
+                // 準備數據
+                topStores.forEach(store => {
+                    storeLabels.push(store[0]);
+                    storeAmounts.push(store[1]);
+                });
+                
+                if (othersAmount > 0) {
+                    storeLabels.push('其他');
+                    storeAmounts.push(othersAmount);
+                }
+                
+                // 生成美觀的顏色
+                const backgroundColors = [
+                    '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', 
+                    '#9966FF', '#FF9F40', '#7CFC00', '#8A2BE2'
+                ];
+                
+                // 計算總額
+                const totalAmount = storeAmounts.reduce((sum, amount) => sum + amount, 0);
+                
+                // 準備圖例標籤
+                const legendLabels = storeLabels.map((label, index) => {
+                    const amount = storeAmounts[index];
+                    const percentage = Math.round((amount / totalAmount) * 100);
+                    return `${label} (${percentage}%) $${amount.toLocaleString('zh-TW')}`;
+                });
+                
+                // 繪製圓餅圖
+                const ctx = document.getElementById('storeChart').getContext('2d');
+                
+                // 如果已有圖表則銷毀
+                if (window.storeChartInstance) {
+                    window.storeChartInstance.destroy();
+                }
+                
+                Chart.defaults.color = '#ffffff';
+                
+                window.storeChartInstance = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: legendLabels,
+                        datasets: [{
+                            data: storeAmounts,
+                            backgroundColor: backgroundColors,
+                            borderWidth: 1,
+                            borderColor: '#333'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'right',
+                                labels: {
+                                    color: '#ffffff',
+                                    font: {
+                                        size: 12
+                                    },
+                                    padding: 15,
+                                    usePointStyle: true,
+                                    boxWidth: 10
+                                }
+                            },
+                            tooltip: {
+                                enabled: true,
+                                backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                                titleColor: '#ffffff',
+                                bodyColor: '#ffffff',
+                                callbacks: {
+                                    title: function() {
+                                        return ''; // 移除標題
+                                    },
+                                    label: function(context) {
+                                        // 直接返回標籤文字，不做額外處理
+                                        return context.label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            
+            // 生成前十大消費發票圖
+            function generateTopInvoicesChart() {
+                // 深拷貝發票數據
+                const invoicesCopy = [...masterData];
+                
+                // 按金額排序
+                invoicesCopy.sort((a, b) => b.amount - a.amount);
+                
+                // 取前10張發票
+                const topInvoices = invoicesCopy.slice(0, 10);
+                
+                // 準備數據
+                const labels = topInvoices.map(invoice => {
+                    // 取店名前12個字符，避免太長
+                    const shortStoreName = invoice.sellerName.length > 12 
+                        ? invoice.sellerName.substring(0, 12) + '...' 
+                        : invoice.sellerName;
+                    return shortStoreName;
+                });
+                
+                const amounts = topInvoices.map(invoice => invoice.amount);
+                const formattedDates = topInvoices.map(invoice => {
+                    // 格式化日期為更人性化的格式
+                    const dateStr = invoice.date;
+                    if (dateStr.includes('-')) {
+                        const [year, month, day] = dateStr.split('-');
+                        return `${year}/${month}/${day}`;
+                    }
+                    return dateStr;
+                });
+                
+                // 生成漸變色
+                const backgroundColors = amounts.map((_, index) => {
+                    const opacity = 1 - (index * 0.05);
+                    return `rgba(79, 195, 247, ${opacity})`;
+                });
+                
+                const hoverColors = amounts.map((_, index) => {
+                    const opacity = 1 - (index * 0.05);
+                    return `rgba(129, 212, 250, ${opacity})`;
+                });
+                
+                // 繪製條形圖
+                const ctx = document.getElementById('topInvoicesChart').getContext('2d');
+                
+                // 如果已有圖表則銷毀
+                if (window.topInvoicesChartInstance) {
+                    window.topInvoicesChartInstance.destroy();
+                }
+                
+                window.topInvoicesChartInstance = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: '消費金額',
+                            data: amounts,
+                            backgroundColor: backgroundColors,
+                            hoverBackgroundColor: hoverColors,
+                            borderWidth: 1,
+                            borderColor: '#2d2d30',
+                            borderRadius: 4
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        layout: {
+                            padding: {
+                                right: 25,
+                                left: 20
+                            }
+                        },
+                        animation: {
+                            delay: function(context) {
+                                return context.dataIndex * 100;
+                            },
+                            duration: 1000,
+                            easing: 'easeOutQuart'
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                                titleFont: {
+                                    size: 14,
+                                    weight: 'bold'
+                                },
+                                bodyFont: {
+                                    size: 13
+                                },
+                                padding: 12,
+                                callbacks: {
+                                    title: function(context) {
+                                        const index = context[0].dataIndex;
+                                        return `${labels[index]} - ${formattedDates[index]}`;
+                                    },
+                                    label: function(context) {
+                                        const value = context.raw;
+                                        return `金額: $${value.toLocaleString('zh-TW')}`;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                ticks: {
+                                    color: '#e8eaed',
+                                    font: {
+                                        weight: 'bold'
+                                    },
+                                    callback: function(value) {
+                                        if (value >= 1000) {
+                                            return '$' + (value / 1000).toFixed(1) + 'k';
+                                        }
+                                        return '$' + value;
+                                    }
+                                },
+                                grid: {
+                                    color: 'rgba(255, 255, 255, 0.1)'
+                                }
+                            },
+                            y: {
+                                ticks: {
+                                    color: '#e8eaed',
+                                    font: {
+                                        weight: 'bold'
+                                    }
+                                },
+                                grid: {
+                                    display: false
+                                }
+                            }
+                        }
+                    },
+                    plugins: [{
+                        afterDraw: function(chart) {
+                            const ctx = chart.ctx;
+                            const xAxis = chart.scales.x;
+                            const yAxis = chart.scales.y;
+                            const chartArea = chart.chartArea;
+                            
+                            chart.data.datasets[0].data.forEach((value, index) => {
+                                const y = yAxis.getPixelForValue(index);
+                                
+                                // 在條形圖上顯示金額，統一靠右對齊
+                                ctx.font = 'bold 12px Arial';
+                                ctx.fillStyle = 'white';
+                                ctx.textAlign = 'right';
+                                ctx.textBaseline = 'middle';
+                                
+                                // 獲取條形圖寬度
+                                const barWidth = xAxis.getPixelForValue(value) - xAxis.getPixelForValue(0);
+                                
+                                // 對於較短的bar，將金額顯示在條形圖外側
+                                const formattedValue = '$' + value.toLocaleString('zh-TW');
+                                const textWidth = ctx.measureText(formattedValue).width;
+                                
+                                if (barWidth < textWidth + 10) {
+                                    // 條形圖太短，文字顯示在外側
+                                    ctx.fillStyle = '#7db0de';
+                                    ctx.textAlign = 'left';
+                                    ctx.fillText(formattedValue, xAxis.getPixelForValue(value) + 5, y);
+                                } else {
+                                    // 條形圖足夠長，文字顯示在內側
+                                    ctx.fillText(formattedValue, xAxis.getPixelForValue(value) - 10, y);
+                                }
+                            });
+                        }
+                    }]
+                });
+            }
+        });
+    </script>
+</body>
+</html>
