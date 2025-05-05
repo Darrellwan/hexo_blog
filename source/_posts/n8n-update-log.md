@@ -17,6 +17,51 @@ modified: 2025-04-29 11:01:15
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
 
+## 1.92.0 Pre-release - 2025-05-05
+
+[Github 1.92.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.92.0)
+
+### core: Manual execution defaults to Manual trigger
+core: 手動執行預設為手動觸發
+
+{% darrellImage800 n8n-1.92.0-manual_trigger n8n-1.92.0-manual_trigger.png max-800 %}
+
+現在有 manual trigger 也有其他 trigger 時，手動按 test workflow 就會預設是 manual 來觸發
+但實際測試時，如果有 webhook trigger
+還是會變成等待 webhook 觸發，這點要注意⚠️
+
+### editor: Import form data with special characters from curl command correctly
+editor: 從 curl 命令正確匯入包含特殊字元的表單數據
+
+(借用官方 issue 的圖片)
+{% darrellImage800 n8n-1.92.0-curl_import_fix_for_special_character n8n-1.92.0-curl_import_fix_for_special_character.png max-800 %}
+
+以前偶爾會遇到這種情況，明明那段 curl 語法沒有問題
+import 進去卻像圖片那樣跑掉
+
+之前沒想到是被特殊字符害的
+這次更新後應該是比較不會遇到了！
+
+### editor: Add "Rendered" display mode to the logs view
+編輯器: 新增「Rendered」顯示模式到日誌視圖
+
+{% darrellImage800 n8n-1.92.0-log_panel_rendered n8n-1.92.0-log_panel_rendered.png max-800 %}
+
+看起來優化了 log panel 
+input output 的顯示都得到優化
+和下方 1.89 的版本比起來
+真的好看了許多
+
+另外 **Log Panel** 的顯示方式已經調整了喔
+
+需要到環境變數中加上
+`N8N_ENABLE_LOGS_VIEW = true`
+
+如果你是 Zeabur 用戶，示意圖如下
+
+{% darrellImage800 n8n-1.92.0-setting_env_for_logs n8n-1.92.0-setting_env_for_logs.png max-800 %}
+
+
 ## 1.91.0 Pre-release - 2025-04-29
 
 [Github 1.91.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.91.0)
