@@ -1,0 +1,66 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Markdown 程式碼風格規範
+
+## HTML, CSS 和 JavaScript 嵌入規則
+
+在本專案的所有 `.md` 檔案中，撰寫 HTML、CSS 和 JavaScript 代碼時必須遵循以下規則：
+
+1. **不使用註解** - 避免在 HTML、CSS 或 JavaScript 中添加任何形式的註解 (包括 `<!-- -->`, `/* */`, `//`)
+
+2. **避免多餘空行** - 代碼應該緊湊，避免不必要的空白行
+
+3. **變數命名** - 使用有意義的變數名稱，避免單字母變數 (除了迴圈計數器)
+
+4. **代碼格式化** - 盡量在一行內完成相關操作，減少不必要的換行
+
+這些規則適用於 Markdown 文件中的:
+- 內嵌 HTML 代碼
+- `<style>` 標籤內的 CSS
+- `<script>` 標籤內的 JavaScript
+
+### 正確範例：
+
+```html
+<div class="container"><div class="item">內容</div></div>
+```
+
+```css
+.element{color:#333;background:#fff;padding:10px;margin:5px;}
+```
+
+```javascript
+document.addEventListener('DOMContentLoaded',function(){const elements=document.querySelectorAll('.item');elements.forEach(el=>{el.addEventListener('click',function(){this.classList.toggle('active');});});});
+```
+
+### 錯誤範例：
+
+```html
+<!-- 導航欄 -->
+<nav>
+  <ul>
+    <li>首頁</li>
+  </ul>
+</nav>
+```
+
+```css
+/* 主要樣式 */
+.element {
+  color: #333;
+  background: #fff;
+}
+```
+
+```javascript
+// 初始化函數
+function init() {
+  
+  const m = 'test'; // 這是測試變數
+  
+  console.log(m);
+}
+```
