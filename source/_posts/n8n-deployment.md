@@ -339,8 +339,8 @@ Glows ai 可能大家就比較不會把他跟 n8n 連想再一起
 <div class="filter-title"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z" fill="#FF6D00"/></svg>每月預算</div>
 <div class="btn-group budget-group">
 <button class="filter-btn" data-filter="budget" data-value="free">完全免費</button>
-<button class="filter-btn" data-filter="budget" data-value="low">低預算 (100-1000元)</button>
-<button class="filter-btn" data-filter="budget" data-value="high">高預算 (1000元以上)</button>
+<button class="filter-btn" data-filter="budget" data-value="low">預算 (100-1000元)</button>
+<button class="filter-btn" data-filter="budget" data-value="high">預算 (1000元以上)</button>
 </div>
 <div class="filter-title"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z" fill="#FF6D00"/></svg>技術能力</div>
 <div class="btn-group tech-group">
@@ -437,7 +437,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const selectedFilters = { identity: [], budget: [], tech: [], needs: [] };
   const filterLabels = {
     identity: { individual: '個人用戶', 'small-team': '小型團隊', 'mid-team': '中型團隊', enterprise: '大型企業' },
-    budget: { free: '完全免費', low: '低預算 (100-1000元)', high: '高預算 (1000元以上)' },
+    budget: { free: '完全免費', low: '預算 (100-1000元)', high: '預算 (1000元以上)' },
     tech: { none: '無技術基礎', basic: '基礎技術能力', advanced: '專業技術能力' },
     needs: { ai: 'AI輔助', unlimited: '無限工作流', local: '本地檔案', private: '私有部署' }
   };
