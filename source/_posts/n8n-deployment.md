@@ -1,5 +1,5 @@
 ---
-title: n8n 部署全攻略 官方Cloud、Zeabur、本機部署和Glows.ai 該怎麼選
+title: n8n 部署-官方Cloud、Zeabur、本機部署和Glows.ai 該怎麼選
 tags:
   - n8n
   - deployment
