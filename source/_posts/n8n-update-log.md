@@ -17,6 +17,48 @@ modified: 2025-04-29 11:01:15
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
 
+## 1.93.0 Pre-release - 2025-05-13
+
+[Github 1.93.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.93.0)
+
+### Community Nodes in the Nodes Panel
+社區節點在節點面板中
+
+現在只要是經過認證的 **community node** 
+就可以在節點列表中被搜尋到！
+
+{% darrellImage800 n8n-1.93.0-show_community_node_in_search n8n-1.93.0-show_community_node_in_search.png max-800 %}
+
+### core: Change workflow deletions to soft deletes
+core: 將工作流程的刪除改為軟刪除
+
+刪除 workflow 時，現在不會直接整個刪除
+而是改為 archived 的形式封存起來
+在 workflow 列表中也能重新尋找這些被封存的 workflows
+
+真心想刪除的話，找到 archived 的 workflow 
+選單中就會出現 delete 了！
+
+{% darrellImage800 n8n-1.93.0-soft_delete_archived n8n-1.93.0-soft_delete_archived.png max-800 %}
+
+### editor: Allow jumping into sub-workflow with shortkey
+editor: 允許透過快捷鍵跳入子工作流程 
+
+如果你有使用 sub workflow
+可以直接用新的快捷鍵 `Command + Click` 就能迅速開啟 sub workflow 到新的分頁編輯！
+
+{% darrellImage800 n8n-1.93.0-open_subworkflow_quickly n8n-1.93.0-open_subworkflow_quickly.png max-800 %}
+
+### editor: Implement 'Shared with you' section in the main navigation
+editor: 實作 '與您分享' 區段 在主要導航中
+
+一個對於 n8n 社群版來說比較沒感的更新
+如果是 官方 cloud 版本就會比較有用
+
+現在把分享給你的 workflow 和 credentials 都會集中顯示在這個 section！
+
+{% darrellImage800 n8n-1.93.0-share_with_you_section n8n-1.93.0-share_with_you_section.png max-800 %}
+
 ## 1.92.0 Pre-release - 2025-05-05
 
 [Github 1.92.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.92.0)
