@@ -372,6 +372,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       description: "想整合 Google 服務到 n8n 自動化工作流程？本篇教學帶你逐步了解 Google API 憑證申請流程。包含如何設定 OAuth 2.0、取得 API Key，到成功串接 Gmail、Sheets、Drive 等 Google 服務。完整圖文詳細解說，幫助自動化新手，輕鬆完成設定整合，開始享受專屬的 AI 自動化工作流。"
     },
     {
+      title: "「超詳細教學」n8n AI 實作0基礎入門到進階",
+      link: "https://www.youtube.com/watch?v=vvqhzbp4J5A",
+      image: "/gallery/n8n_resource_vvqhzbp4J5A.webp",
+      author: "HC AI說人話",
+      authorLink: "https://www.threads.com/@hc_aichannel",
+      description: "長達三小時的 n8n 教學，從 0 到 1"
+    },
+    {
+      title: "AI免費自動排版, 免API, 解鎖自訂中文字體 = AI 平面神技?",
+      link: "https://www.youtube.com/watch?v=ncYmf5YHLks",
+      image: "/gallery/n8n_resource_ncYmf5YHLks.webp",
+      author: "HC AI說人話",
+      authorLink: "https://www.threads.com/@hc_aichannel",
+      description: "如何用 n8n 快速做出排版平面"
+    },
+    {
       title: "n8n 初學者完整指南 (2025)",
       link: "https://drive.google.com/file/d/10Txuls1-PgLdcYMGMl85MKljJP7CTngd/view",
       image: "/gallery/merfy_lee_n8n_doc.png",
