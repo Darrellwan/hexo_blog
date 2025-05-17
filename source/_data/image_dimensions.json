@@ -4303,5 +4303,25 @@
     "width": 1080,
     "height": 1080,
     "mtimeMs": 1746872711615.3264
+  },
+  "/_posts/n8n-update-log/n8n-1.93.0-soft_delete_archived.png": {
+    "width": 2082,
+    "height": 1309,
+    "mtimeMs": 1747116924476.742
+  },
+  "/_posts/n8n-update-log/n8n-1.93.0-show_community_node_in_search.png": {
+    "width": 1346,
+    "height": 1660,
+    "mtimeMs": 1747115670313.684
+  },
+  "/_posts/n8n-update-log/n8n-1.93.0-share_with_you_section.png": {
+    "width": 1398,
+    "height": 740,
+    "mtimeMs": 1747118144103.776
+  },
+  "/_posts/n8n-update-log/n8n-1.93.0-open_subworkflow_quickly.png": {
+    "width": 1322,
+    "height": 810,
+    "mtimeMs": 1747117705019.882
   }
 }
