@@ -122,7 +122,7 @@ menu:
   categories: /categories/ || fa fa-th
   archives: /archives/ || fa fa-archive
   emailSubscribe: /email_subscribe/ || fa fa-envelope
-  n8nResource: https://www.darrelltw.com/n8n-resources/ || fa fa-solid fa-n highlight-n8n
+  n8nResource: https://www.darrelltw.com/n8n-tutorial-resources/ || fa fa-solid fa-n highlight-n8n
   n8n_template: https://www.darrelltw.com/tools/n8n_template/models.html || fa fa-solid fa-layer-group highlight-n8n
   support_darrell: https://buymeacoffee.com/darrellmartechtw || fa fa-solid fa-sack-dollar support-dollar
   #schedule: /schedule/ || fa fa-calendar
