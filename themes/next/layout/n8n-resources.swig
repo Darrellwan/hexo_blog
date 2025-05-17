@@ -291,7 +291,7 @@ const schemaData = {
         "item": {
           "@type": "CollectionPage",
           "name": "n8n 教學文件",
-          "@id": "{{ config.url }}/n8n-resources/"
+          "@id": "{{ config.url }}/n8n-tutorial-resources/"
         }
       }
     ]

@@ -11,7 +11,7 @@ CC BY 4.0 — 歡迎引用並註明來源。
 
 ## 核心內容
 
-- [n8n 教學文件 - 節點、模板、部署和小撇步](https://www.darrelltw.com/n8n-resources/): 探索n8n自動化工作流程工具的各種文件，包括節點介紹、使用技巧、模板分享、功能更新及部署設定指南。
+- [n8n 教學文件 - 節點、模板、部署和小撇步](https://www.darrelltw.com/n8n-tutorial-resources/): 探索n8n自動化工作流程工具的各種文件，包括節點介紹、使用技巧、模板分享、功能更新及部署設定指南。
 - [n8n 版本更新紀錄心得](https://www.darrelltw.com/n8n-update-log/): n8n 的更新記錄(2025/04/22更新)，包含各版本新功能、改進和修復，和測試心得回饋。
 - [行銷科技工具之間的串接](https://www.darrelltw.com/how-martech-tools-talk-integration/): 探索行銷科技工具之間的串接方法，無論是內建整合、API、Webhook 還是使用 iPaaS服務。
 - [Google Tag Manager - 進階技巧 DataLayer Variable 資料層變數的版本1和2](https://www.darrelltw.com/google-tag-manager-variable-datalayer-version-one-and-two/): 資料層變數(DataLayer Variable)版本2和版本1的差異，避免在特殊情況下搜集到錯誤資料。
