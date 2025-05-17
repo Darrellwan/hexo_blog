@@ -34,5 +34,12 @@
           }
         ]
       }
+    ],
+    "redirects": [
+      {
+        "source": "/n8n-resources",
+        "destination": "/n8n-tutorial-resources",
+        "permanent": true
+      }
     ]
-  }
+}

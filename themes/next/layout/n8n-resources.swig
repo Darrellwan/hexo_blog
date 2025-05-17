@@ -211,21 +211,100 @@ layout: false
 })(window,document,'script','dataLayer','GTM-WRZDBFS')
 </script>
 
-<script type="application/ld+json">
-{
+<script>
+// 創建n8n資源文章的JSON對象
+try {
+  const jsonStr = '{{ get_n8n_posts_json_for_schema() }}';
+  window.n8nPostsData = JSON.parse(jsonStr);
+  console.log('成功載入 n8n 文章數據');
+} catch (error) {
+  console.error('解析 n8n 文章數據時發生錯誤：', error);
+  window.n8nPostsData = [];
+}
+
+// 格式化項目元素列表，用於結構化數據
+function generateItemListElements() {
+  if (!window.n8nPostsData || window.n8nPostsData.length === 0) {
+    return [];
+  }
+  
+  return n8nPostsData.map(function(post) {
+    return {
+      "@type": "ListItem",
+      "position": post.position,
+      "item": {
+        "@type": "Article",
+        "name": post.title,
+        "url": post.url,
+        "description": post.description,
+        "image": post.image,
+        "author": {
+          "@type": "Person",
+          "name": "Darrell TW"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Darrell TW",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "{{ config.url }}{{ url_for('/gallery/n8n_resource_og.jpg') }}"
+          }
+        }
+      }
+    };
+  });
+}
+
+// 生成完整的結構化數據
+const schemaData = {
   "@context": "https://schema.org",
-  "@type": "WebPage",
+  "@type": "CollectionPage",
   "name": "n8n 教學文件 | Darrell TW",
   "description": "{{ page.description or '探索n8n自動化工作流程工具的各種文件，包括節點介紹、使用技巧、模板分享、功能更新及部署設定指南。' }}",
   "publisher": {
     "@type": "Organization",
-    "name": "n8n資源中心",
+    "name": "Darrell TW",
     "logo": {
       "@type": "ImageObject",
-      "url": "{{ url_for('/gallery/n8n_resource_og.jpg') }}"
+      "url": "{{ config.url }}{{ url_for('/gallery/n8n_resource_og.jpg') }}"
     }
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": generateItemListElements()
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@type": "WebSite",
+          "name": "Darrell TW",
+          "@id": "{{ config.url }}"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
+          "@type": "CollectionPage",
+          "name": "n8n 教學文件",
+          "@id": "{{ config.url }}/n8n-resources/"
+        }
+      }
+    ]
   }
-}
+};
+
+// 將結構化數據添加到頁面
+document.addEventListener('DOMContentLoaded', function() {
+  const script = document.createElement('script');
+  script.type = 'application/ld+json';
+  script.textContent = JSON.stringify(schemaData);
+  document.head.appendChild(script);
+});
 </script>
 </head>
 <body>

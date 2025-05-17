@@ -57,6 +57,47 @@ hexo.extend.helper.register('get_n8n_posts_by_category', function(category) {
   }).sort((a, b) => b.date - a.date); // 按日期倒序排列
 });
 
+// 註冊一個生成 n8n 文章 JSON 數據的助手函數，用於結構化資料
+hexo.extend.helper.register('get_n8n_posts_json_for_schema', function() {
+  const sections = [
+    { id: 'node-intro', title: 'n8n 節點介紹' },
+    { id: 'tips', title: 'n8n 小撇步' },
+    { id: 'templates', title: 'n8n 模板分享' },
+    { id: 'updates', title: 'n8n 功能更新' },
+    { id: 'deployment', title: 'n8n 部署與設定' }
+  ];
+  
+  let allPosts = [];
+  let position = 0;
+  
+  // 遍歷每個分類獲取文章
+  for (const section of sections) {
+    const posts = this.get_n8n_posts_by_category(section.id);
+    if (posts && posts.length > 0) {
+      for (const post of posts) {
+        position++;
+        allPosts.push({
+          position: position,
+          title: post.title,
+          url: this.config.url + this.url_for(post.path),
+          description: this.get_n8n_post_description(post),
+          image: this.config.url + this.get_n8n_post_thumbnail(post),
+          category: section.id
+        });
+      }
+    }
+  }
+  
+  // 將文章資訊轉換為 JSON 字串，處理特殊字符，確保在前端可以正確解析
+  // 注意：對於標題和描述中的引號，我們先確保它們在 JSON.stringify 前就被正確處理
+  allPosts.forEach(post => {
+    post.title = post.title.replace(/"/g, '\\"');
+    post.description = post.description.replace(/"/g, '\\"');
+  });
+  
+  return JSON.stringify(allPosts);
+});
+
 // 註冊獲取所有n8n文章的助手函數
 hexo.extend.helper.register('get_all_n8n_posts', function() {
   const posts = this.site.posts.data;
