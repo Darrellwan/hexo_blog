@@ -11,6 +11,9 @@
   <script async src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" integrity="sha512-q583ppKrCRc7N5O0n2nzUiJ+suUv7Et1JGels4bXOaMFQcamPk9HjdUknZuuFjBNs7tsMuadge5k9RzdmO+1GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
     window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+    window.va = window.va || function () {
+      (window.vaq = window.vaq || []).push(arguments);
+    };
   </script>
 </head>
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -79,4 +82,5 @@
 </body>
 {% include '_partials/head/head-datalayer.swig' %}
 <script async defer src="/_vercel/speed-insights/script.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
 </html>
