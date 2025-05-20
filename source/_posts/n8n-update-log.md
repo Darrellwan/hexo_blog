@@ -17,6 +17,65 @@ modified: 2025-05-13 11:01:15
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
 
+## 1.94.0 Pre-release - 2025-05-20
+
+[Github 1.94.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.94.0)
+
+這次的更新內容蠻豐富的，修復了很多 Bug 和改善
+有興趣的話可以逛逛官方更新資訊
+
+### n8n Microsoft Teams Node: New trigger node
+
+- New Chat Message
+- New Channel
+- New Chat
+- New Channel Message
+- New Team Member
+
+Teams 節點新增了幾個 Trigger Action!
+
+{% darrellImage800 n8n-1.94.0-microsoft_teams_node_new_trigger_actions n8n-1.94.0-microsoft_teams_node_new_trigger_actions.png max-800 %}
+
+### feat(editor): Keyboard shortcuts for the log view
+
+Log Panel 中新增了快捷鍵
+
+{% darrellImage800 n8n-1.94.0-log_panel_add_shortcuts n8n-1.94.0-log_panel_add_shortcuts.png max-800 %}
+
+
+```bash
+I -> Input
+O -> Output
+J -> 上一個
+K -> 下一個
+L -> 開啟 Log Panel
+```
+
+> 這是目前自己測試的結果，可能要等官方公布完整的快捷鍵清單才會確定
+
+### feat(editor): Show sub workflow runs in the log view
+
+如果是在 Workflow 執行 Sub Workflow ， Log 中可以直接看到 Sub Workflow 的執行結果
+不用再切回外面的 execution 去找來看
+
+{% darrellImage800 n8n-1.94.0-log_shows_subworkflow_execution n8n-1.94.0-log_shows_subworkflow_execution.png max-800 %}
+
+### feat(Execute Workflow Trigger Node): Reintroduce binary data on Workflow Triggers 
+
+Sub Workflow 的 Trigger 中，現在可以丟 binary data ！
+之前沒有太研究 Sub Workflow，但是看官方的更新資訊很好笑
+
+> We removed this prior in case it made our lives easier, but it's just proven a missing feature.
+
+看來有點像是任命，還是得做的感覺😂
+
+{% darrellImage800 n8n-1.94.0-subworkflow_accept_binary n8n-1.94.0-subworkflow_accept_binary.png max-800 %}
+
+
+
+
+
+
 ## 1.93.0 Pre-release - 2025-05-13
 
 [Github 1.93.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.93.0)
