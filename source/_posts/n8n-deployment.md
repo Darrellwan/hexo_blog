@@ -93,6 +93,29 @@ Create a multi-branch workflow that is triggered by a webhook with user input, l
   - 包含：無限執行次數、企業級支持、SSO等高級功能
   - 適合：大型企業和需求複雜的團隊
 
+### Cloud 怎麼更新
+
+如果你發現左下角出現了更新符號
+請到這個網址
+[https://app.n8n.cloud/manage](https://app.n8n.cloud/manage)
+
+這邊就可以選擇想要更新的版本
+會有 Beta 和 Stable 兩個版本可以選
+一般建議會選擇 Stable 就好，除非你確定目前的 Beta 版本有什麼是你必須一定要馬上有的
+
+更新介面
+{% darrellImage800 n8n_cloud-how_to_update_in_cloud_version n8n_cloud-how_to_update_in_cloud_version.png max-800 %}
+
+### Cloud 版本一鍵匯出
+
+如果想要從 Cloud 版本搬家到其他提到的部署方式
+也可以在到期前一鍵匯出所有 workflows
+
+到這個網址即可 [https://app.n8n.cloud/manage/export](https://app.n8n.cloud/manage/export)
+
+{% darrellImage800 n8n_cloud-how_to_export_all_workflows n8n_cloud-how_to_export_all_workflows.png max-800 %}
+
+
 
 ## Zeabur 部署
 
