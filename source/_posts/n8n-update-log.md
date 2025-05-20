@@ -26,13 +26,14 @@ modified: 2025-05-13 11:01:15
 
 ### n8n Microsoft Teams Node: New trigger node
 
-1.New Chat Message
-2.New Channel
-3.New Chat
-4.New Channel Message
-5.New Team Member
-
 Teams 節點新增了幾個 Trigger Action!
+
+1. New Chat Message
+2. New Channel
+3. New Chat
+4. New Channel Message
+5. New Team Member
+
 
 {% darrellImage800 n8n-1.94.0-microsoft_teams_node_new_trigger_actions n8n-1.94.0-microsoft_teams_node_new_trigger_actions.png max-800 %}
 
