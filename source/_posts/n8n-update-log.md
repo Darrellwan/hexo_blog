@@ -7,7 +7,7 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2025/05/13更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.93.0，正式版本為 1.92.2
+description: n8n 的更新記錄(2025/05/20更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.94.0，正式版本為 1.93.0
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
@@ -26,11 +26,11 @@ modified: 2025-05-13 11:01:15
 
 ### n8n Microsoft Teams Node: New trigger node
 
-- New Chat Message
-- New Channel
-- New Chat
-- New Channel Message
-- New Team Member
+1.New Chat Message
+2.New Channel
+3.New Chat
+4.New Channel Message
+5.New Team Member
 
 Teams 節點新增了幾個 Trigger Action!
 

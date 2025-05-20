@@ -4333,5 +4333,25 @@
     "width": 1000,
     "height": 562,
     "mtimeMs": 1747468439339.335
+  },
+  "/_posts/n8n-update-log/n8n-1.94.0-subworkflow_accept_binary.png": {
+    "width": 2214,
+    "height": 1202,
+    "mtimeMs": 1747722991500.333
+  },
+  "/_posts/n8n-update-log/n8n-1.94.0-microsoft_teams_node_new_trigger_actions.png": {
+    "width": 962,
+    "height": 872,
+    "mtimeMs": 1747722430212.288
+  },
+  "/_posts/n8n-update-log/n8n-1.94.0-log_shows_subworkflow_execution.png": {
+    "width": 1278,
+    "height": 994,
+    "mtimeMs": 1747722848735.32
+  },
+  "/_posts/n8n-update-log/n8n-1.94.0-log_panel_add_shortcuts.png": {
+    "width": 3150,
+    "height": 1236,
+    "mtimeMs": 1747722559138.997
   }
 }
