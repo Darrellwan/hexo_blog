@@ -4413,5 +4413,15 @@
     "width": 1620,
     "height": 1620,
     "mtimeMs": 1748258083455.456
+  },
+  "/_posts/n8n-update-log/n8n-1.95.0-show_execute_status_in_output.png": {
+    "width": 2172,
+    "height": 960,
+    "mtimeMs": 1748267379865.148
+  },
+  "/_posts/n8n-update-log/n8n-1.95.0-anthropic_default_4_sonnet.png": {
+    "width": 1444,
+    "height": 1540,
+    "mtimeMs": 1748267402678.575
   }
 }
