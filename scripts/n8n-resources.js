@@ -30,7 +30,7 @@ hexo.extend.helper.register('get_n8n_posts_by_category', function(category) {
   // 定義分類對應關係
   const categoryMap = {
     'node-intro': ['Webhook', 'Aggregate', 'Split Out', 'If', 'Switch', '內建參數', '節點介紹'],
-    'tips': ['Pin Data', 'Timezone', '小撇步', 'tips'],
+    'tips': ['Pin Data', 'Timezone', '小撇步', 'tips', 'debug', 'n8n-debug'],
     'templates': ['模板分享', '模板', 'LINE', 'Slack'],
     'updates': ['功能更新', '資料夾', 'Folders', '版本更新'],
     'deployment': ['部署', '設定', 'Zeabur', '安裝']
@@ -38,6 +38,22 @@ hexo.extend.helper.register('get_n8n_posts_by_category', function(category) {
   
   // 根據提供的分類，過濾出相對應的文章
   return n8nPosts.filter(post => {
+    // 檢查文章是否有 n8n-debug 標籤
+    const hasDebugTag = post.tags && post.tags.data && 
+      post.tags.data.some(tag => tag.name === 'n8n-debug');
+    
+
+    
+    // 如果文章有 n8n-debug 標籤，只歸類到 tips
+    if (hasDebugTag) {
+      return category === 'tips';
+    }
+    
+    // 檢查自定義分類 (如有)
+    if (post.n8n_category === category) {
+      return true;
+    }
+    
     // 獲取文章標題
     const title = post.title || '';
     
@@ -48,9 +64,15 @@ hexo.extend.helper.register('get_n8n_posts_by_category', function(category) {
       }
     }
     
-    // 檢查自定義分類 (如有)
-    if (post.n8n_category === category) {
-      return true;
+    // 檢查文章標籤是否包含該分類的關鍵字
+    if (post.tags && post.tags.data) {
+      for (const tag of post.tags.data) {
+        for (const keyword of categoryMap[category] || []) {
+          if (tag.name.includes(keyword)) {
+            return true;
+          }
+        }
+      }
     }
     
     return false;
@@ -60,8 +82,8 @@ hexo.extend.helper.register('get_n8n_posts_by_category', function(category) {
 // 註冊一個生成 n8n 文章 JSON 數據的助手函數，用於結構化資料
 hexo.extend.helper.register('get_n8n_posts_json_for_schema', function() {
   const sections = [
-    { id: 'node-intro', title: 'n8n 節點介紹' },
     { id: 'tips', title: 'n8n 小撇步' },
+    { id: 'node-intro', title: 'n8n 節點介紹' },
     { id: 'templates', title: 'n8n 模板分享' },
     { id: 'updates', title: 'n8n 功能更新' },
     { id: 'deployment', title: 'n8n 部署與設定' }
@@ -70,11 +92,21 @@ hexo.extend.helper.register('get_n8n_posts_json_for_schema', function() {
   let allPosts = [];
   let position = 0;
   
+  // 先收集所有文章，避免重複
+  const processedPosts = new Set();
+  
   // 遍歷每個分類獲取文章
   for (const section of sections) {
     const posts = this.get_n8n_posts_by_category(section.id);
     if (posts && posts.length > 0) {
       for (const post of posts) {
+        // 避免重複處理同一篇文章
+        const postKey = post.path || post.title;
+        if (processedPosts.has(postKey)) {
+          continue;
+        }
+        processedPosts.add(postKey);
+        
         position++;
         allPosts.push({
           position: position,
