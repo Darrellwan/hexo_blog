@@ -52,7 +52,7 @@ hexo.extend.helper.register('get_n8n_post_category_section', function(post) {
   const categoryKeywords = {
     templates: ['模板', 'template', 'workflow', '範例', '工作流'],
     'node-intro': ['節點', 'node'],
-    tips: ['撇步', '技巧', 'tip', 'tips'],
+    tips: ['撇步', '技巧', 'tip', 'tips', 'debug', 'n8n-debug'],
     updates: ['更新', '新功能', 'update', 'feature'],
     deployment: ['部署', '設定', 'deploy', 'config', 'setup']
   };
@@ -65,6 +65,11 @@ hexo.extend.helper.register('get_n8n_post_category_section', function(post) {
     // 如果沒有任何包含 n8n 的標籤，返回 null
     if (!tags.some(tag => tag.includes('n8n'))) {
       return null;
+    }
+    
+    // 優先檢查 n8n-debug 標籤
+    if (tags.some(tag => tag === 'n8n-debug')) {
+      return 'tips';
     }
     
     // 檢查標籤是否符合某個分類
