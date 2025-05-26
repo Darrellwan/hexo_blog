@@ -32,7 +32,7 @@
       {#################}
       <div class="post-body{%- if page.direction and page.direction.toLowerCase() === 'rtl' %} rtl{%- endif %}">
         {%- if page.type === 'tags' %}
-          <div class="tag-cloud">
+          <div class="tag-cloud" style="display: none;">
             <div class="tag-cloud-title">
               {{ _p('counter.tag_cloud', site.tags.length) }}
             </div>
@@ -47,6 +47,7 @@
               }}
             </div>
           </div>
+          {{ page.content }}
         {% elif page.type === 'categories' %}
           <div class="category-all-page">
             <div class="category-all">

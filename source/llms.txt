@@ -4,7 +4,7 @@
 Darrell TW 是一個專注於自動化、行銷科技及 AI 應用的技術部落格，分享實用教學、工具評測及整合實作經驗。網站以 Hexo 架設，並持續更新相關資源。
 
 ## Author
-Darrell Wang | contact@darrelltw.com
+Darrell Wang | info@darrelltw.com
 
 ## License
 CC BY 4.0 — 歡迎引用並註明來源。
@@ -12,16 +12,58 @@ CC BY 4.0 — 歡迎引用並註明來源。
 ## 核心內容
 
 - [n8n 教學文件 - 節點、模板、部署和小撇步](https://www.darrelltw.com/n8n-tutorial-resources/): 探索n8n自動化工作流程工具的各種文件，包括節點介紹、使用技巧、模板分享、功能更新及部署設定指南。
-- [n8n 版本更新紀錄心得](https://www.darrelltw.com/n8n-update-log/): n8n 的更新記錄(2025/04/22更新)，包含各版本新功能、改進和修復，和測試心得回饋。
+- [n8n 版本更新紀錄心得](https://www.darrelltw.com/n8n-update-log/): n8n 的更新記錄(2025/05/10更新)，包含各版本新功能、改進和修復，和測試心得回饋。
 - [行銷科技工具之間的串接](https://www.darrelltw.com/how-martech-tools-talk-integration/): 探索行銷科技工具之間的串接方法，無論是內建整合、API、Webhook 還是使用 iPaaS服務。
 - [Google Tag Manager - 進階技巧 DataLayer Variable 資料層變數的版本1和2](https://www.darrelltw.com/google-tag-manager-variable-datalayer-version-one-and-two/): 資料層變數(DataLayer Variable)版本2和版本1的差異，避免在特殊情況下搜集到錯誤資料。
+
+## n8n 自動化
+
+### 部署與設定
+- [n8n 部署-官方Cloud、Zeabur、本機部署和Glows.ai 該怎麼選](https://www.darrelltw.com/n8n-deployment/): n8n 部署全攻略：官方 Cloud、Zeabur、Docker 和 Glows.ai 方案完整比較，從成本、效能到擴展性，掌握各種部署方式的關鍵差異。
+- [n8n 小撇步 - Timezone 問題如何在 Zeabur 設定](https://www.darrelltw.com/n8n-with-zeabur-timezone-issue/): 在 Zeabur 上處理 n8n 時區問題的方法。
+
+### 節點與功能教學
+- [n8n Webhook 節點](https://www.darrelltw.com/n8n-webhook/): n8n Webhook 節點的設定與應用實例。
+- [n8n 用 Request 發送 LINE Message API](https://www.darrelltw.com/n8n-line-message-api/): 使用 n8n 的 Request 節點發送和接收 LINE 訊息。
+- [n8n If 和 Switch](https://www.darrelltw.com/n8n-if-switch/): 深入了解 n8n 的條件判斷節點使用方法。
+- [n8n Aggregate 和 Split Out](https://www.darrelltw.com/n8n-aggregate-split-out/): n8n 的資料合併與拆分節點使用方法。
+- [利用 n8n 的 s3 節點連接 Cloudflare R2 儲存服務](https://www.darrelltw.com/n8n-node-s3-with-cloudflare-r2/): 在 n8n 中使用 s3 節點連接 Cloudflare R2 儲存服務。
+
+### 整合與串接
+- [n8n 串接 Slack、發送訊息、用 Slack 觸發 workflow](https://www.darrelltw.com/n8n-with-slack/): 完整的 n8n 與 Slack 整合教學。
+
+### 實用技巧與除錯
+- [n8n 踩到坑 - Line Invalid JSON 錯誤](https://www.darrelltw.com/n8n-debug-line-invalid-json/): n8n 中 Line Message API 常見的 invalid json 錯誤解決方法，包含雙引號、字串處理等常見問題。
+- [n8n 小撇步 - Pin Data](https://www.darrelltw.com/n8n-tips-pin/): 利用 Pin 功能鎖定輸出資料，提升自動化流程測試效率。
+- [n8n 內建參數介紹](https://www.darrelltw.com/n8n-built-in-variables/): n8n 的內建變數使用方法和應用場景。
+
+### 新功能與更新
+- [n8n 新功能 - 資料夾 Folders](https://www.darrelltw.com/n8n-new-feature-folders/): n8n 資料夾功能的使用與最佳實踐。
+
+### 模板與實作案例
+- [n8n 模板分享 - 打造 LINE 共同記帳機器人](https://www.darrelltw.com/n8n-line-split-expense-workflow/): n8n 結合 LINE 機器人和 AI 技術的自動化記帳系統。
+
+## AI 應用
+
+- [OpenAI GPT-Image-1 API 產圖 API 發布](https://www.darrelltw.com/openai-gpt-image-1-model-review/): OpenAI GPT-Image-1 模型 API 參數設置與實用範例。
+- [LINE MCP Server 測試心得](https://www.darrelltw.com/line-mcp-server/): 實作 LINE MCP Server，讓 AI 模型操作 LINE Messaging API。
+- [ChatGPT 4o 與 Sora 的全新文生圖功能](https://www.darrelltw.com/chatgpt-sora-create-image-with-text/): ChatGPT 4o 和 Sora 文生圖功能對比與使用心得。
+- [在 Cursor 中打造 MCP Server，從實作中學習 MCP](https://www.darrelltw.com/cursor-mcp-server-guide/): Cursor 實作 MCP Server 學習筆記與應用案例。
+- [Claude MCP 應用測試心得 - Claude Desktop](https://www.darrelltw.com/claude-desktop-new-mcp-features-review/): Claude MCP 功能的使用心得與注意事項。
+- [Claude Code 發佈 Command Line 的新工具](https://www.darrelltw.com/claude-code-new-command-line-tool/): Claude Code 命令列工具的安裝與操作方式。
+- [ChatGPT 新功能 - Work with Apps 一起運作](https://www.darrelltw.com/chatgpt-work-with-apps/): ChatGPT 整合 VSCode 和 Cursor 的新功能介紹。
+
+## 開發工具與服務
+
+- [用 Cloudflare Worker 和 KV 打造個人免費簡易的短網址服務](https://www.darrelltw.com/cloudflare-worker-url-shortener/): 使用 Cloudflare Worker 和 KV 儲存快速搭建一個簡單但實用的短網址系統，無需伺服器，支援基本 API 操作和 UTM 追蹤功能。
+- [Glows.ai 雲端 GPU 運算服務](https://www.darrelltw.com/glows-ai-cloud-gpu-service/): 專為 AI 開發提供的雲端 GPU 運算服務評測。
+- [BusyTag 開箱 忙碌中勿擾](https://www.darrelltw.com/unboxing-busytag/): 智慧型狀態指示裝置評測，顯示忙碌狀態並整合各種應用程式。
+- [Storylane 網站新功能的導覽教學工具](https://www.darrelltw.com/storylane-demo-website-new-feature/): 探索無需程式碼的網站導覽工具，快速製作互動式新功能教學。
 
 ## 工具教學
 
 - [Tool - 利用 Google Sheet 列出 GTM 中的所有設定資訊](https://www.darrelltw.com/tool-google-tag-manager-list-information/): 利用 Google Sheet 和 App Script 來列出 Google Tag Manager 中所有關於 GA4 的 Tags 設定。
 - [CompressX MacOS 強大的壓縮圖片工具](https://www.darrelltw.com/tool-compressx/): 專業的圖片壓縮工具評測，適合需要高品質壓縮的用戶。
-- [Storylane 網站新功能的導覽教學工具](https://www.darrelltw.com/storylane-demo-website-new-feature/): 探索無需程式碼的網站導覽工具，快速製作互動式新功能教學。
-- [BusyTag 開箱 忙碌中勿擾](https://www.darrelltw.com/unboxing-busytag/): 智慧型狀態指示裝置評測，顯示忙碌狀態並整合各種應用程式。
 
 ## Google 產品相關
 
@@ -30,33 +72,9 @@ CC BY 4.0 — 歡迎引用並註明來源。
 - [GA4 證照的準備方向](https://www.darrelltw.com/ga4-certification-review/): GA4 證照考試的準備方向與重點整理。
 - [Google App Script 在 Google Sheet 和 ChatGPT 問答](https://www.darrelltw.com/google-app-script-with-chatgpt-openai/): 利用 Google App Script 在 Google Sheet 中整合 ChatGPT API。
 
-## n8n 自動化
-
-- [n8n If 和 Switch](https://www.darrelltw.com/n8n-if-switch/): 深入了解 n8n 的條件判斷節點使用方法。
-- [n8n Aggregate 和 Split Out](https://www.darrelltw.com/n8n-aggregate-split-out/): n8n 的資料合併與拆分節點使用方法。
-- [n8n 用 Request 發送 LINE Message API](https://www.darrelltw.com/n8n-line-message-api/): 使用 n8n 的 Request 節點發送和接收 LINE 訊息。
-- [n8n 串接 Slack、發送訊息、用 Slack 觸發 workflow](https://www.darrelltw.com/n8n-with-slack/): 完整的 n8n 與 Slack 整合教學。
-- [n8n Webhook 節點](https://www.darrelltw.com/n8n-webhook/): n8n Webhook 節點的設定與應用實例。
-- [n8n 模板分享 - 打造 LINE 共同記帳機器人](https://www.darrelltw.com/n8n-line-split-expense-workflow/): n8n 結合 LINE 機器人和 AI 技術的自動化記帳系統。
-- [n8n 內建參數介紹](https://www.darrelltw.com/n8n-built-in-variables/): n8n 的內建變數使用方法和應用場景。
-- [n8n 小撇步 - Pin Data](https://www.darrelltw.com/n8n-tips-pin/): 利用 Pin 功能鎖定輸出資料，提升自動化流程測試效率。
-- [n8n 小撇步 - Timezone 問題如何在 Zeabur 設定](https://www.darrelltw.com/n8n-with-zeabur-timezone-issue/): 在 Zeabur 上處理 n8n 時區問題的方法。
-- [n8n 新功能 - 資料夾 Folders](https://www.darrelltw.com/n8n-new-feature-folders/): n8n 資料夾功能的使用與最佳實踐。
-- [利用 n8n 的 s3 節點連接 Cloudflare R2 儲存服務](https://www.darrelltw.com/n8n-node-s3-with-cloudflare-r2/): 在 n8n 中使用 s3 節點連接 Cloudflare R2 儲存服務。
-
-## AI 應用
-
-- [LINE MCP Server 測試心得](https://www.darrelltw.com/line-mcp-server/): 實作 LINE MCP Server，讓 AI 模型操作 LINE Messaging API。
-- [在 Cursor 中打造 MCP Server，從實作中學習 MCP](https://www.darrelltw.com/cursor-mcp-server-guide/): Cursor 實作 MCP Server 學習筆記與應用案例。
-- [Claude MCP 應用測試心得 - Claude Desktop](https://www.darrelltw.com/claude-desktop-new-mcp-features-review/): Claude MCP 功能的使用心得與注意事項。
-- [Claude Code 發佈 Command Line 的新工具](https://www.darrelltw.com/claude-code-new-command-line-tool/): Claude Code 命令列工具的安裝與操作方式。
-- [ChatGPT 新功能 - Work with Apps 一起運作](https://www.darrelltw.com/chatgpt-work-with-apps/): ChatGPT 整合 VSCode 和 Cursor 的新功能介紹。
-- [ChatGPT 4o 與 Sora 的全新文生圖功能](https://www.darrelltw.com/chatgpt-sora-create-image-with-text/): ChatGPT 4o 和 Sora 文生圖功能對比與使用心得。
-- [OpenAI GPT-Image-1 API 產圖 API 發布](https://www.darrelltw.com/openai-gpt-image-1-model-review/): OpenAI GPT-Image-1 模型 API 參數設置與實用範例。
-- [Glows.ai 雲端 GPU 運算服務](https://www.darrelltw.com/glows-ai-cloud-gpu-service/): 專為 AI 開發提供的雲端 GPU 運算服務評測。
-
 ## Google Tag Manager
 
+- [在 GTM 安裝 Line Tag Pixel](https://www.darrelltw.com/gtm-install-line-tag-pixel/): Line Tag 在 GTM 中的安裝與設定方法。
 - [Google Tag Manager - 觸發條件 點擊和連結點擊](https://www.darrelltw.com/gtm-trigger-all-click-link-click/): GTM 中點擊和連結點擊觸發條件的設定與選擇。
 - [Google Tag Manager - 觸發條件 元素可見度](https://www.darrelltw.com/gtm-trigger-elementvisibility/): 元素可見度觸發條件的設定與應用場景。
 - [Google Tag Manager - 觸發條件 自訂事件](https://www.darrelltw.com/gtm-trigger-custom-event/): 自訂事件觸發條件與 Datalayer 對應設定。
@@ -69,8 +87,6 @@ CC BY 4.0 — 歡迎引用並註明來源。
 - [Google Tag Manager - 代碼(Tag) GA4 Field To Set 設定事件參數](https://www.darrelltw.com/google-tag-manager-ga4-configuration-fieldtoset/): GA4 事件參數的批量設定方法。
 - [Google Tag Manager 工作區過大，原來有空間大小限制](https://www.darrelltw.com/gtm-size-limit/): GTM 工作區大小限制與優化方法。
 - [Google Tag Manager - 利用 LocalStorage Cookie SessionStorage 來暫存資訊](https://www.darrelltw.com/google-tag-manager-store-data-storage-cookie/): 在 GTM 中使用不同的瀏覽器儲存方式。
-- [在 GTM 安裝 Line Tag Pixel](https://www.darrelltw.com/gtm-install-line-tag-pixel/): Line Tag 在 GTM 中的安裝與設定方法。
-- [利用 GA4 GTM 來追蹤網頁載入時間](https://www.darrelltw.com/google-tag-manager-advanced-skill-using-ga4-track-website-performance/): 使用 GA4 與 GTM 追蹤網頁效能指標。
 - [Facebook Pixel 利用 GTM 安裝和注意事項](https://www.darrelltw.com/facebook-pixel-install-in-google-tag-manager/): 避免 Facebook Pixel 重複觸發的 GTM 安裝方法。
 - [社群問答:CSS Selector 選擇想要的元素來做點擊追蹤](https://www.darrelltw.com/stackoverflow-gtm-click-element-css-selector/): 使用 CSS Selector 解決複雜元素點擊追蹤問題。
 - [社群問答:使用 JavaScript 取得 DataLayer 的資料](https://www.darrelltw.com/gtm-get-datalayer-value-by-js/): 在 GTM 中用 JavaScript 取得 DataLayer 數據的方法。
@@ -78,6 +94,7 @@ CC BY 4.0 — 歡迎引用並註明來源。
 - [DataLayer 壞掉影響 Google Tag Manager 的追蹤](https://www.darrelltw.com/gtm-datalayer-broken-reset/): DataLayer 常見問題與排查方法。
 - [工具推薦-移除 GTM 中的舊版 GA設定-Tagsbuster](https://www.darrelltw.com/tool-remove-ga3-setting-in-gtm-tagsbuster/): 清理 GTM 中舊版 GA 設定的工具介紹。
 - [詢問 Google Tag Manager 相關的問題](https://www.darrelltw.com/how-to-ask-google-tag-manager-question/): 如何有效發問 GTM 相關問題的指南。
+- [利用 GA4 GTM 來追蹤網頁載入時間](https://www.darrelltw.com/google-tag-manager-advanced-skill-using-ga4-track-website-performance/): 使用 GA4 與 GTM 追蹤網頁效能指標。
 
 ## GA4 相關
 
@@ -90,8 +107,13 @@ CC BY 4.0 — 歡迎引用並註明來源。
 - [GA4 用超商來解釋 Event、Session 和 User](https://www.darrelltw.com/ga4-session-hit-user-explain/): 透過生活案例解釋 GA4 核心概念。
 - [GA4 Certification Announced | GA4 證照測驗公布](https://www.darrelltw.com/ga4-certification-announced/): Google Analytics 4 官方證照測驗介紹。
 - [檢查網站是否安裝 GA4](https://www.darrelltw.com/ga4-check-installed/): 如何確認網站是否已正確安裝 GA4。
+- [GA4 更新 - Benchmark - 產業資料的基準比較](https://www.darrelltw.com/ga4-update-benchmark/): GA4 基準比較功能介紹。
+- [GA4 更新 - 使用者購物歷程](https://www.darrelltw.com/ga4-new-release-user-purchase-journey/): GA4 使用者購物歷程報表介紹。
+- [GA4 更新 - 每個工作階段的瀏覽次數 和 平均單次工作階段參與時間](https://www.darrelltw.com/ga4-new-release-avg-pageview-average-session-duration-and-views-per-session/): GA4 工作階段相關新指標介紹。
+- [GA4 更新 - 加強搜尋列](https://www.darrelltw.com/ga4-new-release-search-datastream-property-info/): GA4 搜尋功能改進說明。
+- [GA4 升級倒數77天](https://www.darrelltw.com/ga4-countdown-less-then-80-days/): GA4 升級期限與相關資訊。
 
-## Optional
+## 其他實用內容
 
 - [訂閱 Email](https://www.darrelltw.com/email_subscribe/): 訂閱部落格更新通知。
 - [categories](https://www.darrelltw.com/categories/): 文章分類頁面。
@@ -107,11 +129,6 @@ CC BY 4.0 — 歡迎引用並註明來源。
 - [2022 數位時代 行銷科技高峰會 混血新行銷](https://www.darrelltw.com/2022-martech-trends-bnext/): 行銷科技高峰會活動心得。
 - [Simmer 的 Martech Handbook 簡介&心得](https://www.darrelltw.com/simmer-martech-handbook/): 行銷科技手冊內容介紹與心得。
 - [Gmail Yahoo 2024/02新政策 全面驗證 DMARC 認證](https://www.darrelltw.com/email-dmarc-gmail-new-policy-in-202402/): 電子郵件驗證政策更新說明。
-- [GA4 更新 - Benchmark - 產業資料的基準比較](https://www.darrelltw.com/ga4-update-benchmark/): GA4 基準比較功能介紹。
-- [GA4 更新 - 使用者購物歷程](https://www.darrelltw.com/ga4-new-release-user-purchase-journey/): GA4 使用者購物歷程報表介紹。
-- [GA4 更新 - 每個工作階段的瀏覽次數 和 平均單次工作階段參與時間](https://www.darrelltw.com/ga4-new-release-avg-pageview-average-session-duration-and-views-per-session/): GA4 工作階段相關新指標介紹。
-- [GA4 更新 - 加強搜尋列](https://www.darrelltw.com/ga4-new-release-search-datastream-property-info/): GA4 搜尋功能改進說明。
-- [GA4 升級倒數77天](https://www.darrelltw.com/ga4-countdown-less-then-80-days/): GA4 升級期限與相關資訊。
 - [LookerStudio(DataStudio) - GA4 報表錯誤? 新功能釋出](https://www.darrelltw.com/looker-studio-new-release-202212-ga4-api-quota/): Looker Studio 與 GA4 API 配額問題。
 - [利用 Bouncer 來清理電子報的無效用戶](https://www.darrelltw.com/bouncer-to-clean-email-list/): 電子郵件清單優化工具介紹。
 - [Analytics Debugger v2.4.6 更新](https://www.darrelltw.com/analytics-debuuger-v2-3-2/): Analytics Debugger 工具更新說明。
