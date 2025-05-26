@@ -7,15 +7,47 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2025/05/20更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.94.0，正式版本為 1.93.0
+description: n8n 的更新記錄(2025/05/26更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.95.0，正式版本為 1.93.0
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-05-13 11:01:15
+modified: 2025-05-26 21:39:15
+sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 1.95.0 Pre-release - 2025-05-26
+
+[Github 1.95.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.95.0)
+
+### Anthropic Chat Model Node: Set the new Claude 4 Sonnet model to be the defaults
+Anthropic Chat Model Node: 將新的 Claude 4 Sonnet 模型設為預設
+
+{% darrellImage800 n8n-1.95.0-anthropic_default_4_sonnet n8n-1.95.0-anthropic_default_4_sonnet.png max-800 %}
+
+出現新的 Claude Sonnet 4、Claude Opus 4 模型可以選了
+
+
+### editor: "Executing" state in the output panel
+editor: 「執行中」狀態在輸出面板中 
+
+{% darrellImage800 n8n-1.95.0-show_execute_status_in_output n8n-1.95.0-show_execute_status_in_output.png max-800 %}
+
+現在 run 的時候下方 log panel 的 ouptut 會顯示一個 `Executing` 的狀態
+算是改善 UI 的顯示
+
+### Editor: Add an option to sync canvas with log view
+editor: 新增一個選項來同步畫布與日誌視圖
+
+這是一個蠻不錯的 UI 改善
+現在開啟 `Sync selection with canvas`
+
+就能看到在 Canva 選哪個節點
+下方的 Log 就自動跟著顯示哪個節點的資訊！
+
+<div style="padding:0;position:relative;"><iframe src="https://player.vimeo.com/video/1087741973?badge=0&&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;byline=false&amp;title=false&amp;muted=true" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="n8n-update-1.95.0-Add an option to sync canvas with log view"></iframe></div><script async src="https://player.vimeo.com/api/player.js"></script>
 
 ## 1.94.0 Pre-release - 2025-05-20
 
