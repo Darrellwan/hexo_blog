@@ -15,7 +15,7 @@ date: 2025-05-10 18:22:12
 modified: 2025-05-10 18:22:12
 ---
 
-{% darrellImageCover blog-n8n-invalid-json-bgblog-n8n-invalid-json-bg.jpg %}
+{% darrellImageCover blog-n8n-invalid-json-bg blog-n8n-invalid-json-bg.jpg %}
 
 ## invalid json
 
