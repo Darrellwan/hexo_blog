@@ -1,229 +1,332 @@
 {
-    "id": "a5tCsfMzJPd8WDUj",
-    "meta": {
-      "instanceId": "fddb3e91967f1012c95dd02bf5ad21f279fc44715f47a7a96a33433621caa253",
-      "templateCredsSetupCompleted": true
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.line.me/v2/bot/message/reply",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"replyToken\": \"{{ $('Webhook from Line Message').item.json.body.events[0].replyToken }}\",\n  \"messages\": [\n    {\n      \"type\": \"text\",\n      \"text\": \"收到您的訊息 : {{ $('Webhook from Line Message').item.json.body.events[0].message.text }}\"\n    }\n  ]\n}",
+        "options": {}
+      },
+      "id": "4a4df7d6-fff7-43ab-89ff-7ab12a6f1e49",
+      "name": "Line : Reply with token",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        560,
+        160
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "xB2Ip7YKSIDq7BoI",
+          "name": "Line n8n demo auth"
+        }
+      }
     },
-    "name": "line message api demo",
-    "tags": [],
-    "nodes": [
-      {
-        "id": "2bc1cc31-136c-46a4-a789-476e33c76f3d",
-        "name": "Line : Reply with token",
-        "type": "n8n-nodes-base.httpRequest",
-        "position": [
-          -540,
-          -460
-        ],
-        "parameters": {
-          "url": "https://api.line.me/v2/bot/message/reply",
-          "method": "POST",
-          "options": {},
-          "jsonBody": "={\n  \"replyToken\": \"{{ $('Webhook from Line Message').item.json.body.events[0].replyToken }}\",\n  \"messages\": [\n    {\n      \"type\": \"text\",\n      \"text\": \"收到您的訊息 : {{ $('Webhook from Line Message').item.json.body.events[0].message.text }}\"\n    }\n  ]\n}",
-          "sendBody": true,
-          "specifyBody": "json",
-          "authentication": "genericCredentialType",
-          "genericAuthType": "httpHeaderAuth"
-        },
-        "credentials": {
-          "httpHeaderAuth": {
-            "id": "xB2Ip7YKSIDq7BoI",
-            "name": "Line n8n demo auth"
-          }
-        },
-        "typeVersion": 4.2
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "638c118e-1c98-4491-b6ff-14e2e75380b6",
+        "options": {}
       },
-      {
-        "id": "a1d9c986-4712-4d40-955d-40d1b19d74db",
-        "name": "Webhook from Line Message",
-        "type": "n8n-nodes-base.webhook",
-        "position": [
-          -1020,
-          -440
-        ],
-        "webhookId": "638c118e-1c98-4491-b6ff-14e2e75380b6",
-        "parameters": {
-          "path": "638c118e-1c98-4491-b6ff-14e2e75380b6",
-          "options": {},
-          "httpMethod": "POST"
-        },
-        "typeVersion": 2
+      "id": "b96d892d-d0b3-4984-a39f-f6fd83de9b82",
+      "name": "Webhook from Line Message",
+      "type": "n8n-nodes-base.webhook",
+      "position": [
+        80,
+        180
+      ],
+      "webhookId": "638c118e-1c98-4491-b6ff-14e2e75380b6",
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "content": "## Line Message API Reply\n\n用 Reply API 來回覆訊息\n重點是要使用 replyToken!",
+        "height": 340,
+        "width": 720
       },
-      {
-        "id": "a0c94852-290f-48b9-8e11-b498ada90c8f",
-        "name": "Sticky Note",
-        "type": "n8n-nodes-base.stickyNote",
-        "position": [
-          -1100,
-          -620
-        ],
-        "parameters": {
-          "width": 720,
-          "height": 340,
-          "content": "## Line Message API Reply\n\nReceived Message from user and reply with same text by using reply token  \n\nThere are many event types. So we need to determine if the type is message."
-        },
-        "typeVersion": 1
-      },
-      {
-        "id": "278aff13-c081-47f0-a1f6-67920642e991",
-        "name": "If",
-        "type": "n8n-nodes-base.if",
-        "position": [
-          -800,
-          -440
-        ],
-        "parameters": {
-          "options": {},
-          "conditions": {
-            "options": {
-              "version": 2,
-              "leftValue": "",
-              "caseSensitive": true,
-              "typeValidation": "strict"
-            },
-            "combinator": "and",
-            "conditions": [
-              {
-                "id": "b63773bb-f010-4018-8142-240c9aaa4570",
-                "operator": {
-                  "name": "filter.operator.equals",
-                  "type": "string",
-                  "operation": "equals"
-                },
-                "leftValue": "={{ $json.body.events[0].type }}",
-                "rightValue": "message"
-              }
-            ]
-          }
-        },
-        "typeVersion": 2.2
-      },
-      {
-        "id": "cff2f1d3-b7a4-4940-a1d1-1e5a80d6ea28",
-        "name": "Sticky Note1",
-        "type": "n8n-nodes-base.stickyNote",
-        "position": [
-          -1100,
-          -200
-        ],
-        "parameters": {
-          "width": 720,
-          "height": 340,
-          "content": "## Line Message API Send Message\n\nYou need to get the Line UID first.\nEvery user is differnt.\n\nIf you have the Line UID. Then you can push the message to the User."
-        },
-        "typeVersion": 1
-      },
-      {
-        "id": "9348fc83-0aeb-4591-85b6-48f556512478",
-        "name": "When clicking ‘Test workflow’",
-        "type": "n8n-nodes-base.manualTrigger",
-        "position": [
-          -1020,
-          -20
-        ],
-        "parameters": {},
-        "typeVersion": 1
-      },
-      {
-        "id": "74db3e1b-9a22-4033-bf04-a8ff485a5d3b",
-        "name": "Edit Fields",
-        "type": "n8n-nodes-base.set",
-        "position": [
-          -800,
-          -20
-        ],
-        "parameters": {
-          "options": {},
-          "assignments": {
-            "assignments": [
-              {
-                "id": "6278f340-6287-4e89-b774-f6c584954d5b",
-                "name": "line_uid",
+      "id": "eee9a2fa-ed53-4bbe-a547-ac5fd3834515",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        0,
+        0
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "b63773bb-f010-4018-8142-240c9aaa4570",
+              "operator": {
+                "name": "filter.operator.equals",
                 "type": "string",
-                "value": "Uxxxxxxxxxxxx"
-              }
-            ]
-          }
+                "operation": "equals"
+              },
+              "leftValue": "={{ $json.body.events[0].type }}",
+              "rightValue": "message"
+            }
+          ]
         },
-        "typeVersion": 3.4
+        "options": {}
       },
-      {
-        "id": "c593bd58-8f6a-4689-bb12-e71256ccf6e6",
-        "name": "Line : Push Message",
-        "type": "n8n-nodes-base.httpRequest",
-        "position": [
-          -560,
-          -20
-        ],
-        "parameters": {
-          "url": "https://api.line.me/v2/bot/message/push",
-          "method": "POST",
-          "options": {},
-          "jsonBody": "={\n  \"to\": \"{{ $json.line_uid }}\",\n  \"messages\": [\n    {\n      \"type\": \"text\",\n      \"text\": \"推播測試\"\n    }\n  ]\n}",
-          "sendBody": true,
-          "specifyBody": "json",
-          "authentication": "genericCredentialType",
-          "genericAuthType": "httpHeaderAuth"
-        },
-        "credentials": {
-          "httpHeaderAuth": {
-            "id": "xB2Ip7YKSIDq7BoI",
-            "name": "Line n8n demo auth"
-          }
-        },
-        "typeVersion": 4.2
-      }
-    ],
-    "active": true,
-    "pinData": {},
-    "settings": {
-      "executionOrder": "v1"
+      "id": "eceada0c-99bc-4dbc-aeee-87687672b921",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        300,
+        180
+      ],
+      "typeVersion": 2.2
     },
-    "versionId": "240dc848-8803-4776-b01d-5f10c765f72b",
-    "connections": {
-      "If": {
-        "main": [
-          [
-            {
-              "node": "Line : Reply with token",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
+    {
+      "parameters": {
+        "content": "## Line Message API Send Message\n\n需要先取得對方的 Line UID\n這樣才能主動推播\n\n也可以是群組的 Channel ID\n計費方式會以群組的人數計算",
+        "height": 340,
+        "width": 720
       },
-      "Edit Fields": {
-        "main": [
-          [
+      "id": "06ba081b-d9af-47f1-9901-c18631d1601f",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        0,
+        420
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {},
+      "id": "3cce169d-59da-4f66-ac3e-bef5c315cd84",
+      "name": "When clicking ‘Test workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "position": [
+        80,
+        600
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
             {
-              "node": "Line : Push Message",
-              "type": "main",
-              "index": 0
+              "id": "6278f340-6287-4e89-b774-f6c584954d5b",
+              "name": "line_uid",
+              "type": "string",
+              "value": "Uxxxxxxxxxxxx"
             }
           ]
-        ]
+        },
+        "options": {}
       },
-      "Webhook from Line Message": {
-        "main": [
-          [
-            {
-              "node": "If",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
+      "id": "3676c913-e28e-4dac-9901-50ea89cfae55",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        300,
+        600
+      ],
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.line.me/v2/bot/message/push",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"to\": \"{{ $json.line_uid }}\",\n  \"messages\": [\n    {\n      \"type\": \"text\",\n      \"text\": \"推播測試\"\n    }\n  ]\n}",
+        "options": {}
       },
-      "When clicking ‘Test workflow’": {
-        "main": [
-          [
-            {
-              "node": "Edit Fields",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
+      "id": "d7d5d467-2185-4faf-a1b3-ad4baff78f17",
+      "name": "Line : Push Message",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        540,
+        600
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "xB2Ip7YKSIDq7BoI",
+          "name": "Line n8n demo auth"
+        }
       }
+    },
+    {
+      "parameters": {
+        "content": "## Created by darrell_tw_ \n\nAn engineer now focus on AI and Automation\n\n### contact me with following:\n[X](https://x.com/darrell_tw_)\n[Threads](https://www.threads.net/@darrell_tw_)\n[Instagram](https://www.instagram.com/darrell_tw_/)\n[Website](https://www.darrelltw.com/)",
+        "height": 240,
+        "width": 340,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -360,
+        0
+      ],
+      "id": "a4a723cc-3150-468b-8152-84c3bca67917",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "## Webhook 範例: 文字訊息 text\n```\n{\n  \"destination\": \"${destination}\",\n  \"events\": [\n    {\n      \"type\": \"message\",\n      \"message\": {\n        \"type\": \"text\",\n        \"id\": \"563010307124363558\",\n        \"quoteToken\": \"$quoteToken\",\n        \"text\": \"文字訊息\"\n      },\n      \"webhookEventId\": \"${webhookEventId}\",\n      \"deliveryContext\": {\n        \"isRedelivery\": false\n      },\n      \"timestamp\": 1748411597743,\n      \"source\": {\n        \"type\": \"user\",\n        \"userId\": \"${userId}\"\n      },\n      \"replyToken\": \"${replyToken}\",\n      \"mode\": \"active\"\n    }\n  ]\n}\n```",
+        "height": 520,
+        "width": 620,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        800,
+        0
+      ],
+      "id": "3d4dd324-9699-490c-a715-fb979f92308e",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Webhook 範例: 位置訊息 location\n```\n{\n  \"destination\": \"${destination}\",\n  \"events\": [\n    {\n      \"type\": \"message\",\n      \"message\": {\n        \"type\": \"location\",\n        \"id\": \"563010369904968465\",\n        \"latitude\": 25.033718,\n        \"longitude\": 121.56481,\n        \"title\": \"台北101\",\n        \"address\": \"台北市信義區信義路五段7號\"\n      },\n      \"webhookEventId\": \"${webhookEventId}\",\n      \"deliveryContext\": {\n        \"isRedelivery\": false\n      },\n      \"timestamp\": 1748411635079,\n      \"source\": {\n        \"type\": \"user\",\n        \"userId\": \"${userId}\"\n      },\n      \"replyToken\": \"${replyToken}\",\n      \"mode\": \"active\"\n    }\n  ]\n}\n```",
+        "height": 540,
+        "width": 620,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2080,
+        540
+      ],
+      "id": "e06fd4c9-fe3a-462f-99ef-8363a8435e93",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "## Webhook 範例: 圖片訊息 image\n```\n{\n  \"destination\": \"${destination}\",\n  \"events\": [\n    {\n      \"type\": \"message\",\n      \"message\": {\n        \"type\": \"image\",\n        \"id\": \"563010383729131999\",\n        \"quoteToken\": \"${quoteToken}\",\n        \"contentProvider\": {\n          \"type\": \"line\"\n        }\n      },\n      \"webhookEventId\": \"01JWAQ8Y1Z0JVH5CCCGYX6AEEA\",\n      \"deliveryContext\": {\n        \"isRedelivery\": false\n      },\n      \"timestamp\": 1748411643600,\n      \"source\": {\n        \"type\": \"user\",\n        \"userId\": \"${userId}\"\n      },\n      \"replyToken\": \"${replyToken}\",\n      \"mode\": \"active\"\n    }\n  ]\n}\n```",
+        "height": 540,
+        "width": 620,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        800,
+        540
+      ],
+      "id": "0430cf50-8196-4d2f-a928-c3d73481a6cb",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "content": "## Webhook 範例: 聲音訊息 audio\n```\n{\n  \"destination\": \"${destination}\",\n  \"events\": [\n    {\n      \"type\": \"message\",\n      \"message\": {\n        \"type\": \"audio\",\n        \"id\": \"563010901809561755\",\n        \"duration\": 3964,\n        \"contentProvider\": {\n          \"type\": \"line\"\n        }\n      },\n      \"webhookEventId\": \"${webhookEventId}\",\n      \"deliveryContext\": {\n        \"isRedelivery\": false\n      },\n      \"timestamp\": 1748411952280,\n      \"source\": {\n        \"type\": \"user\",\n        \"userId\": \"${userId}\"\n      },\n      \"replyToken\": \"${replyToken}\",\n      \"mode\": \"active\"\n    }\n  ]\n}\n```",
+        "height": 540,
+        "width": 620,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1440,
+        540
+      ],
+      "id": "999fc852-c607-4ce4-b67c-c209f3974449",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "content": "## Webhook 範例: 貼圖訊息 sticker\n```\n{\n  \"destination\": \"${Uea2edf19952568f1b5416d038ef8f525}\",\n  \"events\": [\n    {\n      \"type\": \"message\",\n      \"message\": {\n        \"type\": \"sticker\",\n        \"id\": \"563011036866413024\",\n        \"quoteToken\": \"${quoteToken}\",\n        \"stickerId\": \"721731938\",\n        \"packageId\": \"28491268\",\n        \"stickerResourceType\": \"STATIC\",\n        \"keywords\": [\n          \"what?\",\n          \"threat\",\n          \"be careful\",\n          \"really?\",\n          \"Christmas present\",\n          \"Hello\",\n          \"?\",\n          \"!?\",\n          \"guess what?\"\n        ]\n      },\n      \"webhookEventId\": \"${webhookEventId}\",\n      \"deliveryContext\": {\n        \"isRedelivery\": false\n      },\n      \"timestamp\": 1748412032685,\n      \"source\": {\n        \"type\": \"user\",\n        \"userId\": \"${userId}\"\n      },\n      \"replyToken\": \"${replyToken}\",\n      \"mode\": \"active\"\n    }\n  ]\n}\n```",
+        "height": 520,
+        "width": 620,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2080,
+        0
+      ],
+      "id": "2ee96f30-10f3-4f27-8dfa-e3c165c8283b",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "content": "## Webhook 範例: 表情接訊息 text\n```\n{\n  \"destination\": \"${destination}\",\n  \"events\": [\n    {\n      \"type\": \"message\",\n      \"message\": {\n        \"type\": \"text\",\n        \"id\": \"563011234015478237\",\n        \"quoteToken\": \"${quoteToken}\",\n        \"text\": \"(shock)(shock)(shock)\",\n        \"emojis\": [\n          {\n            \"index\": 0,\n            \"length\": 7,\n            \"productId\": \"63b695d6b9e82e73fe3baaec\",\n            \"emojiId\": \"005\"\n          },\n          {\n            \"index\": 7,\n            \"length\": 7,\n            \"productId\": \"63b695d6b9e82e73fe3baaec\",\n            \"emojiId\": \"005\"\n          },\n          {\n            \"index\": 14,\n            \"length\": 7,\n            \"productId\": \"63b695d6b9e82e73fe3baaec\",\n            \"emojiId\": \"005\"\n          }\n        ]\n      },\n      \"webhookEventId\": \"${webhookEventId}\",\n      \"deliveryContext\": {\n        \"isRedelivery\": false\n      },\n      \"timestamp\": 1748412150097,\n      \"source\": {\n        \"type\": \"user\",\n        \"userId\": \"${userId}\"\n      },\n      \"replyToken\": \"${replyToken}\",\n      \"mode\": \"active\"\n    }\n  ]\n}\n```",
+        "height": 520,
+        "width": 620,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1440,
+        0
+      ],
+      "id": "f5d9b1ad-e96f-46c9-85f0-58ee6c5a10c2",
+      "name": "Sticky Note8"
     }
+  ],
+  "connections": {
+    "Webhook from Line Message": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Line : Reply with token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Line : Push Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "instanceId": "fddb3e91967f1012c95dd02bf5ad21f279fc44715f47a7a96a33433621caa253"
   }
+}

@@ -772,42 +772,90 @@
         },
         "line_message": {
             "id": "line_message",
-            "title": "Line Message API 和 Webhook 回覆",
-            "description": "這個工作流程自動化處理來自 Line 的訊息，並提供兩種主要功能：自動回覆和主動推送訊息。當使用者傳送訊息時，系統會自動回覆相同的內容；另外也可以透過 Line UID 主動發送訊息給特定使用者。\n\n主要功能：\n\n自動回覆：接收使用者訊息並自動回覆\n推送訊息：透過 Line UID 主動發送訊息給特定使用者",
+            "title": "Line Message API 完整教學範例",
+            "description": "這個工作流程提供 Line Messaging API 的完整教學範例，包含自動回覆和主動推送兩種核心功能。當使用者透過 Line 傳送訊息時，系統會自動判斷訊息類型並回覆相同內容；同時也可以透過 Line UID 主動發送訊息給特定使用者。工作流程包含豐富的 Webhook 範例，展示如何處理文字、圖片、聲音、貼圖、表情符號和位置等不同類型的訊息。\n\n主要功能：\n\n自動回覆：使用 replyToken 接收並回覆使用者訊息\n主動推送：透過 Line UID 或群組 ID 主動發送訊息\n訊息類型支援：文字、圖片、聲音、貼圖、表情符號、位置訊息\nWebhook 範例：包含完整的 JSON 格式範例供參考\n條件判斷：智能識別不同類型的 Line 事件",
             "detailedDescription": [
-                "接收 Line Webhook 訊息",
-                "自動回覆相同內容給使用者",
-                "支援主動推送訊息功能",
-                "使用 Line Messaging API"
+                "接收來自 Line 的 Webhook 訊息",
+                "條件判斷：僅處理 message 類型事件",
+                "使用 replyToken 自動回覆相同內容給使用者",
+                "支援主動推送訊息功能（需要 Line UID）",
+                "完整的 Webhook 範例說明：文字、圖片、聲音、貼圖、表情符號、位置",
+                "使用 HTTP Request 節點與 Line Messaging API 整合",
+                "包含詳細的 JSON 格式範例和參數說明"
             ],
-            "tags": ["自動化", "Line", "訊息", "Webhook", "API"],
-            "nodes": 7,
+            "tags": ["自動化", "Line", "訊息機器人", "Webhook", "API", "教學範例", "多媒體訊息"],
+            "nodes": 15,
             "createdAt": "2025-02-17",
-            "updatedAt": "2025-02-17",
+            "updatedAt": "2025-05-28",
             "setup": {
-                "prerequisites": "需要設定 Line Channel 和取得 Channel Access Token",
+                "prerequisites": "需要設定 Line Developer Console 和取得 Channel Access Token",
                 "steps": [
                     {
                         "title": "Line Developer 設定",
-                        "description": "在 Line Developer Console 設定 Webhook URL",
+                        "description": "在 Line Developer Console 建立 Channel 並設定 Webhook",
                         "options": [
-                            "建立 Line Channel",
-                            "設定 Webhook URL",
-                            "取得 Channel Access Token"
+                            "建立 Line Developer 帳號並登入",
+                            "建立新的 Messaging API Channel",
+                            "取得 Channel Access Token",
+                            "設定 Webhook URL 為 n8n 提供的 Webhook 端點",
+                            "開啟「Use webhook」選項"
+                        ]
+                    },
+                    {
+                        "title": "認證設定",
+                        "description": "在 n8n 中設定 Line API 認證",
+                        "options": [
+                            "建立 HTTP Header Auth 認證",
+                            "設定 Header Name 為 'Authorization'",
+                            "設定 Header Value 為 'Bearer YOUR_CHANNEL_ACCESS_TOKEN'"
+                        ]
+                    },
+                    {
+                        "title": "推送訊息設定",
+                        "description": "設定主動推送訊息功能",
+                        "options": [
+                            "取得目標使用者的 Line UID",
+                            "或取得群組的 Channel ID",
+                            "在 Edit Fields 節點中更新 line_uid 值"
                         ]
                     }
                 ]
             },
             "examples": [
                 {
-                    "title": "基本設定範例",
-                    "description": "展示如何設定基本的 Line 訊息處理流程",
+                    "title": "基本自動回覆範例",
+                    "description": "展示如何設定基本的 Line 訊息自動回覆流程",
                     "code": {
                         "trigger": "webhook",
                         "actions": [
+                            "receive_webhook",
                             "check_message_type",
-                            "reply_message",
+                            "reply_message"
+                        ]
+                    }
+                },
+                {
+                    "title": "主動推送訊息範例",
+                    "description": "展示如何主動發送訊息給特定使用者",
+                    "code": {
+                        "trigger": "manual",
+                        "actions": [
+                            "set_line_uid",
                             "push_message"
+                        ]
+                    }
+                },
+                {
+                    "title": "多媒體訊息處理範例",
+                    "description": "展示如何處理不同類型的 Line 訊息",
+                    "code": {
+                        "messageTypes": [
+                            "text（文字訊息）",
+                            "image（圖片訊息）",
+                            "audio（聲音訊息）",
+                            "sticker（貼圖訊息）",
+                            "location（位置訊息）",
+                            "emoji（表情符號訊息）"
                         ]
                     }
                 }
@@ -818,23 +866,58 @@
                     "fields": {
                         "path": {
                             "type": "string",
-                            "description": "Webhook 路徑",
+                            "description": "Webhook 路徑 ID",
                             "example": "638c118e-1c98-4491-b6ff-14e2e75380b6"
+                        },
+                        "httpMethod": {
+                            "type": "string",
+                            "description": "HTTP 方法",
+                            "default": "POST"
                         }
                     }
                 },
                 "line": {
-                    "title": "Line 設定",
+                    "title": "Line API 設定",
                     "fields": {
                         "channelAccessToken": {
                             "type": "string",
                             "description": "Line Channel Access Token",
                             "example": "YOUR_CHANNEL_ACCESS_TOKEN"
                         },
+                        "replyApiUrl": {
+                            "type": "string",
+                            "description": "Line Reply API URL",
+                            "default": "https://api.line.me/v2/bot/message/reply"
+                        },
+                        "pushApiUrl": {
+                            "type": "string",
+                            "description": "Line Push API URL",
+                            "default": "https://api.line.me/v2/bot/message/push"
+                        },
                         "lineUid": {
                             "type": "string",
-                            "description": "接收者的 Line UID",
+                            "description": "接收推送訊息的 Line UID 或群組 ID",
                             "example": "Uxxxxxxxxxxxx"
+                        }
+                    }
+                },
+                "messageHandling": {
+                    "title": "訊息處理設定",
+                    "fields": {
+                        "autoReply": {
+                            "type": "boolean",
+                            "description": "是否啟用自動回覆",
+                            "default": true
+                        },
+                        "replyMessage": {
+                            "type": "string",
+                            "description": "自動回覆訊息格式",
+                            "default": "收到您的訊息 : {{原始訊息內容}}"
+                        },
+                        "supportedTypes": {
+                            "type": "array",
+                            "description": "支援的訊息類型",
+                            "default": ["text", "image", "audio", "sticker", "location"]
                         }
                     }
                 }
