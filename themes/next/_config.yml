@@ -124,7 +124,7 @@ menu:
   emailSubscribe: /email_subscribe/ || fa fa-envelope
   n8nResource: https://www.darrelltw.com/n8n-tutorial-resources/ || fa fa-solid fa-n highlight-n8n
   n8n_template: https://www.darrelltw.com/tools/n8n_template/models.html || fa fa-solid fa-layer-group highlight-n8n
-  support_darrell: https://buymeacoffee.com/darrellmartechtw || fa fa-solid fa-sack-dollar support-dollar
+  support_darrell: https://buymeacoffee.com/darrell_tw || fa fa-solid fa-sack-dollar support-dollar
   #schedule: /schedule/ || fa fa-calendar
   #sitemap: /sitemap.xml || fa fa-sitemap
   #commonweal: /404/ || fa fa-heartbeat
