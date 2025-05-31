@@ -16,9 +16,11 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -29,32 +31,92 @@ jobs:
       - name: Cache dependencies
         uses: actions/cache@v4
         with:
-          path: ~/.npm
+          path: |
+            ~/.npm
+            node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
       
       - name: Install dependencies
         run: |
-          npm ci
-          npm install gray-matter dayjs
+          npm ci --prefer-offline --no-audit
+          npm install gray-matter dayjs js-yaml --save-dev
+      
+      - name: Validate required files
+        run: |
+          echo "檢查必要檔案..."
+          if [ ! -d "source/_posts" ]; then
+            echo "❌ source/_posts 目錄不存在"
+            exit 1
+          fi
+          if [ ! -f "scripts/generate-readme.js" ]; then
+            echo "❌ scripts/generate-readme.js 檔案不存在"
+            exit 1
+          fi
+          echo "✅ 檔案檢查通過"
       
       - name: Generate README
-        run: node scripts/generate-readme.js
+        run: |
+          echo "開始生成 README..."
+          node scripts/generate-readme.js
+          echo "README 生成完成"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_ENV: production
+      
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet HEAD -- README.md; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "📝 README 沒有變更"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "📝 README 有變更，準備建立 PR"
+          fi
       
       - name: Create Pull Request
+        if: steps.changes.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v5
         with:
-          commit-message: 'docs: update README with latest blog posts and analytics'
-          title: '📝 Update README with latest content'
+          commit-message: '[UPDATE] README with latest blog posts and analytics'
+          title: '📝 自動更新 README - 最新文章與分析數據'
           body: |
-            自動更新 README 文件，包含：
-            * 最新的部落格文章列表
-            * 文章流量數據更新    
-          branch: update-readme
+            ## 🤖 自動更新 README
+            
+            此 PR 由 GitHub Actions 自動生成，包含以下更新：
+            
+            ### 📊 更新內容
+            - ✅ 最新部落格文章列表
+            - ✅ 文章流量分析數據
+            - ✅ 熱門文章排行榜
+            - ✅ 分類統計資訊
+            - ✅ 更新頻率圖表
+            
+            ### 📈 觸發原因
+            ${{ github.event_name == 'push' && '新文章發布或分析數據更新' || github.event_name == 'schedule' && '定期自動更新' || '手動觸發更新' }}
+            
+            ### 🔍 變更檢查
+            請檢查 README.md 的變更是否正確，確認無誤後即可合併。
+            
+            ---
+            *由 GitHub Actions 於 ${{ github.run_id }} 自動建立*
+          branch: update-readme-${{ github.run_number }}
           delete-branch: true
           labels: |
             documentation
-            automated pr 
+            automated
+            readme-update
+          assignees: ${{ github.actor }}
+          draft: false
+      
+      - name: Summary
+        run: |
+          echo "## 📋 執行摘要" >> $GITHUB_STEP_SUMMARY
+          echo "- **觸發方式**: ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **執行時間**: $(date)" >> $GITHUB_STEP_SUMMARY
+          echo "- **README 變更**: ${{ steps.changes.outputs.changed == 'true' && '✅ 有變更，已建立 PR' || '📝 無變更' }}" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ steps.changes.outputs.changed }}" == "true" ]; then
+            echo "- **PR 分支**: update-readme-${{ github.run_number }}" >> $GITHUB_STEP_SUMMARY
+          fi 
