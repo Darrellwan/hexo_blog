@@ -19,6 +19,7 @@
     "add_post": "hexo new gtm %npm_config_posttitle%",
     "test-readme": "node scripts/test-readme-generation.js",
     "restore-readme": "node scripts/restore-readme.js",
+    "update-readme": "node scripts/generate-readme.js",
     "n8n-sitemap": "node bin/generate-n8n-sitemap.js",
     "n8n-snapshots": "node bin/generate-html-snapshots.js",
     "add_draft": "hexo new draft %npm_config_posttitle%",

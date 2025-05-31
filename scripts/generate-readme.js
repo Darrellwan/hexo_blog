@@ -176,19 +176,24 @@ function generatePopularPostsChart(posts, title) {
 
 function generateUpdateFrequencyChart(posts) {
   const now = new Date();
-  const last6Months = Array.from({length: 6}, (_, i) => {
-    const d = new Date(now);
-    d.setMonth(d.getMonth() - i);
-    return d;
-  }).reverse();
+  
+  // 生成過去6個月的月份，確保不重複
+  const last6Months = [];
+  for (let i = 5; i >= 0; i--) {
+    const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+    last6Months.push(d);
+  }
   
   const monthPosts = last6Months.map(month => {
-    const count = posts.filter(post => 
-      new Date(post.date).getMonth() === month.getMonth() &&
-      new Date(post.date).getFullYear() === month.getFullYear()
-    ).length;
+    const count = posts.filter(post => {
+      const postDate = new Date(post.date);
+      return postDate.getMonth() === month.getMonth() &&
+             postDate.getFullYear() === month.getFullYear();
+    }).length;
+    
     return {
       month: dayjs(month).format('MM月'),
+      year: month.getFullYear(),
       count,
       bar: '█'.repeat(Math.min(count, 10))
     };
