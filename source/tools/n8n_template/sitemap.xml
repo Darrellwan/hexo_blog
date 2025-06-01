@@ -3,9 +3,25 @@
   <!-- 主頁 -->
   <url>
     <loc>https://www.darrelltw.com/tools/n8n_template/models.html</loc>
-    <lastmod>2025-05-31</lastmod>
+    <lastmod>2025-06-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+  
+  <!-- 模型詳情頁 - n8n-template-evaluations_demo_item -->
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=n8n-template-evaluations_demo_item</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- 模型快照頁 - n8n-template-evaluations_demo_item -->
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/snapshots/n8n-template-evaluations_demo_item.html</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <!-- 模型詳情頁 - gmail_parse_invoice_to_sheet_and_analyze -->
@@ -203,7 +219,7 @@
   <!-- 視覺化頁面 -->
   <url>
     <loc>https://www.darrelltw.com/tools/n8n_template/visualize.html</loc>
-    <lastmod>2025-05-31</lastmod>
+    <lastmod>2025-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

@@ -1,5 +1,157 @@
 {
     "models": {
+        "n8n-template-evaluations_demo_item": {
+            "id": "evaluations_demo_item",
+            "title": "n8n Evaluations 功能示範：AI 項目分類",
+            "description": "這個工作流程展示 n8n 的 Evaluations 功能，使用 AI 模型自動分類項目為「動物」或「水果」。系統從 Google Sheets 讀取測試資料，透過 AI Agent 進行分類，並將結果寫回試算表進行評估和比較。這是一個完整的 AI 模型評估範例，適合用於測試不同 AI 模型的分類準確度。\n\n主要功能：\n\n資料集整合：從 Google Sheets 讀取測試項目\nAI 分類：使用 OpenRouter 的 Gemma 模型進行項目分類\n結果評估：將 AI 分類結果與標準答案進行比較\n自動化測試：批量處理多個測試項目\n準確度分析：評估 AI 模型的分類準確度",
+            "detailedDescription": [
+                "使用 n8n Evaluation Trigger 從 Google Sheets 讀取測試資料",
+                "透過 AI Agent 使用 OpenRouter Gemma 模型進行項目分類",
+                "系統提示詞設計確保只回答「動物」或「水果」",
+                "使用 Evaluation 節點將結果寫回 Google Sheets",
+                "支援批量測試和準確度統計",
+                "提供完整的 AI 模型評估流程範例"
+            ],
+            "tags": ["自動化", "AI", "評估", "分類", "Google Sheets", "OpenRouter", "測試", "範例"],
+            "nodes": 5,
+            "createdAt": "2025-01-15",
+            "updatedAt": "2025-01-15",
+            "setup": {
+                "prerequisites": "需要設定 Google Sheets API 和 OpenRouter API 存取權限",
+                "steps": [
+                    {
+                        "title": "Google Sheets 設定",
+                        "description": "準備測試資料集和結果記錄表",
+                        "options": [
+                            "複製範例 Google Sheets 模板",
+                            "設定 OAuth 2.0 認證",
+                            "確認工作表包含 item 和 category 欄位",
+                            "授予讀寫權限"
+                        ]
+                    },
+                    {
+                        "title": "OpenRouter 設定",
+                        "description": "設定 OpenRouter API 用於 AI 模型存取",
+                        "options": [
+                            "註冊 OpenRouter 帳號",
+                            "取得 API 金鑰",
+                            "選擇適當的模型（範例使用 google/gemma-3-1b-it:free）",
+                            "測試 API 連接"
+                        ]
+                    },
+                    {
+                        "title": "測試資料準備",
+                        "description": "準備用於評估的測試項目",
+                        "options": [
+                            "在 Google Sheets 中新增測試項目",
+                            "確保每個項目都有正確的分類標籤",
+                            "建議準備至少 10-20 個測試項目",
+                            "包含明確和模糊的分類案例"
+                        ]
+                    }
+                ]
+            },
+            "examples": [
+                {
+                    "title": "基本評估範例",
+                    "description": "展示如何設定基本的 AI 分類評估流程",
+                    "code": {
+                        "trigger": "evaluation_trigger",
+                        "actions": [
+                            "read_test_data",
+                            "ai_classification",
+                            "write_results",
+                            "calculate_accuracy"
+                        ]
+                    }
+                },
+                {
+                    "title": "測試資料範例",
+                    "description": "範例測試資料格式",
+                    "code": {
+                        "testItems": [
+                            {"item": "蘋果", "category": "水果"},
+                            {"item": "狗", "category": "動物"},
+                            {"item": "香蕉", "category": "水果"},
+                            {"item": "貓", "category": "動物"},
+                            {"item": "橘子", "category": "水果"}
+                        ]
+                    }
+                }
+            ],
+            "fields": {
+                "googleSheets": {
+                    "title": "Google Sheets 設定",
+                    "fields": {
+                        "documentId": {
+                            "type": "string",
+                            "description": "Google Sheets 文件 ID",
+                            "example": "1GbBAstiyRiC8Dqri59wDRgeCRVNwWotokpcqCa0WhY8"
+                        },
+                        "sheetName": {
+                            "type": "string",
+                            "description": "工作表名稱",
+                            "default": "light"
+                        },
+                        "itemColumn": {
+                            "type": "string",
+                            "description": "項目欄位名稱",
+                            "default": "item"
+                        },
+                        "categoryColumn": {
+                            "type": "string",
+                            "description": "分類欄位名稱",
+                            "default": "category"
+                        }
+                    }
+                },
+                "openRouter": {
+                    "title": "OpenRouter 設定",
+                    "fields": {
+                        "model": {
+                            "type": "string",
+                            "description": "AI 模型名稱",
+                            "default": "google/gemma-3-1b-it:free"
+                        },
+                        "apiKey": {
+                            "type": "string",
+                            "description": "OpenRouter API 金鑰",
+                            "example": "YOUR_OPENROUTER_API_KEY"
+                        }
+                    }
+                },
+                "aiAgent": {
+                    "title": "AI Agent 設定",
+                    "fields": {
+                        "systemMessage": {
+                            "type": "string",
+                            "description": "系統提示詞",
+                            "default": "你是一個專業的分類助手。請判斷給定的項目是「動物」還是「水果」。\n\n規則：\n- 如果是動物，請回答「動物」\n- 如果是水果，請回答「水果」  \n- 只能回答這兩個選項之一\n- 不要解釋原因，只要分類結果"
+                        },
+                        "promptTemplate": {
+                            "type": "string",
+                            "description": "提示詞模板",
+                            "default": "請分類以下項目：\n{{ $json.item }}\n\n回答"
+                        }
+                    }
+                },
+                "evaluation": {
+                    "title": "評估設定",
+                    "fields": {
+                        "outputName": {
+                            "type": "string",
+                            "description": "輸出欄位名稱",
+                            "default": "ai_category"
+                        },
+                        "compareWithOriginal": {
+                            "type": "boolean",
+                            "description": "是否與原始分類比較",
+                            "default": true
+                        }
+                    }
+                }
+            }
+        },
         "gmail_parse_invoice_to_sheet_and_analyze": {
             "id": "gmail_parse_invoice_to_sheet_and_analyze",
             "title": "Gmail 電子發票轉存 Google Sheet + AI 分析消費",
