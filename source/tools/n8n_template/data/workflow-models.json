@@ -14,8 +14,8 @@
             ],
             "tags": ["自動化", "AI", "評估", "分類", "Google Sheets", "OpenRouter", "測試", "範例"],
             "nodes": 5,
-            "createdAt": "2025-01-15",
-            "updatedAt": "2025-01-15",
+            "createdAt": "2025-06-01",
+            "updatedAt": "2025-06-01",
             "setup": {
                 "prerequisites": "需要設定 Google Sheets API 和 OpenRouter API 存取權限",
                 "steps": [
