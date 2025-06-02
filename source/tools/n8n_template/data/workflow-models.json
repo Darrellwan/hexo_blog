@@ -1,5 +1,151 @@
 {
     "models": {
+
+        "meta-challenge-respond": {
+            "id": "meta_challenge_respond",
+            "title": "Meta Webhook Challenge 驗證回應",
+            "description": "這個工作流程用於處理 Meta（Facebook）平台的 Webhook 驗證挑戰。當設定 Facebook/Instagram Webhook 時，Meta 會發送一個驗證請求，包含 hub.challenge 參數，此工作流程會自動回應該挑戰值以完成 Webhook 驗證程序。這是設定 Meta API 整合時的必要步驟。\n\n主要功能：\n\nWebhook 驗證：接收 Meta 平台的驗證請求\n自動回應：提取 hub.challenge 參數並回傳\n簡化設定：快速完成 Meta Webhook 驗證流程\n標準合規：符合 Meta 官方 Webhook 驗證要求",
+            "detailedDescription": [
+                "接收來自 Meta 平台的 Webhook 驗證請求",
+                "從查詢參數中提取 hub.challenge 值",
+                "使用 Respond to Webhook 節點回傳挑戰值",
+                "完成 Meta Webhook 驗證程序",
+                "支援 Facebook 和 Instagram API 整合",
+                "提供簡潔的兩節點解決方案"
+            ],
+            "tags": ["自動化", "Meta", "Facebook", "Instagram", "Webhook", "驗證", "API"],
+            "nodes": 2,
+            "createdAt": "2025-06-02",
+            "updatedAt": "2025-06-02",
+            "setup": {
+                "prerequisites": "需要設定 Meta Developer 應用程式和 Webhook URL",
+                "steps": [
+                    {
+                        "title": "Meta Developer 設定",
+                        "description": "在 Meta Developer Console 建立應用程式",
+                        "options": [
+                            "建立 Meta Developer 帳號",
+                            "建立新的應用程式",
+                            "選擇適當的產品（Facebook Login、Instagram API 等）",
+                            "取得應用程式 ID 和密鑰"
+                        ]
+                    },
+                    {
+                        "title": "Webhook 設定",
+                        "description": "設定 Webhook URL 和驗證",
+                        "options": [
+                            "複製 n8n Webhook URL",
+                            "在 Meta Developer Console 中設定 Webhook URL",
+                            "設定驗證 Token（可選）",
+                            "選擇要訂閱的事件類型"
+                        ]
+                    },
+                    {
+                        "title": "驗證流程",
+                        "description": "完成 Webhook 驗證",
+                        "options": [
+                            "啟動 n8n 工作流程",
+                            "在 Meta Console 中點擊「驗證並儲存」",
+                            "確認收到成功驗證訊息",
+                            "測試 Webhook 接收功能"
+                        ]
+                    }
+                ]
+            },
+            "examples": [
+                {
+                    "title": "基本驗證範例",
+                    "description": "展示如何設定基本的 Meta Webhook 驗證流程",
+                    "code": {
+                        "trigger": "webhook",
+                        "actions": [
+                            "receive_challenge",
+                            "respond_challenge"
+                        ]
+                    }
+                },
+                {
+                    "title": "驗證請求範例",
+                    "description": "Meta 發送的典型驗證請求格式",
+                    "code": {
+                        "method": "GET",
+                        "url": "https://your-n8n-instance.com/webhook/7f9491b5-b727-4f73-ae60-4c004e7fa040",
+                        "params": {
+                            "hub.mode": "subscribe",
+                            "hub.challenge": "1234567890",
+                            "hub.verify_token": "your_verify_token"
+                        }
+                    }
+                }
+            ],
+            "fields": {
+                "webhook": {
+                    "title": "Webhook 設定",
+                    "fields": {
+                        "path": {
+                            "type": "string",
+                            "description": "Webhook 路徑 ID",
+                            "example": "7f9491b5-b727-4f73-ae60-4c004e7fa040"
+                        },
+                        "responseMode": {
+                            "type": "string",
+                            "description": "回應模式",
+                            "default": "responseNode"
+                        },
+                        "httpMethod": {
+                            "type": "string",
+                            "description": "HTTP 方法",
+                            "default": "GET"
+                        }
+                    }
+                },
+                "response": {
+                    "title": "回應設定",
+                    "fields": {
+                        "respondWith": {
+                            "type": "string",
+                            "description": "回應類型",
+                            "default": "text"
+                        },
+                        "responseBody": {
+                            "type": "string",
+                            "description": "回應內容",
+                            "default": "={{ $json.query['hub.challenge'] }}"
+                        }
+                    }
+                },
+                "meta": {
+                    "title": "Meta 平台設定",
+                    "fields": {
+                        "appId": {
+                            "type": "string",
+                            "description": "Meta 應用程式 ID",
+                            "example": "YOUR_META_APP_ID"
+                        },
+                        "appSecret": {
+                            "type": "string",
+                            "description": "Meta 應用程式密鑰",
+                            "example": "YOUR_META_APP_SECRET"
+                        },
+                        "verifyToken": {
+                            "type": "string",
+                            "description": "驗證 Token（可選）",
+                            "example": "your_custom_verify_token"
+                        }
+                    }
+                },
+                "events": {
+                    "title": "事件訂閱設定",
+                    "fields": {
+                        "supportedEvents": {
+                            "type": "array",
+                            "description": "支援的事件類型",
+                            "default": ["messages", "messaging_postbacks", "messaging_optins", "message_deliveries"]
+                        }
+                    }
+                }
+            }
+        },
         "n8n-template-evaluations_demo_item": {
             "id": "evaluations_demo_item",
             "title": "n8n Evaluations 功能示範：AI 項目分類",
