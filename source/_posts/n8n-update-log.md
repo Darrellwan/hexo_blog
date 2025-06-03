@@ -72,7 +72,7 @@ editor: 新增從 canvas 右鍵選單提取 sub-workflow 的功能
 ### Respond to Webhook Node: Setting to configure outputs
 Respond to Webhook Node: 新增設定來配置輸出
 
-{% darrellImage800 n8n-1.96.0-webhook_response_configure_outputs n8n-1.96.0-webhook_response_configure_outputs.png max-800 %}
+{% darrellImage800 n8n-1.96.0-custom_output_path n8n-1.96.0-custom_output_path.png max-800 %}
 
 Respond to Webhook 多了一個選項，勾起來後可以針對 Input Output 的 path 做另外的設定
 雖然暫時想不到使用的場景有哪些
