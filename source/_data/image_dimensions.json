@@ -4493,5 +4493,25 @@
     "width": 1000,
     "height": 1000,
     "mtimeMs": 1748838029404.903
+  },
+  "/_posts/n8n-update-log/n8n-1.96.0-perplexity_node_result.png": {
+    "width": 1086,
+    "height": 2042,
+    "mtimeMs": 1748956539660.859
+  },
+  "/_posts/n8n-update-log/n8n-1.96.0-new_perplexity_node.png": {
+    "width": 1560,
+    "height": 858,
+    "mtimeMs": 1748956539794.162
+  },
+  "/_posts/n8n-update-log/n8n-1.96.0-custom_output_path.png": {
+    "width": 1710,
+    "height": 1476,
+    "mtimeMs": 1748961105971.699
+  },
+  "/_posts/n8n-update-log/n8n-1.96.0-perplexity_models.png": {
+    "width": 2200,
+    "height": 1960,
+    "mtimeMs": 1748961903554.276
   }
 }

@@ -7,16 +7,79 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2025/05/26更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.95.0，正式版本為 1.93.0
+description: n8n 的更新記錄(2025/06/03更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.97.0，正式版本為 1.95.3
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-05-26 21:39:15
+modified: 2025-06-03 21:13:15
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 1.97.0 Pre-release - 2025-06-03
+
+[Github 1.97.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.97.0)
+
+這個版本主要是 Bug 修復，沒有太多新功能，但修正了一些重要的問題：
+
+- 修正 WorkFlow 設定頁面 404 錯誤
+- 改善 CORS 標頭設定
+- 修正日誌檔案位置的絕對路徑支援
+
+
+## 1.96.0 Pre-release - 2025-06-02
+
+[Github 1.96.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.96.0)
+
+### Perplexity Node: New node
+Perplexity 新節點！
+
+但 icon 居然還是壞的😂
+
+{% darrellImage800 n8n-1.96.0-new_perplexity_node n8n-1.96.0-new_perplexity_node.png max-800 %}
+
+{% darrellImage800 n8n-1.96.0-perplexity_node_result n8n-1.96.0-perplexity_node_result.png max-800 %}
+
+代表現在不用在 Request 節點中自己串接 API 了！
+
+剛好之前有儲值一點點 Perplexity 的 API 餘額，可以更方便的用在 n8n 的場景中！
+
+這邊提供 Perplexity 的 model 該怎麼選擇 (By Claude 整理)
+
+{% darrellImage800 n8n-1.96.0-perplexity_models n8n-1.96.0-perplexity_models.png max-800 %}
+
+### editor: Add ability to extract sub-workflows to canvas context menu
+editor: 新增從 canvas 右鍵選單提取 sub-workflow 的功能
+
+
+<div style="padding:0;position:relative;"><iframe src="https://player.vimeo.com/video/1090114436?badge=0&&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;byline=false&amp;title=false&amp;muted=true" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="n8n-extract-sub_workflow-1.96.0 update"></iframe></div><script async src="https://player.vimeo.com/api/player.js"></script>
+
+超棒的更新！
+
+今天剛好才發文說 sub-workflow 的好處
+沒想到直接多了一個重要改版
+
+1.現在要拆 sub-workflow 更簡單了！
+2.把你想要拆出去的部分選起來
+3.右鍵
+4.選擇 **Extract to sub-workflow**
+5.幫 sub-workflow 取個名字
+
+就完成了！
+
+### Respond to Webhook Node: Setting to configure outputs
+Respond to Webhook Node: 新增設定來配置輸出
+
+{% darrellImage800 n8n-1.96.0-webhook_response_configure_outputs n8n-1.96.0-webhook_response_configure_outputs.png max-800 %}
+
+Respond to Webhook 多了一個選項，勾起來後可以針對 Input Output 的 path 做另外的設定
+雖然暫時想不到使用的場景有哪些
+
+但多一個 path 就代表多一種邏輯可以處理，絕對是利大於弊
+反正用不到也不用一定要打開！
+
 
 ## 1.95.0 Pre-release - 2025-05-26
 
