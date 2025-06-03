@@ -2,14 +2,20 @@
 
 ## 📚 最新文章
 
+### [n8n Evaluations 新功能介紹 - 讓 AI 工作流程更可靠的測試框架](https://www.darrelltw.com/n8n-evaluations/?utm_source=github_readme&utm_medium=referral)
+📅 2025/06/01 · 2 天前
+
+> n8n Evaluations 幫你解決 prompt 調整難題，透過測試資料集和評估指標，幫助你建立更可靠的 AI 自動化流程。本文將介紹 Light evaluations 和 Metric-based evaluations 兩種評估方式，並分享實際使用經驗。
+
+
 ### [n8n 踩到坑 - Line Invalid JSON 錯誤](https://www.darrelltw.com/n8n-debug-line-invalid-json/?utm_source=github_readme&utm_medium=referral)
-📅 2025/05/11 · 21 天前
+📅 2025/05/10 · 24 天前
 
 > n8n 踩到坑是用來記錄和說明自己和網友在 n8n 上遇到一些常見的 error 或是 bug，並且記錄一下怎麼解決，有哪些方法。這次是關於 Line Message API 中很多人在 n8n 都會遇到 invalid json 的錯誤，最有可能的原因居然就是因為一個符號？
 
 
 ### [n8n 部署-官方Cloud、Zeabur、本機部署和Glows.ai 該怎麼選](https://www.darrelltw.com/n8n-deployment/?utm_source=github_readme&utm_medium=referral)
-📅 2025/05/11 · 21 天前
+📅 2025/05/10 · 24 天前
 
 > n8n 部署全攻略：官方 Cloud、Zeabur、Docker 和 Glows.ai 方案完整比較，從成本、效能到擴展性，掌握各種部署方式的關鍵差異，找到屬於自己合適的部署方式。
 
@@ -39,7 +45,7 @@
 
 
 ### [LINE MCP Server 測試心得 - 一個 prompt 就讓 Line 發訊息給你](https://www.darrelltw.com/line-mcp-server/?utm_source=github_readme&utm_medium=referral)
-📅 2025/04/15 · 2 個月前
+📅 2025/04/14 · 2 個月前
 
 > 透過實作 LINE MCP Server，讓 Claude 等 AI 模型直接操作 LINE Messaging API 來發送訊息，並介紹幾個測試的場景
 
@@ -56,16 +62,10 @@
 > 終於等到了！n8n 資料夾功能開放，如何整理混亂的工作流程、建立多層資料夾結構，以及避免踩雷。
 
 
-### [n8n Webhook 節點](https://www.darrelltw.com/n8n-webhook/?utm_source=github_readme&utm_medium=referral)
-📅 2025/03/20 · 2 個月前
-
-> 一起來學 n8n Webhook 打造自動化流程！設定接收、處理資料，並提供案例和程式碼範例。
-
-
 ## 📊 部落格統計
-![文章總數](https://img.shields.io/badge/文章總數-95-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-193,139+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/05/31-green?style=flat-square)
+![文章總數](https://img.shields.io/badge/文章總數-96-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-196,868+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/06/03-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -88,16 +88,16 @@
 
 
 ## 🏷️ 熱門主題
-![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![n8n](https://img.shields.io/badge/n8n-14-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-14-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![AI](https://img.shields.io/badge/AI-6-orange?style=flat-square)
+![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![n8n](https://img.shields.io/badge/n8n-15-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-14-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![AI](https://img.shields.io/badge/AI-6-orange?style=flat-square)
 
 ## 📈 更新頻率
 ```text
-12月 █████░░░░░ 5篇
 01月 ████░░░░░░ 4篇
 02月 ██████░░░░ 6篇
 03月 ██████░░░░ 6篇
 04月 ████░░░░░░ 4篇
 05月 ███░░░░░░░ 3篇
+06月 █░░░░░░░░░ 1篇
 ```
 
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/user/repo/actions) 自動生成，最後更新：2025-05-31 16:17:21*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-06-03 15:46:44*
