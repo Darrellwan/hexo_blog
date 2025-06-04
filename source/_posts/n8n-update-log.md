@@ -98,7 +98,7 @@ editor: 「執行中」狀態在輸出面板中
 
 {% darrellImage800 n8n-1.95.0-show_execute_status_in_output n8n-1.95.0-show_execute_status_in_output.png max-800 %}
 
-現在 run 的時候下方 log panel 的 ouptut 會顯示一個 `Executing` 的狀態
+現在 run 的時候下方 log panel 的 output 會顯示一個 `Executing` 的狀態
 算是改善 UI 的顯示
 
 ### Editor: Add an option to sync canvas with log view
@@ -107,7 +107,7 @@ editor: 新增一個選項來同步畫布與日誌視圖
 這是一個蠻不錯的 UI 改善
 現在開啟 `Sync selection with canvas`
 
-就能看到在 Canva 選哪個節點
+就能看到在 canvas 選哪個節點
 下方的 Log 就自動跟著顯示哪個節點的資訊！
 
 <div style="padding:0;position:relative;"><iframe src="https://player.vimeo.com/video/1087741973?badge=0&&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;byline=false&amp;title=false&amp;muted=true" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="n8n-update-1.95.0-Add an option to sync canvas with log view"></iframe></div><script async src="https://player.vimeo.com/api/player.js"></script>
@@ -277,7 +277,7 @@ input output 的顯示都得到優化
 
 {% darrellImage800 n8n-1.91.0-chatgpt_generate_image_1_model_in_openai_node n8n-1.91.0-chatgpt_generate_image_1_model_in_openai_node.jpg max-800 %}
 
-之前因為沒辦法在 OpneAI 選擇 gpt-image-1 模型
+之前因為沒辦法在 OpenAI 選擇 gpt-image-1 模型
 所以都用 `Request` 節點來串 API
 
 現在可以在 OpenAI Generate Image 中直接選這個新模型來使用了喔！
@@ -511,7 +511,7 @@ N8N_ENABLED_MODULES=insights
 ```
 
 docker 部署的話需要在 docker-compose.yml 中加入
-如果你跟我一樣是在是使用 Zeabur 部署
+如果你跟我一樣是在使用 Zeabur 部署
 
 那在變數中加上
 
@@ -558,7 +558,7 @@ docker 部署的話需要在 docker-compose.yml 中加入
 比較像是在開始動手處理前，先思考要怎麼做
 
 而這個 Think Tool 不同
-他是在產生答案的時候，再思考自已的答案是否有需要補充的地方
+他是在產生答案的時候，再思考自己的答案是否有需要補充的地方
 
 {% darrellImage800 n8n-1.87.1-think_tool n8n-1.87.1-think_tool.jpg max-800 %}
 
@@ -711,12 +711,12 @@ editor: Insights summary banner (#13424) (df474f3)
 
 ### Workflow 自動對齊整理功能
 
-現在有了自動對齊整理 canva 的功能
+現在有了自動對齊整理 canvas 的功能
 叫做 Tidy
 
-這是一個在各種自動化旅程 canva 中都會有的功能
+這是一個在各種自動化旅程 canvas 中都會有的功能
 好不好用見仁見智!
-一但旅程變得複雜，有時候整理過後不見得是你要的長相
+一旦旅程變得複雜，有時候整理過後不見得是你要的長相
 
 {% darrellVideoSimple n8n-1.82.0-tidy n8n-1.82.0-tidy.webm max-800 %}
 
