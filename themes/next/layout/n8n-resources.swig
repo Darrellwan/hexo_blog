@@ -236,11 +236,13 @@ function generateItemListElements() {
         "@type": "Article",
         "name": post.title,
         "url": post.url,
+        "headline": post.title,
         "description": post.description,
         "image": post.image,
         "author": {
           "@type": "Person",
-          "name": "Darrell TW"
+          "name": "Darrell TW",
+          "url": "https://www.darrelltw.com/"
         },
         "publisher": {
           "@type": "Organization",
