@@ -43,7 +43,14 @@ sticky: 100
 ### OpenAI Chat Model Node: Update default model to gpt-4.1-mini 
 OpenAI Chat Model Node: 更新預設模型至 gpt-4.1-mini 
 
-現在 OpenAI Chat Model Node 預設模型挑整為 gpt-4.1-mini
+現在 OpenAI Chat Model Node 預設模型調整為 gpt-4.1-mini
+
+這邊也附上 4o-mini 和 4.1 mini 的模型比較
+
+{% darrellImage800 n8n-1.98.0-gpt_4.1_mini_model_compare_4o_mini n8n-1.98.0-gpt_4.1_mini_model_compare_4o_mini.png max-800 %}
+
+4.1 mini 算是比 4o-mini 貴了一些，但在調用模型的能力上應該強大不少，另外 context 也達到一百萬
+在上下文的理解上強大很多
 
 
 {% darrellImage800 n8n-1.98.0-default_gpt_4.1_mini_model n8n-1.98.0-default_gpt_4.1_mini_model.png max-800 %}
