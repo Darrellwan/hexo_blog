@@ -4563,5 +4563,30 @@
     "width": 1682,
     "height": 1962,
     "mtimeMs": 1749460208544.357
+  },
+  "/_posts/n8n-update-log/n8n-1.98.0-structure_output_demo.png": {
+    "width": 3656,
+    "height": 1476,
+    "mtimeMs": 1749706970467.567
+  },
+  "/_posts/n8n-update-log/n8n-1.98.0-structure_output_add_auto_fix.png": {
+    "width": 1826,
+    "height": 2226,
+    "mtimeMs": 1749706857600.041
+  },
+  "/_posts/n8n-update-log/n8n-1.98.0-fix_rss_node.png": {
+    "width": 1806,
+    "height": 1524,
+    "mtimeMs": 1749704060298.986
+  },
+  "/_posts/n8n-update-log/n8n-1.98.0-default_gpt_4.1_mini_model.png": {
+    "width": 1806,
+    "height": 1524,
+    "mtimeMs": 1749704386071.728
+  },
+  "/_posts/n8n-update-log/n8n-1.98.0-add_filter_in_n8n_node.png": {
+    "width": 2080,
+    "height": 1448,
+    "mtimeMs": 1749703515106.042
   }
 }

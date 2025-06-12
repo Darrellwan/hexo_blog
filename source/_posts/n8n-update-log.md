@@ -12,11 +12,57 @@ bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-06-03 21:13:15
+modified: 2025-06-12 12:30:15
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+
+## 1.98.0 Pre-release - 2025-06-12
+
+[Github 1.98.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.98.0)
+
+這版本有大量的修復！因為在 1.97 中看到 community 上不少人在討論遇到一些大大小小的 Bug
+
+### feat(n8n Node): Add missing filters
+添加缺少的 Filter
+
+在 n8n 節點中篩選 workflows 時可以更方便
+
+{% darrellImage800 n8n-1.98.0-add_filter_in_n8n_node n8n-1.98.0-add_filter_in_n8n_node.png max-800 %}
+
+### fix(RSS Read Node): Fix issue where some feeds fail to load
+修復某些 feed 無法載入的問題
+
+自己的測試之前沒有遇過類似的問題
+但有修復代表就能支援更多種 feed 網址了！
+
+{% darrellImage800 n8n-1.98.0-fix_rss_node n8n-1.98.0-fix_rss_node.png max-800 %}
+
+### OpenAI Chat Model Node: Update default model to gpt-4.1-mini 
+OpenAI Chat Model Node: 更新預設模型至 gpt-4.1-mini 
+
+現在 OpenAI Chat Model Node 預設模型挑整為 gpt-4.1-mini
+
+
+{% darrellImage800 n8n-1.98.0-default_gpt_4.1_mini_model n8n-1.98.0-default_gpt_4.1_mini_model.png max-800 %}
+
+### Structured Output Parser Node: Add auto-fix support to Strucutred Output Parser
+Structured Output Parser 新增自動修復支援
+
+這是把原本的 auto-fix 移除，變成一個可以勾選的功能
+如果 output 第一次和預期的格式不符合，就會調用 LLM 進行多一輪的修復
+
+{% darrellImage800 n8n-1.98.0-structure_output_add_auto_fix n8n-1.98.0-structure_output_add_auto_fix.png max-800 %}
+
+這是個有開啟 Output Parser 和沒有的差異 demo
+
+{% darrellImage800 n8n-1.98.0-structure_output_demo n8n-1.98.0-structure_output_demo.png max-800 %}
+
+可以看到開啟後，就已經轉成完美的 JSON object 格式了
+只是要先自己定義清楚希望輸出的格式是什麼
+或是請 AI 幫忙產生
 
 ## 1.97.0 Pre-release - 2025-06-03
 
