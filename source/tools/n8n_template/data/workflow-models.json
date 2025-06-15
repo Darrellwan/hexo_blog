@@ -1,5 +1,303 @@
 {
     "models": {
+
+        "meta-challenge-respond": {
+            "id": "meta_challenge_respond",
+            "title": "Meta Webhook Challenge 驗證回應",
+            "description": "這個工作流程用於處理 Meta（Facebook）平台的 Webhook 驗證挑戰。當設定 Facebook/Instagram Webhook 時，Meta 會發送一個驗證請求，包含 hub.challenge 參數，此工作流程會自動回應該挑戰值以完成 Webhook 驗證程序。這是設定 Meta API 整合時的必要步驟。\n\n主要功能：\n\nWebhook 驗證：接收 Meta 平台的驗證請求\n自動回應：提取 hub.challenge 參數並回傳\n簡化設定：快速完成 Meta Webhook 驗證流程\n標準合規：符合 Meta 官方 Webhook 驗證要求",
+            "detailedDescription": [
+                "接收來自 Meta 平台的 Webhook 驗證請求",
+                "從查詢參數中提取 hub.challenge 值",
+                "使用 Respond to Webhook 節點回傳挑戰值",
+                "完成 Meta Webhook 驗證程序",
+                "支援 Facebook 和 Instagram API 整合",
+                "提供簡潔的兩節點解決方案"
+            ],
+            "tags": ["自動化", "Meta", "Facebook", "Instagram", "Webhook", "驗證", "API"],
+            "nodes": 2,
+            "createdAt": "2025-06-02",
+            "updatedAt": "2025-06-02",
+            "setup": {
+                "prerequisites": "需要設定 Meta Developer 應用程式和 Webhook URL",
+                "steps": [
+                    {
+                        "title": "Meta Developer 設定",
+                        "description": "在 Meta Developer Console 建立應用程式",
+                        "options": [
+                            "建立 Meta Developer 帳號",
+                            "建立新的應用程式",
+                            "選擇適當的產品（Facebook Login、Instagram API 等）",
+                            "取得應用程式 ID 和密鑰"
+                        ]
+                    },
+                    {
+                        "title": "Webhook 設定",
+                        "description": "設定 Webhook URL 和驗證",
+                        "options": [
+                            "複製 n8n Webhook URL",
+                            "在 Meta Developer Console 中設定 Webhook URL",
+                            "設定驗證 Token（可選）",
+                            "選擇要訂閱的事件類型"
+                        ]
+                    },
+                    {
+                        "title": "驗證流程",
+                        "description": "完成 Webhook 驗證",
+                        "options": [
+                            "啟動 n8n 工作流程",
+                            "在 Meta Console 中點擊「驗證並儲存」",
+                            "確認收到成功驗證訊息",
+                            "測試 Webhook 接收功能"
+                        ]
+                    }
+                ]
+            },
+            "examples": [
+                {
+                    "title": "基本驗證範例",
+                    "description": "展示如何設定基本的 Meta Webhook 驗證流程",
+                    "code": {
+                        "trigger": "webhook",
+                        "actions": [
+                            "receive_challenge",
+                            "respond_challenge"
+                        ]
+                    }
+                },
+                {
+                    "title": "驗證請求範例",
+                    "description": "Meta 發送的典型驗證請求格式",
+                    "code": {
+                        "method": "GET",
+                        "url": "https://your-n8n-instance.com/webhook/7f9491b5-b727-4f73-ae60-4c004e7fa040",
+                        "params": {
+                            "hub.mode": "subscribe",
+                            "hub.challenge": "1234567890",
+                            "hub.verify_token": "your_verify_token"
+                        }
+                    }
+                }
+            ],
+            "fields": {
+                "webhook": {
+                    "title": "Webhook 設定",
+                    "fields": {
+                        "path": {
+                            "type": "string",
+                            "description": "Webhook 路徑 ID",
+                            "example": "7f9491b5-b727-4f73-ae60-4c004e7fa040"
+                        },
+                        "responseMode": {
+                            "type": "string",
+                            "description": "回應模式",
+                            "default": "responseNode"
+                        },
+                        "httpMethod": {
+                            "type": "string",
+                            "description": "HTTP 方法",
+                            "default": "GET"
+                        }
+                    }
+                },
+                "response": {
+                    "title": "回應設定",
+                    "fields": {
+                        "respondWith": {
+                            "type": "string",
+                            "description": "回應類型",
+                            "default": "text"
+                        },
+                        "responseBody": {
+                            "type": "string",
+                            "description": "回應內容",
+                            "default": "={{ $json.query['hub.challenge'] }}"
+                        }
+                    }
+                },
+                "meta": {
+                    "title": "Meta 平台設定",
+                    "fields": {
+                        "appId": {
+                            "type": "string",
+                            "description": "Meta 應用程式 ID",
+                            "example": "YOUR_META_APP_ID"
+                        },
+                        "appSecret": {
+                            "type": "string",
+                            "description": "Meta 應用程式密鑰",
+                            "example": "YOUR_META_APP_SECRET"
+                        },
+                        "verifyToken": {
+                            "type": "string",
+                            "description": "驗證 Token（可選）",
+                            "example": "your_custom_verify_token"
+                        }
+                    }
+                },
+                "events": {
+                    "title": "事件訂閱設定",
+                    "fields": {
+                        "supportedEvents": {
+                            "type": "array",
+                            "description": "支援的事件類型",
+                            "default": ["messages", "messaging_postbacks", "messaging_optins", "message_deliveries"]
+                        }
+                    }
+                }
+            }
+        },
+        "n8n-template-evaluations_demo_item": {
+            "id": "evaluations_demo_item",
+            "title": "n8n Evaluations 功能示範：AI 項目分類",
+            "description": "這個工作流程展示 n8n 的 Evaluations 功能，使用 AI 模型自動分類項目為「動物」或「水果」。系統從 Google Sheets 讀取測試資料，透過 AI Agent 進行分類，並將結果寫回試算表進行評估和比較。這是一個完整的 AI 模型評估範例，適合用於測試不同 AI 模型的分類準確度。\n\n主要功能：\n\n資料集整合：從 Google Sheets 讀取測試項目\nAI 分類：使用 OpenRouter 的 Gemma 模型進行項目分類\n結果評估：將 AI 分類結果與標準答案進行比較\n自動化測試：批量處理多個測試項目\n準確度分析：評估 AI 模型的分類準確度",
+            "detailedDescription": [
+                "使用 n8n Evaluation Trigger 從 Google Sheets 讀取測試資料",
+                "透過 AI Agent 使用 OpenRouter Gemma 模型進行項目分類",
+                "系統提示詞設計確保只回答「動物」或「水果」",
+                "使用 Evaluation 節點將結果寫回 Google Sheets",
+                "支援批量測試和準確度統計",
+                "提供完整的 AI 模型評估流程範例"
+            ],
+            "tags": ["自動化", "AI", "評估", "分類", "Google Sheets", "OpenRouter", "測試", "範例"],
+            "nodes": 5,
+            "createdAt": "2025-06-01",
+            "updatedAt": "2025-06-01",
+            "setup": {
+                "prerequisites": "需要設定 Google Sheets API 和 OpenRouter API 存取權限",
+                "steps": [
+                    {
+                        "title": "Google Sheets 設定",
+                        "description": "準備測試資料集和結果記錄表",
+                        "options": [
+                            "複製範例 Google Sheets 模板",
+                            "設定 OAuth 2.0 認證",
+                            "確認工作表包含 item 和 category 欄位",
+                            "授予讀寫權限"
+                        ]
+                    },
+                    {
+                        "title": "OpenRouter 設定",
+                        "description": "設定 OpenRouter API 用於 AI 模型存取",
+                        "options": [
+                            "註冊 OpenRouter 帳號",
+                            "取得 API 金鑰",
+                            "選擇適當的模型（範例使用 google/gemma-3-1b-it:free）",
+                            "測試 API 連接"
+                        ]
+                    },
+                    {
+                        "title": "測試資料準備",
+                        "description": "準備用於評估的測試項目",
+                        "options": [
+                            "在 Google Sheets 中新增測試項目",
+                            "確保每個項目都有正確的分類標籤",
+                            "建議準備至少 10-20 個測試項目",
+                            "包含明確和模糊的分類案例"
+                        ]
+                    }
+                ]
+            },
+            "examples": [
+                {
+                    "title": "基本評估範例",
+                    "description": "展示如何設定基本的 AI 分類評估流程",
+                    "code": {
+                        "trigger": "evaluation_trigger",
+                        "actions": [
+                            "read_test_data",
+                            "ai_classification",
+                            "write_results",
+                            "calculate_accuracy"
+                        ]
+                    }
+                },
+                {
+                    "title": "測試資料範例",
+                    "description": "範例測試資料格式",
+                    "code": {
+                        "testItems": [
+                            {"item": "蘋果", "category": "水果"},
+                            {"item": "狗", "category": "動物"},
+                            {"item": "香蕉", "category": "水果"},
+                            {"item": "貓", "category": "動物"},
+                            {"item": "橘子", "category": "水果"}
+                        ]
+                    }
+                }
+            ],
+            "fields": {
+                "googleSheets": {
+                    "title": "Google Sheets 設定",
+                    "fields": {
+                        "documentId": {
+                            "type": "string",
+                            "description": "Google Sheets 文件 ID",
+                            "example": "1GbBAstiyRiC8Dqri59wDRgeCRVNwWotokpcqCa0WhY8"
+                        },
+                        "sheetName": {
+                            "type": "string",
+                            "description": "工作表名稱",
+                            "default": "light"
+                        },
+                        "itemColumn": {
+                            "type": "string",
+                            "description": "項目欄位名稱",
+                            "default": "item"
+                        },
+                        "categoryColumn": {
+                            "type": "string",
+                            "description": "分類欄位名稱",
+                            "default": "category"
+                        }
+                    }
+                },
+                "openRouter": {
+                    "title": "OpenRouter 設定",
+                    "fields": {
+                        "model": {
+                            "type": "string",
+                            "description": "AI 模型名稱",
+                            "default": "google/gemma-3-1b-it:free"
+                        },
+                        "apiKey": {
+                            "type": "string",
+                            "description": "OpenRouter API 金鑰",
+                            "example": "YOUR_OPENROUTER_API_KEY"
+                        }
+                    }
+                },
+                "aiAgent": {
+                    "title": "AI Agent 設定",
+                    "fields": {
+                        "systemMessage": {
+                            "type": "string",
+                            "description": "系統提示詞",
+                            "default": "你是一個專業的分類助手。請判斷給定的項目是「動物」還是「水果」。\n\n規則：\n- 如果是動物，請回答「動物」\n- 如果是水果，請回答「水果」  \n- 只能回答這兩個選項之一\n- 不要解釋原因，只要分類結果"
+                        },
+                        "promptTemplate": {
+                            "type": "string",
+                            "description": "提示詞模板",
+                            "default": "請分類以下項目：\n{{ $json.item }}\n\n回答"
+                        }
+                    }
+                },
+                "evaluation": {
+                    "title": "評估設定",
+                    "fields": {
+                        "outputName": {
+                            "type": "string",
+                            "description": "輸出欄位名稱",
+                            "default": "ai_category"
+                        },
+                        "compareWithOriginal": {
+                            "type": "boolean",
+                            "description": "是否與原始分類比較",
+                            "default": true
+                        }
+                    }
+                }
+            }
+        },
         "gmail_parse_invoice_to_sheet_and_analyze": {
             "id": "gmail_parse_invoice_to_sheet_and_analyze",
             "title": "Gmail 電子發票轉存 Google Sheet + AI 分析消費",
@@ -772,42 +1070,90 @@
         },
         "line_message": {
             "id": "line_message",
-            "title": "Line Message API 和 Webhook 回覆",
-            "description": "這個工作流程自動化處理來自 Line 的訊息，並提供兩種主要功能：自動回覆和主動推送訊息。當使用者傳送訊息時，系統會自動回覆相同的內容；另外也可以透過 Line UID 主動發送訊息給特定使用者。\n\n主要功能：\n\n自動回覆：接收使用者訊息並自動回覆\n推送訊息：透過 Line UID 主動發送訊息給特定使用者",
+            "title": "Line Message API 完整教學範例",
+            "description": "這個工作流程提供 Line Messaging API 的完整教學範例，包含自動回覆和主動推送兩種核心功能。當使用者透過 Line 傳送訊息時，系統會自動判斷訊息類型並回覆相同內容；同時也可以透過 Line UID 主動發送訊息給特定使用者。工作流程包含豐富的 Webhook 範例，展示如何處理文字、圖片、聲音、貼圖、表情符號和位置等不同類型的訊息。\n\n主要功能：\n\n自動回覆：使用 replyToken 接收並回覆使用者訊息\n主動推送：透過 Line UID 或群組 ID 主動發送訊息\n訊息類型支援：文字、圖片、聲音、貼圖、表情符號、位置訊息\nWebhook 範例：包含完整的 JSON 格式範例供參考\n條件判斷：智能識別不同類型的 Line 事件",
             "detailedDescription": [
-                "接收 Line Webhook 訊息",
-                "自動回覆相同內容給使用者",
-                "支援主動推送訊息功能",
-                "使用 Line Messaging API"
+                "接收來自 Line 的 Webhook 訊息",
+                "條件判斷：僅處理 message 類型事件",
+                "使用 replyToken 自動回覆相同內容給使用者",
+                "支援主動推送訊息功能（需要 Line UID）",
+                "完整的 Webhook 範例說明：文字、圖片、聲音、貼圖、表情符號、位置",
+                "使用 HTTP Request 節點與 Line Messaging API 整合",
+                "包含詳細的 JSON 格式範例和參數說明"
             ],
-            "tags": ["自動化", "Line", "訊息", "Webhook", "API"],
-            "nodes": 7,
+            "tags": ["自動化", "Line", "訊息機器人", "Webhook", "API", "教學範例", "多媒體訊息"],
+            "nodes": 15,
             "createdAt": "2025-02-17",
-            "updatedAt": "2025-02-17",
+            "updatedAt": "2025-05-28",
             "setup": {
-                "prerequisites": "需要設定 Line Channel 和取得 Channel Access Token",
+                "prerequisites": "需要設定 Line Developer Console 和取得 Channel Access Token",
                 "steps": [
                     {
                         "title": "Line Developer 設定",
-                        "description": "在 Line Developer Console 設定 Webhook URL",
+                        "description": "在 Line Developer Console 建立 Channel 並設定 Webhook",
                         "options": [
-                            "建立 Line Channel",
-                            "設定 Webhook URL",
-                            "取得 Channel Access Token"
+                            "建立 Line Developer 帳號並登入",
+                            "建立新的 Messaging API Channel",
+                            "取得 Channel Access Token",
+                            "設定 Webhook URL 為 n8n 提供的 Webhook 端點",
+                            "開啟「Use webhook」選項"
+                        ]
+                    },
+                    {
+                        "title": "認證設定",
+                        "description": "在 n8n 中設定 Line API 認證",
+                        "options": [
+                            "建立 HTTP Header Auth 認證",
+                            "設定 Header Name 為 'Authorization'",
+                            "設定 Header Value 為 'Bearer YOUR_CHANNEL_ACCESS_TOKEN'"
+                        ]
+                    },
+                    {
+                        "title": "推送訊息設定",
+                        "description": "設定主動推送訊息功能",
+                        "options": [
+                            "取得目標使用者的 Line UID",
+                            "或取得群組的 Channel ID",
+                            "在 Edit Fields 節點中更新 line_uid 值"
                         ]
                     }
                 ]
             },
             "examples": [
                 {
-                    "title": "基本設定範例",
-                    "description": "展示如何設定基本的 Line 訊息處理流程",
+                    "title": "基本自動回覆範例",
+                    "description": "展示如何設定基本的 Line 訊息自動回覆流程",
                     "code": {
                         "trigger": "webhook",
                         "actions": [
+                            "receive_webhook",
                             "check_message_type",
-                            "reply_message",
+                            "reply_message"
+                        ]
+                    }
+                },
+                {
+                    "title": "主動推送訊息範例",
+                    "description": "展示如何主動發送訊息給特定使用者",
+                    "code": {
+                        "trigger": "manual",
+                        "actions": [
+                            "set_line_uid",
                             "push_message"
+                        ]
+                    }
+                },
+                {
+                    "title": "多媒體訊息處理範例",
+                    "description": "展示如何處理不同類型的 Line 訊息",
+                    "code": {
+                        "messageTypes": [
+                            "text（文字訊息）",
+                            "image（圖片訊息）",
+                            "audio（聲音訊息）",
+                            "sticker（貼圖訊息）",
+                            "location（位置訊息）",
+                            "emoji（表情符號訊息）"
                         ]
                     }
                 }
@@ -818,23 +1164,58 @@
                     "fields": {
                         "path": {
                             "type": "string",
-                            "description": "Webhook 路徑",
+                            "description": "Webhook 路徑 ID",
                             "example": "638c118e-1c98-4491-b6ff-14e2e75380b6"
+                        },
+                        "httpMethod": {
+                            "type": "string",
+                            "description": "HTTP 方法",
+                            "default": "POST"
                         }
                     }
                 },
                 "line": {
-                    "title": "Line 設定",
+                    "title": "Line API 設定",
                     "fields": {
                         "channelAccessToken": {
                             "type": "string",
                             "description": "Line Channel Access Token",
                             "example": "YOUR_CHANNEL_ACCESS_TOKEN"
                         },
+                        "replyApiUrl": {
+                            "type": "string",
+                            "description": "Line Reply API URL",
+                            "default": "https://api.line.me/v2/bot/message/reply"
+                        },
+                        "pushApiUrl": {
+                            "type": "string",
+                            "description": "Line Push API URL",
+                            "default": "https://api.line.me/v2/bot/message/push"
+                        },
                         "lineUid": {
                             "type": "string",
-                            "description": "接收者的 Line UID",
+                            "description": "接收推送訊息的 Line UID 或群組 ID",
                             "example": "Uxxxxxxxxxxxx"
+                        }
+                    }
+                },
+                "messageHandling": {
+                    "title": "訊息處理設定",
+                    "fields": {
+                        "autoReply": {
+                            "type": "boolean",
+                            "description": "是否啟用自動回覆",
+                            "default": true
+                        },
+                        "replyMessage": {
+                            "type": "string",
+                            "description": "自動回覆訊息格式",
+                            "default": "收到您的訊息 : {{原始訊息內容}}"
+                        },
+                        "supportedTypes": {
+                            "type": "array",
+                            "description": "支援的訊息類型",
+                            "default": ["text", "image", "audio", "sticker", "location"]
                         }
                     }
                 }

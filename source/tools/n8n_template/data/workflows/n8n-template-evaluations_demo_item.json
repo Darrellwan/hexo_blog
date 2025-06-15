@@ -1,0 +1,177 @@
+{
+  "name": "evaluations-demo-item",
+  "nodes": [
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1GbBAstiyRiC8Dqri59wDRgeCRVNwWotokpcqCa0WhY8",
+          "mode": "list",
+          "cachedResultName": "n8n-demo-evaluations-item_category",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1GbBAstiyRiC8Dqri59wDRgeCRVNwWotokpcqCa0WhY8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "light",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1GbBAstiyRiC8Dqri59wDRgeCRVNwWotokpcqCa0WhY8/edit#gid=0"
+        }
+      },
+      "type": "n8n-nodes-base.evaluationTrigger",
+      "typeVersion": 4.6,
+      "position": [
+        -1080,
+        120
+      ],
+      "id": "bebb08bb-429f-4c99-b228-c08f0ea0a1b5",
+      "name": "When fetching a dataset row",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "atsKA0m2aQXeL6i6",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=請分類以下項目：\n{{ $json.item }}\n\n回答",
+        "options": {
+          "systemMessage": "你是一個專業的分類助手。請判斷給定的項目是「動物」還是「水果」。\n\n規則：\n- 如果是動物，請回答「動物」\n- 如果是水果，請回答「水果」  \n- 只能回答這兩個選項之一\n- 不要解釋原因，只要分類結果\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        -860,
+        120
+      ],
+      "id": "cee555b2-285c-4c70-96fd-28441af063db",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1GbBAstiyRiC8Dqri59wDRgeCRVNwWotokpcqCa0WhY8",
+          "mode": "list",
+          "cachedResultName": "n8n-demo-evaluations-item_category",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1GbBAstiyRiC8Dqri59wDRgeCRVNwWotokpcqCa0WhY8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "light",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1GbBAstiyRiC8Dqri59wDRgeCRVNwWotokpcqCa0WhY8/edit#gid=0"
+        },
+        "outputs": {
+          "values": [
+            {
+              "outputName": "ai_category",
+              "outputValue": "={{ $json.output }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.evaluation",
+      "typeVersion": 4.6,
+      "position": [
+        -460,
+        120
+      ],
+      "id": "b4fc9024-ffeb-48a2-a889-a83e5269cee9",
+      "name": "Evaluation1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "atsKA0m2aQXeL6i6",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "google/gemma-3-1b-it:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -860,
+        340
+      ],
+      "id": "d8b1082e-21f2-4bb5-881a-867fe9f5a46c",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "WawqR9fQt40HKFpZ",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Created by darrell_tw_ \n\nAn engineer now focus on AI and Automation\n\n### contact me with following:\n[X](https://x.com/darrell_tw_)\n[Threads](https://www.threads.net/@darrell_tw_)\n[Instagram](https://www.instagram.com/darrell_tw_/)\n[Website](https://www.darrelltw.com/)\n\n\n### Test Data\n[Google Sheet](https://docs.google.com/spreadsheets/d/1GbBAstiyRiC8Dqri59wDRgeCRVNwWotokpcqCa0WhY8/copy)",
+        "height": 320,
+        "width": 400,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1560,
+        120
+      ],
+      "id": "8e138fbf-f523-4242-a4ac-63a8d207b4a5",
+      "name": "Sticky Note4"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When fetching a dataset row": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Evaluation1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "23a9a122-2108-46c0-83f9-1d821503c0c6",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "fddb3e91967f1012c95dd02bf5ad21f279fc44715f47a7a96a33433621caa253"
+  },
+  "id": "KAbjZewdqsPtqG2L",
+  "tags": []
+}

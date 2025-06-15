@@ -7,16 +7,132 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2025/05/26更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.95.0，正式版本為 1.93.0
+description: n8n 的更新記錄(2025/06/03更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.97.0，正式版本為 1.95.3
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-05-26 21:39:15
+modified: 2025-06-12 12:30:15
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+
+## 1.98.0 Pre-release - 2025-06-12
+
+[Github 1.98.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.98.0)
+
+這版本有大量的修復！因為在 1.97 中看到 community 上不少人在討論遇到一些大大小小的 Bug
+
+### feat(n8n Node): Add missing filters
+添加缺少的 Filter
+
+在 n8n 節點中篩選 workflows 時可以更方便
+
+{% darrellImage800 n8n-1.98.0-add_filter_in_n8n_node n8n-1.98.0-add_filter_in_n8n_node.png max-800 %}
+
+### fix(RSS Read Node): Fix issue where some feeds fail to load
+修復某些 feed 無法載入的問題
+
+自己的測試之前沒有遇過類似的問題
+但有修復代表就能支援更多種 feed 網址了！
+
+{% darrellImage800 n8n-1.98.0-fix_rss_node n8n-1.98.0-fix_rss_node.png max-800 %}
+
+### OpenAI Chat Model Node: Update default model to gpt-4.1-mini 
+OpenAI Chat Model Node: 更新預設模型至 gpt-4.1-mini 
+
+現在 OpenAI Chat Model Node 預設模型調整為 gpt-4.1-mini
+
+這邊也附上 4o-mini 和 4.1 mini 的模型比較
+
+{% darrellImage800 n8n-1.98.0-gpt_4.1_mini_model_compare_4o_mini n8n-1.98.0-gpt_4.1_mini_model_compare_4o_mini.png max-800 %}
+
+4.1 mini 算是比 4o-mini 貴了一些，但在調用模型的能力上應該強大不少，另外 context 也達到一百萬
+在上下文的理解上強大很多
+
+
+{% darrellImage800 n8n-1.98.0-default_gpt_4.1_mini_model n8n-1.98.0-default_gpt_4.1_mini_model.png max-800 %}
+
+### Structured Output Parser Node: Add auto-fix support to Strucutred Output Parser
+Structured Output Parser 新增自動修復支援
+
+這是把原本的 auto-fix 移除，變成一個可以勾選的功能
+如果 output 第一次和預期的格式不符合，就會調用 LLM 進行多一輪的修復
+
+{% darrellImage800 n8n-1.98.0-structure_output_add_auto_fix n8n-1.98.0-structure_output_add_auto_fix.png max-800 %}
+
+這是個有開啟 Output Parser 和沒有的差異 demo
+
+{% darrellImage800 n8n-1.98.0-structure_output_demo n8n-1.98.0-structure_output_demo.png max-800 %}
+
+可以看到開啟後，就已經轉成完美的 JSON object 格式了
+只是要先自己定義清楚希望輸出的格式是什麼
+或是請 AI 幫忙產生
+
+## 1.97.0 Pre-release - 2025-06-03
+
+[Github 1.97.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.97.0)
+
+這個版本主要是 Bug 修復，沒有太多新功能，但修正了一些重要的問題：
+
+- 修正 WorkFlow 設定頁面 404 錯誤
+- 改善 CORS 標頭設定
+- 修正日誌檔案位置的絕對路徑支援
+
+
+## 1.96.0 Pre-release - 2025-06-02
+
+[Github 1.96.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.96.0)
+
+### Perplexity Node: New node
+Perplexity 新節點！
+
+但 icon 居然還是壞的😂
+
+{% darrellImage800 n8n-1.96.0-new_perplexity_node n8n-1.96.0-new_perplexity_node.png max-800 %}
+
+{% darrellImage800 n8n-1.96.0-perplexity_node_result n8n-1.96.0-perplexity_node_result.png max-800 %}
+
+代表現在不用在 Request 節點中自己串接 API 了！
+
+剛好之前有儲值一點點 Perplexity 的 API 餘額，可以更方便的用在 n8n 的場景中！
+
+這邊提供 Perplexity 的 model 該怎麼選擇 (By Claude 整理)
+
+{% darrellImage800 n8n-1.96.0-perplexity_models n8n-1.96.0-perplexity_models.png max-800 %}
+
+### editor: Add ability to extract sub-workflows to canvas context menu
+editor: 新增從 canvas 右鍵選單提取 sub-workflow 的功能
+
+
+<div style="padding:0;position:relative;"><iframe src="https://player.vimeo.com/video/1090114436?badge=0&&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;byline=false&amp;title=false&amp;muted=true" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="n8n-extract-sub_workflow-1.96.0 update"></iframe></div><script async src="https://player.vimeo.com/api/player.js"></script>
+
+超棒的更新！
+
+今天剛好才發文說 sub-workflow 的好處
+沒想到直接多了一個重要改版
+
+1.現在要拆 sub-workflow 更簡單了！
+2.把你想要拆出去的部分選起來
+3.右鍵
+4.選擇 **Extract to sub-workflow**
+5.幫 sub-workflow 取個名字
+
+就完成了！
+
+### Respond to Webhook Node: Setting to configure outputs
+Respond to Webhook Node: 新增設定來配置輸出
+
+{% darrellImage800 n8n-1.96.0-custom_output_path n8n-1.96.0-custom_output_path.png max-800 %}
+
+Respond to Webhook 多了一個選項，勾起來後可以針對 Input Output 的 path 做另外的設定
+雖然暫時想不到使用的場景有哪些
+
+但多一個 path 就代表多一種邏輯可以處理，絕對是利大於弊
+反正用不到也不用一定要打開！
+
 
 ## 1.95.0 Pre-release - 2025-05-26
 
@@ -35,7 +151,7 @@ editor: 「執行中」狀態在輸出面板中
 
 {% darrellImage800 n8n-1.95.0-show_execute_status_in_output n8n-1.95.0-show_execute_status_in_output.png max-800 %}
 
-現在 run 的時候下方 log panel 的 ouptut 會顯示一個 `Executing` 的狀態
+現在 run 的時候下方 log panel 的 output 會顯示一個 `Executing` 的狀態
 算是改善 UI 的顯示
 
 ### Editor: Add an option to sync canvas with log view
@@ -44,7 +160,7 @@ editor: 新增一個選項來同步畫布與日誌視圖
 這是一個蠻不錯的 UI 改善
 現在開啟 `Sync selection with canvas`
 
-就能看到在 Canva 選哪個節點
+就能看到在 canvas 選哪個節點
 下方的 Log 就自動跟著顯示哪個節點的資訊！
 
 <div style="padding:0;position:relative;"><iframe src="https://player.vimeo.com/video/1087741973?badge=0&&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;byline=false&amp;title=false&amp;muted=true" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="n8n-update-1.95.0-Add an option to sync canvas with log view"></iframe></div><script async src="https://player.vimeo.com/api/player.js"></script>
@@ -214,7 +330,7 @@ input output 的顯示都得到優化
 
 {% darrellImage800 n8n-1.91.0-chatgpt_generate_image_1_model_in_openai_node n8n-1.91.0-chatgpt_generate_image_1_model_in_openai_node.jpg max-800 %}
 
-之前因為沒辦法在 OpneAI 選擇 gpt-image-1 模型
+之前因為沒辦法在 OpenAI 選擇 gpt-image-1 模型
 所以都用 `Request` 節點來串 API
 
 現在可以在 OpenAI Generate Image 中直接選這個新模型來使用了喔！
@@ -448,7 +564,7 @@ N8N_ENABLED_MODULES=insights
 ```
 
 docker 部署的話需要在 docker-compose.yml 中加入
-如果你跟我一樣是在是使用 Zeabur 部署
+如果你跟我一樣是在使用 Zeabur 部署
 
 那在變數中加上
 
@@ -495,7 +611,7 @@ docker 部署的話需要在 docker-compose.yml 中加入
 比較像是在開始動手處理前，先思考要怎麼做
 
 而這個 Think Tool 不同
-他是在產生答案的時候，再思考自已的答案是否有需要補充的地方
+他是在產生答案的時候，再思考自己的答案是否有需要補充的地方
 
 {% darrellImage800 n8n-1.87.1-think_tool n8n-1.87.1-think_tool.jpg max-800 %}
 
@@ -648,12 +764,12 @@ editor: Insights summary banner (#13424) (df474f3)
 
 ### Workflow 自動對齊整理功能
 
-現在有了自動對齊整理 canva 的功能
+現在有了自動對齊整理 canvas 的功能
 叫做 Tidy
 
-這是一個在各種自動化旅程 canva 中都會有的功能
+這是一個在各種自動化旅程 canvas 中都會有的功能
 好不好用見仁見智!
-一但旅程變得複雜，有時候整理過後不見得是你要的長相
+一旦旅程變得複雜，有時候整理過後不見得是你要的長相
 
 {% darrellVideoSimple n8n-1.82.0-tidy n8n-1.82.0-tidy.webm max-800 %}
 
