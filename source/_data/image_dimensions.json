@@ -4588,5 +4588,85 @@
     "width": 2080,
     "height": 1448,
     "mtimeMs": 1749703515106.042
+  },
+  "/_posts/n8n-update-log/n8n-1.98.0-gpt_4.1_mini_model_compare_4o_mini.png": {
+    "width": 1936,
+    "height": 2024,
+    "mtimeMs": 1749705855136.75
+  },
+  "/_posts/n8n-elevenlabs-tts/n8n_elevenlabs-voice_preview_in_website.png": {
+    "width": 980,
+    "height": 1150,
+    "mtimeMs": 1749964327044.493
+  },
+  "/_posts/n8n-elevenlabs-tts/n8n_elevenlabs-voice_features.png": {
+    "width": 1686,
+    "height": 786,
+    "mtimeMs": 1749964142312.285
+  },
+  "/_posts/n8n-elevenlabs-tts/n8n_elevenlabs-v3_alpha_release.png": {
+    "width": 996,
+    "height": 1112,
+    "mtimeMs": 1749964466152.697
+  },
+  "/_posts/n8n-elevenlabs-tts/n8n_elevenlabs-text_to_speech.png": {
+    "width": 2412,
+    "height": 996,
+    "mtimeMs": 1749911559894.579
+  },
+  "/_posts/n8n-elevenlabs-tts/n8n_elevenlabs-speech_to_text.png": {
+    "width": 2416,
+    "height": 1598,
+    "mtimeMs": 1749912502744.393
+  },
+  "/_posts/n8n-elevenlabs-tts/n8n_elevenlabs-setting_find_api_key.png": {
+    "width": 1274,
+    "height": 1092,
+    "mtimeMs": 1749908096665.233
+  },
+  "/_posts/n8n-elevenlabs-tts/n8n_elevenlabs-pricing_table.png": {
+    "width": 2384,
+    "height": 1110,
+    "mtimeMs": 1749906541141.377
+  },
+  "/_posts/n8n-elevenlabs-tts/n8n_elevenlabs-install_elevenlabs_node.png": {
+    "width": 1378,
+    "height": 1536,
+    "mtimeMs": 1749909347870.602
+  },
+  "/_posts/n8n-elevenlabs-tts/n8n_elevenlabs-find_elevenlabs_node.png": {
+    "width": 2428,
+    "height": 1372,
+    "mtimeMs": 1749908175198.615
+  },
+  "/_posts/n8n-elevenlabs-tts/n8n_elevenlabs-demo-news_summary_with_voice_telegram.png": {
+    "width": 908,
+    "height": 462,
+    "mtimeMs": 1749971580606.224
+  },
+  "/_posts/n8n-elevenlabs-tts/n8n_elevenlabs-demo-news_summary_with_voice_slack.png": {
+    "width": 1462,
+    "height": 1008,
+    "mtimeMs": 1749971314232.585
+  },
+  "/_posts/n8n-elevenlabs-tts/n8n_elevenlabs-demo-news_summary_with_voice.png": {
+    "width": 1624,
+    "height": 528,
+    "mtimeMs": 1749968282441.382
+  },
+  "/_posts/n8n-elevenlabs-tts/n8n_elevenlabs-create_elevenlabs_credentials.png": {
+    "width": 1922,
+    "height": 2128,
+    "mtimeMs": 1749909445329.136
+  },
+  "/_posts/n8n-elevenlabs-tts/n8n_elevenlabs-create_api_key.png": {
+    "width": 1206,
+    "height": 638,
+    "mtimeMs": 1749908073410.829
+  },
+  "/_posts/n8n-elevenlabs-tts/blog-n8n-elevenlabs-node-bg.jpg": {
+    "width": 1080,
+    "height": 1080,
+    "mtimeMs": 1749972755010.436
   }
 }
