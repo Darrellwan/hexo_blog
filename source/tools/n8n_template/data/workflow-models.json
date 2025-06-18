@@ -1,6 +1,177 @@
 {
     "models": {
-
+        "n8n_template_portaly_demo": {
+            "id": "n8n_template_portaly_demo",
+            "title": "Portaly 商品銷售 Webhook 自動記錄",
+            "description": "這個工作流程自動處理 Portaly 平台的商品銷售 Webhook，智能提取訂單資訊並將其儲存到 Google Sheets 中。系統會接收來自 Portaly 的銷售通知，解析固定欄位資料（如訂單ID、客戶資訊、金額等）和自訂欄位資料，然後將所有資訊整理並記錄到 Google 試算表中，方便後續分析和管理。\n\n主要功能：\n\nWebhook 接收：自動接收 Portaly 商品銷售通知\n資料解析：智能提取訂單關鍵資訊和客戶自訂欄位\n資料合併：將固定欄位和自訂欄位資料整合\nGoogle Sheets 整合：自動記錄所有訂單資訊到試算表\n即時更新：訂單發生時立即同步資料",
+            "detailedDescription": [
+                "接收來自 Portaly 平台的商品銷售 Webhook 通知",
+                "提取並整理固定欄位資料：訂單ID、產品ID、客戶資訊、金額、折扣等",
+                "使用 Split Out 節點處理客戶自訂欄位資料",
+                "透過 Code 節點將自訂欄位轉換為易讀格式",
+                "使用 Merge 節點整合所有資料",
+                "自動將完整訂單資訊儲存到 Google Sheets",
+                "支援 appendOrUpdate 模式，避免重複記錄",
+                "包含 Google Sheets 模板連結，方便快速設定"
+            ],
+            "tags": ["自動化", "Webhook", "Portaly", "Google Sheets", "訂單記錄"],
+            "nodes": 8,
+            "createdAt": "2025-06-18",
+            "updatedAt": "2025-06-18",
+            "setup": {
+                "prerequisites": "需要設定 Portaly Webhook 和 Google Sheets API 存取權限",
+                "steps": [
+                    {
+                        "title": "Portaly Webhook 設定",
+                        "description": "在 Portaly 平台設定 Webhook URL",
+                        "options": [
+                            "登入 Portaly 管理後台",
+                            "複製 n8n Webhook URL",
+                            "在 Portaly 中設定商品銷售 Webhook",
+                            "測試 Webhook 連接"
+                        ]
+                    },
+                    {
+                        "title": "Google Sheets 設定",
+                        "description": "準備用於記錄訂單資料的試算表",
+                        "options": [
+                            "複製提供的 Google Sheets 模板",
+                            "設定 OAuth 2.0 認證",
+                            "確認工作表名稱為 'Products'",
+                            "測試寫入權限"
+                        ]
+                    },
+                    {
+                        "title": "資料欄位設定",
+                        "description": "確認 Google Sheets 包含所需欄位",
+                        "options": [
+                            "基本欄位：id, productId, customerEmail, customerName 等",
+                            "金額欄位：amount, discount, feeAmount, netTotal 等",
+                            "自訂欄位：n8n 使用經驗, 簡述問題或想討論的方向 等",
+                            "系統欄位：event, paymentMethod, createdAt, timestamp"
+                        ]
+                    }
+                ]
+            },
+            "examples": [
+                {
+                    "title": "基本設定範例",
+                    "description": "展示如何設定基本的 Portaly 訂單處理流程",
+                    "code": {
+                        "trigger": "webhook",
+                        "actions": [
+                            "receive_portaly_webhook",
+                            "extract_fixed_fields",
+                            "split_custom_fields",
+                            "merge_data",
+                            "save_to_sheets"
+                        ]
+                    }
+                },
+                {
+                    "title": "Webhook 資料格式範例",
+                    "description": "展示 Portaly Webhook 的典型資料結構",
+                    "code": {
+                        "webhookData": {
+                            "event": "product.sold",
+                            "data": {
+                                "id": "order_123",
+                                "productId": "prod_456",
+                                "customerData": {
+                                    "email": "customer@example.com",
+                                    "name": "張三",
+                                    "phone": "0912345678",
+                                    "customFields": {
+                                        "n8n 使用經驗": "初學者",
+                                        "簡述問題或想討論的方向": "想了解自動化流程"
+                                    }
+                                },
+                                "amount": 1000,
+                                "discount": 100,
+                                "netTotal": 900
+                            }
+                        }
+                    }
+                }
+            ],
+            "fields": {
+                "webhook": {
+                    "title": "Webhook 設定",
+                    "fields": {
+                        "path": {
+                            "type": "string",
+                            "description": "Webhook 路徑",
+                            "default": "portaly-product-sell"
+                        },
+                        "httpMethod": {
+                            "type": "string",
+                            "description": "HTTP 方法",
+                            "default": "POST"
+                        },
+                        "webhookId": {
+                            "type": "string",
+                            "description": "Webhook ID",
+                            "example": "de63fe06-befe-43fa-ba05-d550a3196028"
+                        }
+                    }
+                },
+                "googleSheets": {
+                    "title": "Google Sheets 設定",
+                    "fields": {
+                        "documentId": {
+                            "type": "string",
+                            "description": "Google Sheets 文件 ID",
+                            "example": "1KzVbzgFAh9-am84kUTfOLIMvDXwq0f4TWdNkvUndr5Q"
+                        },
+                        "sheetName": {
+                            "type": "string",
+                            "description": "工作表名稱",
+                            "default": "Products"
+                        },
+                        "templateUrl": {
+                            "type": "string",
+                            "description": "Google Sheets 模板連結",
+                            "default": "https://docs.google.com/spreadsheets/d/1KzVbzgFAh9-am84kUTfOLIMvDXwq0f4TWdNkvUndr5Q/copy"
+                        }
+                    }
+                },
+                "dataProcessing": {
+                    "title": "資料處理設定",
+                    "fields": {
+                        "operation": {
+                            "type": "string",
+                            "description": "Google Sheets 操作模式",
+                            "default": "appendOrUpdate"
+                        },
+                        "matchingColumns": {
+                            "type": "array",
+                            "description": "用於比對的欄位",
+                            "default": ["id"]
+                        },
+                        "autoMapInputData": {
+                            "type": "boolean",
+                            "description": "自動對應輸入資料",
+                            "default": true
+                        }
+                    }
+                },
+                "customFields": {
+                    "title": "自訂欄位處理",
+                    "fields": {
+                        "splitField": {
+                            "type": "string",
+                            "description": "要分割的欄位路徑",
+                            "default": "body.data.customerData.customFields"
+                        },
+                        "extractionMethod": {
+                            "type": "string",
+                            "description": "提取方式",
+                            "default": "javascript_code"
+                        }
+                    }
+                }
+            }
+        },
         "meta-challenge-respond": {
             "id": "meta_challenge_respond",
             "title": "Meta Webhook Challenge 驗證回應",
