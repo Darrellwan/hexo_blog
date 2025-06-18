@@ -7,16 +7,52 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2025/06/03更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.97.0，正式版本為 1.95.3
+description: n8n 的更新記錄(2025/06/18 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.99.0，正式版本為 1.98.1
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-06-12 12:30:15
+modified: 2025-06-18 10:54:15
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 1.99.0 Pre-release - 2025-06-18
+
+[Github 1.99.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.99.0)
+
+### core: Add number of tokens and latency automatically as metrics in evaluation 
+在評估中自動添加 token 數量和延遲作為指標
+
+{% darrellImage800 n8n-1.99.0-evaluations_add_token_metric n8n-1.99.0-evaluations_add_token_metric.png max-800 %}
+
+增加了在 Evaluation tab 中顯示的資訊
+包含的測試時使用的 token 數
+
+{% darrellImage800 n8n-1.99.0-evaluations_add_token_metric_2 n8n-1.99.0-evaluations_add_token_metric_2.png max-800 %}
+
+
+### MCP Server Trigger Node: Support for Streamable HTTP transport in MCP Server
+
+{% darrellImage800 n8n-1.99.0-mcp_server_add_support_http_streamtable n8n-1.99.0-mcp_server_add_support_http_streamtable.png max-800 %}
+
+MCP Server 節點中新增了 Streamable HTTP transport 的支持
+使用者無須調整設定
+直接使用新版的節點就好，也支援原本的 SSE 方式
+
+### editor: Change default node names depending on node operation and resource
+editor: 依據節點操作和資源來改變預設的節點名稱
+
+超讚的改善！
+以往新增 tool 時，例如 drive 就會有好幾個，掛在同一個 agent 中
+這時候就需要自己慢慢重新命名
+
+現在會根據你選的 action 來自動調整，例如 `download drive`
+
+
+{% darrellImage800 n8n-1.99.0-node_name_will_change_automatically_based_on_action n8n-1.99.0-node_name_will_change_automatically_based_on_action.png max-800 %}
+
 
 
 ## 1.98.0 Pre-release - 2025-06-12
