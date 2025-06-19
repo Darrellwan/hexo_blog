@@ -47,7 +47,7 @@ Create a multi-branch workflow that is triggered by a webhook with user input, l
 其實 AI 產生的模板大方向正確
 但可行性或許後續再來安排測試
 厲害的是不只會產生**模板**，還會產生**註解說明**
-讓使用者更能了解每個節點的組用
+讓使用者更能了解每個節點的作用
 
 另外我也用中文來做嘗試
 
@@ -65,7 +65,7 @@ Create a multi-branch workflow that is triggered by a webhook with user input, l
 
 官方版本的優點有很多
 1. 穩定可靠：不用擔心維護的問題
-2. 授權簡單：Googel OAuth 直接串接，其他做法都需要自己建立 Google Cloud 專案
+2. 授權簡單：Google OAuth 直接串接，其他做法都需要自己建立 Google Cloud 專案
 3. 更新容易：能簡單的更新到最新的正式版本
 4. AI 輔助：如上面介紹，官方版本的 AI 產生模板或是問答有一定的水準，可能不是最好用，但很多情況應該很夠用了
 
@@ -133,7 +133,7 @@ Zeabur 相信是台灣的 n8n 使用者中討論度最高的另一個方案
 2. 部署簡單：部署的模板有維護更新，也能自由選擇部署版本
 3. 支援即時：有 Discord 可以詢問遇到的問題
 4. 網域：如果 local 部署，會需要自行處理網率來接收串接資料
-5. n8n 開源社群版本無限制旅程和執行數！
+5. n8n 開源社群版本無限制工作流程和執行數！
 
 ### 缺點
 
@@ -164,7 +164,7 @@ Zeabur 相信是台灣的 n8n 使用者中討論度最高的另一個方案
 ### 缺點
 
 1. 如果要接收 webhook 等串接，需要網域(Ngrok、Cloudflare Tunnel等額外服務)
-2. 24小時有排程等旅程，或許電腦無法關機
+2. 24小時有排程等工作流程，或許電腦無法關機
 3. 潛在的安全性問題，n8n 服務如果對外，就算是多一個入口
 要有更高的資安意識
 
@@ -174,7 +174,7 @@ Zeabur 相信是台灣的 n8n 使用者中討論度最高的另一個方案
 {% darrellImage800 n8n_glowsai-intro n8n_glowsai-intro.jpg max-800 %}
 
 Glows ai 可能大家就比較不會把他跟 n8n 連想再一起
-這是一間提供雲端運算服務的平台，你可以在上面直接租用 4090, 5090, H100 等 GPU 的運算服務
+這是一間提供雲端運算服務的平台，你可以在上面直接租用 4090、5090、H100 等 GPU 的運算服務
 並且他還提供多種 Image 可以選擇
 
 {% darrellImage800 n8n_glowsai-images n8n_glowsai-images.png max-800 %}

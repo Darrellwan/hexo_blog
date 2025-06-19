@@ -91,7 +91,7 @@ OpenAI Chat Model Node: 更新預設模型至 gpt-4.1-mini
 
 {% darrellImage800 n8n-1.98.0-default_gpt_4.1_mini_model n8n-1.98.0-default_gpt_4.1_mini_model.png max-800 %}
 
-### Structured Output Parser Node: Add auto-fix support to Strucutred Output Parser
+### Structured Output Parser Node: Add auto-fix support to Structured Output Parser
 Structured Output Parser 新增自動修復支援
 
 這是把原本的 auto-fix 移除，變成一個可以勾選的功能
@@ -135,7 +135,7 @@ Perplexity 新節點！
 
 剛好之前有儲值一點點 Perplexity 的 API 餘額，可以更方便的用在 n8n 的場景中！
 
-這邊提供 Perplexity 的 model 該怎麼選擇 (By Claude 整理)
+這邊提供 Perplexity 的模型該怎麼選擇（由 Claude 整理）
 
 {% darrellImage800 n8n-1.96.0-perplexity_models n8n-1.96.0-perplexity_models.png max-800 %}
 
@@ -252,7 +252,7 @@ Sub Workflow 的 Trigger 中，現在可以丟 binary data ！
 
 > We removed this prior in case it made our lives easier, but it's just proven a missing feature.
 
-看來有點像是任命，還是得做的感覺😂
+看來有點像是認命，還是得做的感覺😂
 
 {% darrellImage800 n8n-1.94.0-subworkflow_accept_binary n8n-1.94.0-subworkflow_accept_binary.png max-800 %}
 
