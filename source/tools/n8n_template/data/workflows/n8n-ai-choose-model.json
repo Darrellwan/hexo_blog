@@ -1,0 +1,493 @@
+{
+  "name": "n8n-ai-choose-model",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -580,
+        0
+      ],
+      "id": "276254da-2227-4e23-aab6-f119f1825dd4",
+      "name": "When chat message received",
+      "webhookId": "9f9e4bb2-3267-4db5-9da2-de162f3f1001"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('When chat message received').item.json.chatInput }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        100,
+        0
+      ],
+      "id": "cf6049fe-0c54-4b60-862d-feef9f1f9006",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "numberInputs": 5,
+        "rules": {
+          "rule": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "f127b049-1832-463c-b332-d080007f0f4b",
+                    "leftValue": "={{ $json.output.model }}",
+                    "rightValue": "gpt-4.1-mini",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 2,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "c95b79b6-0946-4d67-adb3-ab3537ecf093",
+                    "leftValue": "={{ $json.output.model }}",
+                    "rightValue": "gpt-4.1-nano",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 3,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "7e54d704-aca0-42f5-98f4-189bbd1b2677",
+                    "leftValue": "={{ $json.output.model }}",
+                    "rightValue": "gpt-4.1",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 4,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "096b8ef5-f05b-4bb6-b895-791bf8f45c65",
+                    "leftValue": "={{ $json.output.model }}",
+                    "rightValue": "o3",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "modelIndex": 5,
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "99541c0f-ac06-4ab4-ba32-05d904ed4060",
+                    "leftValue": "={{ $json.output.model }}",
+                    "rightValue": "gpt-4o-mini",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.modelSelector",
+      "typeVersion": 1,
+      "position": [
+        80,
+        220
+      ],
+      "id": "7db23a66-71af-4832-91b7-28ec164b5750",
+      "name": "Model Selector"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -360,
+        420
+      ],
+      "id": "4993d770-9b09-4eac-8289-11bff8dfb552",
+      "name": "gpt-4.1-mini",
+      "credentials": {
+        "openAiApi": {
+          "id": "T7hDvemgU14rW0yI",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1-nano",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1-nano"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        415
+      ],
+      "id": "17b8ea7a-9b36-46bc-947d-201a3763366e",
+      "name": "gpt-4.1-nano",
+      "credentials": {
+        "openAiApi": {
+          "id": "T7hDvemgU14rW0yI",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        120,
+        415
+      ],
+      "id": "1c58a831-793a-446a-b457-fa04785ec5da",
+      "name": "gpt-4.1",
+      "credentials": {
+        "openAiApi": {
+          "id": "T7hDvemgU14rW0yI",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        360,
+        415
+      ],
+      "id": "0398f472-1c6f-4231-8c0e-d33bf56a0fe3",
+      "name": "gpt-4o-mini",
+      "credentials": {
+        "openAiApi": {
+          "id": "T7hDvemgU14rW0yI",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "o3",
+          "mode": "list",
+          "cachedResultName": "o3"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        240,
+        415
+      ],
+      "id": "281027f0-492a-40c9-89bc-4fe0b7b029ef",
+      "name": "o3",
+      "credentials": {
+        "openAiApi": {
+          "id": "T7hDvemgU14rW0yI",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=你是 Model Router，根據請求選擇最適合且最省成本的模型。\n\n判斷規則（依序評估，符合即輸出模型名稱）：\n\n1. gpt-4.1-nano\n   - 簡單查詢、基礎翻譯、格式轉換\n   - 輸入 < 4K tokens\n   - 無需推理或創意\n\n2. gpt-4o-mini\n   - 文章摘要、短篇創作（≤3段）\n   - 基礎對話、簡單分析\n   - 輸入 < 16K tokens\n\n3. gpt-4.1-mini\n   - 專業文案、程式碼生成\n   - 多語言內容、教學文章\n   - 輸入 < 32K tokens\n\n4. o3\n   - 複雜推理（數學證明、邏輯推導）\n   - 多步驟任務規劃\n   - 需要工具鏈整合（Python/SQL/API）\n\n5. gpt-4.1\n   - 輸入 ≥ 32K tokens\n   - 高風險領域（法律/醫療/金融）\n   - 需要最高準確度\n\n輸出格式：僅模型名稱（單行）"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        -360,
+        0
+      ],
+      "id": "066d47cb-70d1-47b9-92b4-b8a91cb4fc7a",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"model\": \"o3\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        -200,
+        140
+      ],
+      "id": "c417adcc-8b92-4f74-b93a-e87103a5ec7e",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "content": "## Created by darrell_tw_ \n\n### contact me with following:\n[Website](https://www.darrelltw.com/)\n[X](https://x.com/darrell_tw_)\n[Threads](https://www.threads.net/@darrell_tw_)\n[Instagram](https://www.instagram.com/darrell_tw_/)\n[Portaly](https://portaly.cc/darrelltw)\n![](https://pub-c093258f61a1463ea03e1a40c141968a.r2.dev/darrell-icon-128.svg)",
+        "height": 360,
+        "width": 280,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -700,
+        180
+      ],
+      "id": "1e70485f-aa3b-4cc1-a6e6-7a1f0cc9c9b9",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "## AI Choose Model Prompt",
+        "height": 180,
+        "width": 320
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -380,
+        -60
+      ],
+      "id": "27f5609c-cadc-45ef-8fa2-8f7f1aa0817b",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## 活動資訊\n\nNaval：「用科技放大你的能量」（leverage technology to amplify your energy），不只是想教你操作流程，更要帶你思考。\n\n**【結束課程能帶走什麼？】**\n\n- 認識 n8n 介面與核心節點用法\n- 建立 zeabur 雲端環境，一鍵部署 workflow\n- 實作 Google API 串接\n- 拿走 2 大模版：履歷自動化 & 電子發票記帳\n- 帶走一套「流程架構化＋故事化呈現」的方法論\n- 思考你的痛點：分組模組討論\n\n**早鳥優惠價：只要 NT 999 元，**名額有限（到 6/29 為止）\n🔥 報名連結：https://p.accu.ps/7rdllj\n\n![](https://pub-c093258f61a1463ea03e1a40c141968a.r2.dev/VV02_(1).webp)",
+        "height": 1040,
+        "width": 1240,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        500,
+        -240
+      ],
+      "id": "a1555e4a-6ce9-45e6-8ad7-df7e7cdea144",
+      "name": "Sticky Note5"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Model Selector": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "gpt-4.1-mini": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "gpt-4.1-nano": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "gpt-4.1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector",
+            "type": "ai_languageModel",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "gpt-4o-mini": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector",
+            "type": "ai_languageModel",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "o3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Model Selector",
+            "type": "ai_languageModel",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "4a853435-1897-471e-9af8-9bb6d9a23abc",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "c0dca30a86be5969a9ab22987c12df9ca5c8682c972e0ee25dbae1f95ea3e13d"
+  },
+  "id": "P7FeGFVq8nIIikQb",
+  "tags": []
+}
