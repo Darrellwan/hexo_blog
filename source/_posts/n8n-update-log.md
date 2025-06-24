@@ -7,16 +7,27 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2025/06/18 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.99.0，正式版本為 1.98.1
+description: n8n 的更新記錄(2025/06/24 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.100.0，正式版本為 1.99.1
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-06-18 10:54:15
+modified: 2025-06-24 16:31:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 1.100.0 Pre-release - 2025-06-23
+
+[Github 1.100.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.100.0)
+
+### Model Selector Node: 新增 AI 模型選擇節點
+新增了一個專門的 Model Selector 節點，讓你可以更靈活地在不同 AI 模型之間切換，特別適合需要根據不同情境選擇最適合模型的場景。
+
+{% darrellImage800 n8n-1.100.0-model_selector_node n8n-1.100.0-model_selector_node.png max-800 %}
+
+### Google Ads Node: 從已棄用的 v17 API 遷移到新版本
 
 ## 1.99.0 Pre-release - 2025-06-18
 
