@@ -4672,7 +4672,7 @@
   "/_posts/n8n-update-log/n8n-1.99.0-node_name_will_change_automatically_based_on_action.png": {
     "width": 1710,
     "height": 2496,
-    "mtimeMs": 1750224564615.972
+    "mtimeMs": 1750230465756.691
   },
   "/_posts/n8n-update-log/n8n-1.99.0-mcp_server_add_support_http_streamtable.png": {
     "width": 2096,
@@ -4693,5 +4693,10 @@
     "width": 800,
     "height": 800,
     "mtimeMs": 1750220987174.45
+  },
+  "/tools/n8n_template/data/bg/n8n-ai-choose-model.webp": {
+    "width": 1024,
+    "height": 1024,
+    "mtimeMs": 1750753113258.265
   }
 }
