@@ -1,5 +1,163 @@
 {
     "models": {
+        "n8n-ai-choose-model": {
+            "id": "n8n-ai-choose-model",
+            "title": "AI 選 AI 模型",
+            "description": "這個工作流程提供智能 AI 模型選擇功能，根據使用者的請求內容自動判斷並路由到最適合且最省成本的 OpenAI 模型。系統包含模型路由器，能夠根據請求的複雜度、輸入長度和任務類型，在 gpt-4.1-nano、gpt-4o-mini、gpt-4.1-mini、o3 和 gpt-4.1 之間智能選擇最合適的模型，確保在成本效益和性能之間取得最佳平衡。\n\n主要功能：\n\n智能路由：根據請求內容自動選擇最適合的 AI 模型\n成本優化：優先選擇成本較低但能滿足需求的模型\n多模型支援：整合五種不同的 OpenAI 模型\n結構化輸出：使用 JSON 格式回傳模型選擇結果\n聊天介面：提供友善的對話式操作界面",
+            "detailedDescription": [
+                "接收使用者的聊天輸入並分析請求內容",
+                "使用專業的模型路由器分析請求的複雜度和需求",
+                "根據輸入長度、任務類型和複雜度選擇最適合的模型",
+                "支援 gpt-4.1-nano（簡單查詢）、gpt-4o-mini（基礎對話）、gpt-4.1-mini（專業內容）、o3（複雜推理）、gpt-4.1（高精度任務）",
+                "使用結構化輸出解析器確保回傳格式正確",
+                "透過模型選擇器將請求路由到對應的 AI 模型",
+                "提供完整的成本效益分析和模型使用建議"
+            ],
+            "tags": ["自動化", "AI", "模型選擇", "OpenAI", "路由器", "成本優化", "聊天機器人"],
+            "nodes": 11,
+            "createdAt": "2025-06-24",
+            "updatedAt": "2025-06-24",
+            "setup": {
+                "prerequisites": "需要設定 OpenAI API 存取權限",
+                "steps": [
+                    {
+                        "title": "OpenAI API 設定",
+                        "description": "設定 OpenAI API 認證資訊",
+                        "options": [
+                            "取得 OpenAI API 金鑰",
+                            "在 n8n 中建立 OpenAI 認證",
+                            "確認可存取所有需要的模型",
+                            "測試 API 連線"
+                        ]
+                    },
+                    {
+                        "title": "模型權限確認",
+                        "description": "確認 OpenAI 帳號可使用所有模型",
+                        "options": [
+                            "確認 gpt-4.1-nano 存取權限",
+                            "確認 gpt-4o-mini 存取權限",
+                            "確認 gpt-4.1-mini 存取權限", 
+                            "確認 o3 存取權限",
+                            "確認 gpt-4.1 存取權限"
+                        ]
+                    },
+                    {
+                        "title": "聊天介面設定",
+                        "description": "設定聊天觸發器和 Webhook",
+                        "options": [
+                            "啟用聊天觸發器",
+                            "設定 Webhook URL",
+                            "測試聊天介面功能"
+                        ]
+                    }
+                ]
+            },
+            "examples": [
+                {
+                    "title": "基本模型選擇範例",
+                    "description": "展示如何根據請求選擇適合的模型",
+                    "code": {
+                        "trigger": "chat",
+                        "actions": [
+                            "analyze_request",
+                            "select_model",
+                            "route_to_model",
+                            "return_response"
+                        ]
+                    }
+                },
+                {
+                    "title": "模型選擇規則範例",
+                    "description": "展示不同類型請求的模型選擇邏輯",
+                    "code": {
+                        "rules": [
+                            {
+                                "model": "gpt-4.1-nano",
+                                "conditions": ["簡單查詢", "基礎翻譯", "格式轉換", "輸入 < 4K tokens"]
+                            },
+                            {
+                                "model": "gpt-4o-mini", 
+                                "conditions": ["文章摘要", "短篇創作", "基礎對話", "輸入 < 16K tokens"]
+                            },
+                            {
+                                "model": "gpt-4.1-mini",
+                                "conditions": ["專業文案", "程式碼生成", "多語言內容", "輸入 < 32K tokens"]
+                            },
+                            {
+                                "model": "o3",
+                                "conditions": ["複雜推理", "多步驟任務", "工具鏈整合"]
+                            },
+                            {
+                                "model": "gpt-4.1",
+                                "conditions": ["輸入 ≥ 32K tokens", "高風險領域", "最高準確度"]
+                            }
+                        ]
+                    }
+                }
+            ],
+            "fields": {
+                "openai": {
+                    "title": "OpenAI 設定",
+                    "fields": {
+                        "apiKey": {
+                            "type": "string",
+                            "description": "OpenAI API 金鑰",
+                            "example": "YOUR_OPENAI_API_KEY"
+                        },
+                        "supportedModels": {
+                            "type": "array",
+                            "description": "支援的模型列表",
+                            "default": ["gpt-4.1-nano", "gpt-4o-mini", "gpt-4.1-mini", "o3", "gpt-4.1"]
+                        }
+                    }
+                },
+                "modelSelector": {
+                    "title": "模型選擇器設定",
+                    "fields": {
+                        "routingLogic": {
+                            "type": "string",
+                            "description": "路由邏輯",
+                            "default": "cost_optimized"
+                        },
+                        "fallbackModel": {
+                            "type": "string",
+                            "description": "預設模型（當無法判斷時使用）",
+                            "default": "gpt-4o-mini"
+                        }
+                    }
+                },
+                "chat": {
+                    "title": "聊天介面設定",
+                    "fields": {
+                        "webhookId": {
+                            "type": "string",
+                            "description": "聊天觸發器 Webhook ID",
+                            "example": "9f9e4bb2-3267-4db5-9da2-de162f3f1001"
+                        },
+                        "responseMode": {
+                            "type": "string",
+                            "description": "回應模式",
+                            "default": "streaming"
+                        }
+                    }
+                },
+                "outputParser": {
+                    "title": "輸出解析設定",
+                    "fields": {
+                        "outputFormat": {
+                            "type": "string",
+                            "description": "輸出格式",
+                            "default": "json"
+                        },
+                        "structuredSchema": {
+                            "type": "object",
+                            "description": "結構化輸出格式",
+                            "default": {"model": "string"}
+                        }
+                    }
+                }
+            }
+        },
         "n8n_template_portaly_demo": {
             "id": "n8n_template_portaly_demo",
             "title": "Portaly 商品銷售 Webhook 自動記錄",
