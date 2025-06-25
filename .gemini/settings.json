@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "line-chatbot": {
+      "command": "/opt/homebrew/bin/node",
+      "args": [
+        "/Users/darrellwang/Darrell/code/cursor_demo/mcp_dev_demo/line/line-bot-mcp-server/dist/index.js"
+      ],
+      "env": {
+        "CHANNEL_ACCESS_TOKEN" : "xpCAqjWcZOzXk/h/y0gL4hkfIyBkbc6UWZi4ES12MOFjZ/uRxNSB+zxxstXVZBS2cvgseF7kl6cmVMvxWZsurkepTfN0EJsRBIdM6Wt33gw0UG1q6LPiAf3aaErg75xRI6Ujq6sdlcbkmYF7BXDkngdB04t89/1O/w1cDnyilFU=",
+        "DESTINATION_USER_ID" : "Uf297c04a8159ce62427d831365aee7dd"
+      }
+    }
+  }
+}

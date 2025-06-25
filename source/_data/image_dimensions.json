@@ -4703,5 +4703,70 @@
     "width": 1310,
     "height": 878,
     "mtimeMs": 1750753951406.379
+  },
+  "/_posts/google-gemini-cli/blog-gemini-cli-bg.jpg": {
+    "width": 1080,
+    "height": 1080,
+    "mtimeMs": 1750867288895.202
+  },
+  "/_posts/google-gemini-cli/gemini_cli-weather_animation.png": {
+    "width": 657,
+    "height": 925,
+    "mtimeMs": 1750868285853.407
+  },
+  "/_posts/google-gemini-cli/gemini_cli-editor.png": {
+    "width": 2906,
+    "height": 592,
+    "mtimeMs": 1750868759115.511
+  },
+  "/_posts/google-gemini-cli/gemini_cli-chat.png": {
+    "width": 968,
+    "height": 494,
+    "mtimeMs": 1750868620160.711
+  },
+  "/_posts/google-gemini-cli/gemini-generate_login_auth.png": {
+    "width": 890,
+    "height": 350,
+    "mtimeMs": 1750867601867.26
+  },
+  "/_posts/google-gemini-cli/gemini-generate_api_key.png": {
+    "width": 2560,
+    "height": 1946,
+    "mtimeMs": 1750867475444.573
+  },
+  "/_posts/google-gemini-cli/claude_code-weather_animation.png": {
+    "width": 866,
+    "height": 808,
+    "mtimeMs": 1750868963487.92
+  },
+  "/_posts/google-gemini-cli/gemini_cli-tools_web_fetch.png": {
+    "width": 2510,
+    "height": 638,
+    "mtimeMs": 1750869314258.337
+  },
+  "/_posts/google-gemini-cli/gemini_cli-tools.png": {
+    "width": 1040,
+    "height": 554,
+    "mtimeMs": 1750869269059.615
+  },
+  "/_posts/google-gemini-cli/gemini_cli-theme.png": {
+    "width": 2518,
+    "height": 848,
+    "mtimeMs": 1750869233365.984
+  },
+  "/_posts/google-gemini-cli/gemini_cli-stat.png": {
+    "width": 2402,
+    "height": 716,
+    "mtimeMs": 1750869201242.987
+  },
+  "/_posts/google-gemini-cli/gemini_cli-mcp_line_sending.png": {
+    "width": 1882,
+    "height": 1030,
+    "mtimeMs": 1750872767380.266
+  },
+  "/_posts/google-gemini-cli/blog-gemini-cli-pricing.jpg": {
+    "width": 1080,
+    "height": 1080,
+    "mtimeMs": 1750872940388.673
   }
 }
