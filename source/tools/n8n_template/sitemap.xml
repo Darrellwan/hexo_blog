@@ -3,9 +3,41 @@
   <!-- 主頁 -->
   <url>
     <loc>https://www.darrelltw.com/tools/n8n_template/models.html</loc>
-    <lastmod>2025-06-04</lastmod>
+    <lastmod>2025-06-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+  
+  <!-- 模型詳情頁 - n8n-ai-choose-model -->
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=n8n-ai-choose-model</loc>
+    <lastmod>2025-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- 模型快照頁 - n8n-ai-choose-model -->
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/snapshots/n8n-ai-choose-model.html</loc>
+    <lastmod>2025-06-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- 模型詳情頁 - n8n_template_portaly_demo -->
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=n8n_template_portaly_demo</loc>
+    <lastmod>2025-06-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- 模型快照頁 - n8n_template_portaly_demo -->
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/snapshots/n8n_template_portaly_demo.html</loc>
+    <lastmod>2025-06-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <!-- 模型詳情頁 - meta-challenge-respond -->
@@ -235,7 +267,7 @@
   <!-- 視覺化頁面 -->
   <url>
     <loc>https://www.darrelltw.com/tools/n8n_template/visualize.html</loc>
-    <lastmod>2025-06-04</lastmod>
+    <lastmod>2025-06-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
