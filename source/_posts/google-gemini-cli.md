@@ -141,7 +141,7 @@ mcp 都需要靠 setting.json 來設定
 }
 ```
 
-### mcp 測試
+#### mcp 測試
 
 以下是使用 Line MCP Server 來示範
 
