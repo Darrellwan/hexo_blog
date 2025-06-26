@@ -11,6 +11,7 @@ bgImage: blog-gemini-cli-bg.jpg
 preload:
   - blog-gemini-cli-bg.jpg
 date: 2025-06-26 00:40:04
+modified: 2025-06-27 07:54:32
 ---
 
 {% darrellImageCover blog-gemini-cli-bg blog-gemini-cli-bg.jpg %}
@@ -49,6 +50,12 @@ export GEMINI_API_KEY="YOUR_API_KEY"
 
 {% darrellImage800 gemini-generate_login_auth gemini-generate_login_auth.png max-800 %}
 
+
+### 支援平台
+
+- macOS
+- Linux
+- Windows (原生支援，不需要 WSL，這點大勝 Claude Code) 
 
 ## Gemini Command
 
