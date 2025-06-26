@@ -14,6 +14,10 @@ on:
 jobs:
   update-readme:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
     
     steps:
       - name: Checkout repository
@@ -78,8 +82,10 @@ jobs:
       
       - name: Create Pull Request
         if: steps.changes.outputs.changed == 'true'
+        id: create-pr
         uses: peter-evans/create-pull-request@v5
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: '[UPDATE] README with latest blog posts and analytics'
           title: '📝 自動更新 README - 最新文章與分析數據'
           body: |
@@ -103,6 +109,7 @@ jobs:
             ---
             *由 GitHub Actions 於 ${{ github.run_id }} 自動建立*
           branch: update-readme-${{ github.run_number }}
+          base: main
           delete-branch: true
           labels: |
             documentation
@@ -111,6 +118,14 @@ jobs:
           assignees: ${{ github.actor }}
           draft: false
       
+      - name: Output PR Information
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          echo "✅ PR 建立成功！"
+          echo "PR 號碼: ${{ steps.create-pr.outputs.pull-request-number }}"
+          echo "PR URL: ${{ steps.create-pr.outputs.pull-request-url }}"
+          echo "分支名稱: update-readme-${{ github.run_number }}"
+
       - name: Summary
         run: |
           echo "## 📋 執行摘要" >> $GITHUB_STEP_SUMMARY
@@ -119,4 +134,6 @@ jobs:
           echo "- **README 變更**: ${{ steps.changes.outputs.changed == 'true' && '✅ 有變更，已建立 PR' || '📝 無變更' }}" >> $GITHUB_STEP_SUMMARY
           if [ "${{ steps.changes.outputs.changed }}" == "true" ]; then
             echo "- **PR 分支**: update-readme-${{ github.run_number }}" >> $GITHUB_STEP_SUMMARY
+            echo "- **PR 號碼**: ${{ steps.create-pr.outputs.pull-request-number }}" >> $GITHUB_STEP_SUMMARY
+            echo "- **PR URL**: ${{ steps.create-pr.outputs.pull-request-url }}" >> $GITHUB_STEP_SUMMARY
           fi 
