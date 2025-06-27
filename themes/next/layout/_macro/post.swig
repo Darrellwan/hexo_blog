@@ -159,6 +159,53 @@
     {%- endif %}
 
     {%- if not is_index %}
+    {########################}
+    {### MOBILE TOC START ###}
+    {########################}
+    {%- set display_mobile_toc = page.toc.enable and not is_index %}
+    {%- if display_mobile_toc %}
+      {%- set mobile_toc = toc(post.content, { class: "nav", list_number: page.toc.number, max_depth: page.toc.max_depth }) %}
+      {%- set display_mobile_toc = mobile_toc.length > 1 and display_mobile_toc %}
+    {%- endif %}
+
+    {%- if display_mobile_toc %}
+    <style>
+      .mobile-toc-container { display: none; background: var(--content-bg-color); border: 1px solid var(--border-color,#e8e8e8); border-radius: 6px; margin: 16px 0; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+      @media (max-width: 991px) { .mobile-toc-container { display: block !important; } }
+      @media (min-width: 992px) { .mobile-toc-container { display: none !important; } }
+      .mobile-toc-header { padding: 12px 16px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; background: var(--content-bg-color); border-radius: 6px 6px 0 0; transition: background-color .2s ease; user-select: none; }
+      .mobile-toc-header:hover { background: var(--card-bg-color,#f8f9fa); }
+      .mobile-toc-header .fa-list { color: var(--link-color,#3498db); margin-right: 8px; font-size: 14px; }
+      .mobile-toc-title { flex: 1; font-weight: 500; color: var(--text-color); font-size: 14px; }
+      .mobile-toc-toggle { color: var(--text-color-light,#666); transition: transform .2s ease; font-size: 12px; }
+      .mobile-toc-toggle.active { transform: rotate(180deg); }
+      .mobile-toc-content { max-height: 0; overflow: hidden; transition: max-height .3s ease-out; border-top: 1px solid var(--border-color,#e8e8e8); }
+      .mobile-toc-content.active { max-height: 80vh; overflow-y: auto; }
+      .mobile-toc { padding: 8px 12px 12px 12px; }
+      .mobile-toc ol { list-style: none; margin: 0; padding: 0; }
+      .mobile-toc ol ol { padding-left: 16px; margin-top: 2px; }
+      .mobile-toc .nav-item { margin: 2px 0; line-height: 1.4; }
+      .mobile-toc .nav-item a { color: var(--text-color); text-decoration: none; display: block; padding: 6px 8px; border-radius: 3px; transition: all .2s ease; border-bottom: none !important; font-size: 13px; }
+      .mobile-toc .nav-item a:hover { background: var(--card-bg-color,#f8f9fa); color: var(--link-color,#3498db); }
+      .mobile-toc .nav-item a:before { display: none !important; }
+      .mobile-toc .active > a { background: var(--link-color,#3498db); color: #fff; }
+      .mobile-toc .active > a:hover { background: var(--link-hover-color,#2980b9); color: #fff; }
+    </style>
+    <div class="mobile-toc-container">
+      <div class="mobile-toc-header" onclick="toggleMobileTOC()">
+        <i class="fa fa-list"></i>
+        <span class="mobile-toc-title">{{ __('sidebar.toc') }}</span>
+        <i class="fa fa-chevron-down mobile-toc-toggle"></i>
+      </div>
+      <div class="mobile-toc-content" id="mobile-toc-content">
+        <div class="mobile-toc">{{ mobile_toc }}</div>
+      </div>
+    </div>
+    {%- endif %}
+    {######################}
+    {### MOBILE TOC END ###}
+    {######################}
+
     {#################}
     {### POST BODY ###}
     {#################}
