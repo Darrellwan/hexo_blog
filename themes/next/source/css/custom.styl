@@ -209,3 +209,127 @@ pre, code {
   border-bottom: none !important;
   outline: none !important;
 } 
+
+// ========================================
+// Mobile TOC Styles
+// ========================================
+
+.mobile-toc-container {
+  display: none; // 預設隱藏，只在行動版顯示
+  background: var(--content-bg-color);
+  border: 1px solid var(--border-color, #e8e8e8);
+  border-radius: 8px;
+  margin: 20px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-toc-header {
+  padding: 15px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--content-bg-color);
+  border-radius: 8px 8px 0 0;
+  transition: background-color 0.3s ease;
+  user-select: none;
+  
+  &:hover {
+    background: var(--card-bg-color, #f8f9fa);
+  }
+  
+  .fa-list {
+    color: var(--link-color, #3498db);
+    margin-right: 10px;
+  }
+}
+
+.mobile-toc-title {
+  flex: 1;
+  font-weight: 600;
+  color: var(--text-color);
+  font-size: 16px;
+}
+
+.mobile-toc-toggle {
+  color: var(--text-color-light, #666);
+  transition: transform 0.3s ease;
+  
+  &.active {
+    transform: rotate(180deg);
+  }
+}
+
+.mobile-toc-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  border-top: 1px solid var(--border-color, #e8e8e8);
+  
+  &.active {
+    max-height: 500px; // 足夠的高度來容納大部分 TOC
+  }
+}
+
+.mobile-toc {
+  padding: 15px 20px;
+  
+  ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    
+    ol {
+      padding-left: 20px;
+      margin-top: 8px;
+    }
+  }
+  
+  .nav-item {
+    margin: 8px 0;
+    line-height: 1.6;
+    
+    a {
+      color: var(--text-color);
+      text-decoration: none;
+      display: block;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      border-bottom: none !important;
+      
+      &:hover {
+        background: var(--card-bg-color, #f8f9fa);
+        color: var(--link-color, #3498db);
+      }
+      
+      &:before {
+        display: none !important; // 移除連結圖示
+      }
+    }
+  }
+  
+  .active > a {
+    background: var(--link-color, #3498db);
+    color: white;
+    
+    &:hover {
+      background: var(--link-hover-color, #2980b9);
+      color: white;
+    }
+  }
+}
+
+// 在行動版和平板版顯示
+@media (max-width: 991px) {
+  .mobile-toc-container {
+    display: block;
+  }
+}
+
+// 桌面版完全隱藏
+@media (min-width: 992px) {
+  .mobile-toc-container {
+    display: none !important;
+  }
+} 

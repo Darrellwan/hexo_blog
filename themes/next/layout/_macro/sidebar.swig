@@ -31,7 +31,6 @@
       </div>
       {%- if display_toc %}
       {%- else %}
-          <div class="klaviyo-form-YecXGf"></div>
       {%- endif %}
       
       <!--/noindex-->

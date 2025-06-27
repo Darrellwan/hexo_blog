@@ -411,5 +411,112 @@ NexT.utils = {
     });
     intersectionObserver.observe(element);
     return intersectionObserver;
+  },
+
+  // ========================================
+  // Mobile TOC Functions
+  // ========================================
+  registerMobileTOC: function() {
+    const mobileTocContainer = document.querySelector('.mobile-toc-container');
+    if (!mobileTocContainer) return;
+
+    const mobileTocContent = document.querySelector('.mobile-toc-content');
+    const mobileTocToggle = document.querySelector('.mobile-toc-toggle');
+    const mobileTocLinks = document.querySelectorAll('.mobile-toc a');
+
+    // 設置點擊事件處理展開/收起
+    window.toggleMobileTOC = function() {
+      const isActive = mobileTocContent.classList.contains('active');
+      
+      if (isActive) {
+        mobileTocContent.classList.remove('active');
+        mobileTocToggle.classList.remove('active');
+      } else {
+        mobileTocContent.classList.add('active');
+        mobileTocToggle.classList.add('active');
+      }
+    };
+
+    // 為每個 TOC 連結添加平滑滾動
+    mobileTocLinks.forEach(link => {
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        const targetId = decodeURI(link.getAttribute('href')).replace('#', '');
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+          const offset = targetElement.getBoundingClientRect().top + window.scrollY - 80; // 80px 的偏移量
+          
+          window.anime({
+            targets: document.scrollingElement,
+            duration: 500,
+            easing: 'linear',
+            scrollTop: offset
+          });
+
+          // 收起 TOC
+          mobileTocContent.classList.remove('active');
+          mobileTocToggle.classList.remove('active');
+        }
+      });
+    });
+
+    // 監聽滾動來高亮當前章節
+    this.updateMobileTOCActive();
+  },
+
+  updateMobileTOCActive: function() {
+    const mobileTocLinks = document.querySelectorAll('.mobile-toc a');
+    if (mobileTocLinks.length === 0) return;
+
+    const sections = [...mobileTocLinks].map(link => {
+      const targetId = decodeURI(link.getAttribute('href')).replace('#', '');
+      return document.getElementById(targetId);
+    }).filter(Boolean);
+
+    if (sections.length === 0) return;
+
+    function findActiveSection() {
+      const scrollTop = window.scrollY + 100; // 100px 的偏移量
+      
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        if (section.offsetTop <= scrollTop) {
+          return i;
+        }
+      }
+      return 0;
+    }
+
+    function updateActiveLink() {
+      const activeIndex = findActiveSection();
+      
+      // 移除所有 active 類
+      mobileTocLinks.forEach(link => {
+        link.parentElement.classList.remove('active');
+      });
+      
+      // 添加 active 類到當前章節
+      if (mobileTocLinks[activeIndex]) {
+        mobileTocLinks[activeIndex].parentElement.classList.add('active');
+      }
+    }
+
+    // 初始化
+    updateActiveLink();
+    
+    // 監聽滾動事件
+    let ticking = false;
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          updateActiveLink();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+    
+    window.addEventListener('scroll', onScroll);
   }
 };
