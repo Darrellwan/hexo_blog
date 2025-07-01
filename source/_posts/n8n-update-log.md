@@ -12,11 +12,61 @@ bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-06-24 16:31:00
+modified: 2025-07-01 15:05:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 1.101.0 Pre-release - 2025-07-01
+
+[Github 1.101.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.101.0)
+
+### editor: Add What's New notification callout 
+新增 What's New 通知提示
+
+現在可以看到一些改版資訊！
+
+{% darrellImage800 n8n-1.101.0-what_is_new_notification n8n-1.101.0-what_is_new_notification.png max-800 %}
+
+{% darrellImage800 n8n-1.101.0-what_is_new_notification_2 n8n-1.101.0-what_is_new_notification_2.png max-800 %}
+
+### Don't allow multiple active workflows with same form path
+
+不允許多個活躍的工作流程具有相同的表單路徑
+
+{% darrellImage800 n8n-1.101.0-form_path_can_not_be_the_same n8n-1.101.0-form_path_can_not_be_the_same.png max-800 %}
+
+`Form` 表單節點是可以自訂 webhook path 的
+但現在跟 `webhook` 一樣，不允許多個 activate 的 path 重複
+
+{% darrellImage800 n8n-1.101.0-form_path_can_not_be_the_same-set_path n8n-1.101.0-form_path_can_not_be_the_same-set_path.png max-400 %}
+
+### Support YouTube video embeds on Sticky notes
+Sticky Note Node: 支援 YouTube 影片嵌入在 Sticky notes 上
+
+{% darrellImage800 n8n-1.101.0-put_youtube_in_sticky_note n8n-1.101.0-put_youtube_in_sticky_note.png max-800 %}
+
+是個很實用的功能
+未來如果要分享模板給別人
+如果已經有影片教學怎麼使用的話
+就可以直接放在模板裡面，讓需要的人直接看教學影片
+
+語法分享
+1. 取得 Youtube 影片 id
+```
+https://www.youtube.com/shorts/CsLboB8QNGY 
+->
+CsLboB8QNGY
+```
+
+2. 將語法貼入 sticky note 中
+```
+@[youtube]({{video_id}})
+```
+
+`{{video_id}}` 替代成剛剛取得的 Youtube 影片 id
+
 
 ## 1.100.0 Pre-release - 2025-06-23
 
