@@ -3,7 +3,7 @@
 ## 📚 最新文章
 
 ### [Google 發布 Gemini CLI Tool 免費額度超級夠用 和 Claude Code 的比較](https://www.darrelltw.com/google-gemini-cli/?utm_source=github_readme&utm_medium=referral)
-📅 2025/06/26 · 5 天前
+📅 2025/06/26 · 6 天前
 
 > Google 推出免費 Gemini CLI 命令行工具。安裝教學，並與 Claude Code 做同樣 prompt 比較
 
@@ -15,7 +15,7 @@
 
 
 ### [n8n Perplexity 節點教學](https://www.darrelltw.com/n8n-perplexity-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/06/09 · 22 天前
+📅 2025/06/09 · 23 天前
 
 > n8n 內建節點支援 Perplexity ！分享 API key 申請教學、Pro 用戶的免費五美金額度。如何在 n8n 使用 Perplexity 節點和不同模型之間的比較
 
@@ -64,8 +64,8 @@
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-99-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-204,819+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/07/01-green?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-205,152+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/07/02-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-07-01 09:17:33*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-07-02 05:22:19*
