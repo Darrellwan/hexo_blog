@@ -11,7 +11,7 @@ bgImage: blog-gemini-cli-bg.jpg
 preload:
   - blog-gemini-cli-bg.jpg
 date: 2025-06-26 00:40:04
-modified: 2025-06-27 07:54:32
+modified: 2025-07-02 13:21:32
 ---
 
 {% darrellImageCover blog-gemini-cli-bg blog-gemini-cli-bg.jpg %}
@@ -210,6 +210,29 @@ line push_flex_message about how to use gemini cli
 
 {% darrellImage800 blog-gemini-cli-pricing blog-gemini-cli-pricing.jpg max-800 %}
 
+## 進階用法 - crontab 排程
+
+`gemine -p` 可以讓你在 command line 中直接使用 gemini 來處理
+那把這個指令放入 bash 檔案中設定適當的 prompt
+並且設定到 crontab 中，那你就會有屬於自己客製化的每日提醒等功能
+
+這邊用一個每日重要新聞當作範例
+首先請 `gemini` 自己設定一個 crontab 並在每天早上十點發送一個新聞快訊
+他就會做出一個這樣的 sh 檔案
+
+{% darrellImage800 gemini_cli-bash gemini_cli-bash.png max-800 %}
+
+並且自行加入 crontab 中
+測試收到的訊息如下
+
+{% darrellImage800 gemini_cli-crontab_daily_news_from_n8n gemini_cli-crontab_daily_news_from_n8n.png max-800 %}
+
+這邊提供完整語法
+```
+gemini -p "請提供今天的台灣重要新聞。請嚴格使用 HTML 格式輸出，不要使用 Markdown。新聞標題請用 <strong> 標籤，每條新聞請用 <li> 標籤，並將所有新聞包在 <ul> 標籤內。" | python3 -c 'import sys, json; print(json.dumps({"news": sys.stdin.read(), "source": "gemini"}))' | tee gemini_news.log | curl -X POST -H "Content-Type: application/json" -d @- "https://n8n.zeabur.app/webhook/xxxxx"
+```
+
+有興趣的人也可以自行測試玩玩看！
 
 
 
