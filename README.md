@@ -3,19 +3,19 @@
 ## 📚 最新文章
 
 ### [Google 發布 Gemini CLI Tool 免費額度超級夠用 和 Claude Code 的比較](https://www.darrelltw.com/google-gemini-cli/?utm_source=github_readme&utm_medium=referral)
-📅 2025/06/26 · 6 天前
+📅 2025/06/26 · 10 天前
 
 > Google 推出免費 Gemini CLI 命令行工具。安裝教學，並與 Claude Code 做同樣 prompt 比較
 
 
 ### [n8n ElevenLabs 節點 TTS文轉音場景分享](https://www.darrelltw.com/n8n-elevenlabs-tts/?utm_source=github_readme&utm_medium=referral)
-📅 2025/06/14 · 17 天前
+📅 2025/06/14 · 21 天前
 
 > 實測 n8n + ElevenLabs 打造語音自動化！詳細記錄安裝過程、功能測試結果。
 
 
 ### [n8n Perplexity 節點教學](https://www.darrelltw.com/n8n-perplexity-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/06/09 · 23 天前
+📅 2025/06/09 · 1 個月前
 
 > n8n 內建節點支援 Perplexity ！分享 API key 申請教學、Pro 用戶的免費五美金額度。如何在 n8n 使用 Perplexity 節點和不同模型之間的比較
 
@@ -57,7 +57,7 @@
 
 
 ### [n8n 模板分享 - 打造 LINE 共同記帳機器人 自動處理日本收據](https://www.darrelltw.com/n8n-line-split-expense-workflow/?utm_source=github_readme&utm_medium=referral)
-📅 2025/04/20 · 2 個月前
+📅 2025/04/20 · 3 個月前
 
 > 透過 n8n 工作流平台結合 LINE 機器人和 AI 技術，打造一個專為日本旅行設計的自動化記帳系統。只需拍照上傳日本收據，就會自動翻譯日文、換算匯率，並提供分帳功能，讓旅行的記帳變得簡單。
 
@@ -65,7 +65,7 @@
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-99-blue?style=flat-square)
 ![總字數](https://img.shields.io/badge/總字數-205,152+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/07/02-green?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/07/06-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-07-02 05:22:19*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-07-06 02:08:20*
