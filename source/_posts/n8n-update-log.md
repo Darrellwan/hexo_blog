@@ -7,16 +7,56 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2025/06/24 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.100.0，正式版本為 1.99.1
+description: n8n 的更新記錄(2025/07/08 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.102.0，正式版本為 1.101.1
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-07-01 15:05:00
+modified: 2025-07-08 13:05:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 1.102.0 Pre-release - 2025-07-08
+
+[Github 1.102.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.102.0)
+
+### editor: Collapse button on table view
+在表格視圖上的收合按鈕
+
+以前在看 Output 時，如果遇到資料的欄位比較大
+常常很難一眼就看清楚所有資料
+
+現在可以用收合的方式直接把欄位收起來
+
+{% darrellImage800 n8n-1.102.0-add_collapse_button n8n-1.102.0-add_collapse_button.png max-800 %}
+
+### Mistral AI Node: New node
+Mistral AI Node: 新節點
+
+Mistral AI 目前在 n8n 主要支援是 OCR
+可以支援圖像辨識和文件辨識
+
+下圖測試的圖片 OCR 精準度很不錯，速度也很外！
+
+{% darrellImage800 n8n-1.102.0-new_node-mistral-ai n8n-1.102.0-new_node-mistral-ai.png max-800 %}
+
+**不是免費服務**
+
+建議有需要的朋友先查閱價格！
+[Mistral AI 價格](https://mistral.ai/pricing#api-pricing)
+
+### Google Sheets Node: Include all headers
+Google Sheets Node: 包含所有標頭
+
+先前如果輸入的欄位數量和 Google Sheet 原本欄位數不同
+會在插入時取代掉原本的欄位
+
+目前修正了這問題，附上前後的測試效果比較
+
+{% darrellImage800 n8n-1.102.0-google_sheet_header n8n-1.102.0-google_sheet_header.png max-800 %}
+
 
 ## 1.101.0 Pre-release - 2025-07-01
 
