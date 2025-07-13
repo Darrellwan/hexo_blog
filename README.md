@@ -3,13 +3,13 @@
 ## 📚 最新文章
 
 ### [Google 發布 Gemini CLI Tool 免費額度超級夠用 和 Claude Code 的比較](https://www.darrelltw.com/google-gemini-cli/?utm_source=github_readme&utm_medium=referral)
-📅 2025/06/26 · 13 天前
+📅 2025/06/26 · 17 天前
 
 > Google 推出免費 Gemini CLI 命令行工具。安裝教學，並與 Claude Code 做同樣 prompt 比較
 
 
 ### [n8n ElevenLabs 節點 TTS文轉音場景分享](https://www.darrelltw.com/n8n-elevenlabs-tts/?utm_source=github_readme&utm_medium=referral)
-📅 2025/06/14 · 24 天前
+📅 2025/06/14 · 1 個月前
 
 > 實測 n8n + ElevenLabs 打造語音自動化！詳細記錄安裝過程、功能測試結果。
 
@@ -45,13 +45,13 @@
 
 
 ### [利用 n8n 的 s3 節點連接 Cloudflare R2 儲存服務](https://www.darrelltw.com/n8n-node-s3-with-cloudflare-r2/?utm_source=github_readme&utm_medium=referral)
-📅 2025/04/25 · 2 個月前
+📅 2025/04/25 · 3 個月前
 
 > 介紹如何在 n8n 中使用 s3 節點連接 Cloudflare R2 儲存服務，包含 API Token 申請、權限設定、上傳下載檔案，適合想將自動化流程與雲端儲存整合的使用者。
 
 
 ### [OpenAI GPT-Image-1 API 產圖 API 發布，測試心得和參數介紹](https://www.darrelltw.com/openai-gpt-image-1-model-review/?utm_source=github_readme&utm_medium=referral)
-📅 2025/04/24 · 2 個月前
+📅 2025/04/24 · 3 個月前
 
 > 詳解OpenAI最新GPT-Image-1模型！完整介紹API參數設置、價格結構、實用範例和Postman整合技巧，一起快速上手。
 
@@ -65,7 +65,7 @@
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-99-blue?style=flat-square)
 ![總字數](https://img.shields.io/badge/總字數-205,653+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/07/09-green?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/07/13-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-07-09 04:39:33*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-07-13 02:19:02*
