@@ -1,6 +1,7 @@
 ---
 title: Claude Code 發佈 Command Line 的新工具
 date: 2025-02-25 08:49:50
+modified: 2025-07-14 14:15:00
 tags:
   - Claude
   - AI
@@ -151,6 +152,56 @@ Claude Code 強大的地方在於他是指令模式
 有比想樣中的快，但用 command line 就是有種順的感覺
 
 {% darrellImage800 claude_code_cost_remaining claude_code_cost_remaining.png max-400 %}
+
+## ccusage 監控 claude code 使用量
+
+如果你已經成為 Claude Code 的愛好者
+並且為此升級到 Pro 方案
+
+這邊有一個超棒的工具可以讓你隨時監控目前 Claude Code 的使用量
+
+打開 command line tool 輸入
+
+```
+npm install -g ccusage
+```
+
+就安裝好了！
+
+使用方法也超級簡單
+
+```
+# 查看每日使用量
+ccusage 
+
+# 查看每月使用量
+ccusage --monthly
+
+# 查看各自的 session 使用量
+ccusage --session
+```
+
+{% darrellImage800 claude_code-daily claude_code-daily.png max-800 %}
+
+### Raycast 用戶推薦 ccusage extension
+
+1. 首先到 Raycast 的 Store 搜尋 ccusage 並且安裝
+
+{% darrellImage800 claude_code-raycast_install_ccusage-step1 claude_code-raycast_install_ccusage-step1.png max-800 %}
+
+{% darrellImage800 claude_code-raycast_install_ccusage-step2 claude_code-raycast_install_ccusage-step2.png max-800 %}
+
+{% darrellImage800 claude_code-raycast_install_ccusage-step3 claude_code-raycast_install_ccusage-step3.png max-800 %}
+
+2. 安裝完成除了可以直接在 raycast 使用 ccusage 來看使用量
+還可以啟用 menu bar 讓你更方便檢查
+
+{% darrellImage800 claude_code-raycast_enable_ccusage_menubar claude_code-raycast_enable_ccusage_menubar.png max-800 %}
+
+{% darrellImage800 claude_code-raycast_ccusage_menubar claude_code-raycast_ccusage_menubar.png max-800 %}
+
+這樣未來想要檢查，滑鼠往上稍微移動一下就能看到使用狀況
+非常方便
 
 ## 結論
 
