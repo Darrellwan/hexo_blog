@@ -3,7 +3,7 @@ title: GA4 更新 - Benchmark - 產業資料的基準比較
 tags:
   - GA4 Update
 categories:
-  - GA4
+  - Google Analytics 4
 page_type: post
 id: ga4-update-benchmark
 description: GA4 更新的新功能 Benchmark 基準化資料，可以讓使用者參考類似或相同產業的數值大概落在哪個範圍，並檢視自己的表現是否有接近整體表現
