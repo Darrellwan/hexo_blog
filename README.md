@@ -3,7 +3,7 @@
 ## 📚 最新文章
 
 ### [Google 發布 Gemini CLI Tool 免費額度超級夠用 和 Claude Code 的比較](https://www.darrelltw.com/google-gemini-cli/?utm_source=github_readme&utm_medium=referral)
-📅 2025/06/26 · 17 天前
+📅 2025/06/26 · 18 天前
 
 > Google 推出免費 Gemini CLI 命令行工具。安裝教學，並與 Claude Code 做同樣 prompt 比較
 
@@ -64,8 +64,8 @@
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-99-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-205,653+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/07/13-green?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-206,396+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/07/14-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-07-13 02:19:02*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-07-14 06:17:35*
