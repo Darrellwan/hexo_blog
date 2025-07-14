@@ -256,13 +256,13 @@ function customLightGallery800(args, content) {
         width = dims.width;
         height = dims.height;
         dimensionsFound = true;
-        console.log(`[darrellImage800] Found similar path by filename: ${originalImageSrc} -> ${bestMatch} (${width}x${height})`);
+        // console.log(`[darrellImage800] Found similar path by filename: ${originalImageSrc} -> ${bestMatch} (${width}x${height})`);
       }
     }
   }
   
   if (!dimensionsFound && originalImageSrc && !originalImageSrc.startsWith('http')) {
-    console.warn(`[darrellImage800] Could not find dimensions for: ${originalImageSrc}. Using default ${width}x${height}.`);
+    // console.warn(`[darrellImage800] Could not find dimensions for: ${originalImageSrc}. Using default ${width}x${height}.`);
   }
 
   if(!altText || !originalImageSrc){
@@ -422,13 +422,13 @@ function customLightGalleryCover(args) {
         width = dims.width;
         height = dims.height;
         dimensionsFound = true;
-        console.log(`[darrellImageCover] Found similar path by filename: ${originalImageSrc} -> ${bestMatch} (${width}x${height})`);
+        // console.log(`[darrellImageCover] Found similar path by filename: ${originalImageSrc} -> ${bestMatch} (${width}x${height})`);
       }
     }
   }
 
   if (!dimensionsFound && originalImageSrc && !originalImageSrc.startsWith('http')) {
-    console.warn(`[darrellImageCover] Could not find dimensions for: ${originalImageSrc}. Using default ${width}x${height}.`);
+    // console.warn(`[darrellImageCover] Could not find dimensions for: ${originalImageSrc}. Using default ${width}x${height}.`);
   }
 
   if(!altText || !originalImageSrc){

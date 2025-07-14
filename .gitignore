@@ -12,6 +12,7 @@ env
 secret.yml
 twitter_rerun.py
 twitter_rerun.sh
+temp/
 
 # Python
 __pycache__/
