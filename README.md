@@ -2,6 +2,12 @@
 
 ## 📚 最新文章
 
+### [n8n 串接 Cloudflare Turnstile CAPTCHA 驗證](https://www.darrelltw.com/n8n-with-cloudflare-turnstile-CAPTCHA/?utm_source=github_readme&utm_medium=referral)
+📅 2025/07/14 · 4 小時內
+
+> 防止 vibe coding 表單被機器人攻擊？使用 Cloudflare Turnstile + n8n 打造表單驗證系統。包含前端 HTML、後端 API 驗證、webhook 設定，完整驗證流程實作教學。
+
+
 ### [Google 發布 Gemini CLI Tool 免費額度超級夠用 和 Claude Code 的比較](https://www.darrelltw.com/google-gemini-cli/?utm_source=github_readme&utm_medium=referral)
 📅 2025/06/26 · 18 天前
 
@@ -56,15 +62,9 @@
 > 詳解OpenAI最新GPT-Image-1模型！完整介紹API參數設置、價格結構、實用範例和Postman整合技巧，一起快速上手。
 
 
-### [n8n 模板分享 - 打造 LINE 共同記帳機器人 自動處理日本收據](https://www.darrelltw.com/n8n-line-split-expense-workflow/?utm_source=github_readme&utm_medium=referral)
-📅 2025/04/20 · 3 個月前
-
-> 透過 n8n 工作流平台結合 LINE 機器人和 AI 技術，打造一個專為日本旅行設計的自動化記帳系統。只需拍照上傳日本收據，就會自動翻譯日文、換算匯率，並提供分帳功能，讓旅行的記帳變得簡單。
-
-
 ## 📊 部落格統計
-![文章總數](https://img.shields.io/badge/文章總數-99-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-206,396+-blue?style=flat-square)
+![文章總數](https://img.shields.io/badge/文章總數-100-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-209,162+-blue?style=flat-square)
 ![最後更新](https://img.shields.io/badge/最後更新-2025/07/14-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
@@ -88,7 +88,7 @@
 
 
 ## 🏷️ 熱門主題
-![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![n8n](https://img.shields.io/badge/n8n-17-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-14-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![AI](https://img.shields.io/badge/AI-7-orange?style=flat-square)
+![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![n8n](https://img.shields.io/badge/n8n-18-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-14-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![AI](https://img.shields.io/badge/AI-7-orange?style=flat-square)
 
 ## 📈 更新頻率
 ```text
@@ -97,7 +97,7 @@
 04月 ████░░░░░░ 4篇
 05月 ███░░░░░░░ 3篇
 06月 ████░░░░░░ 4篇
-07月 ░░░░░░░░░░ 0篇
+07月 █░░░░░░░░░ 1篇
 ```
 
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-07-14 06:17:35*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-07-14 10:14:17*
