@@ -43,7 +43,7 @@ Cloudflare Turnstile 就能用來解決這個問題
 或許你對 Cloudflare Turnstile 這個名詞不熟悉
 但對這個圖案會覺得很眼熟
 
-{% darrellImage800 google_recaptch-vs-cloudflare_turnstile google_recaptch-vs-cloudflare_turnstile.jpg max-400 %}
+{% darrellImage800 google_recaptcha-vs-cloudflare_turnstile google_recaptcha-vs-cloudflare_turnstile.jpg max-400 %}
 
 其實他的功能就跟 Google reCAPTCHA 一樣
 做一個簡易的機器人驗證，如果不是真人
@@ -93,7 +93,7 @@ Cloudflare Turnstile 就能用來解決這個問題
 
 `https://demo-cloudflare-turnstile.pages.dev/`
 
-那網域這邊就要填如
+那網域這邊就要填寫
 
 `demo-cloudflare-turnstile.pages.dev`
 
@@ -232,11 +232,9 @@ Cloudflare Turnstile 就能用來解決這個問題
 - `{{你的網站金鑰}}`
 - `{{n8n webhook url}}`
 
-### 
-
 ## 後端 n8n 實作
 
-上面有填如 n8n webhook url 的話
+上面有填寫 n8n webhook url 的話
 代表已經有在 n8n 新增一個 workflow
 並且設定好一個 `webhook` 節點了！
 
@@ -330,7 +328,7 @@ Cloudflare Turnstile 就能用來解決這個問題
 只是加上兩個節點
 一個做驗證
 另一個做 `IF` 的判斷是否驗證成功
-後續就可以一樣街上自己的自動化流程了！
+後續就可以一樣接上自己的自動化流程了！
 
 
 
