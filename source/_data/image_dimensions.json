@@ -4920,13 +4920,33 @@
     "mtimeMs": 1752486234803.882
   },
   "/_posts/n8n-with-cloudflare-turnstile-CAPTCHA/cloudflare_turnstile_principle.png": {
-    "width": 1422,
+    "width": 1476,
     "height": 1462,
-    "mtimeMs": 1752487752855.706
+    "mtimeMs": 1752489020084.4573
   },
   "/_posts/n8n-with-cloudflare-turnstile-CAPTCHA/google_recaptcha-vs-cloudflare_turnstile.jpg": {
     "width": 1113,
     "height": 583,
-    "mtimeMs": 1752477019073.0518
+    "mtimeMs": 1752488415285.0544
+  },
+  "/_posts/n8n-update-log/n8n-1.103.0-new_node-google_gemini.png": {
+    "width": 1670,
+    "height": 2174,
+    "mtimeMs": 1752557697133.245
+  },
+  "/_posts/n8n-update-log/n8n-1.103.0-new_node-cohere_rate_limit.png": {
+    "width": 1212,
+    "height": 1556,
+    "mtimeMs": 1752558987869.616
+  },
+  "/_posts/n8n-update-log/n8n-1.103.0-new_node-cohere_chat_model.png": {
+    "width": 1464,
+    "height": 872,
+    "mtimeMs": 1752559192875.864
+  },
+  "/_posts/n8n-update-log/n8n-1.103.0-new_node-agent_tool.png": {
+    "width": 2070,
+    "height": 1270,
+    "mtimeMs": 1752559493404.067
   }
 }

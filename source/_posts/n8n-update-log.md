@@ -7,16 +7,65 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2025/07/08 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.102.0，正式版本為 1.101.1
+description: n8n 的更新記錄(2025/07/15 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.103.0，正式版本為 1.102.3
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-07-08 13:05:00
+modified: 2025-07-15 13:05:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 1.103.0 Pre-release - 2025-07-15
+
+[Github 1.103.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.103.0)
+
+### New node: Google Gemini Node
+
+新增 `Google Gemini` 節點
+這樣就可以直接使用裡面的模型跟工具
+除了跟文字互動以外
+也能直接產生圖片、影片、分析音檔等等
+
+{% darrellImage800 n8n-1.103.0-new_node-google_gemini n8n-1.103.0-new_node-google_gemini.png max-800 %}
+
+### Add Cohere Chat Model node
+
+新增 `Cohere Chat Model` 節點
+是另一種像是 OpenAI 的 LLM 模型
+更具體的功能跟差異目前還不太清楚
+
+只知道如果申辦帳號，就會有一組免費的 API KEY 可以使用
+詳細的免費額度如截圖，也能參考[網站文件](https://docs.cohere.com/docs/rate-limits)獲得最新資訊
+
+{% darrellImage800 n8n-1.103.0-new_node-cohere_rate_limit n8n-1.103.0-new_node-cohere_rate_limit.png max-800 %}
+
+簡單的實測結果是
+同一段的文字 input
+
+Cohere 的處理時間為 11.85 秒
+Google Gemini 2.5 flash 的處理時間為 19.02 秒
+
+{% darrellImage800 n8n-1.103.0-new_node-cohere_chat_model n8n-1.103.0-new_node-cohere_chat_model.png max-800 %}
+
+
+### Add Agent Tool
+新增 `Agent Tool` 節點
+
+看起來是把原本的 `AI Agent` 節點又單獨變成一個 `AI Agent tool`
+應該能實現所謂的超級多小 Agent 之間的互相調用
+以前要做到類似的事情，需要建立不少 sub-workflow 來做一樣的事情
+現在又能簡化成直接用 tool 的方式來串接
+
+蠻值得測試這樣的應用！
+
+{% darrellImage800 n8n-1.103.0-new_node-agent_tool n8n-1.103.0-new_node-agent_tool.png max-800 %}
+
+
+
+
 
 ## 1.102.0 Pre-release - 2025-07-08
 
