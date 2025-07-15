@@ -3,13 +3,13 @@
 ## 📚 最新文章
 
 ### [n8n 串接 Cloudflare Turnstile CAPTCHA 驗證](https://www.darrelltw.com/n8n-with-cloudflare-turnstile-CAPTCHA/?utm_source=github_readme&utm_medium=referral)
-📅 2025/07/14 · 4 小時內
+📅 2025/07/14 · 18 小時前
 
 > 防止 vibe coding 表單被機器人攻擊？使用 Cloudflare Turnstile + n8n 打造表單驗證系統。包含前端 HTML、後端 API 驗證、webhook 設定，完整驗證流程實作教學。
 
 
 ### [Google 發布 Gemini CLI Tool 免費額度超級夠用 和 Claude Code 的比較](https://www.darrelltw.com/google-gemini-cli/?utm_source=github_readme&utm_medium=referral)
-📅 2025/06/26 · 18 天前
+📅 2025/06/26 · 19 天前
 
 > Google 推出免費 Gemini CLI 命令行工具。安裝教學，並與 Claude Code 做同樣 prompt 比較
 
@@ -64,8 +64,8 @@
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-100-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-209,196+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/07/14-green?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-209,805+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/07/15-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-07-14 10:30:50*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-07-15 08:27:39*
