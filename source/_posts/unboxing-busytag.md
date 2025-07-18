@@ -131,6 +131,17 @@ LED 的設定就相對單純，可以選擇顏色
 或是到官網查詢相關問題
 [官網](https://www.busy-tag.com/)
 
+## 購買
+
+先前剛好有開過團購，額外還有幾個現貨可以購買
+有興趣的歡迎私訊我 IG 或是寄信給我
+討論後沒問題會再開上架到平台
+
+[IG](https://www.instagram.com/darrell_tw_/)
+`darrell.tw.martech@gmail.com`
+
+{% darrellImage busytag_left busytag_left.jpg max-800 %}
+
 ## 結語
 
 有興趣或是已經拿到手的大家，接下來就是讓你們發揮創意的時候了!

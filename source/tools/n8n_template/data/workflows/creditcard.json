@@ -795,7 +795,7 @@
         "operation": "update",
         "calendar": {
           "__rl": true,
-          "value": "4a374cec6eb01b99adac52078dd335c7e3a90236b233c417fee59773485a93c3@group.calendar.google.com",
+          "value": "test@group.calendar.google.com",
           "mode": "list",
           "cachedResultName": "信用卡繳費"
         },
