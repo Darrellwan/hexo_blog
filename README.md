@@ -3,13 +3,13 @@
 ## 📚 最新文章
 
 ### [n8n 串接 Cloudflare Turnstile CAPTCHA 驗證](https://www.darrelltw.com/n8n-with-cloudflare-turnstile-CAPTCHA/?utm_source=github_readme&utm_medium=referral)
-📅 2025/07/14 · 18 小時前
+📅 2025/07/14 · 4 天前
 
 > 防止 vibe coding 表單被機器人攻擊？使用 Cloudflare Turnstile + n8n 打造表單驗證系統。包含前端 HTML、後端 API 驗證、webhook 設定，完整驗證流程實作教學。
 
 
 ### [Google 發布 Gemini CLI Tool 免費額度超級夠用 和 Claude Code 的比較](https://www.darrelltw.com/google-gemini-cli/?utm_source=github_readme&utm_medium=referral)
-📅 2025/06/26 · 19 天前
+📅 2025/06/26 · 22 天前
 
 > Google 推出免費 Gemini CLI 命令行工具。安裝教學，並與 Claude Code 做同樣 prompt 比較
 
@@ -27,7 +27,7 @@
 
 
 ### [n8n Evaluations 新功能介紹 - 讓 AI 工作流程更可靠的測試框架](https://www.darrelltw.com/n8n-evaluations/?utm_source=github_readme&utm_medium=referral)
-📅 2025/06/01 · 1 個月前
+📅 2025/06/01 · 2 個月前
 
 > n8n Evaluations 幫你解決 prompt 調整難題，透過測試資料集和評估指標，幫助你建立更可靠的 AI 自動化流程。本文將介紹 Light evaluations 和 Metric-based evaluations 兩種評估方式，並分享實際使用經驗。
 
@@ -45,7 +45,7 @@
 
 
 ### [用 Cloudflare Worker 和 KV 打造個人免費簡易的短網址服務](https://www.darrelltw.com/cloudflare-worker-url-shortener/?utm_source=github_readme&utm_medium=referral)
-📅 2025/05/02 · 2 個月前
+📅 2025/05/02 · 3 個月前
 
 > 使用 Cloudflare Worker 和 KV 儲存快速搭建一個簡單但實用的短網址系統，無需伺服器，支援基本 API 操作和 UTM 追蹤功能。
 
@@ -64,8 +64,8 @@
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-100-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-209,805+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/07/15-green?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-209,899+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/07/18-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-07-15 08:27:39*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-07-18 10:09:07*
