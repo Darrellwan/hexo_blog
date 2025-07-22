@@ -2,14 +2,20 @@
 
 ## 📚 最新文章
 
+### [n8n 教學 Gmail 節點 - 自動化郵件發送和處理](https://www.darrelltw.com/n8n-gmail-node/?utm_source=github_readme&utm_medium=referral)
+📅 2025/07/22 · 8 小時內
+
+> 完整教學 n8n Gmail 節點實現郵件自動化流程。包含 OAuth 認證設定、搜尋語法技巧、郵件發送標籤管理等功能介紹。實測信用卡帳單自動提醒、PDF 解析、Google Calendar 整合等進階案例。
+
+
 ### [n8n 串接 Cloudflare Turnstile CAPTCHA 驗證](https://www.darrelltw.com/n8n-with-cloudflare-turnstile-CAPTCHA/?utm_source=github_readme&utm_medium=referral)
-📅 2025/07/14 · 5 天前
+📅 2025/07/14 · 8 天前
 
 > 防止 vibe coding 表單被機器人攻擊？使用 Cloudflare Turnstile + n8n 打造表單驗證系統。包含前端 HTML、後端 API 驗證、webhook 設定，完整驗證流程實作教學。
 
 
 ### [Google 發布 Gemini CLI Tool 免費額度超級夠用 和 Claude Code 的比較](https://www.darrelltw.com/google-gemini-cli/?utm_source=github_readme&utm_medium=referral)
-📅 2025/06/26 · 24 天前
+📅 2025/06/26 · 1 個月前
 
 > Google 推出免費 Gemini CLI 命令行工具。安裝教學，並與 Claude Code 做同樣 prompt 比較
 
@@ -56,16 +62,10 @@
 > 介紹如何在 n8n 中使用 s3 節點連接 Cloudflare R2 儲存服務，包含 API Token 申請、權限設定、上傳下載檔案，適合想將自動化流程與雲端儲存整合的使用者。
 
 
-### [OpenAI GPT-Image-1 API 產圖 API 發布，測試心得和參數介紹](https://www.darrelltw.com/openai-gpt-image-1-model-review/?utm_source=github_readme&utm_medium=referral)
-📅 2025/04/24 · 3 個月前
-
-> 詳解OpenAI最新GPT-Image-1模型！完整介紹API參數設置、價格結構、實用範例和Postman整合技巧，一起快速上手。
-
-
 ## 📊 部落格統計
-![文章總數](https://img.shields.io/badge/文章總數-100-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-209,899+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/07/20-green?style=flat-square)
+![文章總數](https://img.shields.io/badge/文章總數-101-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-213,441+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/07/22-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -88,7 +88,7 @@
 
 
 ## 🏷️ 熱門主題
-![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![n8n](https://img.shields.io/badge/n8n-18-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-15-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![AI](https://img.shields.io/badge/AI-7-orange?style=flat-square)
+![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![n8n](https://img.shields.io/badge/n8n-19-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-15-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![AI](https://img.shields.io/badge/AI-7-orange?style=flat-square)
 
 ## 📈 更新頻率
 ```text
@@ -97,7 +97,7 @@
 04月 ████░░░░░░ 4篇
 05月 ███░░░░░░░ 3篇
 06月 ████░░░░░░ 4篇
-07月 █░░░░░░░░░ 1篇
+07月 ██░░░░░░░░ 2篇
 ```
 
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-07-20 02:21:22*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-07-22 08:43:34*
