@@ -1,5 +1,5 @@
 ---
-title: n8n 教學 Gmail 節點 - 自動化郵件發送和處理
+title: n8n Gmail 節點教學 - 自動化郵件發送和處理
 tags:
   - n8n
   - n8n node
