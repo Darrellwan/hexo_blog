@@ -16,7 +16,7 @@ function articleCard(args) {
   const thumbnail = thumbnailMatch ? thumbnailMatch[1] : '';
 
   return `<div class="article-card">
-    <a href="${url}" class="article-card-link">
+    <a href="${url}" class="article-card-link" target="_blank">
       <div class="article-card-content">
         <div class="article-card-text">
           <div class="article-card-title">${title}</div>
