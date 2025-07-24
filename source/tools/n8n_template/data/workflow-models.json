@@ -1,5 +1,141 @@
 {
     "models": {
+        "n8n-gmail-pickup-calendar": {
+            "id": "n8n-gmail-pickup-calendar", 
+            "title": "Gmail 電商取貨提醒自動化",
+            "description": "這個工作流程自動監聽 Gmail 中的電商取貨通知信件，並在 Google Calendar 中建立智能取貨提醒。系統能夠識別不同電商平台（一般電商、賣貨便）的到店通知，解析出門市資訊，自動建立個人化的行事曆提醒，避免忘記取貨。\n\n主要功能：\n\n自動信件監聽：每小時檢查 Gmail 中的取貨通知\n多平台支援：支援一般電商和賣貨便的取貨通知\n智能資訊解析：自動提取門市名稱和取貨資訊\n個人化提醒：建立包含門市資訊的行事曆事件\n雙重提醒：設定 20 分鐘和 40 分鐘前提醒",
+            "detailedDescription": [
+                "監聽 Gmail 中包含「送貨狀態 更新為: 已到達」的電商到店信件",
+                "監聽 Gmail 中包含「賣貨便：您的訂單 已送達」的賣貨便通知",
+                "使用正規表達式解析信件內容，提取門市名稱",
+                "在 Google Calendar 中建立當日晚上 8 點的取貨提醒事件",
+                "設定彈出提醒（20 分鐘前和 40 分鐘前）",
+                "自動同步到個人 Google 行事曆，跨裝置提醒"
+            ],
+            "tags": ["自動化", "Gmail", "Google Calendar", "電商", "取貨提醒", "生活助手", "通知解析"],
+            "nodes": 4,
+            "createdAt": "2025-07-23",
+            "updatedAt": "2025-07-23",
+            "setup": {
+                "prerequisites": "需要設定 Gmail 和 Google Calendar API 存取權限",
+                "steps": [
+                    {
+                        "title": "Gmail API 設定",
+                        "description": "設定 Gmail OAuth2 認證",
+                        "options": [
+                            "在 Google Cloud Console 啟用 Gmail API",
+                            "建立 OAuth2 憑證",
+                            "在 n8n 中設定 Gmail OAuth2 認證",
+                            "測試 Gmail 連線"
+                        ]
+                    },
+                    {
+                        "title": "Google Calendar API 設定", 
+                        "description": "設定 Google Calendar OAuth2 認證",
+                        "options": [
+                            "在 Google Cloud Console 啟用 Calendar API",
+                            "使用相同的 OAuth2 憑證或建立新的",
+                            "在 n8n 中設定 Google Calendar OAuth2 認證",
+                            "選擇目標行事曆（建議建立專用行事曆）",
+                            "測試行事曆連線"
+                        ]
+                    },
+                    {
+                        "title": "信件過濾調整",
+                        "description": "根據個人使用的電商平台調整搜尋條件",
+                        "options": [
+                            "修改 Gmail 搜尋關鍵字以符合實際收到的信件",
+                            "調整正規表達式以正確解析門市名稱",
+                            "測試信件解析功能",
+                            "設定適合的監聽頻率"
+                        ]
+                    }
+                ]
+            },
+            "examples": [
+                {
+                    "title": "電商取貨通知範例",
+                    "description": "展示如何處理一般電商的取貨通知",
+                    "code": {
+                        "trigger": "gmail_filter: 送貨狀態 更新為: 已到達",
+                        "actions": [
+                            "parse_store_name: /收件門市名稱\\s*[\\r\\n]+(.+)/",
+                            "create_calendar_event: [取貨提醒]{店名}",
+                            "set_reminders: 20分鐘前, 40分鐘前"
+                        ]
+                    }
+                },
+                {
+                    "title": "賣貨便取貨通知範例", 
+                    "description": "展示如何處理賣貨便的取貨通知",
+                    "code": {
+                        "trigger": "gmail_filter: 賣貨便：您的訂單 已送達",
+                        "actions": [
+                            "parse_store_name: /收件者資訊：[\\s\\S]*?(\\S+門市)/",
+                            "create_calendar_event: [取貨提醒] {店名}",
+                            "set_reminders: 20分鐘前, 40分鐘前"
+                        ]
+                    }
+                }
+            ],
+            "fields": {
+                "gmail": {
+                    "title": "Gmail 設定",
+                    "fields": {
+                        "pollInterval": {
+                            "type": "string",
+                            "description": "信件檢查頻率",
+                            "default": "每小時第10分鐘"
+                        },
+                        "searchQuery1": {
+                            "type": "string", 
+                            "description": "電商取貨信件搜尋條件",
+                            "default": "送貨狀態 更新為: 已到達"
+                        },
+                        "searchQuery2": {
+                            "type": "string",
+                            "description": "賣貨便取貨信件搜尋條件", 
+                            "default": "賣貨便：您的訂單 已送達"
+                        }
+                    }
+                },
+                "calendar": {
+                    "title": "Google Calendar 設定",
+                    "fields": {
+                        "calendarId": {
+                            "type": "string",
+                            "description": "目標行事曆 ID",
+                            "default": "primary"
+                        },
+                        "reminderTime": {
+                            "type": "string",
+                            "description": "提醒事件時間",
+                            "default": "當日晚上8點"
+                        },
+                        "reminderMinutes": {
+                            "type": "array",
+                            "description": "提前提醒分鐘數",
+                            "default": "[20, 40]"
+                        }
+                    }
+                },
+                "parsing": {
+                    "title": "信件解析設定",
+                    "fields": {
+                        "storeNameRegex1": {
+                            "type": "string",
+                            "description": "電商門市名稱解析正規表達式",
+                            "default": "/收件門市名稱\\\\s*[\\\\r\\\\n]+(.+)/"
+                        },
+                        "storeNameRegex2": {
+                            "type": "string", 
+                            "description": "賣貨便門市名稱解析正規表達式",
+                            "default": "/收件者資訊：[\\\\s\\\\S]*?(\\\\S+門市)/"
+                        }
+                    }
+                }
+            }
+        },
         "n8n-ai-choose-model": {
             "id": "n8n-ai-choose-model",
             "title": "AI 選 AI 模型",
