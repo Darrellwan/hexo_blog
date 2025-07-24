@@ -18,7 +18,41 @@ date: 2025-07-22 16:40:30
 
 {% darrellImageCover n8n-gmail-node-bg blog-n8n-gmail-bg.jpg max-800 %}
 
-## Gmail 節點功能介紹
+## 快速導覽
+
+**預計閱讀時間：** 5-10 分鐘  
+**適合對象：** 已有 n8n 基礎，想學會 Gmail 節點和應用的朋友
+
+**你將學到：**
+- Gmail 節點三大操作類型完整攻略  
+- Gmail 實用搜尋語法和附件處理技巧  
+- n8n workflow : 信用卡帳單自動提醒完整實作  
+- Gmail 常見問題解決方案
+
+**如果趕時間，可以跳到**
+{% quickNav %}
+[
+  {
+    "text": "功能介紹",
+    "anchor": "gmail-function",
+    "desc": "快速了解 Gmail 節點能做什麼"
+  },
+  {
+    "text": "信用卡帳單自動提醒", 
+    "anchor": "credit-card-automation",
+    "desc": "看完整實作案例"
+  },
+  {
+    "text": "常見問題",
+    "anchor": "common-issues", 
+    "desc": "解決設定問題"
+  }
+]
+{% endquickNav %}
+
+---
+
+## <span id="gmail-function">Gmail 節點功能介紹</span>
 
 Gmail 節點提供三種主要操作類型，以使用頻率排序：
 
@@ -174,7 +208,7 @@ Gmail Trigger - on message received 是 Gmail 相關場景中很重要的節點
 
 {% darrellImage800 n8n_gmail-message_trigger n8n_gmail-message_trigger.png max-800 %}
 
-## 常見問題和解決方案
+## <span id="common-issues">常見問題和解決方案</span>
 
 ### Gmail 發送頻率限制
 
@@ -188,7 +222,7 @@ Gmail Trigger - on message received 是 Gmail 相關場景中很重要的節點
 
 ## 進階應用
 
-### 信用卡帳單自動提醒
+### <span id="credit-card-automation">信用卡帳單自動提醒</span>
 
 這個案例展示如何自動處理多家銀行的信用卡帳單郵件，解析帳單資訊並建立 Google Calendar 提醒。
 
