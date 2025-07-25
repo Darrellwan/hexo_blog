@@ -2,6 +2,12 @@
 
 ## 📚 最新文章
 
+### [Claude Code Agent 實測，建立專屬的開發助理](https://www.darrelltw.com/claude-code-agent/?utm_source=github_readme&utm_medium=referral)
+📅 2025/07/25 · 5 小時內
+
+> Claude Code 新推出的 Agent 功能讓你可以建立專屬的開發 Agent，透過自然語言指令自動處理重複性的程式設計任務。不再需要每次重新解釋需求，讓 Claude Code Agent 記住你的開發模式。
+
+
 ### [n8n Gmail 節點教學 - 自動化郵件發送和處理](https://www.darrelltw.com/n8n-gmail-node/?utm_source=github_readme&utm_medium=referral)
 📅 2025/07/22 · 3 天前
 
@@ -56,15 +62,9 @@
 > 使用 Cloudflare Worker 和 KV 儲存快速搭建一個簡單但實用的短網址系統，無需伺服器，支援基本 API 操作和 UTM 追蹤功能。
 
 
-### [利用 n8n 的 s3 節點連接 Cloudflare R2 儲存服務](https://www.darrelltw.com/n8n-node-s3-with-cloudflare-r2/?utm_source=github_readme&utm_medium=referral)
-📅 2025/04/25 · 3 個月前
-
-> 介紹如何在 n8n 中使用 s3 節點連接 Cloudflare R2 儲存服務，包含 API Token 申請、權限設定、上傳下載檔案，適合想將自動化流程與雲端儲存整合的使用者。
-
-
 ## 📊 部落格統計
-![文章總數](https://img.shields.io/badge/文章總數-101-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-214,194+-blue?style=flat-square)
+![文章總數](https://img.shields.io/badge/文章總數-102-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-215,598+-blue?style=flat-square)
 ![最後更新](https://img.shields.io/badge/最後更新-2025/07/25-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
@@ -97,7 +97,7 @@
 04月 ████░░░░░░ 4篇
 05月 ███░░░░░░░ 3篇
 06月 ████░░░░░░ 4篇
-07月 ██░░░░░░░░ 2篇
+07月 ███░░░░░░░ 3篇
 ```
 
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-07-25 05:53:53*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-07-25 08:30:25*
