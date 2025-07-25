@@ -56,3 +56,8 @@ venv/
 log.txt
 .secrets
 source/_posts/test-article.md
+
+# Claude local tools and settings
+.claude/
+*/.claude/
+CLAUDE.local.md
