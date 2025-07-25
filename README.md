@@ -3,13 +3,13 @@
 ## 📚 最新文章
 
 ### [n8n Gmail 節點教學 - 自動化郵件發送和處理](https://www.darrelltw.com/n8n-gmail-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/07/22 · 2 天前
+📅 2025/07/22 · 3 天前
 
 > 完整教學 n8n Gmail 節點實現郵件自動化流程。包含 OAuth 認證設定、搜尋語法技巧、郵件發送標籤管理等功能介紹。實測信用卡帳單自動提醒、PDF 解析、Google Calendar 整合等進階案例。
 
 
 ### [n8n 串接 Cloudflare Turnstile CAPTCHA 驗證](https://www.darrelltw.com/n8n-with-cloudflare-turnstile-CAPTCHA/?utm_source=github_readme&utm_medium=referral)
-📅 2025/07/14 · 10 天前
+📅 2025/07/14 · 11 天前
 
 > 防止 vibe coding 表單被機器人攻擊？使用 Cloudflare Turnstile + n8n 打造表單驗證系統。包含前端 HTML、後端 API 驗證、webhook 設定，完整驗證流程實作教學。
 
@@ -27,7 +27,7 @@
 
 
 ### [n8n Perplexity 節點教學](https://www.darrelltw.com/n8n-perplexity-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/06/09 · 1 個月前
+📅 2025/06/09 · 2 個月前
 
 > n8n 內建節點支援 Perplexity ！分享 API key 申請教學、Pro 用戶的免費五美金額度。如何在 n8n 使用 Perplexity 節點和不同模型之間的比較
 
@@ -64,8 +64,8 @@
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-101-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-213,714+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/07/24-green?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-214,194+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/07/25-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-07-24 08:47:34*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-07-25 05:53:53*
