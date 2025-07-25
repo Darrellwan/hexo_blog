@@ -7,16 +7,49 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2025/07/15 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.103.0，正式版本為 1.102.3
+description: n8n 的更新記錄(2025/07/25 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.104.0，正式版本為 1.103.2
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-07-15 13:05:00
+modified: 2025-07-25 13:05:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 1.104.0 Pre-release - 2025-07-25
+
+[Github 1.104.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.104.0)
+
+### New node: Anthropic Node
+
+新增 `Anthropic` 節點
+直接使用 `claude 4 sonnet` 模型的相關 API
+有一些還沒有完全開放的 api endpoint 相當吸引人
+例如 `improve prompt` 未來可以用來自動改善提示詞！
+
+{% darrellImage800 n8n-1.104.0-new_node-anthropic n8n-1.104.0-new_node-anthropic.png max-800 %}
+
+### Facebook Graph API Node: Support v23
+
+Facebook Graph API 節點支援 v23
+有使用 Facebook Graph API 的朋友可以多多參考更新了什麼
+
+[Facebook Graph API v23 更新文件](https://developers.facebook.com/docs/graph-api/changelog/version23.0/)
+
+{% darrellImage800 n8n-1.104.0-facebook_graph_api-support_v23 n8n-1.104.0-facebook_graph_api-support_v23.png max-800 %}
+
+### n8n Form Node: Allow basic styling of form completion message
+
+{% darrellImage800 n8n-1.104.0-form_ending-html_support n8n-1.104.0-form_ending-html_support.png max-800 %}
+
+n8n Form 節點
+在表單的 completion 頁面多支援了簡易的 html 排版
+再也不會只有單調的 text 能用
+(( 和原本的 form styling 不太一樣喔
+
+
 
 ## 1.103.0 Pre-release - 2025-07-15
 

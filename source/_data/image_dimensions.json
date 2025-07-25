@@ -5052,6 +5052,21 @@
   "/tools/n8n_template/data/bg/n8n-gmail-pickup-calendar.webp": {
     "width": 800,
     "height": 800,
-    "mtimeMs": 1753283194675.829
+    "mtimeMs": 1753346818275.0415
+  },
+  "/_posts/n8n-update-log/n8n-1.104.0-new_node-anthropic.png": {
+    "width": 1440,
+    "height": 1496,
+    "mtimeMs": 1753422348760.594
+  },
+  "/_posts/n8n-update-log/n8n-1.104.0-form_ending-html_support.png": {
+    "width": 2344,
+    "height": 1366,
+    "mtimeMs": 1753422713173.981
+  },
+  "/_posts/n8n-update-log/n8n-1.104.0-facebook_graph_api-support_v23.png": {
+    "width": 2344,
+    "height": 1366,
+    "mtimeMs": 1753422468742.284
   }
 }
