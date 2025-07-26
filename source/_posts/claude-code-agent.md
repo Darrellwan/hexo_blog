@@ -123,3 +123,9 @@ Claude 會根據你的描述自動產生 Agent 配置檔案，儲存在：
 你也是 **Claude Code** 的重度使用者嗎？
 會想用 Agent 來完成哪些事情？
 
+## 相關文章
+{% articleCard 
+  url="/claude-code-new-command-line-tool/" 
+  title="Claude Code 發佈 Command Line 的新工具" 
+  thumbnail="https://www.darrelltw.com/claude-code-new-command-line-tool/claude_code.jpg" 
+%}
