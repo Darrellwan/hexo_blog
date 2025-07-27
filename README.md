@@ -3,7 +3,7 @@
 ## 📚 最新文章
 
 ### [Claude Code Agent 實測，建立專屬的開發助理](https://www.darrelltw.com/claude-code-agent/?utm_source=github_readme&utm_medium=referral)
-📅 2025/07/25 · 19 小時前
+📅 2025/07/25 · 2 天前
 
 > Claude Code 新推出的 Agent 功能讓你可以建立專屬的開發 Agent，透過自然語言指令自動處理重複性的程式設計任務。不再需要每次重新解釋需求，讓 Claude Code Agent 記住你的開發模式。
 
@@ -65,7 +65,7 @@
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-102-blue?style=flat-square)
 ![總字數](https://img.shields.io/badge/總字數-215,746+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/07/26-green?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/07/27-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-07-26 07:53:29*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-07-27 02:22:16*
