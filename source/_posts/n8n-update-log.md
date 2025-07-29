@@ -7,16 +7,47 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2025/07/25 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.104.0，正式版本為 1.103.2
+description: n8n 的更新記錄(2025/07/29 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.105.0，正式版本為 1.104.1
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-07-25 13:05:00
+modified: 2025-07-29 13:05:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 1.105.0 Pre-release - 2025-07-29
+
+[Github 1.105.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.105.0)
+
+### editor: Add settings icons to the node on canvas
+編輯器：在畫布節點上新增設定圖示
+
+現在節點的設定選項，會直接顯示在 Canva 的圖示中
+你能一目瞭然哪些節點有設定選項！
+
+{% darrellImage800 n8n-1.105.0-show_setting_icon_in_canva n8n-1.105.0-show_setting_icon_in_canva.png max-800 %}
+
+{% darrellImage800 n8n-1.105.0-show_setting_icon_in_canva_2 n8n-1.105.0-show_setting_icon_in_canva_2.png max-800 %}
+
+### editor: Release the Focus Panel 
+編輯器：發布專注面板功能
+
+新增了 Focus Pane
+可以在右邊直接編輯細節像是 `Code` 
+就不用再切換視窗編輯！
+
+{% darrellImage800 n8n-1.105.0-focus_panel n8n-1.105.0-focus_panel.png max-800 %}
+
+### RSS Read Node: Add support for custom response fields
+RSS 讀取節點：新增自訂回應欄位支援
+
+RSS 雖然有規範欄位名稱，但還是可能遇到對方使用了自定義的欄位
+現在可以支援來讀取這些特殊的欄位名稱
+
+{% darrellImage800 n8n-1.105.0-rss_custom_field n8n-1.105.0-rss_custom_field.png max-800 %}
 
 ## 1.104.0 Pre-release - 2025-07-25
 
