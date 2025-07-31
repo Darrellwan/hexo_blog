@@ -1,5 +1,126 @@
 {
     "models": {
+        "n8n-from-collect-email-and-send": {
+            "id": "n8n-from-collect-email-and-send",
+            "title": "表單名單蒐集與自動化郵件發送",
+            "description": "完整的名單蒐集與郵件行銷自動化系統。透過美觀的表單蒐集潛在客戶資料，自動儲存至 Google Sheets 進行管理，並提供批量郵件發送功能，適合活動報名、訂閱服務、工作坊招募等場景。\n\n主要功能：\n\n客製化表單：可愛薰衣草風格的表單設計，支援 email 和姓名欄位\n資料儲存：自動將表單資料儲存到 Google Sheets 並標記時間戳\n郵件發送：批量發送個人化郵件給已蒐集的名單\n狀態追蹤：自動更新發送狀態，避免重複發送\n活動分類：支援不同活動的名單分類管理",
+            "detailedDescription": [
+                "部署美觀的表單收集介面，包含 email 和 name 必填欄位",
+                "表單提交後自動將資料寫入 Google Sheets，包含填寫時間和活動標籤",
+                "使用 Filter 節點篩選尚未發送郵件的聯絡人",
+                "透過 Gmail 節點批量發送個人化郵件",
+                "發送後自動更新 Google Sheets 中的發送狀態為 true",
+                "支援不同活動 campaign 的分類管理"
+            ],
+            "tags": ["表單", "名單蒐集", "郵件行銷", "Google Sheets", "Gmail", "自動化", "活動報名"],
+            "nodes": 9,
+            "createdAt": "2025-07-31",
+            "updatedAt": "2025-07-31",
+            "setup": {
+                "prerequisites": "需要設定 Google Sheets 和 Gmail API 存取權限",
+                "steps": [
+                    {
+                        "title": "Google Sheets 設定",
+                        "description": "建立用於儲存名單的 Google 試算表",
+                        "options": [
+                            "複製模板試算表：https://docs.google.com/spreadsheets/d/15S7Km2HvAD53xseBZ2yXz-cPflUHTiOfcdLoEcWBPiQ/copy",
+                            "在 Google Cloud Console 啟用 Google Sheets API",
+                            "建立 OAuth2 憑證或服務帳戶金鑰",
+                            "在 n8n 中設定 Google Sheets 認證",
+                            "設定正確的試算表 ID 和工作表名稱"
+                        ]
+                    },
+                    {
+                        "title": "Gmail API 設定",
+                        "description": "設定郵件發送功能",
+                        "options": [
+                            "在 Google Cloud Console 啟用 Gmail API",
+                            "建立 OAuth2 憑證",
+                            "在 n8n 中設定 Gmail OAuth2 認證",
+                            "測試郵件發送功能",
+                            "設定適當的郵件主旨和內容"
+                        ]
+                    },
+                    {
+                        "title": "表單客製化",
+                        "description": "調整表單樣式和內容",
+                        "options": [
+                            "修改表單標題和描述",
+                            "調整薰衣草配色或套用自訂 CSS",
+                            "設定表單欄位（email、name 等）",
+                            "測試表單提交流程"
+                        ]
+                    }
+                ]
+            },
+            "examples": [
+                {
+                    "title": "活動報名表範例",
+                    "description": "用於工作坊或講座的報名表單",
+                    "code": {
+                        "formTitle": "n8n workshop - 名單蒐集",
+                        "formDescription": "Hi 您好\n\n請填寫表單\n\n我們會在活動前用 Email 通知您！",
+                        "campaign": "workshop-20250824"
+                    }
+                },
+                {
+                    "title": "電子報訂閱範例",
+                    "description": "用於電子報或內容訂閱的表單",
+                    "code": {
+                        "formTitle": "訂閱我的電子報",
+                        "formDescription": "每週分享最新的自動化技巧和工具推薦",
+                        "campaign": "newsletter-subscription"
+                    }
+                }
+            ],
+            "fields": {
+                "form": {
+                    "title": "表單設定",
+                    "fields": {
+                        "formTitle": {
+                            "type": "string",
+                            "description": "表單標題",
+                            "default": "n8n workshop - 名單蒐集"
+                        },
+                        "formDescription": {
+                            "type": "string",
+                            "description": "表單描述",
+                            "default": "Hi 您好\n\n請填寫表單\n\n我們會在活動前用 Email 通知您！"
+                        },
+                        "campaign": {
+                            "type": "string",
+                            "description": "活動標籤",
+                            "default": "workshop-20250824"
+                        }
+                    }
+                },
+                "sheets": {
+                    "title": "Google Sheets 設定",
+                    "fields": {
+                        "spreadsheetId": {
+                            "type": "string",
+                            "description": "Google Sheets 試算表 ID",
+                            "default": "15S7Km2HvAD53xseBZ2yXz-cPflUHTiOfcdLoEcWBPiQ"
+                        }
+                    }
+                },
+                "email": {
+                    "title": "郵件設定",
+                    "fields": {
+                        "subject": {
+                            "type": "string",
+                            "description": "郵件主旨",
+                            "default": "n8n 消息"
+                        },
+                        "message": {
+                            "type": "string",
+                            "description": "郵件內容",
+                            "default": "感謝您的報名，我們會儘快與您聯繫！"
+                        }
+                    }
+                }
+            }
+        },
         "n8n-gmail-pickup-calendar": {
             "id": "n8n-gmail-pickup-calendar", 
             "title": "Gmail 電商取貨提醒自動化",
