@@ -3,25 +3,25 @@
 ## 📚 最新文章
 
 ### [Postiz 串接 Threads：Zeabur 部署 + Meta Developer 設定教學](https://www.darrelltw.com/postiz-zeabur-threads-tutorial/?utm_source=github_readme&utm_medium=referral)
-📅 2025/07/28 · 14 小時前
+📅 2025/07/28 · 5 天前
 
 > 想用 Postiz 自動排程 Threads 貼文？本文提供完整 Meta 應用程式建立到 Threads API 串接教學，輕鬆實現 Threads 自動排程發文。
 
 
 ### [Claude Code Agent 實測，建立專屬的開發助理](https://www.darrelltw.com/claude-code-agent/?utm_source=github_readme&utm_medium=referral)
-📅 2025/07/25 · 4 天前
+📅 2025/07/25 · 9 天前
 
 > Claude Code 新推出的 Agent 功能讓你可以建立專屬的開發 Agent，透過自然語言指令自動處理重複性的程式設計任務。不再需要每次重新解釋需求，讓 Claude Code Agent 記住你的開發模式。
 
 
 ### [n8n Gmail 節點教學 - 自動化郵件發送和處理](https://www.darrelltw.com/n8n-gmail-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/07/22 · 7 天前
+📅 2025/07/22 · 11 天前
 
 > 完整教學 n8n Gmail 節點實現郵件自動化流程。包含 OAuth 認證設定、搜尋語法技巧、郵件發送標籤管理等功能介紹。實測信用卡帳單自動提醒、PDF 解析、Google Calendar 整合等進階案例。
 
 
 ### [n8n 串接 Cloudflare Turnstile CAPTCHA 驗證](https://www.darrelltw.com/n8n-with-cloudflare-turnstile-CAPTCHA/?utm_source=github_readme&utm_medium=referral)
-📅 2025/07/14 · 15 天前
+📅 2025/07/14 · 19 天前
 
 > 防止 vibe coding 表單被機器人攻擊？使用 Cloudflare Turnstile + n8n 打造表單驗證系統。包含前端 HTML、後端 API 驗證、webhook 設定，完整驗證流程實作教學。
 
@@ -33,7 +33,7 @@
 
 
 ### [n8n ElevenLabs 節點 TTS文轉音場景分享](https://www.darrelltw.com/n8n-elevenlabs-tts/?utm_source=github_readme&utm_medium=referral)
-📅 2025/06/14 · 1 個月前
+📅 2025/06/14 · 2 個月前
 
 > 實測 n8n + ElevenLabs 打造語音自動化！詳細記錄安裝過程、功能測試結果。
 
@@ -65,7 +65,7 @@
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-103-blue?style=flat-square)
 ![總字數](https://img.shields.io/badge/總字數-219,963+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/07/29-green?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/08/03-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -92,12 +92,12 @@
 
 ## 📈 更新頻率
 ```text
-02月 ██████░░░░ 6篇
 03月 ██████░░░░ 6篇
 04月 ████░░░░░░ 4篇
 05月 ███░░░░░░░ 3篇
 06月 ████░░░░░░ 4篇
 07月 ████░░░░░░ 4篇
+08月 ░░░░░░░░░░ 0篇
 ```
 
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-07-29 08:31:52*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-08-03 02:24:29*
