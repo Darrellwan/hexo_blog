@@ -7,7 +7,7 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2025/07/29 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.105.0，正式版本為 1.104.1
+description: n8n 的更新記錄(2025/08/05 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.106.0，正式版本為 1.105.2
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
@@ -17,6 +17,49 @@ sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 1.106.0 Pre-release - 2025-08-05
+
+[Github 1.106.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.106.0)
+
+### Store last entered cURL command for each HTTP node
+為每個 HTTP 節點儲存最後輸入的 cURL 指令
+
+**方便的更新！**
+
+用 `CURL` 來 import 到 `request` 節點是非常方便的事情
+但以前只會記得最後一個 import 的語法
+
+現在會個別記憶！
+所以如果有需要調整的話可以打開該 `request` 節點的 CURL 語法來調整就好
+
+{% darrellImage800 n8n-1.106.0-curl_memory_in_request_node_1 n8n-1.106.0-curl_memory_in_request_node_1.png max-800 %}
+
+{% darrellImage800 n8n-1.106.0-curl_memory_in_request_node_2 n8n-1.106.0-curl_memory_in_request_node_2.png max-800 %}
+
+### Add CSS variable to customize input background
+新增 CSS 變數以自訂輸入背景 
+
+現在 n8n 的表單也支援客製化 input 視窗的背景顏色了
+
+以前沒辦法，所以要是做深色背景時
+都還是只能用白色的 input 視窗
+
+現在可以一起改成深色的背景、淺色的字體！
+
+{% darrellImage800 n8n-1.106.0-custom_input_bg_in_form n8n-1.106.0-custom_input_bg_in_form.png max-800 %}
+
+### Google Sheets Node: Make it possible to set cell values empty on updates
+使在更新時能夠將儲存格值設為空值
+
+這是一個當你會用到，就會很重要的功能
+
+以前如果想要更新空值，你用真的 empty 是無法更新的，變成要用空白等等的奇怪方式
+
+現在終於支援可以直接更新空值，對一些場景來說真的方便很多
+
+{% darrellImage800 n8n-1.106.0-google_sheet_update_empty_value n8n-1.106.0-google_sheet_update_empty_value.png max-800 %}
+
 
 ## 1.105.0 Pre-release - 2025-07-29
 
