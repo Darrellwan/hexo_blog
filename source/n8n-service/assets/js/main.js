@@ -87,6 +87,7 @@ class FormManager {
         // Required field validation
         if (field.hasAttribute('required') && !value) {
             this.showFieldError(field, '此欄位為必填');
+            field.setAttribute('aria-invalid', 'true');
             isValid = false;
         }
         
@@ -95,6 +96,7 @@ class FormManager {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(value)) {
                 this.showFieldError(field, '請輸入有效的 Email 地址');
+                field.setAttribute('aria-invalid', 'true');
                 isValid = false;
             }
         }
@@ -104,12 +106,14 @@ class FormManager {
             const phoneRegex = /^[\d\s\-\+\(\)]+$/;
             if (!phoneRegex.test(value)) {
                 this.showFieldError(field, '請輸入有效的電話號碼');
+                field.setAttribute('aria-invalid', 'true');
                 isValid = false;
             }
         }
         
         if (isValid) {
             this.clearFieldError(field);
+            field.removeAttribute('aria-invalid');
         }
         
         return isValid;
@@ -121,6 +125,7 @@ class FormManager {
         
         if (servicesChecked) {
             this.clearFieldError(checkboxGroup);
+            checkboxGroup.classList.remove('error');
         }
     }
     
@@ -135,6 +140,7 @@ class FormManager {
         
         if (field.classList.contains('checkbox-group')) {
             field.parentNode.appendChild(errorElement);
+            field.classList.add('error');
         } else {
             field.parentNode.appendChild(errorElement);
         }
