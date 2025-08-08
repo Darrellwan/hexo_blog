@@ -96,10 +96,11 @@ h3 {
     border: 2px solid transparent;
     min-width: 120px;
     justify-content: center;
+    min-height: 44px;
 }
 
 .btn-primary {
-    background: var(--accent-primary);
+    background: var(--accent-gradient);
     color: #000;
     border: 1px solid var(--accent-primary);
     box-shadow: none;
@@ -107,7 +108,8 @@ h3 {
 }
 
 .btn-primary:hover {
-    background: var(--accent-secondary);
+    background: var(--accent-gradient);
+    filter: brightness(1.05);
     color: #000;
     transform: none;
     box-shadow: none;
@@ -394,24 +396,13 @@ h3 {
 }
 
 @keyframes particleFlow {
-    0% {
-        left: 0;
-        opacity: 0;
-        transform: translateY(-50%) scale(0.5);
-    }
-    10% {
-        opacity: 1;
-        transform: translateY(-50%) scale(1);
-    }
-    90% {
-        opacity: 1;
-        transform: translateY(-50%) scale(1);
-    }
-    100% {
-        left: 100%;
-        opacity: 0;
-        transform: translateY(-50%) scale(0.5);
-    }
+    0% { left: 0; opacity: 0; transform: translateY(-50%) translateX(0) scale(0.6); }
+    10% { opacity: 1; }
+    25% { transform: translateY(calc(-50% - 3px)) translateX(0) scale(1); }
+    50% { transform: translateY(calc(-50% + 2px)) translateX(0) scale(1); }
+    75% { transform: translateY(calc(-50% - 2px)) translateX(0) scale(1); }
+    90% { opacity: 1; }
+    100% { left: 100%; opacity: 0; transform: translateY(-50%) translateX(0) scale(0.6); }
 }
 
 /* Responsive Design for Workflow */

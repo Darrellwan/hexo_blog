@@ -237,6 +237,9 @@ class AnimationController {
         };
         
         window.addEventListener('scroll', scrollListener, { passive: true });
+
+        // Apply on load for initial position
+        updateParallax();
     }
     
     initializeHoverEffects() {

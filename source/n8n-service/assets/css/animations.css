@@ -252,6 +252,7 @@
     animation: fadeInUp 0.8s ease-out both;
     transform: translateY(30px);
     opacity: 0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 .service-card:nth-child(1) {
@@ -272,6 +273,11 @@
 
 .service-card:hover .service-icon {
     animation: pulse 0.6s ease-in-out;
+}
+
+/* Button ripple improvement */
+.btn:active {
+    transform: translateY(0);
 }
 
 /* Case Cards Animation */

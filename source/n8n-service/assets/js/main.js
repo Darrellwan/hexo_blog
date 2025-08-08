@@ -227,7 +227,8 @@ class FormManager {
         
         // Show loading state
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<span class="loading-dots"></span> 提交中...';
+        submitBtn.setAttribute('aria-busy', 'true');
+        submitBtn.innerHTML = '<span class="loading-dots" aria-hidden="true"></span> 提交中...';
         
         try {
             // Simulate API call
@@ -237,6 +238,7 @@ class FormManager {
             this.showErrorMessage(error.message);
         } finally {
             submitBtn.disabled = false;
+            submitBtn.removeAttribute('aria-busy');
             submitBtn.textContent = originalText;
         }
     }
@@ -283,6 +285,7 @@ class FormManager {
     showErrorMessage(message) {
         const errorDiv = document.createElement('div');
         errorDiv.className = 'form-error';
+        errorDiv.setAttribute('role', 'alert');
         errorDiv.innerHTML = `
             <p><strong>提交失敗：</strong>${message}</p>
             <p>請檢查您的網路連接後重試，或直接聯繫我們。</p>
