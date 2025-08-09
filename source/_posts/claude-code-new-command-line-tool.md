@@ -7,7 +7,7 @@ tags:
   - AI
   - 開發工具
 page_type: post
-description: 快速嘗試 Claude Code，介紹安裝和指令，以及一些簡易的操作方式，也分享測試時的花費
+description: 介紹安裝 Claude Code和指令，以及一些簡易的操作方式，最新的價格方案，以及使用心得
 categories: 
   - 工具
 bgImage: claude_code.jpg
@@ -21,6 +21,37 @@ preload:
 
 [Claude Code](https://github.com/anthropics/claude-code) 是 Anthropic 公司最近推出的 CLI 工具，讓開發者可以在終端機中直接與 Claude AI 模型互動。
 讓我們用一種全新的 Command Line 方式來跟 Claude 和專案的程式碼互動
+
+## Claude Code 價格 - 202508 更新
+
+目前價格除了以前要用 API 儲值以外，也包含在 訂閱 Claude 的 Pro 以上方案中
+
+分別有三種訂閱方式：
+
+### Claude Pro
+每月 20 美金
+用量為大約 每 5 小時約可送 10–40 次指令，僅支援 Sonnet 4。
+
+### Claude Max 100
+每月 100 美金
+用量為大約 每 5 小時約可送 50–200 次指令，可用 Opus 4 / Sonnet 4
+
+### Claude Max 200
+每月 200 美金
+用量為大約 每 5 小時約可送 200–800 次指令，可用 Opus 4 / Sonnet 4。
+
+### 比較表格
+| 方案 | 月費 | 用量（每 5 小時） | 可用模型 |
+|---|---|---|---|
+| Claude Pro | 每月 20 美金 | 10–40 次指令 | Sonnet 4 |
+| Claude Max 100 | 每月 100 美金 | 50–200 次指令 | Opus 4 / Sonnet 4 |
+| Claude Max 200 | 每月 200 美金 | 200–800 次指令 | Opus 4 / Sonnet 4 |
+
+### 價格心得
+其實仔細觀察可以發現 20 美金和 100 美金的用量是剛好 5 倍
+但 200 美金的用量是 5 美金的 40 倍。
+
+所以 20 美金要再往上升級的話，200 美金是比較划算的選擇(價格比 100 美金多 2 倍，但用量是 4 倍！)
 
 ## 主要功能
 
@@ -206,7 +237,6 @@ ccusage --session
 ## 結論
 
 喜歡用 Command Line 的工程師都蠻值得一試的
-先儲值一點即可 (最低 5 美金起跳)
 
 ## 參考資料
 
