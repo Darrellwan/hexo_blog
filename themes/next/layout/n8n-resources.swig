@@ -32,24 +32,63 @@ layout: false
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>n8n 教學文件 - 節點、模板、部署和小撇步 | Darrell TW</title>
-  <meta name="description" content="{{ page.description or '探索n8n自動化工作流程工具的各種文件，包括節點介紹、使用技巧、模板分享、功能更新及部署設定指南。' }}">
-  <meta name="keywords" content="n8n, 工作流程自動化, 自動化工具, 節點介紹, n8n模板, n8n部署">
-  <link rel="canonical" href="{{ url_for(page.permalink) }}">
+  <title>n8n 教學大全：50+ 節點介紹、模板、部署指南 | Darrell TW</title>
+  <meta name="description" content="{{ page.description or '完整n8n自動化教學大全，包含50+節點詳解、實用模板下載、一鍵部署指南。適合初學者到進階用戶，5分鐘上手工作流程自動化。' }}">
+  <meta name="keywords" content="n8n教學, n8n節點, 工作流程自動化, n8n模板下載, n8n部署, 自動化工具, n8n中文教學, workflow automation, n8n tutorial">
+  
+  <!-- 作者和網站資訊 -->
+  <meta name="author" content="Darrell TW">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  
+  <!-- 語言和地區 -->
+  <meta name="language" content="zh-TW">
+  <meta name="geo.region" content="TW">
+  <meta name="geo.country" content="Taiwan">
+  <link rel="canonical" href="{{ config.url }}{{ url_for(page.permalink) }}">
+  
+  <!-- 技術 SEO -->
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="referrer" content="no-referrer-when-downgrade">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="theme-color" content="#ff6d5a">
+  <meta name="msapplication-TileColor" content="#ff6d5a">
+  
+  <!-- 預載入重要資源 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="dns-prefetch" href="//www.googletagmanager.com">
+  <link rel="dns-prefetch" href="//www.google-analytics.com">
+  
+  <!-- Sitemap 和 RSS -->
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ config.url }}/sitemap.xml">
+  
+  <!-- 頁面類型和更新時間 -->
+  <meta property="article:published_time" content="{{ page.date or Date.now() }}">
+  <meta property="article:modified_time" content="{{ page.updated or Date.now() }}">
+  <meta property="article:author" content="Darrell TW">
+  <meta property="article:section" content="n8n教學">
+  <meta property="article:tag" content="n8n, 自動化, 工作流程, 教學">
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="{{ url_for(page.permalink) }}">
-  <meta property="og:title" content="n8n 教學文件 - 節點、模板、部署和小撇步 | Darrell TW">
-  <meta property="og:description" content="{{ page.description or '探索n8n自動化工作流程工具的各種教學文分享，包括節點介紹、使用技巧、模板分享、功能更新及部署設定指南。' }}">
-  <meta property="og:image" content="{{ url_for('/gallery/n8n_resource_og.jpg') }}">
+  <meta property="og:url" content="{{ config.url }}{{ url_for(page.permalink) }}">
+  <meta property="og:title" content="n8n 教學大全：50+ 節點介紹、模板、部署指南">
+  <meta property="og:description" content="{{ page.description or '完整n8n自動化教學大全，包含50+節點詳解、實用模板下載、一鍵部署指南。適合初學者到進階用戶，5分鐘上手工作流程自動化。' }}">
+  <meta property="og:image" content="{{ config.url }}{{ url_for('/gallery/n8n_resource_og.jpg') }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="n8n 教學資源大全 - 節點介紹、模板分享、部署指南">
+  <meta property="og:site_name" content="Darrell TW - MarTech 自動化專家">
+  <meta property="og:locale" content="zh_TW">
   
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="{{ url_for(page.permalink) }}">
-  <meta name="twitter:title" content="n8n 教學文件 - 節點、模板、部署和小撇步 | Darrell TW">
-  <meta name="twitter:description" content="{{ page.description or '探索n8n自動化工作流程工具的各種教學文分享，包括節點介紹、使用技巧、模板分享、功能更新及部署設定指南。' }}">
-  <meta name="twitter:image" content="{{ url_for('/gallery/n8n_resource_og.jpg') }}">
+  <meta name="twitter:site" content="@darrell_tw">
+  <meta name="twitter:creator" content="@darrell_tw">
+  <meta name="twitter:url" content="{{ config.url }}{{ url_for(page.permalink) }}">
+  <meta name="twitter:title" content="n8n 教學大全：50+ 節點介紹、模板、部署指南">
+  <meta name="twitter:description" content="{{ page.description or '完整n8n自動化教學大全，包含50+節點詳解、實用模板下載、一鍵部署指南。適合初學者到進階用戶，5分鐘上手工作流程自動化。' }}">
+  <meta name="twitter:image" content="{{ config.url }}{{ url_for('/gallery/n8n_resource_og.jpg') }}">
+  <meta name="twitter:image:alt" content="n8n 教學資源大全 - 節點介紹、模板分享、部署指南">
 
   <!-- 
   <script src="https://cdn.jsdelivr.net/npm/algoliasearch@5.23.4/dist/algoliasearch.umd.js"></script>
@@ -258,54 +297,107 @@ function generateItemListElements() {
 }
 
 // 生成完整的結構化數據
-const schemaData = {
-  "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  "name": "n8n 教學文件 | Darrell TW",
-  "description": "{{ page.description or '探索n8n自動化工作流程工具的各種文件，包括節點介紹、使用技巧、模板分享、功能更新及部署設定指南。' }}",
-  "publisher": {
-    "@type": "Organization",
-    "name": "Darrell TW",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "{{ config.url }}{{ url_for('/gallery/n8n_resource_og.jpg') }}"
+const schemaData = [
+  // 主要頁面數據
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "{{ config.url }}/n8n-tutorial-resources/",
+    "name": "n8n 教學大全：50+ 節點介紹、模板、部署指南",
+    "description": "{{ page.description or '完整n8n自動化教學大全，包含50+節點詳解、實用模板下載、一鍵部署指南。適合初學者到進階用戶，5分鐘上手工作流程自動化。' }}",
+    "url": "{{ config.url }}/n8n-tutorial-resources/",
+    "inLanguage": "zh-TW",
+    "isAccessibleForFree": true,
+    "lastReviewed": "{{ date(Date.now(), 'YYYY-MM-DD') }}",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Darrell TW",
+      "url": "{{ config.url }}",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ config.url }}{{ url_for('/gallery/n8n_resource_og.jpg') }}",
+        "width": 1200,
+        "height": 630
+      },
+      "sameAs": [
+        "https://www.threads.net/@darrell_tw_",
+        "https://www.instagram.com/darrell_tw_/",
+        "https://www.linkedin.com/in/darrell-wang-tw/"
+      ]
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Darrell TW",
+      "url": "https://www.darrelltw.com/",
+      "sameAs": [
+        "https://www.threads.net/@darrell_tw_",
+        "https://www.instagram.com/darrell_tw_/"
+      ]
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": generateItemListElements().length,
+      "itemListElement": generateItemListElements()
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "首頁",
+          "item": {
+            "@type": "WebPage",
+            "@id": "{{ config.url }}"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "n8n 教學大全",
+          "item": {
+            "@type": "CollectionPage",
+            "@id": "{{ config.url }}/n8n-tutorial-resources/"
+          }
+        }
+      ]
+    },
+    "keywords": "n8n教學, n8n節點, 工作流程自動化, n8n模板下載, n8n部署, 自動化工具, n8n中文教學"
+  }
+  // 網站數據
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "{{ config.url }}/#website",
+    "url": "{{ config.url }}",
+    "name": "Darrell TW - MarTech 自動化專家",
+    "description": "專業 MarTech 自動化解決方案，n8n 教學專家",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Darrell TW"
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "{{ config.url }}/search?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
     }
   },
-  "mainEntity": {
-    "@type": "ItemList",
-    "itemListElement": generateItemListElements()
-  },
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "item": {
-          "@type": "WebSite",
-          "name": "Darrell TW",
-          "@id": "{{ config.url }}"
-        }
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "item": {
-          "@type": "CollectionPage",
-          "name": "n8n 教學文件",
-          "@id": "{{ config.url }}/n8n-tutorial-resources/"
-        }
-      }
-    ]
-  }
-};
+  // FAQ 結構化數據 - 已停用
+];
 
 // 將結構化數據添加到頁面
 document.addEventListener('DOMContentLoaded', function() {
-  const script = document.createElement('script');
-  script.type = 'application/ld+json';
-  script.textContent = JSON.stringify(schemaData);
-  document.head.appendChild(script);
+  // 為每個結構化數據創建單獨的 script 標籤
+  schemaData.forEach((schema, index) => {
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(schema);
+    script.id = 'schema-' + index;
+    document.head.appendChild(script);
+  });
 });
 </script>
 </head>
@@ -315,9 +407,9 @@ document.addEventListener('DOMContentLoaded', function() {
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-<header class="n8n-resources-header">
+<header class="n8n-resources-header" role="banner">
   <div class="n8n-header-wrapper">
-    <h1>n8n教學文件大集合</h1>
+    <h1>n8n教學大全：50+ 節點介紹、模板、部署指南</h1>
     <div class="social-buttons">
       <a href="https://www.darrelltw.com/" class="social-button" target="_blank" rel="noopener noreferrer" title="Website">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41z"></path></svg>
@@ -347,7 +439,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </header>
 
-<main class="n8n-resources-container">
+<main class="n8n-resources-container" role="main" itemscope itemtype="https://schema.org/CollectionPage">
+  <!-- 麵包屑導航 -->
+  <nav aria-label="麵包屑導航" class="n8n-breadcrumb">
+    <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="{{ config.url }}" itemprop="item">
+          <span itemprop="name">首頁</span>
+        </a>
+        <meta itemprop="position" content="1">
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span itemprop="name">n8n 教學大全</span>
+        <meta itemprop="position" content="2">
+      </li>
+    </ol>
+  </nav>
+
   {% set sections = [
     { id: 'node-intro', title: 'n8n 節點介紹' },
     { id: 'tips', title: 'n8n 小撇步' },
@@ -426,6 +534,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         {% endif %}
       {% endfor %}
       <li><a href="#tutorials">外部教學</a></li>
+      <li><a href="#related-articles">相關文章</a></li>
       <li><a href="#about">相關連結</a></li>
     </ul>
   </nav>
@@ -446,7 +555,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <a href="{{ url_for(post.path) }}" class="n8n-article-link" target="_blank" rel="noopener"
                    onclick="trackClick('{{ url_for(post.path) }}', '{{ post.title }}', 'Darrell TW', '{{ cid }}')">
                   <div class="n8n-article-image" style="--bg-image: url('{{ get_n8n_post_thumbnail(post) }}');">
-                    <img src="{{ get_n8n_post_thumbnail(post) }}" alt="{{ post.title }} - n8n資源文章封面圖" loading="lazy">
+                    <img src="{{ get_n8n_post_thumbnail(post) }}" 
+                         alt="{{ post.title }} - n8n {{ cid }}教學文章封面圖" 
+                         loading="lazy"
+                         decoding="async"
+                         width="320" height="320">
                   </div>
                   <div class="n8n-article-info">
                     {# <div class="n8n-article-date">{{ format_n8n_date(post.date) }}</div> #}
@@ -475,7 +588,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <div class="n8n-tutorial-image" style="--bg-image: url('{{ tutorial.image }}');">
                 <a href="{{ tutorial.link }}" class="n8n-tutorial-image-link" target="_blank" rel="noopener"
                    onclick="trackClick('{{ tutorial.link }}', '{{ tutorial.title }}', '{{ tutorial.author }}', 'external')">
-                  <img src="{{ tutorial.image }}" alt="{{ tutorial.title }} - n8n教學" loading="lazy">
+                  <img src="{{ tutorial.image }}" 
+                       alt="{{ tutorial.title }} - 由{{ tutorial.author }}提供的n8n教學" 
+                       loading="lazy"
+                       decoding="async"
+                       width="400" height="225">
                 </a>
               </div>
               <div class="n8n-tutorial-info">
@@ -495,6 +612,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               </div>
             </article>
           {% endfor %}
+        </div>
+      </section>
+
+      <section id="related-articles" class="n8n-section">
+        <h2>相關文章推薦</h2>
+        <div class="n8n-related-articles">
+          <div class="n8n-related-card">
+            <h3><a href="/hexo-blog-optimization/">Hexo 部落格 SEO 優化完整指南</a></h3>
+            <p>學習如何優化 Hexo 部落格的搜尋引擎排名，包含結構化數據、頁面速度等技巧。</p>
+          </div>
+          <div class="n8n-related-card">
+            <h3><a href="/automation-tools-comparison/">自動化工具比較：n8n vs Zapier vs Make</a></h3>
+            <p>深度比較主流自動化工具的優缺點，協助您選擇最適合的解決方案。</p>
+          </div>
+          <div class="n8n-related-card">
+            <h3><a href="/line-bot-n8n-integration/">LINE Bot 與 n8n 整合實戰指南</a></h3>
+            <p>實作教學：如何使用 n8n 建立智慧 LINE Bot，處理客戶服務和自動回覆。</p>
+          </div>
         </div>
       </section>
 
@@ -1047,6 +1182,64 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
   .n8n-external-links a:hover { 
     background-color: var(--n8n-primary); 
+  }
+  
+  /* 相關文章推薦樣式 */
+  .n8n-related-articles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+  }
+  
+  .n8n-related-card {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--n8n-border);
+    border-radius: 8px;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .n8n-related-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--n8n-box-shadow-hover);
+    border-color: var(--n8n-primary);
+  }
+  
+  .n8n-related-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.1rem;
+    line-height: 1.4;
+  }
+  
+  .n8n-related-card h3 a {
+    color: var(--n8n-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .n8n-related-card h3 a:hover {
+    color: var(--n8n-secondary);
+    text-decoration: underline;
+  }
+  
+  .n8n-related-card p {
+    margin: 0;
+    color: var(--n8n-text);
+    opacity: 0.8;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  
+  @media (max-width: 768px) {
+    .n8n-related-articles {
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+    
+    .n8n-related-card {
+      padding: 15px;
+    }
   }
   
   .n8n-footer {
@@ -1691,6 +1884,59 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   .social-button svg {
     width: 18px;
     height: 18px;
+  }
+}
+
+/* 麵包屑導航樣式 */
+.n8n-breadcrumb {
+  margin-bottom: 20px;
+  padding: 0 15px;
+}
+
+.n8n-breadcrumb ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: var(--n8n-text);
+}
+
+.n8n-breadcrumb li {
+  display: flex;
+  align-items: center;
+}
+
+.n8n-breadcrumb li:not(:last-child)::after {
+  content: "›";
+  margin: 0 8px;
+  color: var(--n8n-date-color);
+  font-size: 16px;
+}
+
+.n8n-breadcrumb a {
+  color: var(--n8n-secondary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.n8n-breadcrumb a:hover {
+  color: var(--n8n-primary);
+  text-decoration: underline;
+}
+
+.n8n-breadcrumb li:last-child {
+  color: var(--n8n-date-color);
+}
+
+@media (max-width: 768px) {
+  .n8n-breadcrumb {
+    padding: 0 10px;
+  }
+  
+  .n8n-breadcrumb ol {
+    font-size: 13px;
   }
 }
 </style>
