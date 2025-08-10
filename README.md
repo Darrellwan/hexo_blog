@@ -1,9 +1,9 @@
-# Darrell TW
+# Darrell TW | n8n 自動化教學專家
 
 ## 📚 最新文章
 
 ### [Postiz 串接 Threads：Zeabur 部署 + Meta Developer 設定教學](https://www.darrelltw.com/postiz-zeabur-threads-tutorial/?utm_source=github_readme&utm_medium=referral)
-📅 2025/07/28 · 12 天前
+📅 2025/07/28 · 13 天前
 
 > 想用 Postiz 自動排程 Threads 貼文？本文提供完整 Meta 應用程式建立到 Threads API 串接教學，輕鬆實現 Threads 自動排程發文。
 
@@ -15,27 +15,27 @@
 
 
 ### [n8n Gmail 節點教學 - 自動化郵件發送和處理](https://www.darrelltw.com/n8n-gmail-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/07/22 · 18 天前
+📅 2025/07/22 · 19 天前
 
 > 完整教學 n8n Gmail 節點實現郵件自動化流程。包含 OAuth 認證設定、搜尋語法技巧、郵件發送標籤管理等功能介紹。實測信用卡帳單自動提醒、PDF 解析、Google Calendar 整合等進階案例。
 
 
-### [n8n 串接 Cloudflare Turnstile CAPTCHA 驗證](https://www.darrelltw.com/n8n-with-cloudflare-turnstile-CAPTCHA/?utm_source=github_readme&utm_medium=referral)
+### [n8n 表單防護實戰 - Cloudflare Turnstile 驗證完整配置](https://www.darrelltw.com/n8n-with-cloudflare-turnstile-CAPTCHA/?utm_source=github_readme&utm_medium=referral)
 📅 2025/07/14 · 1 個月前
 
 > 防止 vibe coding 表單被機器人攻擊？使用 Cloudflare Turnstile + n8n 打造表單驗證系統。包含前端 HTML、後端 API 驗證、webhook 設定，完整驗證流程實作教學。
 
 
 ### [Google 發布 Gemini CLI Tool 免費額度超級夠用 和 Claude Code 的比較](https://www.darrelltw.com/google-gemini-cli/?utm_source=github_readme&utm_medium=referral)
-📅 2025/06/26 · 1 個月前
+📅 2025/06/26 · 2 個月前
 
 > Google 推出免費 Gemini CLI 命令行工具。安裝教學，並與 Claude Code 做同樣 prompt 比較
 
 
-### [n8n ElevenLabs 節點 TTS文轉音場景分享](https://www.darrelltw.com/n8n-elevenlabs-tts/?utm_source=github_readme&utm_medium=referral)
+### [n8n 語音自動化實測 - ElevenLabs TTS 節點應用場景](https://www.darrelltw.com/n8n-elevenlabs-tts/?utm_source=github_readme&utm_medium=referral)
 📅 2025/06/14 · 2 個月前
 
-> 實測 n8n + ElevenLabs 打造語音自動化！詳細記錄安裝過程、功能測試結果。
+> n8n 語音自動化實戰！ElevenLabs TTS 節點完整安裝與使用教學，包含 API 設定、聲音選擇、品質優化技巧。實測分享多種自動化場景應用。
 
 
 ### [n8n Perplexity 節點教學](https://www.darrelltw.com/n8n-perplexity-node/?utm_source=github_readme&utm_medium=referral)
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-08-10 02:20:07*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-08-10 14:52:35*
