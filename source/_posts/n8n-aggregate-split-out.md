@@ -1,12 +1,14 @@
 ---
-title: n8n Aggregate 和 Split Out
+title: n8n 資料處理踩雷 - Aggregate 合併與 Split Out 分割實測
 tags:
   - n8n
+  - n8n節點介紹
+  - n8n 教學
 categories:
   - n8n
 page_type: post
 id: n8n-aggregate-split-out
-description: n8n 的 Aggregate 和 Split Out 節點，可以將多個資料合併成一個，或是相反將一個資料拆成多組資料，對於 n8n 的核心處理資料很重要也很常用到
+description: n8n 資料處理實測分享！Aggregate 合併和 Split Out 分割節點的使用陷阱、常見錯誤排除，以及實際操作中踩雷經驗。包含多筆資料合併技巧和陣列分割最佳實踐。
 bgImage: n8n-splitout_aggregation_bg.jpg
 preload:
   - n8n-splitout_aggregation_bg.jpg

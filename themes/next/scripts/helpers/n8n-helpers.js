@@ -51,10 +51,10 @@ hexo.extend.helper.register('get_n8n_post_category_section', function(post) {
   // 定義分類關鍵詞映射
   const categoryKeywords = {
     templates: ['模板', 'template', 'workflow', '範例', '工作流'],
-    'node-intro': ['節點', 'node'],
-    tips: ['撇步', '技巧', 'tip', 'tips', 'debug', 'n8n-debug'],
-    updates: ['更新', '新功能', 'update', 'feature'],
-    deployment: ['部署', '設定', 'deploy', 'config', 'setup']
+    'node-intro': ['節點', 'node', 'if', 'switch', 'gmail', 's3', 'webhook', 'slack', 'perplexity', 'elevenlabs'],
+    tips: ['撇步', '技巧', 'tip', 'tips', 'debug', 'n8n-debug', 'aggregate', 'split'],
+    updates: ['更新', '新功能', 'update', 'feature', 'folders'],
+    deployment: ['部署', '設定', 'deploy', 'config', 'setup', 'deployment', 'zeabur']
   };
   
   // 從標籤中檢查文章是否相關 n8n

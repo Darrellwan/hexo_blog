@@ -1,15 +1,15 @@
 ---
-title: n8n 串接 Slack、發送訊息、用 Slack 觸發 workflow
+title: n8n Slack 整合實測 - 訊息發送與觸發器設定完整流程
 tags:
-  - Integration
-  - Webhook
-  - n8n模板
   - n8n
+  - Slack整合
+  - n8n實測
+  - 完整流程
 categories:
   - n8n
 page_type: post
 id: n8n-with-slack
-description: Slack 應該是蠻多人使用的通訊工具，也很多開發者拿來串接作為通知訊息，用 n8n 串接 Slack 對非技術人員來說算是相當簡單，可以真的不需要學會程式碼用 no-code 的方式來達成，希望這篇 n8n 串 slack 的教學會對你有幫助，也介紹了 Slack Trigger 該怎麼使用
+description: n8n Slack 整合實戰指南！從 OAuth 認證設定到訊息發送、Trigger 觸發器配置，實測分享完整流程與常見問題解決。適合 No-Code 初學者，不需程式經驗即可上手。
 bgImage: n8n-with-slack_bg.jpg
 preload:
   - n8n-with-slack_bg.jpg

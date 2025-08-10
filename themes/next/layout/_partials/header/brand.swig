@@ -18,11 +18,14 @@
 
     <a href="{{ config.root }}" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">{{ title }}</h1>
+      <h1 class="site-title">{{ config.display_title or title }}</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
     {%- if subtitle %}
-      <p class="site-subtitle" itemprop="description">{{ subtitle }}</p>
+      <p class="site-subtitle" itemprop="description">
+        n8n 自動化工作流程教學<br>
+        MarTech 解決方案分享
+      </p>
     {%- endif %}
     {%- if theme.custom_logo and (theme.scheme === 'Gemini' or theme.scheme === 'Pisces') %}
       <a>

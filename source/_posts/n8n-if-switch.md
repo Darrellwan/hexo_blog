@@ -1,14 +1,14 @@
 ---
-title: n8n If 和 Switch
+title: n8n If 和 Switch 節點教學 - 條件判斷完整指南
 tags:
-  - n8n
-  - Integration
-  - Webhook
+  - n8n  
+  - n8n節點介紹
+  - n8n教學
 categories:
   - n8n
 page_type: post
 id: n8n-if-switch
-description: 深入了解 n8n 的 If 和 Switch 節點，條件判斷是每個自動化腳本都會遇到的
+description: 完整 n8n If 和 Switch 節點教學指南，包含條件判斷設定、實用案例演示、常見錯誤排除。實測分享自動化工作流程中條件邏輯的最佳實踐。
 bgImage: n8n-If_Switch_bg.jpg
 preload:
   - n8n-If_Switch_bg.jpg

@@ -62,8 +62,8 @@ layout: false
   <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ config.url }}/sitemap.xml">
   
   <!-- 頁面類型和更新時間 -->
-  <meta property="article:published_time" content="{{ page.date or Date.now() }}">
-  <meta property="article:modified_time" content="{{ page.updated or Date.now() }}">
+  <meta property="article:published_time" content="{{ page.date or date() }}">
+  <meta property="article:modified_time" content="{{ page.updated or date() }}">
   <meta property="article:author" content="Darrell TW">
   <meta property="article:section" content="n8n教學">
   <meta property="article:tag" content="n8n, 自動化, 工作流程, 教學">
@@ -308,7 +308,7 @@ const schemaData = [
     "url": "{{ config.url }}/n8n-tutorial-resources/",
     "inLanguage": "zh-TW",
     "isAccessibleForFree": true,
-    "lastReviewed": "{{ date(Date.now(), 'YYYY-MM-DD') }}",
+    "lastReviewed": "{{ date(date(), 'YYYY-MM-DD') }}",
     "publisher": {
       "@type": "Organization",
       "name": "Darrell TW",

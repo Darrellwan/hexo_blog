@@ -1,13 +1,14 @@
 ---
-title: n8n 用 Request 發送 LINE Message API
+title: n8n LINE 訊息發送實戰 - Request 節點替代 LINE Notify
 tags:
-  - n8n模板
-  - Line
+  - n8n
+  - n8n節點介紹
+  - LINE
 categories:
   - n8n
 page_type: post
 id: n8n-line-message-api
-description: Line Notify 的替代方案之一 Line Message API，介紹怎麼用 n8n 的 Request 來發送和接收 webhook，也會提供模板範例
+description: LINE Notify 替代方案實戰！使用 n8n Request 節點發送 LINE Message API，包含 Webhook 接收設定、訊息格式優化、常見錯誤排除。實測分享完整流程與模板範例。
 bgImage: n8n-line-message-api-bg.jpg
 preload:
   - n8n-line-message-api-bg.jpg

@@ -3,11 +3,12 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Darrell TW
+title: Darrell TW | n8n 自動化教學專家
 site_name: Darrell TW
-subtitle: 'Automation, AI'
-description: 'Automation, AI'
-keywords: Digital Marketing, Martech
+display_title: Darrell TW
+subtitle: 'n8n 自動化工作流程教學、MarTech 解決方案分享'
+description: '專業 n8n 自動化教學平台，提供 MarTech 工作流程設計、API 整合實戰、節點操作詳解。實測分享自動化解決方案，協助提升工作效率。'
+keywords: n8n教學, n8n節點, 工作流程自動化, MarTech, API整合, 自動化工具, workflow automation, n8n中文教學
 author: Darrell
 authorLink: https://www.linkedin.com/in/darrell-wang-78265a8b/
 language: 'zh-TW'

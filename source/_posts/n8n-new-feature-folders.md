@@ -1,15 +1,13 @@
 ---
-title: n8n 新功能 - 資料夾 Folders
+title: n8n 工作流整理術 - Folders 資料夾功能實測與組織技巧
 tags:
   - n8n
-  - Webhook
-  - API
-  - 自動化
+  - n8n 新功能
 categories:
   - n8n
 page_type: post
 id: n8n-new-feature-folders
-description: 終於等到了！n8n 資料夾功能開放，如何整理混亂的工作流程、建立多層資料夾結構，以及避免踩雷。
+description: n8n 工作流整理終於來了！Folders 資料夾功能實測分享，包含多層結構規劃、權限管理、批量移動技巧。實測分享 100+ 工作流的組織經驗與踩雷避免方法。
 bgImage: n8n_folder-bg.jpg
 preload:
   - n8n_folder-bg.jpg

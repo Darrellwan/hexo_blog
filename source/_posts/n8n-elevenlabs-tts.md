@@ -1,13 +1,14 @@
 ---
-title: n8n ElevenLabs 節點 TTS文轉音場景分享
+title: n8n 語音自動化實測 - ElevenLabs TTS 節點應用場景
 tags:
   - n8n
-  - n8n node
+  - n8n節點介紹
+  - ElevenLabs
 categories:
   - n8n
 page_type: post
 id: n8n-elevenlabs-tts
-description: 實測 n8n + ElevenLabs 打造語音自動化！詳細記錄安裝過程、功能測試結果。
+description: n8n 語音自動化實戰！ElevenLabs TTS 節點完整安裝與使用教學，包含 API 設定、聲音選擇、品質優化技巧。實測分享多種自動化場景應用。
 bgImage: blog-n8n-elevenlabs-node-bg.jpg
 preload:
   - blog-n8n-elevenlabs-node-bg.jpg

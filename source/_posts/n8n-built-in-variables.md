@@ -1,13 +1,13 @@
 ---
-title: n8n 內建參數介紹
+title: n8n 內建變數完全解析 - $input、$json 使用陷阱與技巧
 tags:
   - n8n
-  - n8n 介紹
+  - n8n 教學
 categories:
   - n8n
 page_type: post
 id: n8n-built-in-variables
-description: 解析 n8n 的內建變數，包含 $input、$json、$workflow 等重要參數的使用方法和應用場景，未來隨著使用的經驗持續更新
+description: n8n 內建變數完全攻略！深入解析 $input、$json、$workflow 參數的使用陷阱、常見錯誤與進階技巧。實測分享變數呼叫最佳實踐，避開新手常踩的雷。
 bgImage: n8n_builtin_variables_bg.jpg
 preload:
   - n8n_builtin_variables_bg.jpg

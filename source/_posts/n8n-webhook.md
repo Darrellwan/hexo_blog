@@ -1,15 +1,14 @@
 ---
-title: n8n Webhook 節點
+title: n8n Webhook 接收處理大全 - 常見錯誤與調試技巧
 tags:
   - n8n
   - Webhook
-  - API
-  - 自動化
+  - n8n節點
 categories:
   - n8n
 page_type: post
 id: n8n-webhook
-description: 一起來學 n8n Webhook 打造自動化流程！設定接收、處理資料，並提供案例和程式碼範例。
+description: n8n Webhook 完整攻略！從接收設定到資料處理，深入解析常見的 404、500 錯誤原因與解決方法。實測分享 Webhook 調試技巧、資料格式處理與安全性設定。
 bgImage: blog-n8n-webhook-bg.jpg
 preload:
   - blog-n8n-webhook-bg.jpg
