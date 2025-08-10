@@ -21,25 +21,24 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Darrell n8n 專家 | 台灣企業自動化顧問 | 工作流程優化教學">
     <meta name="twitter:description" content="台灣 #1 n8n 自動化專家 Darrell，5年經驗100+成功案例。提供企業內訓NT$3000起、自動化建置、一對一教學。24H內回覆，免費諮詢！">
-    <link rel="preload" href="assets/js/main.js" as="script">
-    <link rel="preload" href="assets/js/animations.js" as="script">
     <meta name="twitter:image" content="https://www.darrelltw.com/images/og-default.jpg">
+    <!-- CSS should load before any JS -->
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/animations.css">
+    <!-- Preload JS after CSS links -->
+    <link rel="preload" href="assets/js/main.js" as="script">
+    <link rel="preload" href="assets/js/animations.js" as="script">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="preload" href="https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtQ.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 <body>
     <nav class="primary-nav" aria-label="主要導航">
         <ul>
-            <li><a href="#services">服務項目</a></li>
-            <li><a href="#service-detail">服務詳情</a></li>
-            <li><a href="#cases">成功案例</a></li>
-            <li><a href="#expert">專家介紹</a></li>
-            <li><a href="#testimonials">客戶推薦</a></li>
-            <li><a href="#faq">常見問題</a></li>
-            <li><a href="#guide">n8n 入門</a></li>
-            <li><a href="#contact">聯絡我們</a></li>
+            <li><a href="#services">服務</a></li>
+            <li><a href="#cases">案例</a></li>
+            <li><a href="#expert">專家</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">聯絡</a></li>
         </ul>
     </nav>
     <!-- Hero Section -->
@@ -118,35 +117,12 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials">
+    <!-- Testimonials Section (Simple) -->
+    <section id="testimonials" class="testimonials-simple">
         <div class="container">
-            <h2 class="section-title">客戶推薦</h2>
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p>「透過 Darrell 的 n8n 自動化方案，我們的訂單處理效率提升了 300%」</p>
-                    </div>
-                    <div class="client-info">
-                        <div class="client-avatar" aria-hidden="true"></div>
-                        <div class="client-details">
-                            <h4>陳總經理</h4>
-                            <span>電商公司</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p>「3 週內完成導入並上線，跨系統資料整合穩定可靠」</p>
-                    </div>
-                    <div class="client-info">
-                        <div class="client-avatar" aria-hidden="true"></div>
-                        <div class="client-details">
-                            <h4>林技術長</h4>
-                            <span>SaaS 新創</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="testimonial-highlight">
+                <p>「透過 Darrell 的 n8n 自動化方案，我們的效率提升了 300%」</p>
+                <cite>- 陳總經理，電商公司</cite>
             </div>
         </div>
     </section>
@@ -229,38 +205,26 @@
         </div>
     </section>
 
-    <!-- Service Detail Section -->
+    <!-- Service Detail Section (Simplified) -->
     <section id="service-detail" class="service-detail">
         <div class="container">
-            <h2 class="section-title">服務詳情</h2>
-            <div class="service-detail-grid">
-                <article class="service-detail-card" aria-labelledby="svc-training-title">
-                    <h3 id="svc-training-title">n8n 企業內訓</h3>
-                    <ul>
-                        <li>課程內容：平台基礎、節點實作、錯誤處理與最佳實踐</li>
-                        <li>對象：企業內部團隊（工程/營運/行銷）</li>
-                        <li>時長：1-3 天密集課程；含教材與錄影</li>
-                        <li>產出：可上線的 1-2 個內部流程 + 標準化 SOP</li>
-                    </ul>
-                </article>
-                <article class="service-detail-card" aria-labelledby="svc-tutor-title">
-                    <h3 id="svc-tutor-title">一對一家教</h3>
-                    <ul>
-                        <li>課程方式：線上/線下；課後提供作業與回饋</li>
-                        <li>重點：從零開始搭建、API 串接、資料轉換、部署</li>
-                        <li>適用：希望快速上手的個人或小型團隊</li>
-                        <li>時長：每次 60-120 分鐘，彈性排程</li>
-                    </ul>
-                </article>
-                <article class="service-detail-card" aria-labelledby="svc-build-title">
-                    <h3 id="svc-build-title">企業自動化建置</h3>
-                    <ul>
-                        <li>流程：需求盤點 → PoC → 正式導入 → 監控與維運</li>
-                        <li>整合：ERP/CRM/電商平台/社群/資料倉儲</li>
-                        <li>交付：架構設計圖、工作流程、監控告警方案</li>
-                        <li>維護：SLA、異常回復流程、備援策略</li>
-                    </ul>
-                </article>
+            <h2 class="section-title">為什麼選擇我們</h2>
+            <div class="why-choose-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>快速上手</h3>
+                    <p>視覺化操作界面，無程式背景也能輕鬆學會</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>資料安全</h3>
+                    <p>可自架部署，完全掌控企業資料安全</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>成本效益</h3>
+                    <p>開源免費，3-6個月投資回本</p>
+                </div>
             </div>
         </div>
     </section>
@@ -282,14 +246,7 @@
                     </div>
                     <h3 class="case-title">電商訂單資料轉換拋接</h3>
                     <p class="case-description">自動化處理多平台訂單資料，統一格式後拋接至 ERP 系統，減少 80% 人工處理時間。</p>
-                    <div class="case-detail">
-                        <p><strong>客戶背景：</strong>台灣中型電商，月訂單 3-5 萬筆</p>
-                        <p><strong>問題描述：</strong>多通路格式不一，人工整併耗時且易錯</p>
-                        <p><strong>解決方案：</strong>以 n8n 建立資料轉換管線，結合驗證與重試</p>
-                        <p><strong>實施過程：</strong>2 週 PoC、4 週導入、1 週監控優化</p>
-                        <p><strong>成果數據：</strong>人工工時 -80%，錯誤率 -90%，TAT -60%</p>
-                        <p><strong>客戶回饋：</strong>「跨平台訂單處理順暢許多，尖峰不再卡單」</p>
-                    </div>
+                    
                     <div class="case-tags">
                         <span class="tag">電商整合</span>
                         <span class="tag">ERP 拋接</span>
@@ -310,14 +267,7 @@
                     </div>
                     <h3 class="case-title">社群多平台發文</h3>
                     <p class="case-description">一鍵發布內容至 Facebook、Instagram、Twitter 等多個社群平台，提升行銷效率 200%。</p>
-                    <div class="case-detail">
-                        <p><strong>客戶背景：</strong>成長型品牌，社群管道 6+ 個</p>
-                        <p><strong>問題描述：</strong>重複貼文耗時、排程缺乏一致性</p>
-                        <p><strong>解決方案：</strong>整合 CMS 與社群 API，自動排程與錯誤重試</p>
-                        <p><strong>實施過程：</strong>內容結構化 → 模板化 → 佈署監控</p>
-                        <p><strong>成果數據：</strong>發布效率 +200%，一致性 100%</p>
-                        <p><strong>客戶回饋：</strong>「內容團隊終於專注創意，不再被流程綁架」</p>
-                    </div>
+                    
                     <div class="case-tags">
                         <span class="tag">社群行銷</span>
                         <span class="tag">多平台發布</span>
@@ -338,14 +288,7 @@
                     </div>
                     <h3 class="case-title">LINE 智能客服</h3>
                     <p class="case-description">建置 LINE Bot 自動回應系統，結合 AI 處理常見問題，客服效率提升 150%。</p>
-                    <div class="case-detail">
-                        <p><strong>客戶背景：</strong>服務業，日均對話 5,000+</p>
-                        <p><strong>問題描述：</strong>常見問答佔據 70% 工時</p>
-                        <p><strong>解決方案：</strong>以 n8n 串接 LINE + LLM，導入 FAQ 與轉人工機制</p>
-                        <p><strong>實施過程：</strong>語料整理 → 對話設計 → 監控評分</p>
-                        <p><strong>成果數據：</strong>首次回覆 &lt; 3 秒，人工轉接率 -50%</p>
-                        <p><strong>客戶回饋：</strong>「整體服務滿意度明顯提升」</p>
-                    </div>
+                    
                     <div class="case-tags">
                         <span class="tag">LINE Bot</span>
                         <span class="tag">AI 客服</span>
@@ -366,14 +309,7 @@
                     </div>
                     <h3 class="case-title">社群數據分析</h3>
                     <p class="case-description">自動收集 Instagram、Threads 發文數據，產生詳細分析報告，協助優化內容策略。</p>
-                    <div class="case-detail">
-                        <p><strong>客戶背景：</strong>社群導向新創</p>
-                        <p><strong>問題描述：</strong>資料分散、報表難以維護</p>
-                        <p><strong>解決方案：</strong>建置資料管線 → 儲存至資料倉儲 → 自動寄送報表</p>
-                        <p><strong>實施過程：</strong>API 配額管理、重試與告警</p>
-                        <p><strong>成果數據：</strong>報表製作時間 -90%，決策速度 +150%</p>
-                        <p><strong>客戶回饋：</strong>「每週例會有了共同視角」</p>
-                    </div>
+                    
                     <div class="case-tags">
                         <span class="tag">數據分析</span>
                         <span class="tag">社群洞察</span>
@@ -442,23 +378,7 @@
         </div>
     </section>
 
-    <!-- n8n Guide Section -->
-    <section id="guide" class="n8n-guide">
-        <div class="container">
-            <h2>n8n 自動化入門指南</h2>
-            <div class="guide-content">
-                <h3>什麼是 n8n？</h3>
-                <p>n8n 是一個功能強大的工作流程自動化工具，透過節點串接各式服務，協助企業在不增加人力的情況下擴張產能，提升效率與資料品質。</p>
-                <h3>為什麼選擇 n8n？</h3>
-                <ul>
-                    <li>開源可自架，降低成本並掌控資料</li>
-                    <li>視覺化操作介面，無需程式基礎即可上手</li>
-                    <li>支援 200+ 應用程式與 API 串接</li>
-                </ul>
-                <p><a class="learn-more" href="/n8n-tutorial-resources/">了解更多教學與資源</a></p>
-            </div>
-        </div>
-    </section>
+    
 
     <!-- Contact Section -->
     <section id="contact" class="contact">
@@ -470,18 +390,12 @@
                         想了解 n8n 如何為您的企業帶來效率提升？
                         填寫表單，我們將在 24 小時內與您聯繫。
                     </p>
-                    <div class="cta-highlights">
-                        <p><strong>本月僅剩 3 個諮詢名額</strong> · 24 小時內回覆保證</p>
-                        <p><strong>免費 30 分鐘策略諮詢</strong> · 企業內訓限時 8 折</p>
-                    </div>
                     <div class="contact-features">
                         <p>• 24 小時內回覆</p>
                         <p>• 免費初步諮詢</p>
                         <p>• 客製化解決方案</p>
                     </div>
-                    <div class="risk-reversal">
-                        <p>• 不滿意全額退費 • 無效果無條件退款 • 專案失敗免費重做</p>
-                    </div>
+                    
                 </div>
 
                 <div class="contact-form-container">
