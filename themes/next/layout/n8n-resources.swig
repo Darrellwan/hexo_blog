@@ -32,7 +32,7 @@ layout: false
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>n8n 教學大全：50+ 節點介紹、模板、部署指南 | Darrell TW</title>
+  <title>n8n 教學大全：節點教學、模板分享、部署指南 | Darrell TW</title>
   <meta name="description" content="{{ page.description or '完整n8n自動化教學大全，包含50+節點詳解、實用模板下載、一鍵部署指南。適合初學者到進階用戶，5分鐘上手工作流程自動化。' }}">
   <meta name="keywords" content="n8n教學, n8n節點, 工作流程自動化, n8n模板下載, n8n部署, 自動化工具, n8n中文教學, workflow automation, n8n tutorial">
   
@@ -71,7 +71,7 @@ layout: false
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ config.url }}{{ url_for(page.permalink) }}">
-  <meta property="og:title" content="n8n 教學大全：50+ 節點介紹、模板、部署指南">
+  <meta property="og:title" content="n8n 教學大全：節點教學、模板分享、部署指南">
   <meta property="og:description" content="{{ page.description or '完整n8n自動化教學大全，包含50+節點詳解、實用模板下載、一鍵部署指南。適合初學者到進階用戶，5分鐘上手工作流程自動化。' }}">
   <meta property="og:image" content="{{ config.url }}{{ url_for('/gallery/n8n_resource_og.jpg') }}">
   <meta property="og:image:width" content="1200">
@@ -85,7 +85,7 @@ layout: false
   <meta name="twitter:site" content="@darrell_tw">
   <meta name="twitter:creator" content="@darrell_tw">
   <meta name="twitter:url" content="{{ config.url }}{{ url_for(page.permalink) }}">
-  <meta name="twitter:title" content="n8n 教學大全：50+ 節點介紹、模板、部署指南">
+  <meta name="twitter:title" content="n8n 教學大全：節點教學、模板分享、部署指南">
   <meta name="twitter:description" content="{{ page.description or '完整n8n自動化教學大全，包含50+節點詳解、實用模板下載、一鍵部署指南。適合初學者到進階用戶，5分鐘上手工作流程自動化。' }}">
   <meta name="twitter:image" content="{{ config.url }}{{ url_for('/gallery/n8n_resource_og.jpg') }}">
   <meta name="twitter:image:alt" content="n8n 教學資源大全 - 節點介紹、模板分享、部署指南">
@@ -303,7 +303,7 @@ const schemaData = [
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "@id": "{{ config.url }}/n8n-tutorial-resources/",
-    "name": "n8n 教學大全：50+ 節點介紹、模板、部署指南",
+    "name": "n8n 教學大全：節點教學、模板分享、部署指南",
     "description": "{{ page.description or '完整n8n自動化教學大全，包含50+節點詳解、實用模板下載、一鍵部署指南。適合初學者到進階用戶，5分鐘上手工作流程自動化。' }}",
     "url": "{{ config.url }}/n8n-tutorial-resources/",
     "inLanguage": "zh-TW",
@@ -409,7 +409,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <header class="n8n-resources-header" role="banner">
   <div class="n8n-header-wrapper">
-    <h1>n8n教學大全：50+ 節點介紹、模板、部署指南</h1>
+    <h1>n8n教學大全：節點教學、模板分享、部署指南</h1>
     <div class="social-buttons">
       <a href="https://www.darrelltw.com/" class="social-button" target="_blank" rel="noopener noreferrer" title="Website">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41z"></path></svg>
