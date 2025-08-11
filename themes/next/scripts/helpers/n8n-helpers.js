@@ -46,13 +46,15 @@ hexo.extend.helper.register('get_n8n_post_description', function(post) {
 // 判斷文章屬於哪個分類區塊
 hexo.extend.helper.register('get_n8n_post_category_section', function(post) {
   // 如果沒有標籤或分類，返回 null
-  if (!post.tags && !post.categories) return null;
+  if (!post.tags && !post.categories) {
+    return null;
+  }
   
   // 定義分類關鍵詞映射
   const categoryKeywords = {
     templates: ['模板', 'template', 'workflow', '範例', '工作流'],
-    'node-intro': ['節點', 'node', 'if', 'switch', 'gmail', 's3', 'webhook', 'slack', 'perplexity', 'elevenlabs'],
-    tips: ['撇步', '技巧', 'tip', 'tips', 'debug', 'n8n-debug', 'aggregate', 'split'],
+    'node-intro': ['節點', 'node', 'if', 'switch', 'gmail', 's3', 'webhook', 'slack', 'perplexity', 'elevenlabs', 'aggregate', 'split', '節點介紹', '教學'],
+    tips: ['撇步', '技巧', 'tip', 'tips', 'debug', 'n8n-debug', 'pin'],
     updates: ['更新', '新功能', 'update', 'feature', 'folders'],
     deployment: ['部署', '設定', 'deploy', 'config', 'setup', 'deployment', 'zeabur']
   };
@@ -125,8 +127,10 @@ hexo.extend.helper.register('get_n8n_post_category_section', function(post) {
 // 獲取特定分類的文章
 hexo.extend.helper.register('get_n8n_posts_by_category', function(categoryName) {
   const self = this;
+  
   const posts = this.site.posts.data.filter(post => {
-    return self.get_n8n_post_category_section(post) === categoryName;
+    const category = self.get_n8n_post_category_section(post);
+    return category === categoryName;
   });
   
   return posts.sort((a, b) => b.date - a.date);

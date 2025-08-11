@@ -550,7 +550,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="n8n-articles">
           {% set counter2 = 0 %}
           {% for post in list %}
-            {% if counter2 < 6 %}
+            {% if counter2 < 12 %}
               <article class="n8n-article-card">
                 <a href="{{ url_for(post.path) }}" class="n8n-article-link" target="_blank" rel="noopener"
                    onclick="trackClick('{{ url_for(post.path) }}', '{{ post.title }}', 'Darrell TW', '{{ cid }}')">

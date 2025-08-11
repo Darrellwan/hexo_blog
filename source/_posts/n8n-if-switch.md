@@ -1,7 +1,7 @@
 ---
 title: n8n If 和 Switch 節點教學 - 條件判斷完整指南
 tags:
-  - n8n  
+  - n8n
   - n8n節點介紹
   - n8n教學
 categories:
