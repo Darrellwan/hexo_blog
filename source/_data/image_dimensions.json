@@ -5278,5 +5278,20 @@
     "width": 1024,
     "height": 1024,
     "mtimeMs": 1754362632875.0728
+  },
+  "/_posts/n8n-update-log/n8n-1.107.0-activate_workflow_show_notification.png": {
+    "width": 774,
+    "height": 836,
+    "mtimeMs": 1754968907812.044
+  },
+  "/_posts/n8n-update-log/n8n-1.107.0-sendandwait_security_token.png": {
+    "width": 1586,
+    "height": 946,
+    "mtimeMs": 1754980806562.421
+  },
+  "/_posts/n8n-update-log/n8n-1.107.0-discord_oauth_custom_scopes.png": {
+    "width": 1788,
+    "height": 1506,
+    "mtimeMs": 1754980621918.272
   }
 }

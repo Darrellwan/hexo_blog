@@ -7,16 +7,60 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2025/08/05 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.106.0，正式版本為 1.105.2
+description: n8n 的更新記錄(2025/08/11 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.107.0，正式版本為 1.106.3
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-07-29 13:05:00
+modified: 2025-08-12 14:30:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 1.107.0 Pre-release - 2025-08-12
+
+[Github 1.107.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.107.0)
+
+### Production Checklist for Active Workflows - 智慧工作流程建議系統
+
+n8n 新增了 active workflow 的建議功能
+會在你的工作流程標題列顯示一個鈴鐺圖示
+當系統偵測到你的工作流程可以改善時，就會主動提供建議
+
+**三大智慧偵測功能：**
+1. AI 評估建議：如果工作流程包含 AI 節點，會建議你設定評估機制
+2. 錯誤處理建議：已啟用但沒設定錯誤處理的工作流程會收到提醒
+3. 時間追蹤建議：協助你測量自動化真正節省了多少時間
+
+實測功能截圖如下：
+
+{% darrellImage800 n8n-1.107.0-activate_workflow_show_notification n8n-1.107.0-activate_workflow_show_notification.png max-400 %}
+
+### Discord Node OAuth Custom Scopes Support
+
+**Discord 機器人開發者的福音！**
+
+以前使用 Discord 節點時，OAuth 權限範圍是固定的
+很多進階功能都無法使用，像是列出伺服器清單等等
+
+現在可以自訂 OAuth scopes 了
+有其他 scope 的需求就能自己加入
+否則原本只能使用預設的一些 scope，挺不方便
+
+{% darrellImage800 n8n-1.107.0-discord_oauth_custom_scopes n8n-1.107.0-discord_oauth_custom_scopes.png max-800 %}
+
+### SendAndWait Operations Security Enhancement
+
+**安全性提升**
+
+針對需要「Human in the loop」的工作流程，n8n 強化了安全機制
+
+現在的這些網址會加上一個 signature 
+用來驗證是否是真實的 n8n 節點發出網址
+以免其他人只拿到你的 n8n 網域後就能盜用發送不對或是危險的資料
+
+{% darrellImage800 n8n-1.107.0-sendandwait_security_token n8n-1.107.0-sendandwait_security_token.png max-400 %}
 
 ## 1.106.0 Pre-release - 2025-08-05
 
