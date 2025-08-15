@@ -36,11 +36,57 @@ header h1 {
     transition: all 0.3s ease;
 }
 
+/* Header 右側容器 */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
 /* 導航按鈕容器 */
 .nav-buttons {
     display: flex;
     gap: 1rem;
     align-items: center;
+}
+
+/* 社交圖標容器 */
+.header-social {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding-left: 1rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 社交圖標按鈕 */
+.header-social-button {
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    cursor: pointer;
+    text-decoration: none;
+    padding: 0;
+    font: inherit;
+}
+
+.header-social-button svg {
+    width: 16px;
+    height: 16px;
+}
+
+.header-social-button:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
 }
 
 .nav-button {
@@ -67,7 +113,8 @@ header h1 {
         display: flex;
     }
 
-    .nav-buttons {
+    /* 手機版隱藏 header-right，改用側邊選單 */
+    .header-right {
         position: fixed;
         top: 0;
         right: -100%;
@@ -79,10 +126,17 @@ header h1 {
         transition: right 0.3s ease;
         z-index: 10;
         box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+        justify-content: space-between;
     }
 
-    .nav-buttons.active {
+    .header-right.active {
         right: 0;
+    }
+
+    .nav-buttons {
+        flex-direction: column;
+        width: 100%;
+        gap: 0;
     }
 
     /* 移動版選單項目樣式 */
@@ -105,9 +159,96 @@ header h1 {
         color: var(--accent-color);
     }
 
+    /* 手機版社交圖標樣式 */
+    .header-social {
+        width: 100%;
+        justify-content: center;
+        padding: 1rem 0;
+        border-left: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        gap: 1rem;
+        margin-top: auto;
+    }
+
+    .header-social-button {
+        width: 36px;
+        height: 36px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 0;
+        font: inherit;
+    }
+
+    .header-social-button svg {
+        width: 18px;
+        height: 18px;
+    }
+
     /* 調整標題大小 */
     header h1 {
         font-size: 1.2rem;
         margin: 0;
+    }
+}
+
+/* 手機版社交 icon 橫條 */
+.mobile-social-bar {
+    display: none; /* 預設隱藏（桌面版）*/
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-social-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 20px;
+    gap: 20px;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.mobile-social-icon {
+    color: var(--text-secondary);
+    font-size: 24px;
+    border: none;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    padding: 0;
+    font: inherit;
+    flex-shrink: 0;
+}
+
+.mobile-social-icon:hover {
+    color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.mobile-social-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* 手機版顯示社交橫條，隱藏側邊選單中的社交 icon */
+@media (max-width: 768px) {
+    .mobile-social-bar {
+        display: block;
+    }
+    
+    /* 隱藏原本側邊選單中的社交 icon */
+    .header-social {
+        display: none !important;
     }
 } 

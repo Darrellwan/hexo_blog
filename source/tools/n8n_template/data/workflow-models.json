@@ -1,6 +1,111 @@
 {
     "models": {
-
+        "n8n-web-scrawler-practice-house-scraper": {
+            "id": "n8n-web-scrawler-practice-house-scraper",
+            "title": "房屋資訊爬蟲到 Google Sheet",
+            "description": "這個工作流程展示如何使用 n8n 的 HTTP Request 節點進行房屋網站爬蟲，從房君子網站抓取房屋資訊並自動儲存到 Google Sheet。此範例示範了完整的網頁爬蟲流程，包括 HTML 解析、資料結構化處理，以及與 Google Sheets 的整合。\n\n主要功能：\n\n網頁資料請求：使用 HTTP Request 節點抓取房屋網站內容\nHTML 解析：透過 HTML 節點解析房屋列表和詳細資訊\n資料分割：使用 Split Out 節點將列表資料分離成個別項目\n結構化處理：提取房屋標題、社區、地址、坪數、格局等詳細資訊\nGoogle Sheets 整合：自動將整理後的資料儲存到指定試算表",
+            "detailedDescription": [
+                "透過手動觸發器啟動房屋資訊爬蟲流程",
+                "使用 HTTP Request 節點請求房屋網站資料",
+                "透過 HTML 節點解析房屋列表，提取每筆房屋的 HTML 結構",
+                "使用 Split Out 節點將房屋列表分離成個別的房屋項目",
+                "透過詳細的 HTML 解析提取房屋標題、社區名稱、地址等資訊",
+                "提取建物坪數、主陽台坪數、房間格局、樓層資訊等詳細規格",
+                "收集建築年份、建築類型、停車資訊、物件特色等附加資訊",
+                "抓取關注人數、價格、價格單位、價格備註等市場資訊",
+                "使用 Set 節點整理資料並新增資料來源標記",
+                "透過 Google Sheets 節點將所有資料自動儲存到指定試算表"
+            ],
+            "tags": ["網頁爬蟲", "房屋資訊", "HTML解析", "Google Sheets", "資料收集", "自動化", "不動產"],
+            "nodes": 10,
+            "createdAt": "2025-08-15",
+            "updatedAt": "2025-08-15",
+            "setup": {
+                "prerequisites": "需要 Google Sheets API 存取權限和房屋網站測試環境",
+                "steps": [
+                    {
+                        "title": "Google Sheets 設定",
+                        "description": "建立和設定 Google Sheets 整合",
+                        "options": [
+                            "建立 Google Cloud Console 專案",
+                            "啟用 Google Sheets API",
+                            "建立 OAuth 2.0 認證憑證",
+                            "下載並設定認證金鑰",
+                            "複製 Google Sheet 模板 (https://docs.google.com/spreadsheets/d/1-_o70OL-ysNzx339bG5HsXYE_dt9VhklNZrhv0xLp_w/copy)"
+                        ]
+                    },
+                    {
+                        "title": "測試網站環境",
+                        "description": "確認房屋資訊測試網站可正常存取",
+                        "options": [
+                            "確認測試網站 (https://darrell-house-n8n.zeabur.app/) 可正常存取",
+                            "檢查網站的 HTML 結構和 CSS 選擇器",
+                            "了解房屋資料的欄位結構和格式",
+                            "確認網站沒有反爬蟲機制限制"
+                        ]
+                    },
+                    {
+                        "title": "n8n 認證設定",
+                        "description": "在 n8n 中設定 Google Sheets 連接",
+                        "options": [
+                            "在 n8n 中建立 Google Sheets OAuth2 API 認證",
+                            "完成 OAuth 授權流程",
+                            "測試 Google Sheets 連接是否正常",
+                            "確認試算表寫入權限",
+                            "設定適當的錯誤處理機制"
+                        ]
+                    }
+                ]
+            },
+            "examples": [
+                {
+                    "title": "房屋資料爬蟲範例",
+                    "description": "示範如何爬取和處理房屋資訊",
+                    "code": {
+                        "url": "https://darrell-house-n8n.zeabur.app/",
+                        "cssSelectors": {
+                            "houseList": "div.house-item",
+                            "title": "h3.house-title",
+                            "community": "div.community-name span.community-text",
+                            "address": "div.house-address",
+                            "price": "div.price-main span.price-amount"
+                        }
+                    }
+                }
+            ],
+            "fields": {
+                "crawler": {
+                    "title": "爬蟲設定",
+                    "fields": {
+                        "targetUrl": {
+                            "type": "string",
+                            "description": "目標房屋網站 URL",
+                            "default": "https://darrell-house-n8n.zeabur.app/"
+                        },
+                        "dataSource": {
+                            "type": "string",
+                            "description": "資料來源標記",
+                            "default": "hbhouse"
+                        }
+                    }
+                },
+                "sheets": {
+                    "title": "Google Sheets 設定",
+                    "fields": {
+                        "spreadsheetId": {
+                            "type": "string",
+                            "description": "Google Sheets 文件 ID",
+                            "default": "1-_o70OL-ysNzx339bG5HsXYE_dt9VhklNZrhv0xLp_w"
+                        },
+                        "sheetName": {
+                            "type": "string",
+                            "description": "工作表名稱",
+                            "default": "darrell"
+                        }
+                    }
+                }
+            }
+        },
         "n8n-Apify-demo": {
             "id": "n8n-Apify-demo",
             "title": "Apify 撈 Youtube 影片資訊 Demo",

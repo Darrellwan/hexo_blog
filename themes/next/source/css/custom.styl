@@ -426,3 +426,63 @@ pre, code {
     }
   }
 }
+
+// ========================================
+// Mobile Social Bar (獨立社交 icon 橫條)
+// ========================================
+
+// 手機版社交 icon 橫條
+.mobile-social-bar {
+  display: none; // 預設隱藏（桌面版）
+  background: var(--head-bg);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+  .mobile-social-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 20px;
+    gap: 20px;
+    
+    .mobile-social-icon {
+      color: #999;
+      font-size: 24px;
+      border-bottom: none !important;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        color: #ff7500;
+        transform: scale(1.1);
+      }
+      
+      &::before {
+        display: none !important; // 移除連結圖示
+      }
+    }
+  }
+}
+
+// 手機版時隱藏選單中的社交連結
+.mobile-hidden {
+  display: block; // 預設顯示（桌面版）
+}
+
+// 手機版顯示邏輯
+@media (max-width: 767px) {
+  .mobile-social-bar {
+    display: block;
+  }
+  
+  .mobile-hidden {
+    display: none !important;
+  }
+}
+
+// 確保桌面版也顯示 site-nav-right（因為有搜尋按鈕）
+@media (min-width: 768px) {
+  .site-nav-right {
+    display: flex !important;
+    align-items: center;
+  }
+}
