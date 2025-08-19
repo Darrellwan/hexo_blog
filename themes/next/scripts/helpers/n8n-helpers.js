@@ -171,4 +171,158 @@ hexo.extend.helper.register('format_n8n_date', function(date) {
   
   // 如果都失敗了，返回今天的日期
   return new Date().toISOString().split('T')[0];
+});
+
+// 獲取所有 n8n 文章的 JSON 數據，用於結構化數據
+hexo.extend.helper.register('get_n8n_posts_json_for_schema', function() {
+  const self = this;
+  const posts = this.site.posts.data.filter(post => {
+    const category = self.get_n8n_post_category_section(post);
+    return category !== null; // 只包含有 n8n 相關分類的文章
+  });
+  
+  // 按日期排序，最新的在前
+  const sortedPosts = posts.sort((a, b) => b.date - a.date);
+  
+  return sortedPosts.map((post, index) => {
+    return {
+      position: index + 1,
+      title: post.title,
+      url: this.config.url + this.url_for(post.path),
+      description: self.get_n8n_post_description(post),
+      image: this.config.url + self.get_n8n_post_thumbnail(post),
+      category: self.get_n8n_post_category_section(post)
+    };
+  });
+});
+
+// 生成 n8n 集合頁面的結構化數據
+hexo.extend.helper.register('n8n_collection_structured_data', function() {
+  const self = this;
+  const n8nPosts = self.get_n8n_posts_json_for_schema();
+  
+  // 生成項目列表元素
+  const itemListElements = n8nPosts.map(post => {
+    return {
+      "@type": "ListItem",
+      "position": post.position,
+      "item": {
+        "@type": "Article",
+        "name": post.title,
+        "url": post.url,
+        "headline": post.title,
+        "description": post.description,
+        "image": post.image,
+        "author": {
+          "@type": "Person",
+          "name": "Darrell TW",
+          "url": "https://www.darrelltw.com/"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Darrell TW",
+          "logo": {
+            "@type": "ImageObject",
+            "url": this.config.url + this.url_for('/gallery/n8n_resource_og.jpg')
+          }
+        }
+      }
+    };
+  });
+  
+  // 主要頁面結構化數據
+  const collectionPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": this.config.url + "/n8n-tutorial-resources/",
+    "name": "n8n 教學：節點介紹、模板、部署",
+    "description": "完整n8n自動化教學大全，包含50+節點詳解、實用模板下載、一鍵部署指南。適合初學者到進階用戶，5分鐘上手工作流程自動化。",
+    "url": this.config.url + "/n8n-tutorial-resources/",
+    "inLanguage": "zh-TW",
+    "isAccessibleForFree": true,
+    "lastReviewed": new Date().toISOString().split('T')[0],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Darrell TW",
+      "url": this.config.url,
+      "logo": {
+        "@type": "ImageObject",
+        "url": this.config.url + this.url_for('/gallery/n8n_resource_og.jpg'),
+        "width": 1200,
+        "height": 630
+      },
+      "sameAs": [
+        "https://www.threads.net/@darrell_tw_",
+        "https://www.instagram.com/darrell_tw_/",
+        "https://www.linkedin.com/in/darrell-wang-tw/"
+      ]
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Darrell TW",
+      "url": "https://www.darrelltw.com/",
+      "sameAs": [
+        "https://www.threads.net/@darrell_tw_",
+        "https://www.instagram.com/darrell_tw_/"
+      ]
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": itemListElements.length,
+      "itemListElement": itemListElements
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "首頁",
+          "item": {
+            "@type": "WebPage",
+            "@id": this.config.url
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "n8n 教學大全",
+          "item": {
+            "@type": "CollectionPage",
+            "@id": this.config.url + "/n8n-tutorial-resources/"
+          }
+        }
+      ]
+    },
+    "keywords": "n8n教學, n8n節點, 工作流程自動化, n8n模板下載, n8n部署, 自動化工具, n8n中文教學"
+  };
+  
+  // 網站結構化數據
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": this.config.url + "/#website",
+    "url": this.config.url,
+    "name": "Darrell TW - MarTech 自動化專家",
+    "description": "專業 MarTech 自動化解決方案，n8n 教學專家",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Darrell TW"
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": this.config.url + "/search?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  };
+  
+  const schemaData = [collectionPageSchema, websiteSchema];
+  
+  // 生成多個 JSON-LD script 標籤
+  return schemaData.map((schema, index) => {
+    return `<script type="application/ld+json" id="schema-${index}">${JSON.stringify(schema)}</script>`;
+  }).join('\n');
 }); 

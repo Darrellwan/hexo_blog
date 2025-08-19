@@ -296,4 +296,243 @@ hexo.extend.helper.register('n8n_category_articles', function(category, limit = 
   html += '</div>'; // 結束 n8n-articles
   
   return html;
+});
+
+// ========================================
+// Schema.org 結構化資料生成 Helper 函數
+// ========================================
+
+// 生成主要 CollectionPage 結構化資料
+hexo.extend.helper.register('generate_n8n_collection_schema', function() {
+  const allPosts = this.get_all_n8n_posts();
+  
+  // 生成文章項目列表
+  const itemListElements = allPosts.map((post, index) => {
+    return {
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "Article",
+        "name": post.title,
+        "url": `${this.config.url}${this.url_for(post.path)}`,
+        "headline": post.title,
+        "description": this.get_n8n_post_description(post),
+        "image": `${this.config.url}${this.get_n8n_post_thumbnail(post)}`,
+        "author": {
+          "@type": "Person",
+          "name": "Darrell TW",
+          "url": "https://www.darrelltw.com/"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Darrell TW",
+          "logo": {
+            "@type": "ImageObject",
+            "url": `${this.config.url}${this.url_for('/gallery/n8n_resource_og.jpg')}`
+          }
+        },
+        "datePublished": post.date.format('YYYY-MM-DD'),
+        "dateModified": (post.updated || post.date).format('YYYY-MM-DD')
+      }
+    };
+  });
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": `${this.config.url}/n8n-tutorial-resources/`,
+    "name": "n8n 教學大全：節點教學、模板分享、部署指南",
+    "description": "完整n8n自動化教學大全，包含50+節點詳解、實用模板下載、一鍵部署指南。適合初學者到進階用戶，5分鐘上手工作流程自動化。",
+    "url": `${this.config.url}/n8n-tutorial-resources/`,
+    "inLanguage": "zh-TW",
+    "isAccessibleForFree": true,
+    "lastReviewed": this.date(new Date(), 'YYYY-MM-DD'),
+    "publisher": {
+      "@type": "Organization",
+      "name": "Darrell TW",
+      "url": this.config.url,
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${this.config.url}${this.url_for('/gallery/n8n_resource_og.jpg')}`,
+        "width": 1200,
+        "height": 630
+      },
+      "sameAs": [
+        "https://www.threads.net/@darrell_tw_",
+        "https://www.instagram.com/darrell_tw_/",
+        "https://www.linkedin.com/in/darrell-wang-tw/"
+      ]
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Darrell TW",
+      "url": "https://www.darrelltw.com/",
+      "sameAs": [
+        "https://www.threads.net/@darrell_tw_",
+        "https://www.instagram.com/darrell_tw_/"
+      ]
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "name": "n8n 教學文章清單",
+      "numberOfItems": allPosts.length,
+      "itemListElement": itemListElements
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "首頁",
+          "item": {
+            "@type": "WebPage",
+            "@id": this.config.url
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "n8n 教學大全",
+          "item": {
+            "@type": "CollectionPage",
+            "@id": `${this.config.url}/n8n-tutorial-resources/`
+          }
+        }
+      ]
+    },
+    "keywords": "n8n教學, n8n節點, 工作流程自動化, n8n模板下載, n8n部署, 自動化工具, n8n中文教學"
+  };
+
+  return JSON.stringify(schema, null, 2);
+});
+
+// 生成網站結構化資料
+hexo.extend.helper.register('generate_website_schema', function() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${this.config.url}/#website`,
+    "url": this.config.url,
+    "name": "Darrell TW - MarTech 自動化專家",
+    "description": "專業 MarTech 自動化解決方案，n8n 教學專家",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Darrell TW"
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": `${this.config.url}/search?q={search_term_string}`
+      },
+      "query-input": "required name=search_term_string"
+    }
+  };
+
+  return JSON.stringify(schema, null, 2);
+});
+
+// 生成外部教學資源結構化資料
+hexo.extend.helper.register('generate_external_tutorials_schema', function() {
+  // 定義外部教學資源
+  const externalTutorials = [
+    {
+      title: "【一鍵安裝 n8n】圖文教學，獲得無限額度自動化工具＆限時免費升級企業版功能",
+      link: "https://raymondhouch.com/lifehacker/digital-workflow/n8n-deploy-guide/",
+      image: "https://raymondhouch.com/wp-content/uploads/2024/11/n8n-zeabur-deploy.compressed.jpg",
+      author: "侯智薰（雷蒙）",
+      authorLink: "https://www.threads.net/@raymond0917",
+      description: "完整中文圖文步驟式教學，如何一鍵用 Zeabur 自行部署安裝 n8n",
+      type: "Article"
+    },
+    {
+      title: "【n8n 教學】如何串接 Google 自動化服務？API、Credentials 憑證設定步驟圖文教學",
+      link: "https://raymondhouch.com/lifehacker/digital-workflow/n8n-google-credentials-guide/",
+      image: "https://raymondhouch.com/wp-content/uploads/2025/01/n8n-google-credentials-guide_compressed.jpg",
+      author: "侯智薰（雷蒙）",
+      authorLink: "https://www.threads.net/@raymond0917",
+      description: "想整合 Google 服務到 n8n 自動化工作流程？本篇教學帶你逐步了解 Google API 憑證申請流程",
+      type: "Article"
+    },
+    {
+      title: "「超詳細教學」n8n AI 實作0基礎入門到進階",
+      link: "https://www.youtube.com/watch?v=vvqhzbp4J5A",
+      image: `${this.config.url}/gallery/n8n_resource_vvqhzbp4J5A.webp`,
+      author: "HC AI說人話",
+      authorLink: "https://www.threads.com/@hc_aichannel",
+      description: "長達三小時的 n8n 教學，從 0 到 1",
+      type: "VideoObject"
+    },
+    {
+      title: "AI免費自動排版, 免API, 解鎖自訂中文字體 = AI 平面神技?",
+      link: "https://www.youtube.com/watch?v=ncYmf5YHLks",
+      image: `${this.config.url}/gallery/n8n_resource_ncYmf5YHLks.webp`,
+      author: "HC AI說人話",
+      authorLink: "https://www.threads.com/@hc_aichannel",
+      description: "AI自動設計海報，免費免API調用",
+      type: "VideoObject"
+    },
+    {
+      title: "【n8n 教學】郵件自動化：設定 Gmail 自動分類與回覆",
+      link: "https://www.youtube.com/watch?v=MKs36wpJn0Y",
+      image: `${this.config.url}/gallery/n8n_resource_MKs36wpJn0Y.webp`,
+      author: "HC AI說人話",
+      authorLink: "https://www.threads.com/@hc_aichannel",
+      description: "利用 n8n 建立智能郵件處理系統",
+      type: "VideoObject"
+    }
+  ];
+
+  const itemListElements = externalTutorials.map((tutorial, index) => {
+    return {
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": tutorial.type,
+        "name": tutorial.title,
+        "url": tutorial.link,
+        "image": tutorial.image,
+        "author": {
+          "@type": "Person",
+          "name": tutorial.author
+        },
+        "description": tutorial.description,
+        ...(tutorial.type === "VideoObject" ? { "thumbnailUrl": tutorial.image } : {})
+      }
+    };
+  });
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "外部 n8n 教學資源",
+    "description": "優質的外部 n8n 教學文章和影片資源",
+    "numberOfItems": externalTutorials.length,
+    "itemListElement": itemListElements
+  };
+
+  return JSON.stringify(schema, null, 2);
+});
+
+// 生成完整的結構化資料 HTML 標籤
+hexo.extend.helper.register('generate_n8n_schemas_html', function() {
+  let html = '';
+  
+  // 主要頁面結構化資料
+  html += '<script type="application/ld+json">\n';
+  html += this.generate_n8n_collection_schema();
+  html += '\n</script>\n\n';
+  
+  // 網站結構化資料
+  html += '<script type="application/ld+json">\n';
+  html += this.generate_website_schema();
+  html += '\n</script>\n\n';
+  
+  // 外部教學資源結構化資料
+  html += '<script type="application/ld+json">\n';
+  html += this.generate_external_tutorials_schema();
+  html += '\n</script>';
+  
+  return html;
 }); 
