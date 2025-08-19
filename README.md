@@ -3,7 +3,7 @@
 ## 📚 最新文章
 
 ### [Postiz 串接 Threads：Zeabur 部署 + Meta Developer 設定教學](https://www.darrelltw.com/postiz-zeabur-threads-tutorial/?utm_source=github_readme&utm_medium=referral)
-📅 2025/07/28 · 21 天前
+📅 2025/07/28 · 22 天前
 
 > 想用 Postiz 自動排程 Threads 貼文？本文提供完整 Meta 應用程式建立到 Threads API 串接教學，輕鬆實現 Threads 自動排程發文。
 
@@ -64,7 +64,7 @@
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-103-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-222,202+-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-222,373+-blue?style=flat-square)
 ![最後更新](https://img.shields.io/badge/最後更新-2025/08/19-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-08-19 04:54:40*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-08-19 07:43:07*
