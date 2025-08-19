@@ -7,16 +7,36 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2025/08/11 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.107.0，正式版本為 1.106.3
+description: n8n 的更新記錄(2025/08/19 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.108.0，正式版本為 1.107.3
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-08-12 14:30:00
+modified: 2025-08-19 12:10:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 1.108.0 Pre-release - 2025-08-19
+
+[Github 1.108.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.108.0)
+
+### MCP Client Tool Node:Add Timeout config for the MCP Client tool
+為 MCP Client 工具新增 Timeout 設定
+
+{% darrellImage800 n8n-1.108.0-mcp_client_tool-add_timeout_config n8n-1.108.0-mcp_client_tool-add_timeout_config.png max-400 %}
+
+
+### Form Node:Checkboxes and Radio Buttons field types
+Form 接點新增 Checkboxes 和 Radio Buttons 的選項類別
+
+{% darrellImage800 n8n-1.108.0-form_add_checkbox_radiobuttons n8n-1.108.0-form_add_checkbox_radiobuttons.png max-400 %}
+
+### Wait Node: Add validation for wait amount and unit
+Wait 節點加入對時間和單位的驗證
+
+{% darrellImage800 n8n-1.108.0-wait_add_validate_to_number_unit n8n-1.108.0-wait_add_validate_to_number_unit.png max-800 %}
 
 ## 1.107.0 Pre-release - 2025-08-12
 
