@@ -27,16 +27,29 @@ sticky: 100
 
 {% darrellImage800 n8n-1.108.0-mcp_client_tool-add_timeout_config n8n-1.108.0-mcp_client_tool-add_timeout_config.png max-400 %}
 
+期待已久的更新，過去就曾經發生串接 `Firecrawl` 的 mcp node 時
+因為執行時間較久，超過預設的 timeout 時間導致失敗
+
+現在可以自行延長 timeout 時間來避免這樣的錯誤了ㄅ
+
 
 ### Form Node:Checkboxes and Radio Buttons field types
 Form 接點新增 Checkboxes 和 Radio Buttons 的選項類別
 
 {% darrellImage800 n8n-1.108.0-form_add_checkbox_radiobuttons n8n-1.108.0-form_add_checkbox_radiobuttons.png max-400 %}
 
+更完善表單可以使用的選項類型
+
+Checkbox 使用者可以選擇多個選項，得到的 JSON 會是 `{ key : [value1, value2, ...] }`
+
 ### Wait Node: Add validation for wait amount and unit
 Wait 節點加入對時間和單位的驗證
 
 {% darrellImage800 n8n-1.108.0-wait_add_validate_to_number_unit n8n-1.108.0-wait_add_validate_to_number_unit.png max-800 %}
+
+Wait 節點加強驗證時間數字和單位
+測試舊版的不會特別驗證，導致有可能等待時間如果使用 `expression` 會出現非預期的等待時間
+
 
 ## 1.107.0 Pre-release - 2025-08-12
 
