@@ -1,4 +1,4 @@
-# Darrell TW | n8n 自動化教學專家
+# Darrell TW | n8n、Automation、Martech
 
 ## 📚 最新文章
 
