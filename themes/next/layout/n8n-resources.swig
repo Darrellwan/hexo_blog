@@ -402,7 +402,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="n8n-articles">
           {% set counter2 = 0 %}
           {% for post in list %}
-            {% if counter2 < 6 %}
               <article class="n8n-article-card">
                 <a href="{{ url_for(post.path) }}" class="n8n-article-link" target="_blank" rel="noopener"
                    onclick="trackClick('{{ url_for(post.path) }}', '{{ post.title }}', 'Darrell TW', '{{ cid }}')">
@@ -421,7 +420,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </a>
               </article>
               {% set counter2 = counter2 + 1 %}
-            {% endif %}
           {% endfor %}
         </div>
       </section>
