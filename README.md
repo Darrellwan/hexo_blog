@@ -3,19 +3,19 @@
 ## 📚 最新文章
 
 ### [Postiz 串接 Threads：Zeabur 部署 + Meta Developer 設定教學](https://www.darrelltw.com/postiz-zeabur-threads-tutorial/?utm_source=github_readme&utm_medium=referral)
-📅 2025/07/28 · 19 天前
+📅 2025/07/28 · 21 天前
 
 > 想用 Postiz 自動排程 Threads 貼文？本文提供完整 Meta 應用程式建立到 Threads API 串接教學，輕鬆實現 Threads 自動排程發文。
 
 
 ### [Claude Code Agent 實測，建立專屬的開發助理](https://www.darrelltw.com/claude-code-agent/?utm_source=github_readme&utm_medium=referral)
-📅 2025/07/25 · 23 天前
+📅 2025/07/25 · 25 天前
 
 > Claude Code 新推出的 Agent 功能讓你可以建立專屬的開發 Agent，透過自然語言指令自動處理重複性的程式設計任務。不再需要每次重新解釋需求，讓 Claude Code Agent 記住你的開發模式。
 
 
 ### [n8n Gmail 節點教學 - 自動化郵件發送和處理](https://www.darrelltw.com/n8n-gmail-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/07/22 · 25 天前
+📅 2025/07/22 · 1 個月前
 
 > 完整教學 n8n Gmail 節點實現郵件自動化流程。包含 OAuth 認證設定、搜尋語法技巧、郵件發送標籤管理等功能介紹。實測信用卡帳單自動提醒、PDF 解析、Google Calendar 整合等進階案例。
 
@@ -64,8 +64,8 @@
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-103-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-221,748+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/08/17-green?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-222,202+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/08/19-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-08-17 02:07:04*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-08-19 04:54:40*
