@@ -3,13 +3,13 @@
 ## 📚 最新文章
 
 ### [n8n Structured Output Parser 節點教學 - AI 輸出格式化](https://www.darrelltw.com/n8n_structured_output_parser_node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/08/11 · 11 天前
+📅 2025/08/22 · 8 小時內
 
 > AI 輸出格式總是亂七八糟？n8n Structured Output Parser 節點快速解決！節點教學包和實際操作流程介紹，未來輕鬆固定 AI 輸出的格式
 
 
 ### [Postiz 串接 Threads：Zeabur 部署 + Meta Developer 設定教學](https://www.darrelltw.com/postiz-zeabur-threads-tutorial/?utm_source=github_readme&utm_medium=referral)
-📅 2025/07/28 · 24 天前
+📅 2025/07/28 · 25 天前
 
 > 想用 Postiz 自動排程 Threads 貼文？本文提供完整 Meta 應用程式建立到 Threads API 串接教學，輕鬆實現 Threads 自動排程發文。
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-08-22 04:23:27*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-08-22 14:08:34*
