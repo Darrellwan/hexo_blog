@@ -158,6 +158,24 @@ server:
     extensions:
     - html
 
+# BrowserSync 設定
+browsersync:
+  logLevel: "warn"
+  ghostMode:
+    scroll: true
+    clicks: true
+    forms: true
+  watchOptions:
+    ignoreInitial: true
+  files:
+    - "source/**/*.md"
+    - "source/**/*.png"
+    - "source/**/*.jpg"
+    - "source/**/*.gif"
+    - "themes/**/*"
+  ignore:
+    - "source/_data/**"
+
 syntax_highlighter: highlight.js
 highlight:
   auto_detect: false

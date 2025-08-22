@@ -1,5 +1,7 @@
 ---
 title: 2022 數位時代 行銷科技高峰會 混血新行銷 
+id: 2022-martech-trends-bnext
+slug: 2022-martech-trends-bnext
 tags:
   - Martech
   - 活動心得
