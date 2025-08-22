@@ -2,14 +2,20 @@
 
 ## 📚 最新文章
 
+### [n8n Structured Output Parser 節點教學 - AI 輸出格式化](https://www.darrelltw.com/n8n_structured_output_parser_node/?utm_source=github_readme&utm_medium=referral)
+📅 2025/08/11 · 11 天前
+
+> AI 輸出格式總是亂七八糟？n8n Structured Output Parser 節點快速解決！節點教學包和實際操作流程介紹，未來輕鬆固定 AI 輸出的格式
+
+
 ### [Postiz 串接 Threads：Zeabur 部署 + Meta Developer 設定教學](https://www.darrelltw.com/postiz-zeabur-threads-tutorial/?utm_source=github_readme&utm_medium=referral)
-📅 2025/07/28 · 22 天前
+📅 2025/07/28 · 24 天前
 
 > 想用 Postiz 自動排程 Threads 貼文？本文提供完整 Meta 應用程式建立到 Threads API 串接教學，輕鬆實現 Threads 自動排程發文。
 
 
 ### [Claude Code Agent 實測，建立專屬的開發助理](https://www.darrelltw.com/claude-code-agent/?utm_source=github_readme&utm_medium=referral)
-📅 2025/07/25 · 25 天前
+📅 2025/07/25 · 1 個月前
 
 > Claude Code 新推出的 Agent 功能讓你可以建立專屬的開發 Agent，透過自然語言指令自動處理重複性的程式設計任務。不再需要每次重新解釋需求，讓 Claude Code Agent 記住你的開發模式。
 
@@ -56,16 +62,10 @@
 > n8n 踩到坑是用來記錄和說明自己和網友在 n8n 上遇到一些常見的 error 或是 bug，並且記錄一下怎麼解決，有哪些方法。這次是關於 Line Message API 中很多人在 n8n 都會遇到 invalid json 的錯誤，最有可能的原因居然就是因為一個符號？
 
 
-### [n8n 部署-官方Cloud、Zeabur、本機部署和Glows.ai 該怎麼選](https://www.darrelltw.com/n8n-deployment/?utm_source=github_readme&utm_medium=referral)
-📅 2025/05/10 · 3 個月前
-
-> n8n 部署全攻略：官方 Cloud、Zeabur、Docker 和 Glows.ai 方案完整比較，從成本、效能到擴展性，掌握各種部署方式的關鍵差異，找到屬於自己合適的部署方式。
-
-
 ## 📊 部落格統計
-![文章總數](https://img.shields.io/badge/文章總數-103-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-222,373+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/08/19-green?style=flat-square)
+![文章總數](https://img.shields.io/badge/文章總數-104-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-224,700+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/08/22-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -88,7 +88,7 @@
 
 
 ## 🏷️ 熱門主題
-![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![n8n](https://img.shields.io/badge/n8n-19-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-15-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![AI](https://img.shields.io/badge/AI-7-orange?style=flat-square)
+![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![n8n](https://img.shields.io/badge/n8n-20-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-15-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![AI](https://img.shields.io/badge/AI-7-orange?style=flat-square)
 
 ## 📈 更新頻率
 ```text
@@ -97,7 +97,7 @@
 05月 ███░░░░░░░ 3篇
 06月 ████░░░░░░ 4篇
 07月 ████░░░░░░ 4篇
-08月 ░░░░░░░░░░ 0篇
+08月 █░░░░░░░░░ 1篇
 ```
 
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-08-19 07:43:07*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-08-22 04:21:11*
