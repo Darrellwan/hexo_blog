@@ -177,5 +177,3 @@ Structured Output Parser 節點在跟 n8n 的 AI 節點搭配非常方便簡單
 等未來遇到相關的問題和經驗時，會再來補充
 
 對於這節點有任何問題，歡迎下方留言或是從社群媒體找到我
-
-{% darrellImage800 demo4 demo4.png max-400 %}
