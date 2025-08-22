@@ -318,6 +318,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   
   {% set tutorials = [
     {
+      title: "Threads : n8n 可以拿來做什麼東西？",
+      link: "https://www.threads.com/@ironv.careerlife/post/DNDs6VaS5jL",
+      image: "/gallery/n8n_resource_vicky_n8n_ideas.webp",
+      author: "ironv.careerlife",
+      authorLink: "https://www.threads.com/@ironv.careerlife/",
+      description: "Vicky 在這篇貼文中總共分享超過 20 種 n8n 能做到的事情，肯定會有你感興趣的！"
+    },{
       title: "【一鍵安裝 n8n】圖文教學，獲得無限額度自動化工具＆限時免費升級企業版功能",
       link: "https://raymondhouch.com/lifehacker/digital-workflow/n8n-deploy-guide/",
       image: "https://raymondhouch.com/wp-content/uploads/2024/11/n8n-zeabur-deploy.compressed.jpg",
