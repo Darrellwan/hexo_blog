@@ -13,7 +13,7 @@ description: AI 輸出格式總是亂七八糟？n8n Structured Output Parser �
 bgImage: bg-n8n-output_parser.jpg
 preload:
   - bg-n8n-output_parser.jpg
-date: 2025-08-11 15:05:50
+date: 2025-08-22 22:05:50
 ---
 
 {% darrellImageCover bg-n8n-output_parser bg-n8n-output_parser.jpg max-800 %}
