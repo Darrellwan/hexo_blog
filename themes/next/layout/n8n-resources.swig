@@ -316,9 +316,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     { id: 'deployment', title: 'n8n 部署與設定' }
   ] %}
   
-  {% set tutorials = [
+  {% set tutorials = [{
+      title: "模板分享：面試大師",
+      link: "https://www.threads.com/@ironv.careerlife/post/DLIIVgqy-HB",
+      image: "/gallery/n8n_resource_vicky_master_interview.webp",
+      author: "ironv.careerlife",
+      authorLink: "https://www.threads.com/@ironv.careerlife/",
+      description: "n8n 目前看過最火紅的模板分享：面試大師！幫你自動化抓取適合的工作職缺並且撰寫相對應的面試攻略"
+    },
     {
-      title: "Threads : n8n 可以拿來做什麼東西？",
+      title: "Threads：n8n 可以拿來做什麼東西？",
       link: "https://www.threads.com/@ironv.careerlife/post/DNDs6VaS5jL",
       image: "/gallery/n8n_resource_vicky_n8n_ideas.webp",
       author: "ironv.careerlife",
@@ -355,14 +362,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       author: "HC AI說人話",
       authorLink: "https://www.threads.com/@hc_aichannel",
       description: "如何用 n8n 快速做出排版平面"
-    },
-    {
-      title: "n8n 初學者完整指南 (2025)",
-      link: "https://drive.google.com/file/d/10Txuls1-PgLdcYMGMl85MKljJP7CTngd/view",
-      image: "/gallery/merfy_lee_n8n_doc.png",
-      author: "mengfengl",
-      authorLink: "https://www.threads.net/@mengfengl",
-      description: "35頁完整的 n8n 新手指南！"
     },
     {
       title: "資訊小白也可架設本地n8n",
