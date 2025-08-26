@@ -471,24 +471,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
       </section>
 
-      <section id="related-articles" class="n8n-section">
-        <h2>相關文章推薦</h2>
-        <div class="n8n-related-articles">
-          <div class="n8n-related-card">
-            <h3><a href="/hexo-blog-optimization/">Hexo 部落格 SEO 優化完整指南</a></h3>
-            <p>學習如何優化 Hexo 部落格的搜尋引擎排名，包含結構化數據、頁面速度等技巧。</p>
-          </div>
-          <div class="n8n-related-card">
-            <h3><a href="/automation-tools-comparison/">自動化工具比較：n8n vs Zapier vs Make</a></h3>
-            <p>深度比較主流自動化工具的優缺點，協助您選擇最適合的解決方案。</p>
-          </div>
-          <div class="n8n-related-card">
-            <h3><a href="/line-bot-n8n-integration/">LINE Bot 與 n8n 整合實戰指南</a></h3>
-            <p>實作教學：如何使用 n8n 建立智慧 LINE Bot，處理客戶服務和自動回覆。</p>
-          </div>
-        </div>
-      </section>
-
       <section id="about" class="n8n-section">
         <h2>相關連結</h2>
         <div class="n8n-about-content">
