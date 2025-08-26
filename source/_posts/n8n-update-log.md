@@ -18,6 +18,43 @@ sticky: 100
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
 
+## 1.109.0 Pre-release - 2025-08-26
+
+[Github 1.109.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.109.0)
+
+
+這個版本主要是 Bug 修復和小幅改善，沒有太多新功能
+
+### **Do not wait for community nodes to load**
+載入時不需要等待社群節點
+
+會讓 n8n 在介面的操作上稍微更順暢一點
+調整了載入的順序，讓社群節點只有在節點搜尋時才會需要
+
+### **editor: Fix importing curl commands with comma**
+帶有逗號的 curl 指令也能順利匯入
+
+{% darrellImage800 n8n-1.109.0-fix_curl_with_comma n8n-1.109.0-fix_curl_with_comma.png max-400 %}
+
+這是又針對 curl 語法的匯入多了一個優化
+在遇到 `,` 時，也能順利匯入
+
+### **Slack Node: Refine label name for reply broadcast setting**
+Slack 節點標籤清楚告知是不是要傳送到 Channel
+
+{% darrellImage800 n8n-1.109.0-slack_reply_to_channel_optimize_wording n8n-1.109.0-slack_reply_to_channel_optimize_wording.png max-800 %}
+
+只是調整顯示的文字
+其實影響很大
+
+之前在社群就蠻常有人問到說，這選項在做什麼
+以前寫 `reply to thread` 的時候，會以為就是回應在下方
+其實打開這選項，會變成除了回覆，還會是單獨的一條訊息
+
+{% darrellImage800 n8n-1.109.0-slack_setting_send_to_channel n8n-1.109.0-slack_setting_send_to_channel.png max-400 %}
+
+其實就等於 slack 在回應時是否勾選這個選項 `也傳送到 xx 頻道`
+
 ## 1.108.0 Pre-release - 2025-08-19
 
 [Github 1.108.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.108.0)
