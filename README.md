@@ -3,7 +3,7 @@
 ## 📚 最新文章
 
 ### [n8n Structured Output Parser 節點教學 - AI 輸出格式化](https://www.darrelltw.com/n8n_structured_output_parser_node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/08/22 · 1 天前
+📅 2025/08/22 · 3 天前
 
 > AI 輸出格式總是亂七八糟？n8n Structured Output Parser 節點快速解決！節點教學包和實際操作流程介紹，未來輕鬆固定 AI 輸出的格式
 
@@ -45,7 +45,7 @@
 
 
 ### [n8n Perplexity 節點教學](https://www.darrelltw.com/n8n-perplexity-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/06/09 · 2 個月前
+📅 2025/06/09 · 3 個月前
 
 > n8n 內建節點支援 Perplexity ！分享 API key 申請教學、Pro 用戶的免費五美金額度。如何在 n8n 使用 Perplexity 節點和不同模型之間的比較
 
@@ -57,15 +57,15 @@
 
 
 ### [n8n 踩到坑 - Line Invalid JSON 錯誤](https://www.darrelltw.com/n8n-debug-line-invalid-json/?utm_source=github_readme&utm_medium=referral)
-📅 2025/05/10 · 3 個月前
+📅 2025/05/10 · 4 個月前
 
 > n8n 踩到坑是用來記錄和說明自己和網友在 n8n 上遇到一些常見的 error 或是 bug，並且記錄一下怎麼解決，有哪些方法。這次是關於 Line Message API 中很多人在 n8n 都會遇到 invalid json 的錯誤，最有可能的原因居然就是因為一個符號？
 
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-104-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-224,674+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/08/24-green?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-225,269+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/08/26-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-08-24 02:03:02*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-08-26 04:53:47*
