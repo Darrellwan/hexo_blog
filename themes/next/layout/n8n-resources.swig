@@ -1629,154 +1629,154 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   /* Header 樣式 - 深色主題適配 */
-.n8n-resources-header {
-  background-color: var(--n8n-card-bg, #2a2a2a);
-  padding: 25px 15px;
-  margin-bottom: 20px;
-  position: relative;
-  overflow: hidden;
-}
-
-.n8n-header-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.n8n-resources-header h1 {
-  margin: 0;
-  color: var(--n8n-primary, #ff6d5a);
-  font-size: 2.2rem;
-}
-
-.social-buttons {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-}
-
-.social-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #333;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  border: 1px solid #444;
-  color: #fff;
-  transition: all 0.3s ease;
-  text-decoration: none;
-}
-
-.social-button:hover {
-  background: var(--n8n-primary, #ff6d5a);
-  color: #fff;
-  border-color: var(--n8n-primary, #ff6d5a);
-  box-shadow: 0 4px 16px rgba(255,109,90,0.3);
-  transform: translateY(-2px) scale(1.08);
-}
-
-.social-button svg {
-  width: 22px;
-  height: 22px;
-  display: block;
-}
-
-@media (max-width: 768px) {
-  .n8n-header-wrapper {
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-  }
-  
-  .n8n-resources-header h1 {
-    font-size: 1.8rem;
-    text-align: center;
-  }
-  
-  .social-buttons {
-    justify-content: center;
-  }
-}
-
-@media (max-width: 480px) {
   .n8n-resources-header {
-    padding: 20px 10px;
+    background-color: var(--n8n-card-bg, #2a2a2a);
+    padding: 25px 15px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
   }
-  
+
+  .n8n-header-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
   .n8n-resources-header h1 {
-    font-size: 1.6rem;
+    margin: 0;
+    color: var(--n8n-primary, #ff6d5a);
+    font-size: 2.2rem;
   }
-  
+
+  .social-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
   .social-button {
-    width: 36px;
-    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #333;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    border: 1px solid #444;
+    color: #fff;
+    transition: all 0.3s ease;
+    text-decoration: none;
   }
-  
+
+  .social-button:hover {
+    background: var(--n8n-primary, #ff6d5a);
+    color: #fff;
+    border-color: var(--n8n-primary, #ff6d5a);
+    box-shadow: 0 4px 16px rgba(255,109,90,0.3);
+    transform: translateY(-2px) scale(1.08);
+  }
+
   .social-button svg {
-    width: 18px;
-    height: 18px;
+    width: 22px;
+    height: 22px;
+    display: block;
   }
-}
 
-/* 麵包屑導航樣式 */
-.n8n-breadcrumb {
-  margin-bottom: 20px;
-  padding: 0 15px;
-}
+  @media (max-width: 768px) {
+    .n8n-header-wrapper {
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .n8n-resources-header h1 {
+      font-size: 1.8rem;
+      text-align: center;
+    }
+    
+    .social-buttons {
+      justify-content: center;
+    }
+  }
 
-.n8n-breadcrumb ol {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  font-size: 14px;
-  color: var(--n8n-text);
-}
+  @media (max-width: 480px) {
+    .n8n-resources-header {
+      padding: 20px 10px;
+    }
+    
+    .n8n-resources-header h1 {
+      font-size: 1.6rem;
+    }
+    
+    .social-button {
+      width: 36px;
+      height: 36px;
+    }
+    
+    .social-button svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
 
-.n8n-breadcrumb li {
-  display: flex;
-  align-items: center;
-}
-
-.n8n-breadcrumb li:not(:last-child)::after {
-  content: "›";
-  margin: 0 8px;
-  color: var(--n8n-date-color);
-  font-size: 16px;
-}
-
-.n8n-breadcrumb a {
-  color: var(--n8n-secondary);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.n8n-breadcrumb a:hover {
-  color: var(--n8n-primary);
-  text-decoration: underline;
-}
-
-.n8n-breadcrumb li:last-child {
-  color: var(--n8n-date-color);
-}
-
-@media (max-width: 768px) {
+  /* 麵包屑導航樣式 */
   .n8n-breadcrumb {
-    padding: 0 10px;
+    margin-bottom: 20px;
+    padding: 0 15px;
   }
-  
+
   .n8n-breadcrumb ol {
-    font-size: 13px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: var(--n8n-text);
   }
-}
+
+  .n8n-breadcrumb li {
+    display: flex;
+    align-items: center;
+  }
+
+  .n8n-breadcrumb li:not(:last-child)::after {
+    content: "›";
+    margin: 0 8px;
+    color: var(--n8n-date-color);
+    font-size: 16px;
+  }
+
+  .n8n-breadcrumb a {
+    color: var(--n8n-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .n8n-breadcrumb a:hover {
+    color: var(--n8n-primary);
+    text-decoration: underline;
+  }
+
+  .n8n-breadcrumb li:last-child {
+    color: var(--n8n-date-color);
+  }
+
+  @media (max-width: 768px) {
+    .n8n-breadcrumb {
+      padding: 0 10px;
+    }
+    
+    .n8n-breadcrumb ol {
+      font-size: 13px;
+    }
+  }
 </style>
 </body>
 </html>
