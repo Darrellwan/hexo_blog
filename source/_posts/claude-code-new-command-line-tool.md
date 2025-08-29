@@ -99,8 +99,10 @@ claude
 ### plan mode & auto accept
 
 在對話框可以切換 plan mode 模式或是 auto accpet 模式
-mac os : shift + tab
-windows: alt + m
+mac os : **shift + tab**
+windows: **alt + m**
+
+{% darrellImage800 claude_code-change_mode_in_windows_macos claude_code-change_mode_in_windows_macos.png max-400 %}
 
 ### 指令列表
 
