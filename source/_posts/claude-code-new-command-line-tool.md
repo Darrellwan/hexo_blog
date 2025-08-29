@@ -96,6 +96,12 @@ claude
 
 ## 操作介紹
 
+### plan mode & auto accept
+
+在對話框可以切換 plan mode 模式或是 auto accpet 模式
+mac os : shift + tab
+windows: alt + m
+
 ### 指令列表
 
 Claude Code 提供了不少指令：
