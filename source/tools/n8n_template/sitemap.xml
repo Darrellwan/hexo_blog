@@ -3,9 +3,25 @@
   <!-- 主頁 -->
   <url>
     <loc>https://www.darrelltw.com/tools/n8n_template/models.html</loc>
-    <lastmod>2025-08-15</lastmod>
+    <lastmod>2025-08-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+  
+  <!-- 模型詳情頁 - darrell-n8n-demo-gemini_nano banana_change_image -->
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=darrell-n8n-demo-gemini_nano banana_change_image</loc>
+    <lastmod>2025-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- 模型快照頁 - darrell-n8n-demo-gemini_nano banana_change_image -->
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/snapshots/darrell-n8n-demo-gemini_nano banana_change_image.html</loc>
+    <lastmod>2025-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <!-- 模型詳情頁 - n8n-web-scrawler-practice-house-scraper -->
@@ -315,7 +331,7 @@
   <!-- 視覺化頁面 -->
   <url>
     <loc>https://www.darrelltw.com/tools/n8n_template/visualize.html</loc>
-    <lastmod>2025-08-15</lastmod>
+    <lastmod>2025-08-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

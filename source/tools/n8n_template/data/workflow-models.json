@@ -1,5 +1,77 @@
 {
     "models": {
+        "darrell-n8n-demo-gemini_nano banana_change_image": {
+            "id": "darrell-n8n-demo-gemini_nano banana_change_image",
+            "title": "Google nano banana 替換圖片",
+            "description": "這個工作流程展示如何使用 Google Drive 觸發器配合 Google Gemini AI 模型進行自動圖片替換處理。當有新圖片上傳到指定的 Google Drive 資料夾時，系統會自動下載圖片，使用 Google Gemini 2.5 Flash Image Preview 模型進行「一個男人在凱旋門拿著原本產品」的圖片生成，然後將處理完成的圖片自動儲存到輸出資料夾。\n\n主要功能：\n\n觸發機制：Google Drive 資料夾監控，自動偵測新上傳的圖片檔案\n檔案過濾：篩選符合條件的圖片格式進行處理\n圖片下載：自動下載觸發的圖片檔案\nAI 圖片處理：使用 Google Gemini 2.5 Flash Image Preview 模型生成新圖片\n檔案轉換：將 AI 生成的結果轉換為可儲存的檔案格式\n自動上傳：將處理完成的圖片自動儲存到指定的輸出資料夾",
+            "detailedDescription": [
+                "使用 Google Drive Trigger 監控指定資料夾的檔案變更",
+                "透過 Filter 節點篩選符合條件的圖片檔案格式",
+                "使用 Google Drive Download 節點下載觸發的原始圖片",
+                "設定 AI Agent 節點進行圖片內容替換處理",
+                "配置 Google Gemini Chat Model 節點使用 gemini-2.5-flash-image-preview 模型",
+                "設定圖片生成提示詞：「一個男人在凱旋門拿著原本的產品，產生圖片給我」",
+                "使用 Convert to File 節點將 AI 生成結果轉換為檔案格式",
+                "透過 Google Drive Upload 節點將處理完成的圖片儲存到輸出資料夾",
+                "自動命名檔案：使用時間戳記格式「yyyyMMdd_HHmmss.副檔名」",
+                "完整自動化流程：從上傳到處理到儲存全程無需人工介入"
+            ],
+            "tags": ["Google Drive", "AI 圖片生成", "Google Gemini"],
+            "nodes": 8,
+            "createdAt": "2025-08-30",
+            "updatedAt": "2025-08-30",
+            "setup": {
+                "prerequisites": "需要 Google Drive API 存取權限和 Google Gemini API Key（建議使用付費方案）",
+                "steps": [
+                    {
+                        "title": "Google Drive API 設定",
+                        "description": "建立和設定 Google Drive 整合",
+                        "options": [
+                            "建立 Google Cloud Console 專案",
+                            "啟用 Google Drive API",
+                            "建立 OAuth 2.0 認證憑證",
+                            "在 n8n 中設定 Google Drive OAuth2 API 連接",
+                            "建立輸入資料夾：「202508-Google-nano banana demo」",
+                            "建立輸出資料夾：「202508-Google-nano banana output」"
+                        ]
+                    },
+                    {
+                        "title": "Google Gemini API 設定",
+                        "description": "設定 Google Gemini AI 模型存取",
+                        "options": [
+                            "前往 Google AI Studio (aistudio.google.com)",
+                            "申請 Google Gemini API Key",
+                            "注意：免費方案可能無法使用，建議使用付費方案",
+                            "在 n8n 中建立 Google PaLM API 連接",
+                            "測試 gemini-2.5-flash-image-preview 模型連接"
+                        ]
+                    },
+                    {
+                        "title": "工作流程設定",
+                        "description": "配置自動化流程參數",
+                        "options": [
+                            "設定 Google Drive Trigger 監控輸入資料夾",
+                            "調整 Filter 節點的檔案格式篩選條件",
+                            "自訂 AI Agent 的圖片生成提示詞",
+                            "設定檔案命名格式和輸出位置",
+                            "測試完整流程：上傳圖片 → AI 處理 → 自動儲存"
+                        ]
+                    }
+                ]
+            },
+            "tips": [
+                "Google Gemini API 免費方案可能有使用限制，建議使用付費方案以確保穩定運作",
+                "單次圖片處理約需 1 元台幣成本",
+                "建議先用小量圖片測試流程，確認效果後再進行大量處理",
+                "可根據需求調整 AI 提示詞來獲得不同的圖片生成效果",
+                "輸出檔案會自動使用時間戳記命名，避免檔案名稱衝突"
+            ],
+            "costAnalysis": {
+                "free": "免費方案可能無法使用 gemini-2.5-flash-image-preview 模型",
+                "paid": "付費方案每次圖片處理約 1 元台幣",
+                "recommendation": "建議使用付費方案以確保功能正常運作"
+            }
+        },
         "n8n-web-scrawler-practice-house-scraper": {
             "id": "n8n-web-scrawler-practice-house-scraper",
             "title": "房屋資訊爬蟲到 Google Sheet",
