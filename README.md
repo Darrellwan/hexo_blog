@@ -3,7 +3,7 @@
 ## 📚 最新文章
 
 ### [n8n Structured Output Parser 節點教學 - AI 輸出格式化](https://www.darrelltw.com/n8n_structured_output_parser_node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/08/22 · 6 天前
+📅 2025/08/22 · 8 天前
 
 > AI 輸出格式總是亂七八糟？n8n Structured Output Parser 節點快速解決！節點教學包和實際操作流程介紹，未來輕鬆固定 AI 輸出的格式
 
@@ -27,7 +27,7 @@
 
 
 ### [n8n 表單防護小撇步 - Cloudflare Turnstile 驗證完整配置](https://www.darrelltw.com/n8n-with-cloudflare-turnstile-CAPTCHA/?utm_source=github_readme&utm_medium=referral)
-📅 2025/07/14 · 1 個月前
+📅 2025/07/14 · 2 個月前
 
 > 防止 vibe coding 表單被機器人攻擊？使用 Cloudflare Turnstile + n8n 打造表單驗證系統。包含前端 HTML、後端 API 驗證、webhook 設定，完整驗證流程實作教學。
 
@@ -39,7 +39,7 @@
 
 
 ### [n8n 語音自動化實測 - ElevenLabs TTS 節點應用場景](https://www.darrelltw.com/n8n-elevenlabs-tts/?utm_source=github_readme&utm_medium=referral)
-📅 2025/06/14 · 2 個月前
+📅 2025/06/14 · 3 個月前
 
 > n8n 語音自動化實戰！ElevenLabs TTS 節點完整安裝與使用教學，包含 API 設定、聲音選擇、品質優化技巧。實測分享多種自動化場景應用。
 
@@ -65,7 +65,7 @@
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-104-blue?style=flat-square)
 ![總字數](https://img.shields.io/badge/總字數-225,429+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/08/29-green?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/08/31-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-08-29 06:16:15*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-08-31 01:54:09*
