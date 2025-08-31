@@ -341,8 +341,8 @@ hexo.extend.helper.register('generate_n8n_collection_schema', function() {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "@id": `${this.config.url}/n8n-tutorial-resources/`,
-    "name": "n8n 教學大全：節點教學、模板分享、部署指南",
-    "description": "完整n8n自動化教學大全，包含50+節點詳解、實用模板下載、一鍵部署指南。適合初學者到進階用戶，5分鐘上手工作流程自動化。",
+    "name": "n8n 教學：節點教學、模板分享、部署指南",
+    "description": "n8n自動化教學，包含節點、實用模板、部署。適合初學者到進階用戶，快速上手自動化。",
     "url": `${this.config.url}/n8n-tutorial-resources/`,
     "inLanguage": "zh-TW",
     "isAccessibleForFree": true,
@@ -393,7 +393,7 @@ hexo.extend.helper.register('generate_n8n_collection_schema', function() {
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "n8n 教學大全",
+          "name": "n8n 教學",
           "item": {
             "@type": "CollectionPage",
             "@id": `${this.config.url}/n8n-tutorial-resources/`

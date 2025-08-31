@@ -33,7 +33,7 @@ layout: false
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>n8n 教學：節點介紹、模板、部署 | Darrell TW</title>
-  <meta name="description" content="{{ page.description or '完整n8n自動化教學大全，包含50+節點詳解、實用模板下載、一鍵部署指南。適合初學者到進階用戶，5分鐘上手工作流程自動化。' }}">
+  <meta name="description" content="{{ page.description or 'n8n自動化教學，包含節點、實用模板、部署。適合初學者到進階用戶，快速上手自動化。' }}">
   <meta name="keywords" content="n8n教學, n8n節點, 工作流程自動化, n8n模板下載, n8n部署, 自動化工具, n8n中文教學, workflow automation, n8n tutorial">
   
   <!-- 作者和網站資訊 -->
@@ -72,11 +72,11 @@ layout: false
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ config.url }}{{ url_for(page.permalink) }}">
   <meta property="og:title" content="n8n 教學：節點介紹、模板、部署">
-  <meta property="og:description" content="{{ page.description or '完整n8n自動化教學大全，包含50+節點詳解、實用模板下載、一鍵部署指南。適合初學者到進階用戶，5分鐘上手工作流程自動化。' }}">
+  <meta property="og:description" content="{{ page.description or 'n8n自動化教學，包含節點、實用模板、部署。適合初學者到進階用戶，快速上手自動化。' }}">
   <meta property="og:image" content="{{ config.url }}{{ url_for('/gallery/n8n_resource_og.jpg') }}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="n8n 教學資源大全 - 節點介紹、模板分享、部署指南">
+  <meta property="og:image:alt" content="n8n 教學資源 - 節點介紹、模板分享、部署指南">
   <meta property="og:site_name" content="Darrell TW - MarTech 自動化專家">
   <meta property="og:locale" content="zh_TW">
   
@@ -86,9 +86,9 @@ layout: false
   <meta name="twitter:creator" content="@darrell_tw">
   <meta name="twitter:url" content="{{ config.url }}{{ url_for(page.permalink) }}">
   <meta name="twitter:title" content="n8n 教學：節點介紹、模板、部署">
-  <meta name="twitter:description" content="{{ page.description or '完整n8n自動化教學大全，包含50+節點詳解、實用模板下載、一鍵部署指南。適合初學者到進階用戶，5分鐘上手工作流程自動化。' }}">
+  <meta name="twitter:description" content="{{ page.description or 'n8n自動化教學，包含節點、實用模板、部署。適合初學者到進階用戶，快速上手自動化。' }}">
   <meta name="twitter:image" content="{{ config.url }}{{ url_for('/gallery/n8n_resource_og.jpg') }}">
-  <meta name="twitter:image:alt" content="n8n 教學資源大全 - 節點介紹、模板分享、部署指南">
+  <meta name="twitter:image:alt" content="n8n 教學資源 - 節點介紹、模板分享、部署指南">
 
   <!-- 
   <script src="https://cdn.jsdelivr.net/npm/algoliasearch@5.23.4/dist/algoliasearch.umd.js"></script>
@@ -302,7 +302,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <meta itemprop="position" content="1">
       </li>
       <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-        <span itemprop="name">n8n 教學大全</span>
+        <span itemprop="name">n8n 教學</span>
         <meta itemprop="position" content="2">
       </li>
     </ol>
