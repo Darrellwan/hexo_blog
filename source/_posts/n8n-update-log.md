@@ -7,16 +7,50 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2025/08/19 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.108.0，正式版本為 1.107.3
+description: n8n 的更新記錄(2025/09/02 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.110.0，正式版本為 1.109.1
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-08-19 12:10:00
+modified: 2025-09-02 12:10:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 1.110.0 Pre-release - 2025-09-02
+
+[Github 1.110.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.110.0)
+
+這個版本主要是增加新功能和 Bug 修復，包含專案權限角色和程式碼節點功能增強
+
+### **Added Python to Code node actions**
+Code 節點 action 新增 Python
+
+{% darrellImage800 n8n-1.110.0-code_action_add_python n8n-1.110.0-code_action_add_python.png max-800 %}
+
+以往新增 Code 節點時，預設就會是 JavaScript 的方式
+現在多了 Python 的 action，讓你在新增時就能決定是否要使用 Python
+常用 Python 的人會覺得比較順手，不用再切換一次
+
+### **Added option to restrict credential usage in HTTP request node**
+HTTP Request 節點新增憑證使用限制選項
+
+{% darrellImage800 n8n-1.110.0-http_request_add_credential_domain_limit n8n-1.110.0-http_request_add_credential_domain_limit.png max-800 %}
+
+可以把節點應用在特定的 Domain 或是限制，以免不小心把 A 服務的 Credentials 錯誤送出到 B 服務上，
+這樣等於 B 服務會看到你的 A 服務驗證資訊
+非常危險！
+
+### **Filter Node: Fix ignore case toggle not working**
+Filter 節點修復忽略大小寫切換無效問題
+
+修復了 Filter 節點中「忽略大小寫」選項切換時無法正常運作的 Bug
+現在切換後會立即生效！
+
+{% darrellImage800 n8n-1.110.0-filter_toggle_fix n8n-1.110.0-filter_toggle_fix.png max-800 %}
+
+
 
 ## 1.109.0 Pre-release - 2025-08-26
 
