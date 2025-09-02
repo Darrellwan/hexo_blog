@@ -3,7 +3,7 @@
 ## 📚 最新文章
 
 ### [n8n Structured Output Parser 節點教學 - AI 輸出格式化](https://www.darrelltw.com/n8n_structured_output_parser_node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/08/22 · 8 天前
+📅 2025/08/22 · 10 天前
 
 > AI 輸出格式總是亂七八糟？n8n Structured Output Parser 節點快速解決！節點教學包和實際操作流程介紹，未來輕鬆固定 AI 輸出的格式
 
@@ -64,8 +64,8 @@
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-104-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-225,429+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/08/31-green?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-226,070+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/09/02-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -92,12 +92,12 @@
 
 ## 📈 更新頻率
 ```text
-03月 ██████░░░░ 6篇
 04月 ████░░░░░░ 4篇
 05月 ███░░░░░░░ 3篇
 06月 ████░░░░░░ 4篇
 07月 ████░░░░░░ 4篇
 08月 █░░░░░░░░░ 1篇
+09月 ░░░░░░░░░░ 0篇
 ```
 
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-08-31 06:27:44*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-09-02 09:29:13*
