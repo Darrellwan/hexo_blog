@@ -6,18 +6,18 @@
         "operation": "download",
         "fileId": {
           "__rl": true,
-          "value": "https://drive.google.com/file/d/1iK3FjxrBcxkzQ_eeDm9pZMCl146R7u7e/view?usp=drive_link",
-          "mode": "url"
+          "value": "={{ $json.id }}",
+          "mode": "id"
         },
         "options": {}
       },
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        -320,
-        16
+        720,
+        416
       ],
-      "id": "28a268f1-d1f2-4e53-8125-42718cfa38b3",
+      "id": "3c087e26-ce84-4be7-9fe1-81514b1371df",
       "name": "Download file",
       "credentials": {
         "googleDriveOAuth2Api": {
@@ -37,10 +37,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.2,
       "position": [
-        -144,
-        16
+        896,
+        416
       ],
-      "id": "d80758f3-5e39-4867-8ecb-9aedcd0d5ec9",
+      "id": "6c2c599b-57ff-422a-8e4c-439ebea3c482",
       "name": "AI Agent"
     },
     {
@@ -53,10 +53,10 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        -144,
-        208
+        896,
+        608
       ],
-      "id": "f404fca0-1e76-45c4-9e48-8d9f9a5b3699",
+      "id": "03f98c7d-449d-4e2f-afb8-9e5013842a38",
       "name": "Google Gemini Chat Model",
       "credentials": {
         "googlePalmApi": {
@@ -74,10 +74,10 @@
       "type": "n8n-nodes-base.convertToFile",
       "typeVersion": 1.1,
       "position": [
-        160,
-        16
+        1200,
+        416
       ],
-      "id": "64f38eb4-5191-42e0-9138-5ac6586a7274",
+      "id": "1e686ebd-68b8-4d1d-81c5-aacc9f65e950",
       "name": "Convert to File"
     },
     {
@@ -103,10 +103,10 @@
       "type": "n8n-nodes-base.googleDriveTrigger",
       "typeVersion": 1,
       "position": [
-        -672,
-        16
+        368,
+        416
       ],
-      "id": "fe3fce12-97e8-4883-b042-c305749dc240",
+      "id": "e87fbaec-4129-414d-a76f-1cc276f296e7",
       "name": "Google Drive Trigger",
       "credentials": {
         "googleDriveOAuth2Api": {
@@ -142,10 +142,10 @@
       "type": "n8n-nodes-base.filter",
       "typeVersion": 2.2,
       "position": [
-        -496,
-        16
+        544,
+        416
       ],
-      "id": "dcb90589-5ccd-422b-825f-4d598b226d60",
+      "id": "01ca0ad7-fbc1-484e-ac2b-d11a6bb1edb0",
       "name": "Filter"
     },
     {
@@ -168,10 +168,10 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        368,
-        16
+        1408,
+        416
       ],
-      "id": "93714a1b-b1ba-4c8d-bd69-02c9588177dd",
+      "id": "5c573045-4d20-4bf8-9831-92e9155a3424",
       "name": "Upload file",
       "credentials": {
         "googleDriveOAuth2Api": {
@@ -189,10 +189,10 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -1040,
-        -400
+        0,
+        0
       ],
-      "id": "d623d6a9-bf20-4436-95c4-31280f6744f2",
+      "id": "1f2de15f-9de9-45f3-bbfe-4f4214f99ec7",
       "name": "Sticky Note"
     },
     {
@@ -205,10 +205,10 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -1040,
-        -112
+        0,
+        288
       ],
-      "id": "a0611895-9abd-4086-8963-cb53c140acd0",
+      "id": "1660ab98-e879-48f3-8315-7fbe959232c3",
       "name": "Sticky Note4"
     },
     {
@@ -221,10 +221,10 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -1040,
-        240
+        0,
+        640
       ],
-      "id": "4cf97cba-dad3-402c-8af1-1187ceb6cfbd",
+      "id": "ee9ed9e0-4e51-4679-8aa1-a21f2da6a43e",
       "name": "Sticky Note2"
     }
   ],
@@ -301,19 +301,12 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "89f506ce-c54c-4673-9706-57343e1ed701",
+  "versionId": "4e0e318d-aa6c-4603-88e6-2b481040901d",
   "meta": {
-    "templateCredsSetupCompleted": true,
     "instanceId": "fddb3e91967f1012c95dd02bf5ad21f279fc44715f47a7a96a33433621caa253"
   },
-  "id": "CssAXE4IO3d9ZkJN",
+  "id": "VnqqbOJNP9guY86d",
   "tags": [
-    {
-      "createdAt": "2025-02-08T07:12:26.837Z",
-      "updatedAt": "2025-02-08T07:12:26.837Z",
-      "id": "IifyzA4m8rqIfnph",
-      "name": "public_template"
-    },
     {
       "createdAt": "2025-04-25T14:04:49.168Z",
       "updatedAt": "2025-04-25T14:04:49.168Z",
