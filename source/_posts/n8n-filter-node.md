@@ -1,5 +1,5 @@
 ---
-title: n8n Filter 節點教學 - 資料篩選與條件判斷完整指南
+title: n8n Filter 節點教學 - 資料篩選與條件判斷
 tags:
   - n8n
   - n8n節點介紹
@@ -9,34 +9,14 @@ categories:
   - n8n
 page_type: post
 id: n8n-filter-node
-description: 完整 n8n Filter 節點教學，包含條件設定、多重篩選邏輯、資料類型判斷等功能介紹。實測分享電商訂單篩選、客戶資料清理、自動化流程優化等實用案例。
+description: 解析 n8n Filter 節點與 If/Switch 節點差異，包含 AND/OR 邏輯判斷、Ignore case 設定等進階功能。實測各種資料類型篩選方法，提升自動化流程效率。
 bgImage: n8n-filter-node-bg.jpg
 preload:
   - n8n-filter-node-bg.jpg
 date: 2025-09-08 18:12:13
 ai_assistance: 10%
 ---
-
 {% darrellImageCover n8n-filter-node-bg n8n-filter-node-bg.jpg max-800 %}
-
-## 快速導覽
-
-**預計閱讀時間：** 5-10 分鐘  
-**你將學到：**
-- Filter 節點介紹    
-
-**如果趕時間，可以跳到**
-{% quickNav %}
-[
-  {
-    "text": "Filter 節點介紹",
-    "anchor": "filter-basics",
-    "desc": "快速了解 Filter 節點能做什麼"
-  },
-]
-{% endquickNav %}
-
----
 
 ## Filter 節點介紹
 
