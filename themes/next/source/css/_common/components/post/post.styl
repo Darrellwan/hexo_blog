@@ -138,4 +138,26 @@
     line-height: 1.6;
     opacity: 0.9;
   }
+
+  // 行動版優化 - 圖片統一 80x80px
+  +mobile() {
+    .article-card-content {
+      padding: 16px;
+      gap: 12px;
+    }
+    
+    .article-card-image {
+      width: 80px;
+      min-width: 80px;
+      height: 80px;
+    }
+    
+    .article-card-title {
+      font-size: 1.1em;
+    }
+    
+    .article-card-preview {
+      font-size: 0.9em;
+    }
+  }
 }

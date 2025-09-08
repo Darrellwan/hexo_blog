@@ -487,5 +487,91 @@ pre, code {
   }
 }
 
+// ========================================
+// Article Card Component Styles  
+// ========================================
+
+.article-card {
+  margin: 20px 0;
+  background: var(--content-bg-color);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  &:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+  }
+}
+
+.article-card-link {
+  display: block;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  color: inherit;
+  
+  &:hover {
+    text-decoration: none !important;
+  }
+}
+
+.article-card-content {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  gap: 20px;
+}
+
+.article-card-text {
+  flex: 1;
+  min-width: 0; // 防止 flex item 溢出
+}
+
+.article-card-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 8px;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.article-card-preview {
+  font-size: 14px;
+  color: var(--text-color-light, #666);
+  line-height: 1.5;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.article-card-image {
+  flex-shrink: 0;
+  width: 120px;
+  height: 80px;
+  border-radius: 8px;
+  overflow: hidden;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+}
+
+.article-card:hover .article-card-image img {
+  transform: scale(1.05);
+}
+
+// Article Card 行動版樣式已移至 post.styl 統一管理
+
 // Import n8n Resources Page Styles
 @import "_custom/n8n-resources.styl";

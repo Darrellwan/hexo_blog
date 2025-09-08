@@ -38,7 +38,6 @@
           {%- set time_diff = time(post.date) != time(post.updated) %}
           {%- set datetime_diff = date_diff or time_diff %}
 
-
           {%- if post.description and is_index %}
             <div class="post-description is-index">{{ post.description }}</div>
           {%- endif %}
@@ -147,6 +146,16 @@
                 <span class="post-meta-item-text">{{ __('symbols_count_time.time') }} &asymp;</span>
               {%- endif %}
               <span>{{ symbolsTime(post, config.symbols_count_time.awl, config.symbols_count_time.wpm, __('symbols_count_time.time_minutes')) }}</span>
+            </span>
+          {%- endif %}
+
+          {%- if post.ai_assistance %}
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fas fa-robot"></i>
+              </span>
+              <span class="post-meta-item-text">AI 輔助 </span>
+              <span>{{ post.ai_assistance }}</span>
             </span>
           {%- endif %}
 
