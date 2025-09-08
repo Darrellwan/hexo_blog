@@ -28,3 +28,4 @@ Hexo blog for MarTech/automation. Key points:
 
 ## AI Development Philosophy
 - **Think harder** - Always strive to dig deeper and find more nuanced solutions
+- 記得 css 的位置和剛剛的重點
