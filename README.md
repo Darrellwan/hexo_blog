@@ -2,8 +2,14 @@
 
 ## 📚 最新文章
 
+### [n8n Filter 節點教學 - 資料篩選與條件判斷完整指南](https://www.darrelltw.com/n8n-filter-node/?utm_source=github_readme&utm_medium=referral)
+📅 2025/09/08 · 8 小時內
+
+> 完整 n8n Filter 節點教學，包含條件設定、多重篩選邏輯、資料類型判斷等功能介紹。實測分享電商訂單篩選、客戶資料清理、自動化流程優化等實用案例。
+
+
 ### [n8n Structured Output Parser 節點教學 - AI 輸出格式化](https://www.darrelltw.com/n8n_structured_output_parser_node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/08/22 · 15 天前
+📅 2025/08/22 · 17 天前
 
 > AI 輸出格式總是亂七八糟？n8n Structured Output Parser 節點快速解決！節點教學包和實際操作流程介紹，未來輕鬆固定 AI 輸出的格式
 
@@ -21,7 +27,7 @@
 
 
 ### [n8n Gmail 節點教學 - 自動化郵件發送和處理](https://www.darrelltw.com/n8n-gmail-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/07/22 · 1 個月前
+📅 2025/07/22 · 2 個月前
 
 > 完整教學 n8n Gmail 節點實現郵件自動化流程。包含 OAuth 認證設定、搜尋語法技巧、郵件發送標籤管理等功能介紹。實測信用卡帳單自動提醒、PDF 解析、Google Calendar 整合等進階案例。
 
@@ -56,16 +62,10 @@
 > n8n Evaluations 幫你解決 prompt 調整難題，透過測試資料集和評估指標，幫助你建立更可靠的 AI 自動化流程。本文將介紹 Light evaluations 和 Metric-based evaluations 兩種評估方式，並分享實際使用經驗。
 
 
-### [n8n 踩到坑 - Line Invalid JSON 錯誤](https://www.darrelltw.com/n8n-debug-line-invalid-json/?utm_source=github_readme&utm_medium=referral)
-📅 2025/05/10 · 4 個月前
-
-> n8n 踩到坑是用來記錄和說明自己和網友在 n8n 上遇到一些常見的 error 或是 bug，並且記錄一下怎麼解決，有哪些方法。這次是關於 Line Message API 中很多人在 n8n 都會遇到 invalid json 的錯誤，最有可能的原因居然就是因為一個符號？
-
-
 ## 📊 部落格統計
-![文章總數](https://img.shields.io/badge/文章總數-104-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-226,070+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/09/07-green?style=flat-square)
+![文章總數](https://img.shields.io/badge/文章總數-105-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-227,301+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/09/08-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -88,7 +88,7 @@
 
 
 ## 🏷️ 熱門主題
-![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![n8n](https://img.shields.io/badge/n8n-20-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-15-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![AI](https://img.shields.io/badge/AI-7-orange?style=flat-square)
+![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![n8n](https://img.shields.io/badge/n8n-21-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-15-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![AI](https://img.shields.io/badge/AI-7-orange?style=flat-square)
 
 ## 📈 更新頻率
 ```text
@@ -97,7 +97,7 @@
 06月 ████░░░░░░ 4篇
 07月 ████░░░░░░ 4篇
 08月 █░░░░░░░░░ 1篇
-09月 ░░░░░░░░░░ 0篇
+09月 █░░░░░░░░░ 1篇
 ```
 
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-09-07 01:51:47*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-09-08 10:16:50*
