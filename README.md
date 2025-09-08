@@ -2,10 +2,10 @@
 
 ## 📚 最新文章
 
-### [n8n Filter 節點教學 - 資料篩選與條件判斷完整指南](https://www.darrelltw.com/n8n-filter-node/?utm_source=github_readme&utm_medium=referral)
+### [n8n Filter 節點教學 - 資料篩選與條件判斷](https://www.darrelltw.com/n8n-filter-node/?utm_source=github_readme&utm_medium=referral)
 📅 2025/09/08 · 8 小時內
 
-> 完整 n8n Filter 節點教學，包含條件設定、多重篩選邏輯、資料類型判斷等功能介紹。實測分享電商訂單篩選、客戶資料清理、自動化流程優化等實用案例。
+> 解析 n8n Filter 節點與 If/Switch 節點差異，包含 AND/OR 邏輯判斷、Ignore case 設定等進階功能。實測各種資料類型篩選方法，提升自動化流程效率。
 
 
 ### [n8n Structured Output Parser 節點教學 - AI 輸出格式化](https://www.darrelltw.com/n8n_structured_output_parser_node/?utm_source=github_readme&utm_medium=referral)
@@ -64,7 +64,7 @@
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-105-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-227,301+-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-227,195+-blue?style=flat-square)
 ![最後更新](https://img.shields.io/badge/最後更新-2025/09/08-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-09-08 10:16:50*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-09-08 10:31:31*
