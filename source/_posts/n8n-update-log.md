@@ -7,16 +7,60 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2025/09/02 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.110.0，正式版本為 1.109.1
+description: n8n 的更新記錄(2025/09/09 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.111.0，正式版本為 1.110.1
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-09-02 12:10:00
+modified: 2025-09-09 13:30:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 1.111.0 Pre-release - 2025-09-09
+
+[Github 1.111.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.111.0)
+
+### Fix google service accounts uploading to shared drives
+修正 google service accounts 上傳至共用磁碟的問題
+
+{% darrellImage800 n8n-1.111.0-google_drive_shared_fix n8n-1.111.0-google_drive_shared_fix.png max-800 %}
+
+從說明才了解到原來 Google 是在今年四月改了規則
+讓 Service Account 無法直接上傳到 Drive 中，因為帳號本身沒有**空間的配額**
+你必須要是 **Google Workspace 帳戶**
+才會有 Shared Drive 的配額功能使用
+這時就能使用 Service Account 來上傳檔案到 Shared Drive 中
+
+
+### **Wait Node** Allow wait node to accept 0 waiting time input 
+允許 wait node 接受 0 等待時間輸入
+
+{% darrellImage800 n8n-1.111.0-wait_node_can_input_0 n8n-1.111.0-wait_node_can_input_0.png max-800 %}
+
+聽起來是個很雞肋的更新
+但對於把怎麼使用的自由交還給使用者，我覺得還是好事一件
+
+例如會利用前面的挑件來判斷是否需要等待
+如果有符合不需要等待的情況
+就讓 wait 節點用 0 秒直接通過
+也不用繞過 wait 節點來打亂整個 workflow 配置
+
+
+### **Google Gemini Node** Allow Nano Banana model to be selected
+Google Gemini Node 可以選擇 Nano Banana 模型
+
+{% darrellImage800 n8n-1.111.0-gemini_node_support_nano_banana_model n8n-1.111.0-gemini_node_support_nano_banana_model.png max-800 %}
+
+Gemini 的節點能直接選擇 Nano Banana 模型啦！
+但看來還是只能用在 **文生圖**
+圖生圖的話這個節點不方便直接把 binary 轉 string 帶入 prompt
+需要多一兩個節點來實現
+
+目前習慣是使用 Http Request 或是 AI Agent 節點來直接 pass through binary
+
+
 
 ## 1.110.0 Pre-release - 2025-09-02
 

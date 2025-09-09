@@ -5568,5 +5568,20 @@
     "width": 2140,
     "height": 1198,
     "mtimeMs": 1757324280637.719
+  },
+  "/_posts/n8n-update-log/n8n-1.111.0-wait_node_can_input_0.png": {
+    "width": 2274,
+    "height": 1696,
+    "mtimeMs": 1757396078683.155
+  },
+  "/_posts/n8n-update-log/n8n-1.111.0-google_drive_shared_fix.png": {
+    "width": 1656,
+    "height": 2008,
+    "mtimeMs": 1757396282393.661
+  },
+  "/_posts/n8n-update-log/n8n-1.111.0-gemini_node_support_nano_banana_model.png": {
+    "width": 1814,
+    "height": 1654,
+    "mtimeMs": 1757395871981.247
   }
 }
