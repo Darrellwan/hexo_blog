@@ -3,25 +3,25 @@
 ## 📚 最新文章
 
 ### [n8n Filter 節點教學 - 資料篩選與條件判斷](https://www.darrelltw.com/n8n-filter-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/09/08 · 11 小時前
+📅 2025/09/08 · 5 天前
 
 > 解析 n8n Filter 節點與 If/Switch 節點差異，包含 AND/OR 邏輯判斷、Ignore case 設定等進階功能。實測各種資料類型篩選方法，提升自動化流程效率。
 
 
 ### [n8n Structured Output Parser 節點教學 - AI 輸出格式化](https://www.darrelltw.com/n8n_structured_output_parser_node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/08/22 · 17 天前
+📅 2025/08/22 · 22 天前
 
 > AI 輸出格式總是亂七八糟？n8n Structured Output Parser 節點快速解決！節點教學包和實際操作流程介紹，未來輕鬆固定 AI 輸出的格式
 
 
 ### [Postiz 串接 Threads：Zeabur 部署 + Meta Developer 設定教學](https://www.darrelltw.com/postiz-zeabur-threads-tutorial/?utm_source=github_readme&utm_medium=referral)
-📅 2025/07/28 · 1 個月前
+📅 2025/07/28 · 2 個月前
 
 > 想用 Postiz 自動排程 Threads 貼文？本文提供完整 Meta 應用程式建立到 Threads API 串接教學，輕鬆實現 Threads 自動排程發文。
 
 
 ### [Claude Code Agent 實測，建立專屬的開發助理](https://www.darrelltw.com/claude-code-agent/?utm_source=github_readme&utm_medium=referral)
-📅 2025/07/25 · 1 個月前
+📅 2025/07/25 · 2 個月前
 
 > Claude Code 新推出的 Agent 功能讓你可以建立專屬的開發 Agent，透過自然語言指令自動處理重複性的程式設計任務。不再需要每次重新解釋需求，讓 Claude Code Agent 記住你的開發模式。
 
@@ -39,7 +39,7 @@
 
 
 ### [Google 發布 Gemini CLI Tool 免費額度超級夠用 和 Claude Code 的比較](https://www.darrelltw.com/google-gemini-cli/?utm_source=github_readme&utm_medium=referral)
-📅 2025/06/26 · 2 個月前
+📅 2025/06/26 · 3 個月前
 
 > Google 推出免費 Gemini CLI 命令行工具。安裝教學，並與 Claude Code 做同樣 prompt 比較
 
@@ -65,7 +65,7 @@
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-105-blue?style=flat-square)
 ![總字數](https://img.shields.io/badge/總字數-228,021+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/09/09-green?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/09/14-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-09-09 05:40:44*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-09-14 01:51:19*
