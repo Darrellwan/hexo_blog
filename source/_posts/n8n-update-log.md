@@ -7,16 +7,55 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2025/09/09 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.111.0，正式版本為 1.110.1
+description: n8n 的更新記錄(2025/09/16 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.112.0，正式版本為 1.111.0
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-09-09 13:30:00
+modified: 2025-09-16 10:00:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 1.112.0 Pre-release - 2025-09-16
+
+[Github 1.112.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.112.0)
+
+### Gemini Node : Edit Image Using Nano Banana
+Gemini Node : 使用 Nano Banana 編輯影像
+
+以前 Gemini Node 無法直接傳入 Binary 用來編輯圖片
+目前 n8n 官方新增的 **Edit Image** 這個 action
+並且可以直接傳 Binary + Prompt 來調整圖片了！
+
+原本要繞過這個限制都是用 `AI Agent` 節點，
+現在也不用這麼麻煩了
+
+{% darrellImage800 n8n-1.112.0-gemini_node_add_edit_image n8n-1.112.0-gemini_node_add_edit_image.png max-800 %}
+
+### Perplexity Node: Update model from 'r1-1776' to 'sonar'
+Perplexity Node: 更新模型從 'r1-1776' 到 'sonar'
+
+由於 Perplexity 的 `r1-1776` 模型已經停止服務
+所以目前 n8n 中的 `Perplexity` 節點也移除這個模型，並且預設使用 `Sonar`
+
+{% darrellImage800 n8n-1.112.0-perplexity_node_replace_sonar_as_default_model n8n-1.112.0-perplexity_node_replace_sonar_as_default_model.png max-800 %}
+
+### Gmail Trigger Node: Handle self-sent emails in inbox
+Gmail Trigger Node: 處理收件匣中的自寄郵件
+
+修正了一個重要的邏輯問題
+
+**問題背景**
+以前自己寄給自己的 Email
+（例如 abc@gmail.com → abc@gmail.com）會被 Gmail Trigger 跳過
+但是這在表單的情境中其實很常見
+
+{% darrellImage800 n8n-1.112.0-gmail_trigger_handle_self_sent_emails n8n-1.112.0-gmail_trigger_handle_self_sent_emails.png max-800 %}
+
+對於需要使用 Gmail 寄信給自己來觸發自動化流程的朋友來說
+這個修正很讚
 
 ## 1.111.0 Pre-release - 2025-09-09
 

@@ -5572,16 +5572,31 @@
   "/_posts/n8n-update-log/n8n-1.111.0-wait_node_can_input_0.png": {
     "width": 2274,
     "height": 1696,
-    "mtimeMs": 1757396078683.155
+    "mtimeMs": 1757396412636.9487
   },
   "/_posts/n8n-update-log/n8n-1.111.0-google_drive_shared_fix.png": {
     "width": 1656,
     "height": 2008,
-    "mtimeMs": 1757396282393.661
+    "mtimeMs": 1757396412636.7002
   },
   "/_posts/n8n-update-log/n8n-1.111.0-gemini_node_support_nano_banana_model.png": {
     "width": 1814,
     "height": 1654,
-    "mtimeMs": 1757395871981.247
+    "mtimeMs": 1757396412636.144
+  },
+  "/_posts/n8n-update-log/n8n-1.112.0-gemini_node_add_edit_image.png": {
+    "width": 2484,
+    "height": 1760,
+    "mtimeMs": 1757987076704.059
+  },
+  "/_posts/n8n-update-log/n8n-1.112.0-perplexity_node_replace_sonar_as_default_model.png": {
+    "width": 1466,
+    "height": 1190,
+    "mtimeMs": 1757987456950.152
+  },
+  "/_posts/n8n-update-log/n8n-1.112.0-gmail_trigger_handle_self_sent_emails.png": {
+    "width": 1774,
+    "height": 1726,
+    "mtimeMs": 1757988797353.516
   }
 }
