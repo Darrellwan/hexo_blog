@@ -3,13 +3,13 @@
 ## 📚 最新文章
 
 ### [n8n Filter 節點教學 - 資料篩選與條件判斷](https://www.darrelltw.com/n8n-filter-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/09/08 · 7 天前
+📅 2025/09/08 · 12 天前
 
 > 解析 n8n Filter 節點與 If/Switch 節點差異，包含 AND/OR 邏輯判斷、Ignore case 設定等進階功能。實測各種資料類型篩選方法，提升自動化流程效率。
 
 
 ### [n8n Structured Output Parser 節點教學 - AI 輸出格式化](https://www.darrelltw.com/n8n_structured_output_parser_node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/08/22 · 24 天前
+📅 2025/08/22 · 1 個月前
 
 > AI 輸出格式總是亂七八糟？n8n Structured Output Parser 節點快速解決！節點教學包和實際操作流程介紹，未來輕鬆固定 AI 輸出的格式
 
@@ -57,7 +57,7 @@
 
 
 ### [n8n Evaluations 新功能介紹 - 讓 AI 工作流程更可靠的測試框架](https://www.darrelltw.com/n8n-evaluations/?utm_source=github_readme&utm_medium=referral)
-📅 2025/06/01 · 3 個月前
+📅 2025/06/01 · 4 個月前
 
 > n8n Evaluations 幫你解決 prompt 調整難題，透過測試資料集和評估指標，幫助你建立更可靠的 AI 自動化流程。本文將介紹 Light evaluations 和 Metric-based evaluations 兩種評估方式，並分享實際使用經驗。
 
@@ -65,7 +65,7 @@
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-105-blue?style=flat-square)
 ![總字數](https://img.shields.io/badge/總字數-228,747+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/09/16-green?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/09/21-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-09-16 02:31:17*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-09-21 01:54:27*
