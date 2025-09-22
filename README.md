@@ -2,8 +2,14 @@
 
 ## 📚 最新文章
 
+### [n8n Poll Time 教學 - 優化 Trigger 效率](https://www.darrelltw.com/n8n-poll-time-setting/?utm_source=github_readme&utm_medium=referral)
+📅 2025/09/21 · 12 小時前
+
+> n8n Poll Time完整教學！場景對應設定、成本計算、Rate Limit避雷。
+
+
 ### [n8n Filter 節點教學 - 資料篩選與條件判斷](https://www.darrelltw.com/n8n-filter-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/09/08 · 12 天前
+📅 2025/09/08 · 13 天前
 
 > 解析 n8n Filter 節點與 If/Switch 節點差異，包含 AND/OR 邏輯判斷、Ignore case 設定等進階功能。實測各種資料類型篩選方法，提升自動化流程效率。
 
@@ -56,16 +62,10 @@
 > n8n 內建節點支援 Perplexity ！分享 API key 申請教學、Pro 用戶的免費五美金額度。如何在 n8n 使用 Perplexity 節點和不同模型之間的比較
 
 
-### [n8n Evaluations 新功能介紹 - 讓 AI 工作流程更可靠的測試框架](https://www.darrelltw.com/n8n-evaluations/?utm_source=github_readme&utm_medium=referral)
-📅 2025/06/01 · 4 個月前
-
-> n8n Evaluations 幫你解決 prompt 調整難題，透過測試資料集和評估指標，幫助你建立更可靠的 AI 自動化流程。本文將介紹 Light evaluations 和 Metric-based evaluations 兩種評估方式，並分享實際使用經驗。
-
-
 ## 📊 部落格統計
-![文章總數](https://img.shields.io/badge/文章總數-105-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-228,747+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/09/21-green?style=flat-square)
+![文章總數](https://img.shields.io/badge/文章總數-106-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-230,016+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/09/22-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -88,7 +88,7 @@
 
 
 ## 🏷️ 熱門主題
-![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![n8n](https://img.shields.io/badge/n8n-21-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-15-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![AI](https://img.shields.io/badge/AI-7-orange?style=flat-square)
+![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![n8n](https://img.shields.io/badge/n8n-22-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-15-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![AI](https://img.shields.io/badge/AI-7-orange?style=flat-square)
 
 ## 📈 更新頻率
 ```text
@@ -97,7 +97,7 @@
 06月 ████░░░░░░ 4篇
 07月 ████░░░░░░ 4篇
 08月 █░░░░░░░░░ 1篇
-09月 █░░░░░░░░░ 1篇
+09月 ██░░░░░░░░ 2篇
 ```
 
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-09-21 01:54:27*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-09-22 03:51:33*
