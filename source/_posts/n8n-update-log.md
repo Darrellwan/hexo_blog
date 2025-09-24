@@ -7,16 +7,66 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2025/09/16 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.112.0，正式版本為 1.111.0
+description: n8n 的更新記錄(2025/09/24 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.113.1，正式版本為 1.112.4
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-09-16 10:00:00
+modified: 2025-09-24 12:08:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 1.113.0 Pre-release - 2025-09-23
+
+[Github 1.113.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.113.0)
+
+### Data Tables 成為預設模組
+UI 資料表格功能正式啟用
+
+這版本最重要的更新：新功能 **Data Tables**
+
+{% darrellImage800 n8n-1.113.0-data_tables_default_module n8n-1.113.0-data_tables_default_module.png max-800 %}
+
+以前要儲存資料，都還要先開一個 Google Sheet 或是 Airtable 來儲存
+現在直接內建了 Data Tables
+只要先設計好資料表的欄位，就能直接用來存取資料
+而且速度很快！
+
+### Node popularity scoring 改善搜尋排名
+節點搜尋更智慧化
+
+現在搜尋節點時會根據節點的受歡迎程度來排序
+最常用的節點會優先顯示在搜尋結果前面
+
+{% darrellImage800 n8n-1.113.0-node_popularity_scoring n8n-1.113.0-node_popularity_scoring.png max-800 %}
+
+這更新也是期待很久的功能！
+以前要新增一個 `webhook` 節點
+通常就會打 `web` 
+但這個時候，`webflow` 會在第一個...
+第二個才是 `webhook`
+
+更新後會用節點的人氣來決定排名
+所以越常用的節點會在越前面
+
+### Google Sheets Node: 新增 Expression 使用警告
+Google Sheets Node: Add a warning about using expressions
+
+Google Sheets 節點現在會在使用 expressions 時顯示警告提示
+提醒使用者可能遇到的問題
+
+{% darrellImage800 n8n-1.113.0-google_sheets_expression_warning n8n-1.113.0-google_sheets_expression_warning.png max-800 %}
+
+這也是之前不久 n8n 踩到坑才分享的問題
+如果用 Google Sheet 的 Sheet Name 想要動態寫入不同的資料表
+其實是做不到的
+
+現在 n8n 會直接在你使用 expression 時顯示警告訊息
+告訴你這麼作，可能會遇到哪些問題
+
+以後實作時要記得留意這些提醒，它造成的 bug 或錯誤可能會讓你思考人生很久
 
 ## 1.112.0 Pre-release - 2025-09-16
 
