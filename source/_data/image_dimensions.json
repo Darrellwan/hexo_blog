@@ -5633,5 +5633,90 @@
     "width": 1600,
     "height": 1200,
     "mtimeMs": 1758640276928.586
+  },
+  "/_posts/n8n-datatables-node/n8n_datatables-menu_create_table.png": {
+    "width": 2324,
+    "height": 1234,
+    "mtimeMs": 1758793240860.83
+  },
+  "/_posts/n8n-datatables-node/n8n_datatables-field_type.png": {
+    "width": 624,
+    "height": 464,
+    "mtimeMs": 1758793193693.069
+  },
+  "/_posts/n8n-datatables-node/n8n_datatables-add_table_name.png": {
+    "width": 1196,
+    "height": 772,
+    "mtimeMs": 1758793119126.785
+  },
+  "/_posts/n8n-datatables-node/n8n_datatables-add_field_name_and_type.png": {
+    "width": 1196,
+    "height": 772,
+    "mtimeMs": 1758793181688.442
+  },
+  "/_posts/n8n-datatables-node/n8n-how_to_check_version.png": {
+    "width": 2397,
+    "height": 1354,
+    "mtimeMs": 1758793014181.107
+  },
+  "/_posts/n8n-datatables-node/n8n_datatables-operations.png": {
+    "width": 2044,
+    "height": 1358,
+    "mtimeMs": 1758794894601.334
+  },
+  "/_posts/n8n-datatables-node/n8n_datatables-insert.png": {
+    "width": 1720,
+    "height": 1894,
+    "mtimeMs": 1758795017621.084
+  },
+  "/_posts/n8n-datatables-node/n8n_datatables-form_demo_collect_data.png": {
+    "width": 1380,
+    "height": 1372,
+    "mtimeMs": 1758795273630.806
+  },
+  "/_posts/n8n-datatables-node/n8n_datatables-form_demo_collect_data_insert.png": {
+    "width": 1654,
+    "height": 1574,
+    "mtimeMs": 1758795839296.795
+  },
+  "/_posts/n8n-datatables-node/n8n_datatables-get.png": {
+    "width": 852,
+    "height": 1066,
+    "mtimeMs": 1758796046577.138
+  },
+  "/_posts/n8n-datatables-node/n8n_datatables-action_row_exists_demo.png": {
+    "width": 1239,
+    "height": 740,
+    "mtimeMs": 1758796547661.871
+  },
+  "/_posts/n8n-datatables-node/n8n_datatables-action_row_exists.png": {
+    "width": 856,
+    "height": 1210,
+    "mtimeMs": 1758796396437.289
+  },
+  "/_posts/n8n-datatables-node/n8n_datatables-upsert.png": {
+    "width": 1704,
+    "height": 1762,
+    "mtimeMs": 1758802822744.84
+  },
+  "/_posts/n8n-datatables-node/n8n_datatables-template_demo.png": {
+    "width": 1660,
+    "height": 1594,
+    "mtimeMs": 1758803500395.492
+  },
+  "/tools/n8n_template/data/bg/darrell-n8n-demo-datatables.webp": {
+    "width": 1000,
+    "height": 1000,
+    "mtimeMs": 1758805124061.5
+  },
+  "/tools/n8n_template/data/bg/blog-n8n-datatables-bg.jpg": {
+    "width": 1620,
+    "height": 2025,
+    "mtimeMs": 1758805689696.275
+  },
+  "/_posts/n8n-datatables-node/blog-n8n-datatables-bg.jpg": {
+    "width": 1620,
+    "height": 2025,
+    "mtimeMs": 1758805689696.275
   }
 }

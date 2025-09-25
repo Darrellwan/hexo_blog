@@ -1,0 +1,583 @@
+{
+  "name": "n8n demo datatables",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -576,
+        208
+      ],
+      "id": "d411d8cc-d18f-4967-9e9a-2887db893a48",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "OsjaKxzHKNsQP5c7",
+          "mode": "list",
+          "cachedResultName": "form_users",
+          "cachedResultUrl": "/projects/F9el4HPwL1uE0IOd/datatables/OsjaKxzHKNsQP5c7"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "email": "={{ $json.email }}",
+            "review_stars": "={{ $json.review_stars }}",
+            "subscribe": "={{ $json['是否要訂閱電子報']==\"是\" }}",
+            "birthday": "={{ $json['出生年月日'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "review_stars",
+              "displayName": "review_stars",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "subscribe",
+              "displayName": "subscribe",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "birthday",
+              "displayName": "birthday",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        -176
+      ],
+      "id": "4a22a718-e422-483d-9dda-e7982b1f6fd8",
+      "name": "Insert row"
+    },
+    {
+      "parameters": {
+        "formTitle": "n8n datatables test",
+        "formDescription": "測試 datatables",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "email",
+              "placeholder": "email",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "review_stars",
+              "fieldType": "number",
+              "placeholder": "針對這篇教學的評分 1-5",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "是否要訂閱電子報",
+              "fieldType": "radio",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "是"
+                  },
+                  {
+                    "option": "否"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "出生年月日",
+              "fieldType": "date",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        -576,
+        -176
+      ],
+      "id": "f0d7c2af-55cc-4cf7-8a1c-4ffa1b6189fb",
+      "name": "On form submission",
+      "webhookId": "3a0f676e-8c26-4236-8a00-fa375e2f013a"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "OsjaKxzHKNsQP5c7",
+          "mode": "list",
+          "cachedResultName": "form_users",
+          "cachedResultUrl": "/projects/F9el4HPwL1uE0IOd/datatables/OsjaKxzHKNsQP5c7"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "condition": "ilike",
+              "keyValue": "Test"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        32
+      ],
+      "id": "b3e45e25-72e1-4b29-83e2-0fe12c9cc048",
+      "name": "Get row(s)"
+    },
+    {
+      "parameters": {
+        "operation": "rowExists",
+        "dataTableId": {
+          "__rl": true,
+          "value": "OsjaKxzHKNsQP5c7",
+          "mode": "list",
+          "cachedResultName": "form_users",
+          "cachedResultUrl": "/projects/F9el4HPwL1uE0IOd/datatables/OsjaKxzHKNsQP5c7"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "test@test.com"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        208
+      ],
+      "id": "df24d70d-835c-42f5-9640-3b47e9f21594",
+      "name": "If row exists"
+    },
+    {
+      "parameters": {
+        "operation": "rowNotExists",
+        "dataTableId": {
+          "__rl": true,
+          "value": "OsjaKxzHKNsQP5c7",
+          "mode": "list",
+          "cachedResultName": "form_users",
+          "cachedResultUrl": "/projects/F9el4HPwL1uE0IOd/datatables/OsjaKxzHKNsQP5c7"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "test@test.com"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        336
+      ],
+      "id": "1af10226-071e-491a-86f9-b31b8d4283d9",
+      "name": "If row does not exist"
+    },
+    {
+      "parameters": {
+        "content": "## If row exists or not 資料是否存在\n更快地用條件判斷資料是否存在\n注意：不會回傳資料，只會根據有沒有 output 空item 來判斷",
+        "height": 272,
+        "width": 560,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        64,
+        192
+      ],
+      "id": "af13cfc8-518a-451d-bf0b-fa428feef0d3",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "dataTableId": {
+          "__rl": true,
+          "value": "OsjaKxzHKNsQP5c7",
+          "mode": "list",
+          "cachedResultName": "form_users",
+          "cachedResultUrl": "/projects/F9el4HPwL1uE0IOd/datatables/OsjaKxzHKNsQP5c7"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "test@test.com"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "review_stars": 4
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "review_stars",
+              "displayName": "review_stars",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "subscribe",
+              "displayName": "subscribe",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "birthday",
+              "displayName": "birthday",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        512
+      ],
+      "id": "a0825726-3842-4248-935d-418672151b99",
+      "name": "Update row(s)"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "dataTableId": {
+          "__rl": true,
+          "value": "OsjaKxzHKNsQP5c7",
+          "mode": "list",
+          "cachedResultName": "form_users",
+          "cachedResultUrl": "/projects/F9el4HPwL1uE0IOd/datatables/OsjaKxzHKNsQP5c7"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "test@test.com"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "review_stars": 5
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "review_stars",
+              "displayName": "review_stars",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "subscribe",
+              "displayName": "subscribe",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "birthday",
+              "displayName": "birthday",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        656
+      ],
+      "id": "8f1d77c7-64ba-49e0-a6e5-89fc9d41a492",
+      "name": "Upsert row(s)"
+    },
+    {
+      "parameters": {
+        "content": "## Update & Upsert 更新資料\nUpdate : 資料如果存在，就更新\nUpsert : 資料如果不存在，就新增",
+        "height": 256,
+        "width": 560
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        64,
+        512
+      ],
+      "id": "607f2e8b-bf43-4139-8323-eb1cd018e59c",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "operation": "deleteRows",
+        "dataTableId": {
+          "__rl": true,
+          "value": "OsjaKxzHKNsQP5c7",
+          "mode": "list",
+          "cachedResultName": "form_users",
+          "cachedResultUrl": "/projects/F9el4HPwL1uE0IOd/datatables/OsjaKxzHKNsQP5c7"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "test@test.com"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        848
+      ],
+      "id": "0c6cb90f-95c2-4fc8-9b2d-d3224eeae988",
+      "name": "Delete row(s)"
+    },
+    {
+      "parameters": {
+        "content": "## Delete 刪除資料\n根據條件直接把符合的資料刪除",
+        "height": 144,
+        "width": 560,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        64,
+        832
+      ],
+      "id": "48076871-1c8c-4b87-aff1-f6b4f7cd2f29",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Get row(s)\n根據條件取得資料",
+        "height": 128,
+        "width": 560,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        64,
+        16
+      ],
+      "id": "cae42d9d-7848-428d-9810-01a04260d647",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "## Insert rows\n新增資料",
+        "height": 128,
+        "width": 560,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        64,
+        -176
+      ],
+      "id": "7e5c6c80-cee6-4476-ac31-0f7e3db074f5",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "## Created by darrell_tw_ \n\n### contact me with following:\n[Website](https://www.darrelltw.com/)\n[X](https://x.com/darrell_tw_)\n[Threads](https://www.threads.net/@darrell_tw_)\n[Instagram](https://www.instagram.com/darrell_tw_/)\n[Portaly](https://portaly.cc/darrelltw)\n![](https://pub-c093258f61a1463ea03e1a40c141968a.r2.dev/darrell-icon-128.svg)\nLine n8n 社群\n![](https://st.darrelltw.com/linen8nrqcode_c.jpg)",
+        "height": 692,
+        "width": 328,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -960,
+        96
+      ],
+      "id": "ee9eb633-ae7d-48ed-9feb-88ff83bc7cac",
+      "name": "Sticky Note6"
+    }
+  ],
+  "pinData": {
+    "On form submission": [
+      {
+        "json": {
+          "email": "test@test.com",
+          "review_stars": 5,
+          "是否要訂閱電子報": "是",
+          "出生年月日": "2025-09-01",
+          "submittedAt": "2025-09-25T06:22:48.169-04:00",
+          "formMode": "test"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "If row does not exist",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Update row(s)",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "If row exists",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get row(s)",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Upsert row(s)",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Delete row(s)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Insert row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "a86d03c4-3064-4c5a-9af0-410d6efdeb0a",
+  "meta": {
+    "instanceId": "c0dca30a86be5969a9ab22987c12df9ca5c8682c972e0ee25dbae1f95ea3e13d"
+  },
+  "id": "HtRYfhUivchYl4F7",
+  "tags": []
+}

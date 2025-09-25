@@ -1,5 +1,127 @@
 {
     "models": {
+
+        "darrell-n8n-demo-datatables": {
+            "id": "darrell-n8n-demo-datatables",
+            "title": "n8n DataTables 完整功能示範",
+            "description": "這個工作流程展示 n8n DataTables 的完整功能，包含表單資料收集和 7 種核心 CRUD 操作演示。透過實際的用戶評價表單收集數據（email、評分、訂閱選擇、生日），並展示 Insert、Get、Update、Upsert、Delete、If Row Exists 等所有 DataTables 操作方式。\n\n主要功能：\n\n表單觸發：使用 n8n Form Trigger 收集用戶評價和資料\n數據插入：自動將表單資料寫入 DataTables\n條件查詢：根據 email 等條件查詢特定資料\n存在判斷：檢查資料是否存在的邏輯判斷\n數據更新：更新現有資料的評分等欄位\n智能插入：Upsert 操作實現插入或更新的自動判斷\n資料清理：根據條件刪除不需要的測試資料",
+            "detailedDescription": [
+                "使用 Form Trigger 建立互動式表單收集用戶評價資料",
+                "表單包含 email（文字）、評分（數字）、訂閱選擇（單選）、生日（日期）四種資料類型",
+                "Insert 操作：將表單提交的資料自動寫入 DataTables",
+                "Get Row(s) 操作：使用 ilike 條件搜尋包含特定文字的資料",
+                "If Row Exists 操作：純判斷資料是否存在，不回傳資料內容",
+                "If Row Does Not Exist 操作：判斷資料不存在時的處理邏輯",
+                "Update 操作：更新現有資料的特定欄位（如評分）",
+                "Upsert 操作：智能判斷資料存在則更新，不存在則新增",
+                "Delete 操作：根據 email 條件刪除指定的測試資料",
+                "包含完整的 Sticky Note 說明每個操作的用途和注意事項"
+            ],
+            "tags": ["DataTables", "表單收集", "CRUD 操作", "資料管理", "n8n 教學"],
+            "nodes": 13,
+            "createdAt": "2025-09-25",
+            "updatedAt": "2025-09-25",
+            "setup": {
+                "prerequisites": "需要 n8n 1.113.0 以上版本支援 DataTables Beta 功能",
+                "steps": [
+                    {
+                        "title": "版本確認",
+                        "description": "確保 n8n 版本支援 DataTables",
+                        "options": [
+                            "檢查 n8n 版本為 1.113.0 或更高",
+                            "確認左側選單中有 Data tables 選項",
+                            "DataTables 目前為 Beta 功能，建議先在測試環境使用"
+                        ]
+                    },
+                    {
+                        "title": "建立 DataTable",
+                        "description": "建立名為 form_users 的資料表",
+                        "options": [
+                            "點擊 Data tables → Create Data table",
+                            "表格名稱：form_users",
+                            "新增欄位：email (String)、review_stars (Number)、subscribe (Boolean)、birthday (Date)",
+                            "確保欄位類型正確對應表單資料格式"
+                        ]
+                    },
+                    {
+                        "title": "匯入並測試工作流程",
+                        "description": "匯入模板並進行功能測試",
+                        "options": [
+                            "匯入 workflow JSON 檔案",
+                            "檢查 DataTable ID 是否正確對應到 form_users",
+                            "測試表單提交功能：填寫測試資料並送出",
+                            "逐一測試每個 DataTables 操作節點",
+                            "觀察每個操作的執行結果和資料變化",
+                            "注意：Delete 操作會真的刪除資料，測試時請小心"
+                        ]
+                    }
+                ]
+            },
+            "examples": [
+                {
+                    "title": "表單測試資料",
+                    "description": "建議的測試資料格式",
+                    "code": {
+                        "formData": {
+                            "email": "test@test.com",
+                            "review_stars": 5,
+                            "是否要訂閱電子報": "是",
+                            "出生年月日": "2025-09-01"
+                        }
+                    }
+                },
+                {
+                    "title": "查詢條件範例",
+                    "description": "不同的資料查詢條件設定",
+                    "code": {
+                        "queryExamples": [
+                            {
+                                "operation": "Get Row(s)",
+                                "condition": "email ilike 'test'",
+                                "description": "查詢 email 包含 test 的所有資料"
+                            },
+                            {
+                                "operation": "If Row Exists",
+                                "condition": "email = 'test@test.com'",
+                                "description": "判斷特定 email 是否存在"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "fields": {
+                "dataTable": {
+                    "title": "DataTable 設定",
+                    "fields": {
+                        "tableName": {
+                            "type": "string",
+                            "description": "資料表名稱",
+                            "default": "form_users"
+                        },
+                        "emailField": {
+                            "type": "string",
+                            "description": "Email 欄位名稱（String 類型）",
+                            "default": "email"
+                        },
+                        "ratingField": {
+                            "type": "string",
+                            "description": "評分欄位名稱（Number 類型）",
+                            "default": "review_stars"
+                        },
+                        "subscribeField": {
+                            "type": "string",
+                            "description": "訂閱欄位名稱（Boolean 類型）",
+                            "default": "subscribe"
+                        },
+                        "birthdayField": {
+                            "type": "string",
+                            "description": "生日欄位名稱（Date 類型）",
+                            "default": "birthday"
+                        }
+                    }
+                }
+            }
+        },
         "darrell-n8n-demo-gemini_nano banana_change_image": {
             "id": "darrell-n8n-demo-gemini_nano banana_change_image",
             "title": "Google nano banana 替換圖片",
