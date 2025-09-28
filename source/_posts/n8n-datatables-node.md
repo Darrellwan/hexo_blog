@@ -1,5 +1,5 @@
 ---
-title: n8n DataTables 節點教學 - 原生數據存儲解決方案
+title: n8n DataTables 節點教學 - 直接把資料存在 n8n 裡
 tags:
   - n8n
   - n8n節點介紹
