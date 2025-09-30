@@ -2,20 +2,26 @@
 
 ## 📚 最新文章
 
+### [Claude Code 更新！ 全新 Extension for VSCode/Cursor 介面](https://www.darrelltw.com/claude_code_update_202509/?utm_source=github_readme&utm_medium=referral)
+📅 2025/09/30 · 6 小時內
+
+> description
+
+
 ### [n8n DataTables 節點教學 - 直接把資料存在 n8n 裡](https://www.darrelltw.com/n8n-datatables-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/09/25 · 3 天前
+📅 2025/09/25 · 4 天前
 
 > n8n 推出 DataTables！ 原生數據存儲無需外部資料庫，支援完整 insert、update、get、delete。
 
 
 ### [n8n Poll Time 教學 - 優化 Trigger 效率](https://www.darrelltw.com/n8n-poll-time-setting/?utm_source=github_readme&utm_medium=referral)
-📅 2025/09/21 · 7 天前
+📅 2025/09/21 · 9 天前
 
 > n8n Poll Time完整教學！場景對應設定、成本計算、Rate Limit避雷。
 
 
 ### [n8n Filter 節點教學 - 資料篩選與條件判斷](https://www.darrelltw.com/n8n-filter-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/09/08 · 20 天前
+📅 2025/09/08 · 21 天前
 
 > 解析 n8n Filter 節點與 If/Switch 節點差異，包含 AND/OR 邏輯判斷、Ignore case 設定等進階功能。實測各種資料類型篩選方法，提升自動化流程效率。
 
@@ -45,7 +51,7 @@
 
 
 ### [n8n 表單防護小撇步 - Cloudflare Turnstile 驗證完整配置](https://www.darrelltw.com/n8n-with-cloudflare-turnstile-CAPTCHA/?utm_source=github_readme&utm_medium=referral)
-📅 2025/07/14 · 2 個月前
+📅 2025/07/14 · 3 個月前
 
 > 防止 vibe coding 表單被機器人攻擊？使用 Cloudflare Turnstile + n8n 打造表單驗證系統。包含前端 HTML、後端 API 驗證、webhook 設定，完整驗證流程實作教學。
 
@@ -56,16 +62,10 @@
 > Google 推出免費 Gemini CLI 命令行工具。安裝教學，並與 Claude Code 做同樣 prompt 比較
 
 
-### [n8n 語音自動化實測 - ElevenLabs TTS 節點應用場景](https://www.darrelltw.com/n8n-elevenlabs-tts/?utm_source=github_readme&utm_medium=referral)
-📅 2025/06/14 · 3 個月前
-
-> n8n 語音自動化實戰！ElevenLabs TTS 節點完整安裝與使用教學，包含 API 設定、聲音選擇、品質優化技巧。實測分享多種自動化場景應用。
-
-
 ## 📊 部落格統計
-![文章總數](https://img.shields.io/badge/文章總數-107-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-233,809+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/09/28-green?style=flat-square)
+![文章總數](https://img.shields.io/badge/文章總數-108-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-234,712+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/09/30-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -88,7 +88,7 @@
 
 
 ## 🏷️ 熱門主題
-![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![n8n](https://img.shields.io/badge/n8n-23-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-15-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![AI](https://img.shields.io/badge/AI-7-orange?style=flat-square)
+![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![n8n](https://img.shields.io/badge/n8n-23-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-15-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![AI](https://img.shields.io/badge/AI-8-orange?style=flat-square)
 
 ## 📈 更新頻率
 ```text
@@ -97,7 +97,7 @@
 06月 ████░░░░░░ 4篇
 07月 ████░░░░░░ 4篇
 08月 █░░░░░░░░░ 1篇
-09月 ███░░░░░░░ 3篇
+09月 ████░░░░░░ 4篇
 ```
 
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-09-28 07:27:31*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-09-30 03:53:06*
