@@ -5,7 +5,7 @@
 ### [Claude Code 更新！ 全新 Extension for VSCode/Cursor 介面](https://www.darrelltw.com/claude_code_update_202509/?utm_source=github_readme&utm_medium=referral)
 📅 2025/09/30 · 6 小時內
 
-> description
+> Claude Code 2025年9月更新：新的 Cursor IDE 介面，讓不是工程師的你也能輕鬆使用 Claude Code
 
 
 ### [n8n DataTables 節點教學 - 直接把資料存在 n8n 裡](https://www.darrelltw.com/n8n-datatables-node/?utm_source=github_readme&utm_medium=referral)
@@ -64,7 +64,7 @@
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-108-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-234,712+-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-234,779+-blue?style=flat-square)
 ![最後更新](https://img.shields.io/badge/最後更新-2025/09/30-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-09-30 03:53:06*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-09-30 04:10:28*
