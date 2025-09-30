@@ -196,6 +196,17 @@ hexo.extend.helper.register('get_n8n_posts_json_for_schema', function() {
   });
 });
 
+// 獲取 n8n 文章總數
+hexo.extend.helper.register('get_n8n_total_articles', function() {
+  const self = this;
+  const posts = this.site.posts.data.filter(post => {
+    const category = self.get_n8n_post_category_section(post);
+    return category !== null; // 只計算有 n8n 相關分類的文章
+  });
+
+  return posts.length;
+});
+
 // 生成 n8n 集合頁面的結構化數據
 hexo.extend.helper.register('n8n_collection_structured_data', function() {
   const self = this;

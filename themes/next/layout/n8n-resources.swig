@@ -293,20 +293,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <main class="n8n-resources-container" role="main" itemscope itemtype="https://schema.org/CollectionPage">
   <!-- 麵包屑導航 -->
-  <nav aria-label="麵包屑導航" class="n8n-breadcrumb">
-    <ol itemscope itemtype="https://schema.org/BreadcrumbList">
-      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-        <a href="{{ config.url }}" itemprop="item">
-          <span itemprop="name">首頁</span>
-        </a>
-        <meta itemprop="position" content="1">
-      </li>
-      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-        <span itemprop="name">n8n 教學</span>
-        <meta itemprop="position" content="2">
-      </li>
-    </ol>
-  </nav>
+  <div class="n8n-breadcrumb-wrapper">
+    <nav aria-label="麵包屑導航" class="n8n-breadcrumb">
+      <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="{{ config.url }}" itemprop="item">
+            <span itemprop="name">首頁</span>
+          </a>
+          <meta itemprop="position" content="1">
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <span itemprop="name">n8n 教學</span>
+          <meta itemprop="position" content="2">
+        </li>
+      </ol>
+    </nav>
+    <div class="n8n-stats">
+      {% set total_articles = get_n8n_total_articles() %}
+      <div class="n8n-stat-item">
+        <span class="n8n-stat-number">{{ total_articles }}</span>
+        <span class="n8n-stat-label">篇文章</span>
+      </div>
+    </div>
+  </div>
 
   {% set sections = [
     { id: 'node-intro', title: 'n8n 節點介紹' },
@@ -1652,6 +1661,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     font-size: 2.2rem;
   }
 
+  .n8n-stats {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .n8n-stat-item {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    padding: 6px 10px;
+    background: rgba(255, 109, 90, 0.1);
+    border-radius: 4px;
+    border: 1px solid rgba(255, 109, 90, 0.2);
+    white-space: nowrap;
+  }
+
+  .n8n-stat-number {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--n8n-primary);
+    line-height: 1;
+  }
+
+  .n8n-stat-label {
+    font-size: 0.85rem;
+    color: var(--n8n-text);
+    opacity: 0.8;
+  }
+
   .social-buttons {
     display: flex;
     gap: 10px;
@@ -1694,12 +1733,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       align-items: center;
       gap: 15px;
     }
-    
+
     .n8n-resources-header h1 {
       font-size: 1.8rem;
       text-align: center;
     }
-    
+
+    .n8n-breadcrumb-wrapper {
+      flex-direction: column;
+      gap: 12px;
+      padding: 0 10px;
+    }
+
+    .n8n-breadcrumb {
+      width: 100%;
+      text-align: center;
+    }
+
+    .n8n-breadcrumb ol {
+      justify-content: center;
+    }
+
+    .n8n-stats {
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .n8n-stat-item {
+      padding: 5px 8px;
+    }
+
+    .n8n-stat-number {
+      font-size: 1.1rem;
+    }
+
+    .n8n-stat-label {
+      font-size: 0.8rem;
+    }
+
     .social-buttons {
       justify-content: center;
     }
@@ -1709,16 +1780,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     .n8n-resources-header {
       padding: 20px 10px;
     }
-    
+
     .n8n-resources-header h1 {
       font-size: 1.6rem;
     }
-    
+
+    .n8n-breadcrumb-wrapper {
+      gap: 10px;
+    }
+
+    .n8n-stats {
+      gap: 8px;
+    }
+
+    .n8n-stat-item {
+      padding: 4px 8px;
+    }
+
+    .n8n-stat-number {
+      font-size: 1rem;
+    }
+
+    .n8n-stat-label {
+      font-size: 0.75rem;
+    }
+
     .social-button {
       width: 36px;
       height: 36px;
     }
-    
+
     .social-button svg {
       width: 18px;
       height: 18px;
@@ -1726,9 +1817,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   /* 麵包屑導航樣式 */
-  .n8n-breadcrumb {
+  .n8n-breadcrumb-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 20px;
     padding: 0 15px;
+    gap: 20px;
+  }
+
+  .n8n-breadcrumb {
+    flex: 1;
   }
 
   .n8n-breadcrumb ol {
@@ -1766,16 +1865,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   .n8n-breadcrumb li:last-child {
     color: var(--n8n-date-color);
-  }
-
-  @media (max-width: 768px) {
-    .n8n-breadcrumb {
-      padding: 0 10px;
-    }
-    
-    .n8n-breadcrumb ol {
-      font-size: 13px;
-    }
   }
 </style>
 </body>
