@@ -3,13 +3,13 @@
 ## 📚 最新文章
 
 ### [Claude Code 更新！ 全新 Extension for VSCode/Cursor 介面](https://www.darrelltw.com/claude_code_update_202509/?utm_source=github_readme&utm_medium=referral)
-📅 2025/09/30 · 6 小時內
+📅 2025/09/30 · 4 小時前
 
 > Claude Code 2025年9月更新：新的 Cursor IDE 介面，讓不是工程師的你也能輕鬆使用 Claude Code
 
 
 ### [n8n DataTables 節點教學 - 直接把資料存在 n8n 裡](https://www.darrelltw.com/n8n-datatables-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/09/25 · 4 天前
+📅 2025/09/25 · 5 天前
 
 > n8n 推出 DataTables！ 原生數據存儲無需外部資料庫，支援完整 insert、update、get、delete。
 
@@ -21,7 +21,7 @@
 
 
 ### [n8n Filter 節點教學 - 資料篩選與條件判斷](https://www.darrelltw.com/n8n-filter-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/09/08 · 21 天前
+📅 2025/09/08 · 22 天前
 
 > 解析 n8n Filter 節點與 If/Switch 節點差異，包含 AND/OR 邏輯判斷、Ignore case 設定等進階功能。實測各種資料類型篩選方法，提升自動化流程效率。
 
@@ -64,7 +64,7 @@
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-108-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-234,779+-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-235,449+-blue?style=flat-square)
 ![最後更新](https://img.shields.io/badge/最後更新-2025/09/30-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-09-30 04:10:28*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-09-30 13:49:47*
