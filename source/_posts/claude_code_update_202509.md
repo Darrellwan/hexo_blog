@@ -7,12 +7,13 @@ categories:
   - AI
 page_type: post
 id: claude_code_update_202509
-description: description
-bgImage: bg.jpg
+description: Claude Code 2025年9月更新：新的 Cursor IDE 介面，讓不是工程師的你也能輕鬆使用 Claude Code
+bgImage: blog-claudecode-update-202509-bg.jpg
 preload:
-  - bg.jpg
+  - blog-claude code-update-202509-bg.jpg
 date: 2025-09-30 09:57:21
 ---
+{% darrellImageCover blog-claudecode-update-202509-bg blog-claudecode-update-202509-bg.jpg max-800 %}
 
 Claude Code 在 2025/09/30 發表了 Sonnet 4.5 的新模型
 同時也帶來不少的新功能
