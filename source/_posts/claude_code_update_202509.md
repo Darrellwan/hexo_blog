@@ -85,3 +85,29 @@ Claude Code 這次更新在 VSCode , Cursor 的 Extension
 
 新版看來能解決這樣的問題
 讓更多人透過新 Extension 來嘗試 Claude Code
+
+## 相關文章推薦
+
+想了解更多 Claude Code 的功能嗎？推薦你閱讀這些文章：
+
+{% articleCard
+  url="/claude-code-new-command-line-tool/"
+  title="Claude Code 發佈 Command Line 的新工具"
+  previewText="介紹安裝 Claude Code和指令，以及一些簡易的操作方式，最新的價格方案，以及使用心得"
+  thumbnail="https://www.darrelltw.com/claude-code-new-command-line-tool/claude_code.jpg"
+%}
+
+{% articleCard
+  url="/claude-code-agent/"
+  title="Claude Code Agent 實測，建立專屬的開發助理"
+  previewText="Claude Code 新推出的 Agent 功能讓你可以建立專屬的開發 Agent，透過自然語言指令自動處理重複性的程式設計任務"
+  thumbnail="https://www.darrelltw.com/claude-code-agent/claude_code_agent-bg.jpg"
+%}
+
+{% articleCard
+  url="/claude-desktop-new-mcp-features-review/"
+  title="Claude MCP 應用測試心得 - Claude Desktop"
+  previewText="測試 Claude MCP(model context protocol) 的應用，包括 FileSystem、Fetch 和 Google Maps 的使用心得與注意事項"
+  thumbnail="https://www.darrelltw.com/claude-desktop-new-mcp-features-review/claude_desktop_mcp_bg.jpg"
+%}
+
