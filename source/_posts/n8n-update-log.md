@@ -7,16 +7,55 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2025/09/24 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.113.1，正式版本為 1.112.4
+description: n8n 的更新記錄(2025/10/01 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.114.0，正式版本為 1.112.6
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-09-24 12:08:00
+modified: 2025-10-01 12:08:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 1.114.0 Pre-release - 2025-09-29
+
+[Github 1.114.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.114.0)
+
+### Slack Node: Reply to message 修復
+Slack 回覆訊息功能修復
+
+這個版本修復了 Slack 節點中「回覆訊息」功能的問題
+以前在使用 Reply to message 時好像會遇到無法正確回覆到指定訊息串
+(自己測試時好像沒遇到，不過有看到 community 有人回報過)
+
+現在看來已經修正！
+至少測試時是正確的
+
+{% darrellImage800 n8n-1.114.0-slack_reply_fix n8n-1.114.0-slack_reply_fix.png max-800 %}
+
+### Binary data access improvements
+Binary Data 存取方式大改善！
+
+{% darrellImage800 n8n-1.114.0-binary_data_improvements n8n-1.114.0-binary_data_improvements.png max-800 %}
+
+以前取得 Binary Data 時超級麻煩
+現在**終於可以在 Expression 直接取得**
+
+例如在 Set Field 可以選 `binary` 的 type
+然後用 expression `{{ $('Download file').item.binary.data }}`
+如果是上個節點的資料，也可以直接輸入 field name 來取得
+
+### Show node update button in NDV and node creator
+節點更新提示在編輯器中更明顯
+
+現在當社群節點有新版本時
+會直接在**節點的設定頁面**和**節點列表中**顯示更新按鈕
+
+不用再跑到帳戶的設定 -> community node 才能更新
+這些社群節點更新後通常都會好用很多，有在使用的話記得常常更新
+
+{% darrellImage800 n8n-1.114.0-node_update_button n8n-1.114.0-node_update_button.png max-800 %}
 
 ## 1.113.0 Pre-release - 2025-09-23
 

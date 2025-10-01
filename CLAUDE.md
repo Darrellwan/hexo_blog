@@ -30,3 +30,29 @@ Hexo blog for MarTech/automation. Key points:
 - **Think harder** - Always strive to dig deeper and find more nuanced solutions
 - 記得 css 的位置和剛剛的重點
 - 記得 article 怎麼用, anchor 怎麼設定
+
+## n8n 更新文章撰寫流程
+
+### 查找正確版本
+- 從 GitHub Release 確認：`https://github.com/n8n-io/n8n/releases/tag/n8n%401.xxx.0`
+- API 查詢最新正式版：`curl -s "https://api.github.com/repos/n8n-io/n8n/releases?per_page=20" | grep -E '"tag_name"|"prerelease"'`
+- **注意**：Pre-release ≠ 正式版
+
+### 更新文章內容
+- 在文章**開頭**新增版本更新（不是附加在最後）
+- 每個更新項目必須包含：
+  - 中英文標題
+  - 說明段落（參考既有格式）
+  - **所有項目都要有**截圖佔位符：`{% darrellImage800 n8n-1.xxx.0-feature_name n8n-1.xxx.0-feature_name.png max-800 %}`
+
+### 必須更新 Meta 資訊
+```yaml
+description: n8n 的更新記錄(2025/XX/XX 更新)，最新測試版本為 1.xxx.0，正式版本為 1.xxx.x
+modified: 2025-XX-XX XX:XX:XX
+```
+
+### 檢查清單
+- [ ] 版本號正確（區分 Pre-release 和正式版）
+- [ ] **所有**更新項目都有配圖
+- [ ] Meta description 已更新
+- [ ] Meta modified 已更新

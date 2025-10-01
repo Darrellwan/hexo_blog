@@ -5753,5 +5753,20 @@
     "width": 1000,
     "height": 1250,
     "mtimeMs": 1759205393849.177
+  },
+  "/_posts/n8n-update-log/n8n-1.114.0-slack_reply_fix.png": {
+    "width": 1172,
+    "height": 1018,
+    "mtimeMs": 1759329789745.639
+  },
+  "/_posts/n8n-update-log/n8n-1.114.0-node_update_button.png": {
+    "width": 1150,
+    "height": 1418,
+    "mtimeMs": 1759330076239.794
+  },
+  "/_posts/n8n-update-log/n8n-1.114.0-binary_data_improvements.png": {
+    "width": 2014,
+    "height": 1594,
+    "mtimeMs": 1759329549829.149
   }
 }
