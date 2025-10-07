@@ -7,16 +7,56 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2025/10/01 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.114.0，正式版本為 1.112.6
+description: n8n 的更新記錄(2025/10/07 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.115.0，正式版本為 1.114.3
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-10-01 12:08:00
+modified: 2025-10-07 15:30:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 1.115.0 Pre-release - 2025-10-06
+
+[Github 1.115.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.115.0)
+
+### Gmail Node: Recipients only 回覆選項
+Gmail 新增「僅回覆收件者」選項
+
+使用 Gmail 節點的回覆功能時
+以前沒有選項可以選擇要 **回覆全部** 還是 **僅回覆寄件者**
+
+現在新增 **Recipients only** 選項
+可以選擇只回覆給原始寄件者，避免打擾到其他被 CC 的人！
+這樣在用自動化回覆信件時能更靈活控制回覆的對象
+
+{% darrellImage800 n8n-1.115.0-gmail_recipients_only n8n-1.115.0-gmail_recipients_only.png max-800 %}
+
+### 參數預覽改用等寬字體
+Use monospace for param preview
+
+這是個小但對我來說很重要的 UI 優化
+現在查看參數預覽時會使用 **等寬字體（monospace）**
+
+這對看習慣等寬字體的人來說超讚
+等寬字體能把數字或英文都排得整整齊齊
+
+{% darrellImage800 n8n-1.115.0-use_monospace_for_preview n8n-1.115.0-use_monospace_for_preview.png max-800 %}
+
+### Anthropic Chat Model Node: Fix Sonnet 4.5 not working with default topP
+修復 Sonnet 4.5 預設 topP 問題
+
+Sonnet 4.5 是最近才發佈的新模型
+之前也想要來 n8n 試用看看效果
+結果發現如果用 Anthropic 的 Sonnet 4.5 chat model
+都會莫名的遇到 `topP` 參數無法正常使用這個錯誤訊息，但怎麼調整也沒用
+
+現在已經被修正了！速度超級快
+
+{% darrellImage800 n8n-1.115.0-fix_anthropic_sonnet_4_5_top_p n8n-1.115.0-fix_anthropic_sonnet_4_5_top_p.png max-800 %}
+
 
 ## 1.114.0 Pre-release - 2025-09-29
 
