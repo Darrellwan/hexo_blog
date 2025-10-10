@@ -3,19 +3,19 @@
 ## 📚 最新文章
 
 ### [Claude Code 更新！ 全新 Extension for VSCode/Cursor 介面](https://www.darrelltw.com/claude_code_update_202509/?utm_source=github_readme&utm_medium=referral)
-📅 2025/09/30 · 7 天前
+📅 2025/09/30 · 10 天前
 
 > Claude Code 2025年9月更新：新的 Cursor IDE 介面，讓不是工程師的你也能輕鬆使用 Claude Code
 
 
 ### [n8n DataTables 節點教學 - 直接把資料存在 n8n 裡](https://www.darrelltw.com/n8n-datatables-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/09/25 · 11 天前
+📅 2025/09/25 · 14 天前
 
 > n8n 推出 DataTables！ 原生數據存儲無需外部資料庫，支援完整 insert、update、get、delete。
 
 
 ### [n8n Poll Time 教學 - 優化 Trigger 效率](https://www.darrelltw.com/n8n-poll-time-setting/?utm_source=github_readme&utm_medium=referral)
-📅 2025/09/21 · 15 天前
+📅 2025/09/21 · 19 天前
 
 > n8n Poll Time完整教學！場景對應設定、成本計算、Rate Limit避雷。
 
@@ -27,7 +27,7 @@
 
 
 ### [n8n Structured Output Parser 節點教學 - AI 輸出格式化](https://www.darrelltw.com/n8n_structured_output_parser_node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/08/22 · 1 個月前
+📅 2025/08/22 · 2 個月前
 
 > AI 輸出格式總是亂七八糟？n8n Structured Output Parser 節點快速解決！節點教學包和實際操作流程介紹，未來輕鬆固定 AI 輸出的格式
 
@@ -45,7 +45,7 @@
 
 
 ### [n8n Gmail 節點教學 - 自動化郵件發送和處理](https://www.darrelltw.com/n8n-gmail-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/07/22 · 2 個月前
+📅 2025/07/22 · 3 個月前
 
 > 完整教學 n8n Gmail 節點實現郵件自動化流程。包含 OAuth 認證設定、搜尋語法技巧、郵件發送標籤管理等功能介紹。實測信用卡帳單自動提醒、PDF 解析、Google Calendar 整合等進階案例。
 
@@ -64,8 +64,8 @@
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-108-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-236,700+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/10/07-green?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-236,762+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/10/10-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-10-07 03:22:15*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-10-10 05:01:40*
