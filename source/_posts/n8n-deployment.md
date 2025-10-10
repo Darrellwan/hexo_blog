@@ -123,13 +123,15 @@ Zeabur 相信是台灣的 n8n 使用者中討論度最高的另一個方案
 因為費用非常划算，部署也相當簡單(幾乎是一鍵部署)
 資料的備份和環境變數的調整都很方便
 
+2025/10 更新: Zeabur 推出了全新的免費方案，現在不一定要從 5美金的付費方案才能使用了！
+
 [![Deployed on Zeabur](https://zeabur.com/deployed-on-zeabur-dark.svg)](https://zeabur.com/referral?referralCode=darrelltw&utm_source=infoelID) 是一個專為開發者設計的部署平台，提供簡單的一鍵部署體驗，特別適合快速啟動專案。
 
 {% darrellImage800 n8n_zeabur-templates n8n_zeabur-templates.jpg max-800 %}
 
 ### 優點
 
-1. 價格划算：開發者帳戶只需要五美元
+1. 價格划算：直接使用免費方案，或是開發者方案只需要五美元
 2. 部署簡單：部署的模板有維護更新，也能自由選擇部署版本
 3. 支援即時：有 Discord 可以詢問遇到的問題
 4. 網域：如果 local 部署，會需要自行處理網率來接收串接資料
@@ -137,7 +139,7 @@ Zeabur 相信是台灣的 n8n 使用者中討論度最高的另一個方案
 
 ### 缺點
 
-1. 還是需要一點費用
+1. 免費方案的機房較遠，付費方案可以選擇近距離的機房
 2. Google 等 OAuth 服務需要較為麻煩的設定(目前已有很多文件教學可以參考)
 3. n8n 開源社群版本功能較少
 
