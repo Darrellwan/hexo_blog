@@ -1,6 +1,122 @@
 {
     "models": {
-
+        "n8n-sora2-prompt-to-video": {
+            "id": "n8n-sora2-prompt-to-video",
+            "title": "OpenAI Sora-2 文字轉影片自動生成",
+            "description": "這個工作流程使用 OpenAI 最新的 Sora-2 API 將文字提示詞轉換成高品質影片。系統會自動處理影片生成請求、監控生成狀態、下載完成的影片，並將成品自動上傳到 Google Drive 儲存。支援不同的影片長度（4/8/12 秒）和解析度選項，適合用於快速生成社群媒體內容或影片原型測試。\n\n主要功能：\n\n影片生成：使用 Sora-2 或 Sora-2-Pro 模型根據文字提示生成影片\n狀態監控：自動檢查影片生成進度，直到完成為止\n自動儲存：將生成的影片自動上傳到 Google Drive\n彈性設定：支援多種影片長度和解析度選項",
+            "detailedDescription": [
+                "接收文字提示詞，透過 OpenAI Sora-2 API 發起影片生成請求",
+                "自動輪詢檢查影片生成狀態（queued/in_progress/completed）",
+                "使用 Wait 節點實現智能等待機制，避免頻繁查詢",
+                "當影片生成完成後，自動下載影片內容",
+                "將影片上傳到指定的 Google Drive 資料夾",
+                "支援 720x1280 和 1280x720 等不同解析度",
+                "可選擇 4、8 或 12 秒的影片長度",
+                "包含詳細的 Sora API 定價說明和參數選項"
+            ],
+            "tags": ["AI", "影片生成", "OpenAI", "Sora", "自動化", "Google Drive", "文字轉影片"],
+            "nodes": 8,
+            "createdAt": "2025-10-11",
+            "updatedAt": "2025-10-11",
+            "setup": {
+                "prerequisites": "需要設定 OpenAI API 和 Google Drive 的 API 存取權限",
+                "steps": [
+                    {
+                        "title": "OpenAI 設定",
+                        "description": "設定 OpenAI API 用於 Sora-2 影片生成",
+                        "options": [
+                            "取得 OpenAI API 金鑰（需要有 Sora API 存取權限）",
+                            "確認帳戶已啟用 Sora-2 或 Sora-2-Pro 模型",
+                            "了解 Sora API 定價：sora-2 為每秒 $0.10，sora-2-pro 依解析度為 $0.30-$0.50/秒",
+                            "準備影片生成的文字提示詞（prompt）"
+                        ]
+                    },
+                    {
+                        "title": "調整提示詞和參數",
+                        "description": "在 HTTP Request-prompt to video 節點中設定影片生成參數",
+                        "options": [
+                            "修改 prompt 為你想要的影片描述",
+                            "選擇 model：sora-2（基礎版）或 sora-2-pro（進階版）",
+                            "設定 seconds：4、8 或 12 秒",
+                            "選擇 size：720x1280（直向）或 1280x720（橫向）",
+                            "參考 Sticky Note 中的完整定價表進行成本評估"
+                        ]
+                    },
+                    {
+                        "title": "Google Drive 設定",
+                        "description": "準備用於儲存生成影片的雲端資料夾",
+                        "options": [
+                            "在 Google Drive 建立專用資料夾用於存放生成的影片",
+                            "設定適當的存取權限",
+                            "複製資料夾 ID（從網址列取得）",
+                            "在 Upload file 節點中更新 folderId 參數"
+                        ]
+                    }
+                ]
+            },
+            "examples": [
+                {
+                    "title": "基本影片生成範例",
+                    "description": "使用 Sora-2 生成 4 秒短影片",
+                    "code": {
+                        "model": "sora-2",
+                        "prompt": "Golden-hour aerial shot of surfers catching waves at a tropical beach, gentle camera dolly forward, cinematic, natural colors. Subtle ambience of ocean and seagulls.",
+                        "seconds": "4",
+                        "size": "720x1280"
+                    }
+                },
+                {
+                    "title": "進階影片生成範例",
+                    "description": "使用 Sora-2-Pro 生成高解析度影片",
+                    "code": {
+                        "model": "sora-2-pro",
+                        "prompt": "Time-lapse of a bustling Tokyo intersection at night, neon lights reflecting on wet streets, slow zoom out",
+                        "seconds": "8",
+                        "size": "1024x1792"
+                    }
+                }
+            ],
+            "fields": {
+                "openai": {
+                    "title": "OpenAI Sora 設定",
+                    "fields": {
+                        "model": {
+                            "type": "string",
+                            "description": "影片生成模型",
+                            "default": "sora-2",
+                            "options": ["sora-2", "sora-2-pro"]
+                        },
+                        "prompt": {
+                            "type": "string",
+                            "description": "影片生成的文字提示詞",
+                            "example": "Golden-hour aerial shot of surfers catching waves at a tropical beach"
+                        },
+                        "seconds": {
+                            "type": "string",
+                            "description": "影片長度（秒）",
+                            "default": "4",
+                            "options": ["4", "8", "12"]
+                        },
+                        "size": {
+                            "type": "string",
+                            "description": "影片解析度",
+                            "default": "720x1280",
+                            "options": ["720x1280", "1280x720", "1024x1792", "1792x1024"]
+                        }
+                    }
+                },
+                "googleDrive": {
+                    "title": "Google Drive 設定",
+                    "fields": {
+                        "folderId": {
+                            "type": "string",
+                            "description": "存儲影片的資料夾 ID",
+                            "example": "1ot2lOimTVjDLiuN1bZCW6p_vfTWRRYqu"
+                        }
+                    }
+                }
+            }
+        },
         "darrell-n8n-demo-datatables": {
             "id": "darrell-n8n-demo-datatables",
             "title": "n8n DataTables 完整功能示範",

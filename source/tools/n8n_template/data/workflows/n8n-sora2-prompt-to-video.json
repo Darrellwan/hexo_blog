@@ -1,0 +1,352 @@
+{
+  "name": "[Darrell][Template] gpt-sora2 示範",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -928,
+        -208
+      ],
+      "id": "8026805b-70d9-433e-b871-8adeadde0b71",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        48,
+        -112
+      ],
+      "id": "c14c1b4a-ba69-438b-ab77-628b49ec2b96",
+      "name": "Wait",
+      "webhookId": "7e69d931-c264-4159-a736-70f09c540cfa"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "id": "32e06787-4bde-4f5f-8868-d319bdd36ac4",
+                    "leftValue": "={{ $json.status }}",
+                    "rightValue": "completed",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "completed"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.status }}",
+                    "rightValue": "=in_progress|queued",
+                    "operator": {
+                      "type": "string",
+                      "operation": "regex"
+                    },
+                    "id": "1b8f875b-5c84-4848-a4d2-17017d26211d"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "in_progress"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        -144,
+        -208
+      ],
+      "id": "1bf29569-0786-486a-8320-b44d610e56cc",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/videos",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"model\": \"sora-2\",\n  \"prompt\": \"Golden-hour aerial shot of surfers catching waves at a tropical beach, gentle camera dolly forward, cinematic, natural colors. Subtle ambience of ocean and seagulls.\",\n  \"seconds\": \"4\",\n  \"size\": \"720x1280\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -672,
+        -208
+      ],
+      "id": "9822ea6d-6100-47e3-b925-57ae01cd36e1",
+      "name": "HTTP Request-prompt to video",
+      "credentials": {
+        "openAiApi": {
+          "id": "AE7fbXM0LWEUpaUf",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://api.openai.com/v1/videos/{{ $json.id }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -368,
+        -208
+      ],
+      "id": "9873d99f-1a80-49a1-ba0d-98687da10c57",
+      "name": "HTTP Request-check status",
+      "credentials": {
+        "openAiApi": {
+          "id": "AE7fbXM0LWEUpaUf",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://api.openai.com/v1/videos/{{ $json.id }}/content",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        48,
+        -320
+      ],
+      "id": "e7ee01a1-11b5-44d9-b7df-c0b06d2f7336",
+      "name": "HTTP Request-retrive video",
+      "credentials": {
+        "openAiApi": {
+          "id": "AE7fbXM0LWEUpaUf",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "={{ $json.id }}.{{ $binary.data.fileExtension }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1ot2lOimTVjDLiuN1bZCW6p_vfTWRRYqu",
+          "mode": "list",
+          "cachedResultName": "sora2 api output",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1ot2lOimTVjDLiuN1bZCW6p_vfTWRRYqu"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        272,
+        -320
+      ],
+      "id": "0badb3da-9a52-4f7b-8646-4585fb282b9d",
+      "name": "Upload file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "EGjALlI2FuCCkgzM",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Created by darrell_tw_ \n\nHi 我是 Darrell\n有 n8n 問題可以找我聊聊\n\n- [n8n 教學資源網站](https://www.darrelltw.com/n8n-tutorial-resources/)\n- [n8n 模板分享網站](https://www.darrelltw.com/tools/n8n_template/models.html)\n\n### Social Media:\n[Website](https://www.darrelltw.com/)\n[Threads](https://www.threads.net/@darrell_tw_)\n[Instagram](https://www.instagram.com/darrell_tw_/)\n[X](https://x.com/darrell_tw_)\n![](https://pub-c093258f61a1463ea03e1a40c141968a.r2.dev/darrell-icon-128.svg)",
+        "height": 468,
+        "width": 296,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1296,
+        -368
+      ],
+      "id": "4883b557-ba48-4a7f-aaf7-f6ba6b6e9a35",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "# Sora API 參數說明\n\n## API 參數\n\n| 參數 | 說明 | 可選值 |\n|:-----|:-----|:-------|\n| `model` | 模型版本      | `sora-2` / `sora-2-pro` |\n| `prompt` | 提示詞      | 文字描述 |\n| `seconds` | 影片長度     | `4` / `8` / `12` 秒 |\n| `sizes` | 影片尺寸      | 依模型而定 |\n\n---\n\n## 定價方案總覽\n\n### 模型比較表\n\n| 模型 | 解析度規格 | 每秒單價 |\n|:-----|:----------|:--------|\n| **sora-2**  | 720×1280 / 1280×720 | $0.10 ≈ NT$3.2 |\n| **sora-2-pro**  | 720×1280 / 1280×720 | $0.30 ≈ NT$9.6 |\n| **sora-2-pro**  | 1024×1792 / 1792×1024 | $0.50 ≈ NT$16 |\n\n> **匯率參考**：1 USD = 32 TWD\n\n---\n\n## 完整價格試算\n\n### sora-2 基礎版\n**解析度**: 720×1280 (直向) / 1280×720 (橫向)\n\n| 時長 | 美金 | 台幣 |\n|:------:|:-------:|:-------:|\n| 4 秒 | **$0.40** | **NT$13** |\n| 8 秒 | **$0.80** | **NT$26** |\n| 12 秒 | **$1.20** | **NT$38** |\n\n---\n\n### sora-2-pro\n**解析度**: 720×1280 (直向) / 1280×720 (橫向)\n\n| 時長 | 美金 | 台幣 |\n|:------:|:-------:|:-------:|\n| 4 秒 | **$1.20** | **NT$38** |\n| 8 秒 | **$2.40** | **NT$77** |\n| 12 秒 | **$3.60** | **NT$115** |\n\n---\n\n### sora-2-pro\n**解析度**: 1024×1792 (直向) / 1792×1024 (橫向)\n\n| 時長 | 美金 | 台幣 |\n|:------:|:-------:|:-------:|\n| 4 秒 | **$2.00** | **NT$64** |\n| 8 秒 | **$4.00** | **NT$128** |\n| 12 秒 | **$6.00** | **NT$192** |\n",
+        "height": 1168,
+        "width": 1104,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -912,
+        96
+      ],
+      "id": "29596a2a-0d94-4ff8-9f17-e50ddcd5bc50",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## 1. 先調整 Drive\n確保前面的影片製作完會上傳到你的雲端資料夾中",
+        "height": 256,
+        "width": 352
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        224,
+        -416
+      ],
+      "id": "859ddf97-b01b-47fa-966d-e5cfaf0f70bd",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## 2. 調整 Prompt 和相關參數",
+        "height": 256,
+        "width": 336
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -768,
+        -288
+      ],
+      "id": "8531ddfd-7bac-4cd3-bc1e-f2f41b5b2b79",
+      "name": "Sticky Note2"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request-prompt to video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request-check status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request-retrive video",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request-prompt to video": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request-check status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request-check status": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request-retrive video": {
+      "main": [
+        [
+          {
+            "node": "Upload file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "a957d23a-e369-48fd-a551-6583d25837e2",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "fddb3e91967f1012c95dd02bf5ad21f279fc44715f47a7a96a33433621caa253"
+  },
+  "id": "oNfLYTMfqp0GblW4",
+  "tags": [
+    {
+      "createdAt": "2025-04-25T14:04:49.168Z",
+      "updatedAt": "2025-04-25T14:04:49.168Z",
+      "id": "5XRIpCCc7ekBy9Ka",
+      "name": "Darrell-template"
+    }
+  ]
+}

@@ -4295,9 +4295,9 @@
     "mtimeMs": 1748319359792.803
   },
   "/_posts/n8n-deployment/n8n-deployment-compare.png": {
-    "width": 2026,
-    "height": 786,
-    "mtimeMs": 1748319359790.4294
+    "width": 1265,
+    "height": 542,
+    "mtimeMs": 1760072391256.907
   },
   "/_posts/n8n-deployment/blog-n8n-deployment-bg.jpg": {
     "width": 1080,
@@ -5772,16 +5772,21 @@
   "/_posts/n8n-update-log/n8n-1.115.0-use_monospace_for_preview.png": {
     "width": 946,
     "height": 1148,
-    "mtimeMs": 1759807047105.38
+    "mtimeMs": 1759807296689.768
   },
   "/_posts/n8n-update-log/n8n-1.115.0-gmail_recipients_only.png": {
     "width": 1702,
     "height": 1370,
-    "mtimeMs": 1759806830603.521
+    "mtimeMs": 1759807296689.5781
   },
   "/_posts/n8n-update-log/n8n-1.115.0-fix_anthropic_sonnet_4_5_top_p.png": {
     "width": 946,
     "height": 754,
-    "mtimeMs": 1759807174625.674
+    "mtimeMs": 1759807296689.3196
+  },
+  "/tools/n8n_template/data/bg/n8n-sora2-prompt-to-video.webp": {
+    "width": 1000,
+    "height": 1000,
+    "mtimeMs": 1760194394339.282
   }
 }
