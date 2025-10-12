@@ -3,19 +3,19 @@
 ## 📚 最新文章
 
 ### [Claude Code 更新！ 全新 Extension for VSCode/Cursor 介面](https://www.darrelltw.com/claude_code_update_202509/?utm_source=github_readme&utm_medium=referral)
-📅 2025/09/30 · 10 天前
+📅 2025/09/30 · 12 天前
 
 > Claude Code 2025年9月更新：新的 Cursor IDE 介面，讓不是工程師的你也能輕鬆使用 Claude Code
 
 
 ### [n8n DataTables 節點教學 - 直接把資料存在 n8n 裡](https://www.darrelltw.com/n8n-datatables-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/09/25 · 14 天前
+📅 2025/09/25 · 16 天前
 
 > n8n 推出 DataTables！ 原生數據存儲無需外部資料庫，支援完整 insert、update、get、delete。
 
 
 ### [n8n Poll Time 教學 - 優化 Trigger 效率](https://www.darrelltw.com/n8n-poll-time-setting/?utm_source=github_readme&utm_medium=referral)
-📅 2025/09/21 · 19 天前
+📅 2025/09/21 · 20 天前
 
 > n8n Poll Time完整教學！場景對應設定、成本計算、Rate Limit避雷。
 
@@ -39,7 +39,7 @@
 
 
 ### [Claude Code Agent 實測，建立專屬的開發助理](https://www.darrelltw.com/claude-code-agent/?utm_source=github_readme&utm_medium=referral)
-📅 2025/07/25 · 2 個月前
+📅 2025/07/25 · 3 個月前
 
 > Claude Code 新推出的 Agent 功能讓你可以建立專屬的開發 Agent，透過自然語言指令自動處理重複性的程式設計任務。不再需要每次重新解釋需求，讓 Claude Code Agent 記住你的開發模式。
 
@@ -57,7 +57,7 @@
 
 
 ### [Google 發布 Gemini CLI Tool 免費額度超級夠用 和 Claude Code 的比較](https://www.darrelltw.com/google-gemini-cli/?utm_source=github_readme&utm_medium=referral)
-📅 2025/06/26 · 3 個月前
+📅 2025/06/26 · 4 個月前
 
 > Google 推出免費 Gemini CLI 命令行工具。安裝教學，並與 Claude Code 做同樣 prompt 比較
 
@@ -65,7 +65,7 @@
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-108-blue?style=flat-square)
 ![總字數](https://img.shields.io/badge/總字數-236,762+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/10/10-green?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/10/12-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-10-10 05:01:40*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-10-12 01:50:07*
