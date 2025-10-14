@@ -5788,5 +5788,20 @@
     "width": 1000,
     "height": 1000,
     "mtimeMs": 1760194394339.282
+  },
+  "/_posts/n8n-update-log/n8n-1.116.0-replace_node.png": {
+    "width": 1278,
+    "height": 1128,
+    "mtimeMs": 1760456118008.505
+  },
+  "/_posts/n8n-update-log/n8n-1.116.0-lucide_icons.png": {
+    "width": 2394,
+    "height": 1160,
+    "mtimeMs": 1760456203553.621
+  },
+  "/_posts/n8n-update-log/n8n-1.116.0-ai_workflow_builder.png": {
+    "width": 1238,
+    "height": 787,
+    "mtimeMs": 1760456423665.443
   }
 }

@@ -7,16 +7,54 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2025/10/07 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.115.0，正式版本為 1.114.3
+description: n8n 的更新記錄(2025/10/14 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.116.0，正式版本為 1.115.3
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-10-07 15:30:00
+modified: 2025-10-14 01:00:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 1.116.0 Pre-release - 2025-10-14
+
+[Github 1.116.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.116.0)
+
+### Replace Node 快速替換節點
+Editor: Replace Node context menu option
+
+在編輯器中新增了「Replace Node」的右鍵選單
+終於可以**快速替換節點**！
+不需要刪除原本的節點再重新建立
+
+
+{% darrellImage800 n8n-1.116.0-replace_node n8n-1.116.0-replace_node.png max-800 %}
+
+### Lucide Icons 取代 FontAwesome
+Rolling out Lucide icons to replace FontAwesome icons
+
+UI 全面更新圖示系統
+現在可以看到更好看的圖示
+只會是一些**官方的內建節點**，像是 Google 系列的節點圖示沒有改變
+
+{% darrellImage800 n8n-1.116.0-lucide_icons n8n-1.116.0-lucide_icons.png max-800 %}
+
+### AI Workflow Builder (Beta)
+
+這次更新最期待的更新！
+以前雖然有 AI Assistant 來輔助 workflow 的建立
+但這次官方宣佈新的 AI Workflow Builder 
+看來對於 **prompt 產生 workflow** 應該會有更好的生成效果
+
+而且未來對於 `self-host` 版本也能使用！
+目前只有官方 Cloud 版本逐步推出中
+
+非常期待能測試這個新功能
+
+{% darrellImage800 n8n-1.116.0-ai_workflow_builder n8n-1.116.0-ai_workflow_builder.png max-800 %}
+
 
 ## 1.115.0 Pre-release - 2025-10-06
 
