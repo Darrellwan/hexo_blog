@@ -3,19 +3,19 @@
 ## 📚 最新文章
 
 ### [Claude Code 更新！ 全新 Extension for VSCode/Cursor 介面](https://www.darrelltw.com/claude_code_update_202509/?utm_source=github_readme&utm_medium=referral)
-📅 2025/09/30 · 12 天前
+📅 2025/09/30 · 14 天前
 
 > Claude Code 2025年9月更新：新的 Cursor IDE 介面，讓不是工程師的你也能輕鬆使用 Claude Code
 
 
 ### [n8n DataTables 節點教學 - 直接把資料存在 n8n 裡](https://www.darrelltw.com/n8n-datatables-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/09/25 · 16 天前
+📅 2025/09/25 · 19 天前
 
 > n8n 推出 DataTables！ 原生數據存儲無需外部資料庫，支援完整 insert、update、get、delete。
 
 
 ### [n8n Poll Time 教學 - 優化 Trigger 效率](https://www.darrelltw.com/n8n-poll-time-setting/?utm_source=github_readme&utm_medium=referral)
-📅 2025/09/21 · 20 天前
+📅 2025/09/21 · 23 天前
 
 > n8n Poll Time完整教學！場景對應設定、成本計算、Rate Limit避雷。
 
@@ -33,7 +33,7 @@
 
 
 ### [Postiz 串接 Threads：Zeabur 部署 + Meta Developer 設定教學](https://www.darrelltw.com/postiz-zeabur-threads-tutorial/?utm_source=github_readme&utm_medium=referral)
-📅 2025/07/28 · 2 個月前
+📅 2025/07/28 · 3 個月前
 
 > 想用 Postiz 自動排程 Threads 貼文？本文提供完整 Meta 應用程式建立到 Threads API 串接教學，輕鬆實現 Threads 自動排程發文。
 
@@ -64,8 +64,8 @@
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-108-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-236,762+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/10/12-green?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-237,299+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/10/14-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-10-12 01:50:07*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-10-14 15:42:48*
