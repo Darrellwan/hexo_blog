@@ -2064,9 +2064,9 @@
                 "包含詳細的 JSON 格式範例和參數說明"
             ],
             "tags": ["自動化", "Line", "訊息機器人", "Webhook", "API", "教學範例", "多媒體訊息"],
-            "nodes": 15,
+            "nodes": 20,
             "createdAt": "2025-02-17",
-            "updatedAt": "2025-05-28",
+            "updatedAt": "2025-10-20",
             "setup": {
                 "prerequisites": "需要設定 Line Developer Console 和取得 Channel Access Token",
                 "steps": [
@@ -2082,12 +2082,34 @@
                         ]
                     },
                     {
+                        "title": "取得 Line Message API Token",
+                        "description": "從 Line Developer Console 取得 Channel Access Token",
+                        "options": [
+                            "開啟 Line Developer Console (developers.line.biz/console/)",
+                            "選擇您的 Chatbot",
+                            "點擊 Messaging API 分頁",
+                            "複製 Channel Access Token",
+                            "參考工作流程中的教學圖示說明"
+                        ]
+                    },
+                    {
                         "title": "認證設定",
                         "description": "在 n8n 中設定 Line API 認證",
                         "options": [
-                            "建立 HTTP Header Auth 認證",
-                            "設定 Header Name 為 'Authorization'",
-                            "設定 Header Value 為 'Bearer YOUR_CHANNEL_ACCESS_TOKEN'"
+                            "建立 HTTP Bearer Auth 認證",
+                            "將 Channel Access Token 貼入認證欄位",
+                            "或使用 HTTP Header Auth：設定 Header Name 為 'Authorization'，Header Value 為 'Bearer YOUR_CHANNEL_ACCESS_TOKEN'"
+                        ]
+                    },
+                    {
+                        "title": "取得 Line UID",
+                        "description": "取得自己或目標使用者的 Line UID",
+                        "options": [
+                            "開啟 Line Developer Console (developers.line.biz/console/)",
+                            "選擇您的 Chatbot",
+                            "點擊 Basic Settings 分頁",
+                            "複製 Your user ID",
+                            "參考工作流程中的教學圖示說明"
                         ]
                     },
                     {

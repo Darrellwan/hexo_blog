@@ -5,17 +5,17 @@
         "method": "POST",
         "url": "https://api.line.me/v2/bot/message/reply",
         "authentication": "genericCredentialType",
-        "genericAuthType": "httpHeaderAuth",
+        "genericAuthType": "httpBearerAuth",
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "={\n  \"replyToken\": \"{{ $('Webhook from Line Message').item.json.body.events[0].replyToken }}\",\n  \"messages\": [\n    {\n      \"type\": \"text\",\n      \"text\": \"收到您的訊息 : {{ $('Webhook from Line Message').item.json.body.events[0].message.text }}\"\n    }\n  ]\n}",
         "options": {}
       },
-      "id": "4a4df7d6-fff7-43ab-89ff-7ab12a6f1e49",
+      "id": "8be2d980-c53c-4ec3-8895-0f2f9e232d81",
       "name": "Line : Reply with token",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        560,
+        928,
         160
       ],
       "typeVersion": 4.2,
@@ -23,6 +23,10 @@
         "httpHeaderAuth": {
           "id": "xB2Ip7YKSIDq7BoI",
           "name": "Line n8n demo auth"
+        },
+        "httpBearerAuth": {
+          "id": "XzTZ8xgoTEJJfpCM",
+          "name": "Line-Darrell Agent "
         }
       }
     },
@@ -32,12 +36,12 @@
         "path": "638c118e-1c98-4491-b6ff-14e2e75380b6",
         "options": {}
       },
-      "id": "b96d892d-d0b3-4984-a39f-f6fd83de9b82",
+      "id": "a81ef067-d921-4b9e-a0f0-0a23d964a420",
       "name": "Webhook from Line Message",
       "type": "n8n-nodes-base.webhook",
       "position": [
-        80,
-        180
+        448,
+        192
       ],
       "webhookId": "638c118e-1c98-4491-b6ff-14e2e75380b6",
       "typeVersion": 2
@@ -48,11 +52,11 @@
         "height": 340,
         "width": 720
       },
-      "id": "eee9a2fa-ed53-4bbe-a547-ac5fd3834515",
+      "id": "031c8853-51e0-4529-a8ac-aaf7d880d7f2",
       "name": "Sticky Note",
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        0,
+        368,
         0
       ],
       "typeVersion": 1
@@ -82,12 +86,12 @@
         },
         "options": {}
       },
-      "id": "eceada0c-99bc-4dbc-aeee-87687672b921",
+      "id": "35d24dd9-8984-40aa-9925-f47600a00e0b",
       "name": "If",
       "type": "n8n-nodes-base.if",
       "position": [
-        300,
-        180
+        672,
+        192
       ],
       "typeVersion": 2.2
     },
@@ -97,23 +101,23 @@
         "height": 340,
         "width": 720
       },
-      "id": "06ba081b-d9af-47f1-9901-c18631d1601f",
+      "id": "0beffd16-9473-4f77-b1cc-974be8f601f3",
       "name": "Sticky Note1",
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        0,
-        420
+        368,
+        432
       ],
       "typeVersion": 1
     },
     {
       "parameters": {},
-      "id": "3cce169d-59da-4f66-ac3e-bef5c315cd84",
+      "id": "d9f390a3-3437-4644-9897-f6c2c0d49bd8",
       "name": "When clicking ‘Test workflow’",
       "type": "n8n-nodes-base.manualTrigger",
       "position": [
-        80,
-        600
+        448,
+        608
       ],
       "typeVersion": 1
     },
@@ -131,12 +135,12 @@
         },
         "options": {}
       },
-      "id": "3676c913-e28e-4dac-9901-50ea89cfae55",
+      "id": "645578c8-5e5f-4930-86a9-106d988b2662",
       "name": "Edit Fields",
       "type": "n8n-nodes-base.set",
       "position": [
-        300,
-        600
+        672,
+        608
       ],
       "typeVersion": 3.4
     },
@@ -145,24 +149,28 @@
         "method": "POST",
         "url": "https://api.line.me/v2/bot/message/push",
         "authentication": "genericCredentialType",
-        "genericAuthType": "httpHeaderAuth",
+        "genericAuthType": "httpBearerAuth",
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "={\n  \"to\": \"{{ $json.line_uid }}\",\n  \"messages\": [\n    {\n      \"type\": \"text\",\n      \"text\": \"推播測試\"\n    }\n  ]\n}",
         "options": {}
       },
-      "id": "d7d5d467-2185-4faf-a1b3-ad4baff78f17",
+      "id": "fe242b28-9e41-4005-8e72-8b6fc02efae8",
       "name": "Line : Push Message",
       "type": "n8n-nodes-base.httpRequest",
       "position": [
-        540,
-        600
+        912,
+        608
       ],
       "typeVersion": 4.2,
       "credentials": {
         "httpHeaderAuth": {
           "id": "xB2Ip7YKSIDq7BoI",
           "name": "Line n8n demo auth"
+        },
+        "httpBearerAuth": {
+          "id": "XzTZ8xgoTEJJfpCM",
+          "name": "Line-Darrell Agent "
         }
       }
     },
@@ -176,10 +184,10 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -360,
+        0,
         0
       ],
-      "id": "a4a723cc-3150-468b-8152-84c3bca67917",
+      "id": "7ae518f6-6e12-42bd-9a62-74fcfeaafd47",
       "name": "Sticky Note4"
     },
     {
@@ -192,10 +200,10 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        800,
+        1168,
         0
       ],
-      "id": "3d4dd324-9699-490c-a715-fb979f92308e",
+      "id": "aed97fbe-250e-43fb-be89-d5a368f8652e",
       "name": "Sticky Note2"
     },
     {
@@ -208,10 +216,10 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        2080,
-        540
+        2448,
+        544
       ],
-      "id": "e06fd4c9-fe3a-462f-99ef-8363a8435e93",
+      "id": "5df23f9f-a074-4101-944f-ec5b46beb775",
       "name": "Sticky Note3"
     },
     {
@@ -224,10 +232,10 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        800,
-        540
+        1168,
+        544
       ],
-      "id": "0430cf50-8196-4d2f-a928-c3d73481a6cb",
+      "id": "be28a0bf-dd10-427c-a3cd-2376c74fbb9a",
       "name": "Sticky Note5"
     },
     {
@@ -240,10 +248,10 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        1440,
-        540
+        1808,
+        544
       ],
-      "id": "999fc852-c607-4ce4-b67c-c209f3974449",
+      "id": "6365503c-86ac-47e0-9f73-6f54b663bc56",
       "name": "Sticky Note6"
     },
     {
@@ -256,10 +264,10 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        2080,
+        2448,
         0
       ],
-      "id": "2ee96f30-10f3-4f27-8dfa-e3c165c8283b",
+      "id": "5ee84949-b3cd-4a79-b530-f009f4077931",
       "name": "Sticky Note7"
     },
     {
@@ -272,11 +280,43 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        1440,
+        1808,
         0
       ],
-      "id": "f5d9b1ad-e96f-46c9-85f0-58ee6c5a10c2",
+      "id": "1aad0865-983d-44d8-9255-faaa30b31e19",
       "name": "Sticky Note8"
+    },
+    {
+      "parameters": {
+        "content": "## 如何取得 Line Message API Token ?\n\n1. 開啟 Line Developer Console\ndevelopers.line.biz/console/\n\n2. 選擇 Chatbot.\n\n3. 點擊 `Messaging API`\n\n4. 複製 `Channel Acccess Token`\n\n![](https://st.darrelltw.com/line_get_message_api_token_demo_1.png)",
+        "height": 500,
+        "width": 464,
+        "color": 4
+      },
+      "id": "2772f445-7adf-4713-bda4-a9604bae491f",
+      "name": "Sticky Note9",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -624,
+        272
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## 如何取得自己的 Line UID?\n\n1. 開啟 Line Developer Console\ndevelopers.line.biz/console/\n\n2. 選擇 Chatbot.\n\n3. 點擊 `Basic Settings`\n\n4. 複製 `Your user ID`\n\n![](https://st.darrelltw.com/line_get_uid_demo.png)",
+        "height": 692,
+        "width": 464,
+        "color": 4
+      },
+      "id": "57cd7fd8-00f6-478d-8a25-08bd8f0680f8",
+      "name": "Sticky Note10",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -128,
+        272
+      ],
+      "typeVersion": 1
     }
   ],
   "connections": {
