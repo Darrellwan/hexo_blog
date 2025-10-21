@@ -2,14 +2,20 @@
 
 ## 📚 最新文章
 
+### [n8n Line Messaging 社群節點教學](https://www.darrelltw.com/n8n-line-messaging-community-node/?utm_source=github_readme&utm_medium=referral)
+📅 2025/10/21 · 7 小時內
+
+> n8n LINE Messaging 社群節點完整教學!使用 @aotoki/n8n-nodes-line-messaging 簡化 LINE Bot 開發,視覺化介面降低出錯率。涵蓋安裝設定、4 大核心功能操作、常見問題排解,以及與 HTTP Request 的使用時機比較
+
+
 ### [Claude Code 更新！ 全新 Extension for VSCode/Cursor 介面](https://www.darrelltw.com/claude_code_update_202509/?utm_source=github_readme&utm_medium=referral)
-📅 2025/09/30 · 19 天前
+📅 2025/09/30 · 21 天前
 
 > Claude Code 2025年9月更新：新的 Cursor IDE 介面，讓不是工程師的你也能輕鬆使用 Claude Code
 
 
 ### [n8n DataTables 節點教學 - 直接把資料存在 n8n 裡](https://www.darrelltw.com/n8n-datatables-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/09/25 · 23 天前
+📅 2025/09/25 · 1 個月前
 
 > n8n 推出 DataTables！ 原生數據存儲無需外部資料庫，支援完整 insert、update、get、delete。
 
@@ -56,16 +62,10 @@
 > 防止 vibe coding 表單被機器人攻擊？使用 Cloudflare Turnstile + n8n 打造表單驗證系統。包含前端 HTML、後端 API 驗證、webhook 設定，完整驗證流程實作教學。
 
 
-### [Google 發布 Gemini CLI Tool 免費額度超級夠用 和 Claude Code 的比較](https://www.darrelltw.com/google-gemini-cli/?utm_source=github_readme&utm_medium=referral)
-📅 2025/06/26 · 4 個月前
-
-> Google 推出免費 Gemini CLI 命令行工具。安裝教學，並與 Claude Code 做同樣 prompt 比較
-
-
 ## 📊 部落格統計
-![文章總數](https://img.shields.io/badge/文章總數-108-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-237,299+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/10/19-green?style=flat-square)
+![文章總數](https://img.shields.io/badge/文章總數-109-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-241,245+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/10/21-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -88,7 +88,7 @@
 
 
 ## 🏷️ 熱門主題
-![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![n8n](https://img.shields.io/badge/n8n-23-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-15-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![AI](https://img.shields.io/badge/AI-8-orange?style=flat-square)
+![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![n8n](https://img.shields.io/badge/n8n-24-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-15-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![AI](https://img.shields.io/badge/AI-8-orange?style=flat-square)
 
 ## 📈 更新頻率
 ```text
@@ -97,7 +97,7 @@
 07月 ████░░░░░░ 4篇
 08月 █░░░░░░░░░ 1篇
 09月 ████░░░░░░ 4篇
-10月 ░░░░░░░░░░ 0篇
+10月 █░░░░░░░░░ 1篇
 ```
 
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-10-19 01:59:26*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-10-21 06:01:44*
