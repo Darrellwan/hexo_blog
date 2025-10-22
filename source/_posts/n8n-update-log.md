@@ -7,16 +7,61 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2025/10/14 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.116.0，正式版本為 1.115.3
+description: n8n 的更新記錄(2025/10/22 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.117.0，正式版本為 1.116.2
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-10-14 01:00:00
+modified: 2025-10-22 14:30:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 1.117.0 Pre-release - 2025-10-21
+
+[Github 1.117.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.117.0)
+
+### 自動分配憑證給其他節點
+Auto-assign credentials to other nodes
+
+超級實用的更新！
+
+以前如果是匯入模板，或是現在可能會用 AI Workflow Builder 來生成 workflow 時
+
+那些節點是不會預設分配憑證的，以往需要 **一個又一個手動設定**
+現在只要同一個類型的節點設定一次，就會套用到全部其他一樣類型的節點！
+
+例如匯入的模板有多個 Google Drive 節點
+設定好第一個節點的憑證後
+就能套用到其他 Google Drive 節點！
+
+{% darrellImage800 n8n-1.117.0-auto_assign_credentials n8n-1.117.0-auto_assign_credentials.png max-800 %}
+
+### OpenAI Node 重大更新：Responses API 和影片生成
+OpenAI Node: Add Responses API and video generation support
+
+OpenAI 節點迎來升級
+
+**新增功能：**
+1. 影片生成功能 - 新增 Video ，可以直接用 Sora 生成影片了！
+2. Responses API - 使用 OpenAI 最新的 Responses API
+
+{% darrellImage800 n8n-1.117.0-openai_v2_video n8n-1.117.0-openai_v2_video.png max-800 %}
+
+### workflow匯入 URL 驗證放寬
+Expand URL validation to accept any HTTPS URL for workflow import
+
+以前從 URL 匯入 workflow 時有個限制
+URL 必須要以 `.json` 結尾才能匯入
+
+現在終於放寬限制了！
+只要是 **HTTPS 開頭的 URL** 都可以嘗試匯入
+
+例如以前用 `https://api.example.com/workflow/123` 就不行
+必須是 `https://api.example.com/workflow/123.json`
+
+{% darrellImage800 n8n-1.117.0-import_url_validation n8n-1.117.0-import_url_validation.png max-800 %}
 
 ## 1.116.0 Pre-release - 2025-10-14
 

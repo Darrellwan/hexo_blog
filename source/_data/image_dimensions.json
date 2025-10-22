@@ -5868,5 +5868,20 @@
     "width": 1444,
     "height": 714,
     "mtimeMs": 1761023155314.71
+  },
+  "/_posts/n8n-update-log/n8n-1.117.0-openai_v2_video.png": {
+    "width": 1654,
+    "height": 1156,
+    "mtimeMs": 1761108249558.458
+  },
+  "/_posts/n8n-update-log/n8n-1.117.0-auto_assign_credentials.png": {
+    "width": 1654,
+    "height": 1156,
+    "mtimeMs": 1761108439320.737
+  },
+  "/_posts/n8n-update-log/n8n-1.117.0-import_url_validation.png": {
+    "width": 1258,
+    "height": 1146,
+    "mtimeMs": 1761110363885.578
   }
 }
