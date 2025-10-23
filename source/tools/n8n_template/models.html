@@ -56,7 +56,7 @@
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem 1rem;
+            padding: 0 1rem 2rem;
         }
         
         .page-header {
@@ -86,48 +86,252 @@
             border-radius: 3px;
         }
         
-        /* 排序選項樣式 */
-        .sort-options {
-            display: flex;
-            justify-content: center;
-            margin: 1.5rem 0;
-            gap: 0.8rem;
-            flex-wrap: wrap;
+        /* 搜尋容器樣式 */
+        .search-container {
+            margin: 0.8rem 0 1.5rem;
+            width: 100%;
         }
-        
-        .sort-btn {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            color: var(--text-secondary);
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
+
+        /* 搜尋行 - 包含搜尋框和結果資訊 */
+        .search-row {
             display: flex;
             align-items: center;
-            gap: 0.4rem;
+            gap: 1.5rem;
+            width: 100%;
+            justify-content: center;
         }
-        
-        .sort-btn:hover {
-            border-color: var(--accent-color);
+
+        /* 搜尋框容器 */
+        .search-box-wrapper {
+            position: relative;
+            flex: 1;
+            max-width: 700px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* 搜尋圖示 */
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            color: var(--text-secondary);
+            pointer-events: none;
+            z-index: 1;
+            transition: color 0.3s ease;
+        }
+
+        /* 搜尋輸入框 */
+        .search-input {
+            width: 100%;
+            padding: 0.9rem 16rem 0.9rem 3rem;
+            background: var(--card-bg);
+            border: 2px solid var(--card-border);
+            border-radius: 50px;
             color: var(--text-primary);
+            font-size: 1rem;
+            font-family: 'Noto Sans TC', 'Roboto', sans-serif;
+            outline: none;
+            transition: all 0.3s ease;
         }
-        
-        .sort-btn.active {
-            background: rgba(255, 140, 0, 0.1);
-            border-color: var(--title-color);
+
+        .search-input::placeholder {
+            color: var(--text-secondary);
+            opacity: 0.6;
+        }
+
+        .search-input:focus {
+            border-color: transparent;
+            box-shadow: 0 0 0 2px transparent, 0 0 20px rgba(255, 140, 0, 0.3);
+            background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
+                        var(--accent-gradient) border-box;
+        }
+
+        .search-input:focus + .search-loading,
+        .search-input:focus ~ .clear-search {
+            opacity: 1;
+        }
+
+        .search-box-wrapper:focus-within .search-icon {
             color: var(--title-color);
         }
-        
-        .sort-btn svg {
-            width: 14px;
-            height: 14px;
-            opacity: 0.7;
+
+        /* Loading Spinner */
+        .search-loading {
+            position: absolute;
+            right: 3.5rem;
+            width: 20px;
+            height: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
-        
-        .sort-btn.active svg {
-            opacity: 1;
+
+        .spinner {
+            animation: rotate 1.5s linear infinite;
+            width: 20px;
+            height: 20px;
+        }
+
+        .spinner .path {
+            stroke: var(--title-color);
+            stroke-linecap: round;
+            animation: dash 1.5s ease-in-out infinite;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes dash {
+            0% {
+                stroke-dasharray: 1, 150;
+                stroke-dashoffset: 0;
+            }
+            50% {
+                stroke-dasharray: 90, 150;
+                stroke-dashoffset: -35;
+            }
+            100% {
+                stroke-dasharray: 90, 150;
+                stroke-dashoffset: -124;
+            }
+        }
+
+        /* 清空按鈕 */
+        .clear-search {
+            position: absolute;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 0.4rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            opacity: 0;
+        }
+
+        .clear-search:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--title-color);
+        }
+
+        .clear-search svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* 內嵌快速搜尋標籤 */
+        .quick-search-tags-inline {
+            position: absolute;
+            right: 3.5rem;
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .quick-tag-inline {
+            background: rgba(255, 140, 0, 0.08);
+            border: 1px solid rgba(255, 140, 0, 0.25);
+            color: var(--title-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Noto Sans TC', 'Roboto', sans-serif;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .quick-tag-inline:hover {
+            background: rgba(255, 140, 0, 0.15);
+            border-color: var(--title-color);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(255, 140, 0, 0.2);
+        }
+
+        .quick-tag-inline.active {
+            background: var(--accent-gradient);
+            border-color: transparent;
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 3px 10px rgba(255, 140, 0, 0.3);
+        }
+
+        /* 搜尋結果資訊 */
+        .search-results-info {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            text-align: center;
+            padding: 0.7rem 1.2rem;
+            background: rgba(255, 140, 0, 0.05);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 140, 0, 0.2);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .search-results-info #results-count {
+            color: var(--title-color);
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin: 0 0.2rem;
+        }
+
+        /* Responsive 設計 */
+        @media (max-width: 1024px) {
+            .search-box-wrapper {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .search-input {
+                font-size: 0.95rem;
+                padding: 0.8rem 3rem 0.8rem 2.8rem;
+            }
+
+            .quick-search-tags-inline {
+                display: none; /* 隱藏內嵌快速標籤 */
+            }
+
+            .search-loading {
+                right: 3rem;
+            }
+
+            .clear-search {
+                right: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .search-container {
+                margin: 1rem 0 1.5rem;
+            }
+
+            .search-input {
+                font-size: 0.9rem;
+                padding: 0.75rem 2.8rem 0.75rem 2.5rem;
+            }
+
+            .search-icon {
+                left: 0.8rem;
+                width: 18px;
+                height: 18px;
+            }
+
+            .search-results-info {
+                font-size: 0.85rem;
+                padding: 0.5rem 1rem;
+            }
+
+            .search-results-info #results-count {
+                font-size: 1.1rem;
+            }
         }
         
         .model-grid {
@@ -308,7 +512,7 @@
         
         @media (max-width: 480px) {
             .container {
-                padding: 1.5rem 0.75rem;
+                padding: 0 0.75rem 1.5rem;
             }
             .model-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -431,7 +635,7 @@
         </button>
         <div class="header-right">
             <div class="nav-buttons">
-                <a href="visualize.html" class="nav-button">視覺化工具</a>
+                <a href="https://www.darrelltw.com/n8n-tutorial-resources/" class="nav-button" target="_blank" rel="noopener">n8n 教學資源</a>
                 <a href="models.html" class="nav-button active">模板列表</a>
                 <a href="contact.html" class="nav-button">聯絡我們</a>
             </div>
@@ -503,37 +707,36 @@
     </div>
 
     <div class="container">
-        <div class="page-header">
-        </div>
-        
-        <!-- 排序選項區域 -->
-        <div class="sort-options">
-            <button class="sort-btn active" data-sort="default">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                </svg>
-                默認排序
-            </button>
-            <button class="sort-btn" data-sort="title-asc">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M10.082 5.629 9.664 7H8.598l1.789-5.332h1.234L13.402 7h-1.12l-.419-1.371h-1.781zm1.57-.785L11 2.687h-.047l-.652 2.157h1.351z"/>
-                    <path d="M12.96 14H9.028v-.691l2.579-3.72v-.054H9.098v-.867h3.785v.691l-2.567 3.72v.054h2.645V14zm-8.46-.5a.5.5 0 0 1-1 0V3.707L2.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.498.498 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L4.5 3.707V13.5z"/>
-                </svg>
-                標題 (A-Z)
-            </button>
-            <button class="sort-btn" data-sort="nodes-desc">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M3 2h10a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/>
-                    <path d="M9 9V5H7v4H5.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1H9z"/>
-                </svg>
-                節點數 (多到少)
-            </button>
-            <button class="sort-btn" data-sort="date-desc">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M11 2.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0zM4.5 7.5A.5.5 0 0 0 4 8v4a.5.5 0 0 0 1 0V8a.5.5 0 0 0-.5-.5zm7 0a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 1 0V8a.5.5 0 0 0-.5-.5z"/>
-                </svg>
-                更新日期 (新到舊)
-            </button>
+        <!-- 搜尋區域 -->
+        <div class="search-container">
+            <div class="search-row">
+                <div class="search-box-wrapper">
+                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                    <input type="text" id="search-input" class="search-input" placeholder="搜尋模板...或點擊快速標籤">
+                    <div class="search-loading" id="search-loading" style="display: none;">
+                        <svg class="spinner" viewBox="0 0 50 50">
+                            <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+                        </svg>
+                    </div>
+                    <div class="quick-search-tags-inline">
+                        <button class="quick-tag-inline" data-keyword="AI" title="搜尋 AI 相關模板">AI</button>
+                        <button class="quick-tag-inline" data-keyword="Google" title="搜尋 Google 相關模板">Google</button>
+                        <button class="quick-tag-inline" data-keyword="Line" title="搜尋 Line 相關模板">Line</button>
+                    </div>
+                    <button class="clear-search" id="clear-search" style="display: none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+                <div class="search-results-info" id="search-results-info" style="display: none;">
+                    找到 <span id="results-count">0</span> 個模板
+                </div>
+            </div>
         </div>
         
         <div class="model-grid"></div>
@@ -601,7 +804,160 @@
                 return null;
             }
         }
-        
+
+        // ============ 搜尋功能 ============
+        let allModels = []; // 儲存所有模板資料
+        let searchTimeout = null;
+        let currentSearchTerm = '';
+
+        // Debounce 函數
+        function debounce(func, delay) {
+            return function(...args) {
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => func.apply(this, args), delay);
+            };
+        }
+
+        // 搜尋模板
+        function searchModels(searchTerm) {
+            const searchInput = document.getElementById('search-input');
+            const searchLoading = document.getElementById('search-loading');
+            const clearBtn = document.getElementById('clear-search');
+            const resultsInfo = document.getElementById('search-results-info');
+            const resultsCount = document.getElementById('results-count');
+
+            // 顯示/隱藏清空按鈕
+            clearBtn.style.display = searchTerm ? 'flex' : 'none';
+
+            if (!searchTerm.trim()) {
+                // 無搜尋詞,顯示全部
+                renderModels(allModels);
+                resultsInfo.style.display = 'none';
+                currentSearchTerm = '';
+                return;
+            }
+
+            // 顯示 loading
+            searchLoading.style.display = 'block';
+            currentSearchTerm = searchTerm;
+
+            // 模擬搜尋延遲 (debounce 後執行)
+            setTimeout(() => {
+                const term = searchTerm.toLowerCase();
+                const filteredModels = allModels.filter(model => {
+                    // 搜尋標題、描述、標籤
+                    const titleMatch = model.title.toLowerCase().includes(term);
+                    const descMatch = model.description && model.description.toLowerCase().includes(term);
+                    const tagsMatch = model.tags && model.tags.some(tag => tag.toLowerCase().includes(term));
+
+                    return titleMatch || descMatch || tagsMatch;
+                });
+
+                // 隱藏 loading
+                searchLoading.style.display = 'none';
+
+                // 顯示結果
+                renderModels(filteredModels);
+                resultsCount.textContent = filteredModels.length;
+                resultsInfo.style.display = 'block';
+
+                // 推送 DataLayer 事件
+                if (window.dataLayer) {
+                    window.dataLayer.push({
+                        event: 'template_search',
+                        search_term: searchTerm,
+                        search_results_count: filteredModels.length,
+                        search_method: 'typing'
+                    });
+                }
+            }, 300);
+        }
+
+        // 渲染模板卡片
+        function renderModels(models) {
+            const modelGrid = document.querySelector('.model-grid');
+            if (!modelGrid) return;
+
+            if (models.length === 0) {
+                modelGrid.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--text-secondary);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-bottom: 1rem; opacity: 0.5;">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                        <p style="font-size: 1.2rem; margin: 0;">找不到符合「${currentSearchTerm}」的模板</p>
+                        <p style="margin-top: 0.5rem; opacity: 0.7;">試試其他關鍵字或清空搜尋</p>
+                    </div>
+                `;
+                return;
+            }
+
+            modelGrid.innerHTML = '';
+            models.forEach(model => {
+                modelGrid.innerHTML += createModelCard(model);
+            });
+
+            // 檢查圖片
+            models.forEach(model => {
+                checkImageExists(model.id);
+            });
+        }
+
+        // 初始化搜尋功能
+        function initSearch() {
+            const searchInput = document.getElementById('search-input');
+            const clearBtn = document.getElementById('clear-search');
+            const quickTags = document.querySelectorAll('.quick-tag-inline');
+
+            // 搜尋輸入事件 (debounce)
+            searchInput.addEventListener('input', debounce(function(e) {
+                searchModels(e.target.value);
+            }, 800));
+
+            // 清空搜尋
+            clearBtn.addEventListener('click', function() {
+                searchInput.value = '';
+                searchModels('');
+                searchInput.focus();
+            });
+
+            // 快速搜尋標籤
+            quickTags.forEach(tag => {
+                tag.addEventListener('click', function() {
+                    const keyword = this.getAttribute('data-keyword');
+
+                    // 移除所有 active 狀態
+                    quickTags.forEach(t => t.classList.remove('active'));
+
+                    // 如果點擊已選中的標籤,則清空搜尋
+                    if (searchInput.value === keyword) {
+                        searchInput.value = '';
+                        searchModels('');
+                    } else {
+                        // 設定新的搜尋詞
+                        this.classList.add('active');
+                        searchInput.value = keyword;
+                        searchModels(keyword);
+
+                        // 推送 DataLayer 事件
+                        if (window.dataLayer) {
+                            window.dataLayer.push({
+                                event: 'quick_search_click',
+                                keyword: keyword
+                            });
+                        }
+                    }
+                });
+            });
+
+            // Enter 鍵搜尋
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchModels(this.value);
+                }
+            });
+        }
+
         function createModelCard(model) {
             return `
                 <div class="model-card" data-nodes="${model.nodes || 0}" data-title="${model.title}" data-date="${model.updatedAt}">
@@ -804,11 +1160,11 @@
                     schemaScript.textContent = JSON.stringify(itemListSchema, null, 2);
                 }
                 
-                // 隱藏排序按鈕區域 (因為我們使用智能排序)
-                const sortOptions = document.querySelector('.sort-options');
-                if (sortOptions) {
-                    sortOptions.style.display = 'none';
-                }
+                // 儲存所有模板資料以供搜尋使用
+                allModels = modelEntries.map(({ model }) => model);
+
+                // 初始化搜尋功能
+                initSearch();
             } catch (error) {
                 console.error('更新頁面內容失敗:', error);
                 modelGrid.innerHTML = `
