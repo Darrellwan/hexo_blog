@@ -22,6 +22,7 @@
     "update-readme": "node scripts/generate-readme.js",
     "n8n-sitemap": "node bin/generate-n8n-sitemap.js",
     "n8n-snapshots": "node bin/generate-html-snapshots.js",
+    "n8n:generate-models": "node source/tools/n8n_template/scripts/generate-models-page.js",
     "add_draft": "hexo new draft %npm_config_posttitle%",
     "test_draft": "npm run clean && npm run images:process && npm run generate_custom && npm run server_custom_draft",
     "images:process": "node scripts/generate-image-dimensions.js",

@@ -1,0 +1,291 @@
+{
+  "name": "line messaging community node",
+  "nodes": [
+    {
+      "parameters": {
+        "events": [
+          "message",
+          "postback"
+        ]
+      },
+      "type": "@aotoki/n8n-nodes-line-messaging.lineMessagingTrigger",
+      "typeVersion": 1,
+      "position": [
+        -336,
+        176
+      ],
+      "id": "7b3dfc83-ba1d-46ba-a9e3-2b91e79e7ec8",
+      "name": "Line Messaging Trigger",
+      "webhookId": "324ce674-8607-4e61-9b6f-e13592667b08",
+      "credentials": {
+        "lineMessagingApi": {
+          "id": "liZ71dmkYjOBnzzp",
+          "name": "Line Messaging account-Darrell Agent"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.type }}",
+                    "rightValue": "message",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "512999d5-d9b1-40ba-93cb-dc973d30789a"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "message"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "004b3e95-8012-454d-b3d7-083a4d49dddc",
+                    "leftValue": "={{ $json.message.type }}",
+                    "rightValue": "postback",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "postback"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        -96,
+        176
+      ],
+      "id": "5bc81a7b-81e9-4a7d-b2ac-95b287482e51",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "content": "## Line Reply -> 回覆訊息",
+        "height": 272,
+        "width": 896
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -464,
+        80
+      ],
+      "id": "51a339c6-3173-4504-a78c-31d9fab2b500",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Line 主動堆播訊息給一位或多位使用者",
+        "height": 256,
+        "width": 896
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -464,
+        368
+      ],
+      "id": "3393d82e-0282-4c56-aabc-54cde187968a",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -336,
+        448
+      ],
+      "id": "259de5cf-50df-4ae1-9857-e5fce0d0d653",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "to": "={{ $json.line_uid }}",
+        "messages": {
+          "values": [
+            {
+              "text": "Hello from n8n"
+            }
+          ]
+        }
+      },
+      "type": "@aotoki/n8n-nodes-line-messaging.lineMessaging",
+      "typeVersion": 1,
+      "position": [
+        192,
+        448
+      ],
+      "id": "e43160ab-49cc-40e3-a223-760ef0411ca2",
+      "name": "Line Messaging-送給單一使用者",
+      "credentials": {
+        "lineMessagingApi": {
+          "id": "liZ71dmkYjOBnzzp",
+          "name": "Line Messaging account-Darrell Agent"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "20f6a1a2-cf1d-4c4b-9174-e32e4796e327",
+              "name": "line_uid",
+              "value": "Uxxxxx",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -80,
+        448
+      ],
+      "id": "af49cfe0-a868-4081-a026-c7d832c9ac9c",
+      "name": "設定 Line 使用者資訊"
+    },
+    {
+      "parameters": {
+        "content": "## Created by darrell_tw_ \n\nHi 我是 Darrell\n有 n8n 問題可以找我聊聊\n\n- [n8n 教學資源網站](https://www.darrelltw.com/n8n-tutorial-resources/)\n- [n8n 模板分享網站](https://www.darrelltw.com/tools/n8n_template/models.html)\n\n### Social Media:\n[Website](https://www.darrelltw.com/)\n[X](https://x.com/darrell_tw_)\n[Threads](https://www.threads.net/@darrell_tw_)\n[Instagram](https://www.instagram.com/darrell_tw_/)\n![](https://pub-c093258f61a1463ea03e1a40c141968a.r2.dev/darrell-icon-128.svg)",
+        "height": 468,
+        "width": 312,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -784,
+        80
+      ],
+      "id": "f9d0cd59-02b2-45de-a5da-0d0edd685e65",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "replyToken": "={{ $json.replyToken }}",
+        "messages": {
+          "values": [
+            {
+              "quoteToken": "=",
+              "text": "測試 n8n 回覆"
+            }
+          ]
+        }
+      },
+      "type": "@aotoki/n8n-nodes-line-messaging.lineMessaging",
+      "typeVersion": 1,
+      "position": [
+        192,
+        160
+      ],
+      "id": "929aeab6-248b-409f-b197-39f46db44c7b",
+      "name": "Line Messaging-reply",
+      "credentials": {
+        "lineMessagingApi": {
+          "id": "liZ71dmkYjOBnzzp",
+          "name": "Line Messaging account-Darrell Agent"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Line Messaging Trigger": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Line Messaging-reply",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "設定 Line 使用者資訊",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "設定 Line 使用者資訊": {
+      "main": [
+        [
+          {
+            "node": "Line Messaging-送給單一使用者",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Line Messaging-reply": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "74a95c61-964c-4d0e-9f34-06cce5aae819",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "fddb3e91967f1012c95dd02bf5ad21f279fc44715f47a7a96a33433621caa253"
+  },
+  "id": "aYzKFLbNvTADOd9U",
+  "tags": []
+}

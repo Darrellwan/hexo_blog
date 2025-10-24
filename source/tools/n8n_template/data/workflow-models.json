@@ -1,5 +1,143 @@
 {
     "models": {
+        "n8n_line_messaging_community": {
+            "id": "n8n-line-messaging-community",
+            "title": "LINE Messaging Community 節點範本",
+            "description": "這個工作流程展示如何使用 LINE Messaging Community 節點建立 LINE Bot 自動回覆系統。包含接收訊息、事件分流、自動回覆，以及主動推播訊息給使用者的完整功能。適合用於客服機器人、自動通知系統或互動式 LINE 官方帳號。\n\n主要功能：\n\nWebhook 接收：透過 LINE Messaging Trigger 接收使用者訊息和互動事件\n智能分流：使用 Switch 節點區分 message 和 postback 事件\n自動回覆：接收到訊息後自動回覆預設內容\n主動推播：手動觸發推送訊息給指定使用者",
+            "detailedDescription": [
+                "接收 LINE Bot Webhook 事件（訊息、postback）",
+                "使用 Switch 節點依據事件類型進行分流處理",
+                "message 事件會自動觸發回覆訊息",
+                "支援 postback 事件處理（按鈕互動）",
+                "手動觸發模式可主動推播訊息給特定使用者",
+                "使用 Set 節點設定目標使用者的 LINE UID",
+                "支援單一使用者精準推播功能",
+                "包含完整的 LINE Messaging API 整合範例"
+            ],
+            "tags": [
+                "LINE",
+                "聊天機器人",
+                "自動回覆"
+            ],
+            "nodes": 7,
+            "createdAt": "2025-10-24",
+            "updatedAt": "2025-10-24",
+            "setup": {
+                "prerequisites": "需要申請 LINE Developers 帳號並建立 Messaging API Channel",
+                "steps": [
+                    {
+                        "title": "LINE Messaging API 設定",
+                        "description": "在 LINE Developers Console 建立 Messaging API Channel",
+                        "options": [
+                            "前往 LINE Developers Console 建立新的 Provider",
+                            "建立 Messaging API Channel（選擇 Messaging API 類型）",
+                            "取得 Channel Secret 和 Channel Access Token",
+                            "在 n8n 中新增 Line Messaging API Credential",
+                            "設定 Webhook URL 為 n8n 提供的觸發網址"
+                        ]
+                    },
+                    {
+                        "title": "安裝 LINE Messaging Community 節點",
+                        "description": "在 n8n 中安裝 @aotoki/n8n-nodes-line-messaging 社群節點",
+                        "options": [
+                            "進入 n8n Settings > Community Nodes",
+                            "搜尋並安裝 @aotoki/n8n-nodes-line-messaging",
+                            "重新啟動 n8n 以載入節點",
+                            "確認 Line Messaging Trigger 和 Line Messaging 節點可用"
+                        ]
+                    },
+                    {
+                        "title": "設定接收訊息流程",
+                        "description": "配置自動回覆訊息的處理邏輯",
+                        "options": [
+                            "在 Line Messaging Trigger 節點中選擇要監聽的事件類型",
+                            "使用 Switch 節點設定分流條件（message / postback）",
+                            "在 Line Messaging-reply 節點中設定回覆文字",
+                            "使用 {{ $json.replyToken }} 確保正確回覆給發送者",
+                            "測試發送訊息給 LINE Bot 確認自動回覆功能"
+                        ]
+                    },
+                    {
+                        "title": "設定主動推播功能",
+                        "description": "配置手動觸發推送訊息給特定使用者",
+                        "options": [
+                            "取得目標使用者的 LINE UID（可從 webhook 事件中取得）",
+                            "在「設定 Line 使用者資訊」節點中更新 line_uid",
+                            "修改「Line Messaging-送給單一使用者」節點的訊息內容",
+                            "手動執行 workflow 測試推播功能",
+                            "確認目標使用者收到推播訊息"
+                        ]
+                    }
+                ]
+            },
+            "examples": [
+                {
+                    "title": "基本自動回覆範例",
+                    "description": "接收使用者訊息後自動回覆固定內容",
+                    "code": {
+                        "trigger": "Line Messaging Trigger",
+                        "condition": "type === 'message'",
+                        "action": "回覆「測試 n8n 回覆」"
+                    }
+                },
+                {
+                    "title": "主動推播範例",
+                    "description": "推送訊息給指定的 LINE 使用者",
+                    "code": {
+                        "trigger": "Manual Trigger",
+                        "line_uid": "Uxxxxx (替換為實際 UID)",
+                        "message": "Hello from n8n"
+                    }
+                }
+            ],
+            "fields": {
+                "line": {
+                    "title": "LINE Messaging 設定",
+                    "fields": {
+                        "channel_secret": {
+                            "type": "string",
+                            "description": "LINE Channel Secret",
+                            "required": true
+                        },
+                        "channel_access_token": {
+                            "type": "string",
+                            "description": "LINE Channel Access Token (Long-lived)",
+                            "required": true
+                        },
+                        "events": {
+                            "type": "array",
+                            "description": "要監聽的事件類型",
+                            "default": [
+                                "message",
+                                "postback"
+                            ],
+                            "options": [
+                                "message",
+                                "postback",
+                                "follow",
+                                "unfollow",
+                                "join",
+                                "leave"
+                            ]
+                        }
+                    }
+                }
+            },
+            "relatedArticles": [
+                {
+                    "title": "LINE Messaging API 官方文檔",
+                    "url": "https://developers.line.biz/en/docs/messaging-api/"
+                },
+                {
+                    "title": "n8n 社群節點安裝指南",
+                    "url": "https://docs.n8n.io/integrations/community-nodes/"
+                },
+                {
+                    "title": "Darrell 的 n8n LINE Bot 教學",
+                    "url": "https://www.darrelltw.com/n8n-tutorial-resources/"
+                }
+            ]
+        },
         "n8n-sora2-prompt-to-video": {
             "id": "n8n-sora2-prompt-to-video",
             "title": "OpenAI Sora-2 文字轉影片自動生成",
@@ -14,7 +152,15 @@
                 "可選擇 4、8 或 12 秒的影片長度",
                 "包含詳細的 Sora API 定價說明和參數選項"
             ],
-            "tags": ["AI", "影片生成", "OpenAI", "Sora", "自動化", "Google Drive", "文字轉影片"],
+            "tags": [
+                "AI",
+                "影片生成",
+                "OpenAI",
+                "Sora",
+                "自動化",
+                "Google Drive",
+                "文字轉影片"
+            ],
             "nodes": 8,
             "createdAt": "2025-10-11",
             "updatedAt": "2025-10-11",
@@ -84,7 +230,10 @@
                             "type": "string",
                             "description": "影片生成模型",
                             "default": "sora-2",
-                            "options": ["sora-2", "sora-2-pro"]
+                            "options": [
+                                "sora-2",
+                                "sora-2-pro"
+                            ]
                         },
                         "prompt": {
                             "type": "string",
@@ -95,13 +244,22 @@
                             "type": "string",
                             "description": "影片長度（秒）",
                             "default": "4",
-                            "options": ["4", "8", "12"]
+                            "options": [
+                                "4",
+                                "8",
+                                "12"
+                            ]
                         },
                         "size": {
                             "type": "string",
                             "description": "影片解析度",
                             "default": "720x1280",
-                            "options": ["720x1280", "1280x720", "1024x1792", "1792x1024"]
+                            "options": [
+                                "720x1280",
+                                "1280x720",
+                                "1024x1792",
+                                "1792x1024"
+                            ]
                         }
                     }
                 },
@@ -133,7 +291,13 @@
                 "Delete 操作：根據 email 條件刪除指定的測試資料",
                 "包含完整的 Sticky Note 說明每個操作的用途和注意事項"
             ],
-            "tags": ["DataTables", "表單收集", "CRUD 操作", "資料管理", "n8n 教學"],
+            "tags": [
+                "DataTables",
+                "表單收集",
+                "CRUD 操作",
+                "資料管理",
+                "n8n 教學"
+            ],
             "nodes": 13,
             "createdAt": "2025-09-25",
             "updatedAt": "2025-09-25",
@@ -254,7 +418,11 @@
                 "自動命名檔案：使用時間戳記格式「yyyyMMdd_HHmmss.副檔名」",
                 "完整自動化流程：從上傳到處理到儲存全程無需人工介入"
             ],
-            "tags": ["Google Drive", "AI 圖片生成", "Google Gemini"],
+            "tags": [
+                "Google Drive",
+                "AI 圖片生成",
+                "Google Gemini"
+            ],
             "nodes": 8,
             "createdAt": "2025-08-30",
             "updatedAt": "2025-08-30",
@@ -326,7 +494,15 @@
                 "使用 Set 節點整理資料並新增資料來源標記",
                 "透過 Google Sheets 節點將所有資料自動儲存到指定試算表"
             ],
-            "tags": ["網頁爬蟲", "房屋資訊", "HTML解析", "Google Sheets", "資料收集", "自動化", "不動產"],
+            "tags": [
+                "網頁爬蟲",
+                "房屋資訊",
+                "HTML解析",
+                "Google Sheets",
+                "資料收集",
+                "自動化",
+                "不動產"
+            ],
             "nodes": 10,
             "createdAt": "2025-08-15",
             "updatedAt": "2025-08-15",
@@ -429,7 +605,15 @@
                 "任務完成後從對應的 Dataset 中提取所有爬蟲結果",
                 "支援自訂爬蟲參數（搜尋關鍵字、結果數量等）"
             ],
-            "tags": ["網頁爬蟲", "Apify", "YouTube", "資料收集", "自動化", "API整合", "資料提取"],
+            "tags": [
+                "網頁爬蟲",
+                "Apify",
+                "YouTube",
+                "資料收集",
+                "自動化",
+                "API整合",
+                "資料提取"
+            ],
             "nodes": 6,
             "createdAt": "2025-08-05",
             "updatedAt": "2025-08-05",
@@ -528,7 +712,15 @@
                 "發送後自動更新 Google Sheets 中的發送狀態為 true",
                 "支援不同活動 campaign 的分類管理"
             ],
-            "tags": ["表單", "名單蒐集", "郵件行銷", "Google Sheets", "Gmail", "自動化", "活動報名"],
+            "tags": [
+                "表單",
+                "名單蒐集",
+                "郵件行銷",
+                "Google Sheets",
+                "Gmail",
+                "自動化",
+                "活動報名"
+            ],
             "nodes": 9,
             "createdAt": "2025-07-31",
             "updatedAt": "2025-07-31",
@@ -638,7 +830,7 @@
             }
         },
         "n8n-gmail-pickup-calendar": {
-            "id": "n8n-gmail-pickup-calendar", 
+            "id": "n8n-gmail-pickup-calendar",
             "title": "Gmail 電商取貨提醒自動化",
             "description": "這個工作流程自動監聽 Gmail 中的電商取貨通知信件，並在 Google Calendar 中建立智能取貨提醒。系統能夠識別不同電商平台（一般電商、賣貨便）的到店通知，解析出門市資訊，自動建立個人化的行事曆提醒，避免忘記取貨。\n\n主要功能：\n\n自動信件監聽：每小時檢查 Gmail 中的取貨通知\n多平台支援：支援一般電商和賣貨便的取貨通知\n智能資訊解析：自動提取門市名稱和取貨資訊\n個人化提醒：建立包含門市資訊的行事曆事件\n雙重提醒：設定 20 分鐘和 40 分鐘前提醒",
             "detailedDescription": [
@@ -649,7 +841,15 @@
                 "設定彈出提醒（20 分鐘前和 40 分鐘前）",
                 "自動同步到個人 Google 行事曆，跨裝置提醒"
             ],
-            "tags": ["自動化", "Gmail", "Google Calendar", "電商", "取貨提醒", "生活助手", "通知解析"],
+            "tags": [
+                "自動化",
+                "Gmail",
+                "Google Calendar",
+                "電商",
+                "取貨提醒",
+                "生活助手",
+                "通知解析"
+            ],
             "nodes": 4,
             "createdAt": "2025-07-23",
             "updatedAt": "2025-07-23",
@@ -667,7 +867,7 @@
                         ]
                     },
                     {
-                        "title": "Google Calendar API 設定", 
+                        "title": "Google Calendar API 設定",
                         "description": "設定 Google Calendar OAuth2 認證",
                         "options": [
                             "在 Google Cloud Console 啟用 Calendar API",
@@ -703,7 +903,7 @@
                     }
                 },
                 {
-                    "title": "賣貨便取貨通知範例", 
+                    "title": "賣貨便取貨通知範例",
                     "description": "展示如何處理賣貨便的取貨通知",
                     "code": {
                         "trigger": "gmail_filter: 賣貨便：您的訂單 已送達",
@@ -725,13 +925,13 @@
                             "default": "每小時第10分鐘"
                         },
                         "searchQuery1": {
-                            "type": "string", 
+                            "type": "string",
                             "description": "電商取貨信件搜尋條件",
                             "default": "送貨狀態 更新為: 已到達"
                         },
                         "searchQuery2": {
                             "type": "string",
-                            "description": "賣貨便取貨信件搜尋條件", 
+                            "description": "賣貨便取貨信件搜尋條件",
                             "default": "賣貨便：您的訂單 已送達"
                         }
                     }
@@ -765,7 +965,7 @@
                             "default": "/收件門市名稱\\\\s*[\\\\r\\\\n]+(.+)/"
                         },
                         "storeNameRegex2": {
-                            "type": "string", 
+                            "type": "string",
                             "description": "賣貨便門市名稱解析正規表達式",
                             "default": "/收件者資訊：[\\\\s\\\\S]*?(\\\\S+門市)/"
                         }
@@ -786,7 +986,15 @@
                 "透過模型選擇器將請求路由到對應的 AI 模型",
                 "提供完整的成本效益分析和模型使用建議"
             ],
-            "tags": ["自動化", "AI", "模型選擇", "OpenAI", "路由器", "成本優化", "聊天機器人"],
+            "tags": [
+                "自動化",
+                "AI",
+                "模型選擇",
+                "OpenAI",
+                "路由器",
+                "成本優化",
+                "聊天機器人"
+            ],
             "nodes": 11,
             "createdAt": "2025-06-24",
             "updatedAt": "2025-06-24",
@@ -809,7 +1017,7 @@
                         "options": [
                             "確認 gpt-4.1-nano 存取權限",
                             "確認 gpt-4o-mini 存取權限",
-                            "確認 gpt-4.1-mini 存取權限", 
+                            "確認 gpt-4.1-mini 存取權限",
                             "確認 o3 存取權限",
                             "確認 gpt-4.1 存取權限"
                         ]
@@ -846,23 +1054,46 @@
                         "rules": [
                             {
                                 "model": "gpt-4.1-nano",
-                                "conditions": ["簡單查詢", "基礎翻譯", "格式轉換", "輸入 < 4K tokens"]
+                                "conditions": [
+                                    "簡單查詢",
+                                    "基礎翻譯",
+                                    "格式轉換",
+                                    "輸入 < 4K tokens"
+                                ]
                             },
                             {
-                                "model": "gpt-4o-mini", 
-                                "conditions": ["文章摘要", "短篇創作", "基礎對話", "輸入 < 16K tokens"]
+                                "model": "gpt-4o-mini",
+                                "conditions": [
+                                    "文章摘要",
+                                    "短篇創作",
+                                    "基礎對話",
+                                    "輸入 < 16K tokens"
+                                ]
                             },
                             {
                                 "model": "gpt-4.1-mini",
-                                "conditions": ["專業文案", "程式碼生成", "多語言內容", "輸入 < 32K tokens"]
+                                "conditions": [
+                                    "專業文案",
+                                    "程式碼生成",
+                                    "多語言內容",
+                                    "輸入 < 32K tokens"
+                                ]
                             },
                             {
                                 "model": "o3",
-                                "conditions": ["複雜推理", "多步驟任務", "工具鏈整合"]
+                                "conditions": [
+                                    "複雜推理",
+                                    "多步驟任務",
+                                    "工具鏈整合"
+                                ]
                             },
                             {
                                 "model": "gpt-4.1",
-                                "conditions": ["輸入 ≥ 32K tokens", "高風險領域", "最高準確度"]
+                                "conditions": [
+                                    "輸入 ≥ 32K tokens",
+                                    "高風險領域",
+                                    "最高準確度"
+                                ]
                             }
                         ]
                     }
@@ -880,7 +1111,13 @@
                         "supportedModels": {
                             "type": "array",
                             "description": "支援的模型列表",
-                            "default": ["gpt-4.1-nano", "gpt-4o-mini", "gpt-4.1-mini", "o3", "gpt-4.1"]
+                            "default": [
+                                "gpt-4.1-nano",
+                                "gpt-4o-mini",
+                                "gpt-4.1-mini",
+                                "o3",
+                                "gpt-4.1"
+                            ]
                         }
                     }
                 },
@@ -925,7 +1162,9 @@
                         "structuredSchema": {
                             "type": "object",
                             "description": "結構化輸出格式",
-                            "default": {"model": "string"}
+                            "default": {
+                                "model": "string"
+                            }
                         }
                     }
                 }
@@ -945,7 +1184,13 @@
                 "支援 appendOrUpdate 模式，避免重複記錄",
                 "包含 Google Sheets 模板連結，方便快速設定"
             ],
-            "tags": ["自動化", "Webhook", "Portaly", "Google Sheets", "訂單記錄"],
+            "tags": [
+                "自動化",
+                "Webhook",
+                "Portaly",
+                "Google Sheets",
+                "訂單記錄"
+            ],
             "nodes": 8,
             "createdAt": "2025-06-18",
             "updatedAt": "2025-06-18",
@@ -1077,7 +1322,9 @@
                         "matchingColumns": {
                             "type": "array",
                             "description": "用於比對的欄位",
-                            "default": ["id"]
+                            "default": [
+                                "id"
+                            ]
                         },
                         "autoMapInputData": {
                             "type": "boolean",
@@ -1115,7 +1362,15 @@
                 "支援 Facebook 和 Instagram API 整合",
                 "提供簡潔的兩節點解決方案"
             ],
-            "tags": ["自動化", "Meta", "Facebook", "Instagram", "Webhook", "驗證", "API"],
+            "tags": [
+                "自動化",
+                "Meta",
+                "Facebook",
+                "Instagram",
+                "Webhook",
+                "驗證",
+                "API"
+            ],
             "nodes": 2,
             "createdAt": "2025-06-02",
             "updatedAt": "2025-06-02",
@@ -1242,7 +1497,12 @@
                         "supportedEvents": {
                             "type": "array",
                             "description": "支援的事件類型",
-                            "default": ["messages", "messaging_postbacks", "messaging_optins", "message_deliveries"]
+                            "default": [
+                                "messages",
+                                "messaging_postbacks",
+                                "messaging_optins",
+                                "message_deliveries"
+                            ]
                         }
                     }
                 }
@@ -1260,7 +1520,16 @@
                 "支援批量測試和準確度統計",
                 "提供完整的 AI 模型評估流程範例"
             ],
-            "tags": ["自動化", "AI", "評估", "分類", "Google Sheets", "OpenRouter", "測試", "範例"],
+            "tags": [
+                "自動化",
+                "AI",
+                "評估",
+                "分類",
+                "Google Sheets",
+                "OpenRouter",
+                "測試",
+                "範例"
+            ],
             "nodes": 5,
             "createdAt": "2025-06-01",
             "updatedAt": "2025-06-01",
@@ -1318,11 +1587,26 @@
                     "description": "範例測試資料格式",
                     "code": {
                         "testItems": [
-                            {"item": "蘋果", "category": "水果"},
-                            {"item": "狗", "category": "動物"},
-                            {"item": "香蕉", "category": "水果"},
-                            {"item": "貓", "category": "動物"},
-                            {"item": "橘子", "category": "水果"}
+                            {
+                                "item": "蘋果",
+                                "category": "水果"
+                            },
+                            {
+                                "item": "狗",
+                                "category": "動物"
+                            },
+                            {
+                                "item": "香蕉",
+                                "category": "水果"
+                            },
+                            {
+                                "item": "貓",
+                                "category": "動物"
+                            },
+                            {
+                                "item": "橘子",
+                                "category": "水果"
+                            }
                         ]
                     }
                 }
@@ -1414,7 +1698,16 @@
                 "生成包含摘要、類別統計、Top 5 店家和消費矩陣的詳細報告",
                 "自動將分析結果發送到 Slack 頻道，方便隨時查看"
             ],
-            "tags": ["自動化", "發票", "記帳", "Gmail", "Google Sheets", "AI", "消費分析", "Slack"],
+            "tags": [
+                "自動化",
+                "發票",
+                "記帳",
+                "Gmail",
+                "Google Sheets",
+                "AI",
+                "消費分析",
+                "Slack"
+            ],
             "nodes": 22,
             "createdAt": "2025-05-02",
             "updatedAt": "2025-05-02",
@@ -1503,7 +1796,12 @@
                         "pollTimes": {
                             "type": "array",
                             "description": "檢查郵件的時間",
-                            "default": [{"hour": 20, "minute": 20}]
+                            "default": [
+                                {
+                                    "hour": 20,
+                                    "minute": 20
+                                }
+                            ]
                         }
                     }
                 },
@@ -1586,7 +1884,14 @@
                 "自動計算並追蹤 token 使用量和成本",
                 "支援圖片縮圖預覽功能"
             ],
-            "tags": ["自動化", "AI", "圖像生成", "OpenAI", "Google Drive", "Google Sheets"],
+            "tags": [
+                "自動化",
+                "AI",
+                "圖像生成",
+                "OpenAI",
+                "Google Drive",
+                "Google Sheets"
+            ],
             "nodes": 12,
             "createdAt": "2025-04-25",
             "updatedAt": "2025-04-25",
@@ -1709,7 +2014,13 @@
                 "識別包含 AI 模型的節點",
                 "將結果記錄到 Google Sheets"
             ],
-            "tags": ["自動化", "AI", "模型檢查", "n8n", "Google Sheets"],
+            "tags": [
+                "自動化",
+                "AI",
+                "模型檢查",
+                "n8n",
+                "Google Sheets"
+            ],
             "nodes": 10,
             "createdAt": "2025-04-27",
             "updatedAt": "2025-04-27",
@@ -1770,7 +2081,15 @@
                 "自動儲存所有交易記錄到 Google 試算表",
                 "支援重試機制，處理辨識錯誤情況"
             ],
-            "tags": ["自動化", "AI", "記帳", "拆帳", "Line", "收據辨識", "Google Sheets"],
+            "tags": [
+                "自動化",
+                "AI",
+                "記帳",
+                "拆帳",
+                "Line",
+                "收據辨識",
+                "Google Sheets"
+            ],
             "nodes": 32,
             "createdAt": "2025-04-21",
             "updatedAt": "2025-04-21",
@@ -1902,7 +2221,15 @@
                 "提供iOS捷徑連結自動同步到健康App",
                 "智能避免短時間重複提醒功能"
             ],
-            "tags": ["自動化", "健康", "Slack", "喝水提醒", "OpenAI", "Google Sheets", "iOS捷徑"],
+            "tags": [
+                "自動化",
+                "健康",
+                "Slack",
+                "喝水提醒",
+                "OpenAI",
+                "Google Sheets",
+                "iOS捷徑"
+            ],
             "nodes": 20,
             "createdAt": "2025-03-09",
             "updatedAt": "2025-03-09",
@@ -2063,7 +2390,15 @@
                 "使用 HTTP Request 節點與 Line Messaging API 整合",
                 "包含詳細的 JSON 格式範例和參數說明"
             ],
-            "tags": ["自動化", "Line", "訊息機器人", "Webhook", "API", "教學範例", "多媒體訊息"],
+            "tags": [
+                "自動化",
+                "Line",
+                "訊息機器人",
+                "Webhook",
+                "API",
+                "教學範例",
+                "多媒體訊息"
+            ],
             "nodes": 20,
             "createdAt": "2025-02-17",
             "updatedAt": "2025-10-20",
@@ -2219,7 +2554,13 @@
                         "supportedTypes": {
                             "type": "array",
                             "description": "支援的訊息類型",
-                            "default": ["text", "image", "audio", "sticker", "location"]
+                            "default": [
+                                "text",
+                                "image",
+                                "audio",
+                                "sticker",
+                                "location"
+                            ]
                         }
                     }
                 }
@@ -2236,7 +2577,14 @@
                 "記錄到 Google Sheets 進行追蹤",
                 "提供便捷的繳費狀態更新機制"
             ],
-            "tags": ["自動化", "信用卡", "帳單管理", "Gmail", "Google Calendar", "Google Sheets"],
+            "tags": [
+                "自動化",
+                "信用卡",
+                "帳單管理",
+                "Gmail",
+                "Google Calendar",
+                "Google Sheets"
+            ],
             "nodes": 32,
             "createdAt": "2025-02-17",
             "updatedAt": "2025-02-17",
@@ -2374,7 +2722,14 @@
                 "自動發送到指定 Slack 頻道",
                 "提供 Moze 快速記帳連結"
             ],
-            "tags": ["自動化", "記帳", "外送", "Gmail", "Slack", "Moze"],
+            "tags": [
+                "自動化",
+                "記帳",
+                "外送",
+                "Gmail",
+                "Slack",
+                "Moze"
+            ],
             "nodes": 6,
             "createdAt": "2024-03-19",
             "updatedAt": "2024-03-19",
@@ -2448,7 +2803,14 @@
                 "使用條件判斷控制迴圈執行",
                 "適用於需要處理大量分頁資料的情境"
             ],
-            "tags": ["自動化", "迴圈", "分頁", "API", "教學", "範例"],
+            "tags": [
+                "自動化",
+                "迴圈",
+                "分頁",
+                "API",
+                "教學",
+                "範例"
+            ],
             "nodes": 7,
             "createdAt": "2024-03-21",
             "updatedAt": "2024-03-21",
@@ -2523,7 +2885,14 @@
                 "包含 token 驗證機制",
                 "支援時間戳記功能"
             ],
-            "tags": ["自動化", "社交媒體", "Instagram", "API", "貼文發佈", "範例"],
+            "tags": [
+                "自動化",
+                "社交媒體",
+                "Instagram",
+                "API",
+                "貼文發佈",
+                "範例"
+            ],
             "nodes": 8,
             "createdAt": "2025-04-16",
             "updatedAt": "2025-04-16",
@@ -2615,7 +2984,15 @@
                 "包含完整的表結構和流程說明",
                 "支援可擴展的使用者限制功能"
             ],
-            "tags": ["自動化", "資料庫", "Supabase", "執行限制", "計數器", "條件判斷", "範例"],
+            "tags": [
+                "自動化",
+                "資料庫",
+                "Supabase",
+                "執行限制",
+                "計數器",
+                "條件判斷",
+                "範例"
+            ],
             "nodes": 9,
             "createdAt": "2025-04-17",
             "updatedAt": "2025-04-17",
@@ -2680,4 +3057,4 @@
             }
         }
     }
-} 
+}
