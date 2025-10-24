@@ -2,13 +2,13 @@
 footer {
     background-color: rgba(45, 45, 45, 0.8);
     box-shadow: 0 -2px 4px rgba(0,0,0,0.2);
-    padding: 0;
+    padding: 1rem 0;
     position: relative;
     z-index: 1000;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50px;
+    min-height: 50px;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-top: 1px solid var(--border-color);
@@ -20,17 +20,50 @@ footer {
     margin: 0 auto;
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    gap: 0.5rem;
     padding: 0 2rem;
 }
 
 .copyright {
     color: var(--text-secondary);
     font-size: 0.9rem;
-    line-height: 50px;
     text-align: center;
+}
+
+.social-buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-button {
+    color: var(--text-secondary, #b3b3b3);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    text-decoration: none;
+}
+
+.social-button:hover {
+    color: var(--text-primary, #ffffff);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.social-button svg {
+    width: 18px;
+    height: 18px;
 }
 
 /* 響應式設計 */
