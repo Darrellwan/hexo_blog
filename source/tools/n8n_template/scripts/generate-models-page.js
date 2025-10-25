@@ -37,9 +37,19 @@ const SEO_CONFIG = {
 
 /**
  * 生成單個模板卡片 HTML
+ * @param {object} model - 模板資料
+ * @param {string} id - 模板 ID
+ * @param {number} index - 卡片索引（用於判斷是否為高優先級圖片）
  */
-function createModelCard(model, id) {
+function createModelCard(model, id, index) {
     const tagsHTML = model.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+
+    // LCP 優化：前 6 張圖片設為高優先級
+    const isHighPriority = index < 6;
+    const fetchPriorityAttr = isHighPriority ? ' fetchpriority="high"' : '';
+
+    // 圖片路徑（優先使用 webp）
+    const imageUrl = `data/bg/${id}.webp`;
 
     return `
                 <div class="model-card" data-nodes="${model.nodes || 0}" data-title="${model.title}" data-date="${model.updatedAt}">
@@ -48,7 +58,7 @@ function createModelCard(model, id) {
                         <h3 class="card-title">${model.title}</h3>
                     </div>
                     <div class="card-image" id="card-image-${id}">
-                        即將上傳 1:1 比例圖片
+                        <img src="${imageUrl}" alt="${model.title}"${fetchPriorityAttr} style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
                     </div>
                     <div class="card-content">
                         <div class="card-description">${formatDescription(model.detailedDescription)}</div>
@@ -270,7 +280,7 @@ function generateModelsPage() {
 
     // 4. 生成卡片 HTML
     console.log('🎨 生成卡片 HTML...');
-    const cardsHTML = modelEntries.map(({ id, model }) => createModelCard(model, id)).join('\n');
+    const cardsHTML = modelEntries.map(({ id, model }, index) => createModelCard(model, id, index)).join('\n');
 
     // 5. 生成結構化數據
     console.log('📊 生成結構化數據...');
