@@ -44,9 +44,12 @@ const SEO_CONFIG = {
 function createModelCard(model, id, index) {
     const tagsHTML = model.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
 
-    // LCP 優化：前 6 張圖片設為高優先級
-    const isHighPriority = index < 6;
-    const fetchPriorityAttr = isHighPriority ? ' fetchpriority="high"' : '';
+    // LCP 優化：前 6 張使用 eager loading，其餘使用 lazy loading
+    const loadingAttr = index < 6 ? ' loading="eager"' : ' loading="lazy"';
+    // 前 6 張設為最高優先級
+    const fetchPriorityAttr = index < 6 ? ' fetchpriority="high"' : '';
+    // 所有圖片使用非同步解碼
+    const decodingAttr = ' decoding="async"';
 
     // 圖片路徑（優先使用 webp）
     const imageUrl = `data/bg/${id}.webp`;
@@ -58,7 +61,7 @@ function createModelCard(model, id, index) {
                         <h3 class="card-title">${model.title}</h3>
                     </div>
                     <div class="card-image" id="card-image-${id}">
-                        <img src="${imageUrl}" alt="${model.title}"${fetchPriorityAttr} style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
+                        <img src="${imageUrl}" alt="${model.title}"${loadingAttr}${fetchPriorityAttr}${decodingAttr} style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
                     </div>
                     <div class="card-content">
                         <div class="card-description">${formatDescription(model.detailedDescription)}</div>

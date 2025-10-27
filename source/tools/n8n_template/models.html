@@ -530,29 +530,7 @@
             }
         }
 
-        /* 動畫 */
-        .model-card {
-            animation: card-fade-in 0.5s ease forwards;
-            opacity: 0;
-        }
-        
-        @keyframes card-fade-in {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .model-card:nth-child(1) { animation-delay: 0.1s; }
-        .model-card:nth-child(2) { animation-delay: 0.2s; }
-        .model-card:nth-child(3) { animation-delay: 0.3s; }
-        .model-card:nth-child(4) { animation-delay: 0.4s; }
-        .model-card:nth-child(5) { animation-delay: 0.5s; }
-        .model-card:nth-child(6) { animation-delay: 0.6s; }
+        /* 動畫已移除以優化 LCP */
 
         /* Email 複製通知樣式 */
         .copy-notification {
@@ -737,7 +715,7 @@
                         <h3 class="card-title">LINE Messaging Community 節點範本</h3>
                     </div>
                     <div class="card-image" id="card-image-n8n_line_messaging_community">
-                        <img src="data/bg/n8n_line_messaging_community.webp" alt="LINE Messaging Community 節點範本" fetchpriority="high" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
+                        <img src="data/bg/n8n_line_messaging_community.webp" alt="LINE Messaging Community 節點範本" loading="eager" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
                     </div>
                     <div class="card-content">
                         <div class="card-description">接收 LINE Bot Webhook 事件（訊息、postback）,使用 Switch 節點依據事件類型進行分流處理,message 事件會自動觸發回覆訊息,支援 postback 事件處理（按鈕互動）,手動觸發模式可主動推播訊息給特定使用者,使用 Set 節點設定目標使用者的 LINE UID,支援單一使用者精準推播功能,包含完整的 LINE Messaging API 整合範例</div>
@@ -768,7 +746,7 @@
                         <h3 class="card-title">OpenAI Sora-2 文字轉影片自動生成</h3>
                     </div>
                     <div class="card-image" id="card-image-n8n-sora2-prompt-to-video">
-                        <img src="data/bg/n8n-sora2-prompt-to-video.webp" alt="OpenAI Sora-2 文字轉影片自動生成" fetchpriority="high" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
+                        <img src="data/bg/n8n-sora2-prompt-to-video.webp" alt="OpenAI Sora-2 文字轉影片自動生成" loading="eager" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
                     </div>
                     <div class="card-content">
                         <div class="card-description">接收文字提示詞，透過 OpenAI Sora-2 API 發起影片生成請求,自動輪詢檢查影片生成狀態（queued/in_progress/completed）,使用 Wait 節點實現智能等待機制，避免頻繁查詢,當影片生成完成後，自動下載影片內容,將影片上傳到指定的 Google Drive 資料夾,支援 720x1280 和 1280x720 等不同解析度,可選擇 4、8 或 12 秒的影片長度,包含詳細的 Sora API 定價說明和參數選項</div>
@@ -799,7 +777,7 @@
                         <h3 class="card-title">n8n DataTables 完整功能示範</h3>
                     </div>
                     <div class="card-image" id="card-image-darrell-n8n-demo-datatables">
-                        <img src="data/bg/darrell-n8n-demo-datatables.webp" alt="n8n DataTables 完整功能示範" fetchpriority="high" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
+                        <img src="data/bg/darrell-n8n-demo-datatables.webp" alt="n8n DataTables 完整功能示範" loading="eager" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
                     </div>
                     <div class="card-content">
                         <div class="card-description">使用 Form Trigger 建立互動式表單收集用戶評價資料,表單包含 email（文字）、評分（數字）、訂閱選擇（單選）、生日（日期）四種資料類型,Insert 操作：將表單提交的資料自動寫入 DataTables,Get Row(s) 操作：使用 ilike 條件搜尋包含特定文字的資料,If Row Exists 操作：純判斷資料是否存在，不回傳資料內容,If Row Does Not Exist 操作：判斷資料不存在時的處理邏輯,Update 操作：更新現有資料的特定欄位（如評分）,Upsert 操作：智能判斷資料存在則更新，不存在則新增,Delete 操作：根據 email 條件刪除指定的測試資料,包含完整的 Sticky Note 說明每個操作的用途和注意事項</div>
@@ -830,7 +808,7 @@
                         <h3 class="card-title">Google nano banana 替換圖片</h3>
                     </div>
                     <div class="card-image" id="card-image-darrell-n8n-demo-gemini_nano banana_change_image">
-                        <img src="data/bg/darrell-n8n-demo-gemini_nano banana_change_image.webp" alt="Google nano banana 替換圖片" fetchpriority="high" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
+                        <img src="data/bg/darrell-n8n-demo-gemini_nano banana_change_image.webp" alt="Google nano banana 替換圖片" loading="eager" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
                     </div>
                     <div class="card-content">
                         <div class="card-description">使用 Google Drive Trigger 監控指定資料夾的檔案變更,透過 Filter 節點篩選符合條件的圖片檔案格式,使用 Google Drive Download 節點下載觸發的原始圖片,設定 AI Agent 節點進行圖片內容替換處理,配置 Google Gemini Chat Model 節點使用 gemini-2.5-flash-image-preview 模型,設定圖片生成提示詞：「一個男人在凱旋門拿著原本的產品，產生圖片給我」,使用 Convert to File 節點將 AI 生成結果轉換為檔案格式,透過 Google Drive Upload 節點將處理完成的圖片儲存到輸出資料夾,自動命名檔案：使用時間戳記格式「yyyyMMdd_HHmmss.副檔名」,完整自動化流程：從上傳到處理到儲存全程無需人工介入</div>
@@ -861,7 +839,7 @@
                         <h3 class="card-title">房屋資訊爬蟲到 Google Sheet</h3>
                     </div>
                     <div class="card-image" id="card-image-n8n-web-scrawler-practice-house-scraper">
-                        <img src="data/bg/n8n-web-scrawler-practice-house-scraper.webp" alt="房屋資訊爬蟲到 Google Sheet" fetchpriority="high" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
+                        <img src="data/bg/n8n-web-scrawler-practice-house-scraper.webp" alt="房屋資訊爬蟲到 Google Sheet" loading="eager" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
                     </div>
                     <div class="card-content">
                         <div class="card-description">透過手動觸發器啟動房屋資訊爬蟲流程,使用 HTTP Request 節點請求房屋網站資料,透過 HTML 節點解析房屋列表，提取每筆房屋的 HTML 結構,使用 Split Out 節點將房屋列表分離成個別的房屋項目,透過詳細的 HTML 解析提取房屋標題、社區名稱、地址等資訊,提取建物坪數、主陽台坪數、房間格局、樓層資訊等詳細規格,收集建築年份、建築類型、停車資訊、物件特色等附加資訊,抓取關注人數、價格、價格單位、價格備註等市場資訊,使用 Set 節點整理資料並新增資料來源標記,透過 Google Sheets 節點將所有資料自動儲存到指定試算表</div>
@@ -892,7 +870,7 @@
                         <h3 class="card-title">Apify 撈 Youtube 影片資訊 Demo</h3>
                     </div>
                     <div class="card-image" id="card-image-n8n-Apify-demo">
-                        <img src="data/bg/n8n-Apify-demo.webp" alt="Apify 撈 Youtube 影片資訊 Demo" fetchpriority="high" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
+                        <img src="data/bg/n8n-Apify-demo.webp" alt="Apify 撈 Youtube 影片資訊 Demo" loading="eager" fetchpriority="high" decoding="async" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
                     </div>
                     <div class="card-content">
                         <div class="card-description">透過手動觸發啟動 Apify YouTube 搜尋爬蟲任務,執行指定的 Apify Actor 進行資料爬取,使用 Get run 節點檢索任務執行狀態和基本資訊,透過 If 節點判斷任務是否成功完成 (status !== SUCCEEDED),任務未完成時使用 Wait 節點等待 3 秒後重新檢查,任務完成後從對應的 Dataset 中提取所有爬蟲結果,支援自訂爬蟲參數（搜尋關鍵字、結果數量等）</div>
@@ -923,7 +901,7 @@
                         <h3 class="card-title">表單名單蒐集與自動化郵件發送</h3>
                     </div>
                     <div class="card-image" id="card-image-n8n-from-collect-email-and-send">
-                        <img src="data/bg/n8n-from-collect-email-and-send.webp" alt="表單名單蒐集與自動化郵件發送" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
+                        <img src="data/bg/n8n-from-collect-email-and-send.webp" alt="表單名單蒐集與自動化郵件發送" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
                     </div>
                     <div class="card-content">
                         <div class="card-description">部署美觀的表單收集介面，包含 email 和 name 必填欄位,表單提交後自動將資料寫入 Google Sheets，包含填寫時間和活動標籤,使用 Filter 節點篩選尚未發送郵件的聯絡人,透過 Gmail 節點批量發送個人化郵件,發送後自動更新 Google Sheets 中的發送狀態為 true,支援不同活動 campaign 的分類管理</div>
@@ -954,7 +932,7 @@
                         <h3 class="card-title">Gmail 電商取貨提醒自動化</h3>
                     </div>
                     <div class="card-image" id="card-image-n8n-gmail-pickup-calendar">
-                        <img src="data/bg/n8n-gmail-pickup-calendar.webp" alt="Gmail 電商取貨提醒自動化" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
+                        <img src="data/bg/n8n-gmail-pickup-calendar.webp" alt="Gmail 電商取貨提醒自動化" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
                     </div>
                     <div class="card-content">
                         <div class="card-description">監聽 Gmail 中包含「送貨狀態 更新為: 已到達」的電商到店信件,監聽 Gmail 中包含「賣貨便：您的訂單 已送達」的賣貨便通知,使用正規表達式解析信件內容，提取門市名稱,在 Google Calendar 中建立當日晚上 8 點的取貨提醒事件,設定彈出提醒（20 分鐘前和 40 分鐘前）,自動同步到個人 Google 行事曆，跨裝置提醒</div>
@@ -985,7 +963,7 @@
                         <h3 class="card-title">AI 選 AI 模型</h3>
                     </div>
                     <div class="card-image" id="card-image-n8n-ai-choose-model">
-                        <img src="data/bg/n8n-ai-choose-model.webp" alt="AI 選 AI 模型" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
+                        <img src="data/bg/n8n-ai-choose-model.webp" alt="AI 選 AI 模型" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
                     </div>
                     <div class="card-content">
                         <div class="card-description">接收使用者的聊天輸入並分析請求內容,使用專業的模型路由器分析請求的複雜度和需求,根據輸入長度、任務類型和複雜度選擇最適合的模型,支援 gpt-4.1-nano（簡單查詢）、gpt-4o-mini（基礎對話）、gpt-4.1-mini（專業內容）、o3（複雜推理）、gpt-4.1（高精度任務）,使用結構化輸出解析器確保回傳格式正確,透過模型選擇器將請求路由到對應的 AI 模型,提供完整的成本效益分析和模型使用建議</div>
@@ -1016,7 +994,7 @@
                         <h3 class="card-title">Portaly 商品銷售 Webhook 自動記錄</h3>
                     </div>
                     <div class="card-image" id="card-image-n8n_template_portaly_demo">
-                        <img src="data/bg/n8n_template_portaly_demo.webp" alt="Portaly 商品銷售 Webhook 自動記錄" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
+                        <img src="data/bg/n8n_template_portaly_demo.webp" alt="Portaly 商品銷售 Webhook 自動記錄" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
                     </div>
                     <div class="card-content">
                         <div class="card-description">接收來自 Portaly 平台的商品銷售 Webhook 通知,提取並整理固定欄位資料：訂單ID、產品ID、客戶資訊、金額、折扣等,使用 Split Out 節點處理客戶自訂欄位資料,透過 Code 節點將自訂欄位轉換為易讀格式,使用 Merge 節點整合所有資料,自動將完整訂單資訊儲存到 Google Sheets,支援 appendOrUpdate 模式，避免重複記錄,包含 Google Sheets 模板連結，方便快速設定</div>
@@ -1047,7 +1025,7 @@
                         <h3 class="card-title">Meta Webhook Challenge 驗證回應</h3>
                     </div>
                     <div class="card-image" id="card-image-meta-challenge-respond">
-                        <img src="data/bg/meta-challenge-respond.webp" alt="Meta Webhook Challenge 驗證回應" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
+                        <img src="data/bg/meta-challenge-respond.webp" alt="Meta Webhook Challenge 驗證回應" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
                     </div>
                     <div class="card-content">
                         <div class="card-description">接收來自 Meta 平台的 Webhook 驗證請求,從查詢參數中提取 hub.challenge 值,使用 Respond to Webhook 節點回傳挑戰值,完成 Meta Webhook 驗證程序,支援 Facebook 和 Instagram API 整合,提供簡潔的兩節點解決方案</div>
@@ -1078,7 +1056,7 @@
                         <h3 class="card-title">n8n Evaluations 功能示範：AI 項目分類</h3>
                     </div>
                     <div class="card-image" id="card-image-n8n-template-evaluations_demo_item">
-                        <img src="data/bg/n8n-template-evaluations_demo_item.webp" alt="n8n Evaluations 功能示範：AI 項目分類" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
+                        <img src="data/bg/n8n-template-evaluations_demo_item.webp" alt="n8n Evaluations 功能示範：AI 項目分類" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
                     </div>
                     <div class="card-content">
                         <div class="card-description">使用 n8n Evaluation Trigger 從 Google Sheets 讀取測試資料,透過 AI Agent 使用 OpenRouter Gemma 模型進行項目分類,系統提示詞設計確保只回答「動物」或「水果」,使用 Evaluation 節點將結果寫回 Google Sheets,支援批量測試和準確度統計,提供完整的 AI 模型評估流程範例</div>
@@ -1109,7 +1087,7 @@
                         <h3 class="card-title">Gmail 電子發票轉存 Google Sheet + AI 分析消費</h3>
                     </div>
                     <div class="card-image" id="card-image-gmail_parse_invoice_to_sheet_and_analyze">
-                        <img src="data/bg/gmail_parse_invoice_to_sheet_and_analyze.webp" alt="Gmail 電子發票轉存 Google Sheet + AI 分析消費" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
+                        <img src="data/bg/gmail_parse_invoice_to_sheet_and_analyze.webp" alt="Gmail 電子發票轉存 Google Sheet + AI 分析消費" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
                     </div>
                     <div class="card-content">
                         <div class="card-description">每月定時監控財政部電子發票整合服務平台郵件,自動辨識並提取郵件附件中的發票資料,智能區分「發票主資料(M)」和「商品明細(D)」,將發票主資料存入「發票」工作表（載具資訊、發票資訊、商店資訊等）,將商品明細存入「細項」工作表（發票號碼、品項名稱、價格等）,使用 xAI Grok 模型分析消費模式與趨勢,生成包含摘要、類別統計、Top 5 店家和消費矩陣的詳細報告,自動將分析結果發送到 Slack 頻道，方便隨時查看</div>
@@ -1140,7 +1118,7 @@
                         <h3 class="card-title">ChatGPT Image-1 圖像生成與自動儲存</h3>
                     </div>
                     <div class="card-image" id="card-image-n8n_gpt_image_1_with_drive_and_sheet">
-                        <img src="data/bg/n8n_gpt_image_1_with_drive_and_sheet.webp" alt="ChatGPT Image-1 圖像生成與自動儲存" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
+                        <img src="data/bg/n8n_gpt_image_1_with_drive_and_sheet.webp" alt="ChatGPT Image-1 圖像生成與自動儲存" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
                     </div>
                     <div class="card-content">
                         <div class="card-description">接收使用者的文字提示透過 ChatGPT 聊天介面,使用 OpenAI GPT-Image-1 模型生成多張圖片,自動將圖片存儲到 Google Drive 指定資料夾,在 Google Sheets 記錄圖片生成歷史和連結,自動計算並追蹤 token 使用量和成本,支援圖片縮圖預覽功能</div>
@@ -1171,7 +1149,7 @@
                         <h3 class="card-title">檢查 n8n 正在使用的 AI 模型</h3>
                     </div>
                     <div class="card-image" id="card-image-check_which_ai_models_are_used_in_your_workflows">
-                        <img src="data/bg/check_which_ai_models_are_used_in_your_workflows.webp" alt="檢查 n8n 正在使用的 AI 模型" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
+                        <img src="data/bg/check_which_ai_models_are_used_in_your_workflows.webp" alt="檢查 n8n 正在使用的 AI 模型" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
                     </div>
                     <div class="card-content">
                         <div class="card-description">遍歷所有 n8n 工作流程,識別包含 AI 模型的節點,將結果記錄到 Google Sheets</div>
@@ -1202,7 +1180,7 @@
                         <h3 class="card-title">Line 收據AI辨識自動記帳</h3>
                     </div>
                     <div class="card-image" id="card-image-n8n_japan_receipt_ai_recognition_expense_sharing">
-                        <img src="data/bg/n8n_japan_receipt_ai_recognition_expense_sharing.webp" alt="Line 收據AI辨識自動記帳" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
+                        <img src="data/bg/n8n_japan_receipt_ai_recognition_expense_sharing.webp" alt="Line 收據AI辨識自動記帳" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
                     </div>
                     <div class="card-content">
                         <div class="card-description">透過 Line 接收圖片或直接輸入資訊,使用 OpenAI 辨識日文收據上的關鍵資訊,自動提取品項、金額、店家和日期資訊,提供單人記帳和多人拆帳選項,自動儲存所有交易記錄到 Google 試算表,支援重試機制，處理辨識錯誤情況</div>
@@ -1233,7 +1211,7 @@
                         <h3 class="card-title">Slack自動喝水提醒</h3>
                     </div>
                     <div class="card-image" id="card-image-n8n_remember_to_drink_water">
-                        <img src="data/bg/n8n_remember_to_drink_water.webp" alt="Slack自動喝水提醒" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
+                        <img src="data/bg/n8n_remember_to_drink_water.webp" alt="Slack自動喝水提醒" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
                     </div>
                     <div class="card-content">
                         <div class="card-description">使用OpenAI生成專業中醫風格的喝水提醒訊息,每小時隨機時間自動發送Slack提醒,提供多種容量選項按鈕記錄喝水量,視覺化顯示每日喝水進度（水滴進度條）,自動記錄喝水時間和容量到Google Sheets,提供iOS捷徑連結自動同步到健康App,智能避免短時間重複提醒功能</div>
@@ -1264,7 +1242,7 @@
                         <h3 class="card-title">Line Message API 完整教學範例</h3>
                     </div>
                     <div class="card-image" id="card-image-line_message">
-                        <img src="data/bg/line_message.webp" alt="Line Message API 完整教學範例" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
+                        <img src="data/bg/line_message.webp" alt="Line Message API 完整教學範例" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
                     </div>
                     <div class="card-content">
                         <div class="card-description">接收來自 Line 的 Webhook 訊息,條件判斷：僅處理 message 類型事件,使用 replyToken 自動回覆相同內容給使用者,支援主動推送訊息功能（需要 Line UID）,完整的 Webhook 範例說明：文字、圖片、聲音、貼圖、表情符號、位置,使用 HTTP Request 節點與 Line Messaging API 整合,包含詳細的 JSON 格式範例和參數說明</div>
@@ -1295,7 +1273,7 @@
                         <h3 class="card-title">別忘記繳費:信用卡帳單自動建日曆提醒</h3>
                     </div>
                     <div class="card-image" id="card-image-creditcard">
-                        <img src="data/bg/creditcard.webp" alt="別忘記繳費:信用卡帳單自動建日曆提醒" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
+                        <img src="data/bg/creditcard.webp" alt="別忘記繳費:信用卡帳單自動建日曆提醒" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
                     </div>
                     <div class="card-content">
                         <div class="card-description">自動Email中的帳單資訊,解析 PDF 檔案並提取繳費資訊,同步到 Google Calendar 建立提醒事項,記錄到 Google Sheets 進行追蹤,提供便捷的繳費狀態更新機制</div>
@@ -1326,7 +1304,7 @@
                         <h3 class="card-title">外送記帳自動化</h3>
                     </div>
                     <div class="card-image" id="card-image-food_delivery_easy_expense">
-                        <img src="data/bg/food_delivery_easy_expense.webp" alt="外送記帳自動化" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
+                        <img src="data/bg/food_delivery_easy_expense.webp" alt="外送記帳自動化" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
                     </div>
                     <div class="card-content">
                         <div class="card-description">監控 UberEats 訂單郵件,提取訂單金額與商家資訊,自動發送到指定 Slack 頻道,提供 Moze 快速記帳連結</div>
@@ -1357,7 +1335,7 @@
                         <h3 class="card-title">While True 迴圈範例：分頁資料處理</h3>
                     </div>
                     <div class="card-image" id="card-image-demo_while_loop_example">
-                        <img src="data/bg/demo_while_loop_example.webp" alt="While True 迴圈範例：分頁資料處理" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
+                        <img src="data/bg/demo_while_loop_example.webp" alt="While True 迴圈範例：分頁資料處理" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
                     </div>
                     <div class="card-content">
                         <div class="card-description">展示 n8n 中實現 while 迴圈的方法,模擬分頁 API 資料處理流程,提供可自訂的參數設定,使用條件判斷控制迴圈執行,適用於需要處理大量分頁資料的情境</div>
@@ -1388,7 +1366,7 @@
                         <h3 class="card-title">Instagram API 貼文發佈範例</h3>
                     </div>
                     <div class="card-image" id="card-image-instagram_api_demo_publish">
-                        <img src="data/bg/instagram_api_demo_publish.webp" alt="Instagram API 貼文發佈範例" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
+                        <img src="data/bg/instagram_api_demo_publish.webp" alt="Instagram API 貼文發佈範例" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
                     </div>
                     <div class="card-content">
                         <div class="card-description">使用 Instagram Graph API 發佈貼文,支援透過圖片 URL 上傳圖片,可自訂貼文說明文字,包含 token 驗證機制,支援時間戳記功能</div>
@@ -1419,7 +1397,7 @@
                         <h3 class="card-title">Supabase限制工作流程執行次數</h3>
                     </div>
                     <div class="card-image" id="card-image-demo_limit_the_workflow_execution_by_supabase">
-                        <img src="data/bg/demo_limit_the_workflow_execution_by_supabase.webp" alt="Supabase限制工作流程執行次數" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
+                        <img src="data/bg/demo_limit_the_workflow_execution_by_supabase.webp" alt="Supabase限制工作流程執行次數" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
                     </div>
                     <div class="card-content">
                         <div class="card-description">使用Supabase資料庫記錄工作流程執行次數,當執行次數達到上限（預設50次）時自動停止,展示Supabase與n8n的整合方式,提供清晰的條件判斷和資料操作流程,包含完整的表結構和流程說明,支援可擴展的使用者限制功能</div>
@@ -2660,8 +2638,23 @@
         }
 
         // 頁面加載完成後執行
-        document.addEventListener('DOMContentLoaded', updatePageContent);
-        
+        document.addEventListener('DOMContentLoaded', function() {
+            updatePageContent();
+
+            // 手機版圖片載入優化：將第 5-6 張卡片改為 lazy loading
+            if (window.innerWidth < 768) {
+                const cards = document.querySelectorAll('.model-card');
+                [4, 5].forEach(index => {
+                    if (cards[index]) {
+                        const img = cards[index].querySelector('img');
+                        if (img && !img.complete) {
+                            img.loading = 'lazy';
+                        }
+                    }
+                });
+            }
+        });
+
         // 防止 schema-generator.js 再次執行生成結構化數據
         window.schemaGeneratorExecuted = true;
     </script>
