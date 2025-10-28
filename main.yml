@@ -241,9 +241,15 @@ markdown:
 
 clean_css:
   enable: true
-  exclude: 
+  exclude:
     - '*.min.css'
   options:
     compatibility: 'ie10+'
     level: 2
     rebase: false
+
+# Mermaid Diagram Configuration
+mermaid_diagram:
+  version: "10.6.1"
+  theme: "dark"
+  class_name: "mermaid-diagram"

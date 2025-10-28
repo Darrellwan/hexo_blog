@@ -47,6 +47,7 @@
     "hexo-generator-sitemap": "^3.0.1",
     "hexo-generator-tag": "^2.0.0",
     "hexo-helper-seo-structured-data": "^0.0.3",
+    "hexo-mermaid-diagram": "^1.0.0",
     "hexo-related-popular-posts": "^5.0.1",
     "hexo-renderer-ejs": "^2.0.0",
     "hexo-renderer-markdown-it": "github:hexojs/hexo-renderer-markdown-it",

@@ -375,7 +375,7 @@ pre, code {
         font-weight: 500;
         font-size: 0.95em;
         margin-right: 12px;
-        width: 140px;
+        width: 160px;
         flex-shrink: 0;
         transition: color 0.2s ease;
       }
@@ -417,6 +417,7 @@ pre, code {
         font-size: 1em;
         margin-right: 0;
         margin-bottom: 4px;
+        width: 100%;
         min-width: auto;
       }
       
@@ -582,5 +583,25 @@ pre, code {
 @media (max-width: 768px) {
   .site-subtitle {
     display: none;
+  }
+}
+
+// ========================================
+// Mermaid Diagram Color Override
+// ========================================
+.mermaid-diagram-iframe {
+  .flowchart-link {
+    stroke: #ffffff !important;
+    stroke-width: 2px !important;
+  }
+
+  .marker {
+    fill: #ffffff !important;
+    stroke: #ffffff !important;
+  }
+
+  .edgePath .path {
+    stroke: #ffffff !important;
+    stroke-width: 2px !important;
   }
 }
