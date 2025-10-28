@@ -1,5 +1,5 @@
 ---
-title: n8n Merge 節點教學-解決多來源資料合併的問題，完整介紹 Merge 的各個選項
+title: n8n Merge 節點教學-解決多來源資料合併的問題
 tags:
   - n8n
   - n8n節點介紹
