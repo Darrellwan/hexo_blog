@@ -327,7 +327,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     { id: 'updates', title: 'n8n 功能更新' },
     { id: 'deployment', title: 'n8n 部署與設定' }
   ] %}
-  
+
+  {# n8n 模板分享區塊 - 固定置頂卡片 #}
+  {% set templatesPinnedCards = [
+    {
+      title: "Darrell 模板分享",
+      link: "https://www.darrelltw.com/tools/n8n_template/models.html",
+      image: "/gallery/n8n-template-website.webp",
+      description: "Darrell 自製分享模板頁面，提供個人的模板分享"
+    }
+  ] %}
+
   {% set tutorials = [{
       title: "模板分享：面試大師",
       link: "https://www.threads.com/@ironv.careerlife/post/DLIIVgqy-HB",
@@ -412,12 +422,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="n8n-resources-content">
     <div class="n8n-main-content">
       {# ========= 共用區塊 Macro ========= #}
-      {% macro renderSection(cid, title) %}
+      {% macro renderSection(cid, title, pinnedCards) %}
       {% set list = get_n8n_posts_by_category(cid) %}
       {% if list.length > 0 %}
       <section id="{{ cid }}" class="n8n-section">
         <h2>{{ title }}</h2>
         <div class="n8n-articles">
+          {# 如果有置頂卡片陣列，先渲染所有置頂卡片 #}
+          {% if pinnedCards %}
+            {% for pinnedCard in pinnedCards %}
+              <article class="n8n-article-card n8n-pinned-card">
+                <a href="{{ pinnedCard.link }}" class="n8n-article-link" target="_blank" rel="noopener"
+                   onclick="trackClick('{{ pinnedCard.link }}', '{{ pinnedCard.title }}', 'Darrell TW', '{{ cid }}-pinned')">
+                  <div class="n8n-article-image" style="--bg-image: url('{{ pinnedCard.image }}');">
+                    <img src="{{ pinnedCard.image }}"
+                         alt="{{ pinnedCard.title }} - n8n {{ cid }}置頂卡片"
+                         loading="lazy"
+                         decoding="async"
+                         width="320" height="320">
+                  </div>
+                  <div class="n8n-article-info">
+                    <h3>{{ pinnedCard.title }}</h3>
+                    <p>{{ pinnedCard.description }}</p>
+                  </div>
+                </a>
+              </article>
+            {% endfor %}
+          {% endif %}
+
+          {# 渲染其他文章卡片 #}
           {% set counter2 = 0 %}
           {% for post in list %}
               <article class="n8n-article-card">
@@ -445,7 +478,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       {% endmacro %}
 
       {% for section in sections %}
-        {{ renderSection(section.id, section.title) }}
+        {% if section.id == 'templates' %}
+          {{ renderSection(section.id, section.title, templatesPinnedCards) }}
+        {% else %}
+          {{ renderSection(section.id, section.title, null) }}
+        {% endif %}
       {% endfor %}
       
       <section id="tutorials" class="n8n-section">

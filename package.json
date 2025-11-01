@@ -12,7 +12,7 @@
     "server": "hexo server --config 'main.yml'",
     "test": "npm run clean && npm run generate_custom && npm run server_custom --skip-scripts",
     "test-full": "npm run clean && npm run images:process && npm run generate_custom && npm run server_custom ",
-    "generate_custom": "hexo generate --config './main.yml'",
+    "generate_custom": "hexo generate --config './main.yml' | grep -vE 'Generated:|Rendered:|Updated:'",
     "server_custom": "hexo server --config './main.yml'",
     "server_custom_draft": "hexo server --drafts --config './main.yml'",
     "generate": "hexo clean && npm run images:process && hexo generate --config 'main.yml' && npm run n8n-sitemap && npm run n8n-snapshots && hexo server --config 'main.yml' ",

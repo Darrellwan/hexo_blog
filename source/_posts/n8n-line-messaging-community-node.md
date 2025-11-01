@@ -13,6 +13,7 @@ bgImage: blog-n8n-line-messaging-node-bg.jpg
 preload:
   - blog-n8n-line-messaging-node-bg.jpg
 date: 2025-10-21 13:23:12
+modified: 2025-10-30 16:50:12
 ---
 
 {% darrellImageCover blog-n8n-line-messaging-node blog-n8n-line-messaging-node-bg.jpg max-800 %}
@@ -192,6 +193,37 @@ LINE Messaging Trigger 節點接收事件，取得 `replyToken` 並使用 Reply 
 ### 功能 4：Get Profile（取得用戶資料）
 
 使用場景：取得 LINE 用戶的個人資料（顯示名稱、頭像、狀態訊息）
+
+關鍵參數：
+- User ID：要查詢的用戶 ID
+
+回傳資料：
+- `displayName`：用戶名稱
+- `pictureUrl`：頭像圖片網址
+- `statusMessage`：狀態
+
+{% darrellImage800 n8n_line_messaging-get_profile_setting n8n_line_messaging-get_profile_setting.png max-800 %}
+---
+
+### 功能 5: Flex Message 支援！
+
+使用場景：取得 LINE 用戶的個人資料（顯示名稱、頭像、狀態訊息）
+
+關鍵參數：
+- User ID：要查詢的用戶 ID
+
+回傳資料：
+- `displayName`：用戶名稱
+- `pictureUrl`：頭像圖片網址
+- `statusMessage`：狀態
+
+{% darrellImage800 n8n_line_messaging-get_profile_setting n8n_line_messaging-get_profile_setting.png max-800 %}
+---
+
+### 功能 6： Loading Animation
+
+使用場景：顯示 Loading Animation，讓使用者清楚知道訊息已經被接收且正在處理中。
+不然有些場景如果套用 AI 會有幾十秒的等待時間，使用者可能誤以為沒有處理又大量傳送訊息。
 
 關鍵參數：
 - User ID：要查詢的用戶 ID

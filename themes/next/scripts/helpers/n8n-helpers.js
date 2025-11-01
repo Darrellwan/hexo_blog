@@ -127,12 +127,12 @@ hexo.extend.helper.register('get_n8n_post_category_section', function(post) {
 // 獲取特定分類的文章
 hexo.extend.helper.register('get_n8n_posts_by_category', function(categoryName) {
   const self = this;
-  
+
   const posts = this.site.posts.data.filter(post => {
     const category = self.get_n8n_post_category_section(post);
     return category === categoryName;
   });
-  
+
   return posts.sort((a, b) => b.date - a.date);
 });
 

@@ -168,7 +168,7 @@ function customLightGallery(args, content) {
         width = dims.width;
         height = dims.height;
         dimensionsFound = true;
-        console.log(`[darrellImage] Found similar path by filename: ${originalImageSrc} -> ${bestMatch} (${width}x${height})`);
+        // console.log(`[darrellImage] Found similar path by filename: ${originalImageSrc} -> ${bestMatch} (${width}x${height})`);
         if (debugMode) console.log(`[DEBUG] All similar keys found: ${JSON.stringify(similarKeys)}`);
       }
     }
@@ -339,7 +339,6 @@ function customLightGallery800h(args, content) {
         width = dims.width;
         height = dims.height;
         dimensionsFound = true;
-        console.log(`[darrellImageh800] Found similar path by filename: ${originalImageSrc} -> ${bestMatch} (${width}x${height})`);
       }
     }
   }

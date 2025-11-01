@@ -24,8 +24,7 @@ hexo.extend.filter.register('before_post_render', function(data) {
       // 如果是字符串，轉為數組
       data.tags = [data.tags, 'n8n'];
     } else {
-      // Hexo 對象的情況，不直接操作，讓 Hexo 自己處理
-      console.log('Skip adding n8n tag - tags is already a Hexo object');
+      // console.log('Skip adding n8n tag - tags is already a Hexo object');
     }
     
     // 處理分類
@@ -41,8 +40,7 @@ hexo.extend.filter.register('before_post_render', function(data) {
       // 如果是字符串，轉為數組
       data.categories = [data.categories, 'n8n'];
     } else {
-      // Hexo 對象的情況，不直接操作，讓 Hexo 自己處理
-      console.log('Skip adding n8n category - categories is already a Hexo object');
+      // console.log('Skip adding n8n category - categories is already a Hexo object');
     }
     
     // 根據標題自動判斷n8n_category
