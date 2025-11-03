@@ -1,0 +1,925 @@
+{
+  "name": "[public]n8n-threads-回覆小精靈",
+  "nodes": [
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "a587162c-26ac-41e2-b950-ad5e4693807b",
+              "leftValue": "={{ $json.text }}",
+              "rightValue": "Line",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "42bcc24b-da2f-4c93-ac47-df0686a73216",
+              "leftValue": "={{ $json.text }}",
+              "rightValue": "line",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        896,
+        0
+      ],
+      "id": "c6ad5d25-8968-4648-912c-1a32ce7484c0",
+      "name": "Filter-是否有關鍵字"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1120,
+        0
+      ],
+      "id": "fac56b44-99d5-41c5-a1c7-91126487e658",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "formTitle": "n8n 回覆小精靈",
+        "formDescription": "記得先在 Threads 貼文底下回應 n8n 才會收到模板喔！",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "email",
+              "fieldType": "email",
+              "placeholder": "abc123@gmail.com",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "threads帳號",
+              "placeholder": "darrell_tw_",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "要順便訂閱 n8n 週報嗎",
+              "fieldType": "radio",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "好(已訂閱)"
+                  },
+                  {
+                    "option": "先不用"
+                  }
+                ]
+              },
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "appendAttribution": false,
+          "path": "n8n-threads-reply-automation",
+          "respondWithOptions": {
+            "values": {
+              "formSubmittedText": "感謝填寫，小精靈確認有留言後就會寄送模板到信箱中！"
+            }
+          },
+          "customCss": ":root {\n\t--font-family: 'Open Sans', sans-serif;\n\t--font-weight-normal: 400;\n\t--font-weight-bold: 600;\n\t--font-size-body: 12px;\n\t--font-size-label: 14px;\n\t--font-size-test-notice: 12px;\n\t--font-size-input: 14px;\n\t--font-size-header: 20px;\n\t--font-size-paragraph: 14px;\n\t--font-size-link: 12px;\n\t--font-size-error: 12px;\n\t--font-size-html-h1: 28px;\n\t--font-size-html-h2: 20px;\n\t--font-size-html-h3: 16px;\n\t--font-size-html-h4: 14px;\n\t--font-size-html-h5: 12px;\n\t--font-size-html-h6: 10px;\n\t--font-size-subheader: 14px;\n\t\n\t/* Colors - Dark Mode */\n\t--color-background: #0f1117;\n\t--color-test-notice-text: #ffa940;\n\t--color-test-notice-bg: #1f1a15;\n\t--color-test-notice-border: #3d2f1a;\n\t--color-card-bg: #1a1d26;\n\t--color-card-border: #2d3142;\n\t--color-card-shadow: rgba(0, 0, 0, 0.3);\n\t--color-link: #a8adb8;\n\t--color-header: #e8eaed;\n\t--color-label: #d4d6db;\n\t--color-input-bg: #252932;\n\t--color-input-bg-focus: #2d3240;\n\t--color-input-border: #383d4f;\n\t--color-input-text: #e8eaed;\n\t--color-focus-border: rgb(138, 124, 255);\n\t--color-submit-btn-bg: #ff6d5a;\n\t--color-submit-btn-text: #ffffff;\n\t--color-error: #ff5566;\n\t--color-required: #ff6d5a;\n\t--color-clear-button-bg: #4a4e5c;\n\t--color-html-text: #d4d6db;\n\t--color-html-link: #ff8a77;\n\t--color-header-subtext: #9ca0ab;\n\t\n\t/* Accent Colors */\n\t--color-accent-primary: #7c6aff;\n\t--color-accent-glow: rgba(124, 106, 255, 0.2);\n\t--color-hover-overlay: rgba(255, 255, 255, 0.05);\n\t\n\t/* Border Radii */\n\t--border-radius-card: 12px;\n\t--border-radius-input: 8px;\n\t--border-radius-clear-btn: 50%;\n\t--card-border-radius: 12px;\n\t\n\t/* Spacing */\n\t--padding-container-top: 24px;\n\t--padding-card: 28px;\n\t--padding-test-notice-vertical: 14px;\n\t--padding-test-notice-horizontal: 24px;\n\t--margin-bottom-card: 20px;\n\t--padding-form-input: 14px;\n\t--card-padding: 28px;\n\t--card-margin-bottom: 20px;\n\t\n\t/* Dimensions */\n\t--container-width: 448px;\n\t--submit-btn-height: 52px;\n\t--checkbox-size: 20px;\n\t\n\t/* Effects */\n\t--box-shadow-card: 0px 8px 24px 0px var(--color-card-shadow), \n\t                    0px 0px 1px 0px rgba(124, 106, 255, 0.1);\n\t--box-shadow-card-hover: 0px 12px 32px 0px rgba(0, 0, 0, 0.4),\n\t                         0px 0px 12px 0px var(--color-accent-glow);\n\t--box-shadow-input-focus: 0px 0px 0px 3px var(--color-accent-glow),\n\t                          0px 0px 8px 0px rgba(124, 106, 255, 0.15);\n\t--box-shadow-button: 0px 4px 12px 0px rgba(255, 109, 90, 0.3);\n\t--box-shadow-button-hover: 0px 6px 16px 0px rgba(255, 109, 90, 0.4);\n\t--opacity-placeholder: 0.35;\n\t\n\t/* Transitions */\n\t--transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n\t--transition-fast: all 0.15s ease;\n\t\n\t/* Gradients */\n\t--gradient-card: linear-gradient(135deg, #1a1d26 0%, #1f2230 100%);\n\t--gradient-submit: linear-gradient(135deg, #ff6d5a 0%, #ff8a77 100%);\n\t--gradient-accent: linear-gradient(135deg, #7c6aff 0%, #9381ff 100%);\n}\n\n/* 額外的深色模式優化樣式 */\n* {\n\ttransition: var(--transition-smooth);\n}\n\nbody {\n\tbackground: var(--color-background);\n\tcolor: var(--color-html-text);\n}\n\n.card {\n\tbackground: var(--gradient-card);\n\tborder: 1px solid var(--color-card-border);\n\tbox-shadow: var(--box-shadow-card);\n\ttransition: var(--transition-smooth);\n}\n\n.card:hover {\n\tbox-shadow: var(--box-shadow-card-hover);\n\ttransform: translateY(-2px);\n}\n\ninput, textarea, select {\n\tbackground: var(--color-input-bg);\n\tborder: 1px solid var(--color-input-border);\n\tcolor: var(--color-input-text);\n\ttransition: var(--transition-smooth);\n}\n\ninput:focus, textarea:focus, select:focus {\n\tborder-color: var(--color-focus-border);\n\tbox-shadow: var(--box-shadow-input-focus);\n\tbackground: var(--color-input-bg-focus);\n\toutline: none;\n}\n\ninput::placeholder, textarea::placeholder {\n\tcolor: var(--color-input-text);\n\topacity: var(--opacity-placeholder);\n}\n\nbutton[type=\"submit\"] {\n\tbackground: var(--gradient-submit);\n\tbox-shadow: var(--box-shadow-button);\n\ttransition: var(--transition-smooth);\n}\n\nbutton[type=\"submit\"]:hover {\n\tbox-shadow: var(--box-shadow-button-hover);\n\ttransform: translateY(-2px);\n\tfilter: brightness(1.1);\n}\n\na {\n\tcolor: var(--color-html-link);\n\ttransition: var(--transition-fast);\n}\n\na:hover {\n\tcolor: var(--color-accent-primary);\n\ttext-decoration: none;\n}\n\n/* 滾動條樣式 */\n::-webkit-scrollbar {\n\twidth: 8px;\n\theight: 8px;\n}\n\n::-webkit-scrollbar-track {\n\tbackground: var(--color-background);\n}\n\n::-webkit-scrollbar-thumb {\n\tbackground: var(--color-input-border);\n\tborder-radius: 4px;\n}\n\n::-webkit-scrollbar-thumb:hover {\n\tbackground: var(--color-accent-primary);\n}"
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        -880,
+        -448
+      ],
+      "id": "5caac858-0d3e-45f2-85b3-d1f0cc76662d",
+      "name": "表單搜集 email + threads 賬號",
+      "webhookId": "40bc7a42-fa4d-43a5-981c-5abf9b6370a0"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d1f4932a-1131-46e1-87f0-2002496fb22d",
+              "name": "email",
+              "value": "={{ $json.email }}",
+              "type": "string"
+            },
+            {
+              "id": "4f85c38b-2359-4b21-90ff-105c4510eca3",
+              "name": "threads",
+              "value": "={{ $json['threads帳號'] }}",
+              "type": "string"
+            },
+            {
+              "id": "5f18214e-eec8-416d-a5c0-6420a2b58345",
+              "name": "subscribe",
+              "value": "={{ $json['要順便訂閱 n8n 週報嗎']==\"好(已訂閱)\" }}",
+              "type": "boolean"
+            },
+            {
+              "id": "39e04b59-3e5d-4670-b7f4-e3ae10c5e540",
+              "name": "submittedAt",
+              "value": "={{ $json.submittedAt }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -656,
+        -448
+      ],
+      "id": "9cead76f-06ff-4efb-b8ec-c39316acb440",
+      "name": "整理表單資料"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1ElUs5D6Chvl4oEAryFFcCxN4q0fu5jDzmr7FQjiLDl8",
+          "mode": "list",
+          "cachedResultName": "n8n-threads-回覆小精靈",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ElUs5D6Chvl4oEAryFFcCxN4q0fu5jDzmr7FQjiLDl8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 509427616,
+          "mode": "list",
+          "cachedResultName": "20251101_email",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ElUs5D6Chvl4oEAryFFcCxN4q0fu5jDzmr7FQjiLDl8/edit#gid=509427616"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "email"
+          ],
+          "schema": [
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "threads",
+              "displayName": "threads",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "subscribe",
+              "displayName": "subscribe",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "submittedAt",
+              "displayName": "submittedAt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "sent",
+              "displayName": "sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "sent_at",
+              "displayName": "sent_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -432,
+        -448
+      ],
+      "id": "16dc5fef-457a-49c6-a2f0-462078e960ff",
+      "name": "儲存表單資料到 Google Sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "atsKA0m2aQXeL6i6",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "triggerAtMinute": 25
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -896,
+        16
+      ],
+      "id": "312380d1-118a-4edf-a648-f56a66b89a72",
+      "name": "每小時啟動"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "4a29d656-1636-4ad8-a45f-905b176f3294",
+              "name": "threads_post_id",
+              "value": "18157424656398787",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -672,
+        16
+      ],
+      "id": "b64109c9-98da-490d-af82-d2fc1d8965b3",
+      "name": "設定要抓取回覆的貼文 id"
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.threads.net/v1.0/{{ $json.threads_post_id }}/replies ",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpQueryAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "fields",
+              "value": "id,media_product_type,media_type,media_url,permalink,username,text,timestamp,shortcode,thumbnail_url,children,is_quote_post,has_replies,root_post,replied_to,is_reply,is_reply_owned_by_me,hide_status,reply_audience,quoted_post,reposted_post,gif_url,topic_tag"
+            }
+          ]
+        },
+        "options": {
+          "pagination": {
+            "pagination": {
+              "paginationMode": "responseContainsNextURL",
+              "nextURL": "={{ $response.body.paging.next }}",
+              "paginationCompleteWhen": "other",
+              "completeExpression": "={{ !$response.body.paging.next }}",
+              "limitPagesFetched": true,
+              "maxRequests": 10
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -448,
+        16
+      ],
+      "id": "0c4856da-b6d4-4da6-b286-a8c44ee09a33",
+      "name": "Threads API 根據貼文 id 取得回覆",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "JfYSBavgB9L5nWFe",
+          "name": "Freshdesk basic"
+        },
+        "httpQueryAuth": {
+          "id": "iKs6A8KLeDstUY4f",
+          "name": "Threads-darrell_tw_"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -224,
+        16
+      ],
+      "id": "aaab22e8-0227-4137-8fbe-c01044f2bea9",
+      "name": "拆開回覆 array 資料",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1ElUs5D6Chvl4oEAryFFcCxN4q0fu5jDzmr7FQjiLDl8",
+          "mode": "list",
+          "cachedResultName": "n8n-threads-回覆小精靈",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ElUs5D6Chvl4oEAryFFcCxN4q0fu5jDzmr7FQjiLDl8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "=20251101",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "text",
+              "displayName": "text",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "username",
+              "displayName": "username",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "sent_email",
+              "displayName": "sent_email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "cellFormat": "RAW"
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        0,
+        16
+      ],
+      "id": "9556ee7b-b430-47ee-96eb-46e166cb4c6a",
+      "name": "回覆資料存入 Sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "atsKA0m2aQXeL6i6",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "4140f9bd-a32e-4fce-9ab3-1ac1b92681f7",
+              "leftValue": "={{ $json.sent }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        432,
+        -112
+      ],
+      "id": "e51a131f-c219-44f0-bb8c-5e84e8c1d0fa",
+      "name": "判斷是否已經寄送過"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.email }}",
+        "subject": "Darrell n8n 模板寄送",
+        "message": "=<!DOCTYPE html>\n<html lang=\"zh-TW\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <title>Darrelltw_n8n 模板寄送</title>\n    <style type=\"text/css\">\n        body {\n            margin: 0;\n            padding: 0;\n            -webkit-text-size-adjust: 100%;\n            -ms-text-size-adjust: 100%;\n        }\n        table {\n            border-collapse: collapse;\n            mso-table-lspace: 0pt;\n            mso-table-rspace: 0pt;\n        }\n        img {\n            border: 0;\n            height: auto;\n            line-height: 100%;\n            outline: none;\n            text-decoration: none;\n            -ms-interpolation-mode: bicubic;\n        }\n    </style>\n</head>\n<body style=\"margin: 0; padding: 0; background-color: #0e0e0e;\">\n    <div style=\"display: none; font-size: 1px; color: #0e0e0e; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;\">\n        感謝留言+填寫表單！立即下載 n8n x LINE Messaging API 完整教學模板\n    </div>\n    <div style=\"display: none; font-size: 1px; color: #0e0e0e; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;\">        &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;        &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;        &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;\n    </div>\n    <table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"background-color: #0e0e0e;\">\n        <tr>\n            <td align=\"center\" style=\"padding: 0;\">\n                <table role=\"presentation\" width=\"700\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"max-width: 700px; width: 100%; background-color: #0e0e0e;\">\n                    \n                    <!-- Header Masthead -->\n                    <tr>\n                        <td style=\"padding: 60px 60px 40px 60px; border-bottom: 1px solid #1a1a1a;\">\n                            <table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n                                <tr>\n                                    <td width=\"33%\" valign=\"middle\">\n                                        <p style=\"margin: 0; font-family: Georgia, 'Times New Roman', serif; font-size: 11px; color: #666666; font-style: italic;\">\n                                        </p>\n                                    </td>\n                                    <td width=\"34%\" align=\"center\" valign=\"middle\">\n                                        <h1 style=\"margin: 0; font-family: 'Didot', 'Bodoni MT', Georgia, serif; font-size: 28px; font-weight: 400; color: #ffffff; letter-spacing: 6px;\">\n                                            Darrelltw 模板寄送\n                                        </h1>\n                                    </td>\n                                    <td width=\"33%\" align=\"right\" valign=\"middle\">\n                                        <p style=\"margin: 0; font-family: Georgia, 'Times New Roman', serif; font-size: 11px; color: #666666; font-style: italic;\">\n                                        </p>\n                                    </td>\n                                </tr>\n                            </table>\n                        </td>\n                    </tr>\n\n                    <!-- Hero Full Bleed -->\n                    <tr>\n                        <td style=\"padding: 0;\">\n                            <a href=\"https://www.darrelltw.com/\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"display: block; text-decoration: none;\">\n                                <img \n                                    src=\"https://st.darrelltw.com/email_hero_20251101.webp\" \n                                    alt=\"活動主視覺\" \n                                    width=\"700\"\n                                    style=\"width: 100%; max-width: 700px; height: auto; display: block; border: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic;\"\n                                >\n                            </a>\n                        </td>\n                    </tr>\n\n                    <!-- Feature Story -->\n                    <tr>\n                        <td style=\"padding: 50px 90px;\">\n                            <table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n                                <tr>\n                                    <td>                                        \n                                        <h2 style=\"margin: 0 0 24px 0; font-family: 'Didot', 'Bodoni MT', Georgia, serif; font-size: 1.8rem; font-weight: 400; color: #ffffff; line-height: 1.1; letter-spacing: -1px;\">\n                                            n8n x Line Messaging Community 節點<br>完整教學模板\n                                        </h2>\n                                        \n                                        <div style=\"width: 80px; height: 1px; background-color: #333333; margin: 0 0 30px 0;\"></div>\n                                        \n                                        <p style=\"margin: 0 0 36px 0; font-family: Georgia, 'Times New Roman', serif; font-size: 15px; line-height: 1.9; color: #999999;\">\n                                            這個模板包含了 n8n 與 LINE Messaging API 的完整整合教學，讓你能夠快速建立自動化的 LINE 訊息系統。下載後即可直接匯入使用。\n                                        </p>\n                                        <p style=\"margin: 0 0 36px 0; font-family: Georgia, 'Times New Roman', serif; font-size: 15px; line-height: 1.9; color: #999999;\">\n                                            如果打開後是 Json 文字，可以全選複製後到 n8n 貼上即可。\n                                        </p>\n                                    </td>\n                                </tr>\n                                \n                                <!-- 置中的下載按鈕 -->\n                                <tr>\n                                    <td align=\"center\" style=\"padding-top: 10px;\">\n                                        <a \n                                                        href=\"https://st.darrelltw.com/n8n_line_messaging_api_community_node_tutorial.json\" \n                                                        download=\"n8n_line_messaging_api_tutorial.json\"\n                                                        target=\"_blank\"\n                                                        rel=\"noopener noreferrer\"\n                                                        style=\"font-family: Georgia, 'Times New Roman', serif; font-size: 11px; font-weight: 400; color: #ffffff; text-decoration: none; letter-spacing: 3px; text-transform: uppercase;\"\n                                                    >\n                                        <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n                                            <tr>\n                                                <td style=\"border: 1px solid #ffffff; padding: 16px 48px;\">\n                                                    \n                                                        Download\n                                                    \n                                                </td>\n                                            </tr>\n                                        </table>\n                                        </a>\n                                    </td>\n                                </tr>\n                            </table>\n                        </td>\n                    </tr>\n\n                    <!-- Divider -->\n                    <tr>\n                        <td style=\"padding: 40px 60px 0 60px;\">\n                            <div style=\"border-top: 1px solid #1a1a1a;\"></div>\n                        </td>\n                    </tr>\n\n                    <!-- Footer -->\n                    <tr>\n                        <td style=\"padding: 50px 90px 60px 90px;\">\n                            <table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n                                <!-- Social Links -->\n                                <tr>\n                                    <td align=\"center\" style=\"padding-bottom: 30px;\">\n                                        <p style=\"margin: 0 0 20px 0; font-family: Georgia, 'Times New Roman', serif; font-size: 10px; color: #666666; letter-spacing: 2px; text-transform: uppercase;\">\n                                            追蹤社群\n                                        </p>\n                                        <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n                                            <tr>\n                                                <td style=\"padding: 0 20px;\">\n                                                    <a href=\"https://www.threads.com/@darrell_tw_\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"font-family: Georgia, 'Times New Roman', serif; font-size: 12px; color: #999999; text-decoration: none;\">Threads</a>\n                                                </td>\n                                                <td style=\"padding: 0 20px;\">\n                                                    <a href=\"https://www.instagram.com/darrell_tw_/\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"font-family: Georgia, 'Times New Roman', serif; font-size: 12px; color: #999999; text-decoration: none;\">Instagram</a>\n                                                </td>\n                                                <td style=\"padding: 0 20px;\">\n                                                    <a href=\"https://www.facebook.com/darrelltw/\" target=\"_blank\" rel=\"noopener noreferrer\" style=\"font-family: Georgia, 'Times New Roman', serif; font-size: 12px; color: #999999; text-decoration: none;\">Facebook</a>\n                                                </td>\n                                            </tr>\n                                        </table>\n                                    </td>\n                                </tr>\n                                \n                                <!-- Contact & Copyright -->\n                                <tr>\n                                    <td align=\"center\">\n                                        <p style=\"margin: 0; font-family: Georgia, 'Times New Roman', serif; font-size: 11px; line-height: 2; color: #555555;\">\n                                            Darrell_tw_<br>\n                                            Taiwan<br>\n                                            <a href=\"mailto:info@darrelltw.com\" style=\"color: #999999; text-decoration: none;\">Email us</a>\n                                        </p>\n                                        <p style=\"margin: 30px 0 0 0; font-family: Georgia, 'Times New Roman', serif; font-size: 10px; color: #444444;\">\n                                            © 2025 All Rights Reserved\n                                        </p>\n                                    </td>\n                                </tr>\n                            </table>\n                        </td>\n                    </tr>\n\n                </table>\n            </td>\n        </tr>\n    </table>\n</body>\n</html>",
+        "options": {
+          "appendAttribution": false,
+          "senderName": "Darrell"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1360,
+        16
+      ],
+      "id": "972cc220-075f-42d1-b240-cabc5008b917",
+      "name": "寄送信件",
+      "webhookId": "a5660eba-9053-4451-83b9-31597d8c3ae8",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "34rX9kxKlJadOY6u",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1ElUs5D6Chvl4oEAryFFcCxN4q0fu5jDzmr7FQjiLDl8",
+          "mode": "list",
+          "cachedResultName": "n8n-threads-回覆小精靈",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ElUs5D6Chvl4oEAryFFcCxN4q0fu5jDzmr7FQjiLDl8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 509427616,
+          "mode": "list",
+          "cachedResultName": "20251101_email",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ElUs5D6Chvl4oEAryFFcCxN4q0fu5jDzmr7FQjiLDl8/edit#gid=509427616"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "email": "={{ $('Loop Over Items').item.json.email }}",
+            "sent": "true",
+            "sent_at": "={{ $now.format('yyyy-MM-dd HH:mm:ss') }}"
+          },
+          "matchingColumns": [
+            "email"
+          ],
+          "schema": [
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "threads",
+              "displayName": "threads",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "subscribe",
+              "displayName": "subscribe",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "submittedAt",
+              "displayName": "submittedAt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "sent",
+              "displayName": "sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "sent_at",
+              "displayName": "sent_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1584,
+        16
+      ],
+      "id": "6927abb8-3b70-4521-a3f8-1cbbc476303f",
+      "name": "將寄送名單更新為已寄送",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "atsKA0m2aQXeL6i6",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1ElUs5D6Chvl4oEAryFFcCxN4q0fu5jDzmr7FQjiLDl8",
+          "mode": "list",
+          "cachedResultName": "n8n-threads-回覆小精靈",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ElUs5D6Chvl4oEAryFFcCxN4q0fu5jDzmr7FQjiLDl8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 509427616,
+          "mode": "list",
+          "cachedResultName": "20251101_email",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ElUs5D6Chvl4oEAryFFcCxN4q0fu5jDzmr7FQjiLDl8/edit#gid=509427616"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        224,
+        -112
+      ],
+      "id": "672a7e27-9191-4147-94af-946a0f902253",
+      "name": "取得表單資料",
+      "executeOnce": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "atsKA0m2aQXeL6i6",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## 紀錄使用者填表單資料",
+        "height": 256,
+        "width": 752
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -960,
+        -528
+      ],
+      "id": "fef1015d-42c8-4e4e-ab5c-69961d05235d",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## 取得 Threads 貼文的回覆\n\n1. 每小時取得一次回覆資料\n2. 存入 Sheet 中\n3. 撈出填表單的名單\n4. 合併之後比對 Threads 帳戶，並且 Merge 合併資料\n5. 過濾已經寄送過的名單\n6. 確認回覆的內容是否正確\n7. 寄出信件\n8. 紀錄已經寄送過",
+        "height": 480,
+        "width": 2704,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -960,
+        -256
+      ],
+      "id": "4f45a157-9171-4ce0-a6c9-4e8a9472bb11",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Created by darrell_tw_ \n\nHi 我是 Darrell\n有 n8n 問題可以找我聊聊\n\n- [n8n 教學資源網站](https://www.darrelltw.com/n8n-tutorial-resources/)\n- [n8n 模板分享網站](https://www.darrelltw.com/tools/n8n_template/models.html)\n\n### Social Media:\n[Website](https://www.darrelltw.com/)\n[Threads](https://www.threads.net/@darrell_tw_)\n[Instagram](https://www.instagram.com/darrell_tw_/)\n[X](https://x.com/darrell_tw_)\n![](https://pub-c093258f61a1463ea03e1a40c141968a.r2.dev/darrell-icon-128.svg)",
+        "height": 468,
+        "width": 296,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1280,
+        -528
+      ],
+      "id": "a3fadd26-36bd-46fd-a678-328472854dc3",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "![](https://st.darrelltw.com/n8n-template-cover-get_reply_and_form_c.jpg)",
+        "height": 736,
+        "width": 1280,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -944,
+        -1280
+      ],
+      "id": "c464d376-b7d1-4a65-8346-08a6d87a8335",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "advanced": true,
+        "mergeByFields": {
+          "values": [
+            {
+              "field1": "threads",
+              "field2": "username"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        672,
+        0
+      ],
+      "id": "95391675-0322-44a1-8c14-8bb5f088fd72",
+      "name": "根據 threads 帳號合併資料"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Filter-是否有關鍵字": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "寄送信件",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "表單搜集 email + threads 賬號": {
+      "main": [
+        [
+          {
+            "node": "整理表單資料",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "整理表單資料": {
+      "main": [
+        [
+          {
+            "node": "儲存表單資料到 Google Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "每小時啟動": {
+      "main": [
+        [
+          {
+            "node": "設定要抓取回覆的貼文 id",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "設定要抓取回覆的貼文 id": {
+      "main": [
+        [
+          {
+            "node": "Threads API 根據貼文 id 取得回覆",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Threads API 根據貼文 id 取得回覆": {
+      "main": [
+        [
+          {
+            "node": "拆開回覆 array 資料",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "拆開回覆 array 資料": {
+      "main": [
+        [
+          {
+            "node": "回覆資料存入 Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "回覆資料存入 Sheet": {
+      "main": [
+        [
+          {
+            "node": "取得表單資料",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "根據 threads 帳號合併資料",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "判斷是否已經寄送過": {
+      "main": [
+        [
+          {
+            "node": "根據 threads 帳號合併資料",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "寄送信件": {
+      "main": [
+        [
+          {
+            "node": "將寄送名單更新為已寄送",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "將寄送名單更新為已寄送": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "取得表單資料": {
+      "main": [
+        [
+          {
+            "node": "判斷是否已經寄送過",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "根據 threads 帳號合併資料": {
+      "main": [
+        [
+          {
+            "node": "Filter-是否有關鍵字",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "f92ce680-d88c-4b75-bc57-d10853cb209e",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "fddb3e91967f1012c95dd02bf5ad21f279fc44715f47a7a96a33433621caa253"
+  },
+  "id": "ETJPy2Xh3epYiEiU",
+  "tags": []
+}

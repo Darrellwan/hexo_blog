@@ -1,5 +1,181 @@
 {
     "models": {
+        "n8n-threads-auto-reply-form-send_email": {
+            "id": "n8n-threads-auto-reply-form-send_email",
+            "title": "Threads 回覆小精靈 - 表單自動寄送模板",
+            "description": "這個工作流程展示如何結合 Threads 貼文回覆、表單搜集和自動寄送 Email 的完整自動化流程。適合用於活動報名、模板發送、資料收集等需要多渠道整合的自動化場景。\n\n主要功能：\n\n表單資料搜集：使用 Form Trigger 收集使用者的 email 和 Threads 帳號\nThreads 回覆監控：每小時自動抓取指定貼文下的回覆，並儲存到 Google Sheets\n智能資料比對：根據 Threads 帳號合併表單資料和回覆資料\n關鍵字過濾：檢查回覆內容是否包含指定關鍵字（如「Line」或「line」）\n自動郵件寄送：符合條件的使用者會收到精美的 HTML 模板郵件，內含下載連結",
+            "detailedDescription": [
+                "表單搜集使用者 email 和 Threads 帳號，自動存入 Google Sheets",
+                "每小時定時抓取 Threads 貼文回覆（支援分頁），並儲存至 Sheet",
+                "讀取表單資料並根據 Threads 帳號（username）智能合併回覆內容",
+                "過濾已寄送名單，並檢查回覆是否包含指定關鍵字（如 Line）",
+                "逐筆寄送精美 HTML 郵件（含下載連結與社群資訊）",
+                "更新 Google Sheets 標記寄送狀態與時間，避免重複寄送"
+            ],
+            "tags": [
+                "Threads",
+                "Gmail",
+                "自動化行銷"
+            ],
+            "nodes": 13,
+            "createdAt": "2025-11-03",
+            "updatedAt": "2025-11-03",
+            "heroImage": "https://st.darrelltw.com/n8n-template-cover-get_reply_and_form_c.jpg",
+            "setup": {
+                "prerequisites": "需要 Threads API 權限、Gmail 帳號、Google Sheets API 存取權限",
+                "steps": [
+                    {
+                        "title": "Threads API 設定",
+                        "description": "在 Meta Developer 取得 Access Token 並設定認證",
+                        "options": [
+                            "前往 Meta Developer 建立應用程式並新增 Threads 產品",
+                            "取得 Access Token 並在 n8n 設定 HTTP Query Auth Credential",
+                            "取得要監控的 Threads 貼文 ID"
+                        ]
+                    },
+                    {
+                        "title": "Google Sheets 設定",
+                        "description": "建立 Sheet 並設定欄位結構",
+                        "options": [
+                            "建立「email」工作表，欄位：email, threads, subscribe, submittedAt, sent, sent_at",
+                            "建立「回覆」工作表，欄位：id, text, username, sent_email",
+                            "在 n8n 設定 Google Sheets OAuth2 Credential 並測試連線"
+                        ]
+                    },
+                    {
+                        "title": "Gmail 設定",
+                        "description": "設定 OAuth2 並自訂郵件內容",
+                        "options": [
+                            "在 n8n 新增 Gmail OAuth2 Credential 並完成授權",
+                            "修改 HTML 郵件模板（下載連結、社群連結、文案）"
+                        ]
+                    },
+                    {
+                        "title": "調整參數設定",
+                        "description": "根據實際需求調整關鍵參數",
+                        "options": [
+                            "更新 Threads 貼文 ID 和關鍵字過濾條件",
+                            "調整執行頻率（預設每小時 25 分）",
+                            "更新 Google Sheets 的 documentId 和 sheetName"
+                        ]
+                    }
+                ]
+            },
+            "examples": [
+                {
+                    "title": "活動模板自動發送",
+                    "description": "在 Threads 發布活動貼文，使用者留言「我要模板」後填寫表單，系統自動比對並寄送",
+                    "code": {
+                        "scenario": "社群活動推廣",
+                        "trigger": "Threads 貼文留言 + 表單填寫",
+                        "condition": "回覆內容包含「Line」或「line」",
+                        "action": "寄送模板下載郵件",
+                        "tracking": "Google Sheets 記錄寄送狀態"
+                    }
+                },
+                {
+                    "title": "課程報名確認",
+                    "description": "結合 Threads 互動和表單資料，自動寄送課程資料給符合條件的學員",
+                    "code": {
+                        "scenario": "線上課程報名",
+                        "trigger": "定時檢查 Threads 回覆 + 表單資料",
+                        "condition": "帳號比對成功且回覆內容符合",
+                        "action": "寄送課程資訊郵件",
+                        "benefit": "減少人工比對時間，提升報名體驗"
+                    }
+                }
+            ],
+            "fields": {
+                "threads": {
+                    "title": "Threads API 設定",
+                    "fields": {
+                        "post_id": {
+                            "type": "string",
+                            "description": "要監控的 Threads 貼文 ID",
+                            "required": true,
+                            "example": "18157424656398787"
+                        },
+                        "access_token": {
+                            "type": "string",
+                            "description": "Threads API Access Token",
+                            "required": true,
+                            "sensitive": true
+                        }
+                    }
+                },
+                "google_sheets": {
+                    "title": "Google Sheets 設定",
+                    "fields": {
+                        "document_id": {
+                            "type": "string",
+                            "description": "Google Sheets 文件 ID",
+                            "required": true,
+                            "example": "1ElUs5D6Chvl4oEAryFFcCxN4q0fu5jDzmr7FQjiLDl8"
+                        },
+                        "email_sheet": {
+                            "type": "string",
+                            "description": "儲存表單資料的工作表名稱",
+                            "required": true,
+                            "default": "20251101_email"
+                        },
+                        "reply_sheet": {
+                            "type": "string",
+                            "description": "儲存回覆資料的工作表名稱",
+                            "required": true,
+                            "default": "20251101"
+                        }
+                    }
+                },
+                "email": {
+                    "title": "郵件設定",
+                    "fields": {
+                        "sender_name": {
+                            "type": "string",
+                            "description": "寄件者名稱",
+                            "default": "Darrell"
+                        },
+                        "subject": {
+                            "type": "string",
+                            "description": "郵件主旨",
+                            "default": "Darrell n8n 模板寄送"
+                        },
+                        "download_url": {
+                            "type": "string",
+                            "description": "模板下載連結",
+                            "required": true,
+                            "example": ""
+                        }
+                    }
+                },
+                "filter": {
+                    "title": "過濾條件設定",
+                    "fields": {
+                        "keywords": {
+                            "type": "array",
+                            "description": "要檢查的關鍵字列表",
+                            "default": [
+                                "Line",
+                                "line"
+                            ]
+                        }
+                    }
+                }
+            },
+            "relatedArticles": [
+                {
+                    "title": "n8n Threads 節點教學",
+                    "url": "https://www.darrelltw.com/n8n-threads-node-tutorial/"
+                },
+                {
+                    "title": "n8n Gmail 節點完整教學",
+                    "url": "https://www.darrelltw.com/n8n-gmail-node-tutorial/"
+                },
+                {
+                    "title": "n8n Google Sheets 節點使用指南",
+                    "url": "https://www.darrelltw.com/n8n-google-sheets-node-tutorial/"
+                }
+            ]
+        },
         "n8n_line_messaging_community": {
             "id": "n8n-line-messaging-community",
             "title": "LINE Messaging Community 節點範本",
