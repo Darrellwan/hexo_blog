@@ -1,5 +1,5 @@
 ---
-title: n8n 部署-官方Cloud、Zeabur、本機部署和Glows.ai 該怎麼選
+title: n8n 部署教學 - 官方Cloud、Zeabur、本機部署和Glows.ai 該怎麼選
 tags:
   - n8n
   - deployment
@@ -7,7 +7,7 @@ categories:
   - n8n
 page_type: post
 id: n8n-deployment
-description: n8n 部署全攻略：官方 Cloud、Zeabur、Docker 和 Glows.ai 方案完整比較，從成本、效能到擴展性，掌握各種部署方式的關鍵差異，找到屬於自己合適的部署方式。
+description: n8n 部署教學：官方 Cloud、Zeabur、Docker 和 Glows.ai 方案完整比較，從成本、效能到擴展性，掌握各種部署方式的關鍵差異，找到屬於自己合適的部署方式。
 bgImage: blog-n8n-deployment-bg.jpg
 preload:
   - blog-n8n-deployment-bg.jpg
