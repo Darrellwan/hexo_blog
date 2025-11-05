@@ -311,6 +311,38 @@
             margin: 0 0.2rem;
         }
 
+        /* 模板總數資訊（桌機版限定） */
+        .template-count-info {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            padding: 0.7rem 1.2rem;
+            background: rgba(255, 140, 0, 0.08);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 140, 0, 0.15);
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .template-count-info:hover {
+            background: rgba(255, 140, 0, 0.12);
+            border-color: rgba(255, 140, 0, 0.25);
+        }
+
+        .template-count-info svg {
+            color: var(--title-color);
+            flex-shrink: 0;
+        }
+
+        .template-count-info strong {
+            color: var(--title-color);
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
         /* Responsive 設計 */
         @media (max-width: 1024px) {
             .search-box-wrapper {
@@ -334,6 +366,11 @@
 
             .clear-search {
                 right: 0.8rem;
+            }
+
+            /* 手機版隱藏模板總數 */
+            .template-count-info {
+                display: none;
             }
         }
 
@@ -704,9 +741,19 @@
                 <div class="search-results-info" id="search-results-info" style="display: none;">
                     找到 <span id="results-count">0</span> 個模板
                 </div>
+                <!-- 模板總數顯示（僅桌機版） -->
+                <div class="template-count-info">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 3h7v7H3z"></path>
+                        <path d="M14 3h7v7h-7z"></path>
+                        <path d="M14 14h7v7h-7z"></path>
+                        <path d="M3 14h7v7H3z"></path>
+                    </svg>
+                    <span>共 <strong id="total-templates-count">24</strong> 個</span>
+                </div>
             </div>
         </div>
-        
+
         <div class="model-grid">
 
                 <div class="model-card" data-nodes="13" data-title="Threads 回覆小精靈 - 表單自動寄送模板" data-date="2025-11-03">
