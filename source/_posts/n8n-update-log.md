@@ -7,16 +7,80 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2025/10/22 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.117.0，正式版本為 1.116.2
+description: n8n 的更新記錄(2025/11/04 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.119.0，正式版本為 1.117.3
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-10-22 14:30:00
+modified: 2025-11-05 11:00:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 1.119.0 Pre-release - 2025-11-03
+
+[Github 1.119.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.119.0)
+
+### Support dynamic node icons using expressions
+動態節點圖示表達式支持
+
+往後節點的圖示可能會隨著節點的設定而不同！
+讓整體的 UI 更好理解該節點代表的意義
+
+第一個有變化的就是大家常用的 `Code Node`
+現在會根據選擇的程式語言不同
+來變換對應的 icon
+
+{% darrellImage800 n8n-1.119.0-dynamic_node_icons_using_expressions n8n-1.119.0-dynamic_node_icons_using_expressions.png max-800 %}
+
+### Guardrails Node: Add new node
+Guardrails Node（新節點）
+
+這個新的節點目前看來跟 AI 有蠻深的關係
+例如用來防止 **Prompt Injection** 攻擊
+大大增加在 n8n 使用 AI 的安全性
+
+`Guardrails` 會在 AI 節點之前先檢查輸入的 Prompt 是否安全
+並且回傳 `Pass` 或 `Fail` 的結果
+
+
+{% darrellImage800 n8n-1.119.0-guardrails_node_add_new_node n8n-1.119.0-guardrails_node_add_new_node.png max-800 %}
+
+以這個設定畫面舉例，你可以選擇要檢查的規則有哪些
+AI 就會先根據這個規則來依序檢查是否這個 prompt 能通過這些檢查
+如果不行，就會告知哪個規則沒有通過，信心程度是多少
+
+{% darrellImage800 n8n-1.119.0-guardrails_node_example n8n-1.119.0-guardrails_node_example.png max-800 %}
+
+### OpenAI Node - Add Responses API support to chat model
+OpenAI Node - 新增 Responses API 支援到 chat model
+
+OpenAI Chat Model 現在可以開啟 **Responses API**
+
+{% darrellImage800 n8n-1.119.0-openai_node_add_responses_api_support_to_chat_model n8n-1.119.0-openai_node_add_responses_api_support_to_chat_model.png max-800 %}
+
+可以開啟 Responses API 來使用一些進階的 OpenAI 功能！
+例如網頁搜尋和執行程式碼等等
+就像是原本在用 ChatGPT 時可以啟用的一些功能一樣
+
+我們用搜尋的方式來測試：
+這是沒有開啟 我幫你搜尋了「darrell_tw_」，找到幾個相關的網 時的結果
+AI 的回覆是 : `我沒有辦法幫你查詢...資訊`
+
+{% darrellImage800 n8n-1.119.0-openai_node_add_responses_api_support_to_chat_model_example_1 n8n-1.119.0-openai_node_add_responses_api_support_to_chat_model_example_1.png max-800 %}
+
+當開啟了 **Responses API** 的 **Web Search** 後
+結果就不一樣了
+AI 回覆：`我幫你搜尋了「...」，找到幾個相關的網路資料`
+
+{% darrellImage800 n8n-1.119.0-openai_node_add_responses_api_support_to_chat_model_example_2 n8n-1.119.0-openai_node_add_responses_api_support_to_chat_model_example_2.png max-800 %}
+
+是個很實用的更新，但大家使用前也可以多參考 **Responses API** 有哪些功能！
+目前選項中的有：
+1. Web Search
+2. Code Interpreter
+3. File Search
 
 ## 1.117.0 Pre-release - 2025-10-21
 

@@ -5973,5 +5973,35 @@
     "width": 1000,
     "height": 1000,
     "mtimeMs": 1762180290784.747
+  },
+  "/_posts/n8n-update-log/n8n-1.119.0-dynamic_node_icons_using_expressions.png": {
+    "width": 1600,
+    "height": 1600,
+    "mtimeMs": 1762309778716.73
+  },
+  "/_posts/n8n-update-log/n8n-1.119.0-guardrails_node_example.png": {
+    "width": 1600,
+    "height": 1600,
+    "mtimeMs": 1762311337451.65
+  },
+  "/_posts/n8n-update-log/n8n-1.119.0-guardrails_node_add_new_node.png": {
+    "width": 1600,
+    "height": 1600,
+    "mtimeMs": 1762311322070.153
+  },
+  "/_posts/n8n-update-log/n8n-1.119.0-openai_node_add_responses_api_support_to_chat_model_example_2.png": {
+    "width": 1758,
+    "height": 1758,
+    "mtimeMs": 1762312918095.133
+  },
+  "/_posts/n8n-update-log/n8n-1.119.0-openai_node_add_responses_api_support_to_chat_model_example_1.png": {
+    "width": 1758,
+    "height": 1758,
+    "mtimeMs": 1762312918513.725
+  },
+  "/_posts/n8n-update-log/n8n-1.119.0-openai_node_add_responses_api_support_to_chat_model.png": {
+    "width": 1600,
+    "height": 1600,
+    "mtimeMs": 1762312243341.798
   }
 }
