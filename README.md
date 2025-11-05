@@ -3,13 +3,13 @@
 ## 📚 最新文章
 
 ### [n8n Merge 節點教學-解決多來源資料合併的問題](https://www.darrelltw.com/n8n-merge-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/10/27 · 6 天前
+📅 2025/10/27 · 8 天前
 
 > n8n Merge 節點完整教學！學會 Append、Combine、Choose Branch、SQL Query 選項的差異，深入了解 Matching Fields、Position 和 All Possible Combinations 的用法
 
 
 ### [n8n Line Messaging 社群節點教學](https://www.darrelltw.com/n8n-line-messaging-community-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/10/21 · 13 天前
+📅 2025/10/21 · 15 天前
 
 > n8n LINE Messaging 社群節點完整教學!使用 @aotoki/n8n-nodes-line-messaging 簡化 LINE Bot 開發,視覺化介面降低出錯率。涵蓋安裝設定、4 大核心功能操作、常見問題排解,以及與 HTTP Request 的使用時機比較
 
@@ -64,8 +64,8 @@
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-110-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-244,950+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/11/03-green?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-246,217+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/11/05-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-11-03 08:15:08*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-11-05 03:48:56*
