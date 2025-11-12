@@ -3,13 +3,13 @@
 ## 📚 最新文章
 
 ### [n8n Merge 節點教學-解決多來源資料合併的問題](https://www.darrelltw.com/n8n-merge-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/10/27 · 12 天前
+📅 2025/10/27 · 15 天前
 
 > n8n Merge 節點完整教學！學會 Append、Combine、Choose Branch、SQL Query 選項的差異，深入了解 Matching Fields、Position 和 All Possible Combinations 的用法
 
 
 ### [n8n Line Messaging 社群節點教學](https://www.darrelltw.com/n8n-line-messaging-community-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/10/21 · 19 天前
+📅 2025/10/21 · 22 天前
 
 > n8n LINE Messaging 社群節點完整教學!使用 @aotoki/n8n-nodes-line-messaging 簡化 LINE Bot 開發,視覺化介面降低出錯率。涵蓋安裝設定、4 大核心功能操作、常見問題排解,以及與 HTTP Request 的使用時機比較
 
@@ -21,7 +21,7 @@
 
 
 ### [n8n DataTables 節點教學 - 直接把資料存在 n8n 裡](https://www.darrelltw.com/n8n-datatables-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/09/25 · 1 個月前
+📅 2025/09/25 · 2 個月前
 
 > n8n 推出 DataTables！ 原生數據存儲無需外部資料庫，支援完整 insert、update、get、delete。
 
@@ -51,7 +51,7 @@
 
 
 ### [Claude Code Agent 實測，建立專屬的開發助理](https://www.darrelltw.com/claude-code-agent/?utm_source=github_readme&utm_medium=referral)
-📅 2025/07/25 · 3 個月前
+📅 2025/07/25 · 4 個月前
 
 > Claude Code 新推出的 Agent 功能讓你可以建立專屬的開發 Agent，透過自然語言指令自動處理重複性的程式設計任務。不再需要每次重新解釋需求，讓 Claude Code Agent 記住你的開發模式。
 
@@ -64,8 +64,8 @@
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-110-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-246,217+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/11/09-green?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-232,832+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/11/12-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-11-09 01:57:38*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-11-12 08:18:54*
