@@ -7,16 +7,56 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2025/11/04 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.119.0，正式版本為 1.117.3
+description: n8n 的更新記錄(2025/11/12 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.120.1，正式版本為 1.119.1
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-11-05 11:00:00
+modified: 2025-11-12 12:00:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 1.120.0 Pre-release - 2025-11-10
+
+[Github 1.120.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.120.0)
+
+### Add workflow descriptions
+工作流描述功能
+
+可以幫 workflow 加上描述訊息了！
+
+以前只能靠 workflow 名稱來理解大概在做什麼
+一旦有大量類似命名的 workflow 出現，就變成很難找到想找的 workflow
+
+現在可以直接在描述欄位寫下更詳細的用途或是教學
+
+{% darrellImage800 n8n-1.120.0-workflow_descriptions n8n-1.120.0-workflow_descriptions.png max-800 %}
+
+### Code Node - Update error message when using .item in Run once for all items mode
+Code Node 錯誤訊息優化
+
+當你在「Run once for all items」模式下使用 `.item` 時
+以前的錯誤訊息可能不夠清楚，讓人不知道問題在哪裡
+現在會給出更明確的提示，告訴你：
+```
+`.item` only works correctly in 'Run Once for Each Item' mode. It will always return the first item here. Use `.first()` instead.
+```
+
+{% darrellImage800 n8n-1.120.0-code_node_error_message n8n-1.120.0-code_node_error_message.png max-800 %}
+
+### Extract from File Node - Add Skip Records With Errors option
+Extract from File Node 新增跳過錯誤記錄選項
+
+處理 csv 的檔案時，很容易遇到一些大大小小的錯誤
+有時候可能就是裡面的其中幾筆資料出錯而已
+
+現在可以開啟「Skip Records With Errors」選項
+自己定義要跳過多少筆資料，而不至於整份檔案讀不到
+
+
+{% darrellImage800 n8n-1.120.0-extract_from_file_skip_errors n8n-1.120.0-extract_from_file_skip_errors.png max-800 %}
 
 ## 1.119.0 Pre-release - 2025-11-03
 

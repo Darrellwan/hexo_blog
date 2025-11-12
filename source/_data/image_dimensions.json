@@ -6007,11 +6007,26 @@
   "/_posts/n8n-deployment/n8n_zeabur-price.png": {
     "width": 2486,
     "height": 1850,
-    "mtimeMs": 1762935186057.11
+    "mtimeMs": 1762935500963.7295
   },
   "/_posts/n8n-deployment/n8n_zeabur-free_plan_server.png": {
     "width": 1465,
     "height": 1242,
-    "mtimeMs": 1762935354296.485
+    "mtimeMs": 1762935500956.7617
+  },
+  "/_posts/n8n-update-log/n8n-1.120.0-workflow_descriptions.png": {
+    "width": 1424,
+    "height": 698,
+    "mtimeMs": 1762938102999.604
+  },
+  "/_posts/n8n-update-log/n8n-1.120.0-extract_from_file_skip_errors.png": {
+    "width": 916,
+    "height": 930,
+    "mtimeMs": 1762940160798.067
+  },
+  "/_posts/n8n-update-log/n8n-1.120.0-code_node_error_message.png": {
+    "width": 1092,
+    "height": 948,
+    "mtimeMs": 1762939905945.637
   }
 }
