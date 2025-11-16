@@ -61,3 +61,7 @@ source/_posts/test-article.md
 .claude/
 */.claude/
 CLAUDE.local.md
+docs/n8n-writing-style.md
+
+# Local development configuration
+main.local.yml

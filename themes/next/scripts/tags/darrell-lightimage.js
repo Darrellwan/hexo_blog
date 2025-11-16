@@ -2,6 +2,32 @@
 
 'use strict';
 
+// 解析包含引號的參數
+// 支援語法: {% tag "alt text with spaces" image.png className %}
+function parseQuotedArgs(args) {
+  const fullString = args.join(' ');
+
+  // 嘗試匹配引號包裹的 alt text
+  const quoteMatch = fullString.match(/^["']([^"']+)["']\s+(.+)$/);
+
+  if (quoteMatch) {
+    const altText = quoteMatch[1];
+    const remaining = quoteMatch[2].trim().split(/\s+/);
+    return {
+      altText: altText,
+      imageSrc: remaining[0] || '',
+      className: remaining[1] || ''
+    };
+  }
+
+  // 如果沒有引號，回退到原有邏輯
+  return {
+    altText: args[0] || '',
+    imageSrc: args[1] || '',
+    className: args[2] || ''
+  };
+}
+
 // 生成 SVG 佔位符
 function generatePlaceholder(width, height) {
   const ratio = (height / width * 100).toFixed(2);
@@ -273,6 +299,86 @@ function customLightGallery800(args, content) {
   const aspectRatio = `${width} / ${height}`;
 
   // 使用 originalImageSrc 進行渲染
+  return `
+  <figure lg-background-color="#282828" class="blog-images ${className}" data-src="${originalImageSrc}" style="aspect-ratio: ${aspectRatio}; background-color: #282828; overflow: hidden;">
+    <img
+      alt="${altText}"
+      data-src="${originalImageSrc}"
+      src="${placeholder}"
+      class="lazyload"
+      width="${width}"
+      height="${height}"
+      loading="lazy"
+      decoding="async"
+      sizes="(min-width: 800px) 930px, 90vw"
+      style="display: block;height: auto; background-color: #f0f0f0">
+  </figure>`
+}
+
+// ============ 支援引號的新標籤 ============
+// 語法: {% darrellImage800Alt "alt text with spaces" image.png max-800 %}
+function customLightGallery800Alt(args, content) {
+  const parsed = parseQuotedArgs(args);
+  let altText = parsed.altText;
+  let originalImageSrc = parsed.imageSrc;
+  let className = parsed.className || "max-800";
+  let width = 800;
+  let height = 450;
+
+  const imageDimensionsData = hexo.locals.get('data')?.image_dimensions;
+  let imageSrcVariants = [];
+  let imageSrcForLookup = originalImageSrc;
+
+  if (imageSrcForLookup && !imageSrcForLookup.startsWith('/') && !imageSrcForLookup.startsWith('http')) {
+    imageSrcForLookup = '/' + imageSrcForLookup;
+    imageSrcVariants.push(imageSrcForLookup);
+  } else {
+    imageSrcVariants.push(imageSrcForLookup);
+  }
+  if (imageSrcForLookup && !imageSrcForLookup.startsWith('/_posts/') && !imageSrcForLookup.startsWith('http')) {
+    imageSrcVariants.push(`/_posts${imageSrcForLookup}`);
+  }
+  if (imageSrcForLookup && imageSrcForLookup.startsWith('/') && !imageSrcForLookup.startsWith('http')) {
+     const noSlashVariant = imageSrcForLookup.substring(1);
+     if (!imageSrcVariants.includes(noSlashVariant)) imageSrcVariants.push(noSlashVariant);
+  }
+
+  let dimensionsFound = false;
+  if (imageDimensionsData) {
+    for (const variant of imageSrcVariants) {
+      if (imageDimensionsData[variant]) {
+        const dims = imageDimensionsData[variant];
+        width = dims.width;
+        height = dims.height;
+        dimensionsFound = true;
+        break;
+      }
+    }
+    if (!dimensionsFound && originalImageSrc && !originalImageSrc.startsWith('http')) {
+      const imageName = originalImageSrc.split('/').pop();
+      const keys = Object.keys(imageDimensionsData);
+      const similarKeys = keys.filter(key => key.endsWith('/' + imageName));
+      if (similarKeys.length > 0) {
+        const bestMatch = similarKeys[0];
+        const dims = imageDimensionsData[bestMatch];
+        width = dims.width;
+        height = dims.height;
+        dimensionsFound = true;
+      }
+    }
+  }
+
+  if (!dimensionsFound && originalImageSrc && !originalImageSrc.startsWith('http')) {
+    // console.warn(`[darrellImage800Alt] Could not find dimensions for: ${originalImageSrc}. Using default ${width}x${height}.`);
+  }
+
+  if(!altText || !originalImageSrc){
+    return ``
+  }
+
+  const placeholder = generatePlaceholder(width, height);
+  const aspectRatio = `${width} / ${height}`;
+
   return `
   <figure lg-background-color="#282828" class="blog-images ${className}" data-src="${originalImageSrc}" style="aspect-ratio: ${aspectRatio}; background-color: #282828; overflow: hidden;">
     <img
@@ -763,6 +869,7 @@ function customVideoLightbox(args) {
   </script>`;
 }
 
+// 舊標籤 (向後相容)
 hexo.extend.tag.register('darrellImage', customLightGallery, {ends: false});
 hexo.extend.tag.register('darrellVideo', customVideoLightbox, {ends: false});
 hexo.extend.tag.register('darrellOnlyImage', customOnlyImage, {ends: false});
@@ -772,3 +879,7 @@ hexo.extend.tag.register('darrellImageCover', customLightGalleryCover, {ends: fa
 hexo.extend.tag.register('darrellVideoSimple', customVideoSimple, {ends: false});
 hexo.extend.tag.register('darrellVideoGradient', customVideoGradient, {ends: false});
 hexo.extend.tag.register('darrellVideoLightbox', customVideoLightbox, {ends: false});
+
+// 新標籤 (支援引號包裹的 alt text)
+// 使用方式: {% darrellImage800Alt "alt text with spaces" image.png max-800 %}
+hexo.extend.tag.register('darrellImage800Alt', customLightGallery800Alt, {ends: false});

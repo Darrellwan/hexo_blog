@@ -10,6 +10,7 @@
     "clean": "hexo clean",
     "deploy": "hexo deploy",
     "server": "hexo server --config 'main.yml'",
+    "dev": "npm run clean && hexo generate --config 'main.yml,main.local.yml' | grep -vE 'Generated:|Rendered:|Updated:' && hexo server --config 'main.yml,main.local.yml'",
     "test": "npm run clean && npm run generate_custom && npm run server_custom --skip-scripts",
     "test-full": "npm run clean && npm run images:process && npm run generate_custom && npm run server_custom ",
     "generate_custom": "hexo generate --config './main.yml' | grep -vE 'Generated:|Rendered:|Updated:'",
