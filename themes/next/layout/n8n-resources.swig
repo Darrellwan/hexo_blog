@@ -414,8 +414,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         {% endif %}
       {% endfor %}
       <li><a href="#tutorials">外部教學</a></li>
-      <li><a href="#related-articles">相關文章</a></li>
       <li><a href="#about">相關連結</a></li>
+      <li><a href="https://www.darrelltw.com/tools/n8n_template/contact.html" class="contact-link" target="_blank" rel="noopener">聯絡我們</a></li>
     </ul>
   </nav>
 
@@ -788,6 +788,87 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   .n8n-nav a:hover, .n8n-nav a.active {
     background-color: var(--n8n-primary);
     color: white;
+  }
+
+  @keyframes contact-border-flow {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 200% 50%;
+    }
+  }
+
+  @keyframes contact-subtle-pulse {
+    0%, 100% {
+      box-shadow:
+        0 0 15px rgba(255, 109, 90, 0.2),
+        0 0 5px rgba(255, 109, 90, 0.3) inset,
+        0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+    50% {
+      box-shadow:
+        0 0 25px rgba(255, 109, 90, 0.3),
+        0 0 8px rgba(255, 109, 90, 0.4) inset,
+        0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  .n8n-nav a.contact-link {
+    color: white;
+    font-weight: 600;
+    position: relative;
+    background: rgba(30, 30, 30, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid transparent;
+    background-image:
+      linear-gradient(rgba(30, 30, 30, 0.95), rgba(30, 30, 30, 0.95)),
+      linear-gradient(
+        90deg,
+        transparent,
+        var(--n8n-primary) 25%,
+        #ff8570 50%,
+        var(--n8n-primary) 75%,
+        transparent
+      );
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    background-size: 100% 100%, 300% 100%;
+    animation: contact-border-flow 4s linear infinite,
+               contact-subtle-pulse 3s ease-in-out infinite;
+  }
+
+  .n8n-nav a.contact-link::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 109, 90, 0.08) 0%,
+      transparent 50%,
+      rgba(0, 0, 0, 0.1) 100%
+    );
+    pointer-events: none;
+  }
+
+  .n8n-nav a.contact-link:hover {
+    background-image:
+      linear-gradient(rgba(30, 30, 30, 0.95), rgba(30, 30, 30, 0.95)),
+      linear-gradient(
+        90deg,
+        transparent,
+        var(--n8n-primary) 25%,
+        #ff8570 50%,
+        var(--n8n-primary) 75%,
+        transparent
+      );
+    box-shadow:
+      0 0 30px rgba(255, 109, 90, 0.4),
+      0 0 10px rgba(255, 109, 90, 0.5) inset,
+      0 1px 3px rgba(0, 0, 0, 0.3);
+    animation: contact-border-flow 2s linear infinite,
+               contact-subtle-pulse 1.5s ease-in-out infinite;
   }
 
   .n8n-resources-content {
