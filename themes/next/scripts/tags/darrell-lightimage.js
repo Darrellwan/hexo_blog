@@ -28,6 +28,40 @@ function parseQuotedArgs(args) {
   };
 }
 
+// 轉換為完整網址
+function getFullUrl(imagePath, context) {
+  // 如果已經是完整網址，直接返回
+  if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+    return imagePath;
+  }
+
+  // 取得網站基礎 URL
+  const siteUrl = (hexo.config.url || 'https://www.darrelltw.com').replace(/\/$/, '');
+
+  // 如果路徑已經是以 / 開頭的絕對路徑，直接組合
+  if (imagePath.startsWith('/')) {
+    return `${siteUrl}${imagePath}`;
+  }
+
+  // 從 context 取得頁面資訊
+  const page = context && context.page ? context.page : (this && this.page ? this.page : null);
+  const pageId = context && context.id ? context.id : (page && page.id ? page.id : null);
+  const pagePath = context && context.path ? context.path : (page && page.path ? page.path : null);
+
+  // 優先使用 page.path，其次使用 id
+  if (pagePath) {
+    // page.path 格式: "n8n-line-message-api/index.html"
+    const cleanPath = pagePath.replace(/index\.html$/, '');
+    return `${siteUrl}/${cleanPath}${imagePath}`;
+  } else if (pageId) {
+    // 使用 id 作為路徑
+    return `${siteUrl}/${pageId}/${imagePath}`;
+  }
+
+  // 備用方案：直接加上 siteUrl
+  return `${siteUrl}/${imagePath}`;
+}
+
 // 生成 SVG 佔位符
 function generatePlaceholder(width, height) {
   const ratio = (height / width * 100).toFixed(2);
@@ -215,12 +249,14 @@ function customLightGallery(args, content) {
   const placeholder = generatePlaceholder(width, height);
   const aspectRatio = `${width} / ${height}`;
 
-  // 使用 originalImageSrc 進行渲染
+  // 轉換為完整網址
+  const fullImageUrl = getFullUrl(originalImageSrc, this);
+
   return `
-  <figure lg-background-color="#282828" class="blog-images ${className}" data-src="${originalImageSrc}" style="aspect-ratio: ${aspectRatio}; background-color: #282828; overflow: hidden;">
+  <figure lg-background-color="#282828" class="blog-images ${className}" data-src="${fullImageUrl}" style="aspect-ratio: ${aspectRatio}; background-color: #282828; overflow: hidden;">
     <img
       alt="${altText}"
-      data-src="${originalImageSrc}"
+      data-src="${fullImageUrl}"
       src="${placeholder}"
       class="lazyload"
       width="${width}"
@@ -298,12 +334,14 @@ function customLightGallery800(args, content) {
   const placeholder = generatePlaceholder(width, height);
   const aspectRatio = `${width} / ${height}`;
 
-  // 使用 originalImageSrc 進行渲染
+  // 轉換為完整網址
+  const fullImageUrl = getFullUrl(originalImageSrc, this);
+
   return `
-  <figure lg-background-color="#282828" class="blog-images ${className}" data-src="${originalImageSrc}" style="aspect-ratio: ${aspectRatio}; background-color: #282828; overflow: hidden;">
+  <figure lg-background-color="#282828" class="blog-images ${className}" data-src="${fullImageUrl}" style="aspect-ratio: ${aspectRatio}; background-color: #282828; overflow: hidden;">
     <img
       alt="${altText}"
-      data-src="${originalImageSrc}"
+      data-src="${fullImageUrl}"
       src="${placeholder}"
       class="lazyload"
       width="${width}"
@@ -379,11 +417,14 @@ function customLightGallery800Alt(args, content) {
   const placeholder = generatePlaceholder(width, height);
   const aspectRatio = `${width} / ${height}`;
 
+  // 轉換為完整網址
+  const fullImageUrl = getFullUrl(originalImageSrc, this);
+
   return `
-  <figure lg-background-color="#282828" class="blog-images ${className}" data-src="${originalImageSrc}" style="aspect-ratio: ${aspectRatio}; background-color: #282828; overflow: hidden;">
+  <figure lg-background-color="#282828" class="blog-images ${className}" data-src="${fullImageUrl}" style="aspect-ratio: ${aspectRatio}; background-color: #282828; overflow: hidden;">
     <img
       alt="${altText}"
-      data-src="${originalImageSrc}"
+      data-src="${fullImageUrl}"
       src="${placeholder}"
       class="lazyload"
       width="${width}"
@@ -460,12 +501,14 @@ function customLightGallery800h(args, content) {
   const placeholder = generatePlaceholder(width, height);
   const aspectRatio = `${width} / ${height}`;
 
-  // 使用 originalImageSrc 進行渲染
+  // 轉換為完整網址
+  const fullImageUrl = getFullUrl(originalImageSrc, this);
+
   return `
-  <figure lg-background-color="#282828" class="blog-images ${className}" data-src="${originalImageSrc}" style="aspect-ratio: ${aspectRatio}; background-color: #282828; overflow: hidden;">
+  <figure lg-background-color="#282828" class="blog-images ${className}" data-src="${fullImageUrl}" style="aspect-ratio: ${aspectRatio}; background-color: #282828; overflow: hidden;">
     <img
       alt="${altText}"
-      data-src="${originalImageSrc}"
+      data-src="${fullImageUrl}"
       src="${placeholder}"
       class="lazyload"
       width="${width}"
@@ -542,12 +585,14 @@ function customLightGalleryCover(args) {
 
   const aspectRatio = `${width} / ${height}`;
 
-  // Cover 圖使用原始 src
+  // 轉換為完整網址
+  const fullImageUrl = getFullUrl(originalImageSrc, this);
+
   return `
-  <figure lg-background-color="#282828" class="blog-images blog-cover-image ${className}" data-src="${originalImageSrc}" style="aspect-ratio: ${aspectRatio}; background-color: #f0f0f0; overflow: hidden;">
+  <figure lg-background-color="#282828" class="blog-images blog-cover-image ${className}" data-src="${fullImageUrl}" style="aspect-ratio: ${aspectRatio}; background-color: #f0f0f0; overflow: hidden;">
     <img
       alt="${altText}"
-      src="${originalImageSrc}"
+      src="${fullImageUrl}"
       class=""
       width="${width}"
       height="${height}"
@@ -623,11 +668,13 @@ function customOnlyImage(args) {
   const placeholder = generatePlaceholder(width, height);
   const aspectRatio = `${width} / ${height}`;
 
-  // 使用 originalImageSrc 進行渲染
+  // 轉換為完整網址
+  const fullImageUrl = getFullUrl(originalImageSrc, this);
+
   return `
   <img
     alt="${altText}"
-    data-src="${originalImageSrc}"
+    data-src="${fullImageUrl}"
     src="${placeholder}"
     class="${className} lazyload"
     width="${width}"
@@ -642,17 +689,20 @@ function customVideoSimple(args) {
   let videoSrc = args[1];
   let className = args[2] || "max-800";
   let uniqueId = 'video-' + Math.random().toString(36).substr(2, 9);
-  
+
   if(!altText || !videoSrc){
     return ``
   }
-  
+
+  // 轉換為完整網址
+  const fullVideoUrl = getFullUrl(videoSrc, this);
+
   // 直接使用預設 SVG
   let posterSrc = generateVideoPlaceholder(800, 450);
-  
+
   // 新增: 保證影片容器有高度
   const containerStyle = `max-width: 800px; margin: 0 auto; position: relative; aspect-ratio: 16/9;`;
-  
+
   return `
   <div class="darrell-video-container" style="${containerStyle}">
     <div id="${uniqueId}-cover" class="video-cover" style="position: relative; cursor: pointer; width: 100%; height: 100%;" onclick="
@@ -664,12 +714,12 @@ function customVideoSimple(args) {
         <div style="width: 0; height: 0; border-style: solid; border-width: 10px 0 10px 20px; border-color: transparent transparent transparent #ffffff; margin-left: 5px;"></div>
       </div>
     </div>
-    <video 
+    <video
       id="${uniqueId}"
       controls
       width="100%"
       style="display: non aspect-ratio: 16/9;"
-      src="${videoSrc}">
+      src="${fullVideoUrl}">
       您的瀏覽器不支援影片播放。
     </video>
   </div>`;
@@ -739,7 +789,7 @@ function customVideoGradient(args) {
   let posterImg = args[2];
   let className = args[3];
   let uniqueId = 'video-' + Math.random().toString(36).substr(2, 9);
-  
+
   if(!className || className == ""){
     className = "max-800";
   }
@@ -747,10 +797,13 @@ function customVideoGradient(args) {
   if(!altText || !videoSrc){
     return ``
   }
-  
+
+  // 轉換為完整網址
+  const fullVideoUrl = getFullUrl(videoSrc, this);
+
   // 直接使用預設 SVG
   let posterSrc = generateVideoPlaceholder(800, 450);
-  
+
   return `
   <div class="darrell-video-container" style="max-width: 800px; margin: 0 auto; position: relative;">
     <div id="${uniqueId}-cover" class="video-cover" style="position: relative; cursor: pointer; overflow: hidden" onclick="
@@ -765,12 +818,12 @@ function customVideoGradient(args) {
         <p style="color: white; margin-top: 15px; font-size: 16px; font-weight: 500;">點擊播放影片</p>
       </div>
     </div>
-    <video 
+    <video
       id="${uniqueId}"
       controls
       width="100%"
       style="display: non"
-      src="${videoSrc}">
+      src="${fullVideoUrl}">
       您的瀏覽器不支援影片播放。
     </video>
   </div>
@@ -790,7 +843,7 @@ function customVideoLightbox(args) {
   let posterImg = args[2];
   let className = args[3];
   let uniqueId = 'video-' + Math.random().toString(36).substr(2, 9);
-  
+
   if(!className || className == ""){
     className = "max-800";
   }
@@ -798,10 +851,13 @@ function customVideoLightbox(args) {
   if(!altText || !videoSrc){
     return ``
   }
-  
+
+  // 轉換為完整網址
+  const fullVideoUrl = getFullUrl(videoSrc, this);
+
   // 直接使用預設 SVG
   let posterSrc = generateVideoPlaceholder(800, 450);
-  
+
   return `
   <div class="darrell-video-lightbox" style="max-width: 800px; margin: 0 auto;">
     <div class="video-thumbnail" style="position: relative; cursor: pointer overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);" onclick="openVideoModal('${uniqueId}')">
@@ -821,7 +877,7 @@ function customVideoLightbox(args) {
     <div id="${uniqueId}-modal" class="video-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease;">
       <div class="modal-content" style="position: relative; width: 90%; max-width: 900px;">
         <span class="close-modal" style="position: absolute; top: -40px; right: 0; color: white; font-size: 30px; cursor: pointer;" onclick="closeVideoModal('${uniqueId}')">&times;</span>
-        <video id="${uniqueId}" controls width="100%" style="display: block; border-radius: 4px;" src="${videoSrc}">
+        <video id="${uniqueId}" controls width="100%" style="display: block; border-radius: 4px;" src="${fullVideoUrl}">
           您的瀏覽器不支援影片播放。
         </video>
       </div>
