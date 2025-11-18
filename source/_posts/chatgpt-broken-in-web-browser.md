@@ -16,6 +16,20 @@ preload:
 
 {% darrellImageCover ChatGPT-broken-in-browser-bg ChatGPT-broken-in-browser-bg.jpg max-800 %}
 
+## 20251118 請解除封鎖 `challenges.cloudflare.com` 以繼續。
+
+ChatGPT 在 11/18 這次的故障比較特別
+因為不是 ChatGPT 本身的問題
+而是 Cloudflare 壞掉了！
+
+但因為 ChatGPT 使用了 Cloudflare 的人機挑戰
+他會在你造訪網站時，先檢查你是不是機器人
+但因為這個檢查的機制壞掉，導致直接擋住
+
+只能稍待 Cloudflare 修復後才能使用
+
+{% darrellImage800Alt "ChatGPT 遇到 Cloudflare 錯誤畫面" chatgpt_down_202511-cloudflare-error.png max-800 %}
+
 ## 202504 500 error
 
 這次最新的錯誤是在網頁版會顯示 500 error
