@@ -9,7 +9,7 @@ id: chatgpt-broken-in-web-browser
 bgImage: ChatGPT-broken-in-browser-bg.jpg
 description: ChatGPT 壞掉或是問答沒有反應嗎? 新問題：請解除封鎖 challenges.cloudflare.com 以繼續。 最近的錯誤狀況和網路上搜尋的狀態都不太相同，沒有明顯的錯誤訊息，但就是一直無法問答，最後發現可能只是語言的設定問題!
 date: 2024-03-10 23:28:37
-modified: 2025-11-18 23:08:03
+modified: 2025-11-18 22:27:00
 preload: 
  - ChatGPT-broken-in-browser-bg.jpg
 ---
