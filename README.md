@@ -2,8 +2,14 @@
 
 ## 📚 最新文章
 
+### [Google Antigravity 搭配 Gemini 3 模型還能自動化測試！Vibe Coding 新神器](https://www.darrelltw.com/google-antigravity-ide/?utm_source=github_readme&utm_medium=referral)
+📅 2025/11/19 · 6 小時內
+
+> 深入體驗 Google Antigravity，這款新的 Agentic AI 程式開發工具。看看它如何透過自主規劃、執行和工具整合，重新定義軟體開發流程。
+
+
 ### [n8n Merge 節點教學-解決多來源資料合併的問題](https://www.darrelltw.com/n8n-merge-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/10/27 · 22 天前
+📅 2025/10/27 · 23 天前
 
 > n8n Merge 節點完整教學！學會 Append、Combine、Choose Branch、SQL Query 選項的差異，深入了解 Matching Fields、Position 和 All Possible Combinations 的用法
 
@@ -56,15 +62,9 @@
 > Claude Code 新推出的 Agent 功能讓你可以建立專屬的開發 Agent，透過自然語言指令自動處理重複性的程式設計任務。不再需要每次重新解釋需求，讓 Claude Code Agent 記住你的開發模式。
 
 
-### [n8n Gmail 節點教學 - 自動化郵件發送和處理](https://www.darrelltw.com/n8n-gmail-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/07/22 · 4 個月前
-
-> 完整教學 n8n Gmail 節點實現郵件自動化流程。包含 OAuth 認證設定、搜尋語法技巧、郵件發送標籤管理等功能介紹。實測信用卡帳單自動提醒、PDF 解析、Google Calendar 整合等進階案例。
-
-
 ## 📊 部落格統計
-![文章總數](https://img.shields.io/badge/文章總數-110-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-234,306+-blue?style=flat-square)
+![文章總數](https://img.shields.io/badge/文章總數-111-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-238,497+-blue?style=flat-square)
 ![最後更新](https://img.shields.io/badge/最後更新-2025/11/19-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
@@ -97,7 +97,7 @@
 08月 █░░░░░░░░░ 1篇
 09月 ████░░░░░░ 4篇
 10月 ██░░░░░░░░ 2篇
-11月 ░░░░░░░░░░ 0篇
+11月 █░░░░░░░░░ 1篇
 ```
 
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-11-19 05:54:17*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-11-19 16:06:15*
