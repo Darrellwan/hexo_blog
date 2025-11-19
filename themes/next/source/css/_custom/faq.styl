@@ -1,0 +1,271 @@
+// ========================================
+// FAQ Component Styles
+// ========================================
+
+.faq-container {
+  margin: 30px 0;
+  padding: 0;
+}
+
+.faq-category {
+  margin-bottom: 40px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.faq-category-title {
+  color: $orange-main;
+  font-size: 1.5em;
+  font-weight: 600;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgba(255, 165, 0, 0.3);
+  display: flex;
+  align-items: center;
+
+  &::before {
+    content: "📚";
+    margin-right: 10px;
+    font-size: 1.2em;
+  }
+}
+
+.faq-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 165, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  &.active {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 165, 0, 0.4);
+    box-shadow: 0 6px 16px rgba(255, 165, 0, 0.1);
+
+    .faq-question {
+      background: rgba(255, 165, 0, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .faq-toggle i {
+      transform: rotate(180deg);
+      color: $orange-main;
+    }
+
+    .faq-icon {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.faq-question {
+  display: flex;
+  align-items: center;
+  padding: 18px 20px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.3s ease;
+  gap: 12px;
+
+  &:hover {
+    background: rgba(255, 165, 0, 0.05);
+
+    .faq-question-text {
+      color: #ffb84d;
+    }
+
+    .faq-icon {
+      transform: scale(1.15) rotate(10deg);
+    }
+  }
+}
+
+.faq-icon {
+  font-size: 1.3em;
+  flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.faq-question-text {
+  flex: 1;
+  font-size: 1.05em;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.5;
+  transition: color 0.3s ease;
+}
+
+.faq-toggle {
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
+
+  i {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 0.9em;
+  }
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-answer-content {
+  padding: 20px 20px 24px 20px;
+  animation: fadeInAnswer 0.4s ease;
+}
+
+@keyframes fadeInAnswer {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.faq-answer-text {
+  flex: 1;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.7;
+  font-size: 0.95em;
+
+  // 支援內容中的格式
+  p {
+    margin: 0 0 10px 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  strong {
+    color: #ffb84d;
+    font-weight: 600;
+  }
+
+  code {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.9em;
+    color: #7fb3d3;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  a {
+    color: #7fb3d3;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(127, 179, 211, 0.3);
+    transition: all 0.2s ease;
+
+    &:hover {
+      color: #a8cce8;
+      border-bottom-color: #a8cce8;
+    }
+  }
+
+  ul, ol {
+    margin: 10px 0;
+    padding-left: 20px;
+  }
+
+  li {
+    margin: 6px 0;
+    line-height: 1.6;
+  }
+}
+
+// ========================================
+// 手機版優化
+// ========================================
+
+@media (max-width: 768px) {
+  .faq-container {
+    margin: 20px 0;
+  }
+
+  .faq-category-title {
+    font-size: 1.3em;
+    margin-bottom: 16px;
+  }
+
+  .faq-item {
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+
+  .faq-question {
+    padding: 15px 16px;
+    gap: 10px;
+  }
+
+  .faq-icon {
+    font-size: 1.2em;
+  }
+
+  .faq-question-text {
+    font-size: 1em;
+    line-height: 1.4;
+  }
+
+  .faq-answer-content {
+    padding: 16px;
+  }
+
+  .faq-answer-text {
+    font-size: 0.9em;
+    line-height: 1.6;
+  }
+}
+
+// ========================================
+// 深色/淺色主題適配
+// ========================================
+
+@media (prefers-color-scheme: light) {
+  .faq-item {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.08);
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.04);
+      border-color: rgba(255, 165, 0, 0.3);
+    }
+
+    &.active {
+      background: rgba(255, 165, 0, 0.05);
+    }
+  }
+
+  .faq-question-text {
+    color: rgba(0, 0, 0, 0.85);
+  }
+
+  .faq-answer-text {
+    color: rgba(0, 0, 0, 0.7);
+
+    code {
+      background: rgba(0, 0, 0, 0.05);
+      color: #2980b9;
+    }
+  }
+
+  .faq-toggle {
+    color: rgba(0, 0, 0, 0.4);
+  }
+}

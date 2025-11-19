@@ -15,6 +15,7 @@ preload:
 
 {% darrellImageCover antigravity_cover blog-google-antigravity.jpg max-800 %}
 
+## 快速導覽
 {% quickNav %}
   [
     {
@@ -24,8 +25,7 @@ preload:
     },
     {
       "text": "實際開發體驗",
-      "anchor":
-  "development-experience",
+      "anchor": "development-experience",
       "desc": "天氣卡片專案實測"
     },
     {
@@ -36,9 +36,6 @@ preload:
   ]
   {% endquickNav %}
 
-
-# Google Antigravity 搭配 Gemini 3 模型全新推出
-
 Google 今天推出了一款名為 **Antigravity** 的全新 AI Coding 工具，
 主打 "Agentic"。
 也是一款基於 Visual Studio Code 開發的
@@ -46,7 +43,7 @@ Google 今天推出了一款名為 **Antigravity** 的全新 AI Coding 工具，
 
 這篇文章將帶大家實際走一遍 Antigravity 的完整安裝與設定流程，從初次啟動到實際執行開發任務，看看它究竟有什麼過人之處。
 
-## 第一次啟動：完整的引導流程
+## <span id="installation">第一次啟動：完整的引導流程</span>
 
 ### Step 1: 歡迎畫面
 啟動 Antigravity 後，首先會看到簡潔的歡迎畫面，顯示 "Welcome to Antigravity" 與 "Let's get you set up" 的提示。
@@ -118,7 +115,7 @@ Google 今天推出了一款名為 **Antigravity** 的全新 AI Coding 工具，
 
 你可以點選 "Open Folder" 開啟新專案，或是從 Workspaces 中選擇已有的專案。
 
-## 實際開發體驗
+## <span id="development-experience">實際開發體驗</span>
 
 我們透過建立一個天氣卡片的方式，來建立一個網頁看看
 在右側放入，請幫我們建立天氣卡片，要包含四種不同的天氣資訊
@@ -157,7 +154,7 @@ Agent 會將 Implementation Plan 拆解成可執行的任務清單 Task List
 - 圓圈： 多項任務正在執行中
 - 框框： 等待執行的任務
 
-## Antigravity Browser Extension
+## <span id="browser-extension">Antigravity Browser Extension</span>
 
 Antigravity 還提供了 Chrome 瀏覽器擴充功能：
 **Antigravity Browser Extension**
@@ -191,11 +188,18 @@ Antigravity 會自動開啟瀏覽器，並測試網頁是否有正確運行
 
 ## 常見問題
 
-Q: Antigravity 是否完全免費？
-A: 目前免費使用，但經常遇到 model overloaded 錯誤，未來可能推出付費方案
-
-Q: 與 Cursor、Claude Code 有什麼不同？
-A: Antigravity 內建 Chrome 自動化測試功能是這次體驗最大不同，其餘使用體驗和 Cursor 相似，差異是模型的不同，工具本質是差不多的。Claude Code 是 Command Line 工具，和 Antigravity Cursor 不太相同。Claude Code 應該是跟 Gemini CLI 對比。
+{% faq %}
+[
+  {
+    "question": "Antigravity 是否完全免費？",
+    "answer": "目前 Antigravity 處於早期階段，完全免費讓大家使用。不過實測發現經常會遇到 <code>model overloaded</code> 錯誤，影響開發體驗。未來 Google 可能會推出付費方案，期待能與 Google AI Pro 或 Ultra 方案整併，提供更穩定的服務。"
+  },
+  {
+    "question": "與 Cursor、Claude Code 有什麼不同？",
+    "answer": "<strong>Antigravity vs Cursor</strong><br>兩者使用體驗相似，主要差異在於使用的 AI 模型不同（Gemini 3 vs Claude）。Antigravity 最大亮點是內建 Chrome 自動化測試功能，不需要額外安裝第三方工具。<br><br><strong>Antigravity vs Claude Code</strong><br>這兩者定位不同。Claude Code 是 <code>Command Line</code> 終端機工具，而 Antigravity 是完整的 IDE。比較合理的對比應該是 Antigravity vs Cursor（IDE 類）、Claude Code vs Gemini CLI（CLI 類）。"
+  }
+]
+{% endfaq %}
 
 ## 延伸閱讀
 
