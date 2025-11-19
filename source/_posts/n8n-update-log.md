@@ -7,16 +7,58 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2025/11/12 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.120.1，正式版本為 1.119.1
+description: n8n 的更新記錄(2025/11/19 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.121.0，正式版本為 1.120.0
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-11-12 12:00:00
+modified: 2025-11-19 12:00:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 1.121.0 Pre-release - 2025-11-18
+
+[Github 1.121.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.121.0)
+
+### Expression Editor 預覽功能
+Expression Editor Preview
+
+表達式編輯器：支援 HTML/Markdown 預覽
+
+在寫複雜的 HTML 或 Markdown 內容到節點時（例如發送 Email 或 Slack 訊息），
+以前都只能憑空想像渲染出來的樣子，或是要一直按測試。
+現在終於可以在 n8n expression 直接先看看可能的樣子
+另外也支援 markdown !
+
+{% darrellImage800Alt "n8n 表達式編輯器新增 HTML 和 Markdown 預覽功能" n8n-1.121.0-expression_preview_html.png max-800 %}
+
+### Data Table 全域搜尋
+Global Row Search in Data Tables
+
+Data Tables：全域資料搜尋
+
+Data Tables 資料開始變多的時候，想要快速找一筆資料就變得很麻煩
+現在在 Data Table 介面新增了搜尋 Bar
+讓你直接模糊搜尋資料
+
+不確定上百萬筆的資料找起來是不是也這麼順
+
+{% darrellImage800Alt "n8n Data Table 新增全域搜尋功能，可快速查找資料" n8n-1.121.0-data_table_search.png max-800 %}
+
+### Code Node 圖示回歸
+Code Node Icon Revert
+
+Code Node：圖示改回舊版
+
+天！
+之前 Code Node 才改成根據你選擇的語言來替換 icon (119 版本)
+想不到這更新過沒多久又被改回來了
+
+{% darrellImage800Alt "n8n Code Node 圖示改回舊版的角括號樣式" n8n-1.121.0-code_icon_change.png max-800 %}
+
+
 
 ## 1.120.0 Pre-release - 2025-11-10
 
