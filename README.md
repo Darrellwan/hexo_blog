@@ -3,13 +3,13 @@
 ## 📚 最新文章
 
 ### [Google Antigravity 搭配 Gemini 3 模型還能自動化測試！Vibe Coding 新神器](https://www.darrelltw.com/google-antigravity-ide/?utm_source=github_readme&utm_medium=referral)
-📅 2025/11/19 · 6 小時內
+📅 2025/11/19 · 18 小時前
 
 > 深入體驗 Google Antigravity，這款新的 Agentic AI 程式開發工具。看看它如何透過自主規劃、執行和工具整合，重新定義軟體開發流程。
 
 
 ### [n8n Merge 節點教學-解決多來源資料合併的問題](https://www.darrelltw.com/n8n-merge-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/10/27 · 23 天前
+📅 2025/10/27 · 24 天前
 
 > n8n Merge 節點完整教學！學會 Append、Combine、Choose Branch、SQL Query 選項的差異，深入了解 Matching Fields、Position 和 All Possible Combinations 的用法
 
@@ -64,8 +64,8 @@
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-111-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-238,672+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/11/19-green?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-239,677+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/11/20-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-11-19 16:18:20*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-11-20 16:05:30*
