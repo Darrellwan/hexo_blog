@@ -1,6 +1,7 @@
 ---
 title: Google Antigravity 搭配 Gemini 3 模型還能自動化測試！Vibe Coding 新神器
 date: 2025-11-19 21:52:39
+modified: 2025-11-20 23:50:01
 tags:
   - Google
   - AI
@@ -27,6 +28,11 @@ preload:
       "text": "實際開發體驗",
       "anchor": "development-experience",
       "desc": "天氣卡片專案實測"
+    },
+    {
+      "text": "Agent Manager",
+      "anchor": "agent-manager",
+      "desc": "平行處理多專案任務"
     },
     {
       "text": "自動化測試功能",
@@ -153,6 +159,53 @@ Agent 會將 Implementation Plan 拆解成可執行的任務清單 Task List
 - 打勾： **Create implementation plan**（已完成）
 - 圓圈： 多項任務正在執行中
 - 框框： 等待執行的任務
+
+## <span id="agent-manager">Agent Manager 一次管理多個專案</span>
+
+Agent Manager 也是 Antigravity 的一大特色
+用來同時指揮不同 Agent
+
+{% darrellImage800Alt "Google Antigravity Agent Manager 介面，展示左側 Workspaces 工作區列表與中間 Inbox 收件匣對話列表" google-antigravity-agent-manager-inbox.png max-800 %}
+
+左邊會呈現 workspaces 和 playground 的列表
+每個 workspace 就是你的專案
+playground 是一個比較有趣的設計，它可以讓你快速測試一些想法
+
+### Workspaces
+
+你可以針對同一個專案一次建立不同的 Agents
+例如前端、後端、資料庫等等
+同時讓他們去做不一樣的事情，最後再把這些拚圖合併在一起
+
+而以往就是需要一步一步慢慢來
+先資料庫 → 後端 → 前端，等到串接發現有問題再回頭修改
+
+現在可以一次性的先跑完，省去很多等待的時間
+當然這在其他的工具也都能做到類似的事情
+只是 Agent Manager 在視覺和管理上更為方便
+
+實際運作時，你可以看到多個任務同時處於 **Running...** 狀態：
+
+{% darrellImage800Alt "Google Antigravity Agent Manager 展示真正的平行處理：AI Models n8n Workflow Outline 和 Debug n8n Mobile Template 兩個任務同時執行中" agent-manager-parallel-tasks-running.png max-800 %}
+
+截圖中也能看到，目去有兩個 Agents 正在同一個 workspace 執行中
+
+### Playground
+
+Playground 則是一個蠻有趣的設計
+有時候有些想法想要得到快速驗證
+但這個想法又不在某個專案中
+
+這時候可以先到 Playground 試玩看看
+如果覺得這個靈光一現的想法可行
+後續再把它轉為專案也可以！
+
+例如下面這個範例，在 Playground 中建立了一個「自動遊玩的貪食蛇」：
+
+{% darrellImage800Alt "Google Antigravity Playground 展示 Self-Playing Snake Game 專案，包含完整的 Walkthrough 驗證報告、自動化測試截圖和瀏覽器錄影" playground-snake-game-walkthrough.png max-800 %}
+
+的確很快就做完，並且開啟瀏覽器讓我們確認是否真的會自己動起來
+接著我們來講講自動化測試這塊。
 
 ## <span id="browser-extension">Antigravity Browser Extension</span>
 
