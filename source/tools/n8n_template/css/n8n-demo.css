@@ -23,6 +23,7 @@ n8n-demo {
     border-radius: var(--n8n-iframe-border-radius);
     overflow: hidden;
     background-color: var(--n8n-frame-background-color);
+    touch-action: pan-x pan-y pinch-zoom;
 }
 
 /* 確保 iframe 樣式也能讀取到變數 */

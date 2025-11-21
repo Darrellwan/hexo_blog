@@ -10,6 +10,7 @@ categories:
   - 開發工具
 description: "深入體驗 Google Antigravity，這款新的 Agentic AI 程式開發工具。看看它如何透過自主規劃、執行和工具整合，重新定義軟體開發流程。"
 bgImage: blog-google-antigravity.jpg
+page_type: post
 preload:
   - blog-google-antigravity.jpg
 ---

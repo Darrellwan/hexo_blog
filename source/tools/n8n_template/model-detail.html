@@ -2,7 +2,7 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>n8n 自動化模板詳情 - Darrell 自動化工具</title>
     <meta name="description" content="探索 n8n Workflow 的各種預設模板，包含自動化工作流程範例">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
@@ -426,27 +426,57 @@
         }
     }
     document.addEventListener('DOMContentLoaded', loadModelDetail);
-    async function loadWorkflowVisualization() {
+    let isLoading = false;
+    async function loadWorkflowVisualization(e) {
+        // 防止重複執行
+        if (isLoading) return;
+        
+        // 防止點擊事件冒泡
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
         const container = document.getElementById('workflowVisualization');
         if (!container || container.querySelector('n8n-demo')) return; // already loaded
+        
+        isLoading = true;
+        
+        // 立即移除監聽器，確保不會再次觸發
+        container.removeEventListener('click', loadWorkflowVisualization);
+        container.removeEventListener('touchend', loadWorkflowVisualization);
+        
         container.innerHTML = '<div class="preview-placeholder">載入中...</div>';
         const urlParams = new URLSearchParams(window.location.search);
         const modelId = urlParams.get('model') || 'basic';
+        
         try {
             const res = await fetch(`data/workflows/${modelId}.json`);
             if (!res.ok) throw new Error('載入失敗');
             const workflowData = await res.json();
+            
             const demo = document.createElement('n8n-demo');
             demo.setAttribute('workflow', JSON.stringify(workflowData));
+            
             container.innerHTML = '';
             container.appendChild(demo);
             container.style.cursor = 'default';
         } catch (err) {
             container.innerHTML = '<div class="preview-placeholder">載入失敗，點擊重試</div>';
             console.error(err);
+            // 失敗時允許重試
+            isLoading = false;
+            container.addEventListener('click', loadWorkflowVisualization, { once: true });
+            container.addEventListener('touchend', loadWorkflowVisualization, { once: true });
         }
     }
-    document.getElementById('workflowVisualization').addEventListener('click', loadWorkflowVisualization);
+
+    const visualizationContainer = document.getElementById('workflowVisualization');
+    if (visualizationContainer) {
+        // 使用 once: true 確保只觸發一次
+        visualizationContainer.addEventListener('click', loadWorkflowVisualization, { once: true });
+        visualizationContainer.addEventListener('touchend', loadWorkflowVisualization, { once: true });
+    }
     document.getElementById('downloadBtn').onclick = async function() {
         const urlParams = new URLSearchParams(window.location.search);
         const modelId = urlParams.get('model') || 'basic';
