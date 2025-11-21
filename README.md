@@ -3,7 +3,7 @@
 ## 📚 最新文章
 
 ### [Google Antigravity 搭配 Gemini 3 模型還能自動化測試！Vibe Coding 新神器](https://www.darrelltw.com/google-antigravity-ide/?utm_source=github_readme&utm_medium=referral)
-📅 2025/11/19 · 18 小時前
+📅 2025/11/19 · 1 天前
 
 > 深入體驗 Google Antigravity，這款新的 Agentic AI 程式開發工具。看看它如何透過自主規劃、執行和工具整合，重新定義軟體開發流程。
 
@@ -65,7 +65,7 @@
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-111-blue?style=flat-square)
 ![總字數](https://img.shields.io/badge/總字數-239,677+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/11/20-green?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/11/21-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-11-20 16:05:30*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-11-21 02:44:28*
