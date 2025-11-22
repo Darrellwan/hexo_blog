@@ -2,14 +2,20 @@
 
 ## 📚 最新文章
 
+### [AI 寫 n8n Workflow 誰最強？GPT-4o, Claude, Gemini 實測](https://www.darrelltw.com/ai-models-n8n-workflow-comparison/?utm_source=github_readme&utm_medium=referral)
+📅 2025/11/20 · 1 天前
+
+> 實測比較各大 AI 模型 (GPT-4o, Claude 3.5 Sonnet, Gemini 1.5 Pro) 在生成 n8n workflow JSON 碼的表現，分析其準確度、邏輯連貫性與實用性。
+
+
 ### [Google Antigravity 搭配 Gemini 3 模型還能自動化測試！Vibe Coding 新神器](https://www.darrelltw.com/google-antigravity-ide/?utm_source=github_readme&utm_medium=referral)
-📅 2025/11/19 · 1 天前
+📅 2025/11/19 · 2 天前
 
 > 深入體驗 Google Antigravity，這款新的 Agentic AI 程式開發工具。看看它如何透過自主規劃、執行和工具整合，重新定義軟體開發流程。
 
 
 ### [n8n Merge 節點教學-解決多來源資料合併的問題](https://www.darrelltw.com/n8n-merge-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/10/27 · 24 天前
+📅 2025/10/27 · 25 天前
 
 > n8n Merge 節點完整教學！學會 Append、Combine、Choose Branch、SQL Query 選項的差異，深入了解 Matching Fields、Position 和 All Possible Combinations 的用法
 
@@ -56,16 +62,10 @@
 > 想用 Postiz 自動排程 Threads 貼文？本文提供完整 Meta 應用程式建立到 Threads API 串接教學，輕鬆實現 Threads 自動排程發文。
 
 
-### [Claude Code Agent 實測，建立專屬的開發助理](https://www.darrelltw.com/claude-code-agent/?utm_source=github_readme&utm_medium=referral)
-📅 2025/07/25 · 4 個月前
-
-> Claude Code 新推出的 Agent 功能讓你可以建立專屬的開發 Agent，透過自然語言指令自動處理重複性的程式設計任務。不再需要每次重新解釋需求，讓 Claude Code Agent 記住你的開發模式。
-
-
 ## 📊 部落格統計
-![文章總數](https://img.shields.io/badge/文章總數-111-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-239,677+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/11/21-green?style=flat-square)
+![文章總數](https://img.shields.io/badge/文章總數-112-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-240,794+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/11/22-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -97,7 +97,7 @@
 08月 █░░░░░░░░░ 1篇
 09月 ████░░░░░░ 4篇
 10月 ██░░░░░░░░ 2篇
-11月 █░░░░░░░░░ 1篇
+11月 ██░░░░░░░░ 2篇
 ```
 
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-11-21 02:44:28*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-11-22 03:45:09*
