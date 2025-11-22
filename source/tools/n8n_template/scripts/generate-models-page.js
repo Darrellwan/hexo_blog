@@ -19,7 +19,7 @@ const TEMPLATE_PATH = path.join(ROOT_DIR, 'models.template.html');
 
 // 排序配置（從原始 HTML 中提取）
 const SORT_CONFIG = {
-    defaultSortBy: 'none',
+    defaultSortBy: 'date',
     defaultSortDirection: 'desc',
     pinnedModels: [],
     modelWeights: {}

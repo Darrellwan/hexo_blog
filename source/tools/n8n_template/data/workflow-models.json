@@ -1,5 +1,49 @@
 {
     "models": {
+        "n8n-github-backup-workflow": {
+            "id": "n8n-github-backup-workflow",
+            "title": "Github 每日備份工作流",
+            "description": "這個工作流程展示如何自動備份 n8n 工作流到 GitHub。適合用於版本控制和備份。\n\n主要功能：\n\n排程執行：每天凌晨 3 點自動執行\n獲取工作流：抓取所有活躍的工作流\n資料處理：格式化 JSON 並處理檔名\nGitHub 上傳：將工作流備份到指定的 GitHub Repository",
+            "detailedDescription": [
+                "每天凌晨 3 點自動觸發備份流程",
+                "獲取所有活躍的 n8n 工作流",
+                "過濾最近更新的工作流",
+                "格式化 JSON 內容以便閱讀",
+                "處理檔名以符合 GitHub 規範",
+                "將工作流 JSON 檔案上傳至 GitHub Repository"
+            ],
+            "tags": [
+                "GitHub",
+                "Backup",
+                "Automation"
+            ],
+            "nodes": 6,
+            "createdAt": "2025-11-22",
+            "updatedAt": "2025-11-22",
+            "setup": {
+                "prerequisites": "需要 GitHub 帳號和 n8n API 權限",
+                "steps": [
+                    {
+                        "title": "GitHub 設定",
+                        "description": "設定 GitHub Repository 和 Access Token",
+                        "options": [
+                            "建立一個新的 GitHub Repository 用於存放備份",
+                            "取得 GitHub Personal Access Token",
+                            "在 n8n 設定 GitHub Credentials"
+                        ]
+                    },
+                    {
+                        "title": "n8n API 設定",
+                        "description": "設定 n8n API 權限",
+                        "options": [
+                            "在 n8n 設定 n8n API Credentials"
+                        ]
+                    }
+                ]
+            },
+            "examples": [],
+            "fields": {}
+        },
         "n8n-threads-auto-reply-form-send_email": {
             "id": "n8n-threads-auto-reply-form-send_email",
             "title": "Threads 回覆小精靈 - 表單自動寄送模板",
