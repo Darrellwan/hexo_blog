@@ -1,0 +1,209 @@
+{
+  "name": "[Template] github backup 工作流",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "id": "e9413c6a-23bb-4162-820e-5ad2c20e8a5f",
+      "name": "每天凌晨3點執行",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -640,
+        -112
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// 處理檔名與內容\nreturn $input.all().map(item => {\n  const workflow = item.json;\n  \n  // 1. 格式化 JSON (Pretty Print) 方便閱讀\n  const content = JSON.stringify(workflow, null, 2);\n  \n  // 2. 處理檔名：移除特殊符號，只保留中文、英文、數字、底線\n  // 這樣可以避免 GitHub API 報錯\n  const safeName = workflow.name.replace(/[^a-zA-Z0-9\\u4e00-\\u9fa5]/g, \"_\");\n  \n  // 3. 組合最終檔名：ID + 名稱.json\n  const fileName = `${workflow.id}_${safeName}.json`;\n  \n  return {\n    json: {\n      fileName: fileName,\n      fileContent: content,\n      workflowName: workflow.name\n    }\n  };\n});"
+      },
+      "id": "92a7669f-9b8d-4d3b-95eb-fcb50ac16615",
+      "name": "整理檔名與 JSON",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        32,
+        -112
+      ]
+    },
+    {
+      "parameters": {
+        "returnAll": false,
+        "limit": 50,
+        "filters": {
+          "activeWorkflows": true
+        },
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-base.n8n",
+      "typeVersion": 1,
+      "position": [
+        -416,
+        -112
+      ],
+      "id": "f672f2a4-ba46-4582-a0e9-b3f6af8121bf",
+      "name": "Get many workflows",
+      "credentials": {
+        "n8nApi": {
+          "id": "dXWG3XrAfEA64tjh",
+          "name": "n8n account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "92db7344-1fee-4621-86b4-72f34895cc6e",
+              "leftValue": "={{ $json.updatedAt }}",
+              "rightValue": "={{ $today.minus(1, \"days\").toUTC() }}",
+              "operator": {
+                "type": "dateTime",
+                "operation": "afterOrEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -192,
+        -112
+      ],
+      "id": "d3dedf78-cfab-4fa1-b989-bc8448179725",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
+        "content": "## Created by darrell_tw_ \n\nHi 我是 Darrell\n有 n8n 問題可以找我聊聊\n\n- [n8n 教學資源網站](https://www.darrelltw.com/n8n-tutorial-resources/)\n- [n8n 模板分享網站](https://www.darrelltw.com/tools/n8n_template/models.html)\n\n### Social Media:\n[Website](https://www.darrelltw.com/)\n[X](https://x.com/darrell_tw_)\n[Threads](https://www.threads.net/@darrell_tw_)\n[Instagram](https://www.instagram.com/darrell_tw_/)\n![](https://pub-c093258f61a1463ea03e1a40c141968a.r2.dev/darrell-icon-128.svg)",
+        "height": 468,
+        "width": 312,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1056,
+        -272
+      ],
+      "id": "5427de5e-15e7-466d-9ff8-8a8f46cadee4",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "owner": {
+          "__rl": true,
+          "value": "darrellwan",
+          "mode": "name"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "n8n-daily-backup",
+          "mode": "list",
+          "cachedResultName": "n8n-daily-backup",
+          "cachedResultUrl": "https://github.com/Darrellwan/n8n-daily-backup"
+        },
+        "filePath": "={{ \"workflows/\" + $json.fileName }}",
+        "fileContent": "={{ $json.fileContent }}",
+        "commitMessage": "={{ $today.format('yyyy-MM-dd') }}_backup",
+        "additionalParameters": {
+          "committer": {
+            "name": "n8n_daily_backup",
+            "email": "info@darrelltw.com"
+          }
+        }
+      },
+      "id": "669a76ef-8176-45f9-95cb-a5211afb871a",
+      "name": "上傳至 GitHub",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        256,
+        -112
+      ],
+      "notesInFlow": true,
+      "webhookId": "84deb467-bcc6-4b27-b8f6-78a4185f10be",
+      "credentials": {
+        "githubApi": {
+          "id": "eUY67gxw7IksaK6m",
+          "name": "GitHub account"
+        }
+      },
+      "notes": "⚠️ 請設定 Owner 和 Repository"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "每天凌晨3點執行": {
+      "main": [
+        [
+          {
+            "node": "Get many workflows",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "整理檔名與 JSON": {
+      "main": [
+        [
+          {
+            "node": "上傳至 GitHub",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many workflows": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "整理檔名與 JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "dacbdea8-20fe-4f23-8e96-fa9086fdfdaf",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "fddb3e91967f1012c95dd02bf5ad21f279fc44715f47a7a96a33433621caa253"
+  },
+  "id": "uKizwTMcGy1YVF3r",
+  "tags": []
+}

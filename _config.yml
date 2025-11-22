@@ -35,6 +35,7 @@ skip_render:
  - 'resume-page.html'
  - tools/**
  - 'tools/**'
+ - 'n8n-expert/**'
 
 # Writing
 new_post_name: :title.md # File name of new posts

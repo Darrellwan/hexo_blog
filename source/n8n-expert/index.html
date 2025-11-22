@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darrell TW | n8n 自動化解決方案專家</title>
+    <meta name="description" content="專注於 n8n 自動化流程設計、MarTech 整合與 AI 應用開發。">
+    <!-- 引入 Tailwind CSS 進行快速切版 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 FontAwesome 圖標 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        n8n: {
+                            primary: '#ff6d5a', // n8n 的品牌橘紅色
+                            dark: '#ea5b48',
+                        },
+                        dark: {
+                            bg: '#0f172a',
+                            card: '#1e293b',
+                            text: '#94a3b8'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', 'Microsoft JhengHei', sans-serif;
+            background-color: #0f172a;
+            color: #f1f5f9;
+            scroll-behavior: smooth;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #ff6d5a, #facc15);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .tech-badge {
+            @apply px-2 py-1 text-xs rounded-full bg-slate-700 text-slate-300 border border-slate-600;
+        }
+
+        /* 1. Typing Effect */
+        .typing-container {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid #ff6d5a; /* Cursor */
+            width: 0;
+            animation: typing 2s steps(4, end) forwards, blink-caret .75s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #ff6d5a }
+        }
+
+        /* 2. Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Staggered delays */
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+
+        /* 4. Button Shine Effect */
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-shine::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            animation: shine 3s infinite;
+        }
+        @keyframes shine {
+            0% { left: -100%; }
+            20% { left: 200%; }
+            100% { left: 200%; }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+
+    <!-- Hero Section -->
+    <style>
+        @keyframes subtle-float {
+            0% { transform: scale(1.05) translate(0, 0); }
+            100% { transform: scale(1.1) translate(-1%, -1%); }
+        }
+        .hero-bg-animate {
+            animation: subtle-float 20s ease-in-out infinite alternate;
+        }
+    </style>
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-slate-900/80 z-10"></div> <!-- Dark overlay for subtlety -->
+            <div class="w-full h-full bg-[url('images/hero-bg.webp')] bg-cover bg-center opacity-30 hero-bg-animate"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="inline-block mb-4 px-4 py-1.5 rounded-full border border-n8n-primary/30 bg-n8n-primary/10 text-n8n-primary text-sm font-semibold">
+                🚀 n8n Certified Expert 認證專家
+            </div>
+            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6 reveal delay-100">
+                讓繁瑣工作 <span class="inline-flex"><span class="gradient-text typing-container">自動運轉</span></span><br>
+                釋放您的創造力
+            </h1>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-slate-400 mb-10">
+                專注於 n8n 自動化流程設計、MarTech 整合與 AI Agent 開發。<br>
+                從企業內訓到客製化系統建置，協助您打造高效率的數位工作流。
+            </p>
+            <div class="flex justify-center gap-4 reveal delay-300">
+                <a href="#contact" class="px-8 py-3 rounded-lg bg-n8n-primary text-white font-bold hover:bg-n8n-dark transition-all shadow-lg shadow-n8n-primary/25 btn-shine">
+                    免費評估需求
+                </a>
+                <a href="https://www.darrelltw.com/" target="_blank" class="px-8 py-3 rounded-lg border border-slate-600 hover:bg-slate-800 transition-all">
+                    瀏覽技術部落格
+                </a>
+            </div>
+        </div>
+        <!-- 背景裝飾 (保留一點色彩氛圍) -->
+        <div class="absolute top-0 left-1/2 w-full -translate-x-1/2 h-full z-0 opacity-30 pointer-events-none mix-blend-overlay">
+            <div class="absolute top-20 left-1/4 w-72 h-72 bg-purple-500 rounded-full mix-blend-screen filter blur-3xl animate-blob"></div>
+            <div class="absolute top-20 right-1/4 w-72 h-72 bg-n8n-primary rounded-full mix-blend-screen filter blur-3xl animate-blob animation-delay-2000"></div>
+        </div>
+    </section>
+
+    <!-- 服務項目 -->
+    <section id="services" class="py-20 bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-bold text-white">專業服務項目</h2>
+                <p class="mt-4 text-slate-400">針對不同階段的需求，提供最適合的解決方案</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-dark-card p-8 rounded-2xl border border-slate-800 hover:border-n8n-primary/50 hover:-translate-y-1 transition-all duration-300 reveal delay-100">
+                    <div class="w-14 h-14 bg-blue-500/10 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-rocket text-2xl text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">企業自動化建置</h3>
+                    <p class="text-slate-400 mb-6">針對企業痛點進行診斷，從 0 到 1 開發客製化 n8n 腳本，串接 ERP、CRM 與電子商務平台。</p>
+                    <ul class="space-y-2 text-sm text-slate-300">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-n8n-primary mr-2"></i> 工作流診斷與優化</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-n8n-primary mr-2"></i> API 深度串接開發</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-n8n-primary mr-2"></i> 系統部署 (Self-hosted)</li>
+                    </ul>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-dark-card p-8 rounded-2xl border border-slate-800 hover:border-n8n-primary/50 hover:-translate-y-1 transition-all duration-300 relative overflow-hidden reveal delay-200">
+                    <div class="absolute top-0 right-0 bg-n8n-primary text-xs font-bold text-white px-3 py-1 rounded-bl-lg">熱門</div>
+                    <div class="w-14 h-14 bg-n8n-primary/10 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-chalkboard-user text-2xl text-n8n-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">一對一技術顧問</h3>
+                    <p class="text-slate-400 mb-6">卡關了嗎？協助開發者或行銷人員解決 n8n 操作難點，包含 Code Node (JS/Python) 進階應用。</p>
+                    <ul class="space-y-2 text-sm text-slate-300">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-n8n-primary mr-2"></i> 複雜節點邏輯排除</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-n8n-primary mr-2"></i> Code Review 與優化</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-n8n-primary mr-2"></i> 以小時計費，彈性靈活</li>
+                    </ul>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-dark-card p-8 rounded-2xl border border-slate-800 hover:border-n8n-primary/50 hover:-translate-y-1 transition-all duration-300 reveal delay-300">
+                    <div class="w-14 h-14 bg-purple-500/10 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-users text-2xl text-purple-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-4">企業內訓與工作坊</h3>
+                    <p class="text-slate-400 mb-6">賦能您的團隊。手把手教學如何使用 n8n 與 AI 工具，培養內部自動化人才。</p>
+                    <ul class="space-y-2 text-sm text-slate-300">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-n8n-primary mr-2"></i> 基礎入門至進階實戰</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-n8n-primary mr-2"></i> AI 輔助工作流設計</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-n8n-primary mr-2"></i> MarTech 工具應用</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 作品集 -->
+    <section id="portfolio" class="py-20 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-bold text-white">成功案例</h2>
+                <p class="mt-4 text-slate-400">看看自動化如何實際解決商業問題</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Case 1 -->
+                <div class="group bg-dark-card rounded-xl overflow-hidden border border-slate-800 hover:shadow-xl transition-all reveal delay-100">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="images/portfolio_email_ai.webp" alt="客服信件 AI 智慧分流" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex gap-2 mb-3">
+                            <span class="tech-badge">Email API</span>
+                            <span class="tech-badge">OpenAI</span>
+                            <span class="tech-badge">Sentiment Analysis</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">客服信件 AI 智慧分流</h3>
+                        <p class="text-sm text-slate-400 mb-4">自動辨識信件緊急程度，並由 AI 預先撰寫回覆草稿，讓客服人員專注於審核，大幅提升處理效率。</p>
+                    </div>
+                </div>
+
+                <!-- Case 2 -->
+                <div class="group bg-dark-card rounded-xl overflow-hidden border border-slate-800 hover:shadow-xl transition-all reveal delay-200">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="images/portfolio_line_bot.webp" alt="LINE 官方帳號自動化" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex gap-2 mb-3">
+                            <span class="tech-badge">n8n Webhook</span>
+                            <span class="tech-badge">ERP Sync</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">電商訂單自動拋轉</h3>
+                        <p class="text-sm text-slate-400 mb-4">自動監聽多平台訂單信件，格式化數據後寫入 ERP 系統並通知倉儲出貨。減少 80% 人工處理時間，實現零失誤。</p>
+                    </div>
+                </div>
+
+                <!-- Case 3 -->
+                <div class="group bg-dark-card rounded-xl overflow-hidden border border-slate-800 hover:shadow-xl transition-all reveal delay-300">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="images/portfolio_social_scheduling.webp" alt="社群行銷多平台排程" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex gap-2 mb-3">
+                            <span class="tech-badge">Social API</span>
+                            <span class="tech-badge">Automation</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">社群行銷多平台排程</h3>
+                        <p class="text-sm text-slate-400 mb-4">建立自動化中控台，一鍵將內容發布至 FB, IG, Threads, Twitter，並自動抓取成效數據生成報表。</p>
+                    </div>
+                </div>
+
+                <!-- Case 4: OpenAI Sora-2 -->
+                <div class="group bg-dark-card rounded-xl overflow-hidden border border-slate-800 hover:shadow-xl transition-all reveal delay-100">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="images/portfolio_sora_video.webp" alt="OpenAI Sora-2 影片生成" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex gap-2 mb-3">
+                            <span class="tech-badge">OpenAI Sora</span>
+                            <span class="tech-badge">Polling</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">OpenAI Sora-2 影片生成</h3>
+                        <p class="text-sm text-slate-400 mb-4">接收文字提示詞，自動調用 Sora API 生成影片，透過 Polling 機制監控狀態，完成後自動下載並存入 Google Drive。</p>
+                    </div>
+                </div>
+
+                <!-- Case 5: Operational Data Reporting -->
+                <div class="group bg-dark-card rounded-xl overflow-hidden border border-slate-800 hover:shadow-xl transition-all reveal delay-200">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="images/portfolio_operational_data.webp" alt="營運數據串接生成報表" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex gap-2 mb-3">
+                            <span class="tech-badge">Data Integration</span>
+                            <span class="tech-badge">Automated Reporting</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">營運數據串接生成報表</h3>
+                        <p class="text-sm text-slate-400 mb-4">輕鬆管理多店面的營運數據，自動整合 POS 系統與財務報表，即時掌握各分店營收狀況。</p>
+                    </div>
+                </div>
+
+                <!-- Case 6: Competitor Social Analysis -->
+                <div class="group bg-dark-card rounded-xl overflow-hidden border border-slate-800 hover:shadow-xl transition-all reveal delay-300">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="images/portfolio_competitor_analysis.webp" alt="競品社群自動分析" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex gap-2 mb-3">
+                            <span class="tech-badge">Social Listening</span>
+                            <span class="tech-badge">Competitor Analysis</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">競品社群自動分析</h3>
+                        <p class="text-sm text-slate-400 mb-4">自動監控競爭對手社群動態，分析貼文成效與互動數據，每週生成競品分析報告，輔助行銷決策。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 聯絡表單 -->
+    <section id="contact" class="py-20 bg-slate-900">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-dark-card p-8 md:p-12 rounded-2xl border border-slate-800 shadow-2xl reveal">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold text-white">開始您的自動化旅程</h2>
+                    <p class="mt-2 text-slate-400">請填寫以下表單，我將在 48 小時內與您聯繫</p>
+                </div>
+
+                <div id="successMessage" class="hidden mb-4 p-4 bg-green-500/10 border border-green-500 text-green-500 rounded-lg text-center">
+                    感謝您的訊息！我們會盡快回覆您。
+                </div>
+                <div id="errorMessage" class="hidden mb-4 p-4 bg-red-500/10 border border-red-500 text-red-500 rounded-lg text-center">
+                    發送失敗，請稍後再試。
+                </div>
+
+                <form id="contactForm" class="space-y-6" onsubmit="return handleSubmit(event)">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="reveal delay-100">
+                            <label class="block text-sm font-medium text-slate-300 mb-2">您的稱呼</label>
+                            <input type="text" name="name" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-n8n-primary focus:border-transparent outline-none transition-all" placeholder="王先生">
+                        </div>
+                        <div class="reveal delay-200">
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Email</label>
+                            <input type="email" name="email" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-n8n-primary focus:border-transparent outline-none transition-all" placeholder="name@company.com">
+                        </div>
+                    </div>
+
+                    <div class="reveal delay-300">
+                        <label class="block text-sm font-medium text-slate-300 mb-2">您的需求類型</label>
+                        <select name="type" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-n8n-primary focus:border-transparent outline-none transition-all">
+                            <option value="">請選擇...</option>
+                            <option value="專案建置 (Solution)">專案建置 (Solution)</option>
+                            <option value="技術諮詢 (Consulting)">技術諮詢 (Consulting)</option>
+                            <option value="企業內訓 (Training)">企業內訓 (Training)</option>
+                            <option value="其他合作">其他合作</option>
+                        </select>
+                    </div>
+
+                    <div class="reveal delay-100">
+                        <label class="block text-sm font-medium text-slate-300 mb-2">預算範圍 (TWD)</label>
+                        <select name="budget" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-n8n-primary focus:border-transparent outline-none transition-all">
+                            <option value="">請選擇...</option>
+                            <option value="3萬 - 5萬">3萬 - 5萬</option>
+                            <option value="5萬 - 15萬">5萬 - 15萬</option>
+                            <option value="15萬以上">15萬以上</option>
+                        </select>
+                    </div>
+
+                    <div class="reveal delay-200">
+                        <label class="block text-sm font-medium text-slate-300 mb-2">需求描述</label>
+                        <textarea name="description" required rows="4" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-n8n-primary focus:border-transparent outline-none transition-all" placeholder="請簡述您想解決的問題，也可以補充目前使用的工具"></textarea>
+                    </div>
+
+                    <div class="reveal delay-300">
+                        <div class="cf-turnstile mb-4 flex justify-center" data-sitekey="0x4AAAAAABAkrCdPBH-9dmAs" data-theme="dark"></div>
+                        <button type="submit" class="w-full bg-gradient-to-r from-n8n-primary to-n8n-dark text-white font-bold py-4 rounded-lg hover:opacity-90 transition-opacity shadow-lg btn-shine">
+                            送出諮詢單
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 py-12 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <span class="text-xl font-bold text-white">Darrell <span class="text-n8n-primary">TW</span></span>
+                <p class="text-slate-500 text-sm mt-2">Automating the mundane, creating the extraordinary.</p>
+            </div>
+            
+            <div class="flex space-x-6">
+                <a href="https://www.threads.net/@darrell_tw_" target="_blank" class="text-slate-400 hover:text-white transition-colors"><i class="fa-brands fa-threads text-xl"></i></a>
+                <a href="https://www.instagram.com/darrell_tw_/" target="_blank" class="text-slate-400 hover:text-white transition-colors"><i class="fa-brands fa-instagram text-xl"></i></a>
+                <a href="https://twitter.com/darrell_tw_" target="_blank" class="text-slate-400 hover:text-white transition-colors"><i class="fa-brands fa-twitter text-xl"></i></a>
+                <a href="https://github.com/darrelltw" target="_blank" class="text-slate-400 hover:text-white transition-colors"><i class="fa-brands fa-github text-xl"></i></a>
+                <a href="https://www.darrelltw.com/" target="_blank" class="text-slate-400 hover:text-white transition-colors"><i class="fa-solid fa-globe text-xl"></i></a>
+            </div>
+        </div>
+        <div class="text-center mt-8 text-slate-600 text-sm">
+            &copy; 2024 Darrell TW. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Reveal Observer
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); // Only animate once
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        // Form submission handler
+        async function handleSubmit(event) {
+            event.preventDefault();
+
+            const form = document.getElementById('contactForm');
+            const submitButton = form.querySelector('button[type="submit"]');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Reset messages
+            successMessage.classList.add('hidden');
+            errorMessage.classList.add('hidden');
+
+            // Get Turnstile token
+            const token = turnstile.getResponse();
+            if (!token) {
+                errorMessage.textContent = '請完成安全確認 (Please complete the security check)';
+                errorMessage.classList.remove('hidden');
+                return false;
+            }
+
+            // Disable button
+            const originalButtonText = submitButton.innerText;
+            submitButton.disabled = true;
+            submitButton.innerText = '傳送中...';
+
+            try {
+                // 1. Validate Turnstile token
+                const validateResponse = await fetch(
+                    'https://turnsite-validate-n8n-template.api-worker-darrell-martech.workers.dev/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: new URLSearchParams({
+                            'cf-turnstile-response': token
+                        })
+                    }
+                );
+
+                if (!validateResponse.ok) {
+                    throw new Error('Security check failed');
+                }
+
+                // 2. Submit form data
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData.entries());
+                
+                // Remove turnstile token from data sent to webhook if not needed, or keep it.
+                // The webhook URL from contact.html was: https://darrellinfo-n8n.hnd1.zeabur.app/webhook/80c589e6-8c16-441c-a89c-aef6fefe872c
+                // The test function used: https://darrellinfo-n8n.hnd1.zeabur.app/webhook/darrell-n8n-expert-form
+                // I will use the one from the test function as it seems more specific to this page, 
+                // but the user asked to "use it like in contact.html", so maybe I should check if they want the same webhook?
+                // The test function in this file uses `darrell-n8n-expert-form`. I will stick to that one as it matches the context of this page.
+                
+                const webhookUrl = 'https://darrellinfo-n8n.hnd1.zeabur.app/webhook/darrell-n8n-expert-form';
+
+                const response = await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    successMessage.classList.remove('hidden');
+                    form.reset();
+                    turnstile.reset();
+                } else {
+                    throw new Error('Submission failed');
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                errorMessage.textContent = '發送失敗，請稍後再試 (Submission failed, please try again later)';
+                errorMessage.classList.remove('hidden');
+            } finally {
+                submitButton.disabled = false;
+                submitButton.innerText = originalButtonText;
+            }
+
+            return false;
+        }
+    </script>
+</body>
+</html>
