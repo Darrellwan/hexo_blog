@@ -2,12 +2,6 @@
 
 ## 📚 最新文章
 
-### [AI 寫 n8n Workflow 誰最強？GPT-4o, Claude, Gemini 實測](https://www.darrelltw.com/ai-models-n8n-workflow-comparison/?utm_source=github_readme&utm_medium=referral)
-📅 2025/11/20 · 1 天前
-
-> 實測比較各大 AI 模型 (GPT-4o, Claude 3.5 Sonnet, Gemini 1.5 Pro) 在生成 n8n workflow JSON 碼的表現，分析其準確度、邏輯連貫性與實用性。
-
-
 ### [Google Antigravity 搭配 Gemini 3 模型還能自動化測試！Vibe Coding 新神器](https://www.darrelltw.com/google-antigravity-ide/?utm_source=github_readme&utm_medium=referral)
 📅 2025/11/19 · 2 天前
 
@@ -62,9 +56,15 @@
 > 想用 Postiz 自動排程 Threads 貼文？本文提供完整 Meta 應用程式建立到 Threads API 串接教學，輕鬆實現 Threads 自動排程發文。
 
 
+### [Claude Code Agent 實測，建立專屬的開發助理](https://www.darrelltw.com/claude-code-agent/?utm_source=github_readme&utm_medium=referral)
+📅 2025/07/25 · 4 個月前
+
+> Claude Code 新推出的 Agent 功能讓你可以建立專屬的開發 Agent，透過自然語言指令自動處理重複性的程式設計任務。不再需要每次重新解釋需求，讓 Claude Code Agent 記住你的開發模式。
+
+
 ## 📊 部落格統計
-![文章總數](https://img.shields.io/badge/文章總數-112-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-240,794+-blue?style=flat-square)
+![文章總數](https://img.shields.io/badge/文章總數-111-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-239,677+-blue?style=flat-square)
 ![最後更新](https://img.shields.io/badge/最後更新-2025/11/22-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
@@ -97,7 +97,7 @@
 08月 █░░░░░░░░░ 1篇
 09月 ████░░░░░░ 4篇
 10月 ██░░░░░░░░ 2篇
-11月 ██░░░░░░░░ 2篇
+11月 █░░░░░░░░░ 1篇
 ```
 
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-11-22 03:45:09*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-11-22 03:50:17*
