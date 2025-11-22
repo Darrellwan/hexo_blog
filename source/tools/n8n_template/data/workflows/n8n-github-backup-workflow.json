@@ -109,7 +109,7 @@
         "resource": "file",
         "owner": {
           "__rl": true,
-          "value": "darrellwan",
+          "value": "",
           "mode": "name"
         },
         "repository": {
@@ -117,7 +117,7 @@
           "value": "n8n-daily-backup",
           "mode": "list",
           "cachedResultName": "n8n-daily-backup",
-          "cachedResultUrl": "https://github.com/Darrellwan/n8n-daily-backup"
+          "cachedResultUrl": ""
         },
         "filePath": "={{ \"workflows/\" + $json.fileName }}",
         "fileContent": "={{ $json.fileContent }}",
