@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>n8n DataTables 完整功能示範 - n8n 模板分享 | Darrell</title>
+    <meta name="description" content="這個工作流程展示 n8n DataTables 的完整功能，包含表單資料收集和 7 種核心 CRUD 操作演示。透過實際的用戶評價表單收集數據（email、評分、訂閱選擇、生日），並展示 Insert、Get、Update、Upsert、Delete、If Row Exists 等所有 DataTables 操作方式。
+
+主要功能：
+
+表單觸發：使用 n8n Form Trigger 收集用戶評價和資料
+數據插入：自動將表單資料寫入 DataTables
+條件查詢：根據 email 等條件查詢特定資料
+存在判斷：檢查資料是否存在的邏輯判斷
+數據更新：更新現有資料的評分等欄位
+智能插入：Upsert 操作實現插入或更新的自動判斷
+資料清理：根據條件刪除不需要的測試資料">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="DarrellTW n8n 模板庫">
+    <meta property="og:title" content="n8n DataTables 完整功能示範 - n8n 模板分享 | Darrell">
+    <meta property="og:description" content="這個工作流程展示 n8n DataTables 的完整功能，包含表單資料收集和 7 種核心 CRUD 操作演示。透過實際的用戶評價表單收集數據（email、評分、訂閱選擇、生日），並展示 Insert、Get、Update、Upsert、Delete、If Row Exists 等所有 DataTables 操作方式。
+
+主要功能：
+
+表單觸發：使用 n8n Form Trigger 收集用戶評價和資料
+數據插入：自動將表單資料寫入 DataTables
+條件查詢：根據 email 等條件查詢特定資料
+存在判斷：檢查資料是否存在的邏輯判斷
+數據更新：更新現有資料的評分等欄位
+智能插入：Upsert 操作實現插入或更新的自動判斷
+資料清理：根據條件刪除不需要的測試資料">
+    <meta property="og:url" content="https://www.darrelltw.com/tools/n8n_template/model/darrell-n8n-demo-datatables.html">
+    <meta property="og:image" content="https://www.darrelltw.com/tools/n8n_template/data/bg/darrell-n8n-demo-datatables.webp">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- n8n Demo Component -->
+    <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2.6.0/webcomponents-loader.js"></script>
+    <script src="https://unpkg.com/lit@2.7.0/polyfill-support.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@n8n_io/n8n-demo-component/n8n-demo.bundled.js"></script>
+    <link rel="stylesheet" href="../css/n8n-demo.css">
+
+    <style>
+        :root {
+            --bg-color: #111;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #fff;
+            --text-muted: #9ca3af;
+            --accent: #ff6b6b;
+            --accent-glow: rgba(255, 107, 107, 0.3);
+            --card-radius: 24px;
+
+            /* n8n Demo Theme Variables */
+            --n8n-frame-background-color: #000;
+            --n8n-editor-background: #000;
+            --n8n-workflow-min-height: 800px;
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --n8n-workflow-min-height: 300px;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'DM Sans', 'Noto Sans TC', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Background Animation (Same as models.html) */
+        .node-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+            background-image: 
+                radial-gradient(circle at 20px 20px, #fff 2px, transparent 2.5px),
+                linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        .n8n-svg-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .n8n-path {
+            fill: none;
+            stroke: url(#gradient);
+            stroke-width: 1.5;
+            stroke-dasharray: 20 400;
+            stroke-linecap: round;
+            opacity: 0.6;
+            animation: flow 8s linear infinite;
+        }
+        
+        @keyframes flow {
+            from { stroke-dashoffset: 420; }
+            to { stroke-dashoffset: -1000; }
+        }
+
+        /* Header */
+        header {
+            background: rgba(20, 20, 20, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .header-logo span { color: var(--accent); }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover { color: #fff; }
+
+        /* Main Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 2rem;
+        }
+
+        /* Left Column: Hero & Preview */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .hero-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--card-radius);
+            padding: 2rem;
+            backdrop-filter: blur(12px);
+        }
+
+        .breadcrumb {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover { color: var(--accent); }
+
+        .model-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .tags-row {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: nowrap;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .glass-tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Description with expand/collapse */
+        .description-wrapper {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .model-description {
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin: 0;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            transition: all 0.3s ease;
+        }
+
+        .model-description.expanded {
+            -webkit-line-clamp: unset;
+            display: block;
+        }
+
+        .expand-btn {
+            background: transparent;
+            border: none;
+            color: var(--accent);
+            cursor: pointer;
+            font-size: 0.85rem;
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: opacity 0.2s;
+        }
+
+        .expand-btn:hover {
+            opacity: 0.8;
+        }
+
+        .meta-row {
+            display: flex;
+            gap: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            align-items: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--glass-border);
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-left: auto;
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+        }
+
+        .action-btn#copy-btn {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid var(--glass-border);
+        }
+
+        .action-btn#copy-btn:hover {
+            background: rgba(255,255,255,0.12);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 600px) {
+            .action-buttons {
+                width: 100%;
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+            .action-btn {
+                flex: 1;
+                justify-content: center;
+            }
+        }
+
+        .preview-card {
+            background: #000;
+            border: 1px solid var(--glass-border);
+            border-radius: var(--card-radius);
+            overflow: hidden;
+            position: relative;
+        }
+
+        n8n-demo {
+            width: 100%;
+            height: 100%;
+            --n8n-frame-background-color: #000;
+            background: #000;
+        }
+
+        /* Right Column: Details & Author */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--card-radius);
+            padding: 1.5rem;
+            backdrop-filter: blur(12px);
+        }
+
+        .info-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-content {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .info-content ul, .info-content ol {
+            padding-left: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-content li { margin-bottom: 0.5rem; }
+
+        .info-content .service-tag {
+            background: rgba(255,107,107,0.15);
+            color: #ff6b6b;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+        }
+
+        .author-social-links a {
+            color: #fff;
+        }
+
+        .author-social-links a:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .download-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.2);
+        }
+
+        /* Author Profile (Mini) */
+        .author-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .author-img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid var(--accent);
+        }
+
+        .author-info h4 {
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .author-role {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .model-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="node-bg"></div>
+    <svg class="n8n-svg-bg" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="transparent" />
+                <stop offset="50%" stop-color="#ff6b6b" />
+                <stop offset="100%" stop-color="transparent" />
+            </linearGradient>
+        </defs>
+        <path class="n8n-path" d="M -100 100 L 200 100 Q 250 100 250 150 L 250 400 Q 250 450 300 450 L 1500 450" />
+        <path class="n8n-path" d="M -100 800 L 300 800 Q 350 800 350 750 L 350 300 Q 350 250 400 250 L 1500 250" />
+    </svg>
+
+    <header>
+        <a href="../models.html" class="header-logo">Darrell <span>n8n</span> 模板分享</a>
+        <nav class="nav-links">
+            <a href="../models.html" class="nav-link">模板列表</a>
+            <a href="../contact.html" class="nav-link">聯絡我們</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="main-content">
+            <article class="hero-card">
+                <div class="breadcrumb">
+                    <a href="../models.html">首頁</a> &gt; <a href="../models.html">n8n 模板分享</a> &gt; <span>n8n DataTables 完整功能示範</span>
+                </div>
+                <h1 class="model-title">n8n DataTables 完整功能示範</h1>
+                <div class="tags-row">
+                    <span class="glass-tag">DataTables</span><span class="glass-tag">表單收集</span><span class="glass-tag">CRUD 操作</span><span class="glass-tag">資料管理</span><span class="glass-tag">n8n 教學</span>
+                </div>
+                <div class="description-wrapper">
+                    <p class="model-description" id="model-description">這個工作流程展示 n8n DataTables 的完整功能，包含表單資料收集和 7 種核心 CRUD 操作演示。透過實際的用戶評價表單收集數據（email、評分、訂閱選擇、生日），並展示 Insert、Get、Update、Upsert、Delete、If Row Exists 等所有 DataTables 操作方式。
+
+主要功能：
+
+表單觸發：使用 n8n Form Trigger 收集用戶評價和資料
+數據插入：自動將表單資料寫入 DataTables
+條件查詢：根據 email 等條件查詢特定資料
+存在判斷：檢查資料是否存在的邏輯判斷
+數據更新：更新現有資料的評分等欄位
+智能插入：Upsert 操作實現插入或更新的自動判斷
+資料清理：根據條件刪除不需要的測試資料</p>
+                    <button class="expand-btn" id="expand-btn" style="display: none;">展開全文</button>
+                </div>
+                <div class="meta-row">
+                    <div class="meta-item">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/></svg>
+                        <span>13 Nodes</span>
+                    </div>
+                    <div class="meta-item">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M11 2.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0zM4.5 7.5A.5.5 0 0 0 4 8v4a.5.5 0 0 0 1 0V8a.5.5 0 0 0-.5-.5zm7 0a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 1 0V8a.5.5 0 0 0-.5-.5z"/></svg>
+                        <span>Updated Sep 25</span>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="action-btn" id="download-btn">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            下載
+                        </button>
+                        <button class="action-btn" id="copy-btn">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                            複製
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <div class="preview-card">
+            <div class="preview-card" id="workflow-preview-container">
+            </div>
+            </div>
+        </div>
+
+        <aside class="sidebar">
+            <div class="info-card author-info-card">
+                <div class="info-title">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    關於作者
+                </div>
+                <div class="info-content">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                        <img src="https://www.darrelltw.com/images/darrell_icon_512.png" alt="Darrell" style="width: 64px; height: 64px; border-radius: 50%; border: 2px solid var(--accent);" onerror="this.src='https://placehold.co/64x64/333/FFF?text=DW'">
+                        <div>
+                            <h4 style="color: #fff; margin-bottom: 0.25rem; font-size: 1.1rem;">Darrell Wang</h4>
+                            <span style="font-size: 0.85rem; color: var(--text-muted);">Automation Expert</span>
+                            <div style="display: flex; gap: 0.4rem; margin-top: 0.5rem; flex-wrap: wrap;">
+                                <span class="service-tag">n8n 接案</span>
+                                <span class="service-tag">n8n 顧問</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="author-social-links" style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem;">
+                        <a href="https://www.threads.net/@darrell_tw_" target="_blank" title="Threads" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px; transition: background 0.2s;"><svg width="16" height="16" fill="currentColor" viewBox="0 0 440 512"><path d="M342.383 237.038a177.282 177.282 0 00-6.707-3.046c-3.948-72.737-43.692-114.379-110.429-114.805-38.505-.255-72.972 15.445-94.454 48.041l36.702 25.178c15.265-23.159 39.221-28.096 56.864-28.096.204 0 .408 0 .61.002 21.974.14 38.555 6.529 49.287 18.987 7.81 9.071 13.034 21.606 15.621 37.425-19.483-3.311-40.553-4.329-63.077-3.038-63.45 3.655-104.24 40.661-101.501 92.08 1.391 26.083 14.385 48.523 36.587 63.181 18.772 12.391 42.95 18.45 68.077 17.079 33.183-1.819 59.215-14.48 77.377-37.63 13.793-17.58 22.516-40.363 26.368-69.069 15.814 9.544 27.535 22.103 34.007 37.2 11.006 25.665 11.648 67.84-22.764 102.223-30.15 30.121-66.392 43.151-121.164 43.554-60.758-.45-106.708-19.935-136.583-57.915-27.976-35.562-42.434-86.93-42.973-152.674.539-65.746 14.997-117.114 42.973-152.676 29.875-37.979 75.824-57.463 136.582-57.914 61.197.455 107.948 20.033 138.967 58.195 15.21 18.713 26.676 42.248 34.236 69.688L440 161.532c-9.163-33.775-23.582-62.881-43.203-87.017C357.031 25.59 298.872.519 223.936 0h-.3C148.851.518 91.344 25.683 52.709 74.795 18.331 118.499.598 179.308.002 255.535l-.002.18.002.18c.596 76.225 18.329 137.037 52.707 180.741 38.635 49.11 96.142 74.277 170.927 74.794h.3c66.486-.462 113.352-17.868 151.96-56.442 50.51-50.463 48.99-113.718 32.342-152.549-11.945-27.847-34.716-50.463-65.855-65.401zM227.587 344.967c-27.808 1.567-56.699-10.916-58.124-37.651-1.056-19.823 14.108-41.942 59.831-44.577a266.87 266.87 0 0115.422-.45c16.609 0 32.145 1.613 46.271 4.701-5.268 65.798-36.172 76.483-63.4 77.977z"></path></svg></a>
+                        <a href="https://www.instagram.com/darrell_tw_/" target="_blank" title="Instagram" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px; transition: background 0.2s;"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.281-.057 1.689-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg></a>
+                        <a href="https://x.com/darrell_tw_" target="_blank" title="X (Twitter)" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px; transition: background 0.2s;"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a>
+                        <a href="https://www.facebook.com/darrelltw" target="_blank" title="Facebook" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px; transition: background 0.2s;"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a>
+                        <a href="https://www.darrelltw.com/" target="_blank" title="Website" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px; transition: background 0.2s;"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"></path></svg></a>
+                        <a href="https://www.linkedin.com/in/darrell-wang-tw/" target="_blank" title="LinkedIn" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px; transition: background 0.2s;"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg></a>
+                        <a href="https://buymeacoffee.com/darrell_tw" target="_blank" title="Buy Me a Coffee" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px; transition: background 0.2s;"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"></path></svg></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="info-title">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    功能特色
+                </div>
+                <div class="info-content">
+                    <ul>
+                        <li>使用 Form Trigger 建立互動式表單收集用戶評價資料</li><li>表單包含 email（文字）、評分（數字）、訂閱選擇（單選）、生日（日期）四種資料類型</li><li>Insert 操作：將表單提交的資料自動寫入 DataTables</li><li>Get Row(s) 操作：使用 ilike 條件搜尋包含特定文字的資料</li><li>If Row Exists 操作：純判斷資料是否存在，不回傳資料內容</li><li>If Row Does Not Exist 操作：判斷資料不存在時的處理邏輯</li><li>Update 操作：更新現有資料的特定欄位（如評分）</li><li>Upsert 操作：智能判斷資料存在則更新，不存在則新增</li><li>Delete 操作：根據 email 條件刪除指定的測試資料</li><li>包含完整的 Sticky Note 說明每個操作的用途和注意事項</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="info-title">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                    設置說明
+                </div>
+                <div class="info-content">
+                    
+                    <p><strong>預先設定：</strong>需要 n8n 1.113.0 以上版本支援 DataTables Beta 功能</p>
+                    <ol><li><strong>版本確認</strong>: 確保 n8n 版本支援 DataTables<ul><li>檢查 n8n 版本為 1.113.0 或更高</li><li>確認左側選單中有 Data tables 選項</li><li>DataTables 目前為 Beta 功能，建議先在測試環境使用</li></ul></li><li><strong>建立 DataTable</strong>: 建立名為 form_users 的資料表<ul><li>點擊 Data tables → Create Data table</li><li>表格名稱：form_users</li><li>新增欄位：email (String)、review_stars (Number)、subscribe (Boolean)、birthday (Date)</li><li>確保欄位類型正確對應表單資料格式</li></ul></li><li><strong>匯入並測試工作流程</strong>: 匯入模板並進行功能測試<ul><li>匯入 workflow JSON 檔案</li><li>檢查 DataTable ID 是否正確對應到 form_users</li><li>測試表單提交功能：填寫測試資料並送出</li><li>逐一測試每個 DataTables 操作節點</li><li>觀察每個操作的執行結果和資料變化</li><li>注意：Delete 操作會真的刪除資料，測試時請小心</li></ul></li></ol>
+                
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <footer>
+        © 2025 DarrellTW. All rights reserved.
+    </footer>
+
+    <script>
+        const workflowData = {
+  "name": "n8n demo datatables",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -576,
+        208
+      ],
+      "id": "d411d8cc-d18f-4967-9e9a-2887db893a48",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "OsjaKxzHKNsQP5c7",
+          "mode": "list",
+          "cachedResultName": "form_users",
+          "cachedResultUrl": "/projects/F9el4HPwL1uE0IOd/datatables/OsjaKxzHKNsQP5c7"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "email": "={{ $json.email }}",
+            "review_stars": "={{ $json.review_stars }}",
+            "subscribe": "={{ $json['是否要訂閱電子報']==\"是\" }}",
+            "birthday": "={{ $json['出生年月日'] }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "review_stars",
+              "displayName": "review_stars",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "subscribe",
+              "displayName": "subscribe",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "birthday",
+              "displayName": "birthday",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        -176
+      ],
+      "id": "4a22a718-e422-483d-9dda-e7982b1f6fd8",
+      "name": "Insert row"
+    },
+    {
+      "parameters": {
+        "formTitle": "n8n datatables test",
+        "formDescription": "測試 datatables",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "email",
+              "placeholder": "email",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "review_stars",
+              "fieldType": "number",
+              "placeholder": "針對這篇教學的評分 1-5",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "是否要訂閱電子報",
+              "fieldType": "radio",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "是"
+                  },
+                  {
+                    "option": "否"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "出生年月日",
+              "fieldType": "date",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        -576,
+        -176
+      ],
+      "id": "f0d7c2af-55cc-4cf7-8a1c-4ffa1b6189fb",
+      "name": "On form submission",
+      "webhookId": "3a0f676e-8c26-4236-8a00-fa375e2f013a"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "OsjaKxzHKNsQP5c7",
+          "mode": "list",
+          "cachedResultName": "form_users",
+          "cachedResultUrl": "/projects/F9el4HPwL1uE0IOd/datatables/OsjaKxzHKNsQP5c7"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "condition": "ilike",
+              "keyValue": "Test"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        32
+      ],
+      "id": "b3e45e25-72e1-4b29-83e2-0fe12c9cc048",
+      "name": "Get row(s)"
+    },
+    {
+      "parameters": {
+        "operation": "rowExists",
+        "dataTableId": {
+          "__rl": true,
+          "value": "OsjaKxzHKNsQP5c7",
+          "mode": "list",
+          "cachedResultName": "form_users",
+          "cachedResultUrl": "/projects/F9el4HPwL1uE0IOd/datatables/OsjaKxzHKNsQP5c7"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "test@test.com"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        208
+      ],
+      "id": "df24d70d-835c-42f5-9640-3b47e9f21594",
+      "name": "If row exists"
+    },
+    {
+      "parameters": {
+        "operation": "rowNotExists",
+        "dataTableId": {
+          "__rl": true,
+          "value": "OsjaKxzHKNsQP5c7",
+          "mode": "list",
+          "cachedResultName": "form_users",
+          "cachedResultUrl": "/projects/F9el4HPwL1uE0IOd/datatables/OsjaKxzHKNsQP5c7"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "test@test.com"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        336
+      ],
+      "id": "1af10226-071e-491a-86f9-b31b8d4283d9",
+      "name": "If row does not exist"
+    },
+    {
+      "parameters": {
+        "content": "## If row exists or not 資料是否存在\n更快地用條件判斷資料是否存在\n注意：不會回傳資料，只會根據有沒有 output 空item 來判斷",
+        "height": 272,
+        "width": 560,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        64,
+        192
+      ],
+      "id": "af13cfc8-518a-451d-bf0b-fa428feef0d3",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "dataTableId": {
+          "__rl": true,
+          "value": "OsjaKxzHKNsQP5c7",
+          "mode": "list",
+          "cachedResultName": "form_users",
+          "cachedResultUrl": "/projects/F9el4HPwL1uE0IOd/datatables/OsjaKxzHKNsQP5c7"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "test@test.com"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "review_stars": 4
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "review_stars",
+              "displayName": "review_stars",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "subscribe",
+              "displayName": "subscribe",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "birthday",
+              "displayName": "birthday",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        512
+      ],
+      "id": "a0825726-3842-4248-935d-418672151b99",
+      "name": "Update row(s)"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "dataTableId": {
+          "__rl": true,
+          "value": "OsjaKxzHKNsQP5c7",
+          "mode": "list",
+          "cachedResultName": "form_users",
+          "cachedResultUrl": "/projects/F9el4HPwL1uE0IOd/datatables/OsjaKxzHKNsQP5c7"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "test@test.com"
+            }
+          ]
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "review_stars": 5
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "review_stars",
+              "displayName": "review_stars",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "subscribe",
+              "displayName": "subscribe",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "birthday",
+              "displayName": "birthday",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        656
+      ],
+      "id": "8f1d77c7-64ba-49e0-a6e5-89fc9d41a492",
+      "name": "Upsert row(s)"
+    },
+    {
+      "parameters": {
+        "content": "## Update & Upsert 更新資料\nUpdate : 資料如果存在，就更新\nUpsert : 資料如果不存在，就新增",
+        "height": 256,
+        "width": 560
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        64,
+        512
+      ],
+      "id": "607f2e8b-bf43-4139-8323-eb1cd018e59c",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "operation": "deleteRows",
+        "dataTableId": {
+          "__rl": true,
+          "value": "OsjaKxzHKNsQP5c7",
+          "mode": "list",
+          "cachedResultName": "form_users",
+          "cachedResultUrl": "/projects/F9el4HPwL1uE0IOd/datatables/OsjaKxzHKNsQP5c7"
+        },
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "test@test.com"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        848
+      ],
+      "id": "0c6cb90f-95c2-4fc8-9b2d-d3224eeae988",
+      "name": "Delete row(s)"
+    },
+    {
+      "parameters": {
+        "content": "## Delete 刪除資料\n根據條件直接把符合的資料刪除",
+        "height": 144,
+        "width": 560,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        64,
+        832
+      ],
+      "id": "48076871-1c8c-4b87-aff1-f6b4f7cd2f29",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Get row(s)\n根據條件取得資料",
+        "height": 128,
+        "width": 560,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        64,
+        16
+      ],
+      "id": "cae42d9d-7848-428d-9810-01a04260d647",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "## Insert rows\n新增資料",
+        "height": 128,
+        "width": 560,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        64,
+        -176
+      ],
+      "id": "7e5c6c80-cee6-4476-ac31-0f7e3db074f5",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "## Created by darrell_tw_ \n\n### contact me with following:\n[Website](https://www.darrelltw.com/)\n[X](https://x.com/darrell_tw_)\n[Threads](https://www.threads.net/@darrell_tw_)\n[Instagram](https://www.instagram.com/darrell_tw_/)\n[Portaly](https://portaly.cc/darrelltw)\n![](https://pub-c093258f61a1463ea03e1a40c141968a.r2.dev/darrell-icon-128.svg)\nLine n8n 社群\n![](https://st.darrelltw.com/linen8nrqcode_c.jpg)",
+        "height": 692,
+        "width": 328,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -960,
+        96
+      ],
+      "id": "ee9eb633-ae7d-48ed-9feb-88ff83bc7cac",
+      "name": "Sticky Note6"
+    }
+  ],
+  "pinData": {
+    "On form submission": [
+      {
+        "json": {
+          "email": "test@test.com",
+          "review_stars": 5,
+          "是否要訂閱電子報": "是",
+          "出生年月日": "2025-09-01",
+          "submittedAt": "2025-09-25T06:22:48.169-04:00",
+          "formMode": "test"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "If row does not exist",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Update row(s)",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "If row exists",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get row(s)",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Upsert row(s)",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Delete row(s)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Insert row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "a86d03c4-3064-4c5a-9af0-410d6efdeb0a",
+  "meta": {
+    "instanceId": "c0dca30a86be5969a9ab22987c12df9ca5c8682c972e0ee25dbae1f95ea3e13d"
+  },
+  "id": "HtRYfhUivchYl4F7",
+  "tags": []
+};
+        
+        // Initialize n8n-demo component dynamically
+        const container = document.getElementById('workflow-preview-container');
+        if (container) {
+            const demo = document.createElement('n8n-demo');
+            demo.setAttribute('workflow', JSON.stringify(workflowData));
+            demo.setAttribute('mode', 'dark');
+            demo.setAttribute('theme', 'dark');
+            container.appendChild(demo);
+        }
+
+        function downloadWorkflow() {
+            try {
+                const blob = new Blob([JSON.stringify(workflowData, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'darrell-n8n-demo-datatables.json';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            } catch (e) {
+                console.error('Download failed:', e);
+                alert('下載失敗，請稍後再試');
+            }
+        }
+
+        function copyWorkflow() {
+            try {
+                const jsonStr = JSON.stringify(workflowData, null, 2);
+                navigator.clipboard.writeText(jsonStr).then(() => {
+                    const btn = document.getElementById('copy-btn');
+                    const originalText = btn.innerText;
+                    btn.innerText = '已複製！';
+                    setTimeout(() => {
+                        btn.innerText = originalText;
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Copy failed:', err);
+                    alert('複製失敗，請手動複製');
+                });
+            } catch (e) {
+                console.error('Copy error:', e);
+                alert('複製發生錯誤');
+            }
+        }
+
+        const downloadBtn = document.getElementById('download-btn');
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', downloadWorkflow);
+        }
+
+        const copyBtn = document.getElementById('copy-btn');
+        if (copyBtn) {
+            copyBtn.addEventListener('click', copyWorkflow);
+        }
+
+        // Description expand/collapse functionality
+        const descEl = document.getElementById('model-description');
+        const expandBtn = document.getElementById('expand-btn');
+
+        if (descEl && expandBtn) {
+            let needsExpand = false;
+
+            // Check if text is truncated (needs more than 3 lines)
+            function checkTruncation() {
+                // Clone element to measure full height without affecting display
+                const clone = descEl.cloneNode(true);
+                clone.style.cssText = 'position:absolute;visibility:hidden;display:block;-webkit-line-clamp:unset;width:' + descEl.offsetWidth + 'px;';
+                document.body.appendChild(clone);
+                const fullHeight = clone.scrollHeight;
+                document.body.removeChild(clone);
+
+                const lineHeight = parseFloat(getComputedStyle(descEl).lineHeight);
+                const maxHeight = lineHeight * 3;
+
+                needsExpand = fullHeight > maxHeight + 5;
+                expandBtn.style.display = needsExpand ? 'flex' : 'none';
+            }
+
+            checkTruncation();
+            window.addEventListener('resize', checkTruncation);
+
+            expandBtn.addEventListener('click', function() {
+                const isExpanded = descEl.classList.toggle('expanded');
+                expandBtn.textContent = isExpanded ? '收合' : '展開全文';
+            });
+        }
+    </script>
+</body>
+</html>

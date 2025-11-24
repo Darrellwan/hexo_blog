@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAI Sora-2 文字轉影片自動生成 - n8n 模板分享 | Darrell</title>
+    <meta name="description" content="這個工作流程使用 OpenAI 最新的 Sora-2 API 將文字提示詞轉換成高品質影片。系統會自動處理影片生成請求、監控生成狀態、下載完成的影片，並將成品自動上傳到 Google Drive 儲存。支援不同的影片長度（4/8/12 秒）和解析度選項，適合用於快速生成社群媒體內容或影片原型測試。
+
+主要功能：
+
+影片生成：使用 Sora-2 或 Sora-2-Pro 模型根據文字提示生成影片
+狀態監控：自動檢查影片生成進度，直到完成為止
+自動儲存：將生成的影片自動上傳到 Google Drive
+彈性設定：支援多種影片長度和解析度選項">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="DarrellTW n8n 模板庫">
+    <meta property="og:title" content="OpenAI Sora-2 文字轉影片自動生成 - n8n 模板分享 | Darrell">
+    <meta property="og:description" content="這個工作流程使用 OpenAI 最新的 Sora-2 API 將文字提示詞轉換成高品質影片。系統會自動處理影片生成請求、監控生成狀態、下載完成的影片，並將成品自動上傳到 Google Drive 儲存。支援不同的影片長度（4/8/12 秒）和解析度選項，適合用於快速生成社群媒體內容或影片原型測試。
+
+主要功能：
+
+影片生成：使用 Sora-2 或 Sora-2-Pro 模型根據文字提示生成影片
+狀態監控：自動檢查影片生成進度，直到完成為止
+自動儲存：將生成的影片自動上傳到 Google Drive
+彈性設定：支援多種影片長度和解析度選項">
+    <meta property="og:url" content="https://www.darrelltw.com/tools/n8n_template/model/n8n-sora2-prompt-to-video.html">
+    <meta property="og:image" content="https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-sora2-prompt-to-video.webp">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- n8n Demo Component -->
+    <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2.6.0/webcomponents-loader.js"></script>
+    <script src="https://unpkg.com/lit@2.7.0/polyfill-support.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@n8n_io/n8n-demo-component/n8n-demo.bundled.js"></script>
+    <link rel="stylesheet" href="../css/n8n-demo.css">
+
+    <style>
+        :root {
+            --bg-color: #111;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #fff;
+            --text-muted: #9ca3af;
+            --accent: #ff6b6b;
+            --accent-glow: rgba(255, 107, 107, 0.3);
+            --card-radius: 24px;
+
+            /* n8n Demo Theme Variables */
+            --n8n-frame-background-color: #000;
+            --n8n-editor-background: #000;
+            --n8n-workflow-min-height: 800px;
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --n8n-workflow-min-height: 300px;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'DM Sans', 'Noto Sans TC', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Background Animation (Same as models.html) */
+        .node-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+            background-image: 
+                radial-gradient(circle at 20px 20px, #fff 2px, transparent 2.5px),
+                linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        .n8n-svg-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .n8n-path {
+            fill: none;
+            stroke: url(#gradient);
+            stroke-width: 1.5;
+            stroke-dasharray: 20 400;
+            stroke-linecap: round;
+            opacity: 0.6;
+            animation: flow 8s linear infinite;
+        }
+        
+        @keyframes flow {
+            from { stroke-dashoffset: 420; }
+            to { stroke-dashoffset: -1000; }
+        }
+
+        /* Header */
+        header {
+            background: rgba(20, 20, 20, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .header-logo span { color: var(--accent); }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover { color: #fff; }
+
+        /* Main Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 2rem;
+        }
+
+        /* Left Column: Hero & Preview */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .hero-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--card-radius);
+            padding: 2rem;
+            backdrop-filter: blur(12px);
+        }
+
+        .breadcrumb {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover { color: var(--accent); }
+
+        .model-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .tags-row {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: nowrap;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .glass-tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Description with expand/collapse */
+        .description-wrapper {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .model-description {
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin: 0;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            transition: all 0.3s ease;
+        }
+
+        .model-description.expanded {
+            -webkit-line-clamp: unset;
+            display: block;
+        }
+
+        .expand-btn {
+            background: transparent;
+            border: none;
+            color: var(--accent);
+            cursor: pointer;
+            font-size: 0.85rem;
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: opacity 0.2s;
+        }
+
+        .expand-btn:hover {
+            opacity: 0.8;
+        }
+
+        .meta-row {
+            display: flex;
+            gap: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            align-items: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--glass-border);
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-left: auto;
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+        }
+
+        .action-btn#copy-btn {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid var(--glass-border);
+        }
+
+        .action-btn#copy-btn:hover {
+            background: rgba(255,255,255,0.12);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 600px) {
+            .action-buttons {
+                width: 100%;
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+            .action-btn {
+                flex: 1;
+                justify-content: center;
+            }
+        }
+
+        .preview-card {
+            background: #000;
+            border: 1px solid var(--glass-border);
+            border-radius: var(--card-radius);
+            overflow: hidden;
+            position: relative;
+        }
+
+        n8n-demo {
+            width: 100%;
+            height: 100%;
+            --n8n-frame-background-color: #000;
+            background: #000;
+        }
+
+        /* Right Column: Details & Author */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--card-radius);
+            padding: 1.5rem;
+            backdrop-filter: blur(12px);
+        }
+
+        .info-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-content {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .info-content ul, .info-content ol {
+            padding-left: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-content li { margin-bottom: 0.5rem; }
+
+        .info-content .service-tag {
+            background: rgba(255,107,107,0.15);
+            color: #ff6b6b;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+        }
+
+        .author-social-links a {
+            color: #fff;
+        }
+
+        .author-social-links a:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .download-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.2);
+        }
+
+        /* Author Profile (Mini) */
+        .author-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .author-img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid var(--accent);
+        }
+
+        .author-info h4 {
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .author-role {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .model-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="node-bg"></div>
+    <svg class="n8n-svg-bg" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="transparent" />
+                <stop offset="50%" stop-color="#ff6b6b" />
+                <stop offset="100%" stop-color="transparent" />
+            </linearGradient>
+        </defs>
+        <path class="n8n-path" d="M -100 100 L 200 100 Q 250 100 250 150 L 250 400 Q 250 450 300 450 L 1500 450" />
+        <path class="n8n-path" d="M -100 800 L 300 800 Q 350 800 350 750 L 350 300 Q 350 250 400 250 L 1500 250" />
+    </svg>
+
+    <header>
+        <a href="../models.html" class="header-logo">Darrell <span>n8n</span> 模板分享</a>
+        <nav class="nav-links">
+            <a href="../models.html" class="nav-link">模板列表</a>
+            <a href="../contact.html" class="nav-link">聯絡我們</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="main-content">
+            <article class="hero-card">
+                <div class="breadcrumb">
+                    <a href="../models.html">首頁</a> &gt; <a href="../models.html">n8n 模板分享</a> &gt; <span>OpenAI Sora-2 文字轉影片自動生成</span>
+                </div>
+                <h1 class="model-title">OpenAI Sora-2 文字轉影片自動生成</h1>
+                <div class="tags-row">
+                    <span class="glass-tag">AI</span><span class="glass-tag">影片生成</span><span class="glass-tag">OpenAI</span><span class="glass-tag">Sora</span><span class="glass-tag">自動化</span><span class="glass-tag">Google Drive</span><span class="glass-tag">文字轉影片</span>
+                </div>
+                <div class="description-wrapper">
+                    <p class="model-description" id="model-description">這個工作流程使用 OpenAI 最新的 Sora-2 API 將文字提示詞轉換成高品質影片。系統會自動處理影片生成請求、監控生成狀態、下載完成的影片，並將成品自動上傳到 Google Drive 儲存。支援不同的影片長度（4/8/12 秒）和解析度選項，適合用於快速生成社群媒體內容或影片原型測試。
+
+主要功能：
+
+影片生成：使用 Sora-2 或 Sora-2-Pro 模型根據文字提示生成影片
+狀態監控：自動檢查影片生成進度，直到完成為止
+自動儲存：將生成的影片自動上傳到 Google Drive
+彈性設定：支援多種影片長度和解析度選項</p>
+                    <button class="expand-btn" id="expand-btn" style="display: none;">展開全文</button>
+                </div>
+                <div class="meta-row">
+                    <div class="meta-item">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/></svg>
+                        <span>8 Nodes</span>
+                    </div>
+                    <div class="meta-item">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M11 2.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0zM4.5 7.5A.5.5 0 0 0 4 8v4a.5.5 0 0 0 1 0V8a.5.5 0 0 0-.5-.5zm7 0a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 1 0V8a.5.5 0 0 0-.5-.5z"/></svg>
+                        <span>Updated Oct 11</span>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="action-btn" id="download-btn">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            下載
+                        </button>
+                        <button class="action-btn" id="copy-btn">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                            複製
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <div class="preview-card">
+            <div class="preview-card" id="workflow-preview-container">
+            </div>
+            </div>
+        </div>
+
+        <aside class="sidebar">
+            <div class="info-card author-info-card">
+                <div class="info-title">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    關於作者
+                </div>
+                <div class="info-content">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                        <img src="https://www.darrelltw.com/images/darrell_icon_512.png" alt="Darrell" style="width: 64px; height: 64px; border-radius: 50%; border: 2px solid var(--accent);" onerror="this.src='https://placehold.co/64x64/333/FFF?text=DW'">
+                        <div>
+                            <h4 style="color: #fff; margin-bottom: 0.25rem; font-size: 1.1rem;">Darrell Wang</h4>
+                            <span style="font-size: 0.85rem; color: var(--text-muted);">Automation Expert</span>
+                            <div style="display: flex; gap: 0.4rem; margin-top: 0.5rem; flex-wrap: wrap;">
+                                <span class="service-tag">n8n 接案</span>
+                                <span class="service-tag">n8n 顧問</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="author-social-links" style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem;">
+                        <a href="https://www.threads.net/@darrell_tw_" target="_blank" title="Threads" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px; transition: background 0.2s;"><svg width="16" height="16" fill="currentColor" viewBox="0 0 440 512"><path d="M342.383 237.038a177.282 177.282 0 00-6.707-3.046c-3.948-72.737-43.692-114.379-110.429-114.805-38.505-.255-72.972 15.445-94.454 48.041l36.702 25.178c15.265-23.159 39.221-28.096 56.864-28.096.204 0 .408 0 .61.002 21.974.14 38.555 6.529 49.287 18.987 7.81 9.071 13.034 21.606 15.621 37.425-19.483-3.311-40.553-4.329-63.077-3.038-63.45 3.655-104.24 40.661-101.501 92.08 1.391 26.083 14.385 48.523 36.587 63.181 18.772 12.391 42.95 18.45 68.077 17.079 33.183-1.819 59.215-14.48 77.377-37.63 13.793-17.58 22.516-40.363 26.368-69.069 15.814 9.544 27.535 22.103 34.007 37.2 11.006 25.665 11.648 67.84-22.764 102.223-30.15 30.121-66.392 43.151-121.164 43.554-60.758-.45-106.708-19.935-136.583-57.915-27.976-35.562-42.434-86.93-42.973-152.674.539-65.746 14.997-117.114 42.973-152.676 29.875-37.979 75.824-57.463 136.582-57.914 61.197.455 107.948 20.033 138.967 58.195 15.21 18.713 26.676 42.248 34.236 69.688L440 161.532c-9.163-33.775-23.582-62.881-43.203-87.017C357.031 25.59 298.872.519 223.936 0h-.3C148.851.518 91.344 25.683 52.709 74.795 18.331 118.499.598 179.308.002 255.535l-.002.18.002.18c.596 76.225 18.329 137.037 52.707 180.741 38.635 49.11 96.142 74.277 170.927 74.794h.3c66.486-.462 113.352-17.868 151.96-56.442 50.51-50.463 48.99-113.718 32.342-152.549-11.945-27.847-34.716-50.463-65.855-65.401zM227.587 344.967c-27.808 1.567-56.699-10.916-58.124-37.651-1.056-19.823 14.108-41.942 59.831-44.577a266.87 266.87 0 0115.422-.45c16.609 0 32.145 1.613 46.271 4.701-5.268 65.798-36.172 76.483-63.4 77.977z"></path></svg></a>
+                        <a href="https://www.instagram.com/darrell_tw_/" target="_blank" title="Instagram" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px; transition: background 0.2s;"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.281-.057 1.689-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg></a>
+                        <a href="https://x.com/darrell_tw_" target="_blank" title="X (Twitter)" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px; transition: background 0.2s;"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a>
+                        <a href="https://www.facebook.com/darrelltw" target="_blank" title="Facebook" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px; transition: background 0.2s;"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a>
+                        <a href="https://www.darrelltw.com/" target="_blank" title="Website" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px; transition: background 0.2s;"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"></path></svg></a>
+                        <a href="https://www.linkedin.com/in/darrell-wang-tw/" target="_blank" title="LinkedIn" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px; transition: background 0.2s;"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg></a>
+                        <a href="https://buymeacoffee.com/darrell_tw" target="_blank" title="Buy Me a Coffee" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px; transition: background 0.2s;"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"></path></svg></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="info-title">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    功能特色
+                </div>
+                <div class="info-content">
+                    <ul>
+                        <li>接收文字提示詞，透過 OpenAI Sora-2 API 發起影片生成請求</li><li>自動輪詢檢查影片生成狀態（queued/in_progress/completed）</li><li>使用 Wait 節點實現智能等待機制，避免頻繁查詢</li><li>當影片生成完成後，自動下載影片內容</li><li>將影片上傳到指定的 Google Drive 資料夾</li><li>支援 720x1280 和 1280x720 等不同解析度</li><li>可選擇 4、8 或 12 秒的影片長度</li><li>包含詳細的 Sora API 定價說明和參數選項</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="info-title">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                    設置說明
+                </div>
+                <div class="info-content">
+                    
+                    <p><strong>預先設定：</strong>需要設定 OpenAI API 和 Google Drive 的 API 存取權限</p>
+                    <ol><li><strong>OpenAI 設定</strong>: 設定 OpenAI API 用於 Sora-2 影片生成<ul><li>取得 OpenAI API 金鑰（需要有 Sora API 存取權限）</li><li>確認帳戶已啟用 Sora-2 或 Sora-2-Pro 模型</li><li>了解 Sora API 定價：sora-2 為每秒 $0.10，sora-2-pro 依解析度為 $0.30-$0.50/秒</li><li>準備影片生成的文字提示詞（prompt）</li></ul></li><li><strong>調整提示詞和參數</strong>: 在 HTTP Request-prompt to video 節點中設定影片生成參數<ul><li>修改 prompt 為你想要的影片描述</li><li>選擇 model：sora-2（基礎版）或 sora-2-pro（進階版）</li><li>設定 seconds：4、8 或 12 秒</li><li>選擇 size：720x1280（直向）或 1280x720（橫向）</li><li>參考 Sticky Note 中的完整定價表進行成本評估</li></ul></li><li><strong>Google Drive 設定</strong>: 準備用於儲存生成影片的雲端資料夾<ul><li>在 Google Drive 建立專用資料夾用於存放生成的影片</li><li>設定適當的存取權限</li><li>複製資料夾 ID（從網址列取得）</li><li>在 Upload file 節點中更新 folderId 參數</li></ul></li></ol>
+                
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <footer>
+        © 2025 DarrellTW. All rights reserved.
+    </footer>
+
+    <script>
+        const workflowData = {
+  "name": "[Darrell][Template] gpt-sora2 示範",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -928,
+        -208
+      ],
+      "id": "8026805b-70d9-433e-b871-8adeadde0b71",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        48,
+        -112
+      ],
+      "id": "c14c1b4a-ba69-438b-ab77-628b49ec2b96",
+      "name": "Wait",
+      "webhookId": "7e69d931-c264-4159-a736-70f09c540cfa"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "id": "32e06787-4bde-4f5f-8868-d319bdd36ac4",
+                    "leftValue": "={{ $json.status }}",
+                    "rightValue": "completed",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "completed"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.status }}",
+                    "rightValue": "=in_progress|queued",
+                    "operator": {
+                      "type": "string",
+                      "operation": "regex"
+                    },
+                    "id": "1b8f875b-5c84-4848-a4d2-17017d26211d"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "in_progress"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        -144,
+        -208
+      ],
+      "id": "1bf29569-0786-486a-8320-b44d610e56cc",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/videos",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"model\": \"sora-2\",\n  \"prompt\": \"Golden-hour aerial shot of surfers catching waves at a tropical beach, gentle camera dolly forward, cinematic, natural colors. Subtle ambience of ocean and seagulls.\",\n  \"seconds\": \"4\",\n  \"size\": \"720x1280\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -672,
+        -208
+      ],
+      "id": "9822ea6d-6100-47e3-b925-57ae01cd36e1",
+      "name": "HTTP Request-prompt to video",
+      "credentials": {
+        "openAiApi": {
+          "id": "AE7fbXM0LWEUpaUf",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://api.openai.com/v1/videos/{{ $json.id }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -368,
+        -208
+      ],
+      "id": "9873d99f-1a80-49a1-ba0d-98687da10c57",
+      "name": "HTTP Request-check status",
+      "credentials": {
+        "openAiApi": {
+          "id": "AE7fbXM0LWEUpaUf",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://api.openai.com/v1/videos/{{ $json.id }}/content",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        48,
+        -320
+      ],
+      "id": "e7ee01a1-11b5-44d9-b7df-c0b06d2f7336",
+      "name": "HTTP Request-retrive video",
+      "credentials": {
+        "openAiApi": {
+          "id": "AE7fbXM0LWEUpaUf",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "={{ $json.id }}.{{ $binary.data.fileExtension }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1ot2lOimTVjDLiuN1bZCW6p_vfTWRRYqu",
+          "mode": "list",
+          "cachedResultName": "sora2 api output",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1ot2lOimTVjDLiuN1bZCW6p_vfTWRRYqu"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        272,
+        -320
+      ],
+      "id": "0badb3da-9a52-4f7b-8646-4585fb282b9d",
+      "name": "Upload file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "EGjALlI2FuCCkgzM",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Created by darrell_tw_ \n\nHi 我是 Darrell\n有 n8n 問題可以找我聊聊\n\n- [n8n 教學資源網站](https://www.darrelltw.com/n8n-tutorial-resources/)\n- [n8n 模板分享網站](https://www.darrelltw.com/tools/n8n_template/models.html)\n\n### Social Media:\n[Website](https://www.darrelltw.com/)\n[Threads](https://www.threads.net/@darrell_tw_)\n[Instagram](https://www.instagram.com/darrell_tw_/)\n[X](https://x.com/darrell_tw_)\n![](https://pub-c093258f61a1463ea03e1a40c141968a.r2.dev/darrell-icon-128.svg)",
+        "height": 468,
+        "width": 296,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1296,
+        -368
+      ],
+      "id": "4883b557-ba48-4a7f-aaf7-f6ba6b6e9a35",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "# Sora API 參數說明\n\n## API 參數\n\n| 參數 | 說明 | 可選值 |\n|:-----|:-----|:-------|\n| `model` | 模型版本      | `sora-2` / `sora-2-pro` |\n| `prompt` | 提示詞      | 文字描述 |\n| `seconds` | 影片長度     | `4` / `8` / `12` 秒 |\n| `sizes` | 影片尺寸      | 依模型而定 |\n\n---\n\n## 定價方案總覽\n\n### 模型比較表\n\n| 模型 | 解析度規格 | 每秒單價 |\n|:-----|:----------|:--------|\n| **sora-2**  | 720×1280 / 1280×720 | $0.10 ≈ NT$3.2 |\n| **sora-2-pro**  | 720×1280 / 1280×720 | $0.30 ≈ NT$9.6 |\n| **sora-2-pro**  | 1024×1792 / 1792×1024 | $0.50 ≈ NT$16 |\n\n> **匯率參考**：1 USD = 32 TWD\n\n---\n\n## 完整價格試算\n\n### sora-2 基礎版\n**解析度**: 720×1280 (直向) / 1280×720 (橫向)\n\n| 時長 | 美金 | 台幣 |\n|:------:|:-------:|:-------:|\n| 4 秒 | **$0.40** | **NT$13** |\n| 8 秒 | **$0.80** | **NT$26** |\n| 12 秒 | **$1.20** | **NT$38** |\n\n---\n\n### sora-2-pro\n**解析度**: 720×1280 (直向) / 1280×720 (橫向)\n\n| 時長 | 美金 | 台幣 |\n|:------:|:-------:|:-------:|\n| 4 秒 | **$1.20** | **NT$38** |\n| 8 秒 | **$2.40** | **NT$77** |\n| 12 秒 | **$3.60** | **NT$115** |\n\n---\n\n### sora-2-pro\n**解析度**: 1024×1792 (直向) / 1792×1024 (橫向)\n\n| 時長 | 美金 | 台幣 |\n|:------:|:-------:|:-------:|\n| 4 秒 | **$2.00** | **NT$64** |\n| 8 秒 | **$4.00** | **NT$128** |\n| 12 秒 | **$6.00** | **NT$192** |\n",
+        "height": 1168,
+        "width": 1104,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -912,
+        96
+      ],
+      "id": "29596a2a-0d94-4ff8-9f17-e50ddcd5bc50",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## 1. 先調整 Drive\n確保前面的影片製作完會上傳到你的雲端資料夾中",
+        "height": 256,
+        "width": 352
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        224,
+        -416
+      ],
+      "id": "859ddf97-b01b-47fa-966d-e5cfaf0f70bd",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## 2. 調整 Prompt 和相關參數",
+        "height": 256,
+        "width": 336
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -768,
+        -288
+      ],
+      "id": "8531ddfd-7bac-4cd3-bc1e-f2f41b5b2b79",
+      "name": "Sticky Note2"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request-prompt to video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request-check status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request-retrive video",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request-prompt to video": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request-check status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request-check status": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request-retrive video": {
+      "main": [
+        [
+          {
+            "node": "Upload file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "a957d23a-e369-48fd-a551-6583d25837e2",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "fddb3e91967f1012c95dd02bf5ad21f279fc44715f47a7a96a33433621caa253"
+  },
+  "id": "oNfLYTMfqp0GblW4",
+  "tags": [
+    {
+      "createdAt": "2025-04-25T14:04:49.168Z",
+      "updatedAt": "2025-04-25T14:04:49.168Z",
+      "id": "5XRIpCCc7ekBy9Ka",
+      "name": "Darrell-template"
+    }
+  ]
+};
+        
+        // Initialize n8n-demo component dynamically
+        const container = document.getElementById('workflow-preview-container');
+        if (container) {
+            const demo = document.createElement('n8n-demo');
+            demo.setAttribute('workflow', JSON.stringify(workflowData));
+            demo.setAttribute('mode', 'dark');
+            demo.setAttribute('theme', 'dark');
+            container.appendChild(demo);
+        }
+
+        function downloadWorkflow() {
+            try {
+                const blob = new Blob([JSON.stringify(workflowData, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'n8n-sora2-prompt-to-video.json';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            } catch (e) {
+                console.error('Download failed:', e);
+                alert('下載失敗，請稍後再試');
+            }
+        }
+
+        function copyWorkflow() {
+            try {
+                const jsonStr = JSON.stringify(workflowData, null, 2);
+                navigator.clipboard.writeText(jsonStr).then(() => {
+                    const btn = document.getElementById('copy-btn');
+                    const originalText = btn.innerText;
+                    btn.innerText = '已複製！';
+                    setTimeout(() => {
+                        btn.innerText = originalText;
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Copy failed:', err);
+                    alert('複製失敗，請手動複製');
+                });
+            } catch (e) {
+                console.error('Copy error:', e);
+                alert('複製發生錯誤');
+            }
+        }
+
+        const downloadBtn = document.getElementById('download-btn');
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', downloadWorkflow);
+        }
+
+        const copyBtn = document.getElementById('copy-btn');
+        if (copyBtn) {
+            copyBtn.addEventListener('click', copyWorkflow);
+        }
+
+        // Description expand/collapse functionality
+        const descEl = document.getElementById('model-description');
+        const expandBtn = document.getElementById('expand-btn');
+
+        if (descEl && expandBtn) {
+            let needsExpand = false;
+
+            // Check if text is truncated (needs more than 3 lines)
+            function checkTruncation() {
+                // Clone element to measure full height without affecting display
+                const clone = descEl.cloneNode(true);
+                clone.style.cssText = 'position:absolute;visibility:hidden;display:block;-webkit-line-clamp:unset;width:' + descEl.offsetWidth + 'px;';
+                document.body.appendChild(clone);
+                const fullHeight = clone.scrollHeight;
+                document.body.removeChild(clone);
+
+                const lineHeight = parseFloat(getComputedStyle(descEl).lineHeight);
+                const maxHeight = lineHeight * 3;
+
+                needsExpand = fullHeight > maxHeight + 5;
+                expandBtn.style.display = needsExpand ? 'flex' : 'none';
+            }
+
+            checkTruncation();
+            window.addEventListener('resize', checkTruncation);
+
+            expandBtn.addEventListener('click', function() {
+                const isExpanded = descEl.classList.toggle('expanded');
+                expandBtn.textContent = isExpanded ? '收合' : '展開全文';
+            });
+        }
+    </script>
+</body>
+</html>

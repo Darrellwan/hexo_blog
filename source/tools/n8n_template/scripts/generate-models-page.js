@@ -16,6 +16,8 @@ const ROOT_DIR = path.join(__dirname, '..');
 const DATA_PATH = path.join(ROOT_DIR, 'data', 'workflow-models.json');
 const OUTPUT_PATH = path.join(ROOT_DIR, 'models.html');
 const TEMPLATE_PATH = path.join(ROOT_DIR, 'models.template.html');
+const DETAIL_TEMPLATE_PATH = path.join(ROOT_DIR, 'model-detail.template.html');
+const DETAIL_OUTPUT_DIR = path.join(ROOT_DIR, 'model');
 
 // 排序配置（從原始 HTML 中提取）
 const SORT_CONFIG = {
@@ -42,7 +44,7 @@ const SEO_CONFIG = {
  * @param {number} index - 卡片索引（用於判斷是否為高優先級圖片）
  */
 function createModelCard(model, id, index) {
-    const tagsHTML = model.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+    const tagsHTML = model.tags.map(tag => `<span class="glass-tag">${tag}</span>`).join('');
 
     // LCP 優化：前 6 張使用 eager loading，其餘使用 lazy loading
     const loadingAttr = index < 6 ? ' loading="eager"' : ' loading="lazy"';
@@ -54,37 +56,31 @@ function createModelCard(model, id, index) {
     // 圖片路徑（優先使用 webp）
     const imageUrl = `data/bg/${id}.webp`;
 
+    // 格式化日期 (e.g., "2023-11-22" -> "Nov 22")
+    const dateObj = new Date(model.updatedAt || model.createdAt);
+    const dateStr = dateObj.toLocaleDateString('en-US', { month: 'short', day: '2-digit' });
+
     return `
-                <div class="model-card" data-nodes="${model.nodes || 0}" data-title="${model.title}" data-date="${model.updatedAt}">
-                    <div class="card-banner"></div>
-                    <div class="card-header">
-                        <h3 class="card-title">${model.title}</h3>
-                    </div>
-                    <div class="card-image" id="card-image-${id}">
-                        <img src="${imageUrl}" alt="${model.title}"${loadingAttr}${fetchPriorityAttr}${decodingAttr} style="width:100%;height:100%;object-fit:cover;border-radius:8px;" onerror="this.style.display='none';this.parentElement.innerHTML='即將上傳 1:1 比例圖片';">
-                    </div>
-                    <div class="card-content">
-                        <div class="card-description">${formatDescription(model.detailedDescription)}</div>
-                        <div class="tag-container">
-                            ${tagsHTML}
-                        </div>
+            <article class="glass-card" data-nodes="${model.nodes || 0}" data-title="${model.title}" data-date="${model.updatedAt}" data-tags="${model.tags.join(' ')}">
+                <div class="card-img-wrapper">
+                    <img src="${imageUrl}" alt="${model.title}" class="card-img" width="400" height="400"${loadingAttr}${fetchPriorityAttr}${decodingAttr} onerror="this.src='https://placehold.co/400x400/222/FFF?text=n8n'">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">${model.title}</h3>
+                    <p class="card-desc">${formatDescription(model.detailedDescription)}</p>
+                    <div class="card-tags">
+                        ${tagsHTML}
                     </div>
                     <div class="card-footer">
-                        <div class="metric">
-                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                            </svg>
-                            <span>${model.nodes || 0} 個節點</span>
+                        <div class="node-count">
+                            <div class="node-dot"></div>
+                            ${model.nodes || 0} Nodes
                         </div>
-                        <div class="metric">
-                            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                                <path d="M11 2.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0zM4.5 7.5A.5.5 0 0 0 4 8v4a.5.5 0 0 0 1 0V8a.5.5 0 0 0-.5-.5zm7 0a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 1 0V8a.5.5 0 0 0-.5-.5z"/>
-                            </svg>
-                            <span>${model.updatedAt}</span>
-                        </div>
+                        <span class="date">${dateStr}</span>
                     </div>
-                    <a href="model-detail.html?model=${id}" class="card-link" aria-label="${model.title}"></a>
-                </div>`;
+                </div>
+                <a href="model/${id}.html" class="card-link" aria-label="${model.title}" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;"></a>
+            </article>`;
 }
 
 /**
@@ -188,7 +184,7 @@ function generateSchemaData(modelEntries) {
                 "availability": "https://schema.org/InStock"
             },
             "keywords": model.tags.join(', '),
-            "url": `https://darrelltw.com/tools/n8n_template/model-detail.html?model=${id}`,
+            "url": `https://darrelltw.com/tools/n8n_template/model/${id}.html`,
             "screenshot": `https://www.darrelltw.com/tools/n8n_template/data/bg/darrell_workflow_template_${id}.jpg`,
             "featureList": model.detailedDescription.slice(0, 5)
         }
@@ -208,7 +204,7 @@ function generateSchemaData(modelEntries) {
  * 生成 SEO Meta 標籤
  */
 function generateSEOMetaTags(templateCount) {
-    const title = `n8n 自動化模板分享 - ${templateCount}+ 免費工作流程範例 | Darrell`;
+    const title = `n8n 模板分享 | Darrell`;
     const description = '探索 23+ 個免費 n8n 自動化模板：LINE Bot、AI 圖像生成、Google Sheets 整合、Instagram 自動發文等。一鍵下載即用，大幅提升工作效率！';
 
     return `
@@ -257,6 +253,81 @@ function loadTemplate() {
     } else {
         throw new Error('找不到模板文件！請確保 models.html 或 models.template.html 存在');
     }
+}
+
+/**
+ * 生成單個詳情頁
+ */
+function generateDetailPages(models) {
+    console.log('📄 開始生成詳情頁...');
+    
+    if (!fs.existsSync(DETAIL_TEMPLATE_PATH)) {
+        throw new Error(`找不到詳情頁模板：${DETAIL_TEMPLATE_PATH}`);
+    }
+
+    if (!fs.existsSync(DETAIL_OUTPUT_DIR)) {
+        fs.mkdirSync(DETAIL_OUTPUT_DIR, { recursive: true });
+    }
+
+    const template = fs.readFileSync(DETAIL_TEMPLATE_PATH, 'utf8');
+
+    Object.entries(models).forEach(([id, model]) => {
+        let html = template;
+        
+        // 格式化日期
+        const dateObj = new Date(model.updatedAt || model.createdAt);
+        const dateStr = dateObj.toLocaleDateString('en-US', { month: 'short', day: '2-digit' });
+
+        // 構建標籤 HTML
+        const tagsHTML = (model.tags || []).map(tag => `<span class="glass-tag">${tag}</span>`).join('');
+
+        // 構建特色列表 HTML
+        const featuresHTML = (model.detailedDescription || [])
+            .map(f => `<li>${f}</li>`)
+            .join('');
+
+        // 構建設置說明 HTML
+        let setupHTML = '<p>暫無設置說明</p>';
+        if (model.setup) {
+            if (Array.isArray(model.setup.steps)) {
+                setupHTML = `
+                    <p><strong>預先設定：</strong>${model.setup.prerequisites || '無'}</p>
+                    <ol>${model.setup.steps.map(step => `<li><strong>${step.title}</strong>: ${step.description}<ul>${(step.options || []).map(opt => `<li>${opt}</li>`).join('')}</ul></li>`).join('')}</ol>
+                `;
+            }
+        }
+
+        // 讀取 Workflow JSON
+        let workflowJSON = '{}';
+        try {
+            const workflowPath = path.join(ROOT_DIR, 'data', 'workflows', `${id}.json`);
+            if (fs.existsSync(workflowPath)) {
+                workflowJSON = fs.readFileSync(workflowPath, 'utf8');
+            } else {
+                console.warn(`⚠️  找不到 Workflow JSON: ${id}`);
+            }
+        } catch (e) {
+            console.warn(`⚠️  讀取 Workflow JSON 失敗: ${id}`, e);
+        }
+
+        // 替換變數
+        html = html
+            .replace(/{{TITLE}}/g, model.title)
+            .replace(/{{DESCRIPTION}}/g, model.description || '')
+            .replace(/{{ID}}/g, id)
+            .replace(/{{NODES}}/g, model.nodes || 0)
+            .replace(/{{DATE}}/g, dateStr)
+            .replace(/{{TAGS_HTML}}/g, tagsHTML)
+            .replace(/{{FEATURES_HTML}}/g, featuresHTML)
+            .replace(/{{SETUP_HTML}}/g, setupHTML)
+            .replace(/{{WORKFLOW_JSON}}/g, () => workflowJSON);
+
+        // 寫入文件
+        const outputPath = path.join(DETAIL_OUTPUT_DIR, `${id}.html`);
+        fs.writeFileSync(outputPath, html, 'utf8');
+    });
+
+    console.log(`✅ 已生成 ${Object.keys(models).length} 個詳情頁\n`);
 }
 
 /**
@@ -344,6 +415,13 @@ function generateModelsPage() {
         );
     }
 
+    // 替換總數
+    // 尋找 <span class="stat-number" id="totalCount">3</span> 並替換數字
+    html = html.replace(
+        /(<span class="stat-number" id="totalCount">)(\d+)(<\/span>)/,
+        `$1${modelEntries.length}$3`
+    );
+
     // 6. 注入 SEO Meta 標籤
     console.log('🔖 注入 SEO Meta 標籤...');
     const seoTags = generateSEOMetaTags(modelEntries.length);
@@ -373,6 +451,51 @@ function generateModelsPage() {
     console.log(`📍 文件位置：${OUTPUT_PATH}`);
     console.log(`📦 包含 ${modelEntries.length} 個模板卡片`);
     console.log(`🔍 SEO 友好：爬蟲可直接讀取完整內容\n`);
+
+    // 8. 生成詳情頁
+    generateDetailPages(models);
+
+    // 9. 生成 Sitemap
+    generateSitemap(models);
+}
+
+/**
+ * 生成 Sitemap.xml
+ */
+function generateSitemap(models) {
+    console.log('🗺️  開始生成 Sitemap...');
+    const SITEMAP_PATH = path.join(ROOT_DIR, 'sitemap.xml');
+    
+    let sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- 主頁 -->
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/models.html</loc>
+    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+`;
+
+    Object.entries(models).forEach(([id, model]) => {
+        const date = new Date(model.updatedAt || model.createdAt).toISOString().split('T')[0];
+        
+        // 詳情頁
+        sitemapContent += `
+  <!-- 模型詳情頁 - ${id} -->
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/${id}.html</loc>
+    <lastmod>${date}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+`;
+    });
+
+    sitemapContent += `</urlset>`;
+
+    fs.writeFileSync(SITEMAP_PATH, sitemapContent, 'utf8');
+    console.log(`✅ Sitemap 生成成功！ (${Object.keys(models).length + 1} URLs)`);
 }
 
 // 執行生成

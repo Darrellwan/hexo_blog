@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>n8n 模板分享 | Darrell</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #111;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #fff;
+            --text-muted: #9ca3af;
+            --accent: #ff6b6b;
+            --accent-glow: rgba(255, 107, 107, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'DM Sans', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Node Pattern Background */
+        .node-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+            background-image: 
+                radial-gradient(circle at 20px 20px, #fff 2px, transparent 2.5px),
+                linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        /* SVG Background Animation */
+        .n8n-svg-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .n8n-path {
+            fill: none;
+            stroke: url(#gradient);
+            stroke-width: 1.5;
+            stroke-dasharray: 20 400; /* Short dash (packet), long gap */
+            stroke-linecap: round;
+            opacity: 0.6;
+            animation: flow 8s linear infinite;
+        }
+
+        .n8n-path:nth-child(2) { animation-delay: 2s; animation-duration: 10s; }
+        .n8n-path:nth-child(3) { animation-delay: 4s; animation-duration: 7s; }
+        .n8n-path:nth-child(4) { animation-delay: 1s; animation-duration: 12s; }
+
+        @keyframes flow {
+            from { stroke-dashoffset: 420; }
+            to { stroke-dashoffset: -1000; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 2rem 4rem;
+        }
+
+        /* Hero / Profile Section */
+        .hero-section {
+            margin-bottom: 3rem;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 30px var(--accent-glow);
+            letter-spacing: -0.02em;
+        }
+
+        .hero-content p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            max-width: 500px;
+        }
+
+        /* Mobile Social Row (Hidden on Desktop) */
+        .mobile-social-row {
+            display: none;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .profile-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 1.5rem;
+            backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            max-width: 500px;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #333;
+            object-fit: cover;
+            border: 2px solid var(--accent);
+        }
+
+        .profile-info h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .profile-role {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .profile-services {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.8rem;
+        }
+
+        .service-tag {
+            font-size: 0.75rem;
+            background: rgba(255,255,255,0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: var(--text-muted);
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .social-btn {
+            color: var(--text-muted);
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .social-btn:hover {
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+
+        .social-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* Unified Command Bar */
+        .command-bar {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 100px; /* Pill shape */
+            padding: 0.5rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            backdrop-filter: blur(12px);
+            transition: all 0.3s ease;
+            margin-bottom: 3rem;
+            height: 64px;
+            position: relative;
+        }
+
+        .command-bar:focus-within {
+            border-color: var(--accent);
+            box-shadow: 0 0 30px rgba(255, 107, 107, 0.15);
+        }
+
+        /* Search Part */
+        .search-part {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .search-icon {
+            color: var(--text-muted);
+            width: 20px;
+            height: 20px;
+        }
+
+        .search-input {
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            width: 100%;
+        }
+
+        /* Divider */
+        .cmd-divider {
+            width: 1px;
+            height: 24px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Tags Part */
+        .tags-part {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding: 0.2rem 0;
+            flex: 2;
+            mask-image: linear-gradient(to right, transparent, black 10px, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10px, black 90%, transparent);
+        }
+
+        .tags-part::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tag-pill {
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            background: transparent;
+        }
+
+        .tag-pill:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+        }
+
+        .tag-pill.active {
+            background: rgba(255, 107, 107, 0.15);
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* Stats Part */
+        .stats-part {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            white-space: nowrap;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            padding-left: 0.5rem;
+        }
+
+        .stat-number {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        /* Grid - Denser Layout */
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Glass Card */
+        .glass-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 1rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .card-img-wrapper {
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            aspect-ratio: 1/1; /* Square Image */
+            position: relative;
+            background: #1a1a1a;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .glass-card:hover .card-img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+            color: #fff;
+            line-height: 1.4;
+        }
+
+        .card-desc {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.5;
+            margin-bottom: 0.8rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-tags {
+            display: flex;
+            gap: 0.4rem;
+            margin-bottom: 1rem;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            mask-image: linear-gradient(to right, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, black 90%, transparent);
+            padding-right: 1rem; /* Space for fade */
+        }
+
+        .card-tags::-webkit-scrollbar {
+            display: none;
+        }
+
+        .glass-tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .card-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 0.8rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .node-count {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-weight: 500;
+            font-size: 0.8rem;
+        }
+
+        .node-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent);
+        }
+
+        .date {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Floating Badge */
+        .floating-badge {
+            position: absolute;
+            top: 0.8rem;
+            right: 0.8rem;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            padding: 3px 6px;
+            border-radius: 6px;
+            font-size: 0.65rem;
+            gap: 0.5rem;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        /* Mobile Filter Drawer */
+        .mobile-filter-btn {
+            display: none; /* Hidden by default (Desktop) */
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 0.2rem;
+            transition: all 0.2s;
+            z-index: 10;
+        }
+
+        .mobile-filter-btn:hover, .mobile-filter-btn.active {
+            color: var(--accent);
+        }
+
+        .mobile-filter-drawer {
+            display: none;
+            background: rgba(20, 20, 20, 0.95); /* Darker, solid bg */
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1rem;
+            margin: 0.5rem 0 2rem; /* Less margin */
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            animation: slideDown 0.2s ease-out;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 900px) {
+            .hero-section {
+                grid-template-columns: 1fr;
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+            .profile-card {
+                display: none; /* Hide on mobile/tablet */
+            }
+            .mobile-social-row {
+                display: flex; /* Show on mobile */
+            }
+            .hero-content p {
+                margin: 0 auto 1.5rem;
+                font-size: 1rem;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            /* Mobile Command Bar */
+            .command-bar {
+                padding: 0.5rem 1rem;
+                gap: 0; /* Remove gap */
+                height: 56px;
+                display: flex;
+            }
+            .search-part {
+                flex: 1;
+                min-width: 0;
+                position: relative; /* For absolute button */
+                width: 100%;
+            }
+            .search-input {
+                font-size: 0.9rem;
+                padding-right: 2.5rem; /* Space for button */
+                width: 100%;
+            }
+            .tags-part {
+                display: none; /* Hide scrollable tags on mobile */
+            }
+            .mobile-filter-btn {
+                display: block; /* Show on mobile */
+            }
+            .cmd-divider, .stats-part {
+                display: none; /* Hide stats and divider on mobile */
+            }
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.5rem; }
+            .model-grid {
+                grid-template-columns: 1fr; /* Single column */
+                gap: 1rem;
+            }
+
+            /* Horizontal List View for Mobile */
+            .glass-card {
+                flex-direction: row;
+                align-items: stretch;
+                padding: 0.8rem;
+                min-height: 120px;
+            }
+
+            .card-img-wrapper {
+                width: 100px;
+                min-width: 100px;
+                height: auto;
+                aspect-ratio: 1/1;
+                margin-bottom: 0;
+                margin-right: 1rem;
+                border-radius: 12px;
+            }
+
+            .card-content {
+                justify-content: center;
+            }
+
+            .card-title {
+                font-size: 1rem;
+                margin-bottom: 0.3rem;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+
+            .card-desc {
+                font-size: 0.8rem;
+                margin-bottom: 0.5rem;
+                -webkit-line-clamp: 2; /* Limit to 2 lines */
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+
+            .card-tags {
+                margin-bottom: 0;
+                gap: 0.3rem;
+            }
+            
+            .glass-tag {
+                padding: 2px 6px;
+                font-size: 0.65rem;
+            }
+
+            .card-footer {
+                display: none; /* Hide footer to save space */
+            }
+            
+            .floating-badge {
+                top: 0.5rem;
+                right: 0.5rem;
+                font-size: 0.6rem;
+                padding: 2px 5px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="node-bg"></div>
+    
+    <!-- Curved SVG Background Animation -->
+    <svg class="n8n-svg-bg" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="transparent" />
+                <stop offset="50%" stop-color="#ff6b6b" />
+                <stop offset="100%" stop-color="transparent" />
+            </linearGradient>
+        </defs>
+        <!-- Path 1: Top Left to Right -->
+        <path class="n8n-path" d="M -100 100 L 200 100 Q 250 100 250 150 L 250 400 Q 250 450 300 450 L 1500 450" />
+        <!-- Path 2: Bottom Left to Top Right -->
+        <path class="n8n-path" d="M -100 800 L 300 800 Q 350 800 350 750 L 350 300 Q 350 250 400 250 L 1500 250" />
+        <!-- Path 3: Vertical Drop -->
+        <path class="n8n-path" d="M 800 -100 L 800 300 Q 800 350 850 350 L 1500 350" />
+        <!-- Path 4: Mobile Flow -->
+        <path class="n8n-path" d="M -100 600 L 100 600 Q 150 600 150 650 L 150 1200" />
+    </svg>
+
+    <main class="container">
+        <!-- Hero Section with Profile -->
+        <header class="hero-section">
+            <div class="hero-content">
+                <h1 style="color: var(--accent);">n8n 模板分享</h1>
+                <p>這裡是我精心準備的 n8n 自動化模版，希望能幫助你快速建立自動化工作流，提升工作效率。</p>
+                
+                <!-- Mobile Social Row -->
+                <div class="mobile-social-row">
+                    <a href="https://x.com/darrell_tw_" class="social-btn" target="_blank" title="X (Twitter)"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="https://www.facebook.com/darrelltw" class="social-btn" target="_blank" title="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+                    <a href="https://www.darrelltw.com/" class="social-btn" target="_blank" title="Website"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg></a>
+                    <a href="https://www.threads.net/@darrell_tw_" class="social-btn" target="_blank" title="Threads"><svg viewBox="0 0 440 511.43"><path d="M342.383 237.038a177.282 177.282 0 00-6.707-3.046c-3.948-72.737-43.692-114.379-110.429-114.805-38.505-.255-72.972 15.445-94.454 48.041l36.702 25.178c15.265-23.159 39.221-28.096 56.864-28.096.204 0 .408 0 .61.002 21.974.14 38.555 6.529 49.287 18.987 7.81 9.071 13.034 21.606 15.621 37.425-19.483-3.311-40.553-4.329-63.077-3.038-63.45 3.655-104.24 40.661-101.501 92.08 1.391 26.083 14.385 48.523 36.587 63.181 18.772 12.391 42.95 18.45 68.077 17.079 33.183-1.819 59.215-14.48 77.377-37.63 13.793-17.58 22.516-40.363 26.368-69.069 15.814 9.544 27.535 22.103 34.007 37.2 11.006 25.665 11.648 67.84-22.764 102.223-30.15 30.121-66.392 43.151-121.164 43.554-60.758-.45-106.708-19.935-136.583-57.915-27.976-35.562-42.434-86.93-42.973-152.674.539-65.746 14.997-117.114 42.973-152.676 29.875-37.979 75.824-57.463 136.582-57.914 61.197.455 107.948 20.033 138.967 58.195 15.21 18.713 26.676 42.248 34.236 69.688L440 161.532c-9.163-33.775-23.582-62.881-43.203-87.017C357.031 25.59 298.872.519 223.936 0h-.3C148.851.518 91.344 25.683 52.709 74.795 18.331 118.499.598 179.308.002 255.535l-.002.18.002.18c.596 76.225 18.329 137.037 52.707 180.741 38.635 49.11 96.142 74.277 170.927 74.794h.3c66.486-.462 113.352-17.868 151.96-56.442 50.51-50.463 48.99-113.718 32.342-152.549-11.945-27.847-34.716-50.463-65.855-65.401zM227.587 344.967c-27.808 1.567-56.699-10.916-58.124-37.651-1.056-19.823 14.108-41.942 59.831-44.577a266.87 266.87 0 0115.422-.45c16.609 0 32.145 1.613 46.271 4.701-5.268 65.798-36.172 76.483-63.4 77.977z"/></svg></a>
+                    <button class="social-btn" onclick="copyEmail()" title="Copy Email"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></button>
+                    <a href="https://www.instagram.com/darrell_tw_/" class="social-btn" target="_blank" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.281-.057 1.689-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+                    <a href="https://buymeacoffee.com/darrell_tw" class="social-btn" target="_blank" title="Buy Me a Coffee"><svg viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg></a>
+                    <a href="https://www.linkedin.com/in/darrell-wang-tw/" class="social-btn" target="_blank" title="LinkedIn"><svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+                </div>
+            </div>
+            
+            <div class="profile-card">
+                <img src="https://www.darrelltw.com/images/darrell_icon_512.png" alt="Darrell" class="profile-img" onerror="this.src='https://placehold.co/80x80/333/FFF?text=DW'">
+                <div class="profile-info">
+                    <h2>Darrell Wang</h2>
+                    <span class="profile-role">Automation Expert</span>
+                    <div class="profile-services">
+                        <span class="service-tag">n8n 接案</span>
+                        <span class="service-tag">n8n 顧問</span>
+                    </div>
+                    
+                    <!-- Desktop Social Links -->
+                    <div class="social-links">
+                        <a href="https://x.com/darrell_tw_" class="social-btn" target="_blank" title="X (Twitter)"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                        <a href="https://www.facebook.com/darrelltw" class="social-btn" target="_blank" title="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+                        <a href="https://www.darrelltw.com/" class="social-btn" target="_blank" title="Website"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg></a>
+                        <a href="https://www.threads.net/@darrell_tw_" class="social-btn" target="_blank" title="Threads"><svg viewBox="0 0 440 511.43"><path d="M342.383 237.038a177.282 177.282 0 00-6.707-3.046c-3.948-72.737-43.692-114.379-110.429-114.805-38.505-.255-72.972 15.445-94.454 48.041l36.702 25.178c15.265-23.159 39.221-28.096 56.864-28.096.204 0 .408 0 .61.002 21.974.14 38.555 6.529 49.287 18.987 7.81 9.071 13.034 21.606 15.621 37.425-19.483-3.311-40.553-4.329-63.077-3.038-63.45 3.655-104.24 40.661-101.501 92.08 1.391 26.083 14.385 48.523 36.587 63.181 18.772 12.391 42.95 18.45 68.077 17.079 33.183-1.819 59.215-14.48 77.377-37.63 13.793-17.58 22.516-40.363 26.368-69.069 15.814 9.544 27.535 22.103 34.007 37.2 11.006 25.665 11.648 67.84-22.764 102.223-30.15 30.121-66.392 43.151-121.164 43.554-60.758-.45-106.708-19.935-136.583-57.915-27.976-35.562-42.434-86.93-42.973-152.674.539-65.746 14.997-117.114 42.973-152.676 29.875-37.979 75.824-57.463 136.582-57.914 61.197.455 107.948 20.033 138.967 58.195 15.21 18.713 26.676 42.248 34.236 69.688L440 161.532c-9.163-33.775-23.582-62.881-43.203-87.017C357.031 25.59 298.872.519 223.936 0h-.3C148.851.518 91.344 25.683 52.709 74.795 18.331 118.499.598 179.308.002 255.535l-.002.18.002.18c.596 76.225 18.329 137.037 52.707 180.741 38.635 49.11 96.142 74.277 170.927 74.794h.3c66.486-.462 113.352-17.868 151.96-56.442 50.51-50.463 48.99-113.718 32.342-152.549-11.945-27.847-34.716-50.463-65.855-65.401zM227.587 344.967c-27.808 1.567-56.699-10.916-58.124-37.651-1.056-19.823 14.108-41.942 59.831-44.577a266.87 266.87 0 0115.422-.45c16.609 0 32.145 1.613 46.271 4.701-5.268 65.798-36.172 76.483-63.4 77.977z"/></svg></a>
+                        <button class="social-btn" onclick="copyEmail()" title="Copy Email"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></button>
+                        <a href="https://www.instagram.com/darrell_tw_/" class="social-btn" target="_blank" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.281-.057 1.689-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+                        <a href="https://buymeacoffee.com/darrell_tw" class="social-btn" target="_blank" title="Buy Me a Coffee"><svg viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg></a>
+                        <a href="https://www.linkedin.com/in/darrell-wang-tw/" class="social-btn" target="_blank" title="LinkedIn"><svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Unified Command Bar -->
+        <nav class="command-bar" aria-label="Filter and Search">
+            <div class="search-part">
+                <svg class="search-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                <input type="text" class="search-input" id="searchInput" placeholder="Search workflows...">
+                
+                <!-- Mobile Filter Toggle (Inside Search Part) -->
+                <button class="mobile-filter-btn" id="mobileFilterBtn" aria-label="Toggle Filters">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+                </button>
+            </div>
+            
+            <div class="cmd-divider"></div>
+            
+            <div class="tags-part" id="tagContainer">
+                <div class="tag-pill" data-tag="all">All</div>
+                <div class="tag-pill" data-tag="backup">Backup</div>
+                <div class="tag-pill" data-tag="social">Social</div>
+                <div class="tag-pill" data-tag="ai">AI</div>
+                <div class="tag-pill" data-tag="chatbot">Chatbot</div>
+                <div class="tag-pill" data-tag="google">Google</div>
+                <div class="tag-pill" data-tag="line">Line</div>
+            </div>
+
+            <div class="cmd-divider"></div>
+
+            <div class="stats-part">
+                <span class="stat-number" id="totalCount">3</span>
+                <span>Items</span>
+            </div>
+        </nav>
+
+        <!-- Mobile Filter Drawer -->
+        <div class="mobile-filter-drawer" id="mobileFilterDrawer">
+            <!-- Tags will be cloned here by JS -->
+        </div>
+
+        <div class="model-grid">
+            <!-- Content will be injected by generate-models-page.js -->
+        </div>
+    </main>
+
+    <!-- Schema Placeholder -->
+    <script type="application/ld+json" id="workflow-models-schema">
+    {{SCHEMA_JSON}}
+    </script>
+
+    <script>
+        function copyEmail() {
+            navigator.clipboard.writeText("darrellwang.tw@gmail.com").then(() => {
+                alert("Email copied to clipboard!");
+            });
+        }
+
+        // Simple Tag Filtering Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const tags = document.querySelectorAll('.tag-pill');
+            const cards = document.querySelectorAll('.glass-card');
+            const searchInput = document.getElementById('searchInput');
+            const totalCountEl = document.getElementById('totalCount');
+
+            function updateCount() {
+                const visibleCards = document.querySelectorAll('.glass-card:not([style*="display: none"])');
+                totalCountEl.textContent = visibleCards.length;
+            }
+
+            // Mobile Filter Logic
+            const mobileFilterBtn = document.getElementById('mobileFilterBtn');
+            const mobileFilterDrawer = document.getElementById('mobileFilterDrawer');
+            const tagContainer = document.getElementById('tagContainer');
+
+            // Clone tags to drawer
+            if (tagContainer && mobileFilterDrawer) {
+                const tags = tagContainer.querySelectorAll('.tag-pill');
+                tags.forEach(tag => {
+                    const clone = tag.cloneNode(true);
+                    clone.addEventListener('click', () => {
+                        // Sync click to original tag
+                        tag.click();
+                        // Update active state in drawer
+                        const allDrawerTags = mobileFilterDrawer.querySelectorAll('.tag-pill');
+                        allDrawerTags.forEach(t => t.classList.remove('active'));
+                        if (tag.classList.contains('active')) {
+                            clone.classList.add('active');
+                        }
+                    });
+                    mobileFilterDrawer.appendChild(clone);
+                });
+            }
+
+            // Toggle Drawer
+            if (mobileFilterBtn) {
+                mobileFilterBtn.addEventListener('click', () => {
+                    mobileFilterBtn.classList.toggle('active');
+                    if (mobileFilterDrawer.style.display === 'flex') {
+                        mobileFilterDrawer.style.display = 'none';
+                    } else {
+                        mobileFilterDrawer.style.display = 'flex';
+                        // Sync active states when opening
+                        const originalTags = tagContainer.querySelectorAll('.tag-pill');
+                        const drawerTags = mobileFilterDrawer.querySelectorAll('.tag-pill');
+                        originalTags.forEach((tag, index) => {
+                            if (tag.classList.contains('active')) {
+                                drawerTags[index].classList.add('active');
+                            } else {
+                                drawerTags[index].classList.remove('active');
+                            }
+                        });
+                    }
+                });
+            }
+
+            // Tag Click Handler
+            tags.forEach(tag => {
+                tag.addEventListener('click', () => {
+                    // Toggle active state
+                    const isActive = tag.classList.contains('active');
+                    
+                    // Reset all tags (Desktop)
+                    tags.forEach(t => t.classList.remove('active'));
+                    
+                    // Reset all tags (Mobile Drawer)
+                    if (mobileFilterDrawer) {
+                        const drawerTags = mobileFilterDrawer.querySelectorAll('.tag-pill');
+                        drawerTags.forEach(t => t.classList.remove('active'));
+                    }
+                    
+                    if (!isActive) {
+                        tag.classList.add('active');
+                        const filter = tag.dataset.tag.toLowerCase();
+                        
+                        cards.forEach(card => {
+                            const cardTags = card.dataset.tags.toLowerCase();
+                            if (filter === 'all' || cardTags.includes(filter)) {
+                                card.style.display = 'flex';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        });
+                    } else {
+                        // If clicking active tag, clear filter (show all)
+                        cards.forEach(card => card.style.display = 'flex');
+                    }
+                    updateCount();
+                });
+            });
+
+            // Search Input Handler
+            searchInput.addEventListener('input', (e) => {
+                const term = e.target.value.toLowerCase();
+                cards.forEach(card => {
+                    const title = card.querySelector('.card-title').textContent.toLowerCase();
+                    const desc = card.querySelector('.card-desc').textContent.toLowerCase();
+                    const tags = card.dataset.tags;
+                    
+                    if (title.includes(term) || desc.includes(term) || tags.includes(term)) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                updateCount();
+            });
+        });
+    </script>
+</body>
+</html>

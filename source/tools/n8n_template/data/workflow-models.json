@@ -59,7 +59,8 @@
             "tags": [
                 "Threads",
                 "Gmail",
-                "自動化行銷"
+                "自動化行銷",
+                "Social"
             ],
             "nodes": 13,
             "createdAt": "2025-11-03",
@@ -237,7 +238,9 @@
             "tags": [
                 "LINE",
                 "聊天機器人",
-                "自動回覆"
+                "自動回覆",
+                "Social",
+                "Chatbot"
             ],
             "nodes": 7,
             "createdAt": "2025-10-24",
@@ -1213,7 +1216,8 @@
                 "OpenAI",
                 "路由器",
                 "成本優化",
-                "聊天機器人"
+                "聊天機器人",
+                "Chatbot"
             ],
             "nodes": 11,
             "createdAt": "2025-06-24",
@@ -2600,7 +2604,7 @@
         "line_message": {
             "id": "line_message",
             "title": "Line Message API 完整教學範例",
-            "description": "這個工作流程提供 Line Messaging API 的完整教學範例，包含自動回覆和主動推送兩種核心功能。當使用者透過 Line 傳送訊息時，系統會自動判斷訊息類型並回覆相同內容；同時也可以透過 Line UID 主動發送訊息給特定使用者。工作流程包含豐富的 Webhook 範例，展示如何處理文字、圖片、聲音、貼圖、表情符號和位置等不同類型的訊息。\n\n主要功能：\n\n自動回覆：使用 replyToken 接收並回覆使用者訊息\n主動推送：透過 Line UID 或群組 ID 主動發送訊息\n訊息類型支援：文字、圖片、聲音、貼圖、表情符號、位置訊息\nWebhook 範例：包含完整的 JSON 格式範例供參考\n條件判斷：智能識別不同類型的 Line 事件",
+            "description": "這個工作流程提供 Line Messaging API 的完整教學範例，包含自動回覆和主動推送兩種核心功能。當使用者透過 Line 傳送訊息時，系統會自動判斷訊息類型並回覆相同內容；同時也可以透過 Line UID 主動發送訊息給特定使用者。",
             "detailedDescription": [
                 "接收來自 Line 的 Webhook 訊息",
                 "條件判斷：僅處理 message 類型事件",
@@ -2617,7 +2621,9 @@
                 "Webhook",
                 "API",
                 "教學範例",
-                "多媒體訊息"
+                "多媒體訊息",
+                "Social",
+                "Chatbot"
             ],
             "nodes": 20,
             "createdAt": "2025-02-17",

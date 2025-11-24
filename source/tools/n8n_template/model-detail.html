@@ -35,6 +35,12 @@
             --title-color: #ff8c00;
             --n8n-workflow-min-height: 800px;
         }
+
+        @media (max-width: 768px) {
+            :root {
+                --n8n-workflow-min-height: 300px;
+            }
+        }
         body {
             font-family: 'Noto Sans TC', 'Roboto', sans-serif;
             background-color: var(--bg-primary);

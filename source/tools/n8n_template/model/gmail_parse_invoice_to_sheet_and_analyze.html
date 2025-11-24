@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gmail 電子發票轉存 Google Sheet + AI 分析消費 - n8n 模板分享 | Darrell</title>
+    <meta name="description" content="這個工作流程自動處理來自「財政部電子發票整合服務平台」的郵件，擷取電子發票資料並將其儲存到 Google Sheets 中，再使用 AI 進行消費分析。系統每天指定時間會監控 Gmail 中特定發件人的郵件，提取附件中的發票資訊，辨識「發票主資料(M)」和「商品明細(D)」，分別整理並存入兩個不同的工作表。最後，它會使用 xAI Grok 模型分析所有消費資料，生成包含摘要、類別統計、Top 5 店家和消費矩陣分析的深入報告，並將分析結果自動發送到 Slack 頻道，方便快速查看消費趨勢。
+
+主要功能：
+
+郵件監控：每日固定時間自動檢查財政部電子發票郵件
+資料提取：智能解析附件內容取得發票資訊和商品明細
+資料分類：自動區分「發票主資料(M)」和「商品明細(D)」
+Google Sheets 整合：將不同類型資料存入對應工作表
+AI 消費分析：使用 xAI Grok 模型生成多維度消費分析
+Slack 通知：將完整分析報告即時發送到指定頻道">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="DarrellTW n8n 模板庫">
+    <meta property="og:title" content="Gmail 電子發票轉存 Google Sheet + AI 分析消費 - n8n 模板分享 | Darrell">
+    <meta property="og:description" content="這個工作流程自動處理來自「財政部電子發票整合服務平台」的郵件，擷取電子發票資料並將其儲存到 Google Sheets 中，再使用 AI 進行消費分析。系統每天指定時間會監控 Gmail 中特定發件人的郵件，提取附件中的發票資訊，辨識「發票主資料(M)」和「商品明細(D)」，分別整理並存入兩個不同的工作表。最後，它會使用 xAI Grok 模型分析所有消費資料，生成包含摘要、類別統計、Top 5 店家和消費矩陣分析的深入報告，並將分析結果自動發送到 Slack 頻道，方便快速查看消費趨勢。
+
+主要功能：
+
+郵件監控：每日固定時間自動檢查財政部電子發票郵件
+資料提取：智能解析附件內容取得發票資訊和商品明細
+資料分類：自動區分「發票主資料(M)」和「商品明細(D)」
+Google Sheets 整合：將不同類型資料存入對應工作表
+AI 消費分析：使用 xAI Grok 模型生成多維度消費分析
+Slack 通知：將完整分析報告即時發送到指定頻道">
+    <meta property="og:url" content="https://www.darrelltw.com/tools/n8n_template/model/gmail_parse_invoice_to_sheet_and_analyze.html">
+    <meta property="og:image" content="https://www.darrelltw.com/tools/n8n_template/data/bg/gmail_parse_invoice_to_sheet_and_analyze.webp">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- n8n Demo Component -->
+    <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2.6.0/webcomponents-loader.js"></script>
+    <script src="https://unpkg.com/lit@2.7.0/polyfill-support.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@n8n_io/n8n-demo-component/n8n-demo.bundled.js"></script>
+    <link rel="stylesheet" href="../css/n8n-demo.css">
+
+    <style>
+        :root {
+            --bg-color: #111;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #fff;
+            --text-muted: #9ca3af;
+            --accent: #ff6b6b;
+            --accent-glow: rgba(255, 107, 107, 0.3);
+            --card-radius: 24px;
+
+            /* n8n Demo Theme Variables */
+            --n8n-frame-background-color: #000;
+            --n8n-editor-background: #000;
+            --n8n-workflow-min-height: 800px;
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --n8n-workflow-min-height: 300px;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'DM Sans', 'Noto Sans TC', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Background Animation (Same as models.html) */
+        .node-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+            background-image: 
+                radial-gradient(circle at 20px 20px, #fff 2px, transparent 2.5px),
+                linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        .n8n-svg-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .n8n-path {
+            fill: none;
+            stroke: url(#gradient);
+            stroke-width: 1.5;
+            stroke-dasharray: 20 400;
+            stroke-linecap: round;
+            opacity: 0.6;
+            animation: flow 8s linear infinite;
+        }
+        
+        @keyframes flow {
+            from { stroke-dashoffset: 420; }
+            to { stroke-dashoffset: -1000; }
+        }
+
+        /* Header */
+        header {
+            background: rgba(20, 20, 20, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .header-logo span { color: var(--accent); }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover { color: #fff; }
+
+        /* Main Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 2rem;
+        }
+
+        /* Left Column: Hero & Preview */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .hero-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--card-radius);
+            padding: 2rem;
+            backdrop-filter: blur(12px);
+        }
+
+        .breadcrumb {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .breadcrumb a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover { color: var(--accent); }
+
+        .model-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .tags-row {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: nowrap;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .glass-tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Description with expand/collapse */
+        .description-wrapper {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .model-description {
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin: 0;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            transition: all 0.3s ease;
+        }
+
+        .model-description.expanded {
+            -webkit-line-clamp: unset;
+            display: block;
+        }
+
+        .expand-btn {
+            background: transparent;
+            border: none;
+            color: var(--accent);
+            cursor: pointer;
+            font-size: 0.85rem;
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: opacity 0.2s;
+        }
+
+        .expand-btn:hover {
+            opacity: 0.8;
+        }
+
+        .meta-row {
+            display: flex;
+            gap: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            align-items: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--glass-border);
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-left: auto;
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+        }
+
+        .action-btn#copy-btn {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid var(--glass-border);
+        }
+
+        .action-btn#copy-btn:hover {
+            background: rgba(255,255,255,0.12);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 600px) {
+            .action-buttons {
+                width: 100%;
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+            .action-btn {
+                flex: 1;
+                justify-content: center;
+            }
+        }
+
+        .preview-card {
+            background: #000;
+            border: 1px solid var(--glass-border);
+            border-radius: var(--card-radius);
+            overflow: hidden;
+            position: relative;
+        }
+
+        n8n-demo {
+            width: 100%;
+            height: 100%;
+            --n8n-frame-background-color: #000;
+            background: #000;
+        }
+
+        /* Right Column: Details & Author */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--card-radius);
+            padding: 1.5rem;
+            backdrop-filter: blur(12px);
+        }
+
+        .info-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-content {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .info-content ul, .info-content ol {
+            padding-left: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-content li { margin-bottom: 0.5rem; }
+
+        .info-content .service-tag {
+            background: rgba(255,107,107,0.15);
+            color: #ff6b6b;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+        }
+
+        .author-social-links a {
+            color: #fff;
+        }
+
+        .author-social-links a:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .download-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.2);
+        }
+
+        /* Author Profile (Mini) */
+        .author-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .author-img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid var(--accent);
+        }
+
+        .author-info h4 {
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .author-role {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .model-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="node-bg"></div>
+    <svg class="n8n-svg-bg" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="transparent" />
+                <stop offset="50%" stop-color="#ff6b6b" />
+                <stop offset="100%" stop-color="transparent" />
+            </linearGradient>
+        </defs>
+        <path class="n8n-path" d="M -100 100 L 200 100 Q 250 100 250 150 L 250 400 Q 250 450 300 450 L 1500 450" />
+        <path class="n8n-path" d="M -100 800 L 300 800 Q 350 800 350 750 L 350 300 Q 350 250 400 250 L 1500 250" />
+    </svg>
+
+    <header>
+        <a href="../models.html" class="header-logo">Darrell <span>n8n</span> 模板分享</a>
+        <nav class="nav-links">
+            <a href="../models.html" class="nav-link">模板列表</a>
+            <a href="../contact.html" class="nav-link">聯絡我們</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="main-content">
+            <article class="hero-card">
+                <div class="breadcrumb">
+                    <a href="../models.html">首頁</a> &gt; <a href="../models.html">n8n 模板分享</a> &gt; <span>Gmail 電子發票轉存 Google Sheet + AI 分析消費</span>
+                </div>
+                <h1 class="model-title">Gmail 電子發票轉存 Google Sheet + AI 分析消費</h1>
+                <div class="tags-row">
+                    <span class="glass-tag">自動化</span><span class="glass-tag">發票</span><span class="glass-tag">記帳</span><span class="glass-tag">Gmail</span><span class="glass-tag">Google Sheets</span><span class="glass-tag">AI</span><span class="glass-tag">消費分析</span><span class="glass-tag">Slack</span>
+                </div>
+                <div class="description-wrapper">
+                    <p class="model-description" id="model-description">這個工作流程自動處理來自「財政部電子發票整合服務平台」的郵件，擷取電子發票資料並將其儲存到 Google Sheets 中，再使用 AI 進行消費分析。系統每天指定時間會監控 Gmail 中特定發件人的郵件，提取附件中的發票資訊，辨識「發票主資料(M)」和「商品明細(D)」，分別整理並存入兩個不同的工作表。最後，它會使用 xAI Grok 模型分析所有消費資料，生成包含摘要、類別統計、Top 5 店家和消費矩陣分析的深入報告，並將分析結果自動發送到 Slack 頻道，方便快速查看消費趨勢。
+
+主要功能：
+
+郵件監控：每日固定時間自動檢查財政部電子發票郵件
+資料提取：智能解析附件內容取得發票資訊和商品明細
+資料分類：自動區分「發票主資料(M)」和「商品明細(D)」
+Google Sheets 整合：將不同類型資料存入對應工作表
+AI 消費分析：使用 xAI Grok 模型生成多維度消費分析
+Slack 通知：將完整分析報告即時發送到指定頻道</p>
+                    <button class="expand-btn" id="expand-btn" style="display: none;">展開全文</button>
+                </div>
+                <div class="meta-row">
+                    <div class="meta-item">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/></svg>
+                        <span>22 Nodes</span>
+                    </div>
+                    <div class="meta-item">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M11 2.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0zM4.5 7.5A.5.5 0 0 0 4 8v4a.5.5 0 0 0 1 0V8a.5.5 0 0 0-.5-.5zm7 0a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 1 0V8a.5.5 0 0 0-.5-.5z"/></svg>
+                        <span>Updated May 02</span>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="action-btn" id="download-btn">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            下載
+                        </button>
+                        <button class="action-btn" id="copy-btn">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                            複製
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <div class="preview-card">
+            <div class="preview-card" id="workflow-preview-container">
+            </div>
+            </div>
+        </div>
+
+        <aside class="sidebar">
+            <div class="info-card author-info-card">
+                <div class="info-title">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    關於作者
+                </div>
+                <div class="info-content">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                        <img src="https://www.darrelltw.com/images/darrell_icon_512.png" alt="Darrell" style="width: 64px; height: 64px; border-radius: 50%; border: 2px solid var(--accent);" onerror="this.src='https://placehold.co/64x64/333/FFF?text=DW'">
+                        <div>
+                            <h4 style="color: #fff; margin-bottom: 0.25rem; font-size: 1.1rem;">Darrell Wang</h4>
+                            <span style="font-size: 0.85rem; color: var(--text-muted);">Automation Expert</span>
+                            <div style="display: flex; gap: 0.4rem; margin-top: 0.5rem; flex-wrap: wrap;">
+                                <span class="service-tag">n8n 接案</span>
+                                <span class="service-tag">n8n 顧問</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="author-social-links" style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem;">
+                        <a href="https://www.threads.net/@darrell_tw_" target="_blank" title="Threads" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px; transition: background 0.2s;"><svg width="16" height="16" fill="currentColor" viewBox="0 0 440 512"><path d="M342.383 237.038a177.282 177.282 0 00-6.707-3.046c-3.948-72.737-43.692-114.379-110.429-114.805-38.505-.255-72.972 15.445-94.454 48.041l36.702 25.178c15.265-23.159 39.221-28.096 56.864-28.096.204 0 .408 0 .61.002 21.974.14 38.555 6.529 49.287 18.987 7.81 9.071 13.034 21.606 15.621 37.425-19.483-3.311-40.553-4.329-63.077-3.038-63.45 3.655-104.24 40.661-101.501 92.08 1.391 26.083 14.385 48.523 36.587 63.181 18.772 12.391 42.95 18.45 68.077 17.079 33.183-1.819 59.215-14.48 77.377-37.63 13.793-17.58 22.516-40.363 26.368-69.069 15.814 9.544 27.535 22.103 34.007 37.2 11.006 25.665 11.648 67.84-22.764 102.223-30.15 30.121-66.392 43.151-121.164 43.554-60.758-.45-106.708-19.935-136.583-57.915-27.976-35.562-42.434-86.93-42.973-152.674.539-65.746 14.997-117.114 42.973-152.676 29.875-37.979 75.824-57.463 136.582-57.914 61.197.455 107.948 20.033 138.967 58.195 15.21 18.713 26.676 42.248 34.236 69.688L440 161.532c-9.163-33.775-23.582-62.881-43.203-87.017C357.031 25.59 298.872.519 223.936 0h-.3C148.851.518 91.344 25.683 52.709 74.795 18.331 118.499.598 179.308.002 255.535l-.002.18.002.18c.596 76.225 18.329 137.037 52.707 180.741 38.635 49.11 96.142 74.277 170.927 74.794h.3c66.486-.462 113.352-17.868 151.96-56.442 50.51-50.463 48.99-113.718 32.342-152.549-11.945-27.847-34.716-50.463-65.855-65.401zM227.587 344.967c-27.808 1.567-56.699-10.916-58.124-37.651-1.056-19.823 14.108-41.942 59.831-44.577a266.87 266.87 0 0115.422-.45c16.609 0 32.145 1.613 46.271 4.701-5.268 65.798-36.172 76.483-63.4 77.977z"></path></svg></a>
+                        <a href="https://www.instagram.com/darrell_tw_/" target="_blank" title="Instagram" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px; transition: background 0.2s;"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.281-.057 1.689-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg></a>
+                        <a href="https://x.com/darrell_tw_" target="_blank" title="X (Twitter)" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px; transition: background 0.2s;"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a>
+                        <a href="https://www.facebook.com/darrelltw" target="_blank" title="Facebook" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px; transition: background 0.2s;"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a>
+                        <a href="https://www.darrelltw.com/" target="_blank" title="Website" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px; transition: background 0.2s;"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"></path></svg></a>
+                        <a href="https://www.linkedin.com/in/darrell-wang-tw/" target="_blank" title="LinkedIn" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px; transition: background 0.2s;"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg></a>
+                        <a href="https://buymeacoffee.com/darrell_tw" target="_blank" title="Buy Me a Coffee" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px; transition: background 0.2s;"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"></path></svg></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="info-title">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    功能特色
+                </div>
+                <div class="info-content">
+                    <ul>
+                        <li>每月定時監控財政部電子發票整合服務平台郵件</li><li>自動辨識並提取郵件附件中的發票資料</li><li>智能區分「發票主資料(M)」和「商品明細(D)」</li><li>將發票主資料存入「發票」工作表（載具資訊、發票資訊、商店資訊等）</li><li>將商品明細存入「細項」工作表（發票號碼、品項名稱、價格等）</li><li>使用 xAI Grok 模型分析消費模式與趨勢</li><li>生成包含摘要、類別統計、Top 5 店家和消費矩陣的詳細報告</li><li>自動將分析結果發送到 Slack 頻道，方便隨時查看</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="info-title">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                    設置說明
+                </div>
+                <div class="info-content">
+                    
+                    <p><strong>預先設定：</strong>需要設定 Gmail、Google Sheets、AI 模型 (xAI Grok) 和 Slack 的 API 存取權限</p>
+                    <ol><li><strong>Gmail 設定</strong>: 設定 Gmail API 存取權限，用於讀取電子發票郵件<ul><li>設定 OAuth 2.0 認證</li><li>授予郵件讀取權限</li><li>設定郵件過濾條件為 'subject=財政部電子發票整合服務平台' 和 'from=einvoice@einvoice.nat.gov.tw'</li></ul></li><li><strong>Google Sheets 設定</strong>: 準備用於儲存發票資料的試算表<ul><li>建立 Google 試算表</li><li>設定「發票」工作表儲存主資料（載具名稱、載具號碼、發票日期、商店資訊、發票號碼、總金額、發票狀態）</li><li>設定「細項」工作表儲存商品明細（品項ID、發票號碼、品項名稱、價格）</li></ul></li><li><strong>AI 模型設定</strong>: 設定 xAI Grok 模型用於消費分析<ul><li>取得 xAI API 金鑰</li><li>選擇 grok-3-fast-beta 模型</li><li>設定分析提示詞以生成消費報告</li></ul></li><li><strong>Slack 設定</strong>: 設定 Slack 整合用於發送分析結果<ul><li>建立 Slack App</li><li>設定 Bot Token</li><li>選擇目標頻道接收分析報告</li></ul></li></ol>
+                
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <footer>
+        © 2025 DarrellTW. All rights reserved.
+    </footer>
+
+    <script>
+        const workflowData = {
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "hour": 20,
+              "minute": 20
+            }
+          ]
+        },
+        "simple": false,
+        "filters": {
+          "q": "subject=財政部電子發票整合服務平台",
+          "sender": "einvoice@einvoice.nat.gov.tw"
+        },
+        "options": {
+          "dataPropertyAttachmentsPrefixName": "attachment_",
+          "downloadAttachments": true
+        }
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -640,
+        -60
+      ],
+      "id": "3f201716-42ae-48b6-af9b-c54e353c07c7",
+      "name": "Gmail Trigger",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "GThDvv7aRdBQyg1e",
+          "name": "Gmail account personal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "text",
+        "binaryPropertyName": "attachment_0",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -260,
+        -620
+      ],
+      "id": "219994ff-af3e-4cb1-9ac0-d4554995535e",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "bb64e5ef-a023-410f-9dbe-2c6d4b9de27b",
+                    "leftValue": "={{ $json.type }}",
+                    "rightValue": "M",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "M"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.type }}",
+                    "rightValue": "D",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "c9b53b63-ce1e-423a-ad0e-dabc5308de26"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "D"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -100,
+        -60
+      ],
+      "id": "dd1fa723-2f1e-4df2-a171-8655ad491f61",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "75ccad65-16eb-460c-896b-68dd7d0c8188",
+              "name": "type",
+              "value": "={{ $json.values()[0].split(\"|\")[0] }}",
+              "type": "string"
+            },
+            {
+              "id": "0a4316c4-e80d-4eff-a7ea-96e14329c7fa",
+              "name": "text",
+              "value": "={{ $json.values()[0] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -260,
+        -60
+      ],
+      "id": "caf093eb-38e1-487d-bd79-5c22fe8dd6fb",
+      "name": "整理資料"
+    },
+    {
+      "parameters": {
+        "content": "## 發票細項\n| 發票號碼 | 小計 | 品項名稱 |",
+        "height": 300,
+        "width": 680
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        240,
+        20
+      ],
+      "id": "7d41f9a8-e3a1-45b3-8814-b1c767147988",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## 發票\n| 載具名稱 | 載具號碼 | 發票日期 | 商店統編 | 商店店名 | 發票號碼 | 總金額 | 發票狀態 |",
+        "height": 260,
+        "width": 680
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        240,
+        -340
+      ],
+      "id": "cea65af6-eb07-4a77-819b-d864d5459392",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6b33cfb2-2131-47b7-9ba5-cd3f38eef0f9",
+              "name": "text",
+              "value": "={{ $json.text.split(\"|\") }}",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        280,
+        -240
+      ],
+      "id": "2b9f26e7-d1d6-4b62-a102-86f40a23c1ef",
+      "name": "m-文字轉Array"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6b33cfb2-2131-47b7-9ba5-cd3f38eef0f9",
+              "name": "text",
+              "value": "={{ $json.text.split(\"|\") }}",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        260,
+        140
+      ],
+      "id": "e6ec93d7-b3e5-4051-9b2a-6cd31525acbd",
+      "name": "d-文字轉Array"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1xrCCQIbkp6z6JXwMWJBf8zqf45-xXgh_P2D6UBaUoGI",
+          "mode": "list",
+          "cachedResultName": "n8n-電子發票_每月紀錄",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xrCCQIbkp6z6JXwMWJBf8zqf45-xXgh_P2D6UBaUoGI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 667728629,
+          "mode": "list",
+          "cachedResultName": "發票",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xrCCQIbkp6z6JXwMWJBf8zqf45-xXgh_P2D6UBaUoGI/edit#gid=667728629"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "invoice_no"
+          ],
+          "schema": [
+            {
+              "id": "invoice_no",
+              "displayName": "invoice_no",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "company",
+              "displayName": "company",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "sub_total",
+              "displayName": "sub_total",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "useAppend": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        720,
+        -240
+      ],
+      "id": "eb1a8ef9-603a-47dc-8c64-0f6cddb94a78",
+      "name": "m-存sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "tufEzuSTEveV3tuA",
+          "name": "(Personal)Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1xrCCQIbkp6z6JXwMWJBf8zqf45-xXgh_P2D6UBaUoGI",
+          "mode": "list",
+          "cachedResultName": "n8n-電子發票_每月紀錄",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xrCCQIbkp6z6JXwMWJBf8zqf45-xXgh_P2D6UBaUoGI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "細項",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1xrCCQIbkp6z6JXwMWJBf8zqf45-xXgh_P2D6UBaUoGI/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "invoice_no",
+              "displayName": "invoice_no",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "item",
+              "displayName": "item",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "price",
+              "displayName": "price",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "useAppend": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        700,
+        140
+      ],
+      "id": "7b86d239-d23e-41f4-b355-711b49f694ca",
+      "name": "d-存sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "tufEzuSTEveV3tuA",
+          "name": "(Personal)Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.1,
+      "position": [
+        1000,
+        -40
+      ],
+      "id": "64585604-c02f-404c-a824-9d52f7c92fc6",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7a707904-f8fb-4712-b266-3953e51c6178",
+              "name": "data",
+              "value": "={{ $json.values().join() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1180,
+        -40
+      ],
+      "id": "e0f047b2-d6d5-457d-a482-70bb815bca30",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "data"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1360,
+        -40
+      ],
+      "id": "c46625a1-3b00-4d14-a2c4-f95a2cd31634",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.data.join() }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=你是一位資料分析師。根據下列 CSV 文字（每列格式：\n發票號碼,店家名稱,金額,發票日期,載具號碼,載具名稱,發票狀態），\n完成以下 6 項任務，並全部以繁體中文輸出；不用產生異常發票：\n\n1. 【摘要】150 字內：總花費、最高單筆金額（含店家）、主要消費類型。\n2. 【類別統計】Markdown 表格：類別（便利商店 / 外送 / 電商 / 餐飲實體 / 其他）、筆數、消費總額、平均客單、佔比 (% )。\n3. 【Top 5 店家】花費最高前 5 名：格式「1. 店家（NT$ 總額，筆數）」。\n4. 【常買‧高額店家矩陣】將每家店分為四象限：  \n   - 高頻高額、低頻高額、高頻低額、低頻低額（以整體筆數中位數與總額中位數為分界），  \n   列出各象限的店家清單（店名＋筆數＋總額）。\n\n輸出格式範例：\n【摘要】\n...\n【類別統計】\n| 類別 | 筆數 | 消費總額 | 平均客單 | 佔比 |\n|------|-----:|---------:|---------:|-----:|\n| 外送 | 10 | NT$… | NT$… | 40% |\n...\n【Top 5 店家】\n1. XXX（NT$ …，5 筆）\n...\n【常買‧高額店家矩陣】\n- **高頻高額**：A 店（12 筆 / NT$8,000）、B 店…\n- **低頻高額**：C 店（2 筆 / NT$5,000）…\n- **高頻低額**：D 店…\n- **低頻低額**：E 店…\n\n以下是資料："
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.6,
+      "position": [
+        1560,
+        -40
+      ],
+      "id": "38eea912-472d-43f7-b91a-8bd7800d6770",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "model": "grok-3-fast-beta",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatXAiGrok",
+      "typeVersion": 1,
+      "position": [
+        1480,
+        140
+      ],
+      "id": "54ff9034-b91a-42b5-83f1-76235d7d551e",
+      "name": "xAI Grok Chat Model",
+      "credentials": {
+        "xAiApi": {
+          "id": "IM4rBBfozzb7K8uB",
+          "name": "xAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C084G3HU3ED",
+          "mode": "list",
+          "cachedResultName": "測試"
+        },
+        "text": "={{ $json.text }}",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        1900,
+        -40
+      ],
+      "id": "1570cab5-317c-47a4-b232-5284f567de85",
+      "name": "Slack",
+      "webhookId": "b03abb2c-0236-47c9-9c51-0bedec17e482",
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "sD1J9ZLyEhcglrRa",
+          "name": "Slack account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## AI 分析消費資料\n將資料整理為一大筆，交給 AI 分析觀察",
+        "height": 540,
+        "width": 1100,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        980,
+        -240
+      ],
+      "id": "cf892735-2a1a-4964-910b-563fb95fa403",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Gmail 取得附件 -> 整理資料格式",
+        "height": 260,
+        "width": 720,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -680,
+        -160
+      ],
+      "id": "4b2e7743-f31f-4bbc-be38-9f723bc89796",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6b33cfb2-2131-47b7-9ba5-cd3f38eef0f9",
+              "name": "invoice_no",
+              "value": "={{ $json.text[6] }}",
+              "type": "string"
+            },
+            {
+              "id": "342df3e3-a263-4d97-bd27-4d4e177e69ac",
+              "name": "company",
+              "value": "={{ $json.text[5] }}",
+              "type": "string"
+            },
+            {
+              "id": "1f6d3575-8d59-4fdb-9c01-083f608b6269",
+              "name": "sub_total",
+              "value": "={{ $json.text[7] }}",
+              "type": "string"
+            },
+            {
+              "id": "6c8b6151-5c59-416c-bf9e-0852eb1b0013",
+              "name": "date",
+              "value": "={{ $json.text[3] }}",
+              "type": "string"
+            },
+            {
+              "id": "f6145822-acdf-47dd-974a-b4042abd5897",
+              "name": "code",
+              "value": "={{ $json.text[2] }}",
+              "type": "string"
+            },
+            {
+              "id": "c514ea43-ef44-47cc-ad80-0616072023c0",
+              "name": "code_from",
+              "value": "={{ $json.text[1] }}",
+              "type": "string"
+            },
+            {
+              "id": "2d67ea36-2fa8-41e8-903d-9c2b59cf1fd8",
+              "name": "status",
+              "value": "={{ $json.text[8] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        500,
+        -240
+      ],
+      "id": "3fcc1c79-d081-4aca-9746-562c8fb10765",
+      "name": "m-整理欄位資料"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6b33cfb2-2131-47b7-9ba5-cd3f38eef0f9",
+              "name": "invoice_no",
+              "value": "={{ $json.text[1] }}",
+              "type": "string"
+            },
+            {
+              "id": "342df3e3-a263-4d97-bd27-4d4e177e69ac",
+              "name": "item",
+              "value": "={{ $json.text[3] }}",
+              "type": "string"
+            },
+            {
+              "id": "1f6d3575-8d59-4fdb-9c01-083f608b6269",
+              "name": "price",
+              "value": "={{ Math.round($json.text[2]) }}",
+              "type": "number"
+            },
+            {
+              "id": "05ba6bd0-4ded-4f36-90af-f725c7612a9c",
+              "name": "id",
+              "value": "={{ ($json.text[1]+$json.text[3]).hash('sha256') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        500,
+        140
+      ],
+      "id": "dd10f3b2-7a88-4300-a07c-fad48cd6b1c5",
+      "name": "d-整理欄位資料"
+    },
+    {
+      "parameters": {
+        "binaryPropertyName": "attachment_0",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -440,
+        -60
+      ],
+      "id": "9a2057f8-afd6-4326-9651-15af82a95480",
+      "name": "Extract from File1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const document = items[0].json.data; \nconst lines = document.split(\"\\n\");\n\n// 提前過濾掉無效行（例如標題行）\nconst validLines = lines.filter(line => line.startsWith(\"M|\") || line.startsWith(\"D|\"));\n\nreturn validLines.map(line => {\n  const fields = line.split(\"|\");\n  const type = fields[0];\n\n  if (type === \"M\") {\n    return {\n      json: {\n        type: \"M\",\n        carrier_name: fields[1],\n        carrier_number: fields[2],\n        invoice_date: fields[3],\n        store_tax_id: fields[4],\n        store_name: fields[5],\n        invoice_number: fields[6],\n        total_amount: fields[7],\n        invoice_status: fields[8]\n      }\n    };\n  } else if (type === \"D\") {\n    return {\n      json: {\n        type: \"D\",\n        invoice_number: fields[1],\n        subtotal: fields[2],\n        item_name: fields[3]\n      }\n    };\n  }\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -80,
+        -620
+      ],
+      "id": "11651ac8-533e-45a3-8063-7c18c327d6fd",
+      "name": "整理"
+    },
+    {
+      "parameters": {
+        "jsCode": "let invoices = [];\nlet currentInvoice = null;\n\nfor (let item of items) {\n    const data = item.json;\n\n    if (data.type === \"M\") {\n        if (currentInvoice) {\n            invoices.push(currentInvoice);\n        }\n        currentInvoice = {\n            header: data,\n            items: []\n        };\n    } else if (data.type === \"D\") {\n        if (currentInvoice) {\n            currentInvoice.items.push(data);\n        }\n    }\n}\n\nif (currentInvoice) {\n    invoices.push(currentInvoice);\n}\n\nreturn invoices.map(invoice => ({ json: invoice }));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        100,
+        -620
+      ],
+      "id": "67c6ef63-bf7f-448c-a944-5e6872c0477a",
+      "name": "組合"
+    },
+    {
+      "parameters": {
+        "content": "## 另一種資料格式，提供給需要的人\n```\n{\n   // 發票主資料\n   \"header\":{\n      \"type\":\"M\",\n      \"carrier_name\":\"手機條碼\",\n      \"carrier_number\":\"{載具編號}\",\n      \"invoice_date\":\"{發票日期}\",\n      \"store_tax_id\":\"{商家統編}\",\n      \"store_name\":\"{商家}\",\n      \"invoice_number\":\"{發票號碼}\",\n      \"total_amount\":\"{發票金額}\",\n      \"invoice_status\":\"開立\"\n   },\n   // 發票商品項目資料\n   \"items\":[\n      {\n         \"type\":\"D\",\n         \"invoice_number\":\"{發票號碼}\",\n         \"subtotal\":\"{商品金額}\",\n         \"item_name\":\"{商品名稱}\"\n      }\n   ]\n}\n```",
+        "height": 640,
+        "width": 720,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -300,
+        -1100
+      ],
+      "id": "d4068428-d933-4e43-8e5f-d65f4514380a",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "### 附件\n#### [Google Sheet](https://docs.google.com/spreadsheets/d/1CmRQpquCcG-VfTLG7qOFNZkzSH7QPRDM3QDPRuF9quk/copy)",
+        "width": 440,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -780,
+        -780
+      ],
+      "id": "8115b73a-dd54-4545-b29f-c78f43bb1ef0",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "content": "## Created by darrell_tw_ \n\nI’m a software engineer specializing in **workflow automation**, leveraging tools like n8n and cloud APIs to optimize processes.\nI now focus on AI-driven automation to deliver intelligent, scalable solutions.\n\n### contact me with following:\n[X](https://x.com/darrell_tw_)\n[Threads](https://www.threads.net/@darrell_tw_)\n[Instagram](https://www.instagram.com/darrell_tw_/)\n[Website](https://www.darrelltw.com/)",
+        "height": 300,
+        "width": 440,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -780,
+        -1100
+      ],
+      "id": "d0609e02-04e7-4a16-83fd-40066847638c",
+      "name": "Sticky Note6"
+    }
+  ],
+  "connections": {
+    "Gmail Trigger": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Extract from File1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "整理",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "m-文字轉Array",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "d-文字轉Array",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "整理資料": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "m-文字轉Array": {
+      "main": [
+        [
+          {
+            "node": "m-整理欄位資料",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "d-文字轉Array": {
+      "main": [
+        [
+          {
+            "node": "d-整理欄位資料",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "m-存sheet": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "d-存sheet": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "xAI Grok Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "m-整理欄位資料": {
+      "main": [
+        [
+          {
+            "node": "m-存sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "d-整理欄位資料": {
+      "main": [
+        [
+          {
+            "node": "d-存sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File1": {
+      "main": [
+        [
+          {
+            "node": "整理資料",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "整理": {
+      "main": [
+        [
+          {
+            "node": "組合",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "fddb3e91967f1012c95dd02bf5ad21f279fc44715f47a7a96a33433621caa253"
+  }
+};
+        
+        // Initialize n8n-demo component dynamically
+        const container = document.getElementById('workflow-preview-container');
+        if (container) {
+            const demo = document.createElement('n8n-demo');
+            demo.setAttribute('workflow', JSON.stringify(workflowData));
+            demo.setAttribute('mode', 'dark');
+            demo.setAttribute('theme', 'dark');
+            container.appendChild(demo);
+        }
+
+        function downloadWorkflow() {
+            try {
+                const blob = new Blob([JSON.stringify(workflowData, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'gmail_parse_invoice_to_sheet_and_analyze.json';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            } catch (e) {
+                console.error('Download failed:', e);
+                alert('下載失敗，請稍後再試');
+            }
+        }
+
+        function copyWorkflow() {
+            try {
+                const jsonStr = JSON.stringify(workflowData, null, 2);
+                navigator.clipboard.writeText(jsonStr).then(() => {
+                    const btn = document.getElementById('copy-btn');
+                    const originalText = btn.innerText;
+                    btn.innerText = '已複製！';
+                    setTimeout(() => {
+                        btn.innerText = originalText;
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Copy failed:', err);
+                    alert('複製失敗，請手動複製');
+                });
+            } catch (e) {
+                console.error('Copy error:', e);
+                alert('複製發生錯誤');
+            }
+        }
+
+        const downloadBtn = document.getElementById('download-btn');
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', downloadWorkflow);
+        }
+
+        const copyBtn = document.getElementById('copy-btn');
+        if (copyBtn) {
+            copyBtn.addEventListener('click', copyWorkflow);
+        }
+
+        // Description expand/collapse functionality
+        const descEl = document.getElementById('model-description');
+        const expandBtn = document.getElementById('expand-btn');
+
+        if (descEl && expandBtn) {
+            let needsExpand = false;
+
+            // Check if text is truncated (needs more than 3 lines)
+            function checkTruncation() {
+                // Clone element to measure full height without affecting display
+                const clone = descEl.cloneNode(true);
+                clone.style.cssText = 'position:absolute;visibility:hidden;display:block;-webkit-line-clamp:unset;width:' + descEl.offsetWidth + 'px;';
+                document.body.appendChild(clone);
+                const fullHeight = clone.scrollHeight;
+                document.body.removeChild(clone);
+
+                const lineHeight = parseFloat(getComputedStyle(descEl).lineHeight);
+                const maxHeight = lineHeight * 3;
+
+                needsExpand = fullHeight > maxHeight + 5;
+                expandBtn.style.display = needsExpand ? 'flex' : 'none';
+            }
+
+            checkTruncation();
+            window.addEventListener('resize', checkTruncation);
+
+            expandBtn.addEventListener('click', function() {
+                const isExpanded = descEl.classList.toggle('expanded');
+                expandBtn.textContent = isExpanded ? '收合' : '展開全文';
+            });
+        }
+    </script>
+</body>
+</html>

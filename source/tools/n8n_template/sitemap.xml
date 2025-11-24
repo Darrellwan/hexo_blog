@@ -3,416 +3,208 @@
   <!-- 主頁 -->
   <url>
     <loc>https://www.darrelltw.com/tools/n8n_template/models.html</loc>
-    <lastmod>2025-11-22</lastmod>
+    <lastmod>2025-11-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-  
+
   <!-- 模型詳情頁 - n8n-github-backup-workflow -->
   <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=n8n-github-backup-workflow</loc>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n-github-backup-workflow.html</loc>
     <lastmod>2025-11-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- 模型快照頁 - n8n-github-backup-workflow -->
-  <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/snapshots/n8n-github-backup-workflow.html</loc>
-    <lastmod>2025-11-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
+
   <!-- 模型詳情頁 - n8n-threads-auto-reply-form-send_email -->
   <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=n8n-threads-auto-reply-form-send_email</loc>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n-threads-auto-reply-form-send_email.html</loc>
     <lastmod>2025-11-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- 模型快照頁 - n8n-threads-auto-reply-form-send_email -->
-  <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/snapshots/n8n-threads-auto-reply-form-send_email.html</loc>
-    <lastmod>2025-11-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
+
   <!-- 模型詳情頁 - n8n_line_messaging_community -->
   <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=n8n_line_messaging_community</loc>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n_line_messaging_community.html</loc>
     <lastmod>2025-10-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- 模型快照頁 - n8n_line_messaging_community -->
-  <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/snapshots/n8n_line_messaging_community.html</loc>
-    <lastmod>2025-10-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
+
   <!-- 模型詳情頁 - n8n-sora2-prompt-to-video -->
   <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=n8n-sora2-prompt-to-video</loc>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n-sora2-prompt-to-video.html</loc>
     <lastmod>2025-10-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- 模型快照頁 - n8n-sora2-prompt-to-video -->
-  <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/snapshots/n8n-sora2-prompt-to-video.html</loc>
-    <lastmod>2025-10-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
+
   <!-- 模型詳情頁 - darrell-n8n-demo-datatables -->
   <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=darrell-n8n-demo-datatables</loc>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/darrell-n8n-demo-datatables.html</loc>
     <lastmod>2025-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- 模型快照頁 - darrell-n8n-demo-datatables -->
-  <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/snapshots/darrell-n8n-demo-datatables.html</loc>
-    <lastmod>2025-09-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
+
   <!-- 模型詳情頁 - darrell-n8n-demo-gemini_nano banana_change_image -->
   <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=darrell-n8n-demo-gemini_nano banana_change_image</loc>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/darrell-n8n-demo-gemini_nano banana_change_image.html</loc>
     <lastmod>2025-08-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- 模型快照頁 - darrell-n8n-demo-gemini_nano banana_change_image -->
-  <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/snapshots/darrell-n8n-demo-gemini_nano banana_change_image.html</loc>
-    <lastmod>2025-08-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
+
   <!-- 模型詳情頁 - n8n-web-scrawler-practice-house-scraper -->
   <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=n8n-web-scrawler-practice-house-scraper</loc>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n-web-scrawler-practice-house-scraper.html</loc>
     <lastmod>2025-08-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- 模型快照頁 - n8n-web-scrawler-practice-house-scraper -->
-  <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/snapshots/n8n-web-scrawler-practice-house-scraper.html</loc>
-    <lastmod>2025-08-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
+
   <!-- 模型詳情頁 - n8n-Apify-demo -->
   <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=n8n-Apify-demo</loc>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n-Apify-demo.html</loc>
     <lastmod>2025-08-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- 模型快照頁 - n8n-Apify-demo -->
-  <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/snapshots/n8n-Apify-demo.html</loc>
-    <lastmod>2025-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
+
   <!-- 模型詳情頁 - n8n-from-collect-email-and-send -->
   <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=n8n-from-collect-email-and-send</loc>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n-from-collect-email-and-send.html</loc>
     <lastmod>2025-07-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- 模型快照頁 - n8n-from-collect-email-and-send -->
-  <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/snapshots/n8n-from-collect-email-and-send.html</loc>
-    <lastmod>2025-07-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
+
   <!-- 模型詳情頁 - n8n-gmail-pickup-calendar -->
   <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=n8n-gmail-pickup-calendar</loc>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n-gmail-pickup-calendar.html</loc>
     <lastmod>2025-07-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- 模型快照頁 - n8n-gmail-pickup-calendar -->
-  <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/snapshots/n8n-gmail-pickup-calendar.html</loc>
-    <lastmod>2025-07-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
+
   <!-- 模型詳情頁 - n8n-ai-choose-model -->
   <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=n8n-ai-choose-model</loc>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n-ai-choose-model.html</loc>
     <lastmod>2025-06-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- 模型快照頁 - n8n-ai-choose-model -->
-  <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/snapshots/n8n-ai-choose-model.html</loc>
-    <lastmod>2025-06-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
+
   <!-- 模型詳情頁 - n8n_template_portaly_demo -->
   <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=n8n_template_portaly_demo</loc>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n_template_portaly_demo.html</loc>
     <lastmod>2025-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- 模型快照頁 - n8n_template_portaly_demo -->
-  <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/snapshots/n8n_template_portaly_demo.html</loc>
-    <lastmod>2025-06-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
+
   <!-- 模型詳情頁 - meta-challenge-respond -->
   <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=meta-challenge-respond</loc>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/meta-challenge-respond.html</loc>
     <lastmod>2025-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- 模型快照頁 - meta-challenge-respond -->
-  <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/snapshots/meta-challenge-respond.html</loc>
-    <lastmod>2025-06-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
+
   <!-- 模型詳情頁 - n8n-template-evaluations_demo_item -->
   <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=n8n-template-evaluations_demo_item</loc>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n-template-evaluations_demo_item.html</loc>
     <lastmod>2025-06-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- 模型快照頁 - n8n-template-evaluations_demo_item -->
-  <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/snapshots/n8n-template-evaluations_demo_item.html</loc>
-    <lastmod>2025-06-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
+
   <!-- 模型詳情頁 - gmail_parse_invoice_to_sheet_and_analyze -->
   <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=gmail_parse_invoice_to_sheet_and_analyze</loc>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/gmail_parse_invoice_to_sheet_and_analyze.html</loc>
     <lastmod>2025-05-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- 模型快照頁 - gmail_parse_invoice_to_sheet_and_analyze -->
-  <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/snapshots/gmail_parse_invoice_to_sheet_and_analyze.html</loc>
-    <lastmod>2025-05-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
+
   <!-- 模型詳情頁 - n8n_gpt_image_1_with_drive_and_sheet -->
   <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=n8n_gpt_image_1_with_drive_and_sheet</loc>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n_gpt_image_1_with_drive_and_sheet.html</loc>
     <lastmod>2025-04-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- 模型快照頁 - n8n_gpt_image_1_with_drive_and_sheet -->
-  <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/snapshots/n8n_gpt_image_1_with_drive_and_sheet.html</loc>
-    <lastmod>2025-04-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
+
   <!-- 模型詳情頁 - check_which_ai_models_are_used_in_your_workflows -->
   <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=check_which_ai_models_are_used_in_your_workflows</loc>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/check_which_ai_models_are_used_in_your_workflows.html</loc>
     <lastmod>2025-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- 模型快照頁 - check_which_ai_models_are_used_in_your_workflows -->
-  <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/snapshots/check_which_ai_models_are_used_in_your_workflows.html</loc>
-    <lastmod>2025-04-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
+
   <!-- 模型詳情頁 - n8n_japan_receipt_ai_recognition_expense_sharing -->
   <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=n8n_japan_receipt_ai_recognition_expense_sharing</loc>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n_japan_receipt_ai_recognition_expense_sharing.html</loc>
     <lastmod>2025-04-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- 模型快照頁 - n8n_japan_receipt_ai_recognition_expense_sharing -->
-  <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/snapshots/n8n_japan_receipt_ai_recognition_expense_sharing.html</loc>
-    <lastmod>2025-04-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
+
   <!-- 模型詳情頁 - n8n_remember_to_drink_water -->
   <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=n8n_remember_to_drink_water</loc>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n_remember_to_drink_water.html</loc>
     <lastmod>2025-03-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- 模型快照頁 - n8n_remember_to_drink_water -->
-  <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/snapshots/n8n_remember_to_drink_water.html</loc>
-    <lastmod>2025-03-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
+
   <!-- 模型詳情頁 - line_message -->
   <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=line_message</loc>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/line_message.html</loc>
     <lastmod>2025-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- 模型快照頁 - line_message -->
-  <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/snapshots/line_message.html</loc>
-    <lastmod>2025-10-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
+
   <!-- 模型詳情頁 - creditcard -->
   <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=creditcard</loc>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/creditcard.html</loc>
     <lastmod>2025-02-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- 模型快照頁 - creditcard -->
-  <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/snapshots/creditcard.html</loc>
-    <lastmod>2025-02-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
+
   <!-- 模型詳情頁 - food_delivery_easy_expense -->
   <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=food_delivery_easy_expense</loc>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/food_delivery_easy_expense.html</loc>
     <lastmod>2024-03-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- 模型快照頁 - food_delivery_easy_expense -->
-  <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/snapshots/food_delivery_easy_expense.html</loc>
-    <lastmod>2024-03-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
+
   <!-- 模型詳情頁 - demo_while_loop_example -->
   <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=demo_while_loop_example</loc>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/demo_while_loop_example.html</loc>
     <lastmod>2024-03-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- 模型快照頁 - demo_while_loop_example -->
-  <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/snapshots/demo_while_loop_example.html</loc>
-    <lastmod>2024-03-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
+
   <!-- 模型詳情頁 - instagram_api_demo_publish -->
   <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=instagram_api_demo_publish</loc>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/instagram_api_demo_publish.html</loc>
     <lastmod>2025-04-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- 模型快照頁 - instagram_api_demo_publish -->
-  <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/snapshots/instagram_api_demo_publish.html</loc>
-    <lastmod>2025-04-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
+
   <!-- 模型詳情頁 - demo_limit_the_workflow_execution_by_supabase -->
   <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=demo_limit_the_workflow_execution_by_supabase</loc>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/demo_limit_the_workflow_execution_by_supabase.html</loc>
     <lastmod>2025-04-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-  </url>
-  
-  <!-- 模型快照頁 - demo_limit_the_workflow_execution_by_supabase -->
-  <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/snapshots/demo_limit_the_workflow_execution_by_supabase.html</loc>
-    <lastmod>2025-04-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <!-- 視覺化頁面 -->
-  <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/visualize.html</loc>
-    <lastmod>2025-11-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
 </urlset>
