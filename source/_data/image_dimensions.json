@@ -6368,5 +6368,65 @@
     "width": 1080,
     "height": 1350,
     "mtimeMs": 1763916488615.077
+  },
+  "/_posts/n8n-set-node/n8n-set_field_node-interface.png": {
+    "width": 2468,
+    "height": 1068,
+    "mtimeMs": 1763994024587.958
+  },
+  "/_posts/n8n-set-node/n8n-set-node-combine-fields.png": {
+    "width": 2210,
+    "height": 752,
+    "mtimeMs": 1763995165229.146
+  },
+  "/_posts/n8n-set-node/n8n-set-node-format.png": {
+    "width": 2340,
+    "height": 1184,
+    "mtimeMs": 1763995549905.338
+  },
+  "/_posts/n8n-set-node/n8n-set-node-timestamp.png": {
+    "width": 1630,
+    "height": 1174,
+    "mtimeMs": 1763995903395.537
+  },
+  "/_posts/n8n-set-node/n8n-set-node-ternary.png": {
+    "width": 1662,
+    "height": 1294,
+    "mtimeMs": 1763996794410.523
+  },
+  "/_posts/n8n-set-node/n8n-set-node-reference.png": {
+    "width": 1690,
+    "height": 1174,
+    "mtimeMs": 1763997074794.275
+  },
+  "/_posts/n8n-set-node/n8n-set-node-reference-to-sheet.png": {
+    "width": 1692,
+    "height": 1174,
+    "mtimeMs": 1763997207819.106
+  },
+  "/_posts/n8n-set-node/n8n-set-node-include-other-input-fields.png": {
+    "width": 2416,
+    "height": 1030,
+    "mtimeMs": 1763997857878.153
+  },
+  "/_posts/n8n-set-node/n8n-set-node-modes.png": {
+    "width": 890,
+    "height": 538,
+    "mtimeMs": 1763998692796.038
+  },
+  "/_posts/n8n-set-node/8n-set_field_node-json-output.png": {
+    "width": 2428,
+    "height": 1004,
+    "mtimeMs": 1763998761334.52
+  },
+  "/_posts/n8n-set-node/n8n-set_field_node-wood-metaphor.webp": {
+    "width": 900,
+    "height": 900,
+    "mtimeMs": 1763998374850.328
+  },
+  "/_posts/n8n-set-node/n8n-set_field_node-json-output.png": {
+    "width": 2428,
+    "height": 1004,
+    "mtimeMs": 1763998761334.52
   }
 }
