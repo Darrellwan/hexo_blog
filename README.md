@@ -3,7 +3,7 @@
 ## 📚 最新文章
 
 ### [n8n Edit Fields (Set) 節點教學 - 組合欄位、動態表達式、Include Fields](https://www.darrelltw.com/n8n-set-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/11/24 · 8 小時內
+📅 2025/11/24 · 7 小時前
 
 > n8n Edit Fields Set 節點 3 大技巧：欄位組合格式化、$now 時間與條件判斷、Include Other Input Fields。90% 工作流都會用到的核心節點完整教學。
 
@@ -64,8 +64,8 @@
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-112-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-243,116+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/11/24-green?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-243,939+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/11/25-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-11-24 16:02:10*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-11-25 06:36:23*
