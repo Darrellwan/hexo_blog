@@ -7,16 +7,65 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2025/11/19 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.121.0，正式版本為 1.120.0
+description: n8n 的更新記錄(2025/11/24 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.122.1，正式版本為 1.120.4
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-11-19 12:00:00
+modified: 2025-11-25 14:15:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 1.122.0 Pre-release - 2025-11-24
+
+[Github 1.122.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.122.0)
+
+### MCP Client Node（新節點）
+MCP Client Node: New node
+
+新增了 **MCP Client Node**
+
+之前只有 MCP Client tool，只能掛載在 AI Agent 節點底下當作 tool 使用
+這次是推出了單獨的 MCP Client 節點
+
+讓你可以在一般的工作流中對特定 MCP Server 進行互動
+例如我之前有建立 n8n 的 MCP 用來新增和查詢自己的模板資料
+
+使用上的情境會蠻像是串 API 的，還在測試和尋找差異的場景
+
+{% darrellImage800Alt "n8n 1.122.0 新增的 MCP Client Node 節點設定畫面" n8n-1.122.0-mcp_client_node.png max-800 %}
+
+### Data Tables：支援 CSV 匯入
+Allow creating data tables from csv files
+
+Data Tables 終於可以直接從 CSV 檔案匯入
+
+以前沒有這功能時，要建立一個現成的資料表很麻煩
+要先去 workflow 建立一個簡單的 data table 模板
+把 csv 想辦法用 data table 節點新增進去
+
+非常的繞路
+
+現在可以完全不用建立模板，直接用現有的 csv 上傳就好！
+
+{% darrellImage800Alt "n8n Data Tables 支援從 CSV 檔案匯入資料的功能畫面" n8n-1.122.0-data_table_csv_import.png max-800 %}
+
+{% darrellImage800Alt "n8n Data Tables 支援從 CSV 檔案匯入資料完成後的畫面" n8n-1.122.0-data_table_csv_import-done-demo.png max-800 %}
+
+### Data Tables：支援 CSV 下載
+CSV download support for data tables
+
+有了匯入，當然也要有匯出！Data Tables 現在支援下載成 CSV 格式了。
+
+這個功能跟上面的 CSV 匯入搭配起來
+就形成了一個完整的資料管理：
+- 可以從 CSV 匯入建立 Data Tables
+- 在 n8n 中處理和更新資料
+- 需要的時候再把資料匯出成 CSV
+
+{% darrellImage800Alt "n8n Data Tables 支援下載成 CSV 格式的功能畫面" n8n-1.122.0-data_table_csv_download.png max-800 %}
 
 ## 1.121.0 Pre-release - 2025-11-18
 

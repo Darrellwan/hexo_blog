@@ -6428,5 +6428,25 @@
     "width": 2428,
     "height": 1004,
     "mtimeMs": 1763998761334.52
+  },
+  "/_posts/n8n-update-log/n8n-1.122.0-mcp_client_node.png": {
+    "width": 992,
+    "height": 864,
+    "mtimeMs": 1764051658949.409
+  },
+  "/_posts/n8n-update-log/n8n-1.122.0-data_table_csv_import.png": {
+    "width": 1196,
+    "height": 1210,
+    "mtimeMs": 1764047871935.922
+  },
+  "/_posts/n8n-update-log/n8n-1.122.0-data_table_csv_download.png": {
+    "width": 1338,
+    "height": 642,
+    "mtimeMs": 1764047841146.547
+  },
+  "/_posts/n8n-update-log/n8n-1.122.0-data_table_csv_import-done-demo.png": {
+    "width": 2126,
+    "height": 1744,
+    "mtimeMs": 1764047879428.627
   }
 }
