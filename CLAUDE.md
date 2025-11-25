@@ -1,5 +1,10 @@
 # CLAUDE.md
 
+## ⚠️ Git Commit 強制規則
+**在執行任何 git commit 指令前，必須先使用 `commit-guide` skill 查看規範**
+- 不允許在未啟用 skill 的情況下建立 commit
+- 使用方式：當用戶要求 commit 時，先執行 skill 再進行操作
+
 ## Build Commands
 - **Dev**: `npm run test` - Full development environment
 - **Posts**: `npm run add_post --posttitle="Title"` - New post
