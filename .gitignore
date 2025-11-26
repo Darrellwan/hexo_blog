@@ -65,3 +65,6 @@ docs/n8n-writing-style.md
 
 # Local development configuration
 main.local.yml
+
+# Local n8n workflows
+local_n8n_workflows/

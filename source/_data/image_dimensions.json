@@ -6448,5 +6448,50 @@
     "width": 2126,
     "height": 1744,
     "mtimeMs": 1764047879428.627
+  },
+  "/_posts/n8n-2-0-update/n8n-2.0-new-canvas.png": {
+    "width": 2322,
+    "height": 1690,
+    "mtimeMs": 1764145929090.17
+  },
+  "/_posts/n8n-2-0-update/n8n-2.0-migration-report-workflow-level.png": {
+    "width": 1584,
+    "height": 1318,
+    "mtimeMs": 1764146489192.391
+  },
+  "/_posts/n8n-2-0-update/n8n-2.0-migration-report-location.png": {
+    "width": 1958,
+    "height": 880,
+    "mtimeMs": 1764146428516.202
+  },
+  "/_posts/n8n-2-0-update/n8n-2.0-migration-report-instance-level.png": {
+    "width": 1584,
+    "height": 1612,
+    "mtimeMs": 1764146504357.552
+  },
+  "/_posts/n8n-2-0-update/n8n-2.0-python-syntax.png": {
+    "width": 1590,
+    "height": 818,
+    "mtimeMs": 1764160322679.502
+  },
+  "/_posts/n8n-2-0-update/n8n-2.0-mysql-mariadb-warning.png": {
+    "width": 1590,
+    "height": 486,
+    "mtimeMs": 1764160288301.318
+  },
+  "/_posts/n8n-2-0-update/n8n-2.0-executecommand-and-localfiletrigger-node-warning.png": {
+    "width": 1590,
+    "height": 648,
+    "mtimeMs": 1764160307664.582
+  },
+  "/_posts/n8n-2-0-update/n8n-2.0-release-timeline.webp": {
+    "width": 1200,
+    "height": 654,
+    "mtimeMs": 1764161482585.859
+  },
+  "/_posts/n8n-2-0-update/n8n-2.0-update-bg.jpg": {
+    "width": 1080,
+    "height": 1350,
+    "mtimeMs": 1764162203428.549
   }
 }
