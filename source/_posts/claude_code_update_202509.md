@@ -7,16 +7,72 @@ categories:
   - AI
 page_type: post
 id: claude_code_update_202509
-description: Claude Code 2025年9月更新：新的 Cursor IDE 介面，讓不是工程師的你也能輕鬆使用 Claude Code
+description: Claude Code 2025年11月更新：新的 Cursor IDE 介面，讓不是工程師的你也能輕鬆使用 Claude Code
 bgImage: blog-claudecode-update-202509-bg.jpg
 preload:
   - blog-claude code-update-202509-bg.jpg
 date: 2025-09-30 09:57:21
+modified: 2025-11-27 20:48:55
 ---
 {% darrellImageCover blog-claudecode-update-202509-bg blog-claudecode-update-202509-bg.jpg max-800 %}
 
-Claude Code 在 2025/09/30 發表了 Sonnet 4.5 的新模型
-同時也帶來不少的新功能
+## Claude Code Plugin
+
+最近在 Claude Code 的使用上看到一種新的功能 : Plugin
+
+### Plugin 安裝和啟用方式
+
+首先需要啟動 Claude Code 之後
+輸入下面兩個指令
+
+```bash
+# 新增官方插件市場來源 (Marketplace Source)
+# 讓 Claude Code 知道去哪裡尋找官方維護的插件
+/plugin marketplace add anthropics/claude-code
+
+# 安裝特定的前端設計插件 (frontend-design)
+# @claude-code-plugins 指定了這個插件來自剛剛新增的官方插件集合
+# 這個插件能增強 Claude Code 在前端設計、審美和 UI/UX 方面的能力
+/plugin install frontend-design@claude-code-plugins
+```
+
+### 前端設計 Plugin 測試
+
+裝了這個插件之後
+馬上拿來重新設計某個頁面
+
+我的 prompt 只下了 `redesign this page`
+Claude 先跟我問答確認一些方向之後
+最後居然給出了這麼詳細的 todo list!
+
+```
+  Todos
+  ☒ 建立 CSS 設計系統檔案 (design-system.css)
+  ☒ 建立元件庫檔案 (components.css)
+  ☒ 建立動畫庫檔案 (animations.css)
+  ☒ 建立手機專用樣式檔案 (mobile.css)
+  ☒ 建立動畫控制 JS (animations.js)
+  ☒ 建立輪播控制 JS (carousel.js)
+  ☐ 建立手機互動 JS (mobile-interactions.js)
+  ☐ 重新設計並更新 Hero 區塊
+  ☐ 新增 Trust Bar 區塊
+  ☐ 新增 Problem/Solution 區塊
+  ☐ 增強 Services 區塊樣式與互動
+  ☐ 新增 Process Timeline 區塊
+  ☐ 重組 Portfolio 區塊並加入成果數據
+  ☐ 新增 Testimonials Carousel 區塊
+  ☐ 新增 FAQ Accordion 區塊
+  ☐ 新增 Final CTA 區塊
+  ☐ 增強 Contact Form 樣式與互動
+  ☐ 優化行動裝置響應式設計
+  ☐ 在 index.html 中整合所有新 CSS/JS 檔案
+  ☐ 測試與優化 (跨瀏覽器、效能、無障礙)
+```
+
+並且正在針對這個長長的計劃逐步執行中！
+
+{% darrellImage800Alt "Claude Code 前端設計插件" claudecode_frontend_design.png %}
+
 
 ## VSCode/Cursor Extension
 
