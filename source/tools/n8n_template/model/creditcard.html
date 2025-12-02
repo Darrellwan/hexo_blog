@@ -201,9 +201,10 @@ Webhook 用於付款更新：允許使用者透過 Webhook 更新付款狀態。
         }
 
         .breadcrumb {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             font-size: 0.9rem;
             color: var(--text-muted);
+            line-height: 1.6;
         }
 
         .breadcrumb a {
@@ -223,8 +224,7 @@ Webhook 用於付款更新：允許使用者透過 Webhook 更新付款狀態。
         .tags-row {
             display: flex;
             gap: 0.5rem;
-            flex-wrap: nowrap;
-            overflow: hidden;
+            flex-wrap: wrap;
             margin-bottom: 1.5rem;
         }
 
@@ -474,6 +474,85 @@ Webhook 用於付款更新：允許使用者透過 Webhook 更新付款狀態。
             }
             .model-title {
                 font-size: 2rem;
+            }
+        }
+
+        /* 手機版樣式調整 */
+        @media (max-width: 600px) {
+            header {
+                padding: 0.8rem 1rem;
+            }
+
+            .header-logo {
+                font-size: 1rem;
+            }
+
+            .nav-links {
+                gap: 0.8rem;
+            }
+
+            .nav-link {
+                font-size: 0.8rem;
+            }
+
+            .hero-card {
+                padding: 1.5rem;
+            }
+
+            .breadcrumb {
+                font-size: 0.8rem;
+                margin-bottom: 1rem;
+            }
+
+            .model-title {
+                font-size: 1.5rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .tags-row {
+                gap: 0.4rem;
+                margin-bottom: 1rem;
+            }
+
+            .glass-tag {
+                font-size: 0.7rem;
+                padding: 3px 8px;
+            }
+        }
+
+        /* 超小螢幕支援 */
+        @media (max-width: 360px) {
+            header {
+                padding: 0.6rem 0.8rem;
+            }
+
+            .header-logo {
+                font-size: 0.9rem;
+            }
+
+            .nav-links {
+                gap: 0.5rem;
+            }
+
+            .nav-link {
+                font-size: 0.75rem;
+            }
+
+            .hero-card {
+                padding: 1rem;
+            }
+
+            .breadcrumb {
+                font-size: 0.75rem;
+            }
+
+            .model-title {
+                font-size: 1.3rem;
+            }
+
+            .glass-tag {
+                font-size: 0.65rem;
+                padding: 2px 6px;
             }
         }
     </style>

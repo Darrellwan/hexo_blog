@@ -204,9 +204,10 @@ header h1 {
     justify-content: center;
     align-items: center;
     padding: 12px 20px;
-    gap: 20px;
+    gap: 12px;
     max-width: 100%;
-    overflow-x: auto;
+    overflow: visible;
+    flex-wrap: wrap;
 }
 
 .mobile-social-icon {
@@ -246,9 +247,27 @@ header h1 {
     .mobile-social-bar {
         display: block;
     }
-    
+
     /* 隱藏原本側邊選單中的社交 icon */
     .header-social {
-        display: none !important;
+        display: none;
+    }
+}
+
+/* 超小螢幕調整按鈕尺寸 */
+@media (max-width: 360px) {
+    .mobile-social-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .mobile-social-icon svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .mobile-social-container {
+        padding: 10px 16px;
+        gap: 10px;
     }
 } 

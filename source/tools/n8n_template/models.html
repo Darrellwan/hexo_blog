@@ -65,7 +65,7 @@
             color: var(--text-main);
             font-family: 'DM Sans', sans-serif;
             min-height: 100vh;
-            overflow-x: hidden;
+            overflow-x: clip;
             position: relative;
         }
 
@@ -583,31 +583,36 @@
                 gap: 1rem;
             }
 
-            /* Horizontal List View for Mobile */
+            /* 緊湊橫向佈局：左圖右文 */
             .glass-card {
                 flex-direction: row;
-                align-items: stretch;
+                align-items: flex-start;
                 padding: 0.8rem;
-                min-height: 120px;
+                gap: 0.8rem;
+                min-height: 130px; /* 增加最小高度以容納標籤 */
             }
 
             .card-img-wrapper {
-                width: 100px;
-                min-width: 100px;
-                height: auto;
+                width: 90px;
+                min-width: 90px;
+                height: 90px;
+                flex-shrink: 0;
                 aspect-ratio: 1/1;
                 margin-bottom: 0;
-                margin-right: 1rem;
-                border-radius: 12px;
+                margin-right: 0;
+                border-radius: 10px;
             }
 
             .card-content {
-                justify-content: center;
+                flex: 1;
+                min-width: 0;
+                justify-content: flex-start;
             }
 
             .card-title {
-                font-size: 1rem;
-                margin-bottom: 0.3rem;
+                font-size: 0.95rem;
+                margin-bottom: 0.4rem;
+                line-height: 1.3;
                 display: -webkit-box;
                 -webkit-line-clamp: 2;
                 -webkit-box-orient: vertical;
@@ -615,9 +620,11 @@
             }
 
             .card-desc {
-                font-size: 0.8rem;
-                margin-bottom: 0.5rem;
-                -webkit-line-clamp: 2; /* Limit to 2 lines */
+                font-size: 0.75rem;
+                margin-bottom: 0.4rem;
+                line-height: 1.4;
+                color: var(--text-muted);
+                -webkit-line-clamp: 2;
                 display: -webkit-box;
                 -webkit-box-orient: vertical;
                 overflow: hidden;
@@ -626,22 +633,111 @@
             .card-tags {
                 margin-bottom: 0;
                 gap: 0.3rem;
+                flex-wrap: wrap;
+                display: flex;
+                max-height: 3rem; /* 增加高度，確保 2 行完整顯示 */
+                overflow: hidden;
+                position: relative;
+                line-height: 1.4;
             }
-            
+
             .glass-tag {
-                padding: 2px 6px;
+                padding: 3px 7px;
                 font-size: 0.65rem;
+                flex-shrink: 0;
+                line-height: 1.2;
+            }
+
+            /* 淡出遮罩，表示還有更多標籤 */
+            .card-tags::after {
+                content: '';
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                width: 40px;
+                height: 100%;
+                background: linear-gradient(to right, transparent 0%, rgba(17, 17, 17, 0.6) 50%, rgba(17, 17, 17, 0.95) 100%);
+                pointer-events: none;
             }
 
             .card-footer {
-                display: none; /* Hide footer to save space */
+                display: none; /* 隱藏以節省空間 */
             }
-            
+
             .floating-badge {
                 top: 0.5rem;
                 right: 0.5rem;
                 font-size: 0.6rem;
                 padding: 2px 5px;
+            }
+        }
+
+        /* 超小螢幕（≤360px）支援 */
+        @media (max-width: 360px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 0.9rem;
+            }
+
+            .model-grid {
+                gap: 0.8rem;
+            }
+
+            .glass-card {
+                padding: 0.7rem;
+                gap: 0.7rem;
+                min-height: 120px; /* 增加超小螢幕的卡片高度 */
+            }
+
+            .card-img-wrapper {
+                width: 80px;
+                min-width: 80px;
+                height: 80px;
+                border-radius: 8px;
+            }
+
+            .card-title {
+                font-size: 0.9rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .card-desc {
+                font-size: 0.7rem;
+                margin-bottom: 0.3rem;
+                -webkit-line-clamp: 1; /* 只顯示一行 */
+            }
+
+            .glass-tag {
+                padding: 2px 5px;
+                font-size: 0.6rem;
+                flex-shrink: 0;
+            }
+
+            .card-tags {
+                max-height: 2.6rem; /* 超小螢幕確保至少 2 行 */
+                gap: 0.25rem;
+            }
+
+            .glass-tag {
+                padding: 2px 6px;
+                font-size: 0.6rem;
+            }
+
+            .card-tags::after {
+                width: 35px; /* 調整漸變區域 */
+                background: linear-gradient(to right, transparent 0%, rgba(17, 17, 17, 0.5) 50%, rgba(17, 17, 17, 0.9) 100%);
+            }
+
+            .command-bar {
+                padding: 0.5rem 0.8rem;
+            }
+
+            .search-input {
+                font-size: 0.85rem;
+                padding: 0.5rem 2rem 0.5rem 0.8rem;
             }
         }
 
