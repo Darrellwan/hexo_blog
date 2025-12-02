@@ -7,16 +7,78 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2025/11/24 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.122.1，正式版本為 1.120.4
+description: n8n 的更新記錄(2025/12/02 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.123.0，正式版本為 1.122.4
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-11-25 14:15:00
+modified: 2025-12-02 18:00:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 1.123.0 Pre-release - 2025-12-01
+
+[Github 1.123.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.123.0)
+
+### 新增 Time Saved 節點 (尚未開放使用)
+Add the time saved node / Add time saved mode workflow setting
+
+**Time Saved**追蹤時間節省的新節點  
+
+以前都只能在工作流層級一次設定說：**這個 workflow 每次執行可以節省 x 分鐘**
+但其實這個計算方法非常模糊
+如果一個 workflow 有多種 path 可以執行，每一種省下來的時間都不一樣  
+所以現在新增了 **Time Saved** 追蹤時間節省的新節點
+你可以更細緻的調整每個 path 或是這個節點省下的時間
+
+{% darrellImage800Alt "n8n 每個 workflow 可能有不同 path，不同 path 省下的時間不同" n8n-1.123.0-time_saved_per_path.png max-800 %}
+
+由於還無法開啟測試，預計也是等到下週的 **2.0 beta** 版本才能一起測試！
+
+{% darrellImage800Alt "n8n 1.123.0 新增的 Time Saved Node 節點設定畫面，可追蹤自動化節省的時間" n8n-1.123.0-time_saved_node.png max-800 %}
+
+{% darrellImage800Alt "n8n 1.123.0 工作流設定中的 Time Saved Mode 功能，可設定整個工作流節省的時間" n8n-1.123.0-time_saved_workflow_setting.png max-800 %}
+
+### Form Node 支援預設值
+Form Node: Set default values
+
+Form 節點可以**設定預設值**
+
+這算是一個讓 Form 節點的表單更方便的功能
+現在可以設定某些題目的預設答案
+使用者就不用全部都重新選擇
+
+例如你知道受眾年紀可能大部分是某個區間
+就可以選擇這個區間為**預設值**
+
+這樣就有大部分的人可以略過這題
+但也要注意，可能很多人就也會懶得修改
+造成答案不精準
+
+{% darrellImage800Alt "n8n 1.123.0 Form Node 支援設定預設值，提升表單使用體驗" n8n-1.123.0-form_node_default_values.png max-800 %}
+
+示範截圖：
+
+{% darrellImage800Alt "n8n 1.123.0 Form Node 支援設定預設值，示範填寫表單的結果" n8n-1.123.0-form_node_default_values-demo.png max-400 %}
+
+### Gemini Node 新增 Nano Banana Pro 模型
+Gemini Node: Add support for Nano Banana Pro model
+
+Gemini 節點現在支援 **Nano Banana Pro** 模型
+
+這也是現在社群上討論度很高的繪圖模型
+對於中文的支援程度非常好
+但也要注意價格！
+
+> Image output is priced at $120 per 1,000,000 tokens. Output images from 1024x1024px (1K) and up to 2048x2048px (2K) consume 1120 tokens and are equivalent to $0.134 per image. Output images up to 4096x4096px (4K) consume 2000 tokens and are equivalent to $0.24 per image.
+[gemini-3-pro-image-preview 價格參考來源](https://ai.google.dev/gemini-api/docs/pricing#gemini-3-pro-image-preview)
+
+2k 圖片每張大約 $0.134 ≈ NT$4.x 台幣
+4k 圖片每張大約 $0.24 ≈ NT$7.x 台幣
+
+{% darrellImage800Alt "n8n 1.123.0 Gemini Node 新增支援 Nano Banana Pro 模型" n8n-1.123.0-gemini_new_model.png max-400 %}
 
 ## 1.122.0 Pre-release - 2025-11-24
 
