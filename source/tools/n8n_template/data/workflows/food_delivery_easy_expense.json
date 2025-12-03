@@ -1,238 +1,753 @@
 {
-    "id": "dDInVHNAfSedBUCb",
-    "meta": {
-      "instanceId": "fddb3e91967f1012c95dd02bf5ad21f279fc44715f47a7a96a33433621caa253"
+  "name": "外送記帳",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -368,
+        -208
+      ],
+      "id": "18625b1d-f8ff-4e48-8b64-a9d42d24eccc",
+      "name": "Click to Test Flow"
     },
-    "name": "外送記帳自動化",
-    "tags": [],
-    "nodes": [
-      {
-        "id": "09c19ba1-45f2-43af-9985-3508d801c1b7",
-        "name": "Loop Over Items",
-        "type": "n8n-nodes-base.splitInBatches",
-        "position": [
-          440,
-          0
-        ],
-        "parameters": {
-          "options": {}
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyHour",
+              "minute": 30
+            }
+          ]
         },
-        "typeVersion": 3
+        "simple": false,
+        "filters": {
+          "q": "subject:透過 Uber Eats 系統送出的訂單  newer_than:7d"
+        },
+        "options": {}
       },
-      {
-        "id": "18625b1d-f8ff-4e48-8b64-a9d42d24eccc",
-        "name": "Click to Test Flow",
-        "type": "n8n-nodes-base.manualTrigger",
-        "position": [
-          40,
-          0
-        ],
-        "parameters": {},
-        "typeVersion": 1
-      },
-      {
-        "id": "649933c4-b16b-46de-9038-7d8c0b3d8e88",
-        "name": "Get emails from Gmail with certain subject",
-        "type": "n8n-nodes-base.gmail",
-        "position": [
-          220,
-          0
-        ],
-        "webhookId": "99c4deca-17c7-47ae-a38c-50344938e792",
-        "parameters": {
-          "simple": false,
-          "filters": {
-            "q": "subject:透過 Uber Eats 系統送出的訂單"
-          },
-          "options": {},
-          "operation": "getAll",
-          "returnAll": true
-        },
-        "credentials": {
-          "gmailOAuth2": {
-            "id": "34rX9kxKlJadOY6u",
-            "name": "Gmail account"
-          }
-        },
-        "typeVersion": 2.1
-      },
-      {
-        "id": "b2118a34-52ad-4464-b7ea-7f3105536fad",
-        "name": "Receive certain keyword Gmail Trigger",
-        "type": "n8n-nodes-base.gmailTrigger",
-        "position": [
-          120,
-          -180
-        ],
-        "parameters": {
-          "simple": false,
-          "filters": {
-            "q": "subject:透過 Uber Eats 系統送出的訂單"
-          },
-          "options": {},
-          "pollTimes": {
-            "item": [
-              {
-                "mode": "everyHour",
-                "minute": 30
-              }
-            ]
-          }
-        },
-        "credentials": {
-          "gmailOAuth2": {
-            "id": "34rX9kxKlJadOY6u",
-            "name": "Gmail account"
-          }
-        },
-        "typeVersion": 1.2
-      },
-      {
-        "id": "00986543-d01a-4b11-bbaa-60c73a1dae02",
-        "name": "Extract Price, Shop, Date, TIme",
-        "type": "n8n-nodes-base.set",
-        "position": [
-          620,
-          60
-        ],
-        "parameters": {
-          "options": {},
-          "assignments": {
-            "assignments": [
-              {
-                "id": "c24405f8-267f-4933-a178-1b51145d62bf",
-                "name": "price",
-                "type": "string",
-                "value": "={{ $json[\"text\"].match(/\\$(\\d+(\\.\\d{2})?)/)[1] }}"
-              },
-              {
-                "id": "968cf7cd-6e28-4328-a829-3fe2cb327643",
-                "name": "shop",
-                "type": "string",
-                "value": "={{ $json[\"text\"].match(/以下是您在([\\u4e00-\\u9fa5a-zA-Z0-9\\s]+)訂購/)[1] }}"
-              },
-              {
-                "id": "53642bcb-f3a6-4086-bdc1-2f8d27927462",
-                "name": "date",
-                "type": "string",
-                "value": "={{ $json[\"text\"].match(/Date: (\\d{4}年\\d{1,2}月\\d{1,2}日)/)[1].replace(\"年\", \".\").replace(\"月\", \".\").replace(\"日\", \"\") }}"
-              },
-              {
-                "id": "cd227132-971b-4970-8b5d-724463efe036",
-                "name": "time",
-                "type": "string",
-                "value": "={{ \n  $json[\"text\"].match(/(上午|下午) (\\d{1,2}):(\\d{2})/) ? \n  ($json[\"text\"].match(/(上午|下午) (\\d{1,2}):(\\d{2})/)[1] === '下午' && $json[\"text\"].match(/(上午|下午) (\\d{1,2}):(\\d{2})/)[2] !== '12' \n    ? (parseInt($json[\"text\"].match(/(上午|下午) (\\d{1,2}):(\\d{2})/)[2]) + 12) + ':' + $json[\"text\"].match(/(上午|下午) (\\d{1,2}):(\\d{2})/)[3] \n    : $json[\"text\"].match(/(上午|下午) (\\d{1,2}):(\\d{2})/)[2] + ':' + $json[\"text\"].match(/(上午|下午) (\\d{1,2}):(\\d{2})/)[3]\n  )\n  : null \n}}"
-              }
-            ]
-          }
-        },
-        "typeVersion": 3.4
-      },
-      {
-        "id": "3d8f97ea-4a0d-4939-898f-8a0ca9415e7d",
-        "name": "Send to Slack with Block",
-        "type": "n8n-nodes-base.slack",
-        "position": [
-          800,
-          60
-        ],
-        "webhookId": "0e812732-74d2-4924-8db3-6b9234965937",
-        "parameters": {
-          "text": "=Ubereat 訂餐資訊: \n商家:  {{ $json.shop }}\n金額: {{ $json.price }}\n日期: {{ $json.date }}\n\n記帳網址:\nmoze3://expense?amount={{ $json.price }}&account=信用卡&subcategory=外送&store={{ $json.shop }}&date={{ $json.date }}",
-          "select": "channel",
-          "blocksUi": "={\n\t\"blocks\": [\n\t\t{\n\t\t\t\"type\": \"section\",\n\t\t\t\"text\": {\n\t\t\t\t\"type\": \"mrkdwn\",\n\t\t\t\t\"text\": \"Ubereat 訂餐資訊:\\n\\n*商家:* {{ $json.shop }}\\n*金額:* {{ $json.price }}\\n*日期:* {{ $json.date }}\"\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"type\": \"divider\"\n\t\t},\n\t\t{\n\t\t\t\"type\": \"section\",\n\t\t\t\"text\": {\n\t\t\t\t\"type\": \"mrkdwn\",\n\t\t\t\t\"text\": \"Moze 記帳請點我\"\n\t\t\t},\n\t\t\t\"accessory\": {\n\t\t\t\t\"type\": \"button\",\n\t\t\t\t\"text\": {\n\t\t\t\t\t\"type\": \"plain_text\",\n\t\t\t\t\t\"text\": \"記帳\",\n\t\t\t\t\t\"emoji\": true\n\t\t\t\t},\n\t\t\t\t\"value\": \"click\",\n\t\t\t\t\"url\": \"moze3://expense?amount={{ $json.price }}&account=信用卡&subcategory=外送&store={{ $json.shop }}&date={{ $json.date }}&&project=生活開銷&&time={{ $json.time }}\",\n\t\t\t\t\"action_id\": \"button-action\"\n\t\t\t}\n\t\t}\n\t]\n}",
-          "channelId": {
-            "__rl": true,
-            "mode": "list",
-            "value": "C0883CJM1UH",
-            "cachedResultName": "外送記帳自動化"
-          },
-          "messageType": "block",
-          "otherOptions": {},
-          "authentication": "oAuth2"
-        },
-        "credentials": {
-          "slackOAuth2Api": {
-            "id": "sD1J9ZLyEhcglrRa",
-            "name": "Slack account"
-          }
-        },
-        "typeVersion": 2.3
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -160,
+        64
+      ],
+      "id": "b2118a34-52ad-4464-b7ea-7f3105536fad",
+      "name": "Receive certain keyword Gmail Trigger",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "GThDvv7aRdBQyg1e",
+          "name": "Gmail account personal"
+        }
       }
-    ],
-    "active": true,
-    "pinData": {},
-    "settings": {
-      "executionOrder": "v1"
     },
-    "versionId": "0840254c-0058-47fe-9b22-7fbb93144788",
-    "connections": {
-      "Loop Over Items": {
-        "main": [
-          [],
-          [
-            {
-              "node": "Extract Price, Shop, Date, TIme",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C0883CJM1UH",
+          "mode": "list",
+          "cachedResultName": "外送記帳自動化"
+        },
+        "messageType": "block",
+        "blocksUi": "={\n\t\"blocks\": [\n        {\n\t\t\t\"type\": \"divider\"\n\t\t},\n\t\t{\n\t\t\t\"type\": \"section\",\n\t\t\t\"text\": {\n\t\t\t\t\"type\": \"mrkdwn\",\n\t\t\t\t\"text\": \"{{ $json.source }} 訂餐資訊:\\n\\n*商家:* {{ $json.shop }}\\n*金額:* {{ $json.price }}\\n*日期:* {{ $json.date }}\"\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"type\": \"section\",\n\t\t\t\"text\": {\n\t\t\t\t\"type\": \"mrkdwn\",\n\t\t\t\t\"text\": \"Moze 記帳請點我\"\n\t\t\t},\n\t\t\t\"accessory\": {\n\t\t\t\t\"type\": \"button\",\n\t\t\t\t\"text\": {\n\t\t\t\t\t\"type\": \"plain_text\",\n\t\t\t\t\t\"text\": \"記帳\",\n\t\t\t\t\t\"emoji\": true\n\t\t\t\t},\n\t\t\t\t\"value\": \"click\",\n\t\t\t\t\"url\": \"moze3://expense?amount={{ $json.price }}&account=信用卡&subcategory=外送&store={{ $json.shop }}&date={{ $json.date }}&&project=生活開銷&&time={{ $json.time }}\",\n\t\t\t\t\"action_id\": \"button-action\"\n\t\t\t}\n\t\t}\n\t]\n}",
+        "text": "=Foodpanda 訂餐資訊: \n商家:  {{ $json.shop }}\n金額: {{ $json.price }}\n日期: {{ $json.date }}\n\n記帳網址:\nmoze3://expense?amount={{ $json.price }}&account=信用卡&subcategory=外送&store={{ $json.shop }}&date={{ $json.date }}",
+        "otherOptions": {}
       },
-      "Click to Test Flow": {
-        "main": [
-          [
-            {
-              "node": "Get emails from Gmail with certain subject",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Send to Slack with Block": {
-        "main": [
-          [
-            {
-              "node": "Loop Over Items",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Extract Price, Shop, Date, TIme": {
-        "main": [
-          [
-            {
-              "node": "Send to Slack with Block",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Receive certain keyword Gmail Trigger": {
-        "main": [
-          [
-            {
-              "node": "Loop Over Items",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      },
-      "Get emails from Gmail with certain subject": {
-        "main": [
-          [
-            {
-              "node": "Loop Over Items",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        1344,
+        240
+      ],
+      "id": "4ae68b16-83be-4cf7-aec2-264cb2bb8035",
+      "name": "Foodpanda Send to Slack with Block",
+      "webhookId": "0e812732-74d2-4924-8db3-6b9234965937",
+      "credentials": {
+        "slackOAuth2Api": {
+          "id": "sD1J9ZLyEhcglrRa",
+          "name": "Slack account"
+        }
       }
+    },
+    {
+      "parameters": {
+        "amount": 0.5
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1104,
+        176
+      ],
+      "id": "4c955931-c9a6-4bf6-bfcc-59eff2930080",
+      "name": "Wait 1 sec1",
+      "webhookId": "59a8fe42-3ab1-4923-94c7-a53e981d2c84"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        896,
+        160
+      ],
+      "id": "26f831ff-19cb-425c-9fb9-07aae85defc7",
+      "name": "Loop Over Items1"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "returnAll": true,
+        "simple": false,
+        "filters": {
+          "q": "subject:透過 Uber Eats 系統送出的訂單 newer_than:60d"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -160,
+        -304
+      ],
+      "id": "649933c4-b16b-46de-9038-7d8c0b3d8e88",
+      "name": "Ubereats mail",
+      "webhookId": "99c4deca-17c7-47ae-a38c-50344938e792",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "GThDvv7aRdBQyg1e",
+          "name": "Gmail account personal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "returnAll": true,
+        "simple": false,
+        "filters": {
+          "q": "subject:(我們已收到你的訂單) foodpanda newer_than:14d"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -160,
+        -144
+      ],
+      "id": "0eee0f78-61cf-4674-a24e-7247a8fbe9cb",
+      "name": "Foodpanda mail",
+      "webhookId": "99c4deca-17c7-47ae-a38c-50344938e792",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "GThDvv7aRdBQyg1e",
+          "name": "Gmail account personal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c24405f8-267f-4933-a178-1b51145d62bf",
+              "name": "price",
+              "value": "={{ $json[\"html\"].match(/\\$(\\d+(\\.\\d{2})?)/)[1] }}",
+              "type": "string"
+            },
+            {
+              "id": "968cf7cd-6e28-4328-a829-3fe2cb327643",
+              "name": "shop",
+              "value": "={{ (function(){\n  const m = $json[\"html\"].match(/以下是您在\\s*([^訂]+?)訂購/);\n  return m ? m[1].trim() : null;\n})() }}",
+              "type": "string"
+            },
+            {
+              "id": "53642bcb-f3a6-4086-bdc1-2f8d27927462",
+              "name": "date",
+              "value": "={{ $json[\"html\"].match(/(\\d{4}\\s*年\\s*\\d{1,2}\\s*月\\s*\\d{1,2}\\s*日)/)?.[1]\n    .replace(/\\s*年\\s*/, '-')\n    .replace(/\\s*月\\s*/, '-')\n    .replace(/\\s*日/, '') }}",
+              "type": "string"
+            },
+            {
+              "id": "cd227132-971b-4970-8b5d-724463efe036",
+              "name": "time",
+              "value": "={{\n  (() => {\n    const html = $json[\"html\"] || '';\n    const header = $json[\"date\"] || '';\n\n    // ====== 1. 嘗試抓中文時間（上午／下午 HH:mm）======\n    const zh = html.match(/(上午|下午)\\s*(\\d{1,2}):(\\d{2})/);\n    if (zh) {\n      let [_, ampm, hh, mm] = zh;\n      hh = parseInt(hh, 10);\n\n      // 轉 24 小時制\n      if (ampm === '下午' && hh !== 12) hh += 12;\n      if (ampm === '上午' && hh === 12) hh = 0;\n\n      return `${hh.toString().padStart(2,'0')}:${mm}:00`;\n    }\n\n    // ====== 2. 抓不到中文 → 用 Email Header 的 Date 欄位 ======\n    if (header) {\n      const d = new Date(header.replace(/^Date:\\s*/, '').trim());\n      if (!isNaN(d.getTime())) {\n        const hh = d.getHours().toString().padStart(2,'0');\n        const mm = d.getMinutes().toString().padStart(2,'0');\n        const ss = d.getSeconds().toString().padStart(2,'0');\n        return `${hh}:${mm}:${ss}`;\n      }\n    }\n\n    // ====== 3. fallback ======\n    return '';\n  })()\n}}",
+              "type": "string"
+            },
+            {
+              "id": "ad3f19ec-4d4e-4718-b496-bc8e02f4ef9c",
+              "name": "source",
+              "value": "ubereat",
+              "type": "string"
+            },
+            {
+              "id": "c28603a7-7f1a-417d-b9b7-d504ff4ccb1d",
+              "name": "datetime",
+              "value": "={{\n  // ====== 先處理中文日期 ======\n  $json[\"html\"]?.match(/(\\d{4})\\s*年\\s*(\\d{1,2})\\s*月\\s*(\\d{1,2})\\s*日/)\n    ? (\n        // 抓到年月日\n        $json[\"html\"].match(/(\\d{4})\\s*年\\s*(\\d{1,2})\\s*月\\s*(\\d{1,2})\\s*日/)[1] + '-' +\n        $json[\"html\"].match(/(\\d{4})\\s*年\\s*(\\d{1,2})\\s*月\\s*(\\d{1,2})\\s*日/)[2].padStart(2,'0') + '-' +\n        $json[\"html\"].match(/(\\d{4})\\s*年\\s*(\\d{1,2})\\s*月\\s*(\\d{1,2})\\s*日/)[3].padStart(2,'0') + ' ' +\n        \n        // ====== 處理中文 AM/PM ======\n        (\n          $json[\"html\"]?.match(/(上午|下午)\\s*(\\d{1,2}):(\\d{2})/)\n            ? (\n                (\n                  // 轉換成 24h\n                  $json[\"html\"].match(/(上午|下午)\\s*(\\d{1,2}):(\\d{2})/)[1] === '下午' &&\n                  $json[\"html\"].match(/(上午|下午)\\s*(\\d{1,2}):(\\d{2})/)[2] !== '12'\n                    ? (parseInt($json[\"html\"].match(/(上午|下午)\\s*(\\d{1,2}):(\\d{2})/)[2]) + 12).toString().padStart(2,'0')\n                    : $json[\"html\"].match(/(上午|下午)\\s*(\\d{1,2}):(\\d{2})/)[2].padStart(2,'0')\n                )\n                + ':' +\n                $json[\"html\"].match(/(上午|下午)\\s*(\\d{1,2}):(\\d{2})/)[3]\n              )\n            : '00:00'\n        )\n        + ':00'\n      )\n\n  // ====== 如果 HTML 沒日期 → 用 Header 的 Date ======\n    : (\n        new Date($json[\"date\"]?.replace(/^Date:\\s*/, '')).toString() !== 'Invalid Date'\n          ? (\n              new Date($json[\"date\"].replace(/^Date:\\s*/, '')).getFullYear() + '-' +\n              String(new Date($json[\"date\"]).getMonth()+1).padStart(2,'0') + '-' +\n              String(new Date($json[\"date\"]).getDate()).padStart(2,'0') + ' ' +\n              String(new Date($json[\"date\"]).getHours()).padStart(2,'0') + ':' +\n              String(new Date($json[\"date\"]).getMinutes()).padStart(2,'0') + ':' +\n              String(new Date($json[\"date\"]).getSeconds()).padStart(2,'0')\n            )\n\n  // ====== 最後 fallback ======\n        : ''\n      )\n}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        96,
+        64
+      ],
+      "id": "e82967e8-d899-4296-a281-1ff6e382e60f",
+      "name": "(U)Extract Price, Shop, Date, TIme"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1qCO7ajW0A-6WAf-k1ibh-6DCHG6PZHBsB8pH3Y2Ya9I",
+          "mode": "list",
+          "cachedResultName": "n8n 記帳",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1qCO7ajW0A-6WAf-k1ibh-6DCHG6PZHBsB8pH3Y2Ya9I/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "sheet",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1qCO7ajW0A-6WAf-k1ibh-6DCHG6PZHBsB8pH3Y2Ya9I/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "金額": "={{ $json.price }}",
+            "店家": "={{ $json.shop }}",
+            "來源": "={{ $json.source }}",
+            "日期": "={{ $json.datetime }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "來源",
+              "displayName": "來源",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "店家",
+              "displayName": "店家",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "金額",
+              "displayName": "金額",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "日期",
+              "displayName": "日期",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "時間",
+              "displayName": "時間",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1344,
+        80
+      ],
+      "id": "bd88bcd2-22f0-4df7-bdb5-1389ac3a80dd",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "atsKA0m2aQXeL6i6",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyHour",
+              "minute": 30
+            }
+          ]
+        },
+        "simple": false,
+        "filters": {
+          "q": "subject:(你的訂單已成功訂購|我們已收到您的訂單) foodpanda newer_than:7d"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -160,
+        240
+      ],
+      "id": "4d0e4e8f-007b-4350-999b-2c3bf7211f9f",
+      "name": "Foodpanda Receive certain keyword Gmail Trigger",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "GThDvv7aRdBQyg1e",
+          "name": "Gmail account personal"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        688,
+        160
+      ],
+      "id": "86925aa6-d4fb-4170-b384-aff1d03f8bbd",
+      "name": "Merge"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        464,
+        64
+      ],
+      "id": "9ad5ada2-b5e5-4ac4-968c-f4a92aeab6a1",
+      "name": "Limit"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        464,
+        240
+      ],
+      "id": "0cc36a65-a096-4de0-99d5-bd0fec3ad8b9",
+      "name": "Limit1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8f7fea2c-c860-41af-bd29-c5a5e8f57d8b",
+              "leftValue": "={{ $json.shop }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        272,
+        64
+      ],
+      "id": "ada672cd-8574-4727-a2c9-1786e30a37fb",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8f7fea2c-c860-41af-bd29-c5a5e8f57d8b",
+              "leftValue": "={{ $json.shop }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        272,
+        240
+      ],
+      "id": "b9d9bda9-f2ab-482a-a234-df253c7c536d",
+      "name": "Filter1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c24405f8-267f-4933-a178-1b51145d62bf",
+              "name": "price",
+              "value": "={{ $json.text.match(/訂單總額\\s*\\$?\\s*([\\d\\.]+)/) ? $json.text.match(/訂單總額\\s*\\$?\\s*([\\d\\.]+)/)[1] : null }}",
+              "type": "string"
+            },
+            {
+              "id": "968cf7cd-6e28-4328-a829-3fe2cb327643",
+              "name": "shop",
+              "value": "={{ $json.text.match(/我們已收到[您你]在\\s*(.+?)\\s*下的訂單囉/) ? $json.text.match(/我們已收到[您你]在\\s*(.+?)\\s*下的訂單囉/)[1] : null }}",
+              "type": "string"
+            },
+            {
+              "id": "53642bcb-f3a6-4086-bdc1-2f8d27927462",
+              "name": "date",
+              "value": "={{ $json.text.match(/(?:訂購時間[:：]|Order time)\\s*(\\d{4}-\\d{2}-\\d{2})/) ? $json.text.match(/(?:訂購時間[:：]|Order time)\\s*(\\d{4}-\\d{2}-\\d{2})/)[1] : null }}",
+              "type": "string"
+            },
+            {
+              "id": "cd227132-971b-4970-8b5d-724463efe036",
+              "name": "time",
+              "value": "={{ $json.text.match(/(?:訂購時間[:：]|Order time)\\s*\\d{4}-\\d{2}-\\d{2}\\s*(\\d{2}:\\d{2}:\\d{2})/) ? $json.text.match(/(?:訂購時間[:：]|Order time)\\s*\\d{4}-\\d{2}-\\d{2}\\s*(\\d{2}:\\d{2}:\\d{2})/)[1] : null }}",
+              "type": "string"
+            },
+            {
+              "id": "e0c2065c-9d0f-435f-916f-b696fb161d2c",
+              "name": "source",
+              "value": "foodpanda",
+              "type": "string"
+            },
+            {
+              "id": "3dfb29dc-aac5-4a15-ac90-53dbfe2e2281",
+              "name": "datetime",
+              "value": "={{ \n  $json.text.match(/(?:訂購時間[:：]|Order time)\\s*(\\d{4}-\\d{2}-\\d{2})\\s*(\\d{2}:\\d{2})(:\\d{2})?/) \n    ? $json.text.match(/(?:訂購時間[:：]|Order time)\\s*(\\d{4}-\\d{2}-\\d{2})\\s*(\\d{2}:\\d{2})(:\\d{2})?/)[1] + ' ' + \n      $json.text.match(/(?:訂購時間[:：]|Order time)\\s*(\\d{4}-\\d{2}-\\d{2})\\s*(\\d{2}:\\d{2})(:\\d{2})?/)[2] + \n      ($json.text.match(/(?:訂購時間[:：]|Order time)\\s*(\\d{4}-\\d{2}-\\d{2})\\s*(\\d{2}:\\d{2})(:\\d{2})?/)[3] || ':00') \n    : null \n}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        96,
+        240
+      ],
+      "id": "1ecf68db-f9de-4cce-a367-d16733c6c42a",
+      "name": "(F)Extract Price, Shop, Date, TIme1"
+    },
+    {
+      "parameters": {
+        "mode": "chooseBranch"
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        1568,
+        224
+      ],
+      "id": "49ee930a-0b04-4f08-898a-fcd750374944",
+      "name": "Merge-result"
+    },
+    {
+      "parameters": {
+        "content": "## Created by darrell_tw_ \n\nHi 我是 Darrell\n有 n8n 問題可以找我聊聊\n\n- [n8n 教學資源網站](https://www.darrelltw.com/n8n-tutorial-resources/)\n- [n8n 模板分享網站](https://www.darrelltw.com/tools/n8n_template/models.html)\n\n### Social Media:\n[Website](https://www.darrelltw.com/)\n[Threads](https://www.threads.net/@darrell_tw_)\n[Instagram](https://www.instagram.com/darrell_tw_/)\n[X](https://x.com/darrell_tw_)\n![](https://pub-c093258f61a1463ea03e1a40c141968a.r2.dev/darrell-icon-128.svg)",
+        "height": 468,
+        "width": 296,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -672,
+        -336
+      ],
+      "id": "5336b655-dace-42e1-9915-3001742860eb",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "## Attachment(附件)\n\n### 1. Google Sheet 複製\n\nhttps://docs.google.com/spreadsheets/d/1-xOMlucVCqLkVlFjW0-kH4lp9qrXswUhqu8_zBwoma4/copy\n\n### 2. Google Sheet 節點換成自己剛複製好的 Sheet",
+        "height": 300,
+        "width": 300,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -672,
+        160
+      ],
+      "id": "1b02890f-8f7c-42ba-ae5b-5492a7364e87",
+      "name": "Sticky Note2"
     }
-  }
+  ],
+  "pinData": {},
+  "connections": {
+    "Click to Test Flow": {
+      "main": [
+        [
+          {
+            "node": "Ubereats mail",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Foodpanda mail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Receive certain keyword Gmail Trigger": {
+      "main": [
+        [
+          {
+            "node": "(U)Extract Price, Shop, Date, TIme",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Foodpanda Send to Slack with Block": {
+      "main": [
+        [
+          {
+            "node": "Merge-result",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Wait 1 sec1": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Foodpanda Send to Slack with Block",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Wait 1 sec1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ubereats mail": {
+      "main": [
+        [
+          {
+            "node": "(U)Extract Price, Shop, Date, TIme",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Foodpanda mail": {
+      "main": [
+        [
+          {
+            "node": "(F)Extract Price, Shop, Date, TIme1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "(U)Extract Price, Shop, Date, TIme": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Merge-result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Foodpanda Receive certain keyword Gmail Trigger": {
+      "main": [
+        [
+          {
+            "node": "(F)Extract Price, Shop, Date, TIme1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter1": {
+      "main": [
+        [
+          {
+            "node": "Limit1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "(F)Extract Price, Shop, Date, TIme1": {
+      "main": [
+        [
+          {
+            "node": "Filter1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge-result": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "209b0bc8-0c84-4523-8dc8-8db53ebc2b00",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "fddb3e91967f1012c95dd02bf5ad21f279fc44715f47a7a96a33433621caa253"
+  },
+  "id": "dDInVHNAfSedBUCb",
+  "tags": [
+    {
+      "updatedAt": "2025-01-09T02:34:52.222Z",
+      "createdAt": "2025-01-09T02:34:52.222Z",
+      "id": "hQvz4EvzFWNiEp5y",
+      "name": "production"
+    }
+  ]
+}
