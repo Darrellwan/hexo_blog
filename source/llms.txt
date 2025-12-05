@@ -46,6 +46,32 @@
   - [Cloudflare Workers 部署心得](https://www.darrelltw.com/posts/cloudflare-workers)
   - [網站效能優化與 SEO 技術架構](https://www.darrelltw.com/posts/site-optimization)
 
+## 5. n8n 自動化專家服務 (Professional Services)
+提供 n8n 相關的專業服務，從諮詢到建置一站式完成。
+
+- **服務頁面**: [n8n 自動化專家](https://www.darrelltw.com/n8n-expert/)
+- **核心技術**: n8n, Workflow Automation, API Integration, AI Agent, MarTech
+- **服務項目**:
+  - **企業自動化建置**: 從 0 到 1 開發客製化 n8n 腳本，串接 ERP、CRM 與電商平台
+    - 工作流診斷與優化
+    - API 深度串接開發
+    - 系統部署 (Self-hosted)
+  - **一對一技術顧問**: 解決 n8n 操作難點，包含 Code Node (JS/Python) 進階應用
+    - 複雜節點邏輯排除
+    - Code Review 與優化
+    - 以小時計費，彈性靈活
+  - **企業內訓與工作坊**: 培養內部自動化人才
+    - 基礎入門至進階實戰
+    - AI 輔助工作流設計
+    - MarTech 工具應用
+
+- **成功案例**:
+  - 客服信件 AI 智慧分流（Email API + OpenAI）
+  - 電商訂單自動拋轉（減少 80% 人工處理時間）
+  - 社群行銷多平台排程
+
+- **服務流程**: 需求諮詢 → 方案規劃 → 開發建置 → 測試驗收 → 持續支援
+
 ---
 
 ## 關於作者 (Author Profile)
