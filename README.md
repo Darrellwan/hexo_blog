@@ -3,21 +3,21 @@
 ## 📚 最新文章
 
 ### [n8n 2.0 大更新：除了新功能，更該擔心能不能順利 Migrate](https://www.darrelltw.com/n8n-2-0-update/?utm_source=github_readme&utm_medium=referral)
-📅 2025/11/26 · 6 天前
+📅 2025/11/26 · 9 天前
 
 > n8n 2.0 大更新要來了！包含新功能介紹、Migration Report 使用教學、Breaking Changes 詳解和常見升級問題解決方案
 
 
 ### [n8n Edit Fields (Set) 節點教學 - 組合欄位、動態表達式、Include Fields](https://www.darrelltw.com/n8n-set-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/11/24 · 7 天前
+📅 2025/11/24 · 10 天前
 
 > n8n Edit Fields Set 節點 3 大技巧：欄位組合格式化、$now 時間與條件判斷、Include Other Input Fields。90% 工作流都會用到的核心節點完整教學。
 
 
 ### [Google Antigravity 搭配 Gemini 3 模型還能自動化測試！Vibe Coding 新神器](https://www.darrelltw.com/google-antigravity-ide/?utm_source=github_readme&utm_medium=referral)
-📅 2025/11/19 · 12 天前
+📅 2025/11/19 · 15 天前
 
-> 深入體驗 Google Antigravity，這款新的 Agentic AI 程式開發工具。看看它如何透過自主規劃、執行和工具整合，重新定義軟體開發流程。
+> 深入體驗 Google Antigravity，這款 Agentic AI 程式開發工具。包含完整安裝教學、Agent Manager 使用、自動化測試、使用技巧。
 
 
 ### [n8n Merge 節點教學-解決多來源資料合併的問題](https://www.darrelltw.com/n8n-merge-node/?utm_source=github_readme&utm_medium=referral)
@@ -64,8 +64,8 @@
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-113-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-248,222+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/12/02-green?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-248,909+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/12/05-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-12-02 06:25:24*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-12-05 04:18:19*
