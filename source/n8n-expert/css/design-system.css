@@ -1,0 +1,388 @@
+/**
+ * n8n-expert Design System
+ * 設計系統 - 定義整個頁面的視覺基礎
+ * 包含：顏色、字體、間距、斷點等設計 tokens
+ */
+
+:root {
+  /* ============================================
+     Color System - 色彩系統
+     ============================================ */
+
+  /* Primary Brand Colors - 主品牌色 */
+  --n8n-primary: #ff6d5a;
+  --n8n-primary-hover: #ff5642;
+  --n8n-primary-glow: rgba(255, 109, 90, 0.25);
+  --n8n-dark: #ea5b48;
+
+  /* Background Layers - 背景層次 */
+  --bg-base: #0a0f1e;        /* 最深層 */
+  --bg-elevated-1: #0f172a;  /* 基礎背景 (原 dark-bg) */
+  --bg-elevated-2: #1e293b;  /* 卡片背景 (原 dark-card) */
+  --bg-elevated-3: #2d3b4e;  /* Hover 狀態 */
+
+  /* Text Hierarchy - 文字階層 (提升對比度) */
+  --text-primary: #f8fafc;    /* 標題、重要文字 */
+  --text-secondary: #e2e8f0;  /* 主要內文 */
+  --text-tertiary: #cbd5e1;   /* 次要說明 */
+  --text-muted: #94a3b8;      /* Meta 資訊、日期 */
+
+  /* Accent Colors - 強調色 */
+  --accent-blue: #60a5fa;     /* 技術功能 */
+  --accent-purple: #a78bfa;   /* AI、進階功能 */
+  --accent-green: #34d399;    /* 成功、優點 */
+  --accent-yellow: #facc15;   /* 警告、注意 */
+  --accent-red: #f87171;      /* 錯誤、缺點 */
+
+  /* Gradients - 漸層 */
+  --gradient-primary: linear-gradient(135deg, #ff6d5a 0%, #ff5642 100%);
+  --gradient-accent: linear-gradient(135deg, #ff6d5a 0%, #facc15 100%);
+  --gradient-hero: linear-gradient(135deg, #ff6d5a 0%, #a78bfa 100%);
+
+  /* Border & Divider - 邊框與分隔線 */
+  --border-default: #334155;
+  --border-subtle: #1e293b;
+  --border-focus: var(--n8n-primary);
+
+  /* Shadow System - 陰影系統 */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.2);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.3);
+  --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 20px var(--n8n-primary-glow);
+  --shadow-glow-lg: 0 0 40px var(--n8n-primary-glow);
+
+  /* ============================================
+     Typography System - 字體系統
+     ============================================ */
+
+  /* Font Families */
+  --font-sans: 'Inter', 'Microsoft JhengHei', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Fira Code', 'Consolas', monospace;
+
+  /* Font Sizes - 字體大小 */
+  --text-xs: 0.75rem;     /* 12px - badges, tags */
+  --text-sm: 0.875rem;    /* 14px - captions, small text */
+  --text-base: 1rem;      /* 16px - body text */
+  --text-lg: 1.125rem;    /* 18px - emphasis, lead */
+  --text-xl: 1.25rem;     /* 20px - subheadings */
+  --text-2xl: 1.5rem;     /* 24px - section titles */
+  --text-3xl: 1.875rem;   /* 30px - page titles */
+  --text-4xl: 2.25rem;    /* 36px - hero mobile, large headings */
+  --text-5xl: 3rem;       /* 48px - statistics, hero tablet */
+  --text-6xl: 3.75rem;    /* 60px - hero desktop */
+
+  /* Font Weights */
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-extrabold: 800;
+
+  /* Line Heights */
+  --leading-none: 1;
+  --leading-tight: 1.25;    /* Headlines */
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;    /* Body text */
+  --leading-relaxed: 1.625; /* Long-form content */
+  --leading-loose: 2;
+
+  /* Letter Spacing */
+  --tracking-tighter: -0.05em;
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.025em;
+  --tracking-wider: 0.05em;
+
+  /* ============================================
+     Spacing System - 間距系統 (8px 基準)
+     ============================================ */
+
+  --space-0: 0;
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px - 緊密元素間距 */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px - 預設間距 */
+  --space-8: 2rem;      /* 32px - 卡片內距 */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px - 元件間距 */
+  --space-16: 4rem;     /* 64px - 手機版 section 間距 */
+  --space-20: 5rem;     /* 80px - 平板版 section 間距 */
+  --space-24: 6rem;     /* 96px - 桌面版 section 間距 */
+  --space-32: 8rem;     /* 128px */
+
+  /* ============================================
+     Border Radius - 圓角
+     ============================================ */
+
+  --radius-sm: 0.25rem;    /* 4px */
+  --radius-md: 0.5rem;     /* 8px - 標準按鈕、輸入框 */
+  --radius-lg: 0.75rem;    /* 12px - 卡片 */
+  --radius-xl: 1rem;       /* 16px - 大型卡片 */
+  --radius-2xl: 1.5rem;    /* 24px */
+  --radius-full: 9999px;   /* 完全圓形 */
+
+  /* ============================================
+     Z-Index Scale - 層級
+     ============================================ */
+
+  --z-base: 0;
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-fixed: 30;
+  --z-modal-backdrop: 40;
+  --z-modal: 50;
+  --z-popover: 60;
+  --z-tooltip: 70;
+
+  /* ============================================
+     Transitions - 轉場效果
+     ============================================ */
+
+  --transition-fast: 150ms;
+  --transition-base: 200ms;
+  --transition-medium: 300ms;
+  --transition-slow: 500ms;
+
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* ============================================
+     Breakpoints - 響應式斷點 (在媒體查詢中使用)
+     ============================================ */
+
+  /*
+  手機：320-639px (預設)
+  平板：640-1023px
+  桌面：1024px+
+
+  在 CSS 中使用：
+  @media (min-width: 640px) { ... }  // 平板以上
+  @media (min-width: 1024px) { ... } // 桌面
+  @media (max-width: 639px) { ... }  // 僅手機
+  */
+}
+
+/* ============================================
+   Dark Mode Support - 深色模式支援
+   ============================================ */
+
+/* 預設即為深色模式，但提供 light mode 切換選項 */
+@media (prefers-color-scheme: light) {
+  /* 如果未來需要支援淺色模式，在這裡定義變數覆蓋 */
+  /* 目前維持深色主題 */
+}
+
+/* ============================================
+   Accessibility - 無障礙支援
+   ============================================ */
+
+/* 減少動畫 */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast: 0ms;
+    --transition-base: 0ms;
+    --transition-medium: 0ms;
+    --transition-slow: 0ms;
+  }
+}
+
+/* 高對比模式 */
+@media (prefers-contrast: high) {
+  :root {
+    --text-primary: #ffffff;
+    --text-secondary: #f0f0f0;
+    --border-default: #ffffff;
+  }
+}
+
+/* ============================================
+   Base Reset & Global Styles - 全域樣式
+   ============================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--text-secondary);
+  background-color: var(--bg-elevated-1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   Typography Utilities - 字體工具類
+   ============================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-tight);
+  margin: 0;
+}
+
+h1 {
+  font-size: var(--text-6xl);
+  font-weight: var(--font-extrabold);
+  letter-spacing: var(--tracking-tight);
+}
+
+h2 {
+  font-size: var(--text-4xl);
+  letter-spacing: var(--tracking-tight);
+}
+
+h3 {
+  font-size: var(--text-3xl);
+}
+
+h4 {
+  font-size: var(--text-2xl);
+}
+
+h5 {
+  font-size: var(--text-xl);
+}
+
+h6 {
+  font-size: var(--text-lg);
+}
+
+p {
+  margin: 0;
+  line-height: var(--leading-relaxed);
+}
+
+a {
+  color: var(--n8n-primary);
+  text-decoration: none;
+  transition: color var(--transition-base) var(--ease-out);
+}
+
+a:hover {
+  color: var(--n8n-primary-hover);
+}
+
+a:focus {
+  outline: 2px solid var(--n8n-primary);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   Container System - 容器系統
+   ============================================ */
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-6);
+  padding-right: var(--space-6);
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-left: var(--space-8);
+    padding-right: var(--space-8);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: var(--space-12);
+    padding-right: var(--space-12);
+  }
+}
+
+/* ============================================
+   Section Spacing - 區塊間距
+   ============================================ */
+
+.section {
+  padding-top: var(--space-16);
+  padding-bottom: var(--space-16);
+}
+
+@media (min-width: 640px) {
+  .section {
+    padding-top: var(--space-20);
+    padding-bottom: var(--space-20);
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding-top: var(--space-24);
+    padding-bottom: var(--space-24);
+  }
+}
+
+/* ============================================
+   Visual Hierarchy Utilities - 視覺層級工具
+   ============================================ */
+
+/* 左側彩色邊框 (用於強調) */
+.accent-border-left {
+  border-left: 4px solid var(--n8n-primary);
+  padding-left: var(--space-4);
+}
+
+/* Section 標題底線 */
+.section-title-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.section-title-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: var(--gradient-accent);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================
+   Debug Grid (開發時使用)
+   ============================================ */
+
+.debug-grid {
+  background-image:
+    linear-gradient(rgba(255, 109, 90, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 109, 90, 0.1) 1px, transparent 1px);
+  background-size: 8px 8px;
+}

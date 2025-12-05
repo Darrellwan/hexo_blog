@@ -3960,9 +3960,9 @@
     "mtimeMs": 1746322307195.6533
   },
   "/tools/n8n_template/data/bg/food_delivery_easy_expense.webp": {
-    "width": 850,
-    "height": 850,
-    "mtimeMs": 1746322307194.9153
+    "width": 1200,
+    "height": 1200,
+    "mtimeMs": 1764731314845.171
   },
   "/tools/n8n_template/data/bg/demo_while_loop_example.webp": {
     "width": 850,
@@ -6498,5 +6498,40 @@
     "width": 1378,
     "height": 842,
     "mtimeMs": 1764247545102.643
+  },
+  "/_posts/n8n-update-log/n8n-1.123.0-time_saved_workflow_setting.png": {
+    "width": 1630,
+    "height": 1926,
+    "mtimeMs": 1764656481527.2598
+  },
+  "/_posts/n8n-update-log/n8n-1.123.0-time_saved_per_path.png": {
+    "width": 2114,
+    "height": 1482,
+    "mtimeMs": 1764656481527.0964
+  },
+  "/_posts/n8n-update-log/n8n-1.123.0-time_saved_node.png": {
+    "width": 3024,
+    "height": 1496,
+    "mtimeMs": 1764656481526.8972
+  },
+  "/_posts/n8n-update-log/n8n-1.123.0-gemini_new_model.png": {
+    "width": 1472,
+    "height": 2014,
+    "mtimeMs": 1764656481526.6943
+  },
+  "/_posts/n8n-update-log/n8n-1.123.0-form_node_default_values.png": {
+    "width": 1834,
+    "height": 2264,
+    "mtimeMs": 1764656481526.4805
+  },
+  "/_posts/n8n-update-log/n8n-1.123.0-form_node_default_values-demo.png": {
+    "width": 1396,
+    "height": 1506,
+    "mtimeMs": 1764656481526.3308
+  },
+  "/n8n-expert/images/og-image.webp": {
+    "width": 1200,
+    "height": 630,
+    "mtimeMs": 1764824043876.795
   }
 }
