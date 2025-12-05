@@ -1,14 +1,14 @@
 ---
 title: Google Antigravity 搭配 Gemini 3 模型還能自動化測試！Vibe Coding 新神器
 date: 2025-11-19 21:52:39
-modified: 2025-11-20 23:50:01
+modified: 2025-12-05 15:30:00
 tags:
   - Google
   - AI
   - Antigravity
 categories:
   - 開發工具
-description: "深入體驗 Google Antigravity，這款新的 Agentic AI 程式開發工具。看看它如何透過自主規劃、執行和工具整合，重新定義軟體開發流程。"
+description: "深入體驗 Google Antigravity，這款 Agentic AI 程式開發工具。包含完整安裝教學、Agent Manager 使用、自動化測試、使用技巧。"
 bgImage: blog-google-antigravity.jpg
 page_type: post
 preload:
@@ -39,6 +39,11 @@ preload:
       "text": "自動化測試功能",
       "anchor": "browser-extension",
       "desc": "Chrome 擴充功能整合"
+    },
+    {
+      "text": "模型與配額限制",
+      "anchor": "model-limits",
+      "desc": "支援模型與使用限制"
     }
   ]
   {% endquickNav %}
@@ -220,6 +225,45 @@ Antigravity 會自動開啟瀏覽器，並測試網頁是否有正確運行
 例如天氣動畫是否真的有動畫
 不同天氣的切換按鈕可以做切換
 
+## <span id="model-limits">模型選項與配額限制</span>
+
+### 支援的 AI 模型
+
+Antigravity 目前支援以下模型：
+
+| 模型 | 說明 |
+|------|------|
+| **Gemini 3 Pro (High)** | Google 最新旗艦模型，效果最好但消耗配額較快 |
+| **Gemini 3 Pro (Low)** | 較省配額的選項，適合日常開發 |
+| **Claude Opus 4.5 Thinking** | Anthropic 最強模型，支援 extended thinking 功能 |
+| **Claude Sonnet 4.5** | Anthropic 的日常模型，程式碼品質不錯 |
+| **GPT-OSS** | OpenAI 的開源模型選項 |
+
+### 新增支援 Claude Opus 4.5 Thinking
+
+Antigravity 現已支援 **Claude Opus 4.5**，包含 extended thinking 功能。
+這讓 Antigravity 在模型選擇上更具競爭力，可以在 Gemini 3 和 Opus 4.5 之間自由切換。
+
+Opus 4.5 的 thinking 模式特別適合：
+- 複雜的程式架構設計
+- 需要深度推理的除錯任務
+- 多步驟的重構工作
+
+### 使用配額限制
+
+- Ultra 和 Pro 用戶的 Quota 是**每 5 小時重置一次**
+- Free 用戶的 Quota 是 weekly limit，使用到上限後需要等到下週
+
+官方文件說明：[https://antigravity.google/docs/plans](https://antigravity.google/docs/plans)
+
+### 節省配額的小技巧
+
+目前可以讓 Claude Opus 4.5 Thinking 模型來做思考跟規劃
+做完規劃後再請 Gemini 3 模型來做實作
+或是使用 Claude Sonnet 4.5 也可以
+理論上就能降低 Quota 的消耗
+
+
 ## 結論
 
 這次的 Google Antigravity 搭配 Gemini 3 是一個不錯的體驗
@@ -246,11 +290,15 @@ Antigravity 會自動開啟瀏覽器，並測試網頁是否有正確運行
 [
   {
     "question": "Antigravity 是否完全免費？",
-    "answer": "目前 Antigravity 處於早期階段，完全免費讓大家使用。不過實測發現經常會遇到 <code>model overloaded</code> 錯誤，影響開發體驗。未來 Google 可能會推出付費方案，期待能與 Google AI Pro 或 Ultra 方案整併，提供更穩定的服務。"
+    "answer": "目前 Antigravity 處於早期階段，完全免費讓大家使用。不過實測發現經常會遇到 <code>model overloaded</code> 錯誤，影響開發體驗。配額每 5 小時重置一次，建議使用 Gemini 3 (Low) 模型來節省配額。未來 Google 可能會推出付費方案，預估個人版約 $10-20 美元/月。"
+  },
+  {
+    "question": "可以使用 Claude Opus 4.5 嗎？",
+    "answer": "可以！Antigravity 現已支援 <strong>Claude Opus 4.5 Thinking</strong>，包含 extended thinking 功能。你可以在 Gemini 3 Pro、Opus 4.5、Sonnet 4.5 之間自由切換，選擇最適合當前任務的模型。"
   },
   {
     "question": "與 Cursor、Claude Code 有什麼不同？",
-    "answer": "<strong>Antigravity vs Cursor</strong><br>兩者使用體驗相似，主要差異在於使用的 AI 模型不同（Gemini 3 vs Claude）。Antigravity 最大亮點是內建 Chrome 自動化測試功能，不需要額外安裝第三方工具。<br><br><strong>Antigravity vs Claude Code</strong><br>這兩者定位不同。Claude Code 是 <code>Command Line</code> 終端機工具，而 Antigravity 是完整的 IDE。比較合理的對比應該是 Antigravity vs Cursor（IDE 類）、Claude Code vs Gemini CLI（CLI 類）。"
+    "answer": "<strong>Antigravity vs Cursor</strong><br>兩者使用體驗相似，現在模型支援也趨近一致（都支援 Opus 4.5）。Antigravity 最大亮點是內建 Chrome 自動化測試功能，不需要額外安裝第三方工具。<br><br><strong>Antigravity vs Claude Code</strong><br>這兩者定位不同。Claude Code 是 <code>Command Line</code> 終端機工具，而 Antigravity 是完整的 IDE。比較合理的對比應該是 Antigravity vs Cursor（IDE 類）、Claude Code vs Gemini CLI（CLI 類）。"
   }
 ]
 {% endfaq %}
