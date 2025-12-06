@@ -1,0 +1,248 @@
+{
+  "name": "ai-choose-ai-zeabur-aihub",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -208,
+        48
+      ],
+      "id": "c86c07de-cc5a-4bcd-80d6-365bb12f06df",
+      "name": "When chat message received",
+      "webhookId": "9f9e4bb2-3267-4db5-9da2-de162f3f1001"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('When chat message received').item.json.chatInput }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        448,
+        48
+      ],
+      "id": "4c934434-d131-48e8-8c68-1585302beb3a",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"model\": \"gpt-4o-mini\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        192,
+        368
+      ],
+      "id": "24bf43f3-f153-480a-b1d2-4fb49d608521",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "content": "## 1. 先請 AI 判斷這個需求，該使用哪個模型",
+        "height": 548,
+        "width": 320,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        -32
+      ],
+      "id": "75525332-b3f9-4507-a70b-d2f10c00da1d",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## 202512 支援模型\n| 模型 ID                        |\n|-------------------------------|\n|-------------------------------|\n| gemini-2.5-pro                |\n| gemini-3-pro-preview          |\n| gemini-2.5-flash              |\n| gemini-2.5-flash-lite         |\n| gemini-2.5-flash-image        |\n| claude-sonnet-4-5             |\n| claude-haiku-4-5              |\n| gpt-5                         |\n| gpt-5-mini                    |\n| gpt-4.1                       |\n| gpt-4.1-mini                  |\n| gpt-4o                        |\n| gpt-4o-mini                   |\n| grok-4-fast-non-reasoning     |\n| deepseek-v3.2-exp             |\n| glm-4.6                       |\n| kimi-k2-thinking              |\n| llama-3.3-70b                 |\n| gpt-oss-120b                  |\n| qwen-3-32                     |\n| qwen3-next                    |",
+        "height": 480,
+        "width": 416
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1008,
+        -48
+      ],
+      "typeVersion": 1,
+      "id": "5c85c2a4-457e-430f-83bc-ae129ac791ef",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        48,
+        368
+      ],
+      "id": "904c62b6-0050-4f6b-8583-434166d8bf3e",
+      "name": "gpt-4o-mini",
+      "credentials": {
+        "openAiApi": {
+          "id": "mOTfFLqrnHh58UGA",
+          "name": "zeabur-aihub"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "={{ $('AI 模型 Router').item.json.output.model }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        448,
+        368
+      ],
+      "id": "7a815e8d-cf23-47cf-8512-44f39deb31e5",
+      "name": "zeabur-ai-hub",
+      "credentials": {
+        "openAiApi": {
+          "id": "mOTfFLqrnHh58UGA",
+          "name": "zeabur-aihub"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## 2. 根據 AI 選擇的模型自動切換不同大腦",
+        "height": 548,
+        "width": 448,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        416,
+        -32
+      ],
+      "id": "22556a8b-4f31-46b7-ba29-2dc329cf29f9",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Created by darrell_tw_ \n\nHi 我是 Darrell\n有 n8n 問題可以找我聊聊\n\n- [n8n 教學資源網站](https://www.darrelltw.com/n8n-tutorial-resources/)\n- [n8n 模板分享網站](https://www.darrelltw.com/tools/n8n_template/models.html)\n\n### Social Media:\n[Website](https://www.darrelltw.com/)\n[X](https://x.com/darrell_tw_)\n[Threads](https://www.threads.net/@darrell_tw_)\n[Instagram](https://www.instagram.com/darrell_tw_/)\n![](https://pub-c093258f61a1463ea03e1a40c141968a.r2.dev/darrell-icon-128.svg)",
+        "height": 468,
+        "width": 312,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -576,
+        -48
+      ],
+      "id": "a9531152-fce8-49d2-b215-113d14acf296",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=你是 Model Router，根據用戶請求內容與上下文長度，選擇「目前可用模型中」最適合且最省成本的模型。  \n請嚴格依照以下優先順序評估，只要符合第一條就立即輸出該模型名稱。\n\n可用模型（僅能從以下清單選擇）：  \n`gemini-2.5-pro`、`gemini-3-pro-preview`、`gemini-2.5-flash`、`gemini-2.5-flash-lite`、`gemini-2.5-flash-image`、`claude-sonnet-4-5`、`claude-haiku-4-5`、`gpt-5`、`gpt-5-mini`、`gpt-4.1`、`gpt-4.1-mini`、`gpt-4o`、`gpt-4o-mini`、`grok-4-fast-non-reasoning`、`deepseek-v3.2-exp`、`glm-4.6`、`kimi-k2-thinking`、`llama-3.3-70b`、`gpt-oss-120b`、`qwen-3-32`、`qwen3-next`\n\n判斷規則（由上而下，符合即停止）：\n\n1. **gemini-2.5-flash-lite** 或 **grok-4-fast-non-reasoning** 或 **qwen-3-32**  \n   - 簡單查詢、基礎翻譯、格式轉換、問答  \n   - 輸入 < 8K tokens  \n   - 完全不需要推理或創意  \n\n2. **claude-haiku-4-5** 或 **gemini-2.5-flash** 或 **gpt-4o-mini**  \n   - 文章摘要、短篇創作（≤5段）、簡單程式碼  \n   - 基礎對話、多語言內容、教學說明  \n   - 輸入 < 32K tokens  \n\n3. **claude-sonnet-4-5** 或 **gemini-2.5-pro** 或 **gpt-4.1-mini**  \n   - 專業文案、長篇創作、複雜程式碼生成與除錯  \n   - 中度推理、數據分析、需要較高準確度  \n   - 輸入 < 128K tokens  \n\n4. **kimi-k2-thinking** 或 **deepseek-v3.2-exp** 或 **gpt-5-mini**（若任務明確標示需要最高階推理）  \n   - 極難數學證明、複雜邏輯推導、多步驟工具鏈任務  \n   - 高風險領域（法律/醫療/金融）要求極高準確度  \n   - 長上下文 ≥ 128K tokens  \n\n5. 預設最快最便宜（其他所有情況）  \n   - **llama-3.3-70b** 或 **glm-4.6**\n\n輸出格式：  \n僅輸出單一模型名稱（一行），不要任何解釋或其他文字。  \n例如：  \n`gemini-2.5-flash-lite`"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        48,
+        48
+      ],
+      "id": "97d51d6a-a422-4af9-ac3e-d18aef516880",
+      "name": "AI 模型 Router"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI 模型 Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI 模型 Router",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "gpt-4o-mini": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI 模型 Router",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "zeabur-ai-hub": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI 模型 Router": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "cc603997-eb27-49d0-b91e-25fb97803762",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "fddb3e91967f1012c95dd02bf5ad21f279fc44715f47a7a96a33433621caa253"
+  },
+  "id": "mTv08HsydORF9tFx",
+  "tags": []
+}

@@ -3,9 +3,17 @@
   <!-- 主頁 -->
   <url>
     <loc>https://www.darrelltw.com/tools/n8n_template/models.html</loc>
-    <lastmod>2025-12-04</lastmod>
+    <lastmod>2025-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+
+  <!-- 模型詳情頁 - n8n-ai-choose-ai-zeabur-aihub -->
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n-ai-choose-ai-zeabur-aihub.html</loc>
+    <lastmod>2025-12-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <!-- 模型詳情頁 - n8n-github-backup-workflow -->

@@ -1,5 +1,73 @@
 {
     "models": {
+        "n8n-ai-choose-ai-zeabur-aihub": {
+            "id": "n8n-ai-choose-ai-zeabur-aihub",
+            "title": "Zeabur AI Hub 智慧模型 Router",
+            "description": "透過 Zeabur AI Hub 統一管理多家 AI 模型，搭配 AI 模型 Router 自動判斷問題複雜度並動態切換最適合的模型。簡單問題用便宜模型、複雜問題用強模型，省成本又兼顧品質。\n\n主要功能：\n\n智慧判斷：用 gpt-4o-mini 分析問題複雜度\n動態切換：自動選擇最適合的 AI 模型\n成本優化：簡單查詢用便宜模型，複雜任務用強模型\n多模型支援：支援 OpenAI、Claude、Gemini、Grok、DeepSeek 等 21 種模型",
+            "detailedDescription": [
+                "Chat Trigger 接收用戶訊息",
+                "AI 模型 Router 使用 gpt-4o-mini 分析問題複雜度",
+                "根據五級判斷規則選擇最適合的模型",
+                "Structured Output Parser 確保輸出格式正確",
+                "動態切換到選定的模型（透過表達式）",
+                "AI Agent 使用選定模型回應用戶"
+            ],
+            "tags": ["AI", "Zeabur", "模型選擇", "成本優化", "OpenAI", "Claude", "Gemini"],
+            "nodes": 5,
+            "createdAt": "2025-12-06",
+            "updatedAt": "2025-12-06",
+            "setup": {
+                "prerequisites": "需要 Zeabur AI Hub 帳號和 API Key",
+                "steps": [
+                    {
+                        "title": "Zeabur AI Hub 設定",
+                        "description": "取得 API Key 和 Endpoint",
+                        "options": [
+                            "前往 Zeabur AI Hub 開通服務",
+                            "取得 API Key",
+                            "複製 API Endpoint URL"
+                        ]
+                    },
+                    {
+                        "title": "n8n Credentials 設定",
+                        "description": "建立 OpenAI 相容的 Credential",
+                        "options": [
+                            "在 n8n 建立 OpenAI Credential",
+                            "貼上 Zeabur API Key",
+                            "設定 Base URL 為 Zeabur Endpoint"
+                        ]
+                    },
+                    {
+                        "title": "調整模型清單",
+                        "description": "根據需求調整可用模型",
+                        "options": [
+                            "查看 Zeabur AI Hub Models 頁面確認最新模型",
+                            "修改 Router Prompt 中的模型清單",
+                            "調整判斷規則以符合使用場景"
+                        ]
+                    }
+                ]
+            },
+            "examples": [
+                {
+                    "title": "智慧客服助理",
+                    "description": "簡單問題用 gemini-2.5-flash-lite，複雜分析用 claude-sonnet-4-5",
+                    "code": {
+                        "scenario": "多功能客服機器人",
+                        "simple_query": "今天天氣如何？ → gemini-2.5-flash-lite",
+                        "complex_query": "幫我分析這份報告 → claude-sonnet-4-5",
+                        "benefit": "成本降低 60-80%，品質不打折"
+                    }
+                }
+            ],
+            "fields": {},
+            "relatedArticles": [
+                {
+                    "title": "n8n AI 模型 Router 教學：自動選擇最適合的 AI 模型",
+                    "url": "https://www.darrelltw.com/n8n-zeabur-ai-hub-model-router/"
+                }
+            ]
+        },
         "n8n-github-backup-workflow": {
             "id": "n8n-github-backup-workflow",
             "title": "Github 每日備份工作流",
