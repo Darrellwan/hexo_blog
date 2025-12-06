@@ -3962,7 +3962,7 @@
   "/tools/n8n_template/data/bg/food_delivery_easy_expense.webp": {
     "width": 1200,
     "height": 1200,
-    "mtimeMs": 1764731314845.171
+    "mtimeMs": 1764999989677.8425
   },
   "/tools/n8n_template/data/bg/demo_while_loop_example.webp": {
     "width": 850,
@@ -6452,86 +6452,141 @@
   "/_posts/n8n-2-0-update/n8n-2.0-new-canvas.png": {
     "width": 2322,
     "height": 1690,
-    "mtimeMs": 1764145929090.17
+    "mtimeMs": 1764999989664.7969
   },
   "/_posts/n8n-2-0-update/n8n-2.0-migration-report-workflow-level.png": {
     "width": 1584,
     "height": 1318,
-    "mtimeMs": 1764146489192.391
+    "mtimeMs": 1764999989663.8281
   },
   "/_posts/n8n-2-0-update/n8n-2.0-migration-report-location.png": {
     "width": 1958,
     "height": 880,
-    "mtimeMs": 1764146428516.202
+    "mtimeMs": 1764999989663.3477
   },
   "/_posts/n8n-2-0-update/n8n-2.0-migration-report-instance-level.png": {
     "width": 1584,
     "height": 1612,
-    "mtimeMs": 1764146504357.552
+    "mtimeMs": 1764999989662.8018
   },
   "/_posts/n8n-2-0-update/n8n-2.0-python-syntax.png": {
     "width": 1590,
     "height": 818,
-    "mtimeMs": 1764160322679.502
+    "mtimeMs": 1764999989665.3762
   },
   "/_posts/n8n-2-0-update/n8n-2.0-mysql-mariadb-warning.png": {
     "width": 1590,
     "height": 486,
-    "mtimeMs": 1764160288301.318
+    "mtimeMs": 1764999989664.2195
   },
   "/_posts/n8n-2-0-update/n8n-2.0-executecommand-and-localfiletrigger-node-warning.png": {
     "width": 1590,
     "height": 648,
-    "mtimeMs": 1764160307664.582
+    "mtimeMs": 1764999989662.288
   },
   "/_posts/n8n-2-0-update/n8n-2.0-release-timeline.webp": {
     "width": 1200,
     "height": 654,
-    "mtimeMs": 1764161482585.859
+    "mtimeMs": 1764999989665.6384
   },
   "/_posts/n8n-2-0-update/n8n-2.0-update-bg.jpg": {
     "width": 1080,
     "height": 1350,
-    "mtimeMs": 1764162203428.549
+    "mtimeMs": 1764999989666.0986
   },
   "/_posts/claude_code_update_202509/claudecode_frontend_design.png": {
     "width": 1378,
     "height": 842,
-    "mtimeMs": 1764247545102.643
+    "mtimeMs": 1764999989660.4365
   },
   "/_posts/n8n-update-log/n8n-1.123.0-time_saved_workflow_setting.png": {
     "width": 1630,
     "height": 1926,
-    "mtimeMs": 1764656481527.2598
+    "mtimeMs": 1764999989670.9846
   },
   "/_posts/n8n-update-log/n8n-1.123.0-time_saved_per_path.png": {
     "width": 2114,
     "height": 1482,
-    "mtimeMs": 1764656481527.0964
+    "mtimeMs": 1764999989670.327
   },
   "/_posts/n8n-update-log/n8n-1.123.0-time_saved_node.png": {
     "width": 3024,
     "height": 1496,
-    "mtimeMs": 1764656481526.8972
+    "mtimeMs": 1764999989669.81
   },
   "/_posts/n8n-update-log/n8n-1.123.0-gemini_new_model.png": {
     "width": 1472,
     "height": 2014,
-    "mtimeMs": 1764656481526.6943
+    "mtimeMs": 1764999989668.9902
   },
   "/_posts/n8n-update-log/n8n-1.123.0-form_node_default_values.png": {
     "width": 1834,
     "height": 2264,
-    "mtimeMs": 1764656481526.4805
+    "mtimeMs": 1764999989668.2285
   },
   "/_posts/n8n-update-log/n8n-1.123.0-form_node_default_values-demo.png": {
     "width": 1396,
     "height": 1506,
-    "mtimeMs": 1764656481526.3308
+    "mtimeMs": 1764999989667.4646
   },
   "/n8n-expert/images/og-image.webp": {
     "width": 1200,
     "height": 630,
-    "mtimeMs": 1764824043876.795
+    "mtimeMs": 1764999989673.278
+  },
+  "/_posts/n8n-zeabur-ai-hub-model-router/n8n-zeabur-ai-hub-model-router-bg.jpg": {
+    "width": 1080,
+    "height": 1350,
+    "mtimeMs": 1765010268870.001
+  },
+  "/_posts/n8n-zeabur-ai-hub-model-router/zeabur-ai-hub-get-api-key.png": {
+    "width": 1438,
+    "height": 2154,
+    "mtimeMs": 1765010959320.768
+  },
+  "/_posts/n8n-zeabur-ai-hub-model-router/zeabur-ai-hub-get-api-endpoint.png": {
+    "width": 1618,
+    "height": 616,
+    "mtimeMs": 1765011018546.346
+  },
+  "/_posts/n8n-zeabur-ai-hub-model-router/n8n-zeabur-credential-setting.png": {
+    "width": 1784,
+    "height": 1644,
+    "mtimeMs": 1765011197839.745
+  },
+  "/_posts/n8n-zeabur-ai-hub-model-router/n8n-zeabur-router-node.png": {
+    "width": 2538,
+    "height": 1058,
+    "mtimeMs": 1765018927228.937
+  },
+  "/_posts/n8n-zeabur-ai-hub-model-router/n8n-zeabur-ai-hub-check_credential_success.png": {
+    "width": 1110,
+    "height": 1404,
+    "mtimeMs": 1765018293843.221
+  },
+  "/_posts/n8n-zeabur-ai-hub-model-router/n8n-zeabur-dynamic-model-workflow-cover.jpg": {
+    "width": 800,
+    "height": 800,
+    "mtimeMs": 1765024684020.47
+  },
+  "/_posts/n8n-zeabur-ai-hub-model-router/n8n-zeabur-dynamic-model.png": {
+    "width": 1754,
+    "height": 1096,
+    "mtimeMs": 1765019192844.204
+  },
+  "/_posts/n8n-zeabur-ai-hub-model-router/n8n-zeabur-test-write-n8n-article.png": {
+    "width": 2394,
+    "height": 944,
+    "mtimeMs": 1765025409970.991
+  },
+  "/_posts/n8n-zeabur-ai-hub-model-router/n8n-zeabur-test-simple-how-is-the-weather.png": {
+    "width": 2405,
+    "height": 944,
+    "mtimeMs": 1765025410239.743
+  },
+  "/tools/n8n_template/data/bg/n8n-ai-choose-ai-zeabur-aihub.webp": {
+    "width": 800,
+    "height": 800,
+    "mtimeMs": 1765035085299.218
   }
 }

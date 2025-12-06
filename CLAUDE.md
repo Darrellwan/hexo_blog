@@ -48,7 +48,7 @@ Hexo blog for MarTech/automation. Key points:
 - 每個更新項目必須包含：
   - 中英文標題
   - 說明段落（參考既有格式）
-  - **所有項目都要有**截圖佔位符：`{% darrellImage800 n8n-1.xxx.0-feature_name n8n-1.xxx.0-feature_name.png max-800 %}`
+  - **所有項目都要有**截圖佔位符：`{% darrellImage800Alt "功能說明文字" n8n-1.xxx.0-feature_name.png max-800 %}`
 
 ### 必須更新 Meta 資訊
 ```yaml

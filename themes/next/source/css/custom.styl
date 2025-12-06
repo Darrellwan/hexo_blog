@@ -7,6 +7,31 @@ div.content.post article div.post-body p a {
 .post-body ul {
   margin: 0px;
   list-style: none;
+
+  li {
+    position: relative;
+    padding-left: 1rem;
+    margin: 8px 0;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 50%, #cbd5e0 100%);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+
+/* Dark mode 列表圓點 */
+.use-dark-mode .post-body ul li::before,
+[data-theme="dark"] .post-body ul li::before {
+  background: linear-gradient(135deg, #f7fafc 0%, #e2e8f0 50%, #a0aec0 100%);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 .post-body p {
   margin: 0 0 12px 0;

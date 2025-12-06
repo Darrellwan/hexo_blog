@@ -69,3 +69,6 @@ main.local.yml
 # Local n8n workflows
 local_n8n_workflows/
 GTM-*.json
+
+# Documentation files
+docs/*.md
