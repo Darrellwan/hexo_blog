@@ -1,5 +1,5 @@
 ---
-title: n8n AI 模型 Router 教學：自動選擇最適合的 AI 模型
+title: n8n AI 模型 Router 教學：Zeabur AI Hub 智慧切換模型
 tags:
   - n8n
   - n8n教學
@@ -9,7 +9,7 @@ categories:
   - n8n
 page_type: post
 id: n8n-zeabur-ai-hub-model-router
-description: 用 Zeabur AI Hub 統一管理 AI 帳單、避免 Google 無上限收費風險。在 n8n 中一個 API Key 串接 GPT、Claude、Gemini，搭配 AI 模型 Router 自動切換模型，簡單問題用便宜模型、複雜問題用強模型，省成本又兼顧品質
+description: n8n 搭配 Zeabur AI Hub 打造 AI 模型 Router，一個 API Key 串接 GPT、Claude、Gemini。根據問題複雜度智慧切換模型：簡單問題用便宜模型、複雜問題用強模型，省成本又兼顧品質
 bgImage: n8n-zeabur-ai-hub-model-router-bg.jpg
 preload:
   - n8n-zeabur-ai-hub-model-router-bg.jpg
