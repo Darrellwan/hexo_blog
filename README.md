@@ -2,14 +2,14 @@
 
 ## 📚 最新文章
 
-### [n8n AI 模型 Router 教學：自動選擇最適合的 AI 模型](https://www.darrelltw.com/n8n-zeabur-ai-hub-model-router/?utm_source=github_readme&utm_medium=referral)
-📅 2025/12/06 · 12 小時前
+### [n8n AI 模型 Router 教學：Zeabur AI Hub 智慧切換模型](https://www.darrelltw.com/n8n-zeabur-ai-hub-model-router/?utm_source=github_readme&utm_medium=referral)
+📅 2025/12/06 · 16 小時前
 
-> 用 Zeabur AI Hub 統一管理 AI 帳單、避免 Google 無上限收費風險。在 n8n 中一個 API Key 串接 GPT、Claude、Gemini，搭配 AI 模型 Router 自動切換模型，簡單問題用便宜模型、複雜問題用強模型，省成本又兼顧品質
+> n8n 搭配 Zeabur AI Hub 打造 AI 模型 Router，一個 API Key 串接 GPT、Claude、Gemini。根據問題複雜度智慧切換模型：簡單問題用便宜模型、複雜問題用強模型，省成本又兼顧品質
 
 
 ### [n8n 2.0 大更新：除了新功能，更該擔心能不能順利 Migrate](https://www.darrelltw.com/n8n-2-0-update/?utm_source=github_readme&utm_medium=referral)
-📅 2025/11/26 · 10 天前
+📅 2025/11/26 · 11 天前
 
 > n8n 2.0 大更新要來了！包含新功能介紹、Migration Report 使用教學、Breaking Changes 詳解和常見升級問題解決方案
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-12-07 02:07:51*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-12-07 05:28:31*
