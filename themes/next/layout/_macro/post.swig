@@ -1,7 +1,7 @@
   {##################}
   {### POST BLOCK ###}
   {##################}
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="{{ post.lang or config.language }}">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block{%- if is_index %} is-index{%- endif %}" lang="{{ post.lang or config.language }}">
     <link itemprop="mainEntityOfPage" href="{{ post.permalink }}">
     <meta itemprop="image" content="https://www.darrelltw.com/images/logo.png">
 
@@ -17,7 +17,25 @@
     </span>
 
     {%- if post.header !== false %}
-      <header class="post-header">
+      <header class="post-header{%- if is_index %} has-thumbnail{%- endif %}">
+        {#- 首頁文章縮圖 -#}
+        {%- if is_index %}
+        {%- if post.bgImage %}
+          {%- set thumbnailUrl = config.url + '/' + post.path + post.bgImage %}
+        {%- else %}
+          {%- set thumbnailUrl = config.url + '/images/n8n-default-thumbnail.jpg' %}
+        {%- endif %}
+        <div class="post-thumbnail">
+          <a href="{{ url_for(post.path) }}" class="post-thumbnail-link">
+            <img src="{{ thumbnailUrl }}"
+                 alt="{{ post.title }}"
+                 class="lazyload"
+                 loading="lazy">
+          </a>
+        </div>
+        {%- endif %}
+        {#- 文章內容區塊 -#}
+        <div class="post-header-content">
         <{%- if is_index %}h2{% else %}h1{%- endif %} class="post-title{%- if post.direction and post.direction.toLowerCase() === 'rtl' %} rtl{%- endif %}" itemprop="name headline">
           {# Link posts #}
           {%- if post.link %}
@@ -164,6 +182,7 @@
           {%- endif %}
 
         </div>
+        </div>{#- end post-header-content -#}
       </header>
     {%- endif %}
 

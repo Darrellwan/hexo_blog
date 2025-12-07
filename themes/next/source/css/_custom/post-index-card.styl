@@ -1,0 +1,184 @@
+// ============================================
+// 首頁文章卡片樣式
+// 左側縮圖 + 右側文字的現代編輯風格
+// ============================================
+
+// 首頁文章區塊
+.posts-expand .post-block.is-index {
+  border-radius: 10px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-bottom: 16px;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-3px);
+    // 移除 hover 陰影，保持簡潔
+  }
+
+  // 隱藏首頁的 post-body（描述已經在 header 顯示）
+  .post-body {
+    display: none;
+  }
+
+  // 隱藏首頁的 post-footer
+  .post-footer {
+    display: none;
+  }
+}
+
+// 文章 header - Flex 佈局
+.posts-expand .post-header.has-thumbnail {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  align-items: flex-start;
+}
+
+// 縮圖區塊
+.posts-expand .post-header.has-thumbnail .post-thumbnail {
+  flex-shrink: 0;
+  width: 120px;
+  min-width: 120px;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #1a1a1a;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  .post-thumbnail-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.4s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.03);
+  }
+}
+
+// 內容區塊
+.posts-expand .post-header.has-thumbnail .post-header-content {
+  flex: 1;
+  min-width: 0; // 防止 flex 子元素溢出
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+// 標題調整
+.posts-expand .post-header.has-thumbnail .post-title {
+  margin: 0 0 8px 0;
+  padding: 0;
+  font-size: 1.35rem;
+  line-height: 1.4;
+}
+
+// 描述調整
+.posts-expand .post-header.has-thumbnail .post-description.is-index {
+  margin: 0 0 12px 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-color-secondary, #666);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// Meta 資訊調整
+.posts-expand .post-header.has-thumbnail .post-meta {
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+// ============================================
+// 響應式設計 - 平板
+// ============================================
+@media (max-width: 991px) {
+  .posts-expand .post-header.has-thumbnail {
+    gap: 14px;
+    padding: 14px;
+  }
+
+  .posts-expand .post-header.has-thumbnail .post-thumbnail {
+    width: 80px;
+    min-width: 80px;
+    border-radius: 5px;
+  }
+
+  .posts-expand .post-header.has-thumbnail .post-title {
+    font-size: 1.15rem;
+  }
+}
+
+// ============================================
+// 響應式設計 - 手機
+// ============================================
+@media (max-width: 767px) {
+  .posts-expand .post-block.is-index {
+    margin-bottom: 12px;
+    border-radius: 8px;
+  }
+
+  .posts-expand .post-header.has-thumbnail {
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .posts-expand .post-header.has-thumbnail .post-thumbnail {
+    width: 60px;
+    min-width: 60px;
+    border-radius: 5px;
+    align-self: center;
+  }
+
+  .posts-expand .post-header.has-thumbnail .post-title {
+    font-size: 1rem;
+    margin-bottom: 4px;
+  }
+
+  .posts-expand .post-header.has-thumbnail .post-description.is-index {
+    font-size: 0.8rem;
+    -webkit-line-clamp: 2;
+    margin-bottom: 6px;
+  }
+
+  .posts-expand .post-header.has-thumbnail .post-meta {
+    font-size: 0.7rem;
+  }
+
+  // 手機版隱藏部分 meta 項目
+  .posts-expand .post-header.has-thumbnail .post-meta-item-text {
+    display: none;
+  }
+}
+
+// ============================================
+// 暗色模式適配
+// ============================================
+[data-theme="dark"] {
+  .posts-expand .post-header.has-thumbnail .post-thumbnail {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  .posts-expand .post-header.has-thumbnail .post-description.is-index {
+    color: var(--text-color-secondary-dark, #aaa);
+  }
+}
