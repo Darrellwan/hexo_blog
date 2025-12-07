@@ -26,12 +26,32 @@
   }
 }
 
-// 文章 header - Flex 佈局
+// 文章 header - Flex 佈局（桌面版：標題和圖片並排）
 .posts-expand .post-header.has-thumbnail {
   display: flex;
+  flex-wrap: wrap;
   gap: 16px;
   padding: 16px;
   align-items: flex-start;
+
+  // 桌面版：標題跟著圖片，不獨佔一行
+  > .post-title {
+    order: 2;
+    flex: 1;
+    min-width: 0;
+  }
+
+  > .post-thumbnail {
+    order: 1;
+  }
+
+  > .post-header-content {
+    order: 3;
+    width: 100%;
+    flex-basis: 100%;
+    margin-left: 136px;  // 120px 圖片 + 16px gap
+    margin-top: -60px;   // 拉上去和標題對齊
+  }
 }
 
 // 縮圖區塊
@@ -129,30 +149,68 @@
 // ============================================
 @media (max-width: 767px) {
   .posts-expand .post-block.is-index {
-    margin-bottom: 12px;
-    border-radius: 8px;
+    margin-bottom: 8px;
+    border-radius: 0;
+    box-shadow: none !important;
+    background: transparent !important;
   }
 
+  // 卡片之間用淡色分隔線
+  .posts-expand .post-block.is-index + .post-block.is-index {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 8px;
+  }
+
+  // 手機版：標題在上，圖片+描述在下
   .posts-expand .post-header.has-thumbnail {
-    gap: 10px;
-    padding: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px 0;
+
+    // 重置桌面版的設定
+    > .post-title {
+      order: 1;
+      width: 100%;
+      flex-basis: 100%;
+      flex: none;
+    }
+
+    > .post-thumbnail {
+      order: 2;
+    }
+
+    > .post-header-content {
+      order: 3;
+      width: auto;
+      flex-basis: auto;
+      flex: 1;
+      margin-left: 0;
+      margin-top: 0;
+    }
   }
 
-  .posts-expand .post-header.has-thumbnail .post-thumbnail {
-    width: 60px;
-    min-width: 60px;
-    border-radius: 5px;
-    align-self: center;
-  }
-
+  // 標題：完整一行
   .posts-expand .post-header.has-thumbnail .post-title {
-    font-size: 1rem;
-    margin-bottom: 4px;
+    font-size: 1.05rem;
+    margin-bottom: 0;
+    line-height: 1.4;
+  }
+
+  // 手機版隱藏圖片
+  .posts-expand .post-header.has-thumbnail .post-thumbnail {
+    display: none;
+  }
+
+  // 內容區塊：第二行右側（描述+meta）
+  .posts-expand .post-header.has-thumbnail .post-header-content {
+    min-width: 0;
   }
 
   .posts-expand .post-header.has-thumbnail .post-description.is-index {
-    font-size: 0.8rem;
-    -webkit-line-clamp: 2;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    -webkit-line-clamp: 3;
     margin-bottom: 6px;
   }
 

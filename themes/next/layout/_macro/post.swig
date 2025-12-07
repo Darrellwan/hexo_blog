@@ -18,6 +18,12 @@
 
     {%- if post.header !== false %}
       <header class="post-header{%- if is_index %} has-thumbnail{%- endif %}">
+        {#- 首頁：標題放最外層 -#}
+        {%- if is_index %}
+        <h2 class="post-title" itemprop="name headline">
+          {{ next_url(post.path, post.title or __('post.untitled'), {class: 'post-title-link', itemprop: 'url'}) }}
+        </h2>
+        {%- endif %}
         {#- 首頁文章縮圖 -#}
         {%- if is_index %}
         {%- if post.bgImage %}
@@ -36,19 +42,18 @@
         {%- endif %}
         {#- 文章內容區塊 -#}
         <div class="post-header-content">
-        <{%- if is_index %}h2{% else %}h1{%- endif %} class="post-title{%- if post.direction and post.direction.toLowerCase() === 'rtl' %} rtl{%- endif %}" itemprop="name headline">
-          {# Link posts #}
+        {%- if not is_index %}
+        <h1 class="post-title{%- if post.direction and post.direction.toLowerCase() === 'rtl' %} rtl{%- endif %}" itemprop="name headline">
           {%- if post.link %}
             {%- set postTitleIcon = '<i class="fa fa-external-link-alt"></i>' %}
             {%- set postText = post.title or post.link %}
             {{ next_url(post.link, postText + postTitleIcon, {class: 'post-title-link post-title-link-external', itemprop: 'url'}) }}
-          {% elif is_index %}
-            {{ next_url(post.path, post.title or __('post.untitled'), {class: 'post-title-link', itemprop: 'url'}) }}
           {%- else %}
             {{- post.title }}
             {{- post_edit(post.source) }}
           {%- endif %}
-        </{%- if is_index %}h2{% else %}h1{%- endif %}>
+        </h1>
+        {%- endif %}
 
         <div class="post-meta">
 
