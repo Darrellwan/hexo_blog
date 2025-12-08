@@ -22,6 +22,22 @@ preload:
 [Claude Code](https://github.com/anthropics/claude-code) 是 Anthropic 公司最近推出的 CLI 工具，讓開發者可以在終端機中直接與 Claude AI 模型互動。
 讓我們用一種全新的 Command Line 方式來跟 Claude 和專案的程式碼互動
 
+## 202512 更新
+
+### Pro Plan 使用 Opus 4.5 模型
+**Pro** 方案現在也能使用 Opus 4.5 模型了！
+
+{% darrellImage800Alt "Claude Code Pro 方案現在也能使用 Opus 4.5 模型了！" claude_code-pro_can_use_opus_model_alt.png max-800 %}
+
+### -usage 指令
+
+以前有提到使用第三方的 ccusage 來監控使用量
+現在 Claude Code 內建 -usage 指令
+直接查看當前的使用量剩餘多少
+
+{% darrellImage800Alt "Claude Code -usage 指令" claude_code-usage_command_alt.png max-800 %}
+
+
 ## Claude Code 價格 - 202508 更新
 
 目前價格除了以前要用 API 儲值以外，也包含在 訂閱 Claude 的 Pro 以上方案中
