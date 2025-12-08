@@ -27,31 +27,12 @@
 }
 
 // 文章 header - Flex 佈局（桌面版：標題和圖片並排）
+// 文章 header - Flex 佈局（桌面版：圖片左，內容右）
 .posts-expand .post-header.has-thumbnail {
   display: flex;
-  flex-wrap: wrap;
   gap: 16px;
   padding: 16px;
   align-items: flex-start;
-
-  // 桌面版：標題跟著圖片，不獨佔一行
-  > .post-title {
-    order: 2;
-    flex: 1;
-    min-width: 0;
-  }
-
-  > .post-thumbnail {
-    order: 1;
-  }
-
-  > .post-header-content {
-    order: 3;
-    width: 100%;
-    flex-basis: 100%;
-    margin-left: 136px;  // 120px 圖片 + 16px gap
-    margin-top: -60px;   // 拉上去和標題對齊
-  }
 }
 
 // 縮圖區塊
@@ -161,33 +142,10 @@
     padding-top: 8px;
   }
 
-  // 手機版：標題在上，圖片+描述在下
+  // 手機版：圖片隱藏，內容佔滿
   .posts-expand .post-header.has-thumbnail {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+    display: block;
     padding: 10px 0;
-
-    // 重置桌面版的設定
-    > .post-title {
-      order: 1;
-      width: 100%;
-      flex-basis: 100%;
-      flex: none;
-    }
-
-    > .post-thumbnail {
-      order: 2;
-    }
-
-    > .post-header-content {
-      order: 3;
-      width: auto;
-      flex-basis: auto;
-      flex: 1;
-      margin-left: 0;
-      margin-top: 0;
-    }
   }
 
   // 標題：完整一行

@@ -18,12 +18,7 @@
 
     {%- if post.header !== false %}
       <header class="post-header{%- if is_index %} has-thumbnail{%- endif %}">
-        {#- 首頁：標題放最外層 -#}
-        {%- if is_index %}
-        <h2 class="post-title" itemprop="name headline">
-          {{ next_url(post.path, post.title or __('post.untitled'), {class: 'post-title-link', itemprop: 'url'}) }}
-        </h2>
-        {%- endif %}
+
         {#- 首頁文章縮圖 -#}
         {%- if is_index %}
         {%- if post.bgImage %}
@@ -42,6 +37,11 @@
         {%- endif %}
         {#- 文章內容區塊 -#}
         <div class="post-header-content">
+        {%- if is_index %}
+        <h2 class="post-title" itemprop="name headline">
+          {{ next_url(post.path, post.title or __('post.untitled'), {class: 'post-title-link', itemprop: 'url'}) }}
+        </h2>
+        {%- endif %}
         {%- if not is_index %}
         <h1 class="post-title{%- if post.direction and post.direction.toLowerCase() === 'rtl' %} rtl{%- endif %}" itemprop="name headline">
           {%- if post.link %}
