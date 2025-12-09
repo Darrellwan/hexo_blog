@@ -7,16 +7,58 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2025/12/02 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 1.123.0，正式版本為 1.122.4
+description: n8n 的更新記錄(2025/12/09 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.0.0（Pre-release），正式版本為 1.123.4
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-12-02 14:22:00
+modified: 2025-12-09 14:22:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 2.0.0 Pre-release - 2025-12-08
+
+[Github 2.0.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%402.0.0)
+
+這版是 **2.0 的第一個 Pre-release**，正式版還在準備中。
+主要有幾個我覺得值得注意的重點整理在這邊：
+
+### 不再支援 MySQL / MariaDB
+Remove mysql and mariadb support
+
+2.0 開始不再支援 MySQL 和 MariaDB，官方只建議使用 Postgres。
+如果你是自架環境、而且還在用 MySQL / MariaDB，之後要升級到 2.0 版本前，務必要先做好資料庫的搬家。
+
+{% darrellImage800Alt "n8n 2.0.0 不再支援 MySQL / MariaDB" n8n-2.0.0-no_longer_support_maria_mysql_db.jpg max-800 %}
+
+### 全新運行動畫
+New execution and waiting states
+
+這次畫面帶來不少改變
+例如節點連結處也改為圓形的設計
+節點的執行狀態也有個更 fashion 的動畫提示，如下圖
+
+{% darrellImage800Alt "n8n 2.0.0 全新運行動畫" n8n-2.0.0-new_execution_animation.gif max-800 %}
+
+### 啟用模板變成發佈模板
+Publish workflows
+
+現在已經不是單純啟用 workflow 這麼簡單
+而是改成發布的機制
+
+每次發布都會有一個版本號碼
+未來可以快速調整發布的版本 (類似 Google Tag Manager 或是 Git 的機制)
+
+但**社群版只有一天的 version history**
+使用上可能較為不方便
+
+{% darrellImage800Alt "n8n 2.0.0 啟用模板變成發佈模板" n8n-2.0.0-workflow_publish_with_version.png max-800 %}
+
+{% darrellImage800Alt "n8n 2.0.0 發佈模板列表" n8n-2.0.0-workflow_version_list.png max-800 %}
+
+
 
 ## 1.123.0 Pre-release - 2025-12-01
 
@@ -1843,5 +1885,4 @@ A ---> B ---> C
 A ---> C
 
 算是大部分使用上會比較方便的版本
-
 

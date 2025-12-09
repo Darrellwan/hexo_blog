@@ -12,6 +12,7 @@ bgImage: n8n-2.0-update-bg.jpg
 preload:
   - n8n-2.0-update-bg.jpg
 date: 2025-11-26 16:17:12
+modified: 2025-12-09 14:20:00
 ---
 
 {% darrellImageCover n8n-2.0-update-bg n8n-2.0-update-bg.jpg %}
@@ -37,6 +38,14 @@ date: 2025-11-26 16:17:12
   }
 ]
 {% endquickNav %}
+
+## 2.0.0 詳細更新紀錄歡迎參考
+
+{% articleCard url="/n8n-update-log/" title="n8n 版本更新紀錄心得" previewText="n8n 的持續更新記錄，包含各版本新功能測試心得" thumbnail="https://www.darrelltw.com/n8n-update-log/n8n-update_bg.jpg" %}
+
+## Beta 版本測試：
+
+這次更新中 UI 最有感的就是節點的配色跟動畫更新了！
 
 n8n 2.0 準備要正式發布了
 距離文章撰寫的當下只剩下兩週左右的時間
@@ -212,8 +221,6 @@ Cloud 版本用戶應該不用擔心，官方會直接幫忙調整
 ---
 
 ## 相關文章推薦
-
-{% articleCard url="/n8n-update-log/" title="n8n 版本更新紀錄心得" previewText="n8n 的持續更新記錄，包含各版本新功能測試心得" thumbnail="https://www.darrelltw.com/n8n-update-log/n8n-update_bg.jpg" %}
 
 {% articleCard url="/n8n-built-in-variables/" title="n8n 內建變數教學" previewText="完整介紹 n8n 內建變數的使用方式" thumbnail="https://www.darrelltw.com/n8n-built-in-variables/n8n_builtin_variables_bg.jpg" %}
 

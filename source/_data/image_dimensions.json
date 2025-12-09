@@ -6598,5 +6598,25 @@
     "width": 2016,
     "height": 860,
     "mtimeMs": 1765159495563.796
+  },
+  "/_posts/n8n-update-log/n8n-2.0.0-no_longer_support_maria_mysql_db.jpg": {
+    "width": 800,
+    "height": 446,
+    "mtimeMs": 1765258567977.032
+  },
+  "/_posts/n8n-update-log/n8n-2.0.0-workflow_version_list.png": {
+    "width": 1486,
+    "height": 1848,
+    "mtimeMs": 1765258445595.759
+  },
+  "/_posts/n8n-update-log/n8n-2.0.0-workflow_publish_with_version.png": {
+    "width": 1076,
+    "height": 1334,
+    "mtimeMs": 1765258446186.355
+  },
+  "/_posts/n8n-update-log/n8n-2.0.0-new_execution_animation.gif": {
+    "width": 612,
+    "height": 540,
+    "mtimeMs": 1765258646671.6
   }
 }
