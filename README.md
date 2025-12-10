@@ -3,25 +3,25 @@
 ## 📚 最新文章
 
 ### [n8n AI 模型 Router 教學：Zeabur AI Hub 智慧切換模型](https://www.darrelltw.com/n8n-zeabur-ai-hub-model-router/?utm_source=github_readme&utm_medium=referral)
-📅 2025/12/06 · 3 天前
+📅 2025/12/06 · 4 天前
 
 > n8n 搭配 Zeabur AI Hub 打造 AI 模型 Router，一個 API Key 串接 GPT、Claude、Gemini。根據問題複雜度智慧切換模型：簡單問題用便宜模型、複雜問題用強模型，省成本又兼顧品質
 
 
 ### [n8n 2.0 大更新：除了新功能，更該擔心能不能順利 Migrate](https://www.darrelltw.com/n8n-2-0-update/?utm_source=github_readme&utm_medium=referral)
-📅 2025/11/26 · 13 天前
+📅 2025/11/26 · 14 天前
 
 > n8n 2.0 大更新要來了！包含新功能介紹、Migration Report 使用教學、Breaking Changes 詳解和常見升級問題解決方案
 
 
 ### [n8n Edit Fields (Set) 節點教學 - 組合欄位、動態表達式、Include Fields](https://www.darrelltw.com/n8n-set-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/11/24 · 14 天前
+📅 2025/11/24 · 15 天前
 
 > n8n Edit Fields Set 節點 3 大技巧：欄位組合格式化、$now 時間與條件判斷、Include Other Input Fields。90% 工作流都會用到的核心節點完整教學。
 
 
 ### [Google Antigravity 搭配 Gemini 3 模型還能自動化測試！Vibe Coding 新神器](https://www.darrelltw.com/google-antigravity-ide/?utm_source=github_readme&utm_medium=referral)
-📅 2025/11/19 · 19 天前
+📅 2025/11/19 · 21 天前
 
 > 深入體驗 Google Antigravity，這款 Agentic AI 程式開發工具。包含完整安裝教學、Agent Manager 使用、自動化測試、使用技巧。
 
@@ -64,8 +64,8 @@
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-114-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-254,637+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/12/09-green?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-254,813+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/12/10-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-12-09 06:22:25*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-12-10 10:58:13*
