@@ -6618,5 +6618,20 @@
     "width": 612,
     "height": 540,
     "mtimeMs": 1765258646671.6
+  },
+  "/_posts/claude-code-new-command-line-tool/claude_code-stats_command_2.png": {
+    "width": 1054,
+    "height": 666,
+    "mtimeMs": 1765364018931.492
+  },
+  "/_posts/claude-code-new-command-line-tool/claude_code-stats_command.png": {
+    "width": 1054,
+    "height": 690,
+    "mtimeMs": 1765364018710.763
+  },
+  "/_posts/claude-code-new-command-line-tool/claude_code-pro_can_use_opus_model_alt.png": {
+    "width": 2024,
+    "height": 770,
+    "mtimeMs": 1765159746646.99
   }
 }

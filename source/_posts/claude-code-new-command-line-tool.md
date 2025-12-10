@@ -24,10 +24,24 @@ preload:
 
 ## 202512 更新
 
+### 2.0.64 更新 - /stats 指令
+
+用簡單圖示呈現你近 31 天的使用狀況
+
+1. 每天的使用量
+2. 連續的使用天數
+3. 使用的尖峰時刻
+4. 不同模型的使用狀況
+
+{% darrellImage800Alt "Claude Code /stats 指令" claude_code-stats_command_2.png max-400 %}
+
+
+{% darrellImage800Alt "Claude Code /stats 指令" claude_code-stats_command.png max-400 %}
+
 ### Pro Plan 使用 Opus 4.5 模型
 **Pro** 方案現在也能使用 Opus 4.5 模型了！
 
-{% darrellImage800Alt "Claude Code Pro 方案現在也能使用 Opus 4.5 模型了！" claude_code-pro_can_use_opus_model_alt.png max-800 %}
+{% darrellImage800Alt "Claude Code Pro 方案現在也能使用 Opus 4.5 模型了！" claude_code-pro_can_use_opus_model.png max-800 %}
 
 ### -usage 指令
 
@@ -35,7 +49,7 @@ preload:
 現在 Claude Code 內建 -usage 指令
 直接查看當前的使用量剩餘多少
 
-{% darrellImage800Alt "Claude Code -usage 指令" claude_code-usage_command_alt.png max-800 %}
+{% darrellImage800Alt "Claude Code -usage 指令" claude_code-pro_can_use_opus_model_alt.png max-800 %}
 
 
 ## Claude Code 價格 - 202508 更新
