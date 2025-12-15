@@ -35,8 +35,26 @@ preload:
 
 {% darrellImage800Alt "Claude Code /stats 指令" claude_code-stats_command_2.png max-400 %}
 
-
 {% darrellImage800Alt "Claude Code /stats 指令" claude_code-stats_command.png max-400 %}
+
+### 用快捷鍵切換模型
+
+總是輸入指令到一半時，才想要切換模型？
+這時候非常麻煩，還要先把指令刪掉或是輸入完，送出後再切斷和換模型
+
+Claude 最近推出一版更新
+```
+alt+P （Windows）
+option+P （MacOS）
+```
+
+就能快速切換模型
+
+{% darrellImage800Alt "Claude Code 用快捷鍵切換模型" claude_hotkey_model_switch_announcement.png max-400 %}
+
+實際使用切換模型的效果如下：
+
+{% darrellImage800Alt "Claude Code 用快捷鍵切換模型" claudecode-change-model-hotkey.gif max-800 %}
 
 ### Pro Plan 使用 Opus 4.5 模型
 **Pro** 方案現在也能使用 Opus 4.5 模型了！

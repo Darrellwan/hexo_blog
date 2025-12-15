@@ -6622,16 +6622,26 @@
   "/_posts/claude-code-new-command-line-tool/claude_code-stats_command_2.png": {
     "width": 1054,
     "height": 666,
-    "mtimeMs": 1765364018931.492
+    "mtimeMs": 1765364258826.9521
   },
   "/_posts/claude-code-new-command-line-tool/claude_code-stats_command.png": {
     "width": 1054,
     "height": 690,
-    "mtimeMs": 1765364018710.763
+    "mtimeMs": 1765364258826.7415
   },
   "/_posts/claude-code-new-command-line-tool/claude_code-pro_can_use_opus_model_alt.png": {
     "width": 2024,
     "height": 770,
-    "mtimeMs": 1765159746646.99
+    "mtimeMs": 1765364258826.5159
+  },
+  "/_posts/claude-code-new-command-line-tool/claude_hotkey_model_switch_announcement.png": {
+    "width": 1176,
+    "height": 846,
+    "mtimeMs": 1765702059787.545
+  },
+  "/_posts/claude-code-new-command-line-tool/claudecode-change-model-hotkey.gif": {
+    "width": 755,
+    "height": 540,
+    "mtimeMs": 1765784534637.421
   }
 }
