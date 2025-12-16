@@ -6637,11 +6637,41 @@
   "/_posts/claude-code-new-command-line-tool/claude_hotkey_model_switch_announcement.png": {
     "width": 1176,
     "height": 846,
-    "mtimeMs": 1765702059787.545
+    "mtimeMs": 1765784704881.5552
   },
   "/_posts/claude-code-new-command-line-tool/claudecode-change-model-hotkey.gif": {
     "width": 755,
     "height": 540,
-    "mtimeMs": 1765784534637.421
+    "mtimeMs": 1765784704882.6975
+  },
+  "/_posts/n8n-update-log/n8n-2.1.0-n8n_workflow_agents_calendar_agent.png": {
+    "width": 3402,
+    "height": 1332,
+    "mtimeMs": 1765854309496.989
+  },
+  "/_posts/n8n-update-log/n8n-2.1.0-n8n_upload_pdf_to_gemini_file_search_store.png": {
+    "width": 3410,
+    "height": 2332,
+    "mtimeMs": 1765854581313.006
+  },
+  "/_posts/n8n-update-log/n8n-2.1.0-n8n_calendar_agent_today_schedule.png": {
+    "width": 3402,
+    "height": 1332,
+    "mtimeMs": 1765854309190.369
+  },
+  "/_posts/n8n-update-log/n8n-2.1.0-how_to_enable_chat_in_trigger.png": {
+    "width": 1452,
+    "height": 1394,
+    "mtimeMs": 1765854062162.985
+  },
+  "/_posts/n8n-update-log/n8n-2.1.0-anthropic_claude_opus_settings.png": {
+    "width": 1898,
+    "height": 994,
+    "mtimeMs": 1765854335122.014
+  },
+  "/_posts/n8n-update-log/n8n-2.1.0-anthropic_chat_model_logs.png": {
+    "width": 1426,
+    "height": 1188,
+    "mtimeMs": 1765854444935.497
   }
 }

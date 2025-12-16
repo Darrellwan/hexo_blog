@@ -7,16 +7,67 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2025/12/09 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.0.0（Pre-release），正式版本為 1.123.4
+description: n8n 的更新記錄(2025/12/09 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.1.0（Pre-release），正式版本為 1.123.6
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-12-09 14:22:00
+modified: 2025-12-16 11:00:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 2.1.0 Pre-release - 2025-12-15
+
+[Github 2.1.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%402.1.0)
+
+這版是 **2.1.0 Pre-release**，有很多實用的新功能和改進。
+
+### 全新 Chat Hub 功能
+Add new Chat hub feature for chatting with LLMs and your n8n agent workflows
+
+這次新增了一個 **Chat Hub** 聊天中心功能，讓你可以直接在 n8n 內與 LLM 模型聊天，或是與你的 AI agent workflow 互動。
+這個功能整合了 SerpApi Google 搜尋能力，讓 AI 可以即時搜尋資訊來回答問題。
+
+對於想要快速測試 AI 回應或是 workflow 執行結果的人來說，這個功能蠻實用的。
+
+使用方式：
+1. 先在原本的 workflow 中的 Chat Trigger 啟用聊天 **Make Available in n8n Chat**
+{% darrellImage800Alt "先在原本的 workflow 中的 Chat Trigger 啟用聊天 **Make Available in n8n Chat**" n8n-2.1.0-how_to_enable_chat_in_trigger.png max-800 %}
+
+2. 你就會在 Chat Hub 的 Agent Workflow 看到剛剛啟用的 workflow
+{% darrellImage800Alt "Chat Hub 的 Agent Workflow 看到剛剛啟用的 workflow" n8n-2.1.0-n8n_workflow_agents_calendar_agent.png max-800 %}
+
+3. 再來就是直接在 Chat Hub 和剛剛的 AI Agent 聊天，不用再單獨進到 workflow 中測試時才能聊天詢問
+{% darrellImage800Alt "直接在 Chat Hub 和剛剛的 AI Agent 聊天，不用再單獨進到 workflow 中測試時才能聊天詢問" n8n-2.1.0-n8n_calendar_agent_today_schedule.png max-800 %}
+
+
+### Anthropic 模型支援 thinking mode
+Anthropic model thinking mode support for AI Agent Node
+
+AI Agent Node 現在支援 **Anthropic 的 thinking mode**，這個模式可以讓模型在回答前進行更深入的思考。
+對於需要複雜推理的任務來說，這個功能可以提升 AI 的回應品質。
+
+{% darrellImage800Alt "Anthropic 模型支援 thinking mode 的設定畫面" n8n-2.1.0-anthropic_claude_opus_settings.png max-800 %}
+
+實測效果：
+當有啟用 thinking 時能明顯感受到 AI 節點執行時間較長
+用來處理較為複雜的任務時可以啟用看看，讓 AI 的回答更為精準跟完整
+
+{% darrellImage800Alt "Anthropic 模型支援 thinking mode 的實測效果" n8n-2.1.0-anthropic_chat_model_logs.png max-800 %}
+
+### Gemini 支援 FileSearch
+
+Gemini 前一陣子支援了 File Search 讓 RAG 的導入更加方便
+可以想像成一個簡易基礎版的 RAG，如果你需要索引的資料比較簡易
+就能考慮先試試看 Gemini 的 File Search 
+
+這次更新也在 Gemini 節點中直接可以建立和上傳 File Search 
+不需要再用複雜的 `HTTP Request` 節點自己組合 API 
+
+{% darrellImage800Alt "Gemini 節點中直接可以建立和上傳 File Search" n8n-2.1.0-n8n_upload_pdf_to_gemini_file_search_store.png max-800 %}
+
 
 ## 2.0.0 Pre-release - 2025-12-08
 
