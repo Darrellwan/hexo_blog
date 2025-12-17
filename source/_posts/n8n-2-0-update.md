@@ -12,7 +12,7 @@ bgImage: n8n-2.0-update-bg.jpg
 preload:
   - n8n-2.0-update-bg.jpg
 date: 2025-11-26 16:17:12
-modified: 2025-12-09 14:20:00
+modified: 2025-12-17 16:16:00
 ---
 
 {% darrellImageCover n8n-2.0-update-bg n8n-2.0-update-bg.jpg %}
@@ -153,6 +153,44 @@ NODES_EXCLUDE=[]
 
 {% darrellImage800Alt "ExecuteCommand Node & LocalFileTrigger Node 被停用的警告" n8n-2.0-executecommand-and-localfiletrigger-node-warning.png max-800 %}
 
+這邊用圖片教學大家這個環境變數的設定邏輯
+
+簡單理解就是：`NODES_EXCLUDE` 裡面填「要被排除（禁用）」的節點名稱清單。
+
+常見幾種寫法如下（對應下圖）：
+
+1. 只排除 ExecuteCommand 節點
+```
+NODES_EXCLUDE=["n8n-nodes-base.executeCommand"]
+```
+
+2. 只排除 Read/Write Files from Disk 節點
+```
+NODES_EXCLUDE=["n8n-nodes-base.readWriteFile"]
+```
+
+3. 同時排除兩個節點
+```
+NODES_EXCLUDE=["n8n-nodes-base.executeCommand","n8n-nodes-base.readWriteFile"]
+```
+
+4. 不排除任何節點（全部允許）
+```
+NODES_EXCLUDE=[]
+```
+
+{% darrellImage800Alt "n8n 環境變數設定教學" n8n-2.0-exclude_nodes_setting_tutorial.png max-800 %}
+
+和在 Zeabur 中如何設定：
+
+如果你是用 Zeabur 部署 n8n，可以照這個流程新增環境變數：
+
+1. 在 Zeabur 專案左側選到你的 **n8n**
+2. 進到上方頁籤的 **環境變數**
+3. 點 **新增環境變數**，Key 填 `NODES_EXCLUDE`
+4. Value 依你要的設定填入（例如要全部允許就填 `[]`），然後按右側 **新增**
+
+{% darrellImage800Alt "在 Zeabur 中如何設定 ExecuteCommand Node & LocalFileTrigger Node" n8n-2.0-exclude_nodes_setting_tutorial_in_zeabur.png max-800 %}
 
 ---
 
