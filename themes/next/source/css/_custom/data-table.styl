@@ -1,0 +1,238 @@
+// Data Table Styles
+// 通用表格標籤樣式，搭配 /scripts/data-table.js 使用
+//
+// 參數說明：
+//   style: minimal | dark | light
+//   align: auto | left | center | l,c,r (精確控制)
+//   highlight: 重點欄位索引 (從 1 開始)
+//   color: primary | secondary
+//
+// CSS 變數（可在其他地方覆蓋）：
+//   --table-highlight: var(--n8n-primary)
+//   --table-highlight-secondary: var(--n8n-secondary)
+//   --table-highlight-glow: rgba(255, 109, 90, 0.12)
+
+:root
+  --table-highlight: var(--n8n-primary, #ff6d5a)
+  --table-highlight-secondary: var(--n8n-secondary, #20a0ff)
+  --table-highlight-glow: rgba(255, 109, 90, 0.12)
+  --table-highlight-glow-strong: rgba(255, 109, 90, 0.25)
+
+// ============================================
+// RWD Wrapper - 水平捲動 + 覆蓋主題 CSS 變數
+// ============================================
+.data-table-wrapper
+  overflow-x: auto
+  -webkit-overflow-scrolling: touch
+  margin: 1em 0
+  // 覆蓋主題的 CSS 變數，隔離 table 樣式
+  --table-row-odd-bg-color: transparent
+  --table-row-hover-bg-color: transparent
+
+// ============================================
+// 基礎結構（用雙重 class 提高特異性）
+// ============================================
+.data-table-wrapper .data-table
+  width: 100%
+  min-width: 400px
+  border-collapse: collapse
+  margin: 0
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif
+
+  // 重置主題的全域 table 樣式
+  th,
+  td
+    padding: 14px 16px
+    border: none
+    border-bottom: none
+    vertical-align: middle
+
+// 重置奇偶行背景色（獨立選擇器，確保特異性夠高）
+.data-table-wrapper .data-table tbody tr
+  background: transparent
+
+.data-table-wrapper .data-table tbody tr:nth-of-type(odd)
+  background: transparent
+
+.data-table-wrapper .data-table tbody tr:nth-of-type(even)
+  background: transparent
+
+.data-table-wrapper .data-table tbody tr:hover
+  background: transparent
+
+// 表頭和儲存格樣式
+.data-table-wrapper .data-table th
+  font-size: 0.8rem
+  text-transform: uppercase
+  letter-spacing: 0.06em
+  font-weight: 600
+
+.data-table-wrapper .data-table td
+  font-size: 0.95rem
+
+// 重點欄位樣式（用 data-table-emphasis 避開 Hexo 的 highlight class）
+.data-table-wrapper .data-table td.data-table-emphasis
+  color: var(--table-highlight)
+  font-family: 'JetBrains Mono', 'Fira Code', monospace
+  font-size: 0.9rem
+
+.data-table-wrapper .data-table td.data-table-emphasis--secondary
+  color: var(--table-highlight-secondary)
+
+// ============================================
+// 對齊模式（用雙重 class）
+// ============================================
+
+// align="auto": 第一欄左，其餘中（預設）
+.data-table-wrapper .data-table--align-auto
+  th:first-child,
+  td:first-child
+    text-align: left
+
+  th:not(:first-child),
+  td:not(:first-child)
+    text-align: center
+
+// align="left": 全部置左
+.data-table-wrapper .data-table--align-left
+  th,
+  td
+    text-align: left
+
+// align="center": 全部置中
+.data-table-wrapper .data-table--align-center
+  th,
+  td
+    text-align: center
+
+// ============================================
+// Minimal 極簡線條（用雙重 class）
+// ============================================
+.data-table-wrapper .data-table--minimal
+  background: transparent
+
+  th
+    color: #888
+    border-bottom: 2px solid #333
+    padding: 12px 16px
+
+  td
+    color: #ccc
+    border-bottom: 1px solid #252525
+
+  tbody tr:last-child td
+    border-bottom: none
+
+// ============================================
+// Minimal Hover 效果：Ember Glow 餘燼微光
+// ============================================
+.data-table-wrapper .data-table--minimal
+  tbody tr
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1)
+
+  tbody tr:hover
+    background: linear-gradient(
+      90deg,
+      rgba(255, 109, 90, 0.03) 0%,
+      rgba(255, 109, 90, 0.08) 50%,
+      rgba(255, 109, 90, 0.03) 100%
+    )
+    box-shadow:
+      inset 0 0 40px rgba(255, 109, 90, 0.06),
+      inset 0 0 80px rgba(255, 109, 90, 0.03)
+
+  tbody tr:hover td
+    color: #f5f5f5
+
+  tbody tr:hover td.data-table-emphasis
+    color: #ff7d6a
+    text-shadow:
+      0 0 20px rgba(255, 109, 90, 0.4),
+      0 0 40px rgba(255, 109, 90, 0.2)
+
+// ============================================
+// Dark 深色卡片（用雙重 class）
+// ============================================
+.data-table-wrapper .data-table--dark
+  background: #1a1a1a
+  border-radius: 12px
+  overflow: hidden
+  border: 1px solid #2a2a2a
+
+  th
+    background: #141414
+    color: #888
+    border-bottom: 1px solid #2a2a2a
+    padding: 14px 16px
+
+  td
+    color: #e5e5e5
+    border-bottom: 1px solid #222
+
+  tbody tr:last-child td
+    border-bottom: none
+
+  // Hover 效果
+  tbody tr
+    transition: all 0.3s ease
+
+  tbody tr:hover
+    background: rgba(255, 255, 255, 0.04)
+
+  tbody tr:hover td
+    color: #fff
+
+  tbody tr:hover td.data-table-emphasis
+    color: var(--table-highlight)
+
+// ============================================
+// Light 淺色卡片（用雙重 class）
+// ============================================
+.data-table-wrapper .data-table--light
+  background: #fafafa
+  border-radius: 12px
+  overflow: hidden
+
+  th
+    background: #f0f0f0
+    color: #666
+    border-bottom: 1px solid #e5e5e5
+    padding: 14px 16px
+
+  td
+    color: #333
+    border-bottom: 1px solid #eee
+
+  tbody tr:last-child td
+    border-bottom: none
+
+  tbody tr
+    transition: all 0.25s ease
+
+  tbody tr:hover
+    background: #f0f0f0
+
+  tbody tr:hover td
+    color: #111
+
+  // Light 模式下的 highlight 顏色調整
+  td.data-table-emphasis
+    color: #e05a4a
+
+  td.data-table-emphasis--secondary
+    color: #1a8fe0
+
+// ============================================
+// Responsive（用雙重 class）
+// ============================================
+@media (max-width: 640px)
+  .data-table-wrapper .data-table
+    min-width: 300px
+
+    th,
+    td
+      padding: 12px
+      font-size: 0.85rem
+
+    th
+      font-size: 0.7rem
