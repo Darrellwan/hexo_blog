@@ -2,14 +2,20 @@
 
 ## 📚 最新文章
 
+### [n8n Time Saved Node 教學 - 省下多少時間？量化 n8n 的 ROI](https://www.darrelltw.com/n8n-time-saved-node/?utm_source=github_readme&utm_medium=referral)
+📅 2025/12/20 · 2 天前
+
+> 老闆問「自動化到底省多少時間？」答不出來？n8n 2.1.0 的 Time Saved Node 讓你量化 ROI。本文教你 Fixed vs Dynamic 兩種計算方式，含 LINE 自動回覆實例。
+
+
 ### [n8n AI 模型 Router 教學：Zeabur AI Hub 智慧切換模型](https://www.darrelltw.com/n8n-zeabur-ai-hub-model-router/?utm_source=github_readme&utm_medium=referral)
-📅 2025/12/06 · 15 天前
+📅 2025/12/06 · 16 天前
 
 > n8n 搭配 Zeabur AI Hub 打造 AI 模型 Router，一個 API Key 串接 GPT、Claude、Gemini。根據問題複雜度智慧切換模型：簡單問題用便宜模型、複雜問題用強模型，省成本又兼顧品質
 
 
 ### [n8n 2.0 大更新：除了新功能，更該擔心能不能順利 Migrate](https://www.darrelltw.com/n8n-2-0-update/?utm_source=github_readme&utm_medium=referral)
-📅 2025/11/26 · 24 天前
+📅 2025/11/26 · 1 個月前
 
 > n8n 2.0 大更新要來了！包含新功能介紹、Migration Report 使用教學、Breaking Changes 詳解和常見升級問題解決方案
 
@@ -56,16 +62,10 @@
 > n8n Poll Time完整教學！場景對應設定、成本計算、Rate Limit避雷。
 
 
-### [n8n Filter 節點教學 - 資料篩選與條件判斷](https://www.darrelltw.com/n8n-filter-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/09/08 · 3 個月前
-
-> 解析 n8n Filter 節點與 If/Switch 節點差異，包含 AND/OR 邏輯判斷、Ignore case 設定等進階功能。實測各種資料類型篩選方法，提升自動化流程效率。
-
-
 ## 📊 部落格統計
-![文章總數](https://img.shields.io/badge/文章總數-114-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-256,737+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/12/21-green?style=flat-square)
+![文章總數](https://img.shields.io/badge/文章總數-115-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-260,108+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/12/22-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -88,7 +88,7 @@
 
 
 ## 🏷️ 熱門主題
-![n8n](https://img.shields.io/badge/n8n-28-orange?style=flat-square) ![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-15-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![AI](https://img.shields.io/badge/AI-8-orange?style=flat-square)
+![n8n](https://img.shields.io/badge/n8n-29-orange?style=flat-square) ![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-15-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![AI](https://img.shields.io/badge/AI-8-orange?style=flat-square)
 
 ## 📈 更新頻率
 ```text
@@ -97,7 +97,7 @@
 09月 ████░░░░░░ 4篇
 10月 ██░░░░░░░░ 2篇
 11月 ███░░░░░░░ 3篇
-12月 █░░░░░░░░░ 1篇
+12月 ██░░░░░░░░ 2篇
 ```
 
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-12-21 02:08:07*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-12-22 05:01:30*
