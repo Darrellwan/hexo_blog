@@ -3,13 +3,13 @@
 ## 📚 最新文章
 
 ### [n8n Time Saved Node 教學 - 省下多少時間？量化 n8n 的 ROI](https://www.darrelltw.com/n8n-time-saved-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/12/20 · 2 天前
+📅 2025/12/20 · 3 天前
 
 > 老闆問「自動化到底省多少時間？」答不出來？n8n 2.1.0 的 Time Saved Node 讓你量化 ROI。本文教你 Fixed vs Dynamic 兩種計算方式，含 LINE 自動回覆實例。
 
 
 ### [n8n AI 模型 Router 教學：Zeabur AI Hub 智慧切換模型](https://www.darrelltw.com/n8n-zeabur-ai-hub-model-router/?utm_source=github_readme&utm_medium=referral)
-📅 2025/12/06 · 16 天前
+📅 2025/12/06 · 17 天前
 
 > n8n 搭配 Zeabur AI Hub 打造 AI 模型 Router，一個 API Key 串接 GPT、Claude、Gemini。根據問題複雜度智慧切換模型：簡單問題用便宜模型、複雜問題用強模型，省成本又兼顧品質
 
@@ -64,8 +64,8 @@
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-115-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-260,108+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/12/22-green?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-260,992+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2025/12/23-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-12-22 05:01:30*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-12-23 15:30:02*
