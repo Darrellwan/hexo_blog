@@ -7,16 +7,80 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2025/12/09 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.1.0（Pre-release），正式版本為 1.123.6
+description: n8n 的更新記錄(2025/12/23 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.2.0（Pre-release），正式版本為 2.1.2
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-12-16 11:00:00
+modified: 2025-12-23 21:46:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 2.2.0 Pre-release - 2025-12-22
+
+[Github 2.2.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%402.2.0)
+
+### Webhook Node CIDR IP 白名單
+Webhook Node: Use CIDR matching for IP whitelist check
+
+Webhook 的 IP 白名單終於支援 CIDR 格式
+
+大部分人可能不知道什麼是 CIDR，
+**CIDR 是 Classless Inter-Domain Routing 的縮寫**
+簡單來說就是一個 IP 地址的範圍
+
+如果你們公司有網管或是 IT資安部門
+有時候會遇到需要申請 IP 白名單的情況
+那他們就會跟你說，請你提供 IP 網段、範圍或是 CIDR
+
+好處是可以在很簡短的文字中，就表達出一段 IP 的範圍
+像是一段縮寫一樣
+
+```
+192.168.1.0/24  → 包含 192.168.1.0 ~ 192.168.1.255
+10.0.0.0/8     → 整個 10.x.x.x 網段
+```
+
+{% darrellImage800Alt "Webhook Node IP 白名單現在支援 CIDR 格式" n8n-2.2.0-webhook_cidr.png max-800 %}
+
+### Guardrails Node 支援 Unicode
+Guardrails Node: Handle Unicode characters
+
+之前在 1.119.0 介紹過 Guardrails Node，可以用來防止 Prompt Injection 攻擊。
+
+然而其實在判斷中文時會有問題
+這版本終於修復！
+
+測試的方式是使用 keyword 來偵測
+
+例如當 prompt 包含 `母湯` 時就應該判定有問題
+但是在以前是會通過檢查的
+
+更新後現在能正確判讀中文，並把它判定成有問題
+讓你可以用中文的方式篩選或判斷關鍵字
+
+{% darrellImage800Alt "Guardrails Node 現在支援 Unicode，中文 Prompt 也能正確分析" n8n-2.2.0-guardrails_unicode.png max-800 %}
+
+### 節點位置檢查和重疊偵測
+Implement node position checks and overlap detection
+
+貼心小更新！
+這功能對於 workflow 很雜亂的場景相當有幫助
+尤其是愛用 sticky note 的人
+
+以往我們用 sticky note 圈起幾個節點
+當從這些節點的中間再新增節點時
+sticky note 不會跟著長大跟變寬
+這時候還要手動自己調整 sticky note 的寬度
+
+現在：再也不用了
+當他偵測到你新增節點時
+也會自動把 sticky note 變寬一點
+
+{% darrellImage800Alt "n8n 編輯器新增節點重疊偵測功能" n8n-2.2.0-node_overlap_detection.png max-800 %}
+
 
 ## 2.1.0 Pre-release - 2025-12-15
 

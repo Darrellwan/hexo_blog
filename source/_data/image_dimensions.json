@@ -6763,5 +6763,20 @@
     "width": 1536,
     "height": 1342,
     "mtimeMs": 1766379659346.303
+  },
+  "/_posts/n8n-update-log/n8n-2.2.0-webhook_cidr.png": {
+    "width": 1654,
+    "height": 1676,
+    "mtimeMs": 1766498712077.023
+  },
+  "/_posts/n8n-update-log/n8n-2.2.0-node_overlap_detection.png": {
+    "width": 2732,
+    "height": 2220,
+    "mtimeMs": 1766502347958.299
+  },
+  "/_posts/n8n-update-log/n8n-2.2.0-guardrails_unicode.png": {
+    "width": 1432,
+    "height": 1150,
+    "mtimeMs": 1766502347509.384
   }
 }
