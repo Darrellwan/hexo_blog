@@ -28,7 +28,7 @@
     <meta property="og:image" content="https://www.darrelltw.com/tools/n8n_template/model-template-og-c.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Darrell n8n 模板庫 - 26+ 個自動化工作流程">
+    <meta property="og:image:alt" content="Darrell n8n 模板庫 - 27+ 個自動化工作流程">
     <meta property="og:locale" content="zh_TW">
 
     <!-- Twitter Card -->
@@ -837,7 +837,7 @@
             <div class="cmd-divider"></div>
 
             <div class="stats-part">
-                <span class="stat-number" id="totalCount">26</span>
+                <span class="stat-number" id="totalCount">27</span>
                 <span>Items</span>
             </div>
         </nav>
@@ -848,6 +848,27 @@
         </div>
 
         <div class="model-grid">
+
+            <article class="glass-card" data-nodes="18" data-title="AI 新聞每日摘要 Email" data-date="2025-12-26" data-tags="AI RSS Gmail 每日摘要 自動化">
+                <div class="card-img-wrapper">
+                    <img src="data/bg/n8n-ai-news-daily-digest.webp" alt="AI 新聞每日摘要 Email" class="card-img" width="400" height="400" loading="eager" fetchpriority="high" decoding="async" onerror="this.src='https://placehold.co/400x400/222/FFF?text=n8n'">
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">AI 新聞每日摘要 Email</h3>
+                    <p class="card-desc">每日排程自動觸發（24 小時間隔）,從 4 個 AI 新聞 RSS 來源同時抓取（OpenAI、MIT、The Verge、Ars Technica）,排序過濾最近一天的新聞並去除重複,GPT-4o-mini 分析每篇文章：中文摘要、重要性評分（1-5）、標籤,Structured Output Parser 確保 AI 輸出格式正確,依重要性分級（必讀/重要/一般）生成精美 HTML Email,透過 Gmail 自動寄送每日 AI 新聞日報</p>
+                    <div class="card-tags">
+                        <span class="glass-tag">AI</span><span class="glass-tag">RSS</span><span class="glass-tag">Gmail</span><span class="glass-tag">每日摘要</span><span class="glass-tag">自動化</span>
+                    </div>
+                    <div class="card-footer">
+                        <div class="node-count">
+                            <div class="node-dot"></div>
+                            18 Nodes
+                        </div>
+                        <span class="date">Dec 26</span>
+                    </div>
+                </div>
+                <a href="model/n8n-ai-news-daily-digest.html" class="card-link" aria-label="AI 新聞每日摘要 Email" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;"></a>
+            </article>
 
             <article class="glass-card" data-nodes="5" data-title="Zeabur AI Hub 智慧模型 Router" data-date="2025-12-06" data-tags="AI Zeabur 模型選擇 成本優化 OpenAI Claude Gemini">
                 <div class="card-img-wrapper">
@@ -956,7 +977,7 @@
 
             <article class="glass-card" data-nodes="8" data-title="OpenAI Sora-2 文字轉影片自動生成" data-date="2025-10-11" data-tags="AI 影片生成 OpenAI Sora 自動化 Google Drive 文字轉影片">
                 <div class="card-img-wrapper">
-                    <img src="data/bg/n8n-sora2-prompt-to-video.webp" alt="OpenAI Sora-2 文字轉影片自動生成" class="card-img" width="400" height="400" loading="eager" fetchpriority="high" decoding="async" onerror="this.src='https://placehold.co/400x400/222/FFF?text=n8n'">
+                    <img src="data/bg/n8n-sora2-prompt-to-video.webp" alt="OpenAI Sora-2 文字轉影片自動生成" class="card-img" width="400" height="400" loading="lazy" decoding="async" onerror="this.src='https://placehold.co/400x400/222/FFF?text=n8n'">
                 </div>
                 <div class="card-content">
                     <h3 class="card-title">OpenAI Sora-2 文字轉影片自動生成</h3>
@@ -1404,11 +1425,47 @@
   "@type": "ItemList",
   "name": "DarrellTW n8n 自動化模板庫",
   "description": "免費 n8n 自動化工作流程模板集合，包含 LINE Bot、AI 圖像生成、Google Sheets 整合等實用範例",
-  "numberOfItems": 26,
+  "numberOfItems": 27,
   "itemListElement": [
     {
       "@type": "ListItem",
       "position": 1,
+      "item": {
+        "@type": "SoftwareApplication",
+        "name": "AI 新聞每日摘要 Email",
+        "description": "自動從 4 個權威 AI 新聞來源抓取最新資訊，透過 GPT-4o-mini 智能分析並生成精美的 HTML Email 日報。\n\n主要功能：\n\n多來源 RSS 聚合：OpenAI Blog、MIT Tech Review、The Verge AI、Ars Technica\nAI 智能分析：GPT-4o-mini 為每篇文章評分並生成中文摘要\n精美 Email：自動生成分級排版的 HTML 郵件（必讀/重要/一般）\nGmail 發送：每日自動寄送到指定信箱",
+        "applicationCategory": "BusinessApplication",
+        "applicationSubCategory": "WorkflowAutomation",
+        "operatingSystem": "n8n",
+        "softwareVersion": "1.0",
+        "datePublished": "2025-12-26",
+        "dateModified": "2025-12-26",
+        "author": {
+          "@type": "Person",
+          "name": "Darrell Wang",
+          "url": "https://www.darrelltw.com"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "TWD",
+          "availability": "https://schema.org/InStock"
+        },
+        "keywords": "AI, RSS, Gmail, 每日摘要, 自動化",
+        "url": "https://darrelltw.com/tools/n8n_template/model/n8n-ai-news-daily-digest.html",
+        "screenshot": "https://www.darrelltw.com/tools/n8n_template/data/bg/darrell_workflow_template_n8n-ai-news-daily-digest.jpg",
+        "featureList": [
+          "每日排程自動觸發（24 小時間隔）",
+          "從 4 個 AI 新聞 RSS 來源同時抓取（OpenAI、MIT、The Verge、Ars Technica）",
+          "排序過濾最近一天的新聞並去除重複",
+          "GPT-4o-mini 分析每篇文章：中文摘要、重要性評分（1-5）、標籤",
+          "Structured Output Parser 確保 AI 輸出格式正確"
+        ]
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
       "item": {
         "@type": "SoftwareApplication",
         "name": "Zeabur AI Hub 智慧模型 Router",
@@ -1444,7 +1501,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 2,
+      "position": 3,
       "item": {
         "@type": "SoftwareApplication",
         "name": "Github 每日備份工作流",
@@ -1480,7 +1537,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 3,
+      "position": 4,
       "item": {
         "@type": "SoftwareApplication",
         "name": "Threads 回覆小精靈 - 表單自動寄送模板",
@@ -1516,7 +1573,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 4,
+      "position": 5,
       "item": {
         "@type": "SoftwareApplication",
         "name": "LINE Messaging Community 節點範本",
@@ -1552,7 +1609,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 5,
+      "position": 6,
       "item": {
         "@type": "SoftwareApplication",
         "name": "Line Message API 完整教學範例",
@@ -1588,7 +1645,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 6,
+      "position": 7,
       "item": {
         "@type": "SoftwareApplication",
         "name": "OpenAI Sora-2 文字轉影片自動生成",
@@ -1624,7 +1681,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 7,
+      "position": 8,
       "item": {
         "@type": "SoftwareApplication",
         "name": "n8n DataTables 完整功能示範",
@@ -1660,7 +1717,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 8,
+      "position": 9,
       "item": {
         "@type": "SoftwareApplication",
         "name": "Google nano banana 替換圖片",
@@ -1696,7 +1753,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 9,
+      "position": 10,
       "item": {
         "@type": "SoftwareApplication",
         "name": "房屋資訊爬蟲到 Google Sheet",
@@ -1732,7 +1789,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 10,
+      "position": 11,
       "item": {
         "@type": "SoftwareApplication",
         "name": "Apify 撈 Youtube 影片資訊 Demo",
@@ -1768,7 +1825,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 11,
+      "position": 12,
       "item": {
         "@type": "SoftwareApplication",
         "name": "表單名單蒐集與自動化郵件發送",
@@ -1804,7 +1861,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 12,
+      "position": 13,
       "item": {
         "@type": "SoftwareApplication",
         "name": "Gmail 電商取貨提醒自動化",
@@ -1840,7 +1897,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 13,
+      "position": 14,
       "item": {
         "@type": "SoftwareApplication",
         "name": "AI 選 AI 模型",
@@ -1876,7 +1933,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 14,
+      "position": 15,
       "item": {
         "@type": "SoftwareApplication",
         "name": "Portaly 商品銷售 Webhook 自動記錄",
@@ -1912,7 +1969,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 15,
+      "position": 16,
       "item": {
         "@type": "SoftwareApplication",
         "name": "Meta Webhook Challenge 驗證回應",
@@ -1948,7 +2005,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 16,
+      "position": 17,
       "item": {
         "@type": "SoftwareApplication",
         "name": "n8n Evaluations 功能示範：AI 項目分類",
@@ -1984,7 +2041,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 17,
+      "position": 18,
       "item": {
         "@type": "SoftwareApplication",
         "name": "Gmail 電子發票轉存 Google Sheet + AI 分析消費",
@@ -2020,7 +2077,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 18,
+      "position": 19,
       "item": {
         "@type": "SoftwareApplication",
         "name": "檢查 n8n 正在使用的 AI 模型",
@@ -2054,7 +2111,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 19,
+      "position": 20,
       "item": {
         "@type": "SoftwareApplication",
         "name": "ChatGPT Image-1 圖像生成與自動儲存",
@@ -2090,7 +2147,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 20,
+      "position": 21,
       "item": {
         "@type": "SoftwareApplication",
         "name": "Line 收據AI辨識自動記帳",
@@ -2126,7 +2183,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 21,
+      "position": 22,
       "item": {
         "@type": "SoftwareApplication",
         "name": "Supabase限制工作流程執行次數",
@@ -2162,7 +2219,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 22,
+      "position": 23,
       "item": {
         "@type": "SoftwareApplication",
         "name": "Instagram API 貼文發佈範例",
@@ -2198,7 +2255,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 23,
+      "position": 24,
       "item": {
         "@type": "SoftwareApplication",
         "name": "Slack自動喝水提醒",
@@ -2234,7 +2291,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 24,
+      "position": 25,
       "item": {
         "@type": "SoftwareApplication",
         "name": "別忘記繳費:信用卡帳單自動建日曆提醒",
@@ -2270,7 +2327,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 25,
+      "position": 26,
       "item": {
         "@type": "SoftwareApplication",
         "name": "While True 迴圈範例：分頁資料處理",
@@ -2306,7 +2363,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 26,
+      "position": 27,
       "item": {
         "@type": "SoftwareApplication",
         "name": "外送記帳自動化",

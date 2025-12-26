@@ -1,0 +1,607 @@
+{
+  "name": "[Darrell][Template]AI News Daily Digest",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 24
+            }
+          ]
+        }
+      },
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        2128,
+        -464
+      ],
+      "id": "3a7e817c-0bdc-444d-b6f8-45cefd7da7c7"
+    },
+    {
+      "parameters": {
+        "url": "https://openai.com/blog/rss.xml",
+        "options": {}
+      },
+      "name": "RSS - OpenAI Blog",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.1,
+      "position": [
+        2560,
+        -672
+      ],
+      "id": "dedfbd12-f91c-4b2a-ba55-548611579ee4"
+    },
+    {
+      "parameters": {
+        "url": "https://www.technologyreview.com/topic/artificial-intelligence/feed",
+        "options": {}
+      },
+      "name": "RSS - MIT Tech Review",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.1,
+      "position": [
+        2560,
+        -528
+      ],
+      "id": "d1098aff-af64-430a-b136-9f17f3a4f835"
+    },
+    {
+      "parameters": {
+        "url": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
+        "options": {}
+      },
+      "name": "RSS - The Verge AI",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.1,
+      "position": [
+        2560,
+        -384
+      ],
+      "id": "bbf25e35-11bd-4b76-96c6-cb5be88941c8"
+    },
+    {
+      "parameters": {
+        "url": "https://feeds.arstechnica.com/arstechnica/features",
+        "options": {}
+      },
+      "name": "RSS - Ars Technica",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.1,
+      "position": [
+        2560,
+        -240
+      ],
+      "id": "e9573137-47f4-4adf-a0b8-b85419ca33d2"
+    },
+    {
+      "parameters": {
+        "numberInputs": 4
+      },
+      "name": "Merge All RSS",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        3168,
+        -512
+      ],
+      "id": "1bfda70c-fe5b-4296-aec6-3647e07443ba"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Prepare RSS data for AI processing\nconst allItems = $input.all();\nconst config = $node[\"Config\"].json;\nconst maxItems = config.max_items_total || 30;\n\n// Combine and limit items\nconst articles = allItems\n  .slice(0, maxItems)\n  .map((item, i) => {\n    const json = item.json;\n    return {\n      id: i + 1,\n      title: json.title || 'Untitled',\n      link: json.link || '',\n      content: (json.contentSnippet || json.description || json.content || '').slice(0, 500),\n      pubDate: json.pubDate || json.isoDate || '',\n      source: json.creator || json['dc:creator'] || 'Unknown'\n    };\n  });\n\n// Format for AI\nconst articlesText = articles.map(a => \n  `[${a.id}] ${a.title}\\nContent: ${a.content}\\nSource: ${a.source}`\n).join('\\n\\n');\n\nreturn [{\n  json: {\n    articles,\n    articlesText,\n    count: articles.length,\n    generatedAt: new Date().toISOString()\n  }\n}];"
+      },
+      "name": "Prepare Data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3696,
+        -480
+      ],
+      "id": "17591059-04fb-498c-a5b3-cf2eadc18e8d"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=你是 AI 新聞分析專家。請分析以下新聞文章，為每篇提供：\n\n  1. **中文摘要** - 一句話總結重點（繁體中文，30字內）\n  2. **重要性評分** - 1-5 分（5=重大突破/必讀，1=一般資訊）\n  3. **標籤** - 2-3 個中文關鍵字\n\n  評分標準：\n  - 5分：重大產品發布、突破性研究、產業重大變動\n  - 4分：重要更新、有影響力的趨勢\n  - 3分：值得關注的一般新聞\n  - 2分：次要更新、小功能發布\n  - 1分：一般資訊、舊聞整理\n\n  {format_instructions}\n\n  新聞列表：\n  {{ $json.articlesText }}",
+        "hasOutputParser": true,
+        "batching": {}
+      },
+      "name": "Basic LLM Chain",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        3872,
+        -480
+      ],
+      "id": "30f08aad-ffd0-40e6-bbeb-c5da86242dfb"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {
+          "temperature": 0.3
+        }
+      },
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        3872,
+        -208
+      ],
+      "id": "71784cb0-dfc3-4005-bc55-73f33757d555",
+      "credentials": {
+        "openAiApi": {
+          "id": "AE7fbXM0LWEUpaUf",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n    \"articles\": [\n      {\n        \"id\": 1,\n        \"summary_zh\": \"OpenAI 發布 GPT-5，推理能力大幅提升\",\n        \"importance\": 5,\n        \"tags\": [\"OpenAI\", \"GPT-5\", \"LLM\"]\n      },\n      {\n        \"id\": 2,\n        \"summary_zh\": \"Google 更新 Gemini API 定價方案\",\n        \"importance\": 3,\n        \"tags\": [\"Google\", \"Gemini\", \"API\"]\n      },\n      {\n        \"id\": 3,\n        \"summary_zh\": \"研究顯示 AI 模型存在幻覺問題的新解法\",\n        \"importance\": 4,\n        \"tags\": [\"AI研究\", \"幻覺\", \"可靠性\"]\n      }\n    ]\n  }",
+        "autoFix": true
+      },
+      "name": "Structured Output Parser",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        3936,
+        -304
+      ],
+      "id": "8829a392-23de-4eae-8538-76c12e8ab4e4"
+    },
+    {
+      "parameters": {
+        "jsCode": "const aiOutput = $input.first().json.output || $input.first().json;\n  const originalData = $node[\"Prepare Data\"].json;\n\n  const enrichedArticles = originalData.articles.map(article => {\n    const aiData = aiOutput.articles?.find(a => a.id === article.id) || {};\n    return {\n      ...article,\n      summary_zh: aiData.summary_zh || article.content.slice(0, 50) + '...',\n      importance: aiData.importance || 3,\n      tags: aiData.tags || []\n    };\n  });\n\n  enrichedArticles.sort((a, b) => b.importance - a.importance);\n\n  const byImportance = {\n    '必讀': enrichedArticles.filter(a => a.importance === 5),\n    '重要': enrichedArticles.filter(a => a.importance === 4),\n    '一般': enrichedArticles.filter(a => a.importance <= 3)\n  };\n\n  return [{\n    json: {\n      articles: enrichedArticles,\n      byImportance,\n      totalCount: enrichedArticles.length,\n      processedAt: new Date().toISOString()\n    }\n  }];"
+      },
+      "name": "Merge AI Results",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4192,
+        -480
+      ],
+      "id": "4dc70502-83c8-458e-8ea2-b49a01d5cf93"
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $input.first().json;\n  const { byImportance, totalCount, processedAt } = data;\n\n  const levelConfig = {\n    '必讀': { icon: '◆', color: '#e63946', bgAccent: '#2d1f1f' },\n    '重要': { icon: '◇', color: '#d4a574', bgAccent: '#2a2520' },\n    '一般': { icon: '○', color: '#8b9a7d', bgAccent: '#1f2420' }\n  };\n\n  let sections = '';\n\n  ['必讀', '重要', '一般'].forEach(level => {\n    const articles = byImportance[level];\n    if (!articles?.length) return;\n\n    const { icon, color, bgAccent } = levelConfig[level];\n\n    let rows = '';\n    articles.forEach(article => {\n      const tags = article.tags.map(t =>\n        `<span style=\"display: inline-block; background-color: ${bgAccent}; color: ${color}; padding: 4px 10px; border-radius: 2px; font-size: 11px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; margin-right: 6px; margin-bottom: 4px; letter-spacing: 0.5px; text-transform: uppercase;\">${t}</span>`\n      ).join(' ');\n\n      rows += `\n        <tr>\n          <td style=\"padding: 0 0 24px 0;\">\n            <table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n              <tr>\n                <td style=\"background-color: #242424; border-left: 3px solid ${color}; padding: 20px 24px;\">\n                  <table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n                    <tr>\n                      <td style=\"padding-bottom: 12px;\">\n                        <a href=\"${article.link}\" style=\"color: #f5f0e8; text-decoration: none; font-family: Georgia, 'Times New Roman', serif; font-size: 18px; line-height: 1.4; font-weight: normal;\">${article.title}</a>\n                      </td>\n                    </tr>\n                    <tr>\n                      <td style=\"padding-bottom: 14px;\">\n                        <p style=\"margin: 0; color: #a8a8a8; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6;\">${article.summary_zh}</p>\n                      </td>\n                    </tr>\n                    <tr>\n                      <td style=\"padding-bottom: 12px;\">${tags}</td>\n                    </tr>\n                    <tr>\n                      <td>\n                        <span style=\"color: #666; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;\">${article.source}</span>\n                      </td>\n                    </tr>\n                  </table>\n                </td>\n              </tr>\n            </table>\n          </td>\n        </tr>\n      `;\n    });\n\n    sections += `\n      <tr>\n        <td style=\"padding: 32px 0 20px 0;\">\n          <table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n            <tr>\n              <td style=\"font-family: Georgia, 'Times New Roman', serif; font-size: 13px; color: ${color}; text-transform: uppercase; letter-spacing: 3px; padding-bottom: 8px;\">\n                ${icon} ${level}\n              </td>\n            </tr>\n            <tr>\n              <td style=\"border-bottom: 1px solid #333; padding-bottom: 0;\"></td>\n            </tr>\n          </table>\n        </td>\n      </tr>\n      ${rows}\n    `;\n  });\n\n  const dateStr = new Date().toLocaleDateString('zh-TW', {\n    year: 'numeric',\n    month: 'long',\n    day: 'numeric',\n    weekday: 'long'\n  });\n\n  const html = `\n  <!DOCTYPE html>\n  <html lang=\"zh-TW\">\n  <head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <title>AI 新聞日報</title>\n    <!--[if mso]>\n    <style type=\"text/css\">\n      table { border-collapse: collapse; }\n      td { font-family: Arial, sans-serif; }\n    </style>\n    <![endif]-->\n  </head>\n  <body style=\"margin: 0; padding: 0; background-color: #0f0f0f; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;\">\n    <table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"background-color: #0f0f0f;\">\n      <tr>\n        <td align=\"center\" style=\"padding: 40px 20px;\">\n          <table role=\"presentation\" width=\"600\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"max-width: 600px; width: 100%;\">\n\n            <!-- Accent Line -->\n            <tr>\n              <td style=\"background: linear-gradient(90deg, #e63946 0%, #d4a574 50%, #8b9a7d 100%); height: 3px; font-size: 0; line-height: 0;\">&nbsp;</td>\n            </tr>\n\n            <!-- Header -->\n            <tr>\n              <td style=\"background-color: #1a1a1a; padding: 48px 40px 40px 40px;\">\n                <table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n                  <tr>\n                    <td style=\"font-family: Georgia, 'Times New Roman', serif; font-size: 32px; color: #f5f0e8; letter-spacing: -0.5px; padding-bottom: 8px;\">\n                      AI 新聞日報\n                    </td>\n                  </tr>\n                  <tr>\n                    <td style=\"font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; color: #666; text-transform: uppercase; letter-spacing: 2px;\">\n                      ${dateStr}\n                    </td>\n                  </tr>\n                  <tr>\n                    <td style=\"padding-top: 24px;\">\n                      <table role=\"presentation\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n                        <tr>\n                          <td style=\"background-color: #242424; padding: 12px 20px; border-radius: 2px;\">\n                            <span style=\"font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; color: #a8a8a8;\">\n                              本期收錄 <strong style=\"color: #f5f0e8;\">${totalCount}</strong> 篇精選文章\n                            </span>\n                          </td>\n                        </tr>\n                      </table>\n                    </td>\n                  </tr>\n                </table>\n              </td>\n            </tr>\n\n            <!-- Content -->\n            <tr>\n              <td style=\"background-color: #1a1a1a; padding: 0 40px 40px 40px;\">\n                <table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n                  ${sections}\n                </table>\n              </td>\n            </tr>\n\n            <!-- Footer -->\n            <tr>\n              <td style=\"background-color: #141414; padding: 32px 40px; border-top: 1px solid #2a2a2a;\">\n                <table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\">\n                  <tr>\n                    <td align=\"center\" style=\"font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 11px; color: #555; text-transform: uppercase; letter-spacing: 1.5px;\">\n                      Curated by n8n × OpenAI\n                    </td>\n                  </tr>\n                </table>\n              </td>\n            </tr>\n\n          </table>\n        </td>\n      </tr>\n    </table>\n  </body>\n  </html>\n  `;\n\n  return [{\n    json: {\n      html,\n      subject: `AI 新聞日報 — ${new Date().toLocaleDateString('zh-TW', { month: 'long', day: 'numeric' })}`,\n      totalCount\n    }\n  }];"
+      },
+      "name": "Generate HTML Email",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4384,
+        -480
+      ],
+      "id": "6753f406-c599-42c7-bf00-cc38b810a44a"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $node[\"Config\"].json.to_email }}",
+        "subject": "={{ $json.subject }}",
+        "message": "={{ $json.html }}",
+        "options": {
+          "senderName": "={{ $node[\"Config\"].json.from_name }}"
+        }
+      },
+      "name": "Gmail Send",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        4576,
+        -480
+      ],
+      "id": "06652fa3-1aa3-4046-8dfb-dabbc076c2aa",
+      "webhookId": "b9b721fc-9a6d-4a8e-ad55-7e1ef44a12cc",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "34rX9kxKlJadOY6u",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sortFieldsUi": {
+          "sortField": [
+            {
+              "fieldName": "isoDate",
+              "order": "descending"
+            }
+          ]
+        },
+        "options": {
+          "disableDotNotation": false
+        }
+      },
+      "type": "n8n-nodes-base.sort",
+      "typeVersion": 1,
+      "position": [
+        2736,
+        -672
+      ],
+      "id": "2270a639-4f6c-4aa7-812f-3d1ecda9e2c5",
+      "name": "Sort"
+    },
+    {
+      "parameters": {
+        "maxItems": 10
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        2912,
+        -672
+      ],
+      "id": "f1c021f6-026c-403b-8225-e367ec83c0cd",
+      "name": "Limit"
+    },
+    {
+      "parameters": {
+        "compare": "selectedFields",
+        "fieldsToCompare": "title",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 2,
+      "position": [
+        3520,
+        -480
+      ],
+      "id": "e2a2a1fd-f695-4b2f-b39d-9dbd185149d9",
+      "name": "Remove Duplicates"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "772b2af8-cb76-4ad7-b59c-af274db286e3",
+              "leftValue": "={{ $json.isoDate }}",
+              "rightValue": "={{ $today.minus(1, \"days\") }}",
+              "operator": {
+                "type": "dateTime",
+                "operation": "after"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.3,
+      "position": [
+        3344,
+        -480
+      ],
+      "id": "6003d008-79f2-4210-ac64-696abb9e239b",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
+        "content": "## Created by darrell_tw_ \n\nHi 我是 Darrell\n有 n8n 問題可以找我聊聊\n\n- [n8n 教學資源網站](https://www.darrelltw.com/n8n-tutorial-resources/)\n- [n8n 模板分享網站](https://www.darrelltw.com/tools/n8n_template/models.html)\n\n### Social Media:\n[Website](https://www.darrelltw.com/)\n[X](https://x.com/darrell_tw_)\n[Threads](https://www.threads.net/@darrell_tw_)\n[Instagram](https://www.instagram.com/darrell_tw_/)\n![](https://pub-c093258f61a1463ea03e1a40c141968a.r2.dev/darrell-icon-128.svg)",
+        "height": 468,
+        "width": 312,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        -672
+      ],
+      "id": "a3aec741-a8a3-4bee-bd48-f4df7ab85e65",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "## 可替換成自己需要的 rss 來源",
+        "height": 672,
+        "width": 592
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2512,
+        -768
+      ],
+      "id": "61542d7a-e3e1-4a90-9fef-9447d1b0f731",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## 1.設定 Email 相關資訊",
+        "height": 304,
+        "width": 208,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2256,
+        -592
+      ],
+      "id": "6e73aa7f-2ded-4b97-8891-1882876aa87d",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "config-email",
+              "name": "to_email",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "config-from",
+              "name": "from_name",
+              "value": "AI News Bot",
+              "type": "string"
+            },
+            {
+              "id": "config-subject",
+              "name": "subject_prefix",
+              "value": "Daily AI News Digest",
+              "type": "string"
+            },
+            {
+              "id": "config-max",
+              "name": "max_items_total",
+              "value": 30,
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Config",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2304,
+        -464
+      ],
+      "id": "2a35211a-583d-42d2-86bd-193ef1ef23a4"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS - OpenAI Blog": {
+      "main": [
+        [
+          {
+            "node": "Sort",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS - MIT Tech Review": {
+      "main": [
+        [
+          {
+            "node": "Merge All RSS",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "RSS - The Verge AI": {
+      "main": [
+        [
+          {
+            "node": "Merge All RSS",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "RSS - Ars Technica": {
+      "main": [
+        [
+          {
+            "node": "Merge All RSS",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "Merge All RSS": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Data": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Structured Output Parser",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Merge AI Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge AI Results": {
+      "main": [
+        [
+          {
+            "node": "Generate HTML Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate HTML Email": {
+      "main": [
+        [
+          {
+            "node": "Gmail Send",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sort": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Merge All RSS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remove Duplicates": {
+      "main": [
+        [
+          {
+            "node": "Prepare Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Remove Duplicates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config": {
+      "main": [
+        [
+          {
+            "node": "RSS - Ars Technica",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS - The Verge AI",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS - MIT Tech Review",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "RSS - OpenAI Blog",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "e41f1da5-096e-4665-9917-72f8bc4b0f9d",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "fddb3e91967f1012c95dd02bf5ad21f279fc44715f47a7a96a33433621caa253"
+  },
+  "id": "ScIL3bS08ALpxr2E",
+  "tags": []
+}

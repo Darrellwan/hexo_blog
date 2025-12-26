@@ -1,5 +1,67 @@
 {
     "models": {
+        "n8n-ai-news-daily-digest": {
+            "id": "n8n-ai-news-daily-digest",
+            "title": "AI 新聞每日摘要 Email",
+            "description": "自動從 4 個權威 AI 新聞來源抓取最新資訊，透過 GPT-4o-mini 智能分析並生成精美的 HTML Email 日報。\n\n主要功能：\n\n多來源 RSS 聚合：OpenAI Blog、MIT Tech Review、The Verge AI、Ars Technica\nAI 智能分析：GPT-4o-mini 為每篇文章評分並生成中文摘要\n精美 Email：自動生成分級排版的 HTML 郵件（必讀/重要/一般）\nGmail 發送：每日自動寄送到指定信箱",
+            "detailedDescription": [
+                "每日排程自動觸發（24 小時間隔）",
+                "從 4 個 AI 新聞 RSS 來源同時抓取（OpenAI、MIT、The Verge、Ars Technica）",
+                "排序過濾最近一天的新聞並去除重複",
+                "GPT-4o-mini 分析每篇文章：中文摘要、重要性評分（1-5）、標籤",
+                "Structured Output Parser 確保 AI 輸出格式正確",
+                "依重要性分級（必讀/重要/一般）生成精美 HTML Email",
+                "透過 Gmail 自動寄送每日 AI 新聞日報"
+            ],
+            "tags": ["AI", "RSS", "Gmail", "每日摘要", "自動化"],
+            "nodes": 18,
+            "createdAt": "2025-12-26",
+            "updatedAt": "2025-12-26",
+            "setup": {
+                "prerequisites": "需要 OpenAI API Key 和 Gmail OAuth 授權",
+                "steps": [
+                    {
+                        "title": "OpenAI 設定",
+                        "description": "設定 OpenAI API 認證",
+                        "options": [
+                            "取得 OpenAI API Key",
+                            "在 n8n 建立 OpenAI Credential",
+                            "確認有 GPT-4o-mini 模型存取權限"
+                        ]
+                    },
+                    {
+                        "title": "Gmail 設定",
+                        "description": "設定 Gmail OAuth 授權",
+                        "options": [
+                            "在 n8n 建立 Gmail OAuth2 Credential",
+                            "授權 Gmail 發送權限",
+                            "在 Config 節點設定收件人 Email"
+                        ]
+                    },
+                    {
+                        "title": "調整 RSS 來源（選用）",
+                        "description": "根據需求新增或移除 RSS 來源",
+                        "options": [
+                            "新增其他 AI 新聞 RSS 來源",
+                            "調整排程時間",
+                            "修改 Config 節點的設定參數"
+                        ]
+                    }
+                ]
+            },
+            "examples": [
+                {
+                    "title": "每日 AI 新聞追蹤",
+                    "description": "追蹤 OpenAI、Google、Meta 等公司的最新 AI 動態",
+                    "code": {
+                        "scenario": "AI 產業追蹤",
+                        "benefit": "每日自動整理，不錯過重要新聞"
+                    }
+                }
+            ],
+            "fields": {},
+            "relatedArticles": []
+        },
         "n8n-ai-choose-ai-zeabur-aihub": {
             "id": "n8n-ai-choose-ai-zeabur-aihub",
             "title": "Zeabur AI Hub 智慧模型 Router",

@@ -6782,12 +6782,12 @@
   "/_posts/n8n-security-vulnerability-2025/n8n_node_parameters_date_format.png": {
     "width": 1482,
     "height": 1442,
-    "mtimeMs": 1766590149604.648
+    "mtimeMs": 1766648858957.688
   },
   "/_posts/n8n-security-vulnerability-2025/n8n-zeabur-version-update.png": {
     "width": 2910,
     "height": 2076,
-    "mtimeMs": 1766642843938.025
+    "mtimeMs": 1766648858957.1306
   },
   "/_posts/n8n-security-vulnerability-2025/n8n-security-vulnerability-2025-bg.png": {
     "width": 2752,
@@ -6797,12 +6797,12 @@
   "/_posts/n8n-security-vulnerability-2025/n8n-security-update.png": {
     "width": 2400,
     "height": 1792,
-    "mtimeMs": 1766636903380.316
+    "mtimeMs": 1766648858953.823
   },
   "/_posts/n8n-security-vulnerability-2025/n8n-security-shield.png": {
     "width": 2400,
     "height": 1792,
-    "mtimeMs": 1766636900692.277
+    "mtimeMs": 1766648858946.6892
   },
   "/_posts/n8n-security-vulnerability-2025/Gemini_Generated_Image_p89fc2p89fc2p89f 1.png": {
     "width": 2400,
@@ -6827,22 +6827,22 @@
   "/_posts/n8n-security-vulnerability-2025/n8n-security-update.webp": {
     "width": 800,
     "height": 597,
-    "mtimeMs": 1766636879544.98
+    "mtimeMs": 1766648858954.7693
   },
   "/_posts/n8n-security-vulnerability-2025/n8n-security-shield.webp": {
     "width": 800,
     "height": 597,
-    "mtimeMs": 1766636879305.376
+    "mtimeMs": 1766648858947.3875
   },
   "/_posts/n8n-security-vulnerability-2025/n8n-sandbox-escape.webp": {
     "width": 800,
     "height": 597,
-    "mtimeMs": 1766636857224.108
+    "mtimeMs": 1766648858945.4092
   },
   "/_posts/n8n-security-vulnerability-2025/n8n-security-vulnerability-2025-bg.jpg": {
     "width": 800,
     "height": 1000,
-    "mtimeMs": 1766643559123.121
+    "mtimeMs": 1766648858955.8289
   },
   "/_posts/n8n-security-vulnerability-2025/gemini_compressed_3665.jpg": {
     "width": 776,
@@ -6852,7 +6852,7 @@
   "/_posts/n8n-security-vulnerability-2025/n8n-version-check.png": {
     "width": 1224,
     "height": 1261,
-    "mtimeMs": 1766643625640.151
+    "mtimeMs": 1766648858956.3782
   },
   "/_posts/n8n-security-vulnerability-2025/Screenshot_20251224_234154_52PCJItg@2x.png": {
     "width": 1224,
@@ -6862,11 +6862,16 @@
   "/_posts/n8n-security-vulnerability-2025/n8n-security-update-fix.jpg": {
     "width": 800,
     "height": 436,
-    "mtimeMs": 1766646332515.54
+    "mtimeMs": 1766648858948.8433
   },
   "/_posts/n8n-security-vulnerability-2025/n8n-malicious-template-warning.jpg": {
     "width": 800,
     "height": 436,
-    "mtimeMs": 1766646698878.191
+    "mtimeMs": 1766648858944.7512
+  },
+  "/tools/n8n_template/data/bg/n8n-ai-news-daily-digest.webp": {
+    "width": 640,
+    "height": 640,
+    "mtimeMs": 1766736862096.325
   }
 }
