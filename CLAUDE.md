@@ -9,16 +9,36 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Build Commands
 - **Dev**: `npm run test` - clean + generate + server（本地開發常用）
+- **Dev with local config**: `npm run dev` - 使用 `main.local.yml` 覆蓋設定
 - **Dev with drafts**: `npm run test_draft` - 包含草稿文章
+- **Dev full**: `npm run test-full` - 包含圖片處理的完整測試
 - **Posts**: `npx hexo new "文章標題"` - 新增文章
 - **Images**: `npm run images:process` - 處理圖片尺寸（新增圖片後執行）
+- **n8n Models**: `npm run n8n:generate-models` - 產生 n8n template 頁面
 
 ## Architecture
 Hexo blog for MarTech/automation. Key points:
-- Config: `main.yml` (not `_config.yml`)
-- Assets: `/source/_posts/post-name/` folders
-- Custom tags in `/scripts/`: 見下方 Custom Tags 章節
-- Theme CSS: `/themes/next/source/css/_custom/`
+- **Config**: `main.yml` 主設定，`main.local.yml` 本地覆蓋（不進 git）
+- **Assets**: `/source/_posts/post-name/` 文章專屬資料夾
+- **Custom Tags**: `/scripts/` (data-table.js, quicknav.js, faq.js 等)
+- **Theme CSS**: `/themes/next/source/css/_custom/` (data-table.styl 等)
+- **n8n Expert 頁面**: `/source/n8n-expert/` (獨立 SPA)
+- **n8n Template 工具**: `/source/tools/n8n_template/`
+
+## Front Matter Template
+```yaml
+---
+title: 文章標題
+tags: [tag1, tag2]
+categories: [category]
+page_type: post
+id: lowercase-hyphenated-id  # 必須小寫+連字號
+description: SEO 描述（約 150 字）
+bgImage: cover-image.jpg
+date: YYYY-MM-DD HH:MM:SS
+modified: YYYY-MM-DD HH:MM:SS
+---
+```
 
 ## Custom Tags（定義於 /scripts/）
 ```markdown
@@ -39,6 +59,7 @@ Hexo blog for MarTech/automation. Key points:
 
 {% articleCard url="/path/" title="標題" previewText="描述" thumbnail="url" %}
 ```
+**Note**: Anchor ID 必須使用小寫+連字號格式（如 `<h2 id="my-section">`），quickNav 才能正確對應。
 
 ## Content Workflow
 1. Create post → 2. Add assets → 3. Process images → 4. Test locally
@@ -54,14 +75,15 @@ Hexo blog for MarTech/automation. Key points:
 - Switch node: Use `rules.values` structure (not `mode: "chooseBranch"`)
 - LINE Bot flow: Webhook → Event Check → Router → Response
 - Read `/docs/n8n-template-guide.md` for detailed patterns
+- **Auto-categorization**: n8n 相關文章會由 `/scripts/index.js` 自動加上 tag 和 category，無需手動設定
 
 ## AI Development Philosophy
 - **Think harder** - Always strive to dig deeper and find more nuanced solutions
 
-## 重要檔案位置
-- **Custom CSS**: `/themes/next/source/css/_custom/` (data-table.styl 等)
-- **Custom Tags**: `/scripts/` (data-table.js, quicknav.js, faq.js 等)
-- **文章 anchor**: 用 `<h2 id="anchor-id">` 設定，quickNav 用 anchor 參數對應
+## Documentation References
+- `/docs/n8n-template-guide.md` - Switch node 結構、LINE Bot 流程
+- `/docs/n8n-node-article-guide.md` - n8n 節點文章架構指南
+- `/docs/faq-usage-guide.md` - FAQ 標籤使用指南
 
 ## n8n Expert 服務頁面
 
