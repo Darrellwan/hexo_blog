@@ -58,7 +58,8 @@ log.txt
 source/_posts/test-article.md
 
 # Claude local tools and settings
-.claude/
+.claude/*
+!.claude/skills/
 */.claude/
 CLAUDE.local.md
 docs/n8n-writing-style.md
