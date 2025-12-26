@@ -18,8 +18,8 @@
     <meta property="og:site_name" content="DarrellTW n8n 模板庫">
     <meta property="og:title" content="LINE 自動回覆 + Time Saved 示範 - n8n 模板分享 | Darrell">
     <meta property="og:description" content="LINE Bot 關鍵字自動回覆範本，支援營業時間、地址、停車資訊查詢，並整合 Time Saved 節點追蹤省下的時間。適合客服自動化場景。">
-    <meta property="og:url" content="https://www.darrelltw.com/tools/n8n_template/model/n8n-line-auto-reply.html">
-    <meta property="og:image" content="https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-line-auto-reply.webp">
+    <meta property="og:url" content="https://www.darrelltw.com/tools/n8n_template/model/darrell_n8n_line_auto_reply.html">
+    <meta property="og:image" content="https://www.darrelltw.com/tools/n8n_template/data/bg/darrell_n8n_line_auto_reply.webp">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -659,7 +659,371 @@
     </footer>
 
     <script>
-        const workflowData = {};
+        const workflowData = {
+  "name": "LINE 自動回覆 + Time Saved 示範",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "line-webhook",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-1",
+      "name": "LINE Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [0, 300]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.events[0].message.text }}",
+                    "rightValue": "營業時間",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "營業時間"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.events[0].message.text }}",
+                    "rightValue": "地址",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "地址"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.events[0].message.text }}",
+                    "rightValue": "停車",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "停車"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "id": "switch-1",
+      "name": "關鍵字判斷",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.line.me/v2/bot/message/reply",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"replyToken\": \"{{ $json.events[0].replyToken }}\",\n  \"messages\": [\n    {\n      \"type\": \"text\",\n      \"text\": \"營業時間：週一至週五 10:00-21:00，週六日 11:00-20:00\"\n    }\n  ]\n}",
+        "options": {}
+      },
+      "id": "http-hours",
+      "name": "回覆營業時間",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [500, 100],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "YOUR_LINE_CREDENTIAL_ID",
+          "name": "LINE Channel Access Token"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "timeSaved": 1,
+        "calculationMode": "perItem"
+      },
+      "id": "timesaved-hours",
+      "name": "Time Saved 營業時間",
+      "type": "n8n-nodes-base.timeSaved",
+      "typeVersion": 1,
+      "position": [750, 100]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.line.me/v2/bot/message/reply",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"replyToken\": \"{{ $json.events[0].replyToken }}\",\n  \"messages\": [\n    {\n      \"type\": \"text\",\n      \"text\": \"地址：台北市信義區松高路1號\\n\\nGoogle Maps: https://maps.google.com/?q=台北市信義區松高路1號\"\n    }\n  ]\n}",
+        "options": {}
+      },
+      "id": "http-address",
+      "name": "回覆地址",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [500, 300],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "YOUR_LINE_CREDENTIAL_ID",
+          "name": "LINE Channel Access Token"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "timeSaved": 1,
+        "calculationMode": "perItem"
+      },
+      "id": "timesaved-address",
+      "name": "Time Saved 地址",
+      "type": "n8n-nodes-base.timeSaved",
+      "typeVersion": 1,
+      "position": [750, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.line.me/v2/bot/message/reply",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"replyToken\": \"{{ $json.events[0].replyToken }}\",\n  \"messages\": [\n    {\n      \"type\": \"text\",\n      \"text\": \"停車資訊：\\n• 附設地下停車場（B1-B3）\\n• 前 30 分鐘免費\\n• 之後每小時 $50\"\n    }\n  ]\n}",
+        "options": {}
+      },
+      "id": "http-parking",
+      "name": "回覆停車資訊",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [500, 500],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "YOUR_LINE_CREDENTIAL_ID",
+          "name": "LINE Channel Access Token"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "timeSaved": 1,
+        "calculationMode": "perItem"
+      },
+      "id": "timesaved-parking",
+      "name": "Time Saved 停車",
+      "type": "n8n-nodes-base.timeSaved",
+      "typeVersion": 1,
+      "position": [750, 500]
+    },
+    {
+      "parameters": {},
+      "id": "noop-1",
+      "name": "轉人工處理",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [500, 700],
+      "notesInFlow": true,
+      "notes": "其他問題不自動回覆，由人工處理"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "OK",
+        "options": {}
+      },
+      "id": "respond-1",
+      "name": "回應 LINE",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1000, 300]
+    }
+  ],
+  "connections": {
+    "LINE Webhook": {
+      "main": [
+        [
+          {
+            "node": "關鍵字判斷",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "關鍵字判斷": {
+      "main": [
+        [
+          {
+            "node": "回覆營業時間",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "回覆地址",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "回覆停車資訊",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "轉人工處理",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "回覆營業時間": {
+      "main": [
+        [
+          {
+            "node": "Time Saved 營業時間",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Time Saved 營業時間": {
+      "main": [
+        [
+          {
+            "node": "回應 LINE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "回覆地址": {
+      "main": [
+        [
+          {
+            "node": "Time Saved 地址",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Time Saved 地址": {
+      "main": [
+        [
+          {
+            "node": "回應 LINE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "回覆停車資訊": {
+      "main": [
+        [
+          {
+            "node": "Time Saved 停車",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Time Saved 停車": {
+      "main": [
+        [
+          {
+            "node": "回應 LINE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "轉人工處理": {
+      "main": [
+        [
+          {
+            "node": "回應 LINE",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "demo"
+  },
+  "tags": [
+    {
+      "name": "LINE",
+      "id": "1"
+    },
+    {
+      "name": "Time Saved",
+      "id": "2"
+    }
+  ]
+}
+;
         
         // Initialize n8n-demo component dynamically
         const container = document.getElementById('workflow-preview-container');
@@ -677,7 +1041,7 @@
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = 'n8n-line-auto-reply.json';
+                a.download = 'darrell_n8n_line_auto_reply.json';
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);

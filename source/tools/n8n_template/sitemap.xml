@@ -8,9 +8,9 @@
     <priority>1.0</priority>
   </url>
 
-  <!-- 模型詳情頁 - n8n-line-auto-reply -->
+  <!-- 模型詳情頁 - darrell_n8n_line_auto_reply -->
   <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n-line-auto-reply.html</loc>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/darrell_n8n_line_auto_reply.html</loc>
     <lastmod>2025-12-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

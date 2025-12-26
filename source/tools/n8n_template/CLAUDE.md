@@ -124,14 +124,14 @@ When adding a new n8n workflow template, follow this systematic process:
    - Verify node connections use display names (not IDs)
 
 2. **Place workflow JSON**
-   - Save to `/data/workflows/` with naming pattern: `darrell_workflow_template_[name].json`
-   - Example: `darrell_workflow_template_line_messaging_community.json`
+   - Save to `/data/workflows/` with naming pattern: `darrell_n8n_[name].json`
+   - Example: `darrell_n8n_line_messaging_community.json`
 
 3. **Create preview image**
    - Take screenshot of workflow canvas in n8n
    - Save to `/data/bg/` with matching name
    - Use `.jpg` or `.webp` format
-   - Example: `darrell_workflow_template_line_messaging_community.jpg`
+   - Example: `darrell_n8n_line_messaging_community.jpg`
 
 #### Step 2: Add Metadata to workflow-models.json
 
@@ -144,7 +144,7 @@ const fs = require('fs');
 const data = JSON.parse(fs.readFileSync('...workflow-models.json', 'utf8'));
 
 const newEntry = {
-    "id": "n8n-[workflow-name]",
+    "id": "darrell_n8n_[workflow-name]",
     "title": "中文標題",
     "description": "詳細描述（繁體中文）...",
     "detailedDescription": [
@@ -269,16 +269,16 @@ npm run test
 #### Quick Reference - Naming Pattern
 
 ```
-Workflow JSON:  darrell_workflow_template_[name].json
-Preview Image:  darrell_workflow_template_[name].jpg
-Metadata ID:    n8n-[name]
+Workflow JSON:  darrell_n8n_[name].json
+Preview Image:  darrell_n8n_[name].webp
+Metadata ID:    darrell_n8n_[name]
 ```
 
 Example:
 ```
-JSON:  darrell_workflow_template_line_messaging_community.json
-Image: darrell_workflow_template_line_messaging_community.jpg
-ID:    n8n-line-messaging-community
+JSON:  darrell_n8n_line_auto_reply.json
+Image: darrell_n8n_line_auto_reply.webp
+ID:    darrell_n8n_line_auto_reply
 ```
 
 ### Template Validation

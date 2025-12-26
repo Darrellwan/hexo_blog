@@ -1,7 +1,7 @@
 {
     "models": {
-        "n8n-line-auto-reply": {
-            "id": "n8n-line-auto-reply",
+        "darrell_n8n_line_auto_reply": {
+            "id": "darrell_n8n_line_auto_reply",
             "title": "LINE 自動回覆 + Time Saved 示範",
             "description": "LINE Bot 關鍵字自動回覆範本，支援營業時間、地址、停車資訊查詢，並整合 Time Saved 節點追蹤省下的時間。適合客服自動化場景。",
             "detailedDescription": [
