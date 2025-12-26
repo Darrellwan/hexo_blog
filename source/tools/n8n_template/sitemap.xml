@@ -8,6 +8,14 @@
     <priority>1.0</priority>
   </url>
 
+  <!-- 模型詳情頁 - n8n-line-auto-reply -->
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n-line-auto-reply.html</loc>
+    <lastmod>2025-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- 模型詳情頁 - n8n-ai-news-daily-digest -->
   <url>
     <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n-ai-news-daily-digest.html</loc>

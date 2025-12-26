@@ -1,5 +1,50 @@
 {
     "models": {
+        "n8n-line-auto-reply": {
+            "id": "n8n-line-auto-reply",
+            "title": "LINE 自動回覆 + Time Saved 示範",
+            "description": "LINE Bot 關鍵字自動回覆範本，支援營業時間、地址、停車資訊查詢，並整合 Time Saved 節點追蹤省下的時間。適合客服自動化場景。",
+            "detailedDescription": [
+                "接收 LINE Webhook 事件",
+                "關鍵字判斷（營業時間、地址、停車）",
+                "自動回覆對應資訊",
+                "使用 Time Saved 節點追蹤省時效益",
+                "不符合關鍵字則轉人工處理",
+                "正確回應 LINE 平台（200 OK）"
+            ],
+            "tags": ["LINE", "自動回覆", "客服", "Time Saved", "Webhook", "關鍵字判斷"],
+            "nodes": 11,
+            "createdAt": "2025-12-26",
+            "updatedAt": "2025-12-26",
+            "setup": {
+                "prerequisites": "LINE Messaging API Channel Access Token",
+                "steps": [
+                    {
+                        "title": "設定 LINE Channel",
+                        "description": "在 LINE Developers Console 建立 Messaging API Channel",
+                        "options": ["取得 Channel Access Token", "設定 Webhook URL"]
+                    },
+                    {
+                        "title": "設定 n8n Credentials",
+                        "description": "在 n8n 建立 HTTP Header Auth",
+                        "options": ["Header Name: Authorization", "Value: Bearer YOUR_TOKEN"]
+                    },
+                    {
+                        "title": "自訂回覆內容",
+                        "description": "修改各 HTTP Request 節點的回覆訊息",
+                        "options": ["營業時間", "地址資訊", "停車資訊"]
+                    }
+                ]
+            },
+            "examples": [],
+            "fields": {},
+            "relatedArticles": [
+                {
+                    "title": "n8n LINE 自動回覆教學",
+                    "url": "https://www.darrelltw.com/n8n-line-message-api/"
+                }
+            ]
+        },
         "n8n-ai-news-daily-digest": {
             "id": "n8n-ai-news-daily-digest",
             "title": "AI 新聞每日摘要 Email",
