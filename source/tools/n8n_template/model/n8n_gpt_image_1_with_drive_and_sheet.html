@@ -19,7 +19,8 @@
 自動儲存：將生成的圖片自動儲存到 Google Drive 指定資料夾
 數據追蹤：記錄所有圖片生成記錄，包含提示文字和圖片連結
 Token 用量追蹤：自動計算並記錄每次生成的 token 用量和估計成本">
-    
+    <link rel="canonical" href="https://www.darrelltw.com/tools/n8n_template/model/n8n_gpt_image_1_with_drive_and_sheet.html">
+
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="DarrellTW n8n 模板庫">
@@ -34,7 +35,7 @@ Token 用量追蹤：自動計算並記錄每次生成的 token 用量和估計�
 Token 用量追蹤：自動計算並記錄每次生成的 token 用量和估計成本">
     <meta property="og:url" content="https://www.darrelltw.com/tools/n8n_template/model/n8n_gpt_image_1_with_drive_and_sheet.html">
     <meta property="og:image" content="https://www.darrelltw.com/tools/n8n_template/data/bg/n8n_gpt_image_1_with_drive_and_sheet.webp">
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -594,6 +595,85 @@ Token 用量追蹤：自動計算並記錄每次生成的 token 用量和估計�
             }
         }
     </style>
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "首頁", "item": "https://www.darrelltw.com/"},
+        {"@type": "ListItem", "position": 2, "name": "n8n 模板", "item": "https://www.darrelltw.com/tools/n8n_template/models.html"},
+        {"@type": "ListItem", "position": 3, "name": "ChatGPT Image-1 圖像生成與自動儲存", "item": "https://www.darrelltw.com/tools/n8n_template/model/n8n_gpt_image_1_with_drive_and_sheet.html"}
+      ]
+    }
+    </script>
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ChatGPT Image-1 圖像生成與自動儲存",
+      "description": "這個工作流程使用 ChatGPT Image-1 模型生成高品質圖像，並自動將圖像儲存到 Google Drive 和記錄到 Google Sheets 中。系統接收使用者的文字提示，透過 OpenAI API 生成多張圖片，然後將這些圖片儲存到指定的 Google Drive 資料夾，同時在 Google Sheets 建立記錄，包含提示文字、圖片連結和消耗的 token 統計資訊。  主要功能：  圖像生成：使用最新的 GPT-Image-1 模型根據文字提示生成高品質圖像 自動儲存：將生成的圖片自動儲存到 Google Drive 指定資料夾 數據追蹤：記錄所有圖片生成記錄，包含提示文字和圖片連結 Token 用量追蹤：自動計算並記錄每次生成的 token 用量和估計成本",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "WorkflowAutomation",
+      "operatingSystem": "n8n",
+      "url": "https://www.darrelltw.com/tools/n8n_template/model/n8n_gpt_image_1_with_drive_and_sheet.html",
+      "image": "https://www.darrelltw.com/tools/n8n_template/data/bg/n8n_gpt_image_1_with_drive_and_sheet.webp",
+      "screenshot": "https://www.darrelltw.com/tools/n8n_template/data/bg/n8n_gpt_image_1_with_drive_and_sheet.webp",
+      "author": {
+        "@type": "Person",
+        "name": "Darrell Wang",
+        "url": "https://www.darrelltw.com"
+      },
+      "datePublished": "2025-04-25",
+      "dateModified": "2025-04-25",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "TWD",
+        "availability": "https://schema.org/InStock"
+      },
+      "featureList": ["接收文字提示生成圖片","使用 GPT-Image-1 模型","自動儲存到 Google Drive","記錄到 Google Sheets"]
+    }
+    </script>
+
+    <!-- HowTo Schema (Setup Steps) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "如何設定 ChatGPT Image-1 圖像生成與自動儲存",
+      "description": "需要設定 OpenAI API、Google Drive 和 Google Sheets 的 API 存取權限",
+      "totalTime": "PT15M",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "TWD",
+        "value": "0"
+      },
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "OpenAI 設定",
+          "text": "設定 OpenAI API 用於圖像生成 取得 OpenAI API 金鑰, 確認有權限使用 GPT-Image-1 模型, 設定適當的隱私和使用設定"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Google Drive 設定",
+          "text": "準備用於儲存圖片的雲端資料夾 建立專用資料夾用於存放生成的圖片, 設定適當的存取權限, 取得資料夾 ID"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Google Sheets 設定",
+          "text": "準備用於記錄生成歷史的試算表 建立新的試算表, 設定「工作表1」用於記錄圖片歷史, 設定「usage」工作表用於記錄 token 使用量"
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <div class="node-bg"></div>

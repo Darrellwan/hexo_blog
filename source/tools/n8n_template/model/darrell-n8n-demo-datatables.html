@@ -22,7 +22,8 @@
 數據更新：更新現有資料的評分等欄位
 智能插入：Upsert 操作實現插入或更新的自動判斷
 資料清理：根據條件刪除不需要的測試資料">
-    
+    <link rel="canonical" href="https://www.darrelltw.com/tools/n8n_template/model/darrell-n8n-demo-datatables.html">
+
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="DarrellTW n8n 模板庫">
@@ -40,7 +41,7 @@
 資料清理：根據條件刪除不需要的測試資料">
     <meta property="og:url" content="https://www.darrelltw.com/tools/n8n_template/model/darrell-n8n-demo-datatables.html">
     <meta property="og:image" content="https://www.darrelltw.com/tools/n8n_template/data/bg/darrell-n8n-demo-datatables.webp">
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -600,6 +601,85 @@
             }
         }
     </style>
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "首頁", "item": "https://www.darrelltw.com/"},
+        {"@type": "ListItem", "position": 2, "name": "n8n 模板", "item": "https://www.darrelltw.com/tools/n8n_template/models.html"},
+        {"@type": "ListItem", "position": 3, "name": "n8n DataTables 完整功能示範", "item": "https://www.darrelltw.com/tools/n8n_template/model/darrell-n8n-demo-datatables.html"}
+      ]
+    }
+    </script>
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "n8n DataTables 完整功能示範",
+      "description": "這個工作流程展示 n8n DataTables 的完整功能，包含表單資料收集和 7 種核心 CRUD 操作演示。透過實際的用戶評價表單收集數據（email、評分、訂閱選擇、生日），並展示 Insert、Get、Update、Upsert、Delete、If Row Exists 等所有 DataTables 操作方式。  主要功能：  表單觸發：使用 n8n Form Trigger 收集用戶評價和資料 數據插入：自動將表單資料寫入 DataTables 條件查詢：根據 email 等條件查詢特定資料 存在判斷：檢查資料是否存在的邏輯判斷 數據更新：更新現有資料的評分等欄位 智能插入：Upsert 操作實現插入或更新的自動判斷 資料清理：根據條件刪除不需要的測試資料",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "WorkflowAutomation",
+      "operatingSystem": "n8n",
+      "url": "https://www.darrelltw.com/tools/n8n_template/model/darrell-n8n-demo-datatables.html",
+      "image": "https://www.darrelltw.com/tools/n8n_template/data/bg/darrell-n8n-demo-datatables.webp",
+      "screenshot": "https://www.darrelltw.com/tools/n8n_template/data/bg/darrell-n8n-demo-datatables.webp",
+      "author": {
+        "@type": "Person",
+        "name": "Darrell Wang",
+        "url": "https://www.darrelltw.com"
+      },
+      "datePublished": "2025-09-25",
+      "dateModified": "2025-09-25",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "TWD",
+        "availability": "https://schema.org/InStock"
+      },
+      "featureList": ["Form Trigger 建立互動表單","展示 CRUD 操作（Insert/Update/Delete）","使用 row_id 精確定位資料列"]
+    }
+    </script>
+
+    <!-- HowTo Schema (Setup Steps) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "如何設定 n8n DataTables 完整功能示範",
+      "description": "需要 n8n 1.113.0 以上版本支援 DataTables Beta 功能",
+      "totalTime": "PT15M",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "TWD",
+        "value": "0"
+      },
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "版本確認",
+          "text": "確保 n8n 版本支援 DataTables 檢查 n8n 版本為 1.113.0 或更高, 確認左側選單中有 Data tables 選項, DataTables 目前為 Beta 功能，建議先在測試環境使用"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "建立 DataTable",
+          "text": "建立名為 form_users 的資料表 點擊 Data tables → Create Data table, 表格名稱：form_users, 新增欄位：email (String)、review_stars (Number)、subscribe (Boolean)、birthday (Date), 確保欄位類型正確對應表單資料格式"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "匯入並測試工作流程",
+          "text": "匯入模板並進行功能測試 匯入 workflow JSON 檔案, 檢查 DataTable ID 是否正確對應到 form_users, 測試表單提交功能：填寫測試資料並送出, 逐一測試每個 DataTables 操作節點, 觀察每個操作的執行結果和資料變化, 注意：Delete 操作會真的刪除資料，測試時請小心"
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <div class="node-bg"></div>

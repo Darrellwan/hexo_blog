@@ -12,7 +12,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LINE 自動回覆 + Time Saved 示範 - n8n 模板分享 | Darrell</title>
     <meta name="description" content="LINE Bot 關鍵字自動回覆範本，支援營業時間、地址、停車資訊查詢，並整合 Time Saved 節點追蹤省下的時間。適合客服自動化場景。">
-    
+    <link rel="canonical" href="https://www.darrelltw.com/tools/n8n_template/model/darrell_n8n_line_auto_reply.html">
+
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="DarrellTW n8n 模板庫">
@@ -20,7 +21,7 @@
     <meta property="og:description" content="LINE Bot 關鍵字自動回覆範本，支援營業時間、地址、停車資訊查詢，並整合 Time Saved 節點追蹤省下的時間。適合客服自動化場景。">
     <meta property="og:url" content="https://www.darrelltw.com/tools/n8n_template/model/darrell_n8n_line_auto_reply.html">
     <meta property="og:image" content="https://www.darrelltw.com/tools/n8n_template/data/bg/darrell_n8n_line_auto_reply.webp">
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -580,6 +581,85 @@
             }
         }
     </style>
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "首頁", "item": "https://www.darrelltw.com/"},
+        {"@type": "ListItem", "position": 2, "name": "n8n 模板", "item": "https://www.darrelltw.com/tools/n8n_template/models.html"},
+        {"@type": "ListItem", "position": 3, "name": "LINE 自動回覆 + Time Saved 示範", "item": "https://www.darrelltw.com/tools/n8n_template/model/darrell_n8n_line_auto_reply.html"}
+      ]
+    }
+    </script>
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "LINE 自動回覆 + Time Saved 示範",
+      "description": "LINE Bot 關鍵字自動回覆範本，支援營業時間、地址、停車資訊查詢，並整合 Time Saved 節點追蹤省下的時間。適合客服自動化場景。",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "WorkflowAutomation",
+      "operatingSystem": "n8n",
+      "url": "https://www.darrelltw.com/tools/n8n_template/model/darrell_n8n_line_auto_reply.html",
+      "image": "https://www.darrelltw.com/tools/n8n_template/data/bg/darrell_n8n_line_auto_reply.webp",
+      "screenshot": "https://www.darrelltw.com/tools/n8n_template/data/bg/darrell_n8n_line_auto_reply.webp",
+      "author": {
+        "@type": "Person",
+        "name": "Darrell Wang",
+        "url": "https://www.darrelltw.com"
+      },
+      "datePublished": "2025-12-26",
+      "dateModified": "2025-12-26",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "TWD",
+        "availability": "https://schema.org/InStock"
+      },
+      "featureList": ["接收 LINE Webhook 事件","關鍵字判斷（營業時間、地址、停車）","自動回覆對應資訊","使用 Time Saved 節點追蹤省時效益"]
+    }
+    </script>
+
+    <!-- HowTo Schema (Setup Steps) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "如何設定 LINE 自動回覆 + Time Saved 示範",
+      "description": "LINE Messaging API Channel Access Token",
+      "totalTime": "PT15M",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "TWD",
+        "value": "0"
+      },
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "設定 LINE Channel",
+          "text": "在 LINE Developers Console 建立 Messaging API Channel 取得 Channel Access Token, 設定 Webhook URL"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "設定 n8n Credentials",
+          "text": "在 n8n 建立 HTTP Header Auth Header Name: Authorization, Value: Bearer YOUR_TOKEN"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "自訂回覆內容",
+          "text": "修改各 HTTP Request 節點的回覆訊息 營業時間, 地址資訊, 停車資訊"
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <div class="node-bg"></div>

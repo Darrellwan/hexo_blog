@@ -21,7 +21,8 @@
 AI 圖片處理：使用 Google Gemini 2.5 Flash Image Preview 模型生成新圖片
 檔案轉換：將 AI 生成的結果轉換為可儲存的檔案格式
 自動上傳：將處理完成的圖片自動儲存到指定的輸出資料夾">
-    
+    <link rel="canonical" href="https://www.darrelltw.com/tools/n8n_template/model/darrell-n8n-demo-gemini_nano banana_change_image.html">
+
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="DarrellTW n8n 模板庫">
@@ -38,7 +39,7 @@ AI 圖片處理：使用 Google Gemini 2.5 Flash Image Preview 模型生成新�
 自動上傳：將處理完成的圖片自動儲存到指定的輸出資料夾">
     <meta property="og:url" content="https://www.darrelltw.com/tools/n8n_template/model/darrell-n8n-demo-gemini_nano banana_change_image.html">
     <meta property="og:image" content="https://www.darrelltw.com/tools/n8n_template/data/bg/darrell-n8n-demo-gemini_nano banana_change_image.webp">
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -598,6 +599,85 @@ AI 圖片處理：使用 Google Gemini 2.5 Flash Image Preview 模型生成新�
             }
         }
     </style>
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "首頁", "item": "https://www.darrelltw.com/"},
+        {"@type": "ListItem", "position": 2, "name": "n8n 模板", "item": "https://www.darrelltw.com/tools/n8n_template/models.html"},
+        {"@type": "ListItem", "position": 3, "name": "Google nano banana 替換圖片", "item": "https://www.darrelltw.com/tools/n8n_template/model/darrell-n8n-demo-gemini_nano banana_change_image.html"}
+      ]
+    }
+    </script>
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Google nano banana 替換圖片",
+      "description": "這個工作流程展示如何使用 Google Drive 觸發器配合 Google Gemini AI 模型進行自動圖片替換處理。當有新圖片上傳到指定的 Google Drive 資料夾時，系統會自動下載圖片，使用 Google Gemini 2.5 Flash Image Preview 模型進行「一個男人在凱旋門拿著原本產品」的圖片生成，然後將處理完成的圖片自動儲存到輸出資料夾。  主要功能：  觸發機制：Google Drive 資料夾監控，自動偵測新上傳的圖片檔案 檔案過濾：篩選符合條件的圖片格式進行處理 圖片下載：自動下載觸發的圖片檔案 AI 圖片處理：使用 Google Gemini 2.5 Flash Image Preview 模型生成新圖片 檔案轉換：將 AI 生成的結果轉換為可儲存的檔案格式 自動上傳：將處理完成的圖片自動儲存到指定的輸出資料夾",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "WorkflowAutomation",
+      "operatingSystem": "n8n",
+      "url": "https://www.darrelltw.com/tools/n8n_template/model/darrell-n8n-demo-gemini_nano banana_change_image.html",
+      "image": "https://www.darrelltw.com/tools/n8n_template/data/bg/darrell-n8n-demo-gemini_nano banana_change_image.webp",
+      "screenshot": "https://www.darrelltw.com/tools/n8n_template/data/bg/darrell-n8n-demo-gemini_nano banana_change_image.webp",
+      "author": {
+        "@type": "Person",
+        "name": "Darrell Wang",
+        "url": "https://www.darrelltw.com"
+      },
+      "datePublished": "2025-08-30",
+      "dateModified": "2025-08-30",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "TWD",
+        "availability": "https://schema.org/InStock"
+      },
+      "featureList": ["監控 Google Drive 資料夾新增圖片","使用 Gemini AI 分析圖片內容","根據提示詞生成新圖片","自動上傳結果到指定資料夾"]
+    }
+    </script>
+
+    <!-- HowTo Schema (Setup Steps) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "如何設定 Google nano banana 替換圖片",
+      "description": "需要 Google Drive API 存取權限和 Google Gemini API Key（建議使用付費方案）",
+      "totalTime": "PT15M",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "TWD",
+        "value": "0"
+      },
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Google Drive API 設定",
+          "text": "建立和設定 Google Drive 整合 建立 Google Cloud Console 專案, 啟用 Google Drive API, 建立 OAuth 2.0 認證憑證, 在 n8n 中設定 Google Drive OAuth2 API 連接, 建立輸入資料夾：「202508-Google-nano banana demo」, 建立輸出資料夾：「202508-Google-nano banana output」"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Google Gemini API 設定",
+          "text": "設定 Google Gemini AI 模型存取 前往 Google AI Studio (aistudio.google.com), 申請 Google Gemini API Key, 注意：免費方案可能無法使用，建議使用付費方案, 在 n8n 中建立 Google PaLM API 連接, 測試 gemini-2.5-flash-image-preview 模型連接"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "工作流程設定",
+          "text": "配置自動化流程參數 設定 Google Drive Trigger 監控輸入資料夾, 調整 Filter 節點的檔案格式篩選條件, 自訂 AI Agent 的圖片生成提示詞, 設定檔案命名格式和輸出位置, 測試完整流程：上傳圖片 → AI 處理 → 自動儲存"
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <div class="node-bg"></div>

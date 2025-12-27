@@ -18,7 +18,8 @@
 Token 驗證：確認 API Access Token 有效性
 內容容器建立：上傳圖片 URL 並準備貼文內容
 貼文發佈：將準備好的容器正式發佈至 Instagram">
-    
+    <link rel="canonical" href="https://www.darrelltw.com/tools/n8n_template/model/instagram_api_demo_publish.html">
+
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="DarrellTW n8n 模板庫">
@@ -32,7 +33,7 @@ Token 驗證：確認 API Access Token 有效性
 貼文發佈：將準備好的容器正式發佈至 Instagram">
     <meta property="og:url" content="https://www.darrelltw.com/tools/n8n_template/model/instagram_api_demo_publish.html">
     <meta property="og:image" content="https://www.darrelltw.com/tools/n8n_template/data/bg/instagram_api_demo_publish.webp">
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -592,6 +593,79 @@ Token 驗證：確認 API Access Token 有效性
             }
         }
     </style>
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "首頁", "item": "https://www.darrelltw.com/"},
+        {"@type": "ListItem", "position": 2, "name": "n8n 模板", "item": "https://www.darrelltw.com/tools/n8n_template/models.html"},
+        {"@type": "ListItem", "position": 3, "name": "Instagram API 貼文發佈範例", "item": "https://www.darrelltw.com/tools/n8n_template/model/instagram_api_demo_publish.html"}
+      ]
+    }
+    </script>
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Instagram API 貼文發佈範例",
+      "description": "這個工作流程展示如何使用 Instagram Graph API 發佈圖片貼文。流程首先驗證 Access Token 是否有效，接著建立內容容器（container），最後將容器發佈為正式貼文。適合用於自動化內容發佈和社群媒體排程。  主要功能：  Token 驗證：確認 API Access Token 有效性 內容容器建立：上傳圖片 URL 並準備貼文內容 貼文發佈：將準備好的容器正式發佈至 Instagram",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "WorkflowAutomation",
+      "operatingSystem": "n8n",
+      "url": "https://www.darrelltw.com/tools/n8n_template/model/instagram_api_demo_publish.html",
+      "image": "https://www.darrelltw.com/tools/n8n_template/data/bg/instagram_api_demo_publish.webp",
+      "screenshot": "https://www.darrelltw.com/tools/n8n_template/data/bg/instagram_api_demo_publish.webp",
+      "author": {
+        "@type": "Person",
+        "name": "Darrell Wang",
+        "url": "https://www.darrelltw.com"
+      },
+      "datePublished": "2025-04-16",
+      "dateModified": "2025-04-16",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "TWD",
+        "availability": "https://schema.org/InStock"
+      },
+      "featureList": ["使用 Instagram Graph API 發佈貼文","支援透過圖片 URL 上傳圖片","可自訂貼文說明文字","包含 token 驗證機制","支援時間戳記功能"]
+    }
+    </script>
+
+    <!-- HowTo Schema (Setup Steps) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "如何設定 Instagram API 貼文發佈範例",
+      "description": "需要設定 Instagram Business 帳號和 Facebook Developer 應用程式",
+      "totalTime": "PT15M",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "TWD",
+        "value": "0"
+      },
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Facebook Developer 設定",
+          "text": "設定 Facebook 應用程式並取得 Instagram API Access Token 建立 Facebook 應用程式, 設定 Instagram Graph API, 取得長期 Access Token, 設定應用程式權限"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Instagram 帳號設定",
+          "text": "確認 Instagram 帳號已轉為商業帳號並連結至 Facebook 專頁 轉換為商業帳號, 連結 Facebook 專頁, 開啟內容發佈權限"
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <div class="node-bg"></div>

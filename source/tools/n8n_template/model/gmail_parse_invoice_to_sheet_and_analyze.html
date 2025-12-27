@@ -21,7 +21,8 @@
 Google Sheets 整合：將不同類型資料存入對應工作表
 AI 消費分析：使用 xAI Grok 模型生成多維度消費分析
 Slack 通知：將完整分析報告即時發送到指定頻道">
-    
+    <link rel="canonical" href="https://www.darrelltw.com/tools/n8n_template/model/gmail_parse_invoice_to_sheet_and_analyze.html">
+
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="DarrellTW n8n 模板庫">
@@ -38,7 +39,7 @@ AI 消費分析：使用 xAI Grok 模型生成多維度消費分析
 Slack 通知：將完整分析報告即時發送到指定頻道">
     <meta property="og:url" content="https://www.darrelltw.com/tools/n8n_template/model/gmail_parse_invoice_to_sheet_and_analyze.html">
     <meta property="og:image" content="https://www.darrelltw.com/tools/n8n_template/data/bg/gmail_parse_invoice_to_sheet_and_analyze.webp">
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -598,6 +599,91 @@ Slack 通知：將完整分析報告即時發送到指定頻道">
             }
         }
     </style>
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "首頁", "item": "https://www.darrelltw.com/"},
+        {"@type": "ListItem", "position": 2, "name": "n8n 模板", "item": "https://www.darrelltw.com/tools/n8n_template/models.html"},
+        {"@type": "ListItem", "position": 3, "name": "Gmail 電子發票轉存 Google Sheet + AI 分析消費", "item": "https://www.darrelltw.com/tools/n8n_template/model/gmail_parse_invoice_to_sheet_and_analyze.html"}
+      ]
+    }
+    </script>
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Gmail 電子發票轉存 Google Sheet + AI 分析消費",
+      "description": "這個工作流程自動處理來自「財政部電子發票整合服務平台」的郵件，擷取電子發票資料並將其儲存到 Google Sheets 中，再使用 AI 進行消費分析。系統每天指定時間會監控 Gmail 中特定發件人的郵件，提取附件中的發票資訊，辨識「發票主資料(M)」和「商品明細(D)」，分別整理並存入兩個不同的工作表。最後，它會使用 xAI Grok 模型分析所有消費資料，生成包含摘要、類別統計、Top 5 店家和消費矩陣分析的深入報告，並將分析結果自動發送到 Slack 頻道，方便快速查看消費趨勢。  主要功能：  郵件監控：每日固定時間自動檢查財政部電子發票郵件 資料提取：智能解析附件內容取得發票資訊和商品明細 資料分類：自動區分「發票主資料(M)」和「商品明細(D)」 Google Sheets 整合：將不同類型資料存入對應工作表 AI 消費分析：使用 xAI Grok 模型生成多維度消費分析 Slack 通知：將完整分析報告即時發送到指定頻道",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "WorkflowAutomation",
+      "operatingSystem": "n8n",
+      "url": "https://www.darrelltw.com/tools/n8n_template/model/gmail_parse_invoice_to_sheet_and_analyze.html",
+      "image": "https://www.darrelltw.com/tools/n8n_template/data/bg/gmail_parse_invoice_to_sheet_and_analyze.webp",
+      "screenshot": "https://www.darrelltw.com/tools/n8n_template/data/bg/gmail_parse_invoice_to_sheet_and_analyze.webp",
+      "author": {
+        "@type": "Person",
+        "name": "Darrell Wang",
+        "url": "https://www.darrelltw.com"
+      },
+      "datePublished": "2025-05-02",
+      "dateModified": "2025-05-02",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "TWD",
+        "availability": "https://schema.org/InStock"
+      },
+      "featureList": ["定時監控發票通知郵件","自動提取發票附件資料","區分主資料和商品明細","存入 Google Sheets 並 AI 分析"]
+    }
+    </script>
+
+    <!-- HowTo Schema (Setup Steps) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "如何設定 Gmail 電子發票轉存 Google Sheet + AI 分析消費",
+      "description": "需要設定 Gmail、Google Sheets、AI 模型 (xAI Grok) 和 Slack 的 API 存取權限",
+      "totalTime": "PT15M",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "TWD",
+        "value": "0"
+      },
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Gmail 設定",
+          "text": "設定 Gmail API 存取權限，用於讀取電子發票郵件 設定 OAuth 2.0 認證, 授予郵件讀取權限, 設定郵件過濾條件為 'subject=財政部電子發票整合服務平台' 和 'from=einvoice@einvoice.nat.gov.tw'"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Google Sheets 設定",
+          "text": "準備用於儲存發票資料的試算表 建立 Google 試算表, 設定「發票」工作表儲存主資料（載具名稱、載具號碼、發票日期、商店資訊、發票號碼、總金額、發票狀態）, 設定「細項」工作表儲存商品明細（品項ID、發票號碼、品項名稱、價格）"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "AI 模型設定",
+          "text": "設定 xAI Grok 模型用於消費分析 取得 xAI API 金鑰, 選擇 grok-3-fast-beta 模型, 設定分析提示詞以生成消費報告"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Slack 設定",
+          "text": "設定 Slack 整合用於發送分析結果 建立 Slack App, 設定 Bot Token, 選擇目標頻道接收分析報告"
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <div class="node-bg"></div>

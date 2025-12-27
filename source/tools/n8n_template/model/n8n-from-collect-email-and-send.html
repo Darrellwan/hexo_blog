@@ -20,7 +20,8 @@
 郵件發送：批量發送個人化郵件給已蒐集的名單
 狀態追蹤：自動更新發送狀態，避免重複發送
 活動分類：支援不同活動的名單分類管理">
-    
+    <link rel="canonical" href="https://www.darrelltw.com/tools/n8n_template/model/n8n-from-collect-email-and-send.html">
+
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="DarrellTW n8n 模板庫">
@@ -36,7 +37,7 @@
 活動分類：支援不同活動的名單分類管理">
     <meta property="og:url" content="https://www.darrelltw.com/tools/n8n_template/model/n8n-from-collect-email-and-send.html">
     <meta property="og:image" content="https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-from-collect-email-and-send.webp">
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -596,6 +597,85 @@
             }
         }
     </style>
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "首頁", "item": "https://www.darrelltw.com/"},
+        {"@type": "ListItem", "position": 2, "name": "n8n 模板", "item": "https://www.darrelltw.com/tools/n8n_template/models.html"},
+        {"@type": "ListItem", "position": 3, "name": "表單名單蒐集與自動化郵件發送", "item": "https://www.darrelltw.com/tools/n8n_template/model/n8n-from-collect-email-and-send.html"}
+      ]
+    }
+    </script>
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "表單名單蒐集與自動化郵件發送",
+      "description": "完整的名單蒐集與郵件行銷自動化系統。透過美觀的表單蒐集潛在客戶資料，自動儲存至 Google Sheets 進行管理，並提供批量郵件發送功能，適合活動報名、訂閱服務、工作坊招募等場景。  主要功能：  客製化表單：可愛薰衣草風格的表單設計，支援 email 和姓名欄位 資料儲存：自動將表單資料儲存到 Google Sheets 並標記時間戳 郵件發送：批量發送個人化郵件給已蒐集的名單 狀態追蹤：自動更新發送狀態，避免重複發送 活動分類：支援不同活動的名單分類管理",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "WorkflowAutomation",
+      "operatingSystem": "n8n",
+      "url": "https://www.darrelltw.com/tools/n8n_template/model/n8n-from-collect-email-and-send.html",
+      "image": "https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-from-collect-email-and-send.webp",
+      "screenshot": "https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-from-collect-email-and-send.webp",
+      "author": {
+        "@type": "Person",
+        "name": "Darrell Wang",
+        "url": "https://www.darrelltw.com"
+      },
+      "datePublished": "2025-07-31",
+      "dateModified": "2025-07-31",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "TWD",
+        "availability": "https://schema.org/InStock"
+      },
+      "featureList": ["美觀表單收集 email","自動寫入 Google Sheets","篩選未發送郵件的名單","批次發送 Welcome Email"]
+    }
+    </script>
+
+    <!-- HowTo Schema (Setup Steps) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "如何設定 表單名單蒐集與自動化郵件發送",
+      "description": "需要設定 Google Sheets 和 Gmail API 存取權限",
+      "totalTime": "PT15M",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "TWD",
+        "value": "0"
+      },
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Google Sheets 設定",
+          "text": "建立用於儲存名單的 Google 試算表 複製模板試算表：https://docs.google.com/spreadsheets/d/15S7Km2HvAD53xseBZ2yXz-cPflUHTiOfcdLoEcWBPiQ/copy, 在 Google Cloud Console 啟用 Google Sheets API, 建立 OAuth2 憑證或服務帳戶金鑰, 在 n8n 中設定 Google Sheets 認證, 設定正確的試算表 ID 和工作表名稱"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Gmail API 設定",
+          "text": "設定郵件發送功能 在 Google Cloud Console 啟用 Gmail API, 建立 OAuth2 憑證, 在 n8n 中設定 Gmail OAuth2 認證, 測試郵件發送功能, 設定適當的郵件主旨和內容"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "表單客製化",
+          "text": "調整表單樣式和內容 修改表單標題和描述, 調整薰衣草配色或套用自訂 CSS, 設定表單欄位（email、name 等）, 測試表單提交流程"
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <div class="node-bg"></div>

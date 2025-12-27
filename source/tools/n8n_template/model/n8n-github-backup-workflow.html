@@ -19,7 +19,8 @@
 獲取工作流：抓取所有活躍的工作流
 資料處理：格式化 JSON 並處理檔名
 GitHub 上傳：將工作流備份到指定的 GitHub Repository">
-    
+    <link rel="canonical" href="https://www.darrelltw.com/tools/n8n_template/model/n8n-github-backup-workflow.html">
+
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="DarrellTW n8n 模板庫">
@@ -34,7 +35,7 @@ GitHub 上傳：將工作流備份到指定的 GitHub Repository">
 GitHub 上傳：將工作流備份到指定的 GitHub Repository">
     <meta property="og:url" content="https://www.darrelltw.com/tools/n8n_template/model/n8n-github-backup-workflow.html">
     <meta property="og:image" content="https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-github-backup-workflow.webp">
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -594,6 +595,79 @@ GitHub 上傳：將工作流備份到指定的 GitHub Repository">
             }
         }
     </style>
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "首頁", "item": "https://www.darrelltw.com/"},
+        {"@type": "ListItem", "position": 2, "name": "n8n 模板", "item": "https://www.darrelltw.com/tools/n8n_template/models.html"},
+        {"@type": "ListItem", "position": 3, "name": "Github 每日備份工作流", "item": "https://www.darrelltw.com/tools/n8n_template/model/n8n-github-backup-workflow.html"}
+      ]
+    }
+    </script>
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Github 每日備份工作流",
+      "description": "這個工作流程展示如何自動備份 n8n 工作流到 GitHub。適合用於版本控制和備份。  主要功能：  排程執行：每天凌晨 3 點自動執行 獲取工作流：抓取所有活躍的工作流 資料處理：格式化 JSON 並處理檔名 GitHub 上傳：將工作流備份到指定的 GitHub Repository",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "WorkflowAutomation",
+      "operatingSystem": "n8n",
+      "url": "https://www.darrelltw.com/tools/n8n_template/model/n8n-github-backup-workflow.html",
+      "image": "https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-github-backup-workflow.webp",
+      "screenshot": "https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-github-backup-workflow.webp",
+      "author": {
+        "@type": "Person",
+        "name": "Darrell Wang",
+        "url": "https://www.darrelltw.com"
+      },
+      "datePublished": "2025-11-22",
+      "dateModified": "2025-11-22",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "TWD",
+        "availability": "https://schema.org/InStock"
+      },
+      "featureList": ["每天凌晨自動觸發備份","獲取所有活躍的 n8n 工作流","過濾最近更新的工作流","自動 commit 並推送到 GitHub"]
+    }
+    </script>
+
+    <!-- HowTo Schema (Setup Steps) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "如何設定 Github 每日備份工作流",
+      "description": "需要 GitHub 帳號和 n8n API 權限",
+      "totalTime": "PT15M",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "TWD",
+        "value": "0"
+      },
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "GitHub 設定",
+          "text": "設定 GitHub Repository 和 Access Token 建立一個新的 GitHub Repository 用於存放備份, 取得 GitHub Personal Access Token, 在 n8n 設定 GitHub Credentials"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "n8n API 設定",
+          "text": "設定 n8n API 權限 在 n8n 設定 n8n API Credentials"
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <div class="node-bg"></div>

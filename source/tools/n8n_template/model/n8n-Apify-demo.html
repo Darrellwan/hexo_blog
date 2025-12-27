@@ -20,7 +20,8 @@
 狀態檢查：使用條件判斷確保任務成功完成
 資料提取：自動從 Apify Dataset 取得爬蟲結果
 錯誤處理：具備重試機制和狀態驗證">
-    
+    <link rel="canonical" href="https://www.darrelltw.com/tools/n8n_template/model/n8n-Apify-demo.html">
+
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="DarrellTW n8n 模板庫">
@@ -36,7 +37,7 @@
 錯誤處理：具備重試機制和狀態驗證">
     <meta property="og:url" content="https://www.darrelltw.com/tools/n8n_template/model/n8n-Apify-demo.html">
     <meta property="og:image" content="https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-Apify-demo.webp">
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -596,6 +597,85 @@
             }
         }
     </style>
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "首頁", "item": "https://www.darrelltw.com/"},
+        {"@type": "ListItem", "position": 2, "name": "n8n 模板", "item": "https://www.darrelltw.com/tools/n8n_template/models.html"},
+        {"@type": "ListItem", "position": 3, "name": "Apify 撈 Youtube 影片資訊 Demo", "item": "https://www.darrelltw.com/tools/n8n_template/model/n8n-Apify-demo.html"}
+      ]
+    }
+    </script>
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Apify 撈 Youtube 影片資訊 Demo",
+      "description": "這個工作流程展示如何使用 Apify 平台進行網頁爬蟲自動化，透過 n8n 整合 Apify Actors 來爬取 YouTube 搜尋結果。此模板示範了完整的爬蟲流程，包括任務啟動、狀態監控、資料提取等功能，適合需要大規模網頁資料收集的場景。  主要功能：  智能任務管理：自動啟動 Apify Actor 並監控執行狀態 等待機制：透過 Wait 節點處理異步爬蟲任務 狀態檢查：使用條件判斷確保任務成功完成 資料提取：自動從 Apify Dataset 取得爬蟲結果 錯誤處理：具備重試機制和狀態驗證",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "WorkflowAutomation",
+      "operatingSystem": "n8n",
+      "url": "https://www.darrelltw.com/tools/n8n_template/model/n8n-Apify-demo.html",
+      "image": "https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-Apify-demo.webp",
+      "screenshot": "https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-Apify-demo.webp",
+      "author": {
+        "@type": "Person",
+        "name": "Darrell Wang",
+        "url": "https://www.darrelltw.com"
+      },
+      "datePublished": "2025-08-05",
+      "dateModified": "2025-08-05",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "TWD",
+        "availability": "https://schema.org/InStock"
+      },
+      "featureList": ["執行 Apify Actor 爬取 YouTube","自動等待任務完成","取得影片詳細資料","支援批次處理多個影片"]
+    }
+    </script>
+
+    <!-- HowTo Schema (Setup Steps) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "如何設定 Apify 撈 Youtube 影片資訊 Demo",
+      "description": "需要 Apify 平台帳號和 API 存取權限",
+      "totalTime": "PT15M",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "TWD",
+        "value": "0"
+      },
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Apify 帳號設定",
+          "text": "建立和設定 Apify 平台帳號 在 Apify 平台註冊帳號 (https://apify.com), 取得 Apify API Token, 確認有足夠的 Compute Units 配額, 瞭解 Apify 計費方式和免費額度"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Actor ID 設定",
+          "text": "找到合適的 Apify Actor 並取得 ID 瀏覽 Apify Store 找到 YouTube Search Actor, 從 Actor URL 中提取 ID (例：h7sDV53CddomktSi5), 在 Apify Console 測試 Actor 功能, 複製 Actor 的 JSON 輸入設定, 調整爬蟲參數（搜尋關鍵字、結果數量等）"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "n8n 認證設定",
+          "text": "在 n8n 中設定 Apify API 連接 在 n8n 中建立 Apify API 認證, 輸入 Apify API Token, 測試 API 連接是否正常, 確認 Actor 執行權限, 設定適當的錯誤處理機制"
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <div class="node-bg"></div>

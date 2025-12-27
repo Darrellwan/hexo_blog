@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <!-- 模板列表頁的所有預覽圖 -->
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/models.html</loc>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/darrell_n8n_line_auto_reply.webp</image:loc>
+      <image:title>LINE 自動回覆 + Time Saved 示範</image:title>
+      <image:caption>LINE Bot 關鍵字自動回覆範本，支援營業時間、地址、停車資訊查詢，並整合 Time Saved 節點追蹤省下的時間。適合客服自動化場景。</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-ai-news-daily-digest.webp</image:loc>
+      <image:title>AI 新聞每日摘要 Email</image:title>
+      <image:caption>自動從 4 個權威 AI 新聞來源抓取最新資訊，透過 GPT-4o-mini 智能分析並生成精美的 HTML Email 日報。  主要功能：  多來源 RSS 聚合：OpenAI Blog、MIT </image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-ai-choose-ai-zeabur-aihub.webp</image:loc>
+      <image:title>Zeabur AI Hub 智慧模型 Router</image:title>
+      <image:caption>透過 Zeabur AI Hub 統一管理多家 AI 模型，搭配 AI 模型 Router 自動判斷問題複雜度並動態切換最適合的模型。簡單問題用便宜模型、複雜問題用強模型，省成本又兼顧品質。  主要功</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-github-backup-workflow.webp</image:loc>
+      <image:title>Github 每日備份工作流</image:title>
+      <image:caption>這個工作流程展示如何自動備份 n8n 工作流到 GitHub。適合用於版本控制和備份。  主要功能：  排程執行：每天凌晨 3 點自動執行 獲取工作流：抓取所有活躍的工作流 資料處理：格式化 JSON</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-threads-auto-reply-form-send_email.webp</image:loc>
+      <image:title>Threads 回覆小精靈 - 表單自動寄送模板</image:title>
+      <image:caption>這個工作流程展示如何結合 Threads 貼文回覆、表單搜集和自動寄送 Email 的完整自動化流程。適合用於活動報名、模板發送、資料收集等需要多渠道整合的自動化場景。  主要功能：  表單資料搜集：</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/n8n_line_messaging_community.webp</image:loc>
+      <image:title>LINE Messaging Community 節點範本</image:title>
+      <image:caption>這個工作流程展示如何使用 LINE Messaging Community 節點建立 LINE Bot 自動回覆系統。包含接收訊息、事件分流、自動回覆，以及主動推播訊息給使用者的完整功能。適合用於客服</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-sora2-prompt-to-video.webp</image:loc>
+      <image:title>OpenAI Sora-2 文字轉影片自動生成</image:title>
+      <image:caption>這個工作流程使用 OpenAI 最新的 Sora-2 API 將文字提示詞轉換成高品質影片。系統會自動處理影片生成請求、監控生成狀態、下載完成的影片，並將成品自動上傳到 Google Drive 儲存</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/darrell-n8n-demo-datatables.webp</image:loc>
+      <image:title>n8n DataTables 完整功能示範</image:title>
+      <image:caption>這個工作流程展示 n8n DataTables 的完整功能，包含表單資料收集和 7 種核心 CRUD 操作演示。透過實際的用戶評價表單收集數據（email、評分、訂閱選擇、生日），並展示 Insert</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/darrell-n8n-demo-gemini_nano banana_change_image.webp</image:loc>
+      <image:title>Google nano banana 替換圖片</image:title>
+      <image:caption>這個工作流程展示如何使用 Google Drive 觸發器配合 Google Gemini AI 模型進行自動圖片替換處理。當有新圖片上傳到指定的 Google Drive 資料夾時，系統會自動下載圖</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-web-scrawler-practice-house-scraper.webp</image:loc>
+      <image:title>房屋資訊爬蟲到 Google Sheet</image:title>
+      <image:caption>這個工作流程展示如何使用 n8n 的 HTTP Request 節點進行房屋網站爬蟲，從房君子網站抓取房屋資訊並自動儲存到 Google Sheet。此範例示範了完整的網頁爬蟲流程，包括 HTML 解</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-Apify-demo.webp</image:loc>
+      <image:title>Apify 撈 Youtube 影片資訊 Demo</image:title>
+      <image:caption>這個工作流程展示如何使用 Apify 平台進行網頁爬蟲自動化，透過 n8n 整合 Apify Actors 來爬取 YouTube 搜尋結果。此模板示範了完整的爬蟲流程，包括任務啟動、狀態監控、資料提</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-from-collect-email-and-send.webp</image:loc>
+      <image:title>表單名單蒐集與自動化郵件發送</image:title>
+      <image:caption>完整的名單蒐集與郵件行銷自動化系統。透過美觀的表單蒐集潛在客戶資料，自動儲存至 Google Sheets 進行管理，並提供批量郵件發送功能，適合活動報名、訂閱服務、工作坊招募等場景。  主要功能： </image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-gmail-pickup-calendar.webp</image:loc>
+      <image:title>Gmail 電商取貨提醒自動化</image:title>
+      <image:caption>這個工作流程自動監聽 Gmail 中的電商取貨通知信件，並在 Google Calendar 中建立智能取貨提醒。系統能夠識別不同電商平台（一般電商、賣貨便）的到店通知，解析出門市資訊，自動建立個人化</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-ai-choose-model.webp</image:loc>
+      <image:title>AI 選 AI 模型</image:title>
+      <image:caption>這個工作流程提供智能 AI 模型選擇功能，根據使用者的請求內容自動判斷並路由到最適合且最省成本的 OpenAI 模型。系統包含模型路由器，能夠根據請求的複雜度、輸入長度和任務類型，在 gpt-4.1-</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/n8n_template_portaly_demo.webp</image:loc>
+      <image:title>Portaly 商品銷售 Webhook 自動記錄</image:title>
+      <image:caption>這個工作流程自動處理 Portaly 平台的商品銷售 Webhook，智能提取訂單資訊並將其儲存到 Google Sheets 中。系統會接收來自 Portaly 的銷售通知，解析固定欄位資料（如訂單</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/meta-challenge-respond.webp</image:loc>
+      <image:title>Meta Webhook Challenge 驗證回應</image:title>
+      <image:caption>這個工作流程用於處理 Meta（Facebook）平台的 Webhook 驗證挑戰。當設定 Facebook/Instagram Webhook 時，Meta 會發送一個驗證請求，包含 hub.cha</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-template-evaluations_demo_item.webp</image:loc>
+      <image:title>n8n Evaluations 功能示範：AI 項目分類</image:title>
+      <image:caption>這個工作流程展示 n8n 的 Evaluations 功能，使用 AI 模型自動分類項目為「動物」或「水果」。系統從 Google Sheets 讀取測試資料，透過 AI Agent 進行分類，並將結</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/gmail_parse_invoice_to_sheet_and_analyze.webp</image:loc>
+      <image:title>Gmail 電子發票轉存 Google Sheet + AI 分析消費</image:title>
+      <image:caption>這個工作流程自動處理來自「財政部電子發票整合服務平台」的郵件，擷取電子發票資料並將其儲存到 Google Sheets 中，再使用 AI 進行消費分析。系統每天指定時間會監控 Gmail 中特定發件人</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/n8n_gpt_image_1_with_drive_and_sheet.webp</image:loc>
+      <image:title>ChatGPT Image-1 圖像生成與自動儲存</image:title>
+      <image:caption>這個工作流程使用 ChatGPT Image-1 模型生成高品質圖像，並自動將圖像儲存到 Google Drive 和記錄到 Google Sheets 中。系統接收使用者的文字提示，透過 OpenA</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/check_which_ai_models_are_used_in_your_workflows.webp</image:loc>
+      <image:title>檢查 n8n 正在使用的 AI 模型</image:title>
+      <image:caption>這個工作流程用於檢查 n8n 工作流程中使用的 AI 模型。它會遍歷所有工作流程，並識別出包含 AI 模型的節點，然後將結果記錄到 Google Sheets 中。</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/n8n_japan_receipt_ai_recognition_expense_sharing.webp</image:loc>
+      <image:title>Line 收據AI辨識自動記帳</image:title>
+      <image:caption>這個工作流程透過 Line 機器人接收使用者上傳的日本收據圖片，使用 AI 自動辨識收據上的金額、品項和店家資訊，並提供拆帳功能，可以在多人之間平均分攤費用。系統會將所有資料記錄到 Google 試算</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/n8n_remember_to_drink_water.webp</image:loc>
+      <image:title>Slack自動喝水提醒</image:title>
+      <image:caption>這個工作流程自動發送智能喝水提醒到Slack頻道，透過OpenAI生成專業中醫風格的提醒訊息，並提供按鈕記錄喝水量。系統會追蹤使用者的喝水習慣，記錄到Google Sheets，並提供iOS捷徑連結將</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/line_message.webp</image:loc>
+      <image:title>Line Message API 完整教學範例</image:title>
+      <image:caption>這個工作流程提供 Line Messaging API 的完整教學範例，包含自動回覆和主動推送兩種核心功能。當使用者透過 Line 傳送訊息時，系統會自動判斷訊息類型並回覆相同內容；同時也可以透過 L</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/creditcard.webp</image:loc>
+      <image:title>別忘記繳費:信用卡帳單自動建日曆提醒</image:title>
+      <image:caption>這個工作流程自動化處理來自多家銀行的信用卡對帳單電子郵件。它會提取重要的支付細節，將其儲存在 Google 試算表中，並在 Google 日曆中建立付款提醒。此外，它還允許使用者在帳單支付完成後更新付</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/food_delivery_easy_expense.webp</image:loc>
+      <image:title>外送記帳自動化</image:title>
+      <image:caption>這個工作流程自動化處理 UberEats 訂單郵件，並將訂單資訊發送到 Slack 頻道，同時提供 Moze 記帳連結。系統會監控特定主旨的 Gmail 郵件，提取訂單關鍵資訊，並透過 Slack 發</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/demo_while_loop_example.webp</image:loc>
+      <image:title>While True 迴圈範例：分頁資料處理</image:title>
+      <image:caption>這個工作流程展示如何在 n8n 中實現 while 迴圈功能，特別適用於處理分頁 API 資料。工作流程模擬 API 回傳分頁資料的情境，並透過條件判斷和迴圈結構來處理所有分頁。  主要功能：  動態</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/instagram_api_demo_publish.webp</image:loc>
+      <image:title>Instagram API 貼文發佈範例</image:title>
+      <image:caption>這個工作流程展示如何使用 Instagram Graph API 發佈圖片貼文。流程首先驗證 Access Token 是否有效，接著建立內容容器（container），最後將容器發佈為正式貼文。適合</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/demo_limit_the_workflow_execution_by_supabase.webp</image:loc>
+      <image:title>Supabase限制工作流程執行次數</image:title>
+      <image:caption>這個工作流程展示如何使用Supabase數據庫來限制n8n工作流程的執行次數。系統會在Supabase資料表中記錄和追蹤每個工作流程的執行次數，並在達到設定的最大次數（預設50次）後停止執行。  主要</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/darrell_n8n_line_auto_reply.html</loc>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/darrell_n8n_line_auto_reply.webp</image:loc>
+      <image:title>LINE 自動回覆 + Time Saved 示範</image:title>
+      <image:caption>LINE Bot 關鍵字自動回覆範本，支援營業時間、地址、停車資訊查詢，並整合 Time Saved 節點追蹤省下的時間。適合客服自動化場景。</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n-ai-news-daily-digest.html</loc>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-ai-news-daily-digest.webp</image:loc>
+      <image:title>AI 新聞每日摘要 Email</image:title>
+      <image:caption>自動從 4 個權威 AI 新聞來源抓取最新資訊，透過 GPT-4o-mini 智能分析並生成精美的 HTML Email 日報。  主要功能：  多來源 RSS 聚合：OpenAI Blog、MIT </image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n-ai-choose-ai-zeabur-aihub.html</loc>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-ai-choose-ai-zeabur-aihub.webp</image:loc>
+      <image:title>Zeabur AI Hub 智慧模型 Router</image:title>
+      <image:caption>透過 Zeabur AI Hub 統一管理多家 AI 模型，搭配 AI 模型 Router 自動判斷問題複雜度並動態切換最適合的模型。簡單問題用便宜模型、複雜問題用強模型，省成本又兼顧品質。  主要功</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n-github-backup-workflow.html</loc>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-github-backup-workflow.webp</image:loc>
+      <image:title>Github 每日備份工作流</image:title>
+      <image:caption>這個工作流程展示如何自動備份 n8n 工作流到 GitHub。適合用於版本控制和備份。  主要功能：  排程執行：每天凌晨 3 點自動執行 獲取工作流：抓取所有活躍的工作流 資料處理：格式化 JSON</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n-threads-auto-reply-form-send_email.html</loc>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-threads-auto-reply-form-send_email.webp</image:loc>
+      <image:title>Threads 回覆小精靈 - 表單自動寄送模板</image:title>
+      <image:caption>這個工作流程展示如何結合 Threads 貼文回覆、表單搜集和自動寄送 Email 的完整自動化流程。適合用於活動報名、模板發送、資料收集等需要多渠道整合的自動化場景。  主要功能：  表單資料搜集：</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n_line_messaging_community.html</loc>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/n8n_line_messaging_community.webp</image:loc>
+      <image:title>LINE Messaging Community 節點範本</image:title>
+      <image:caption>這個工作流程展示如何使用 LINE Messaging Community 節點建立 LINE Bot 自動回覆系統。包含接收訊息、事件分流、自動回覆，以及主動推播訊息給使用者的完整功能。適合用於客服</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n-sora2-prompt-to-video.html</loc>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-sora2-prompt-to-video.webp</image:loc>
+      <image:title>OpenAI Sora-2 文字轉影片自動生成</image:title>
+      <image:caption>這個工作流程使用 OpenAI 最新的 Sora-2 API 將文字提示詞轉換成高品質影片。系統會自動處理影片生成請求、監控生成狀態、下載完成的影片，並將成品自動上傳到 Google Drive 儲存</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/darrell-n8n-demo-datatables.html</loc>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/darrell-n8n-demo-datatables.webp</image:loc>
+      <image:title>n8n DataTables 完整功能示範</image:title>
+      <image:caption>這個工作流程展示 n8n DataTables 的完整功能，包含表單資料收集和 7 種核心 CRUD 操作演示。透過實際的用戶評價表單收集數據（email、評分、訂閱選擇、生日），並展示 Insert</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/darrell-n8n-demo-gemini_nano banana_change_image.html</loc>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/darrell-n8n-demo-gemini_nano banana_change_image.webp</image:loc>
+      <image:title>Google nano banana 替換圖片</image:title>
+      <image:caption>這個工作流程展示如何使用 Google Drive 觸發器配合 Google Gemini AI 模型進行自動圖片替換處理。當有新圖片上傳到指定的 Google Drive 資料夾時，系統會自動下載圖</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n-web-scrawler-practice-house-scraper.html</loc>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-web-scrawler-practice-house-scraper.webp</image:loc>
+      <image:title>房屋資訊爬蟲到 Google Sheet</image:title>
+      <image:caption>這個工作流程展示如何使用 n8n 的 HTTP Request 節點進行房屋網站爬蟲，從房君子網站抓取房屋資訊並自動儲存到 Google Sheet。此範例示範了完整的網頁爬蟲流程，包括 HTML 解</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n-Apify-demo.html</loc>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-Apify-demo.webp</image:loc>
+      <image:title>Apify 撈 Youtube 影片資訊 Demo</image:title>
+      <image:caption>這個工作流程展示如何使用 Apify 平台進行網頁爬蟲自動化，透過 n8n 整合 Apify Actors 來爬取 YouTube 搜尋結果。此模板示範了完整的爬蟲流程，包括任務啟動、狀態監控、資料提</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n-from-collect-email-and-send.html</loc>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-from-collect-email-and-send.webp</image:loc>
+      <image:title>表單名單蒐集與自動化郵件發送</image:title>
+      <image:caption>完整的名單蒐集與郵件行銷自動化系統。透過美觀的表單蒐集潛在客戶資料，自動儲存至 Google Sheets 進行管理，並提供批量郵件發送功能，適合活動報名、訂閱服務、工作坊招募等場景。  主要功能： </image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n-gmail-pickup-calendar.html</loc>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-gmail-pickup-calendar.webp</image:loc>
+      <image:title>Gmail 電商取貨提醒自動化</image:title>
+      <image:caption>這個工作流程自動監聽 Gmail 中的電商取貨通知信件，並在 Google Calendar 中建立智能取貨提醒。系統能夠識別不同電商平台（一般電商、賣貨便）的到店通知，解析出門市資訊，自動建立個人化</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n-ai-choose-model.html</loc>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-ai-choose-model.webp</image:loc>
+      <image:title>AI 選 AI 模型</image:title>
+      <image:caption>這個工作流程提供智能 AI 模型選擇功能，根據使用者的請求內容自動判斷並路由到最適合且最省成本的 OpenAI 模型。系統包含模型路由器，能夠根據請求的複雜度、輸入長度和任務類型，在 gpt-4.1-</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n_template_portaly_demo.html</loc>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/n8n_template_portaly_demo.webp</image:loc>
+      <image:title>Portaly 商品銷售 Webhook 自動記錄</image:title>
+      <image:caption>這個工作流程自動處理 Portaly 平台的商品銷售 Webhook，智能提取訂單資訊並將其儲存到 Google Sheets 中。系統會接收來自 Portaly 的銷售通知，解析固定欄位資料（如訂單</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/meta-challenge-respond.html</loc>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/meta-challenge-respond.webp</image:loc>
+      <image:title>Meta Webhook Challenge 驗證回應</image:title>
+      <image:caption>這個工作流程用於處理 Meta（Facebook）平台的 Webhook 驗證挑戰。當設定 Facebook/Instagram Webhook 時，Meta 會發送一個驗證請求，包含 hub.cha</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n-template-evaluations_demo_item.html</loc>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-template-evaluations_demo_item.webp</image:loc>
+      <image:title>n8n Evaluations 功能示範：AI 項目分類</image:title>
+      <image:caption>這個工作流程展示 n8n 的 Evaluations 功能，使用 AI 模型自動分類項目為「動物」或「水果」。系統從 Google Sheets 讀取測試資料，透過 AI Agent 進行分類，並將結</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/gmail_parse_invoice_to_sheet_and_analyze.html</loc>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/gmail_parse_invoice_to_sheet_and_analyze.webp</image:loc>
+      <image:title>Gmail 電子發票轉存 Google Sheet + AI 分析消費</image:title>
+      <image:caption>這個工作流程自動處理來自「財政部電子發票整合服務平台」的郵件，擷取電子發票資料並將其儲存到 Google Sheets 中，再使用 AI 進行消費分析。系統每天指定時間會監控 Gmail 中特定發件人</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n_gpt_image_1_with_drive_and_sheet.html</loc>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/n8n_gpt_image_1_with_drive_and_sheet.webp</image:loc>
+      <image:title>ChatGPT Image-1 圖像生成與自動儲存</image:title>
+      <image:caption>這個工作流程使用 ChatGPT Image-1 模型生成高品質圖像，並自動將圖像儲存到 Google Drive 和記錄到 Google Sheets 中。系統接收使用者的文字提示，透過 OpenA</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/check_which_ai_models_are_used_in_your_workflows.html</loc>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/check_which_ai_models_are_used_in_your_workflows.webp</image:loc>
+      <image:title>檢查 n8n 正在使用的 AI 模型</image:title>
+      <image:caption>這個工作流程用於檢查 n8n 工作流程中使用的 AI 模型。它會遍歷所有工作流程，並識別出包含 AI 模型的節點，然後將結果記錄到 Google Sheets 中。</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n_japan_receipt_ai_recognition_expense_sharing.html</loc>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/n8n_japan_receipt_ai_recognition_expense_sharing.webp</image:loc>
+      <image:title>Line 收據AI辨識自動記帳</image:title>
+      <image:caption>這個工作流程透過 Line 機器人接收使用者上傳的日本收據圖片，使用 AI 自動辨識收據上的金額、品項和店家資訊，並提供拆帳功能，可以在多人之間平均分攤費用。系統會將所有資料記錄到 Google 試算</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n_remember_to_drink_water.html</loc>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/n8n_remember_to_drink_water.webp</image:loc>
+      <image:title>Slack自動喝水提醒</image:title>
+      <image:caption>這個工作流程自動發送智能喝水提醒到Slack頻道，透過OpenAI生成專業中醫風格的提醒訊息，並提供按鈕記錄喝水量。系統會追蹤使用者的喝水習慣，記錄到Google Sheets，並提供iOS捷徑連結將</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/line_message.html</loc>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/line_message.webp</image:loc>
+      <image:title>Line Message API 完整教學範例</image:title>
+      <image:caption>這個工作流程提供 Line Messaging API 的完整教學範例，包含自動回覆和主動推送兩種核心功能。當使用者透過 Line 傳送訊息時，系統會自動判斷訊息類型並回覆相同內容；同時也可以透過 L</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/creditcard.html</loc>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/creditcard.webp</image:loc>
+      <image:title>別忘記繳費:信用卡帳單自動建日曆提醒</image:title>
+      <image:caption>這個工作流程自動化處理來自多家銀行的信用卡對帳單電子郵件。它會提取重要的支付細節，將其儲存在 Google 試算表中，並在 Google 日曆中建立付款提醒。此外，它還允許使用者在帳單支付完成後更新付</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/food_delivery_easy_expense.html</loc>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/food_delivery_easy_expense.webp</image:loc>
+      <image:title>外送記帳自動化</image:title>
+      <image:caption>這個工作流程自動化處理 UberEats 訂單郵件，並將訂單資訊發送到 Slack 頻道，同時提供 Moze 記帳連結。系統會監控特定主旨的 Gmail 郵件，提取訂單關鍵資訊，並透過 Slack 發</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/demo_while_loop_example.html</loc>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/demo_while_loop_example.webp</image:loc>
+      <image:title>While True 迴圈範例：分頁資料處理</image:title>
+      <image:caption>這個工作流程展示如何在 n8n 中實現 while 迴圈功能，特別適用於處理分頁 API 資料。工作流程模擬 API 回傳分頁資料的情境，並透過條件判斷和迴圈結構來處理所有分頁。  主要功能：  動態</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/instagram_api_demo_publish.html</loc>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/instagram_api_demo_publish.webp</image:loc>
+      <image:title>Instagram API 貼文發佈範例</image:title>
+      <image:caption>這個工作流程展示如何使用 Instagram Graph API 發佈圖片貼文。流程首先驗證 Access Token 是否有效，接著建立內容容器（container），最後將容器發佈為正式貼文。適合</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/demo_limit_the_workflow_execution_by_supabase.html</loc>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/demo_limit_the_workflow_execution_by_supabase.webp</image:loc>
+      <image:title>Supabase限制工作流程執行次數</image:title>
+      <image:caption>這個工作流程展示如何使用Supabase數據庫來限制n8n工作流程的執行次數。系統會在Supabase資料表中記錄和追蹤每個工作流程的執行次數，並在達到設定的最大次數（預設50次）後停止執行。  主要</image:caption>
+    </image:image>
+  </url>
+</urlset>

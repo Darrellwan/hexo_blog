@@ -20,7 +20,8 @@ Threads 回覆監控：每小時自動抓取指定貼文下的回覆，並儲存
 智能資料比對：根據 Threads 帳號合併表單資料和回覆資料
 關鍵字過濾：檢查回覆內容是否包含指定關鍵字（如「Line」或「line」）
 自動郵件寄送：符合條件的使用者會收到精美的 HTML 模板郵件，內含下載連結">
-    
+    <link rel="canonical" href="https://www.darrelltw.com/tools/n8n_template/model/n8n-threads-auto-reply-form-send_email.html">
+
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="DarrellTW n8n 模板庫">
@@ -36,7 +37,7 @@ Threads 回覆監控：每小時自動抓取指定貼文下的回覆，並儲存
 自動郵件寄送：符合條件的使用者會收到精美的 HTML 模板郵件，內含下載連結">
     <meta property="og:url" content="https://www.darrelltw.com/tools/n8n_template/model/n8n-threads-auto-reply-form-send_email.html">
     <meta property="og:image" content="https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-threads-auto-reply-form-send_email.webp">
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -596,6 +597,91 @@ Threads 回覆監控：每小時自動抓取指定貼文下的回覆，並儲存
             }
         }
     </style>
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "首頁", "item": "https://www.darrelltw.com/"},
+        {"@type": "ListItem", "position": 2, "name": "n8n 模板", "item": "https://www.darrelltw.com/tools/n8n_template/models.html"},
+        {"@type": "ListItem", "position": 3, "name": "Threads 回覆小精靈 - 表單自動寄送模板", "item": "https://www.darrelltw.com/tools/n8n_template/model/n8n-threads-auto-reply-form-send_email.html"}
+      ]
+    }
+    </script>
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Threads 回覆小精靈 - 表單自動寄送模板",
+      "description": "這個工作流程展示如何結合 Threads 貼文回覆、表單搜集和自動寄送 Email 的完整自動化流程。適合用於活動報名、模板發送、資料收集等需要多渠道整合的自動化場景。  主要功能：  表單資料搜集：使用 Form Trigger 收集使用者的 email 和 Threads 帳號 Threads 回覆監控：每小時自動抓取指定貼文下的回覆，並儲存到 Google Sheets 智能資料比對：根據 Threads 帳號合併表單資料和回覆資料 關鍵字過濾：檢查回覆內容是否包含指定關鍵字（如「Line」或「line」） 自動郵件寄送：符合條件的使用者會收到精美的 HTML 模板郵件，內含下載連結",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "WorkflowAutomation",
+      "operatingSystem": "n8n",
+      "url": "https://www.darrelltw.com/tools/n8n_template/model/n8n-threads-auto-reply-form-send_email.html",
+      "image": "https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-threads-auto-reply-form-send_email.webp",
+      "screenshot": "https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-threads-auto-reply-form-send_email.webp",
+      "author": {
+        "@type": "Person",
+        "name": "Darrell Wang",
+        "url": "https://www.darrelltw.com"
+      },
+      "datePublished": "2025-11-03",
+      "dateModified": "2025-11-03",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "TWD",
+        "availability": "https://schema.org/InStock"
+      },
+      "featureList": ["表單搜集使用者 email 和 Threads 帳號","每小時定時抓取 Threads 貼文回覆","偵測新回覆並發送 Email 通知","支援多帳號批次處理"]
+    }
+    </script>
+
+    <!-- HowTo Schema (Setup Steps) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "如何設定 Threads 回覆小精靈 - 表單自動寄送模板",
+      "description": "需要 Threads API 權限、Gmail 帳號、Google Sheets API 存取權限",
+      "totalTime": "PT15M",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "TWD",
+        "value": "0"
+      },
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Threads API 設定",
+          "text": "在 Meta Developer 取得 Access Token 並設定認證 前往 Meta Developer 建立應用程式並新增 Threads 產品, 取得 Access Token 並在 n8n 設定 HTTP Query Auth Credential, 取得要監控的 Threads 貼文 ID"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Google Sheets 設定",
+          "text": "建立 Sheet 並設定欄位結構 建立「email」工作表，欄位：email, threads, subscribe, submittedAt, sent, sent_at, 建立「回覆」工作表，欄位：id, text, username, sent_email, 在 n8n 設定 Google Sheets OAuth2 Credential 並測試連線"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Gmail 設定",
+          "text": "設定 OAuth2 並自訂郵件內容 在 n8n 新增 Gmail OAuth2 Credential 並完成授權, 修改 HTML 郵件模板（下載連結、社群連結、文案）"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "調整參數設定",
+          "text": "根據實際需求調整關鍵參數 更新 Threads 貼文 ID 和關鍵字過濾條件, 調整執行頻率（預設每小時 25 分）, 更新 Google Sheets 的 documentId 和 sheetName"
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <div class="node-bg"></div>

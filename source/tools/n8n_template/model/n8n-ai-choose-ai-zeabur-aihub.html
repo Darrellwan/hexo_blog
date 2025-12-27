@@ -19,7 +19,8 @@
 動態切換：自動選擇最適合的 AI 模型
 成本優化：簡單查詢用便宜模型，複雜任務用強模型
 多模型支援：支援 OpenAI、Claude、Gemini、Grok、DeepSeek 等 21 種模型">
-    
+    <link rel="canonical" href="https://www.darrelltw.com/tools/n8n_template/model/n8n-ai-choose-ai-zeabur-aihub.html">
+
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="DarrellTW n8n 模板庫">
@@ -34,7 +35,7 @@
 多模型支援：支援 OpenAI、Claude、Gemini、Grok、DeepSeek 等 21 種模型">
     <meta property="og:url" content="https://www.darrelltw.com/tools/n8n_template/model/n8n-ai-choose-ai-zeabur-aihub.html">
     <meta property="og:image" content="https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-ai-choose-ai-zeabur-aihub.webp">
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -594,6 +595,85 @@
             }
         }
     </style>
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "首頁", "item": "https://www.darrelltw.com/"},
+        {"@type": "ListItem", "position": 2, "name": "n8n 模板", "item": "https://www.darrelltw.com/tools/n8n_template/models.html"},
+        {"@type": "ListItem", "position": 3, "name": "Zeabur AI Hub 智慧模型 Router", "item": "https://www.darrelltw.com/tools/n8n_template/model/n8n-ai-choose-ai-zeabur-aihub.html"}
+      ]
+    }
+    </script>
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Zeabur AI Hub 智慧模型 Router",
+      "description": "透過 Zeabur AI Hub 統一管理多家 AI 模型，搭配 AI 模型 Router 自動判斷問題複雜度並動態切換最適合的模型。簡單問題用便宜模型、複雜問題用強模型，省成本又兼顧品質。  主要功能：  智慧判斷：用 gpt-4o-mini 分析問題複雜度 動態切換：自動選擇最適合的 AI 模型 成本優化：簡單查詢用便宜模型，複雜任務用強模型 多模型支援：支援 OpenAI、Claude、Gemini、Grok、DeepSeek 等 21 種模型",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "WorkflowAutomation",
+      "operatingSystem": "n8n",
+      "url": "https://www.darrelltw.com/tools/n8n_template/model/n8n-ai-choose-ai-zeabur-aihub.html",
+      "image": "https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-ai-choose-ai-zeabur-aihub.webp",
+      "screenshot": "https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-ai-choose-ai-zeabur-aihub.webp",
+      "author": {
+        "@type": "Person",
+        "name": "Darrell Wang",
+        "url": "https://www.darrelltw.com"
+      },
+      "datePublished": "2025-12-06",
+      "dateModified": "2025-12-06",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "TWD",
+        "availability": "https://schema.org/InStock"
+      },
+      "featureList": ["接收用戶訊息並分析需求","根據複雜度選擇最適合的模型","連接 Zeabur AI Hub 五個模型","完整的對話歷史保持"]
+    }
+    </script>
+
+    <!-- HowTo Schema (Setup Steps) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "如何設定 Zeabur AI Hub 智慧模型 Router",
+      "description": "需要 Zeabur AI Hub 帳號和 API Key",
+      "totalTime": "PT15M",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "TWD",
+        "value": "0"
+      },
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Zeabur AI Hub 設定",
+          "text": "取得 API Key 和 Endpoint 前往 Zeabur AI Hub 開通服務, 取得 API Key, 複製 API Endpoint URL"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "n8n Credentials 設定",
+          "text": "建立 OpenAI 相容的 Credential 在 n8n 建立 OpenAI Credential, 貼上 Zeabur API Key, 設定 Base URL 為 Zeabur Endpoint"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "調整模型清單",
+          "text": "根據需求調整可用模型 查看 Zeabur AI Hub Models 頁面確認最新模型, 修改 Router Prompt 中的模型清單, 調整判斷規則以符合使用場景"
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <div class="node-bg"></div>

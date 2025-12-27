@@ -337,15 +337,55 @@ function generateDetailPages(models) {
             console.warn(`⚠️  讀取 Workflow JSON 失敗: ${id}`, e);
         }
 
+        // 準備 SoftwareApplication Schema 所需變數
+        const descriptionEscaped = (model.description || '').replace(/\n/g, ' ').replace(/"/g, '\\"').substring(0, 500);
+        const createdAt = model.createdAt || dateStr;
+        const updatedAt = model.updatedAt || dateStr;
+        const featuresJSON = JSON.stringify(model.detailedDescription || []);
+
+        // 生成 HowTo Schema（如果有 setup 步驟）
+        let howToSchema = '';
+        if (model.setup && model.setup.steps && model.setup.steps.length > 0) {
+            const steps = model.setup.steps.map((step, index) => ({
+                "@type": "HowToStep",
+                "position": index + 1,
+                "name": step.title,
+                "text": step.description + (step.options ? ' ' + step.options.join(', ') : '')
+            }));
+
+            const howToData = {
+                "@context": "https://schema.org",
+                "@type": "HowTo",
+                "name": `如何設定 ${model.title}`,
+                "description": model.setup.prerequisites || `${model.title} 的完整設定教學`,
+                "totalTime": "PT15M",
+                "estimatedCost": {
+                    "@type": "MonetaryAmount",
+                    "currency": "TWD",
+                    "value": "0"
+                },
+                "step": steps
+            };
+
+            howToSchema = `<script type="application/ld+json">
+    ${JSON.stringify(howToData, null, 2).replace(/\n/g, '\n    ')}
+    </script>`;
+        }
+
         // 替換變數
         html = html
             .replace(/{{TITLE}}/g, model.title)
             .replace(/{{DESCRIPTION}}/g, model.description || '')
+            .replace(/{{DESCRIPTION_ESCAPED}}/g, descriptionEscaped)
             .replace(/{{ID}}/g, id)
             .replace(/{{NODES}}/g, model.nodes || 0)
             .replace(/{{DATE}}/g, dateStr)
+            .replace(/{{CREATED_AT}}/g, createdAt)
+            .replace(/{{UPDATED_AT}}/g, updatedAt)
             .replace(/{{TAGS_HTML}}/g, tagsHTML)
             .replace(/{{FEATURES_HTML}}/g, featuresHTML)
+            .replace(/{{FEATURES_JSON}}/g, featuresJSON)
+            .replace(/{{HOWTO_SCHEMA}}/g, howToSchema)
             .replace(/{{SETUP_HTML}}/g, setupHTML)
             .replace(/{{RELATED_ARTICLES_INLINE}}/g, relatedArticlesInline)
             .replace(/{{WORKFLOW_JSON}}/g, () => workflowJSON);
@@ -485,6 +525,9 @@ function generateModelsPage() {
 
     // 9. 生成 Sitemap
     generateSitemap(models);
+
+    // 10. 生成 Images Sitemap
+    generateImagesSitemap(models);
 }
 
 /**
@@ -524,6 +567,57 @@ function generateSitemap(models) {
 
     fs.writeFileSync(SITEMAP_PATH, sitemapContent, 'utf8');
     console.log(`✅ Sitemap 生成成功！ (${Object.keys(models).length + 1} URLs)`);
+}
+
+/**
+ * 生成 Images Sitemap（用於 Google Images 索引）
+ */
+function generateImagesSitemap(models) {
+    console.log('📸 開始生成 Images Sitemap...');
+    const IMAGES_SITEMAP_PATH = path.join(ROOT_DIR, 'images-sitemap.xml');
+
+    let content = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <!-- 模板列表頁的所有預覽圖 -->
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/models.html</loc>`;
+
+    Object.entries(models).forEach(([id, model]) => {
+        const title = model.title.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        const caption = (model.description || '').substring(0, 100).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, ' ');
+        content += `
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/${id}.webp</image:loc>
+      <image:title>${title}</image:title>
+      <image:caption>${caption}</image:caption>
+    </image:image>`;
+    });
+
+    content += `
+  </url>
+`;
+
+    // 每個詳情頁的預覽圖
+    Object.entries(models).forEach(([id, model]) => {
+        const title = model.title.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        const caption = (model.description || '').substring(0, 100).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, ' ');
+        content += `
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/${id}.html</loc>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/${id}.webp</image:loc>
+      <image:title>${title}</image:title>
+      <image:caption>${caption}</image:caption>
+    </image:image>
+  </url>`;
+    });
+
+    content += `
+</urlset>`;
+
+    fs.writeFileSync(IMAGES_SITEMAP_PATH, content, 'utf8');
+    console.log(`✅ Images Sitemap 生成成功！ (${Object.keys(models).length + 1} URLs, ${Object.keys(models).length * 2} images)`);
 }
 
 // 執行生成

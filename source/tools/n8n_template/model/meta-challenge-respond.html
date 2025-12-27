@@ -19,7 +19,8 @@ Webhook 驗證：接收 Meta 平台的驗證請求
 自動回應：提取 hub.challenge 參數並回傳
 簡化設定：快速完成 Meta Webhook 驗證流程
 標準合規：符合 Meta 官方 Webhook 驗證要求">
-    
+    <link rel="canonical" href="https://www.darrelltw.com/tools/n8n_template/model/meta-challenge-respond.html">
+
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="DarrellTW n8n 模板庫">
@@ -34,7 +35,7 @@ Webhook 驗證：接收 Meta 平台的驗證請求
 標準合規：符合 Meta 官方 Webhook 驗證要求">
     <meta property="og:url" content="https://www.darrelltw.com/tools/n8n_template/model/meta-challenge-respond.html">
     <meta property="og:image" content="https://www.darrelltw.com/tools/n8n_template/data/bg/meta-challenge-respond.webp">
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -594,6 +595,85 @@ Webhook 驗證：接收 Meta 平台的驗證請求
             }
         }
     </style>
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "首頁", "item": "https://www.darrelltw.com/"},
+        {"@type": "ListItem", "position": 2, "name": "n8n 模板", "item": "https://www.darrelltw.com/tools/n8n_template/models.html"},
+        {"@type": "ListItem", "position": 3, "name": "Meta Webhook Challenge 驗證回應", "item": "https://www.darrelltw.com/tools/n8n_template/model/meta-challenge-respond.html"}
+      ]
+    }
+    </script>
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Meta Webhook Challenge 驗證回應",
+      "description": "這個工作流程用於處理 Meta（Facebook）平台的 Webhook 驗證挑戰。當設定 Facebook/Instagram Webhook 時，Meta 會發送一個驗證請求，包含 hub.challenge 參數，此工作流程會自動回應該挑戰值以完成 Webhook 驗證程序。這是設定 Meta API 整合時的必要步驟。  主要功能：  Webhook 驗證：接收 Meta 平台的驗證請求 自動回應：提取 hub.challenge 參數並回傳 簡化設定：快速完成 Meta Webhook 驗證流程 標準合規：符合 Meta 官方 Webhook 驗證要求",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "WorkflowAutomation",
+      "operatingSystem": "n8n",
+      "url": "https://www.darrelltw.com/tools/n8n_template/model/meta-challenge-respond.html",
+      "image": "https://www.darrelltw.com/tools/n8n_template/data/bg/meta-challenge-respond.webp",
+      "screenshot": "https://www.darrelltw.com/tools/n8n_template/data/bg/meta-challenge-respond.webp",
+      "author": {
+        "@type": "Person",
+        "name": "Darrell Wang",
+        "url": "https://www.darrelltw.com"
+      },
+      "datePublished": "2025-06-02",
+      "dateModified": "2025-06-02",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "TWD",
+        "availability": "https://schema.org/InStock"
+      },
+      "featureList": ["接收 Meta Webhook 驗證請求","提取並回應 challenge 參數","支援 Facebook/Instagram/WhatsApp"]
+    }
+    </script>
+
+    <!-- HowTo Schema (Setup Steps) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "如何設定 Meta Webhook Challenge 驗證回應",
+      "description": "需要設定 Meta Developer 應用程式和 Webhook URL",
+      "totalTime": "PT15M",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "TWD",
+        "value": "0"
+      },
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Meta Developer 設定",
+          "text": "在 Meta Developer Console 建立應用程式 建立 Meta Developer 帳號, 建立新的應用程式, 選擇適當的產品（Facebook Login、Instagram API 等）, 取得應用程式 ID 和密鑰"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Webhook 設定",
+          "text": "設定 Webhook URL 和驗證 複製 n8n Webhook URL, 在 Meta Developer Console 中設定 Webhook URL, 設定驗證 Token（可選）, 選擇要訂閱的事件類型"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "驗證流程",
+          "text": "完成 Webhook 驗證 啟動 n8n 工作流程, 在 Meta Console 中點擊「驗證並儲存」, 確認收到成功驗證訊息, 測試 Webhook 接收功能"
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <div class="node-bg"></div>

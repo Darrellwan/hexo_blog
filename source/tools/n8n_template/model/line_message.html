@@ -12,7 +12,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Line Message API 完整教學範例 - n8n 模板分享 | Darrell</title>
     <meta name="description" content="這個工作流程提供 Line Messaging API 的完整教學範例，包含自動回覆和主動推送兩種核心功能。當使用者透過 Line 傳送訊息時，系統會自動判斷訊息類型並回覆相同內容；同時也可以透過 Line UID 主動發送訊息給特定使用者。">
-    
+    <link rel="canonical" href="https://www.darrelltw.com/tools/n8n_template/model/line_message.html">
+
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="DarrellTW n8n 模板庫">
@@ -20,7 +21,7 @@
     <meta property="og:description" content="這個工作流程提供 Line Messaging API 的完整教學範例，包含自動回覆和主動推送兩種核心功能。當使用者透過 Line 傳送訊息時，系統會自動判斷訊息類型並回覆相同內容；同時也可以透過 Line UID 主動發送訊息給特定使用者。">
     <meta property="og:url" content="https://www.darrelltw.com/tools/n8n_template/model/line_message.html">
     <meta property="og:image" content="https://www.darrelltw.com/tools/n8n_template/data/bg/line_message.webp">
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -580,6 +581,97 @@
             }
         }
     </style>
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "首頁", "item": "https://www.darrelltw.com/"},
+        {"@type": "ListItem", "position": 2, "name": "n8n 模板", "item": "https://www.darrelltw.com/tools/n8n_template/models.html"},
+        {"@type": "ListItem", "position": 3, "name": "Line Message API 完整教學範例", "item": "https://www.darrelltw.com/tools/n8n_template/model/line_message.html"}
+      ]
+    }
+    </script>
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Line Message API 完整教學範例",
+      "description": "這個工作流程提供 Line Messaging API 的完整教學範例，包含自動回覆和主動推送兩種核心功能。當使用者透過 Line 傳送訊息時，系統會自動判斷訊息類型並回覆相同內容；同時也可以透過 Line UID 主動發送訊息給特定使用者。",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "WorkflowAutomation",
+      "operatingSystem": "n8n",
+      "url": "https://www.darrelltw.com/tools/n8n_template/model/line_message.html",
+      "image": "https://www.darrelltw.com/tools/n8n_template/data/bg/line_message.webp",
+      "screenshot": "https://www.darrelltw.com/tools/n8n_template/data/bg/line_message.webp",
+      "author": {
+        "@type": "Person",
+        "name": "Darrell Wang",
+        "url": "https://www.darrelltw.com"
+      },
+      "datePublished": "2025-02-17",
+      "dateModified": "2025-10-20",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "TWD",
+        "availability": "https://schema.org/InStock"
+      },
+      "featureList": ["接收 LINE Webhook 事件","條件判斷處理 message 類型","使用 replyToken 自動回覆","支援多種訊息格式"]
+    }
+    </script>
+
+    <!-- HowTo Schema (Setup Steps) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "如何設定 Line Message API 完整教學範例",
+      "description": "需要設定 Line Developer Console 和取得 Channel Access Token",
+      "totalTime": "PT15M",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "TWD",
+        "value": "0"
+      },
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Line Developer 設定",
+          "text": "在 Line Developer Console 建立 Channel 並設定 Webhook 建立 Line Developer 帳號並登入, 建立新的 Messaging API Channel, 取得 Channel Access Token, 設定 Webhook URL 為 n8n 提供的 Webhook 端點, 開啟「Use webhook」選項"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "取得 Line Message API Token",
+          "text": "從 Line Developer Console 取得 Channel Access Token 開啟 Line Developer Console (developers.line.biz/console/), 選擇您的 Chatbot, 點擊 Messaging API 分頁, 複製 Channel Access Token, 參考工作流程中的教學圖示說明"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "認證設定",
+          "text": "在 n8n 中設定 Line API 認證 建立 HTTP Bearer Auth 認證, 將 Channel Access Token 貼入認證欄位, 或使用 HTTP Header Auth：設定 Header Name 為 'Authorization'，Header Value 為 'Bearer YOUR_CHANNEL_ACCESS_TOKEN'"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "取得 Line UID",
+          "text": "取得自己或目標使用者的 Line UID 開啟 Line Developer Console (developers.line.biz/console/), 選擇您的 Chatbot, 點擊 Basic Settings 分頁, 複製 Your user ID, 參考工作流程中的教學圖示說明"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 5,
+          "name": "推送訊息設定",
+          "text": "設定主動推送訊息功能 取得目標使用者的 Line UID, 或取得群組的 Channel ID, 在 Edit Fields 節點中更新 line_uid 值"
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <div class="node-bg"></div>

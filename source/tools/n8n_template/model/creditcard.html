@@ -24,7 +24,8 @@ Google 試算表整合：將提取的數據記錄到 Google 試算表文件中�
 Google 日曆整合：在 Google 日曆中建立事件，作為到期付款的提醒。
 
 Webhook 用於付款更新：允許使用者透過 Webhook 更新付款狀態。">
-    
+    <link rel="canonical" href="https://www.darrelltw.com/tools/n8n_template/model/creditcard.html">
+
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="DarrellTW n8n 模板庫">
@@ -44,7 +45,7 @@ Google 日曆整合：在 Google 日曆中建立事件，作為到期付款的�
 Webhook 用於付款更新：允許使用者透過 Webhook 更新付款狀態。">
     <meta property="og:url" content="https://www.darrelltw.com/tools/n8n_template/model/creditcard.html">
     <meta property="og:image" content="https://www.darrelltw.com/tools/n8n_template/data/bg/creditcard.webp">
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -604,6 +605,85 @@ Webhook 用於付款更新：允許使用者透過 Webhook 更新付款狀態。
             }
         }
     </style>
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "首頁", "item": "https://www.darrelltw.com/"},
+        {"@type": "ListItem", "position": 2, "name": "n8n 模板", "item": "https://www.darrelltw.com/tools/n8n_template/models.html"},
+        {"@type": "ListItem", "position": 3, "name": "別忘記繳費:信用卡帳單自動建日曆提醒", "item": "https://www.darrelltw.com/tools/n8n_template/model/creditcard.html"}
+      ]
+    }
+    </script>
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "別忘記繳費:信用卡帳單自動建日曆提醒",
+      "description": "這個工作流程自動化處理來自多家銀行的信用卡對帳單電子郵件。它會提取重要的支付細節，將其儲存在 Google 試算表中，並在 Google 日曆中建立付款提醒。此外，它還允許使用者在帳單支付完成後更新付款狀態。  主要功能  電子郵件處理：從八家台灣銀行檢索信用卡對帳單電子郵件。  PDF 解析：從電子郵件內容或附加的 PDF 檔案中提取付款截止日期和金額。  Google 試算表整合：將提取的數據記錄到 Google 試算表文件中，以便記錄保存。  Google 日曆整合：在 Google 日曆中建立事件，作為到期付款的提醒。  Webhook 用於付款更新：允許使用者透過 Webhook 更新付款狀態。",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "WorkflowAutomation",
+      "operatingSystem": "n8n",
+      "url": "https://www.darrelltw.com/tools/n8n_template/model/creditcard.html",
+      "image": "https://www.darrelltw.com/tools/n8n_template/data/bg/creditcard.webp",
+      "screenshot": "https://www.darrelltw.com/tools/n8n_template/data/bg/creditcard.webp",
+      "author": {
+        "@type": "Person",
+        "name": "Darrell Wang",
+        "url": "https://www.darrelltw.com"
+      },
+      "datePublished": "2025-02-17",
+      "dateModified": "2025-02-17",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "TWD",
+        "availability": "https://schema.org/InStock"
+      },
+      "featureList": ["自動Email中的帳單資訊","解析 PDF 檔案並提取繳費資訊","同步到 Google Calendar 建立提醒事項","記錄到 Google Sheets 進行追蹤","提供便捷的繳費狀態更新機制"]
+    }
+    </script>
+
+    <!-- HowTo Schema (Setup Steps) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "如何設定 別忘記繳費:信用卡帳單自動建日曆提醒",
+      "description": "需要設定 Gmail、Google Calendar 和 Google Sheets 的 API 存取權限",
+      "totalTime": "PT15M",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "TWD",
+        "value": "0"
+      },
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Gmail 設定",
+          "text": "設定 Gmail API 存取權限，用於讀取信用卡帳單郵件 設定 OAuth 2.0 認證, 授予郵件讀取權限, 設定郵件過濾條件"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Google Calendar 設定",
+          "text": "建立專用的信用卡繳費行事曆 建立新的行事曆, 設定提醒時間, 自訂事件格式"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Google Sheets 設定",
+          "text": "準備追蹤記錄用的試算表 建立資料表, 設定欄位格式, 設定存取權限"
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <div class="node-bg"></div>

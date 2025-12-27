@@ -19,7 +19,8 @@
 AI 智能分析：GPT-4o-mini 為每篇文章評分並生成中文摘要
 精美 Email：自動生成分級排版的 HTML 郵件（必讀/重要/一般）
 Gmail 發送：每日自動寄送到指定信箱">
-    
+    <link rel="canonical" href="https://www.darrelltw.com/tools/n8n_template/model/n8n-ai-news-daily-digest.html">
+
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="DarrellTW n8n 模板庫">
@@ -34,7 +35,7 @@ AI 智能分析：GPT-4o-mini 為每篇文章評分並生成中文摘要
 Gmail 發送：每日自動寄送到指定信箱">
     <meta property="og:url" content="https://www.darrelltw.com/tools/n8n_template/model/n8n-ai-news-daily-digest.html">
     <meta property="og:image" content="https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-ai-news-daily-digest.webp">
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -594,6 +595,85 @@ Gmail 發送：每日自動寄送到指定信箱">
             }
         }
     </style>
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "首頁", "item": "https://www.darrelltw.com/"},
+        {"@type": "ListItem", "position": 2, "name": "n8n 模板", "item": "https://www.darrelltw.com/tools/n8n_template/models.html"},
+        {"@type": "ListItem", "position": 3, "name": "AI 新聞每日摘要 Email", "item": "https://www.darrelltw.com/tools/n8n_template/model/n8n-ai-news-daily-digest.html"}
+      ]
+    }
+    </script>
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "AI 新聞每日摘要 Email",
+      "description": "自動從 4 個權威 AI 新聞來源抓取最新資訊，透過 GPT-4o-mini 智能分析並生成精美的 HTML Email 日報。  主要功能：  多來源 RSS 聚合：OpenAI Blog、MIT Tech Review、The Verge AI、Ars Technica AI 智能分析：GPT-4o-mini 為每篇文章評分並生成中文摘要 精美 Email：自動生成分級排版的 HTML 郵件（必讀/重要/一般） Gmail 發送：每日自動寄送到指定信箱",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "WorkflowAutomation",
+      "operatingSystem": "n8n",
+      "url": "https://www.darrelltw.com/tools/n8n_template/model/n8n-ai-news-daily-digest.html",
+      "image": "https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-ai-news-daily-digest.webp",
+      "screenshot": "https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-ai-news-daily-digest.webp",
+      "author": {
+        "@type": "Person",
+        "name": "Darrell Wang",
+        "url": "https://www.darrelltw.com"
+      },
+      "datePublished": "2025-12-26",
+      "dateModified": "2025-12-26",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "TWD",
+        "availability": "https://schema.org/InStock"
+      },
+      "featureList": ["每日排程自動觸發","從 4 個 AI 新聞 RSS 來源抓取","GPT-4o-mini 分析並評分重要性","依重要性分級生成 HTML Email","透過 Gmail 自動寄送"]
+    }
+    </script>
+
+    <!-- HowTo Schema (Setup Steps) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "如何設定 AI 新聞每日摘要 Email",
+      "description": "需要 OpenAI API Key 和 Gmail OAuth 授權",
+      "totalTime": "PT15M",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "TWD",
+        "value": "0"
+      },
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "OpenAI 設定",
+          "text": "設定 OpenAI API 認證 取得 OpenAI API Key, 在 n8n 建立 OpenAI Credential, 確認有 GPT-4o-mini 模型存取權限"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Gmail 設定",
+          "text": "設定 Gmail OAuth 授權 在 n8n 建立 Gmail OAuth2 Credential, 授權 Gmail 發送權限, 在 Config 節點設定收件人 Email"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "調整 RSS 來源（選用）",
+          "text": "根據需求新增或移除 RSS 來源 新增其他 AI 新聞 RSS 來源, 調整排程時間, 修改 Config 節點的設定參數"
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <div class="node-bg"></div>

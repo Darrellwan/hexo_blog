@@ -12,7 +12,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>檢查 n8n 正在使用的 AI 模型 - n8n 模板分享 | Darrell</title>
     <meta name="description" content="這個工作流程用於檢查 n8n 工作流程中使用的 AI 模型。它會遍歷所有工作流程，並識別出包含 AI 模型的節點，然後將結果記錄到 Google Sheets 中。">
-    
+    <link rel="canonical" href="https://www.darrelltw.com/tools/n8n_template/model/check_which_ai_models_are_used_in_your_workflows.html">
+
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="DarrellTW n8n 模板庫">
@@ -20,7 +21,7 @@
     <meta property="og:description" content="這個工作流程用於檢查 n8n 工作流程中使用的 AI 模型。它會遍歷所有工作流程，並識別出包含 AI 模型的節點，然後將結果記錄到 Google Sheets 中。">
     <meta property="og:url" content="https://www.darrelltw.com/tools/n8n_template/model/check_which_ai_models_are_used_in_your_workflows.html">
     <meta property="og:image" content="https://www.darrelltw.com/tools/n8n_template/data/bg/check_which_ai_models_are_used_in_your_workflows.webp">
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -580,6 +581,73 @@
             }
         }
     </style>
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "首頁", "item": "https://www.darrelltw.com/"},
+        {"@type": "ListItem", "position": 2, "name": "n8n 模板", "item": "https://www.darrelltw.com/tools/n8n_template/models.html"},
+        {"@type": "ListItem", "position": 3, "name": "檢查 n8n 正在使用的 AI 模型", "item": "https://www.darrelltw.com/tools/n8n_template/model/check_which_ai_models_are_used_in_your_workflows.html"}
+      ]
+    }
+    </script>
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "檢查 n8n 正在使用的 AI 模型",
+      "description": "這個工作流程用於檢查 n8n 工作流程中使用的 AI 模型。它會遍歷所有工作流程，並識別出包含 AI 模型的節點，然後將結果記錄到 Google Sheets 中。",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "WorkflowAutomation",
+      "operatingSystem": "n8n",
+      "url": "https://www.darrelltw.com/tools/n8n_template/model/check_which_ai_models_are_used_in_your_workflows.html",
+      "image": "https://www.darrelltw.com/tools/n8n_template/data/bg/check_which_ai_models_are_used_in_your_workflows.webp",
+      "screenshot": "https://www.darrelltw.com/tools/n8n_template/data/bg/check_which_ai_models_are_used_in_your_workflows.webp",
+      "author": {
+        "@type": "Person",
+        "name": "Darrell Wang",
+        "url": "https://www.darrelltw.com"
+      },
+      "datePublished": "2025-04-27",
+      "dateModified": "2025-04-27",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "TWD",
+        "availability": "https://schema.org/InStock"
+      },
+      "featureList": ["遍歷所有 n8n 工作流程","識別包含 AI 模型的節點","將結果記錄到 Google Sheets"]
+    }
+    </script>
+
+    <!-- HowTo Schema (Setup Steps) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "如何設定 檢查 n8n 正在使用的 AI 模型",
+      "description": "需要設定 Google Sheets 的 API 存取權限",
+      "totalTime": "PT15M",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "TWD",
+        "value": "0"
+      },
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Google Sheets 設定",
+          "text": "準備用於記錄結果的試算表 建立新的試算表, 設定適當的存取權限"
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <div class="node-bg"></div>
