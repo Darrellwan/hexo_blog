@@ -406,6 +406,54 @@
             background: rgba(255,255,255,0.1);
         }
 
+        /* 延伸閱讀（融入功能特色） */
+        .related-section {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed rgba(255,255,255,0.15);
+        }
+
+        .related-title {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .related-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .related-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            text-decoration: none;
+            color: #fff;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .related-item:hover {
+            color: var(--accent);
+        }
+
+        .related-item:hover .related-arrow {
+            transform: translateX(4px);
+            color: var(--accent);
+        }
+
+        .related-arrow {
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
         .download-btn {
             display: block;
             width: 100%;
@@ -664,8 +712,28 @@
                 </div>
                 <div class="info-content">
                     <ul>
-                        <li>使用 Form Trigger 建立互動式表單收集用戶評價資料</li><li>表單包含 email（文字）、評分（數字）、訂閱選擇（單選）、生日（日期）四種資料類型</li><li>Insert 操作：將表單提交的資料自動寫入 DataTables</li><li>Get Row(s) 操作：使用 ilike 條件搜尋包含特定文字的資料</li><li>If Row Exists 操作：純判斷資料是否存在，不回傳資料內容</li><li>If Row Does Not Exist 操作：判斷資料不存在時的處理邏輯</li><li>Update 操作：更新現有資料的特定欄位（如評分）</li><li>Upsert 操作：智能判斷資料存在則更新，不存在則新增</li><li>Delete 操作：根據 email 條件刪除指定的測試資料</li><li>包含完整的 Sticky Note 說明每個操作的用途和注意事項</li>
+                        <li>Form Trigger 建立互動表單</li><li>展示 CRUD 操作（Insert/Update/Delete）</li><li>使用 row_id 精確定位資料列</li>
                     </ul>
+                    
+                    <div class="related-section">
+                        <div class="related-title">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                            </svg>
+                            深入了解
+                        </div>
+                        <div class="related-list">
+                        <a href="https://www.darrelltw.com/n8n-datatables-node/" class="related-item" target="_blank" rel="noopener">
+                            <span>n8n DataTables 節點教學 - 直接把資料存在 n8n 裡</span>
+                            <span class="related-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                </svg>
+                            </span>
+                        </a>
+                        </div>
+                    </div>
                 </div>
             </div>
 

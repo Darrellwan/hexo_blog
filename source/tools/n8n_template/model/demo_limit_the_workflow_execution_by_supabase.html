@@ -400,6 +400,54 @@
             background: rgba(255,255,255,0.1);
         }
 
+        /* 延伸閱讀（融入功能特色） */
+        .related-section {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed rgba(255,255,255,0.15);
+        }
+
+        .related-title {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .related-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .related-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            text-decoration: none;
+            color: #fff;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .related-item:hover {
+            color: var(--accent);
+        }
+
+        .related-item:hover .related-arrow {
+            transform: translateX(4px);
+            color: var(--accent);
+        }
+
+        .related-arrow {
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
         .download-btn {
             display: block;
             width: 100%;
@@ -655,8 +703,36 @@
                 </div>
                 <div class="info-content">
                     <ul>
-                        <li>使用Supabase資料庫記錄工作流程執行次數</li><li>當執行次數達到上限（預設50次）時自動停止</li><li>展示Supabase與n8n的整合方式</li><li>提供清晰的條件判斷和資料操作流程</li><li>包含完整的表結構和流程說明</li><li>支援可擴展的使用者限制功能</li>
+                        <li>Supabase 記錄執行次數</li><li>達上限時自動停止</li><li>展示 Supabase 整合方式</li><li>可自訂執行上限</li>
                     </ul>
+                    
+                    <div class="related-section">
+                        <div class="related-title">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                            </svg>
+                            深入了解
+                        </div>
+                        <div class="related-list">
+                        <a href="https://www.darrelltw.com/n8n-if-switch/" class="related-item" target="_blank" rel="noopener">
+                            <span>n8n If 和 Switch 節點教學 - 條件判斷完整指南</span>
+                            <span class="related-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                </svg>
+                            </span>
+                        </a>
+                        <a href="https://www.darrelltw.com/n8n-set-node/" class="related-item" target="_blank" rel="noopener">
+                            <span>n8n Edit Fields (Set) 節點教學 - 組合欄位、動態表達式</span>
+                            <span class="related-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                </svg>
+                            </span>
+                        </a>
+                        </div>
+                    </div>
                 </div>
             </div>
 

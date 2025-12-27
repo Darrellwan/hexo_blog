@@ -402,6 +402,54 @@
             background: rgba(255,255,255,0.1);
         }
 
+        /* 延伸閱讀（融入功能特色） */
+        .related-section {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed rgba(255,255,255,0.15);
+        }
+
+        .related-title {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .related-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .related-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            text-decoration: none;
+            color: #fff;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .related-item:hover {
+            color: var(--accent);
+        }
+
+        .related-item:hover .related-arrow {
+            transform: translateX(4px);
+            color: var(--accent);
+        }
+
+        .related-arrow {
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
         .download-btn {
             display: block;
             width: 100%;
@@ -658,8 +706,36 @@
                 </div>
                 <div class="info-content">
                     <ul>
-                        <li>透過手動觸發啟動 Apify YouTube 搜尋爬蟲任務</li><li>執行指定的 Apify Actor 進行資料爬取</li><li>使用 Get run 節點檢索任務執行狀態和基本資訊</li><li>透過 If 節點判斷任務是否成功完成 (status !== SUCCEEDED)</li><li>任務未完成時使用 Wait 節點等待 3 秒後重新檢查</li><li>任務完成後從對應的 Dataset 中提取所有爬蟲結果</li><li>支援自訂爬蟲參數（搜尋關鍵字、結果數量等）</li>
+                        <li>執行 Apify Actor 爬取 YouTube</li><li>自動等待任務完成</li><li>取得影片詳細資料</li><li>支援批次處理多個影片</li>
                     </ul>
+                    
+                    <div class="related-section">
+                        <div class="related-title">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                            </svg>
+                            深入了解
+                        </div>
+                        <div class="related-list">
+                        <a href="https://www.darrelltw.com/n8n-if-switch/" class="related-item" target="_blank" rel="noopener">
+                            <span>n8n If 和 Switch 節點教學 - 條件判斷完整指南</span>
+                            <span class="related-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                </svg>
+                            </span>
+                        </a>
+                        <a href="https://www.darrelltw.com/n8n-built-in-variables/" class="related-item" target="_blank" rel="noopener">
+                            <span>n8n 內建變數 expression 解析 - $input、$json 使用技巧</span>
+                            <span class="related-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                </svg>
+                            </span>
+                        </a>
+                        </div>
+                    </div>
                 </div>
             </div>
 

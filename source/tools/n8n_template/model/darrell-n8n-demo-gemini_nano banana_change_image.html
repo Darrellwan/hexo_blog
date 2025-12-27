@@ -404,6 +404,54 @@ AI 圖片處理：使用 Google Gemini 2.5 Flash Image Preview 模型生成新�
             background: rgba(255,255,255,0.1);
         }
 
+        /* 延伸閱讀（融入功能特色） */
+        .related-section {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed rgba(255,255,255,0.15);
+        }
+
+        .related-title {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .related-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .related-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            text-decoration: none;
+            color: #fff;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .related-item:hover {
+            color: var(--accent);
+        }
+
+        .related-item:hover .related-arrow {
+            transform: translateX(4px);
+            color: var(--accent);
+        }
+
+        .related-arrow {
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
         .download-btn {
             display: block;
             width: 100%;
@@ -661,8 +709,36 @@ AI 圖片處理：使用 Google Gemini 2.5 Flash Image Preview 模型生成新�
                 </div>
                 <div class="info-content">
                     <ul>
-                        <li>使用 Google Drive Trigger 監控指定資料夾的檔案變更</li><li>透過 Filter 節點篩選符合條件的圖片檔案格式</li><li>使用 Google Drive Download 節點下載觸發的原始圖片</li><li>設定 AI Agent 節點進行圖片內容替換處理</li><li>配置 Google Gemini Chat Model 節點使用 gemini-2.5-flash-image-preview 模型</li><li>設定圖片生成提示詞：「一個男人在凱旋門拿著原本的產品，產生圖片給我」</li><li>使用 Convert to File 節點將 AI 生成結果轉換為檔案格式</li><li>透過 Google Drive Upload 節點將處理完成的圖片儲存到輸出資料夾</li><li>自動命名檔案：使用時間戳記格式「yyyyMMdd_HHmmss.副檔名」</li><li>完整自動化流程：從上傳到處理到儲存全程無需人工介入</li>
+                        <li>監控 Google Drive 資料夾新增圖片</li><li>使用 Gemini AI 分析圖片內容</li><li>根據提示詞生成新圖片</li><li>自動上傳結果到指定資料夾</li>
                     </ul>
+                    
+                    <div class="related-section">
+                        <div class="related-title">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                            </svg>
+                            深入了解
+                        </div>
+                        <div class="related-list">
+                        <a href="https://www.darrelltw.com/n8n-filter-node/" class="related-item" target="_blank" rel="noopener">
+                            <span>n8n Filter 節點教學 - 資料篩選與條件判斷</span>
+                            <span class="related-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                </svg>
+                            </span>
+                        </a>
+                        <a href="https://www.darrelltw.com/n8n-built-in-variables/" class="related-item" target="_blank" rel="noopener">
+                            <span>n8n 內建變數 expression 解析 - $input、$json 使用技巧</span>
+                            <span class="related-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                </svg>
+                            </span>
+                        </a>
+                        </div>
+                    </div>
                 </div>
             </div>
 

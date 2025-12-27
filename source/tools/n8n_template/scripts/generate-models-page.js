@@ -297,6 +297,33 @@ function generateDetailPages(models) {
             }
         }
 
+        // 構建延伸閱讀 HTML（內嵌在功能特色區塊）
+        let relatedArticlesInline = '';
+        if (model.relatedArticles && model.relatedArticles.length > 0) {
+            const articlesListHTML = model.relatedArticles.map(article => `
+                        <a href="${article.url}" class="related-item" target="_blank" rel="noopener">
+                            <span>${article.title}</span>
+                            <span class="related-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                </svg>
+                            </span>
+                        </a>`).join('');
+
+            relatedArticlesInline = `
+                    <div class="related-section">
+                        <div class="related-title">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                            </svg>
+                            深入了解
+                        </div>
+                        <div class="related-list">${articlesListHTML}
+                        </div>
+                    </div>`;
+        }
+
         // 讀取 Workflow JSON
         let workflowJSON = '{}';
         try {
@@ -320,6 +347,7 @@ function generateDetailPages(models) {
             .replace(/{{TAGS_HTML}}/g, tagsHTML)
             .replace(/{{FEATURES_HTML}}/g, featuresHTML)
             .replace(/{{SETUP_HTML}}/g, setupHTML)
+            .replace(/{{RELATED_ARTICLES_INLINE}}/g, relatedArticlesInline)
             .replace(/{{WORKFLOW_JSON}}/g, () => workflowJSON);
 
         // 寫入文件

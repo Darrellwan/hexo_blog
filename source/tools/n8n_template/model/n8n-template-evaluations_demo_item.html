@@ -402,6 +402,54 @@ AI 分類：使用 OpenRouter 的 Gemma 模型進行項目分類
             background: rgba(255,255,255,0.1);
         }
 
+        /* 延伸閱讀（融入功能特色） */
+        .related-section {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed rgba(255,255,255,0.15);
+        }
+
+        .related-title {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .related-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .related-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            text-decoration: none;
+            color: #fff;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .related-item:hover {
+            color: var(--accent);
+        }
+
+        .related-item:hover .related-arrow {
+            transform: translateX(4px);
+            color: var(--accent);
+        }
+
+        .related-arrow {
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
         .download-btn {
             display: block;
             width: 100%;
@@ -658,8 +706,28 @@ AI 分類：使用 OpenRouter 的 Gemma 模型進行項目分類
                 </div>
                 <div class="info-content">
                     <ul>
-                        <li>使用 n8n Evaluation Trigger 從 Google Sheets 讀取測試資料</li><li>透過 AI Agent 使用 OpenRouter Gemma 模型進行項目分類</li><li>系統提示詞設計確保只回答「動物」或「水果」</li><li>使用 Evaluation 節點將結果寫回 Google Sheets</li><li>支援批量測試和準確度統計</li><li>提供完整的 AI 模型評估流程範例</li>
+                        <li>Evaluation Trigger 驅動測試</li><li>AI Agent 執行分類任務</li><li>測試「動物」或「水果」分類準確度</li><li>輸出評估結果</li>
                     </ul>
+                    
+                    <div class="related-section">
+                        <div class="related-title">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                            </svg>
+                            深入了解
+                        </div>
+                        <div class="related-list">
+                        <a href="https://www.darrelltw.com/n8n-evaluations/" class="related-item" target="_blank" rel="noopener">
+                            <span>n8n Evaluations 新功能介紹 - AI 工作流程測試框架</span>
+                            <span class="related-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                </svg>
+                            </span>
+                        </a>
+                        </div>
+                    </div>
                 </div>
             </div>
 

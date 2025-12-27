@@ -404,6 +404,54 @@ iOS健康整合：提供捷徑連結自動同步到iOS健康App">
             background: rgba(255,255,255,0.1);
         }
 
+        /* 延伸閱讀（融入功能特色） */
+        .related-section {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed rgba(255,255,255,0.15);
+        }
+
+        .related-title {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .related-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .related-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            text-decoration: none;
+            color: #fff;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .related-item:hover {
+            color: var(--accent);
+        }
+
+        .related-item:hover .related-arrow {
+            transform: translateX(4px);
+            color: var(--accent);
+        }
+
+        .related-arrow {
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
         .download-btn {
             display: block;
             width: 100%;
@@ -661,8 +709,36 @@ iOS健康整合：提供捷徑連結自動同步到iOS健康App</p>
                 </div>
                 <div class="info-content">
                     <ul>
-                        <li>使用OpenAI生成專業中醫風格的喝水提醒訊息</li><li>每小時隨機時間自動發送Slack提醒</li><li>提供多種容量選項按鈕記錄喝水量</li><li>視覺化顯示每日喝水進度（水滴進度條）</li><li>自動記錄喝水時間和容量到Google Sheets</li><li>提供iOS捷徑連結自動同步到健康App</li><li>智能避免短時間重複提醒功能</li>
+                        <li>每小時隨機時間發送提醒</li><li>OpenAI 生成中醫風格提醒文案</li><li>Slack 按鈕記錄喝水量</li><li>追蹤每日飲水進度</li>
                     </ul>
+                    
+                    <div class="related-section">
+                        <div class="related-title">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                            </svg>
+                            深入了解
+                        </div>
+                        <div class="related-list">
+                        <a href="https://www.darrelltw.com/n8n-with-slack/" class="related-item" target="_blank" rel="noopener">
+                            <span>n8n Slack 整合實測 - 訊息發送與觸發器設定</span>
+                            <span class="related-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                </svg>
+                            </span>
+                        </a>
+                        <a href="https://www.darrelltw.com/n8n-poll-time-setting/" class="related-item" target="_blank" rel="noopener">
+                            <span>n8n Poll Time 教學 - 優化 Trigger 效率</span>
+                            <span class="related-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                </svg>
+                            </span>
+                        </a>
+                        </div>
+                    </div>
                 </div>
             </div>
 

@@ -400,6 +400,54 @@
             background: rgba(255,255,255,0.1);
         }
 
+        /* 延伸閱讀（融入功能特色） */
+        .related-section {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed rgba(255,255,255,0.15);
+        }
+
+        .related-title {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .related-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .related-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            text-decoration: none;
+            color: #fff;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .related-item:hover {
+            color: var(--accent);
+        }
+
+        .related-item:hover .related-arrow {
+            transform: translateX(4px);
+            color: var(--accent);
+        }
+
+        .related-arrow {
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
         .download-btn {
             display: block;
             width: 100%;
@@ -655,8 +703,36 @@
                 </div>
                 <div class="info-content">
                     <ul>
-                        <li>接收文字提示詞，透過 OpenAI Sora-2 API 發起影片生成請求</li><li>自動輪詢檢查影片生成狀態（queued/in_progress/completed）</li><li>使用 Wait 節點實現智能等待機制，避免頻繁查詢</li><li>當影片生成完成後，自動下載影片內容</li><li>將影片上傳到指定的 Google Drive 資料夾</li><li>支援 720x1280 和 1280x720 等不同解析度</li><li>可選擇 4、8 或 12 秒的影片長度</li><li>包含詳細的 Sora API 定價說明和參數選項</li>
+                        <li>接收文字提示詞生成影片</li><li>自動輪詢檢查生成狀態</li><li>生成完成後上傳到 Google Drive</li><li>支援失敗重試機制</li>
                     </ul>
+                    
+                    <div class="related-section">
+                        <div class="related-title">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                            </svg>
+                            深入了解
+                        </div>
+                        <div class="related-list">
+                        <a href="https://www.darrelltw.com/n8n-if-switch/" class="related-item" target="_blank" rel="noopener">
+                            <span>n8n If 和 Switch 節點教學 - 條件判斷完整指南</span>
+                            <span class="related-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                </svg>
+                            </span>
+                        </a>
+                        <a href="https://www.darrelltw.com/n8n-built-in-variables/" class="related-item" target="_blank" rel="noopener">
+                            <span>n8n 內建變數 expression 解析 - $input、$json 使用技巧</span>
+                            <span class="related-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                </svg>
+                            </span>
+                        </a>
+                        </div>
+                    </div>
                 </div>
             </div>
 

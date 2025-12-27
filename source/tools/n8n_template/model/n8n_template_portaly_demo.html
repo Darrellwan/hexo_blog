@@ -402,6 +402,54 @@ Google Sheets 整合：自動記錄所有訂單資訊到試算表
             background: rgba(255,255,255,0.1);
         }
 
+        /* 延伸閱讀（融入功能特色） */
+        .related-section {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed rgba(255,255,255,0.15);
+        }
+
+        .related-title {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .related-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .related-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            text-decoration: none;
+            color: #fff;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .related-item:hover {
+            color: var(--accent);
+        }
+
+        .related-item:hover .related-arrow {
+            transform: translateX(4px);
+            color: var(--accent);
+        }
+
+        .related-arrow {
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
         .download-btn {
             display: block;
             width: 100%;
@@ -658,8 +706,36 @@ Google Sheets 整合：自動記錄所有訂單資訊到試算表
                 </div>
                 <div class="info-content">
                     <ul>
-                        <li>接收來自 Portaly 平台的商品銷售 Webhook 通知</li><li>提取並整理固定欄位資料：訂單ID、產品ID、客戶資訊、金額、折扣等</li><li>使用 Split Out 節點處理客戶自訂欄位資料</li><li>透過 Code 節點將自訂欄位轉換為易讀格式</li><li>使用 Merge 節點整合所有資料</li><li>自動將完整訂單資訊儲存到 Google Sheets</li><li>支援 appendOrUpdate 模式，避免重複記錄</li><li>包含 Google Sheets 模板連結，方便快速設定</li>
+                        <li>接收 Portaly 銷售 Webhook</li><li>提取訂單關鍵資訊</li><li>處理客戶自訂欄位</li><li>記錄到 Google Sheets</li>
                     </ul>
+                    
+                    <div class="related-section">
+                        <div class="related-title">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                            </svg>
+                            深入了解
+                        </div>
+                        <div class="related-list">
+                        <a href="https://www.darrelltw.com/n8n-webhook/" class="related-item" target="_blank" rel="noopener">
+                            <span>n8n Webhook 教學 - 常見錯誤與調試技巧</span>
+                            <span class="related-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                </svg>
+                            </span>
+                        </a>
+                        <a href="https://www.darrelltw.com/n8n-merge-node/" class="related-item" target="_blank" rel="noopener">
+                            <span>n8n Merge 節點教學 - 解決多來源資料合併的問題</span>
+                            <span class="related-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                </svg>
+                            </span>
+                        </a>
+                        </div>
+                    </div>
                 </div>
             </div>
 

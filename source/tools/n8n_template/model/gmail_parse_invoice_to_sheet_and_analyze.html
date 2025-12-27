@@ -404,6 +404,54 @@ Slack 通知：將完整分析報告即時發送到指定頻道">
             background: rgba(255,255,255,0.1);
         }
 
+        /* 延伸閱讀（融入功能特色） */
+        .related-section {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed rgba(255,255,255,0.15);
+        }
+
+        .related-title {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .related-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .related-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            text-decoration: none;
+            color: #fff;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .related-item:hover {
+            color: var(--accent);
+        }
+
+        .related-item:hover .related-arrow {
+            transform: translateX(4px);
+            color: var(--accent);
+        }
+
+        .related-arrow {
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
         .download-btn {
             display: block;
             width: 100%;
@@ -661,8 +709,44 @@ Slack 通知：將完整分析報告即時發送到指定頻道</p>
                 </div>
                 <div class="info-content">
                     <ul>
-                        <li>每月定時監控財政部電子發票整合服務平台郵件</li><li>自動辨識並提取郵件附件中的發票資料</li><li>智能區分「發票主資料(M)」和「商品明細(D)」</li><li>將發票主資料存入「發票」工作表（載具資訊、發票資訊、商店資訊等）</li><li>將商品明細存入「細項」工作表（發票號碼、品項名稱、價格等）</li><li>使用 xAI Grok 模型分析消費模式與趨勢</li><li>生成包含摘要、類別統計、Top 5 店家和消費矩陣的詳細報告</li><li>自動將分析結果發送到 Slack 頻道，方便隨時查看</li>
+                        <li>定時監控發票通知郵件</li><li>自動提取發票附件資料</li><li>區分主資料和商品明細</li><li>存入 Google Sheets 並 AI 分析</li>
                     </ul>
+                    
+                    <div class="related-section">
+                        <div class="related-title">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                            </svg>
+                            深入了解
+                        </div>
+                        <div class="related-list">
+                        <a href="https://www.darrelltw.com/n8n-gmail-node/" class="related-item" target="_blank" rel="noopener">
+                            <span>n8n Gmail 節點教學 - 自動化郵件發送和處理</span>
+                            <span class="related-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                </svg>
+                            </span>
+                        </a>
+                        <a href="https://www.darrelltw.com/n8n-aggregate-split-out/" class="related-item" target="_blank" rel="noopener">
+                            <span>n8n Aggregate 合併與 Split Out 分割實測</span>
+                            <span class="related-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                </svg>
+                            </span>
+                        </a>
+                        <a href="https://www.darrelltw.com/n8n-with-slack/" class="related-item" target="_blank" rel="noopener">
+                            <span>n8n Slack 整合實測 - 訊息發送與觸發器設定</span>
+                            <span class="related-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                </svg>
+                            </span>
+                        </a>
+                        </div>
+                    </div>
                 </div>
             </div>
 

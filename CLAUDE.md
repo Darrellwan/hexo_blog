@@ -12,9 +12,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Dev with local config**: `npm run dev` - 使用 `main.local.yml` 覆蓋設定
 - **Dev with drafts**: `npm run test_draft` - 包含草稿文章
 - **Dev full**: `npm run test-full` - 包含圖片處理的完整測試
+- **Build**: `npm run build` - 完整建置（images + hexo generate + n8n-sitemap + n8n-snapshots）
 - **Posts**: `npx hexo new "文章標題"` - 新增文章
 - **Images**: `npm run images:process` - 處理圖片尺寸（新增圖片後執行）
-- **n8n Models**: `npm run n8n:generate-models` - 產生 n8n template 頁面
+- **n8n Models**: `npm run n8n:generate-models` - 產生 n8n template 頁面（models.html + /model/*.html + sitemap.xml）
 
 ## Architecture
 Hexo blog for MarTech/automation. Key points:
@@ -24,6 +25,9 @@ Hexo blog for MarTech/automation. Key points:
 - **Theme CSS**: `/themes/next/source/css/_custom/` (data-table.styl 等)
 - **n8n Expert 頁面**: `/source/n8n-expert/` (獨立 SPA)
 - **n8n Template 工具**: `/source/tools/n8n_template/`
+  - 模板：`model-detail.template.html` → 生成 `/model/*.html`
+  - 生成腳本：`scripts/generate-models-page.js`
+  - 資料：`data/workflow-models.json`
 
 ## Front Matter Template
 ```yaml
@@ -130,3 +134,9 @@ modified: 2025-XX-XX XX:XX:XX
 - [ ] **所有**更新項目都有配圖
 - [ ] Meta description 已更新
 - [ ] Meta modified 已更新
+
+## Commit Message Rules
+- 限制 50 字元，只用英文
+- 使用動詞開頭：`[UPDATE]`, `[FIX]`, `[NEW POST]`
+- 多個變更用分號分隔：`Add login; Fix bug`
+- 新文章：`[NEW POST] {post_id}`

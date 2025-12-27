@@ -400,6 +400,54 @@ Gmail 發送：每日自動寄送到指定信箱">
             background: rgba(255,255,255,0.1);
         }
 
+        /* 延伸閱讀（融入功能特色） */
+        .related-section {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed rgba(255,255,255,0.15);
+        }
+
+        .related-title {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .related-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .related-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            text-decoration: none;
+            color: #fff;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .related-item:hover {
+            color: var(--accent);
+        }
+
+        .related-item:hover .related-arrow {
+            transform: translateX(4px);
+            color: var(--accent);
+        }
+
+        .related-arrow {
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
         .download-btn {
             display: block;
             width: 100%;
@@ -655,8 +703,44 @@ Gmail 發送：每日自動寄送到指定信箱</p>
                 </div>
                 <div class="info-content">
                     <ul>
-                        <li>每日排程自動觸發（24 小時間隔）</li><li>從 4 個 AI 新聞 RSS 來源同時抓取（OpenAI、MIT、The Verge、Ars Technica）</li><li>排序過濾最近一天的新聞並去除重複</li><li>GPT-4o-mini 分析每篇文章：中文摘要、重要性評分（1-5）、標籤</li><li>Structured Output Parser 確保 AI 輸出格式正確</li><li>依重要性分級（必讀/重要/一般）生成精美 HTML Email</li><li>透過 Gmail 自動寄送每日 AI 新聞日報</li>
+                        <li>每日排程自動觸發</li><li>從 4 個 AI 新聞 RSS 來源抓取</li><li>GPT-4o-mini 分析並評分重要性</li><li>依重要性分級生成 HTML Email</li><li>透過 Gmail 自動寄送</li>
                     </ul>
+                    
+                    <div class="related-section">
+                        <div class="related-title">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                            </svg>
+                            深入了解
+                        </div>
+                        <div class="related-list">
+                        <a href="https://www.darrelltw.com/n8n-gmail-node/" class="related-item" target="_blank" rel="noopener">
+                            <span>n8n Gmail 節點教學 - 自動化郵件發送和處理</span>
+                            <span class="related-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                </svg>
+                            </span>
+                        </a>
+                        <a href="https://www.darrelltw.com/n8n_structured_output_parser_node/" class="related-item" target="_blank" rel="noopener">
+                            <span>n8n Structured Output Parser 教學 - AI 輸出格式化</span>
+                            <span class="related-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                </svg>
+                            </span>
+                        </a>
+                        <a href="https://www.darrelltw.com/n8n-poll-time-setting/" class="related-item" target="_blank" rel="noopener">
+                            <span>n8n Poll Time 教學 - 優化 Trigger 效率</span>
+                            <span class="related-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                </svg>
+                            </span>
+                        </a>
+                        </div>
+                    </div>
                 </div>
             </div>
 

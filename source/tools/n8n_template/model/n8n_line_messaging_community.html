@@ -400,6 +400,54 @@ Webhook 接收：透過 LINE Messaging Trigger 接收使用者訊息和互動事
             background: rgba(255,255,255,0.1);
         }
 
+        /* 延伸閱讀（融入功能特色） */
+        .related-section {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed rgba(255,255,255,0.15);
+        }
+
+        .related-title {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .related-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .related-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            text-decoration: none;
+            color: #fff;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .related-item:hover {
+            color: var(--accent);
+        }
+
+        .related-item:hover .related-arrow {
+            transform: translateX(4px);
+            color: var(--accent);
+        }
+
+        .related-arrow {
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
         .download-btn {
             display: block;
             width: 100%;
@@ -655,8 +703,44 @@ Webhook 接收：透過 LINE Messaging Trigger 接收使用者訊息和互動事
                 </div>
                 <div class="info-content">
                     <ul>
-                        <li>接收 LINE Bot Webhook 事件（訊息、postback）</li><li>使用 Switch 節點依據事件類型進行分流處理</li><li>message 事件會自動觸發回覆訊息</li><li>支援 postback 事件處理（按鈕互動）</li><li>手動觸發模式可主動推播訊息給特定使用者</li><li>使用 Set 節點設定目標使用者的 LINE UID</li><li>支援單一使用者精準推播功能</li><li>包含完整的 LINE Messaging API 整合範例</li>
+                        <li>接收 LINE Bot Webhook 事件</li><li>依據事件類型進行分流（message/follow）</li><li>自動回覆訊息</li><li>歡迎新追蹤者</li>
                     </ul>
+                    
+                    <div class="related-section">
+                        <div class="related-title">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                            </svg>
+                            深入了解
+                        </div>
+                        <div class="related-list">
+                        <a href="https://developers.line.biz/en/docs/messaging-api/" class="related-item" target="_blank" rel="noopener">
+                            <span>LINE Messaging API 官方文檔</span>
+                            <span class="related-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                </svg>
+                            </span>
+                        </a>
+                        <a href="https://docs.n8n.io/integrations/community-nodes/" class="related-item" target="_blank" rel="noopener">
+                            <span>n8n 社群節點安裝指南</span>
+                            <span class="related-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                </svg>
+                            </span>
+                        </a>
+                        <a href="https://www.darrelltw.com/n8n-tutorial-resources/" class="related-item" target="_blank" rel="noopener">
+                            <span>Darrell 的 n8n LINE Bot 教學</span>
+                            <span class="related-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                </svg>
+                            </span>
+                        </a>
+                        </div>
+                    </div>
                 </div>
             </div>
 

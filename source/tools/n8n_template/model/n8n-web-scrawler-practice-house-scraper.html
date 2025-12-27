@@ -402,6 +402,54 @@ Google Sheets 整合：自動將整理後的資料儲存到指定試算表">
             background: rgba(255,255,255,0.1);
         }
 
+        /* 延伸閱讀（融入功能特色） */
+        .related-section {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed rgba(255,255,255,0.15);
+        }
+
+        .related-title {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .related-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .related-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            text-decoration: none;
+            color: #fff;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .related-item:hover {
+            color: var(--accent);
+        }
+
+        .related-item:hover .related-arrow {
+            transform: translateX(4px);
+            color: var(--accent);
+        }
+
+        .related-arrow {
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
         .download-btn {
             display: block;
             width: 100%;
@@ -658,8 +706,36 @@ Google Sheets 整合：自動將整理後的資料儲存到指定試算表</p>
                 </div>
                 <div class="info-content">
                     <ul>
-                        <li>透過手動觸發器啟動房屋資訊爬蟲流程</li><li>使用 HTTP Request 節點請求房屋網站資料</li><li>透過 HTML 節點解析房屋列表，提取每筆房屋的 HTML 結構</li><li>使用 Split Out 節點將房屋列表分離成個別的房屋項目</li><li>透過詳細的 HTML 解析提取房屋標題、社區名稱、地址等資訊</li><li>提取建物坪數、主陽台坪數、房間格局、樓層資訊等詳細規格</li><li>收集建築年份、建築類型、停車資訊、物件特色等附加資訊</li><li>抓取關注人數、價格、價格單位、價格備註等市場資訊</li><li>使用 Set 節點整理資料並新增資料來源標記</li><li>透過 Google Sheets 節點將所有資料自動儲存到指定試算表</li>
+                        <li>爬取房屋網站資訊</li><li>解析房屋列表提取關鍵資料</li><li>自動整理到 Google Sheets</li>
                     </ul>
+                    
+                    <div class="related-section">
+                        <div class="related-title">
+                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                            </svg>
+                            深入了解
+                        </div>
+                        <div class="related-list">
+                        <a href="https://www.darrelltw.com/n8n-aggregate-split-out/" class="related-item" target="_blank" rel="noopener">
+                            <span>n8n Aggregate 合併與 Split Out 分割實測</span>
+                            <span class="related-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                </svg>
+                            </span>
+                        </a>
+                        <a href="https://www.darrelltw.com/n8n-set-node/" class="related-item" target="_blank" rel="noopener">
+                            <span>n8n Edit Fields (Set) 節點教學 - 組合欄位、動態表達式</span>
+                            <span class="related-arrow">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14">
+                                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                                </svg>
+                            </span>
+                        </a>
+                        </div>
+                    </div>
                 </div>
             </div>
 

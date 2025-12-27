@@ -7,20 +7,28 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 This is a static n8n template sharing platform that showcases and distributes pre-built n8n workflow automation templates. The system operates as a single-page web application with the following core architecture:
 
 ### Data Layer
-- `/data/workflows/` - Contains 17+ production-ready n8n workflow JSON files
-- `/data/workflow-models.json` - Central metadata store containing Chinese descriptions, setup instructions, and categorized tags for each template
-- `/data/bg/` - WebP preview images for each workflow template
+- `/data/workflows/` - n8n workflow JSON 檔案（28+ 個模板）
+- `/data/workflow-models.json` - 模板 metadata（中文描述、設定說明、tags）
+- `/data/bg/` - 預覽圖片（WebP 格式）
+
+### Static Generation Architecture
+```
+model-detail.template.html  ──┐
+                              ├──▶ scripts/generate-models-page.js ──▶ model/*.html (28 個靜態頁面)
+workflow-models.json ─────────┘                                   ──▶ models.html (模板列表)
+                                                                  ──▶ sitemap.xml
+```
+
+**重要**：修改詳情頁時，必須修改 `model-detail.template.html`，不是直接改 `model/*.html`
 
 ### Presentation Layer
-- `models.html` - Main template gallery with filterable grid view
-- `model-detail.html` - Individual template detail pages with download capability
-- `visualize.html` - Interactive n8n workflow visualization using n8n's demo component
-- `/snapshots/` - Static HTML previews of each workflow for SEO and fast loading
+- `models.html` - 模板列表頁（靜態生成 + 客戶端搜尋）
+- `model/*.html` - 詳情頁（由 template 生成，勿直接修改）
+- `model-detail.template.html` - 詳情頁模板（使用 `{{PLACEHOLDER}}` 變數）
 
 ### JavaScript Components
-- `workflow-visualizer.js` - Core class for loading and rendering n8n workflows using @n8n_io/n8n-demo-component
-- `schema-generator.js` - Generates JSON-LD structured data for SEO
-- `header.js` - Navigation and responsive header functionality
+- `scripts/generate-models-page.js` - 靜態頁面生成腳本
+- `workflow-visualizer.js` - n8n-demo 組件整合
 
 ## Key Technical Patterns
 
@@ -86,30 +94,6 @@ When working with n8n workflows, strictly follow these connection patterns:
 - Connection target values MUST reference node names (not IDs)  
 - Maintain double array structure `[[{...}]]`
 - Ensure exact name matching including Chinese characters and spaces
-
-## Template Categories
-
-The platform organizes templates into these categories:
-
-### AI Enhancement
-- Smart model selection and routing
-- Image generation with cloud storage
-- Receipt recognition and expense splitting
-
-### Communication Integration  
-- LINE Bot message processing
-- Instagram auto-posting
-- Social media data analysis
-
-### Financial Management
-- Credit card statement automation
-- E-invoice parsing and analysis
-- Delivery expense tracking
-
-### Life Automation
-- Health reminder systems
-- Workflow execution controls
-- Smart scheduling and notifications
 
 ## Working with Templates
 
@@ -208,10 +192,12 @@ fs.writeFileSync('...workflow-models.json', JSON.stringify(data, null, 4), 'utf8
 - 第二段：列出 3-5 個主要功能點
 - 使用繁體中文，保持專業但易懂的語調
 
-**DetailedDescription (詳細描述)**
-- 用陣列列出 6-10 個具體功能步驟
-- 每項簡短清晰（10-20 字）
-- 按照 workflow 執行順序排列
+**DetailedDescription (功能特色)**
+- **限制：不超過 5 項**
+- 只列出核心功能，非技術細節
+- 不確定是否為特色時，先詢問用戶
+- ✅ 好的範例：「接收 LINE Webhook 事件」「使用 Time Saved 追蹤效益」
+- ❌ 不適合：「正確回應 200 OK」（技術細節）、「轉人工處理」（輔助流程）
 
 **Tags (標籤)**
 - 至少 5-7 個標籤
