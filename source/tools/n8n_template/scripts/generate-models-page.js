@@ -184,7 +184,7 @@ function generateSchemaData(modelEntries) {
                 "availability": "https://schema.org/InStock"
             },
             "keywords": model.tags.join(', '),
-            "url": `https://darrelltw.com/tools/n8n_template/model/${id}.html`,
+            "url": `https://www.darrelltw.com/tools/n8n_template/model/${id}.html`,
             "screenshot": `https://www.darrelltw.com/tools/n8n_template/data/bg/darrell_workflow_template_${id}.jpg`,
             "featureList": model.detailedDescription.slice(0, 5)
         }
