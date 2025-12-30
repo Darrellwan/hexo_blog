@@ -1,0 +1,210 @@
+// ========================================
+// Callout Component Styles
+// Style: 全邊框圓角（無 Emoji）
+// ========================================
+
+// 顏色變數
+:root {
+  --note-tip: #5cb85c;
+  --note-tip-bg: rgba(92, 184, 92, 0.08);
+  --note-tip-border: rgba(92, 184, 92, 0.35);
+  --note-tip-glow: rgba(92, 184, 92, 0.15);
+
+  --note-info: #428bca;
+  --note-info-bg: rgba(66, 139, 202, 0.08);
+  --note-info-border: rgba(66, 139, 202, 0.35);
+  --note-info-glow: rgba(66, 139, 202, 0.15);
+
+  --note-warning: #f0ad4e;
+  --note-warning-bg: rgba(240, 173, 78, 0.08);
+  --note-warning-border: rgba(240, 173, 78, 0.35);
+  --note-warning-glow: rgba(240, 173, 78, 0.15);
+
+  --note-error: #d9534f;
+  --note-error-bg: rgba(217, 83, 79, 0.08);
+  --note-error-border: rgba(217, 83, 79, 0.35);
+  --note-error-glow: rgba(217, 83, 79, 0.15);
+}
+
+// ============================================
+// 基礎樣式
+// ============================================
+.note {
+  position: relative;
+  padding: 18px 22px;
+  border-radius: 12px;
+  border: 1px solid;
+  margin: 20px 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+// ============================================
+// 類型樣式
+// ============================================
+.note-tip {
+  background: var(--note-tip-bg);
+  border-color: var(--note-tip-border);
+
+  .note-title {
+    color: var(--note-tip);
+  }
+
+  &:hover {
+    border-color: var(--note-tip);
+    box-shadow: 0 8px 32px var(--note-tip-glow), inset 0 0 40px var(--note-tip-glow);
+  }
+}
+
+.note-info {
+  background: var(--note-info-bg);
+  border-color: var(--note-info-border);
+
+  .note-title {
+    color: var(--note-info);
+  }
+
+  &:hover {
+    border-color: var(--note-info);
+    box-shadow: 0 8px 32px var(--note-info-glow), inset 0 0 40px var(--note-info-glow);
+  }
+}
+
+.note-warning {
+  background: var(--note-warning-bg);
+  border-color: var(--note-warning-border);
+
+  .note-title {
+    color: var(--note-warning);
+  }
+
+  &:hover {
+    border-color: var(--note-warning);
+    box-shadow: 0 8px 32px var(--note-warning-glow), inset 0 0 40px var(--note-warning-glow);
+  }
+}
+
+.note-error {
+  background: var(--note-error-bg);
+  border-color: var(--note-error-border);
+
+  .note-title {
+    color: var(--note-error);
+  }
+
+  &:hover {
+    border-color: var(--note-error);
+    box-shadow: 0 8px 32px var(--note-error-glow), inset 0 0 40px var(--note-error-glow);
+  }
+}
+
+// ============================================
+// 內容樣式
+// ============================================
+.note-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 10px;
+}
+
+.note-content {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.68);
+  line-height: 1.7;
+
+  // 重置 Markdown 渲染的 p 標籤
+  p {
+    margin: 0 0 10px 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  strong {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+  }
+
+  code {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.85em;
+    color: #7fb3d3;
+  }
+
+  a {
+    color: #7fb3d3;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(127, 179, 211, 0.3);
+    transition: all 0.2s ease;
+
+    &:hover {
+      color: #a8cce8;
+      border-bottom-color: #a8cce8;
+    }
+  }
+
+  ul, ol {
+    margin: 10px 0;
+    padding-left: 20px;
+  }
+
+  li {
+    margin: 6px 0;
+    line-height: 1.6;
+  }
+}
+
+// ============================================
+// 淺色主題適配
+// ============================================
+@media (prefers-color-scheme: light) {
+  .note-content {
+    color: rgba(0, 0, 0, 0.7);
+
+    strong {
+      color: rgba(0, 0, 0, 0.85);
+    }
+
+    code {
+      background: rgba(0, 0, 0, 0.05);
+      color: #2980b9;
+    }
+
+    a {
+      color: #2980b9;
+      border-bottom-color: rgba(41, 128, 185, 0.3);
+
+      &:hover {
+        color: #1a5276;
+        border-bottom-color: #1a5276;
+      }
+    }
+  }
+}
+
+// ============================================
+// 手機版優化
+// ============================================
+@media (max-width: 768px) {
+  .note {
+    padding: 14px 16px;
+    margin: 16px 0;
+    border-radius: 10px;
+  }
+
+  .note-title {
+    font-size: 0.9rem;
+  }
+
+  .note-content {
+    font-size: 0.85rem;
+  }
+}
