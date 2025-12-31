@@ -11,6 +11,7 @@ hexo.extend.tag.register('quickNav', function(_, content) {
     const navItems = JSON.parse(contentStr.trim());
     
     let html = '<nav class="quick-nav">\n';
+    html += '  <strong class="nav-heading">本文目錄</strong>\n';
     html += '  <ul class="nav-list">\n';
     
     navItems.forEach(item => {

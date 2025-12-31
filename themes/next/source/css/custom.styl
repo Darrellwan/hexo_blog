@@ -370,7 +370,16 @@ pre, code {
   border-radius: 8px;
   margin: 20px 0;
   padding: 16px;
-  
+
+  .nav-heading {
+    display: block;
+    color: rgba(255,255,255,0.9);
+    font-size: 0.9em;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
   .nav-list {
     list-style: none;
     margin: 0;
@@ -430,29 +439,31 @@ pre, code {
 // 手機版優化
 @media (max-width: 768px) {
   .quick-nav {
-    margin: 16px 0;
-    padding: 12px;
-    
+    margin: 12px 0;
+    padding: 10px;
+
+    .nav-heading {
+      font-size: 0.85em;
+      margin-bottom: 8px;
+      padding-bottom: 6px;
+    }
+
     .nav-item .nav-link {
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 12px;
-      min-height: 48px;
-      
+      padding: 8px 10px;
+      min-height: auto;
+      margin: 2px 0;
+
       &:hover {
         transform: translateX(2px);
       }
-      
+
       .nav-title {
-        font-size: 1em;
-        margin-right: 0;
-        margin-bottom: 4px;
-        width: 100%;
-        min-width: auto;
+        font-size: 0.9em;
+        width: auto;
       }
-      
+
       .nav-desc {
-        font-size: 0.85em;
+        display: none;
       }
     }
   }
