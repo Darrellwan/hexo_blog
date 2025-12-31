@@ -60,13 +60,13 @@ modified: YYYY-MM-DD HH:MM:SS
 [{"question": "問題", "answer": "回答"}]
 {% endfaq %}
 
-{% note tip %}                           # 類型：tip/info/warning/error
+{% callout tip %}                        # 類型：tip/info/warning/error
 內容文字，支援 Markdown
-{% endnote %}
+{% endcallout %}
 
-{% note type="warning" title="自訂標題" %}  # 完整語法
+{% callout type="warning" title="自訂標題" %}  # 完整語法
 內容
-{% endnote %}
+{% endcallout %}
 
 {% articleCard url="/path/" title="標題" previewText="描述" thumbnail="url" %}
 ```
