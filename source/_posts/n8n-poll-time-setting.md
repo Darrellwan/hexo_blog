@@ -43,7 +43,7 @@ date: 2025-09-21 15:50:00
 
 ---
 
-## <span id="what-is-poll-time">什麼是 Poll Time</span>
+<h2 id="what-is-poll-time">什麼是 Poll Time</h2>
 
 ### 基本概念
 
@@ -71,7 +71,7 @@ Trigger 會按照設定的時間間隔，主動向外部服務「詢問」是否
 
 ---
 
-## <span id="performance-impact">該設定多久?</span>
+<h2 id="performance-impact">該設定多久?</h2>
 
 ### 場景的頻率
 
@@ -85,7 +85,7 @@ Trigger 會按照設定的時間間隔，主動向外部服務「詢問」是否
 
 ---
 
-## <span id="api-limits-costs">預設一分鐘要改嗎?</span>
+<h2 id="api-limits-costs">預設一分鐘要改嗎?</h2>
 
 會有兩個層面的問題:成本和 API Rate Limit
 

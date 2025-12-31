@@ -55,7 +55,7 @@ Google 今天推出了一款名為 **Antigravity** 的全新 AI Coding 工具，
 
 這篇文章將帶大家實際走一遍 Antigravity 的完整安裝與設定流程，從初次啟動到實際執行開發任務，看看它究竟有什麼過人之處。
 
-## <span id="installation">第一次啟動：完整的引導流程</span>
+<h2 id="installation">第一次啟動：完整的引導流程</h2>
 
 ### Step 1: 歡迎畫面
 啟動 Antigravity 後，首先會看到簡潔的歡迎畫面，顯示 "Welcome to Antigravity" 與 "Let's get you set up" 的提示。
@@ -127,7 +127,7 @@ Google 今天推出了一款名為 **Antigravity** 的全新 AI Coding 工具，
 
 你可以點選 "Open Folder" 開啟新專案，或是從 Workspaces 中選擇已有的專案。
 
-## <span id="development-experience">實際開發體驗</span>
+<h2 id="development-experience">實際開發體驗</h2>
 
 我們透過建立一個天氣卡片的方式，來建立一個網頁看看
 在右側放入，請幫我們建立天氣卡片，要包含四種不同的天氣資訊
@@ -166,7 +166,7 @@ Agent 會將 Implementation Plan 拆解成可執行的任務清單 Task List
 - 圓圈： 多項任務正在執行中
 - 框框： 等待執行的任務
 
-## <span id="agent-manager">Agent Manager 一次管理多個專案</span>
+<h2 id="agent-manager">Agent Manager 一次管理多個專案</h2>
 
 Agent Manager 也是 Antigravity 的一大特色
 用來同時指揮不同 Agent
@@ -213,7 +213,7 @@ Playground 則是一個蠻有趣的設計
 的確很快就做完，並且開啟瀏覽器讓我們確認是否真的會自己動起來
 接著我們來講講自動化測試這塊。
 
-## <span id="browser-extension">Antigravity Browser Extension</span>
+<h2 id="browser-extension">Antigravity Browser Extension</h2>
 
 Antigravity 還提供了 Chrome 瀏覽器擴充功能：
 **Antigravity Browser Extension**
@@ -225,7 +225,7 @@ Antigravity 會自動開啟瀏覽器，並測試網頁是否有正確運行
 例如天氣動畫是否真的有動畫
 不同天氣的切換按鈕可以做切換
 
-## <span id="model-limits">模型選項與配額限制</span>
+<h2 id="model-limits">模型選項與配額限制</h2>
 
 ### 支援的 AI 模型
 

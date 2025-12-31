@@ -69,7 +69,7 @@ modified: 2025-10-30 16:50:12
 
 ---
 
-## <span id="n8n-setup">n8n LINE Messaging 節點安裝和設定</span>
+<h2 id="n8n-setup">n8n LINE Messaging 節點安裝和設定</h2>
 
 ### 前置準備
 
@@ -131,7 +131,7 @@ modified: 2025-10-30 16:50:12
 
 ---
 
-## <span id="features">LINE Messaging 節點功能介紹</span>
+<h2 id="features">LINE Messaging 節點功能介紹</h2>
 
 LINE Messaging 提供以下主要功能：
 
@@ -257,7 +257,7 @@ LINE Messaging Trigger 節點接收事件，取得 `replyToken` 並使用 Reply 
 
 ---
 
-## <span id="faq">常見問題和解決方案</span>
+<h2 id="faq">常見問題和解決方案</h2>
 
 | 問題 | 原因 | 解決方式 |
 |------|------|---------|

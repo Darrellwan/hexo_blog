@@ -51,7 +51,7 @@ date: 2025-09-25 17:31:05
 
 ---
 
-## <span id="datatables-setup">n8n DataTables 環境需求</span>
+<h2 id="datatables-setup">n8n DataTables 環境需求</h2>
 
 ### 版本要求和 Beta 功能啟用
 
@@ -98,7 +98,7 @@ n8n DataTables 是在 **v1.113.0** 正式推出的 Beta 功能，解決了長期
 - subscribe : `Boolean`
 - birthday : `Date`
 
-## <span id="practical-cases">7 種 Actions 介紹</span>
+<h2 id="practical-cases">7 種 Actions 介紹</h2>
 
 DataTable 節點提供完整的資料庫操作功能：
 
@@ -175,7 +175,7 @@ Update 和 Upsert 可以一起討論
 
 ---
 
-## <span id="template-demo">表單模板示範</span>
+<h2 id="template-demo">表單模板示範</h2>
 
 {% darrellImage800 n8n_datatables-template_demo n8n_datatables-template_demo.png max-800 %}
 

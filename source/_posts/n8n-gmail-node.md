@@ -52,7 +52,7 @@ date: 2025-07-22 16:40:30
 
 ---
 
-## <span id="gmail-function">Gmail 節點功能介紹</span>
+<h2 id="gmail-function">Gmail 節點功能介紹</h2>
 
 Gmail 節點提供三種主要操作類型，以使用頻率排序：
 
@@ -208,7 +208,7 @@ Gmail Trigger - on message received 是 Gmail 相關場景中很重要的節點
 
 {% darrellImage800 n8n_gmail-message_trigger n8n_gmail-message_trigger.png max-800 %}
 
-## <span id="common-issues">常見問題和解決方案</span>
+<h2 id="common-issues">常見問題和解決方案</h2>
 
 ### Gmail 發送頻率限制
 
@@ -222,7 +222,7 @@ Gmail Trigger - on message received 是 Gmail 相關場景中很重要的節點
 
 ## 進階應用
 
-### <span id="credit-card-automation">信用卡帳單自動提醒</span>
+<h3 id="credit-card-automation">信用卡帳單自動提醒</h3>
 
 這個案例展示如何自動處理多家銀行的信用卡帳單郵件，解析帳單資訊並建立 Google Calendar 提醒。
 
