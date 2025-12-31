@@ -18,8 +18,6 @@ modified: 2025-10-30 16:50:12
 
 {% darrellImageCover blog-n8n-line-messaging-node blog-n8n-line-messaging-node-bg.jpg max-800 %}
 
-## 快速導覽
-
 預計閱讀時間：10-12 分鐘
 適合對象：已有 n8n 基礎，想要自動化 LINE 訊息發送
 

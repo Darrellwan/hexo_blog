@@ -17,8 +17,6 @@ date: 2025-09-21 15:50:00
 
 {% darrellImageCover n8n_polltime-bg n8n_polltime-bg.jpg max-800 %}
 
-## 快速導覽
-
 **預計閱讀時間：** 3 分鐘
 **適合對象：** 已有 n8n 基礎，想更加了解 poll time的朋友
 {% quickNav %}

@@ -27,8 +27,6 @@ n8n 在 2.1.0 版本推出了 **Time Saved** 功能，讓你可以追蹤每個�
 
 ---
 
-## 快速導覽
-
 {% quickNav %}
 [
   {"text": "什麼是 Time Saved", "anchor": "what-is-time-saved", "desc": "Insights 功能概述"},

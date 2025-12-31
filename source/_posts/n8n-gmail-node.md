@@ -18,8 +18,6 @@ date: 2025-07-22 16:40:30
 
 {% darrellImageCover n8n-gmail-node-bg blog-n8n-gmail-bg.jpg max-800 %}
 
-## 快速導覽
-
 **預計閱讀時間：** 5-10 分鐘  
 **適合對象：** 已有 n8n 基礎，想學會 Gmail 節點和應用的朋友
 

@@ -17,8 +17,6 @@ date: 2025-09-25 17:31:05
 
 {% darrellImageCover blog-n8n-datatables-bg blog-n8n-datatables-bg.jpg max-800 %}
 
-## 快速導覽
-
 **預計閱讀時間：** 5-8 分鐘
 **適合對象：** 已有 n8n 基礎，想學 DataTables 如何操作
 

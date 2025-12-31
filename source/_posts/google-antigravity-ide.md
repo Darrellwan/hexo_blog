@@ -17,7 +17,6 @@ preload:
 
 {% darrellImageCover antigravity_cover blog-google-antigravity.jpg max-800 %}
 
-## 快速導覽
 {% quickNav %}
   [
     {
