@@ -122,18 +122,20 @@ from:boss@company.com is:starred
 老闆寄來的已加星號郵件
 ```
 
-實測建議： 先在 Gmail 網頁版測試搜尋條件，確認能找到正確郵件後，再複製相同的搜尋語法到 n8n 的 Search 欄位
+{% callout tip %}
+先在 Gmail 網頁版測試搜尋條件，確認能找到正確郵件後，再複製相同的搜尋語法到 n8n 的 Search 欄位。
+{% endcallout %}
 
 {% darrellImage800 n8n_gmail-message_get_many-search_box n8n_gmail-message_get_many-search_box.png max-400 %}
 
 
 **刪除郵件**
-Delete Message 要謹慎使用
-並不會先把 Email 移到垃圾桶
-而是直接刪除！
 
-除非很確定這真的是不重要的 Email
-不然不建議直接使用 `delete` 來操作
+{% callout warning %}
+Delete Message 要謹慎使用！不會先把 Email 移到垃圾桶，而是**直接刪除**！
+
+除非很確定這真的是不重要的 Email，不然不建議直接使用 `delete` 來操作。
+{% endcallout %}
 
 ### Label 標籤管理
 
@@ -210,13 +212,17 @@ Gmail Trigger - on message received 是 Gmail 相關場景中很重要的節點
 
 ### Gmail 發送頻率限制
 
+{% callout info %}
 **發送頻率限制（官方數據）：**
-- 一般 Gmail 帳戶： 每日最多 500 封郵件
-- Google Workspace 帳戶： 每日最多 2,000 封郵件
-- API 速率限制： 每秒 250 個配額單位（每次發送消耗 100 單位）
-- 大量發送定義： 每日超過 5,000 封需遵守額外規範
+- 一般 Gmail 帳戶：每日最多 500 封郵件
+- Google Workspace 帳戶：每日最多 2,000 封郵件
+- API 速率限制：每秒 250 個配額單位（每次發送消耗 100 單位）
+- 大量發送定義：每日超過 5,000 封需遵守額外規範
+{% endcallout %}
 
-**重要提醒：** Google 的政策隨時可能更新，建議定期檢查 [Gmail 寄件者指南](https://support.google.com/a/answer/81126)
+{% callout warning %}
+Google 的政策隨時可能更新，建議定期檢查 [Gmail 寄件者指南](https://support.google.com/a/answer/81126)
+{% endcallout %}
 
 ## 進階應用
 

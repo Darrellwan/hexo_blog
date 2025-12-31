@@ -47,13 +47,14 @@ date: 2025-09-21 15:50:00
 
 Poll Time 是 n8n Trigger 節點中用來設定**多久跟對方確認一次**的參數。
 
-⚠️ **重點提醒：**
+{% callout warning %}
 只有使用 **Polling Trigger** 的節點才會有這個設定，例如：
 - RSS Feed Read
 - Google Sheets Trigger
 - Google Drive Trigger
 - Gmail Trigger
 - 第三方 API 的監控節點
+{% endcallout %}
 
 {% darrellImage800 n8n_polltime-trigger_use_polltime n8n_polltime-trigger_use_polltime.png max-400 %}
 

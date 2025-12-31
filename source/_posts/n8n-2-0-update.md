@@ -145,9 +145,9 @@ NODES_EXCLUDE=[]
 
 {% darrellImage800Alt "ExecuteCommand Node & LocalFileTrigger Node 被停用的警告" n8n-2.0-executecommand-and-localfiletrigger-node-warning.png max-800 %}
 
-這邊用圖片教學大家這個環境變數的設定邏輯
-
-簡單理解就是：`NODES_EXCLUDE` 裡面填「要被排除（禁用）」的節點名稱清單。
+{% callout info %}
+這邊用圖片教學大家這個環境變數的設定邏輯。簡單理解就是：`NODES_EXCLUDE` 裡面填「要被排除（禁用）」的節點名稱清單。
+{% endcallout %}
 
 常見幾種寫法如下（對應下圖）：
 

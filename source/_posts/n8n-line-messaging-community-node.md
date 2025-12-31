@@ -142,7 +142,9 @@ LINE Messaging 提供以下主要功能：
 - Quick Replies：快速回覆按鈕（Postback 和 Message 動作）
 - Quote Messages：引用回覆先前的訊息
 
-**重要提醒**：此社群節點目前主要支援文字訊息，如需發送圖片、影片、Flex Message 等其他類型，建議使用 HTTP Request 節點搭配 LINE Messaging API。
+{% callout warning %}
+此社群節點目前主要支援文字訊息，如需發送圖片、影片、Flex Message 等其他類型，建議使用 HTTP Request 節點搭配 LINE Messaging API。
+{% endcallout %}
 
 設定步驟：
 
@@ -152,9 +154,9 @@ LINE Messaging 提供以下主要功能：
 重要參數說明：
 - UserId：接收者 User ID（格式：U 開頭）
 
-**進階技巧：一次發送多則訊息**
-
+{% callout type="tip" title="進階技巧：一次發送多則訊息" %}
 LINE API 允許一次發送最多 5 則訊息，費用只算 1 則！
+{% endcallout %}
 
 {% darrellImage800 n8n_line_messaging-send_message-max_5_messages n8n_line_messaging-send_message-max_5_messages.png max-800 %}
 
@@ -173,10 +175,12 @@ LINE API 允許一次發送最多 5 則訊息，費用只算 1 則！
 
 使用場景：收到使用者訊息後回覆訊息（搭配 Trigger 使用）
 
+{% callout warning %}
 與 Send Message 的差異：
 - Reply 使用 Reply Token（從 Webhook or Trigger 取得）
 - Reply Token 只能使用一次，且有時效性（約 60 秒）
 - 不計費！（免費回覆）
+{% endcallout %}
 
 {% darrellImage800 n8n_line_messaging-reply_message_setting n8n_line_messaging-reply_message_setting.png max-800 %}
 

@@ -113,7 +113,9 @@ n8n 在 2.1.0 版本推出了 **Time Saved** 功能，讓你可以追蹤每個�
 
 在使用 Time Saved 之前，有個概念要先知道：
 
+{% callout warning %}
 **手動測試不會計入節省時間**，只有透過 Webhook 觸發或排程的正式執行才會計算。
+{% endcallout %}
 
 ### 新增 Time Saved Node
 
@@ -151,7 +153,9 @@ n8n 在 2.1.0 版本推出了 **Time Saved** 功能，讓你可以追蹤每個�
 
 {% darrellImage800Alt "Once 群發 vs Per Item 逐則回覆的概念比較圖，群發省 5 分鐘，逐則回覆 100 次省 100 分鐘" n8n-time-saved-once-vs-peritem-comparison.jpg max-800 %}
 
-> 怎麼選？ 我自己的判斷標準是：如果「處理一筆跟處理十筆，人工花的時間差很多」，就用 Per item；如果差不多，就用 Once。
+{% callout tip %}
+怎麼選？ 我自己的判斷標準是：如果「處理一筆跟處理十筆，人工花的時間差很多」，就用 Per item；如果差不多，就用 Once。
+{% endcallout %}
 
 ### 多節點累加
 
