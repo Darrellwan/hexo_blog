@@ -59,7 +59,9 @@ n8n 2.0 準備要正式發布了
 這次更新主要著重在**安全性**和**穩定性**
 移除了一些舊有的功能，並為未來的發展打下更好的基礎。
 
-⚠️ **升級前重要提醒：** 建議先查看 Migration Report，確認有哪些 workflows 需要調整
+{% callout warning %}
+建議先查看 Migration Report，確認有哪些 workflows 需要調整
+{% endcallout %}
 
 ---
 

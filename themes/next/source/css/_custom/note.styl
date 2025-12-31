@@ -5,31 +5,31 @@
 
 // 顏色變數
 :root {
-  --note-tip: #5cb85c;
-  --note-tip-bg: rgba(92, 184, 92, 0.08);
-  --note-tip-border: rgba(92, 184, 92, 0.35);
-  --note-tip-glow: rgba(92, 184, 92, 0.15);
+  --dn-note-tip: #5cb85c;
+  --dn-note-tip-bg: rgba(92, 184, 92, 0.08);
+  --dn-note-tip-border: rgba(92, 184, 92, 0.35);
+  --dn-note-tip-glow: rgba(92, 184, 92, 0.15);
 
-  --note-info: #428bca;
-  --note-info-bg: rgba(66, 139, 202, 0.08);
-  --note-info-border: rgba(66, 139, 202, 0.35);
-  --note-info-glow: rgba(66, 139, 202, 0.15);
+  --dn-note-info: #428bca;
+  --dn-note-info-bg: rgba(66, 139, 202, 0.08);
+  --dn-note-info-border: rgba(66, 139, 202, 0.35);
+  --dn-note-info-glow: rgba(66, 139, 202, 0.15);
 
-  --note-warning: #f0ad4e;
-  --note-warning-bg: rgba(240, 173, 78, 0.08);
-  --note-warning-border: rgba(240, 173, 78, 0.35);
-  --note-warning-glow: rgba(240, 173, 78, 0.15);
+  --dn-note-warning: #f0ad4e;
+  --dn-note-warning-bg: rgba(240, 173, 78, 0.08);
+  --dn-note-warning-border: rgba(240, 173, 78, 0.35);
+  --dn-note-warning-glow: rgba(240, 173, 78, 0.15);
 
-  --note-error: #d9534f;
-  --note-error-bg: rgba(217, 83, 79, 0.08);
-  --note-error-border: rgba(217, 83, 79, 0.35);
-  --note-error-glow: rgba(217, 83, 79, 0.15);
+  --dn-note-error: #d9534f;
+  --dn-note-error-bg: rgba(217, 83, 79, 0.08);
+  --dn-note-error-border: rgba(217, 83, 79, 0.35);
+  --dn-note-error-glow: rgba(217, 83, 79, 0.15);
 }
 
 // ============================================
 // 基礎樣式
 // ============================================
-.note {
+.dn-note {
   position: relative;
   padding: 18px 22px;
   border-radius: 12px;
@@ -45,73 +45,73 @@
 // ============================================
 // 類型樣式
 // ============================================
-.note-tip {
-  background: var(--note-tip-bg);
-  border-color: var(--note-tip-border);
+.dn-note-tip {
+  background: var(--dn-note-tip-bg);
+  border-color: var(--dn-note-tip-border);
 
-  .note-title {
-    color: var(--note-tip);
+  .dn-note-title {
+    color: var(--dn-note-tip);
   }
 
   &:hover {
-    border-color: var(--note-tip);
-    box-shadow: 0 8px 32px var(--note-tip-glow), inset 0 0 40px var(--note-tip-glow);
+    border-color: var(--dn-note-tip);
+    box-shadow: 0 8px 32px var(--dn-note-tip-glow), inset 0 0 40px var(--dn-note-tip-glow);
   }
 }
 
-.note-info {
-  background: var(--note-info-bg);
-  border-color: var(--note-info-border);
+.dn-note-info {
+  background: var(--dn-note-info-bg);
+  border-color: var(--dn-note-info-border);
 
-  .note-title {
-    color: var(--note-info);
+  .dn-note-title {
+    color: var(--dn-note-info);
   }
 
   &:hover {
-    border-color: var(--note-info);
-    box-shadow: 0 8px 32px var(--note-info-glow), inset 0 0 40px var(--note-info-glow);
+    border-color: var(--dn-note-info);
+    box-shadow: 0 8px 32px var(--dn-note-info-glow), inset 0 0 40px var(--dn-note-info-glow);
   }
 }
 
-.note-warning {
-  background: var(--note-warning-bg);
-  border-color: var(--note-warning-border);
+.dn-note-warning {
+  background: var(--dn-note-warning-bg);
+  border-color: var(--dn-note-warning-border);
 
-  .note-title {
-    color: var(--note-warning);
+  .dn-note-title {
+    color: var(--dn-note-warning);
   }
 
   &:hover {
-    border-color: var(--note-warning);
-    box-shadow: 0 8px 32px var(--note-warning-glow), inset 0 0 40px var(--note-warning-glow);
+    border-color: var(--dn-note-warning);
+    box-shadow: 0 8px 32px var(--dn-note-warning-glow), inset 0 0 40px var(--dn-note-warning-glow);
   }
 }
 
-.note-error {
-  background: var(--note-error-bg);
-  border-color: var(--note-error-border);
+.dn-note-error {
+  background: var(--dn-note-error-bg);
+  border-color: var(--dn-note-error-border);
 
-  .note-title {
-    color: var(--note-error);
+  .dn-note-title {
+    color: var(--dn-note-error);
   }
 
   &:hover {
-    border-color: var(--note-error);
-    box-shadow: 0 8px 32px var(--note-error-glow), inset 0 0 40px var(--note-error-glow);
+    border-color: var(--dn-note-error);
+    box-shadow: 0 8px 32px var(--dn-note-error-glow), inset 0 0 40px var(--dn-note-error-glow);
   }
 }
 
 // ============================================
 // 內容樣式
 // ============================================
-.note-title {
+.dn-note-title {
   font-size: 0.95rem;
   font-weight: 600;
   line-height: 1.3;
   margin-bottom: 10px;
 }
 
-.note-content {
+.dn-note-content {
   font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.68);
   line-height: 1.7;
@@ -166,7 +166,7 @@
 // 淺色主題適配
 // ============================================
 @media (prefers-color-scheme: light) {
-  .note-content {
+  .dn-note-content {
     color: rgba(0, 0, 0, 0.7);
 
     strong {
@@ -194,17 +194,17 @@
 // 手機版優化
 // ============================================
 @media (max-width: 768px) {
-  .note {
+  .dn-note {
     padding: 14px 16px;
     margin: 16px 0;
     border-radius: 10px;
   }
 
-  .note-title {
+  .dn-note-title {
     font-size: 0.9rem;
   }
 
-  .note-content {
+  .dn-note-content {
     font-size: 0.85rem;
   }
 }

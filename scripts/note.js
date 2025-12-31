@@ -27,7 +27,7 @@ const defaultTitles = {
   error: '錯誤'
 };
 
-hexo.extend.tag.register('note', function(args, content) {
+hexo.extend.tag.register('callout', function(args, content) {
   const argsStr = args.join(' ');
 
   // 解析參數
@@ -63,11 +63,11 @@ hexo.extend.tag.register('note', function(args, content) {
   // 渲染 Markdown 內容
   const renderedContent = hexo.render.renderSync({ text: content, engine: 'markdown' });
 
-  // 生成 HTML
+  // 生成 HTML（使用 dn-note 避免與主題內建 note 衝突）
   const html = `
-<div class="note note-${type}">
-  <div class="note-title">${title}</div>
-  <div class="note-content">${renderedContent}</div>
+<div class="dn-note dn-note-${type}">
+  <div class="dn-note-title">${title}</div>
+  <div class="dn-note-content">${renderedContent}</div>
 </div>
 `;
 
