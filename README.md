@@ -3,19 +3,19 @@
 ## 📚 最新文章
 
 ### [n8n 資安漏洞 CVE-2025-68613 快點來更新你的 n8n 版本！](https://www.darrelltw.com/n8n-security-vulnerability-2025/?utm_source=github_readme&utm_medium=referral)
-📅 2025/12/25 · 6 天前
+📅 2025/12/25 · 9 天前
 
 > n8n CVE-2025-68613（CVSS 9.9）高風險漏洞懶人包：快速確認影響版本、檢查目前版本，並用 Docker／Zeabur／npm 更新到修復版本，降低 RCE 風險。
 
 
 ### [n8n Time Saved Node 教學 - 省下多少時間？量化 n8n 的 ROI](https://www.darrelltw.com/n8n-time-saved-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/12/20 · 11 天前
+📅 2025/12/20 · 15 天前
 
 > 老闆問「自動化到底省多少時間？」答不出來？n8n 2.1.0 的 Time Saved Node 讓你量化 ROI。本文教你 Fixed vs Dynamic 兩種計算方式，含 LINE 自動回覆實例。
 
 
 ### [n8n AI 模型 Router 教學：Zeabur AI Hub 智慧切換模型](https://www.darrelltw.com/n8n-zeabur-ai-hub-model-router/?utm_source=github_readme&utm_medium=referral)
-📅 2025/12/06 · 25 天前
+📅 2025/12/06 · 1 個月前
 
 > n8n 搭配 Zeabur AI Hub 打造 AI 模型 Router，一個 API Key 串接 GPT、Claude、Gemini。根據問題複雜度智慧切換模型：簡單問題用便宜模型、複雜問題用強模型，省成本又兼顧品質
 
@@ -65,7 +65,7 @@
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-116-blue?style=flat-square)
 ![總字數](https://img.shields.io/badge/總字數-264,054+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2025/12/31-green?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2026/01/04-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -92,12 +92,12 @@
 
 ## 📈 更新頻率
 ```text
-07月 ████░░░░░░ 4篇
 08月 █░░░░░░░░░ 1篇
 09月 ████░░░░░░ 4篇
 10月 ██░░░░░░░░ 2篇
 11月 ███░░░░░░░ 3篇
 12月 ███░░░░░░░ 3篇
+01月 ░░░░░░░░░░ 0篇
 ```
 
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2025-12-31 07:40:13*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-01-04 02:21:57*
