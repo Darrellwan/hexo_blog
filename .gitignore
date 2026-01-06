@@ -72,3 +72,5 @@ GTM-*.json
 
 # Documentation files
 docs/*.md
+# Antigravity agent files
+.agent/
