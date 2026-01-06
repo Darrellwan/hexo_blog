@@ -6878,5 +6878,25 @@
     "width": 800,
     "height": 800,
     "mtimeMs": 1766761784633.197
+  },
+  "/_posts/n8n-update-log/n8n-2.3.0-subworkflow_versioning.png": {
+    "width": 1664,
+    "height": 1358,
+    "mtimeMs": 1767711467884.573
+  },
+  "/_posts/n8n-update-log/n8n-2.3.0-stop_all_executions.png": {
+    "width": 2010,
+    "height": 1792,
+    "mtimeMs": 1767711464510.332
+  },
+  "/_posts/n8n-update-log/n8n-2.3.0-data_table_crud.png": {
+    "width": 1928,
+    "height": 1660,
+    "mtimeMs": 1767711470351.06
+  },
+  "/_posts/n8n-update-log/n8n-2.3.0-subworkflow_infographic.jpg": {
+    "width": 1200,
+    "height": 654,
+    "mtimeMs": 1767713288783.703
   }
 }

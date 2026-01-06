@@ -7,16 +7,84 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2025/12/23 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.2.0（Pre-release），正式版本為 2.1.2
+description: n8n 的更新記錄(2026/01/06 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.3.0（Pre-release），正式版本為 2.2.3
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2025-12-23 21:46:00
+modified: 2026-01-06 15:30:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 2.3.0 Pre-release - 2026-01-05
+
+[Github 2.3.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%402.3.0)
+
+### Data Table Node 新增 CRUD 操作
+Add data table crud operations to data table node
+
+Data Table 以前比較麻煩
+你必須到介面手動建立 Table 和欄位
+後續更新中加入了 csv 匯入，但如果想用 Workflow 自動建立 Table 還是做不到。
+這次的更新終於解決這個痛點！
+
+
+新增四個 Table 的 action ：
+- **Create**：建立新的 Table，可以設定欄位名稱和類型
+- **Delete**：刪除 Table
+- **List**：列出所有 Table
+- **Update**：更新 Table 的名稱
+
+{% callout type="tip" title="應用場景" %}
+
+假設你的自動化場景需要直接建立 Table
+例如每月的資料 `2026-01-report`、`2026-02-report`
+就可以透過自動化的方式建立!
+
+{% endcallout %}
+
+{% darrellImage800Alt "Data Table Node 新增 Table 層級的 CRUD 操作" n8n-2.3.0-data_table_crud.png max-800 %}
+
+### 一鍵停止所有執行
+Add Stop All Executions functionality
+
+當你的 workflow 瀕臨被打爆的邊緣，現在可以一鍵停止所有 execution！
+
+如果 workflow 不小心讓他大量觸發，或是這個 Server 不夠大台卻承受了大量的 request
+以前會看到 execution list 有一整排執行中，卻要一個一個逐一停止
+
+現在在 Executions 多了「Stop All」，點下去會跳出確認視窗，可以選擇要停止的類型：
+- **Running**：正在執行的
+- **Waiting**：等待中
+- **Queued**：排隊中
+
+選擇你想停掉的類型後就能一鍵關掉
+
+{% darrellImage800Alt "n8n 新增 Stop All Executions 功能，可一次停止所有執行" n8n-2.3.0-stop_all_executions.png max-800 %}
+
+### Sub-Workflow 草稿版與發佈版分離
+Use draft sub-workflow version for manual execution, published for production
+
+{% darrellImage800Alt "Sub-Workflow 版本控制流程圖：手動測試走草稿版，正式執行走發佈版" n8n-2.3.0-subworkflow_infographic.jpg max-800 %}
+
+Sub-workflow 很方便，讓我們抽離的很多流程變成模組
+但如果是用在一個服務中的 workflow 就超級麻煩
+
+你必須得自己區分什麼是 **正式環境的觸發**
+什麼是 **手動執行的觸發**
+然後分別使用不同的 sub-workflow 來測試
+
+現在 n8n 官方把這件事情變得超簡單
+
+內建就會區分執行的來源 **正式 or 測試**
+然後正式的執行單獨走正式的版本
+測試的執行就用編輯中的草稿版本
+
+這樣你就可以放心改 sub-workflow！
+
+{% darrellImage800Alt "Sub-Workflow 現在區分草稿版和發佈版，測試和生產互不干擾" n8n-2.3.0-subworkflow_versioning.png max-800 %}
 
 ## 2.2.0 Pre-release - 2025-12-22
 
