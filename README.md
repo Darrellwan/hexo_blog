@@ -3,13 +3,13 @@
 ## 📚 最新文章
 
 ### [n8n 資安漏洞 CVE-2025-68613 快點來更新你的 n8n 版本！](https://www.darrelltw.com/n8n-security-vulnerability-2025/?utm_source=github_readme&utm_medium=referral)
-📅 2025/12/25 · 9 天前
+📅 2025/12/25 · 12 天前
 
 > n8n CVE-2025-68613（CVSS 9.9）高風險漏洞懶人包：快速確認影響版本、檢查目前版本，並用 Docker／Zeabur／npm 更新到修復版本，降低 RCE 風險。
 
 
 ### [n8n Time Saved Node 教學 - 省下多少時間？量化 n8n 的 ROI](https://www.darrelltw.com/n8n-time-saved-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/12/20 · 15 天前
+📅 2025/12/20 · 17 天前
 
 > 老闆問「自動化到底省多少時間？」答不出來？n8n 2.1.0 的 Time Saved Node 讓你量化 ROI。本文教你 Fixed vs Dynamic 兩種計算方式，含 LINE 自動回覆實例。
 
@@ -33,7 +33,7 @@
 
 
 ### [Google Antigravity 搭配 Gemini 3 模型還能自動化測試！Vibe Coding 新神器](https://www.darrelltw.com/google-antigravity-ide/?utm_source=github_readme&utm_medium=referral)
-📅 2025/11/19 · 1 個月前
+📅 2025/11/19 · 2 個月前
 
 > 深入體驗 Google Antigravity，這款 Agentic AI 程式開發工具。包含完整安裝教學、Agent Manager 使用、自動化測試、使用技巧。
 
@@ -45,7 +45,7 @@
 
 
 ### [n8n Line Messaging 社群節點教學](https://www.darrelltw.com/n8n-line-messaging-community-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/10/21 · 2 個月前
+📅 2025/10/21 · 3 個月前
 
 > n8n LINE Messaging 社群節點完整教學!使用 @aotoki/n8n-nodes-line-messaging 簡化 LINE Bot 開發,視覺化介面降低出錯率。涵蓋安裝設定、4 大核心功能操作、常見問題排解,以及與 HTTP Request 的使用時機比較
 
@@ -64,8 +64,8 @@
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-116-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-264,054+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2026/01/04-green?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-265,183+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2026/01/06-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-01-04 02:21:57*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-01-06 15:54:59*
