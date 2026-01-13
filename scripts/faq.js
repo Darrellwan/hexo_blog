@@ -11,10 +11,28 @@
  * {% endfaq %}
  */
 
+// 🆕 全域 Map 儲存 FAQ 資料，讓 Helper 可以讀取
+// Key: source path, Value: FAQ items array
+global.faqDataStore = global.faqDataStore || new Map();
+
 hexo.extend.tag.register('faq', function(_, content) {
   try {
     const contentStr = Array.isArray(content) ? content.join('') : (content || '');
     const faqItems = JSON.parse(contentStr.trim());
+
+    // 🆕 存到全域 Map，用 source path 作為 key
+    const sourceKey = this.source || this.path;
+    if (sourceKey) {
+      const existing = global.faqDataStore.get(sourceKey) || [];
+      faqItems.forEach(item => {
+        existing.push({
+          question: item.question,
+          // 移除 HTML 標籤，JSON-LD 要純文字
+          answer: (item.answer || '').replace(/<[^>]*>/g, '')
+        });
+      });
+      global.faqDataStore.set(sourceKey, existing);
+    }
 
     let html = '<div class="faq-container">\n';
 

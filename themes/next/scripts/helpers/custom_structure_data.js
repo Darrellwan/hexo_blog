@@ -1,36 +1,67 @@
 /**
  * Builds JSON-LD structured data for current page according to its type (page or post).
+ * 支援兩種來源：
+ * 1. front matter 的 darrell_structured_data（手動設定）
+ * 2. {% faq %} 標籤自動收集的 _autoFaqData
  *
  * @returns {string} - JSON-LD structured data
  */
 function darrellStructuredData() {
   const page = this.page;
-  const darrell_structured_data = page.darrell_structured_data || false;
+  const manualFaqData = page.darrell_structured_data || false;
 
-  if (this.is_post() && darrell_structured_data) {
-    let entities = [];
+  // 從全域 Map 讀取 FAQ 資料（由 {% faq %} tag 填入）
+  const sourceKey = page.source;
+  const autoFaqData = (global.faqDataStore && global.faqDataStore.get(sourceKey)) || [];
 
-    for (i = 0; i < darrell_structured_data.question.length; i++) {
+  // 如果不是文章，直接返回
+  if (!this.is_post()) {
+    return '';
+  }
+
+  let entities = [];
+
+  // 優先使用手動設定的 front matter 資料
+  if (manualFaqData && manualFaqData.question && manualFaqData.question.length > 0) {
+    for (let i = 0; i < manualFaqData.question.length; i++) {
       entities.push({
         "@type": "Question",
-        name: darrell_structured_data.question[i],
+        name: manualFaqData.question[i],
         acceptedAnswer: {
           "@type": "Answer",
-          text: darrell_structured_data.answer[i],
+          text: manualFaqData.answer[i],
         },
       });
     }
-
-    schema = {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: entities,
-    };
-
-    return (
-      '<script type="application/ld+json">' + JSON.stringify(schema) + "</script>"
-    );
   }
+  // 否則使用 {% faq %} 自動收集的資料
+  else if (autoFaqData.length > 0) {
+    autoFaqData.forEach(item => {
+      entities.push({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.answer,
+        },
+      });
+    });
+  }
+
+  // 如果沒有任何 FAQ 資料，返回空字串
+  if (entities.length === 0) {
+    return '';
+  }
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: entities,
+  };
+
+  return (
+    '<script type="application/ld+json">' + JSON.stringify(schema) + "</script>"
+  );
 }
 
 hexo.extend.helper.register("darrell_structured_data", darrellStructuredData);

@@ -11,5 +11,6 @@
 </script>
 {{ json_ld() }}
 {{ breadcrumb_ld() }}
+{{ darrell_structured_data() }}
 {{ darrell_org_structured_data() }}
 {{ darrell_web_structured_data() }}
