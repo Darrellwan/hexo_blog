@@ -7,7 +7,7 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2026/01/13 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.4.0（Pre-release），正式版本為 2.2.3
+description: n8n 的更新記錄(2026/01/13 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.4.0（Pre-release），正式版本為 2.3.4
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
