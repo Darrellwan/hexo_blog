@@ -31,13 +31,27 @@ Hexo 8.0 blog for MarTech/automation. **Node.js**: `^20.17.0 || >=22.9.0`
 - **Auto-categorization**: n8n 相關文章由 `/scripts/index.js` 自動加 tag/category
 
 ## Claude Code Skills
-專案內建 6 個 skills（定義於 `.claude/skills/`）：
+專案內建 6 個 skills（定義於 `.claude/skills/`，已 gitignore）：
 - `commit-guide` - Git commit 規範（必用）
 - `n8n-node-research` - 節點研究資料搜集
 - `n8n-article-writer` - n8n 教學文章撰寫
-- `n8n-update-write` - n8n 版本更新紀錄
+- `n8n-update-write` - n8n 版本更新紀錄（6 階段流程 + 評分系統）
 - `n8n-template-ideation` - n8n template 點子發想
 - `n8n-template-add` - 新增 n8n 模板到模板庫
+
+### n8n-update-write 流程
+1. **Phase 1** 版本檢查（快速模式：用戶給連結可跳過）
+2. **Phase 2** 內容研究 + 5 標準評分（實用性/話題性/痛點/截圖/類型）
+3. **Phase 2.5** 深度分析（痛點/行為/場景/對象）
+4. **Phase 3** 建議確認
+5. **Phase 4** 內容撰寫
+6. **Phase 5** 圖片處理 + 視覺化設計（Infographic）
+7. **Phase 6** Commit + Push
+
+### 寫作三原則（FORMAT.md）
+1. **先痛點，再解法** - 讓讀者先有共鳴
+2. **用對比強調差異** - 以前 vs 現在、表格對照
+3. **具體舉例** - 說明應用場景
 
 ## Front Matter Template
 ```yaml
