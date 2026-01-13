@@ -2,14 +2,20 @@
 
 ## 📚 最新文章
 
+### [n8n Apify 節點自動化教學 不會寫程式也能爬資料！](https://www.darrelltw.com/n8n-apify-node/?utm_source=github_readme&utm_medium=referral)
+📅 2026/01/13 · 7 小時內
+
+> 完整教學 n8n Apify 節點實現網頁爬蟲自動化。包含 API Token 設定、Run Actor 操作、Instagram 數據爬取等功能介紹。實測別人 IG 帳號發文數據自動同步到 Google Sheets 案例。
+
+
 ### [n8n 資安漏洞 CVE-2025-68613 快點來更新你的 n8n 版本！](https://www.darrelltw.com/n8n-security-vulnerability-2025/?utm_source=github_readme&utm_medium=referral)
-📅 2025/12/25 · 16 天前
+📅 2025/12/25 · 19 天前
 
 > n8n CVE-2025-68613（CVSS 9.9）高風險漏洞懶人包：快速確認影響版本、檢查目前版本，並用 Docker／Zeabur／npm 更新到修復版本，降低 RCE 風險。
 
 
 ### [n8n Time Saved Node 教學 - 省下多少時間？量化 n8n 的 ROI](https://www.darrelltw.com/n8n-time-saved-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/12/20 · 22 天前
+📅 2025/12/20 · 24 天前
 
 > 老闆問「自動化到底省多少時間？」答不出來？n8n 2.1.0 的 Time Saved Node 讓你量化 ROI。本文教你 Fixed vs Dynamic 兩種計算方式，含 LINE 自動回覆實例。
 
@@ -21,7 +27,7 @@
 
 
 ### [n8n 2.0 大更新：除了新功能，更該擔心能不能順利 Migrate](https://www.darrelltw.com/n8n-2-0-update/?utm_source=github_readme&utm_medium=referral)
-📅 2025/11/26 · 1 個月前
+📅 2025/11/26 · 2 個月前
 
 > n8n 2.0 大更新要來了！包含新功能介紹、Migration Report 使用教學、Breaking Changes 詳解和常見升級問題解決方案
 
@@ -39,7 +45,7 @@
 
 
 ### [n8n Merge 節點教學-解決多來源資料合併的問題](https://www.darrelltw.com/n8n-merge-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/10/27 · 2 個月前
+📅 2025/10/27 · 3 個月前
 
 > n8n Merge 節點完整教學！學會 Append、Combine、Choose Branch、SQL Query 選項的差異，深入了解 Matching Fields、Position 和 All Possible Combinations 的用法
 
@@ -56,16 +62,10 @@
 > Claude Code 2025年11月更新：新的 Cursor IDE 介面，讓不是工程師的你也能輕鬆使用 Claude Code
 
 
-### [n8n DataTables 節點教學 - 直接把資料存在 n8n 裡](https://www.darrelltw.com/n8n-datatables-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/09/25 · 4 個月前
-
-> n8n 推出 DataTables！ 原生數據存儲無需外部資料庫，支援完整 insert、update、get、delete。
-
-
 ## 📊 部落格統計
-![文章總數](https://img.shields.io/badge/文章總數-116-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-265,183+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2026/01/11-green?style=flat-square)
+![文章總數](https://img.shields.io/badge/文章總數-117-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-271,966+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2026/01/13-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -88,7 +88,7 @@
 
 
 ## 🏷️ 熱門主題
-![n8n](https://img.shields.io/badge/n8n-30-orange?style=flat-square) ![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-15-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![AI](https://img.shields.io/badge/AI-8-orange?style=flat-square)
+![n8n](https://img.shields.io/badge/n8n-31-orange?style=flat-square) ![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-15-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![AI](https://img.shields.io/badge/AI-8-orange?style=flat-square)
 
 ## 📈 更新頻率
 ```text
@@ -97,7 +97,7 @@
 10月 ██░░░░░░░░ 2篇
 11月 ███░░░░░░░ 3篇
 12月 ███░░░░░░░ 3篇
-01月 ░░░░░░░░░░ 0篇
+01月 █░░░░░░░░░ 1篇
 ```
 
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-01-11 02:21:34*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-01-13 10:32:45*
