@@ -7,16 +7,66 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2026/01/06 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.3.0（Pre-release），正式版本為 2.2.3
+description: n8n 的更新記錄(2026/01/13 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.4.0（Pre-release），正式版本為 2.2.3
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2026-01-06 15:30:00
+modified: 2026-01-13 20:40:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 2.4.0 Pre-release - 2026-01-12
+
+[Github 2.4.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%402.4.0)
+
+### 工作流自動儲存
+Autosave workflows
+
+n8n 終於可以**自動儲存**啦！
+這肯定是很多人使用 n8n 的第一天就很期待的功能
+再也沒有因為忘記存檔而消失的悲劇了
+
+自動儲存的觸發時機：
+- 你移動節點位置
+- 你修改節點設定
+- 你新增或刪除節點
+
+最棒的是這樣要是你編輯到一版想要回到原本的版本
+你就可以馬上挑選想要的版本來復原
+
+假設你現在有 1-7 版本
+你想要 Restore 回版本2
+選擇版本2 Restore 後他就會變成最新的版本 8
+你的版本3-7 不會直接消失！
+
+{% darrellImage800Alt "n8n 現在支援工作流自動儲存，不用擔心忘記存檔" n8n-2.4.0-autosave_workflows.png max-800 %}
+
+### 集合 UI 大改版
+Overhaul (nested) collection UI
+
+有些節點的設定較為冗長複雜
+例如 `HTTP Request` 節點常常就會需要設定一大堆 `Header` `Body` 的 parameters
+
+UI 上做了一點優化，讓整體設定時可以更簡單一點
+可以參考下面截圖：
+
+{% darrellImage800Alt "n8n 集合 UI 重構，嵌套結構更清楚" n8n-2.4.0-collection_ui_overhaul.png max-800 %}
+
+### ChatHub 模型選擇改進
+Improve model selection dropdown in ChatHub
+
+也是 UI 的優化
+過去選擇模型時受限於視窗較小，
+遇到像是 `Google` 這種超多模型時，選擇起來就比較麻煩
+
+現在改善了 UI 的呈現方式，看起來有稍微好選一點
+重點還支援 **搜尋**功能
+直接輸入關鍵字即可！
+
+{% darrellImage800Alt "ChatHub 模型選擇加入搜尋和分組功能" n8n-2.4.0-chathub_model_dropdown.png max-800 %}
 
 ## 2.3.0 Pre-release - 2026-01-05
 

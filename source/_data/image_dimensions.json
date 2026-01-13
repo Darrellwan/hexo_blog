@@ -7063,5 +7063,25 @@
     "width": 1982,
     "height": 850,
     "mtimeMs": 1768282929348.885
+  },
+  "/_posts/n8n-apify-node/n8n_apify-set-node-config.png": {
+    "width": 854,
+    "height": 746,
+    "mtimeMs": 1768299463662.885
+  },
+  "/_posts/n8n-update-log/n8n-2.4.0-collection_ui_overhaul.png": {
+    "width": 2008,
+    "height": 1528,
+    "mtimeMs": 1768322668077.027
+  },
+  "/_posts/n8n-update-log/n8n-2.4.0-chathub_model_dropdown.png": {
+    "width": 3278,
+    "height": 1622,
+    "mtimeMs": 1768322662114.772
+  },
+  "/_posts/n8n-update-log/n8n-2.4.0-autosave_workflows.png": {
+    "width": 2418,
+    "height": 1550,
+    "mtimeMs": 1768322657220.988
   }
 }
