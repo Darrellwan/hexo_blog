@@ -40,6 +40,11 @@ preload:
       "desc": "Chrome 擴充功能整合"
     },
     {
+      "text": "Agent Skills",
+      "anchor": "skills",
+      "desc": "跨平台共用技能系統"
+    },
+    {
       "text": "模型與配額限制",
       "anchor": "model-limits",
       "desc": "支援模型與使用限制"
@@ -224,34 +229,109 @@ Antigravity 會自動開啟瀏覽器，並測試網頁是否有正確運行
 例如天氣動畫是否真的有動畫
 不同天氣的切換按鈕可以做切換
 
+### 實際瀏覽網站的範例
+
+下圖展示 Agent 自動瀏覽網站並擷取資訊的過程：
+
+{% darrellImage800Alt "Antigravity Agent 自動化瀏覽範例：左側顯示任務清單（開啟網站、尋找文章標題），右側顯示 Agent 執行 agent-browser 指令瀏覽 darrelltw.com 並分析頁面快照的完整過程" agent-browser-automation-demo.png max-800 %}
+
+可以看到 Agent 會：
+1. 自動開啟目標網站
+2. 分析頁面結構（Analyzing page snapshot）
+3. 點擊特定元素（agent-browser click）
+4. 擷取需要的資訊回報
+
+這讓自動化測試變得更加直覺，不需要自己寫測試腳本。
+
+<h2 id="skills">Agent Skills：讓 Agent 真正動手做事</h2>
+
+Antigravity 在 2026 年 1 月支援了 **Agent Skills**
+
+Skills 你可以想成是一個方法論，又或者是一個 SOP 
+別人分享的 Skills 往往就是為了解決某個問題而產生的
+
+所以最重要的是：「你應該是把自己的工作流程，包裝成一個 skills 未來重複利用」
+更棒的是，這份 Skills 可以跟著你一起成長，你新學到的知識或是更有效率的方法
+都可以整併回 Skills 中！
+
+### SKILL.md 格式
+
+每個 Skill 就是一個包含 `SKILL.md` 檔案的資料夾
+格式很簡單，用 YAML frontmatter 定義名稱和描述：
+
+```yaml
+---
+name: code-review
+description: Reviews code changes for bugs, style violations, and security issues.
+---
+
+## Instructions
+在這裡寫詳細的指令內容...
+```
+
+**存放位置**：
+- 專案級：`.agent/skills/`（只在該專案生效）
+- 全域：`~/.gemini/antigravity/skills/`（所有專案都能用）
+
+### 直接把 Claude Skills 連結過來
+
+這裡要分享一個超實用的技巧！
+
+Agent Skills 是**開放標準**（由 [Anthropic 發布](https://agentskills.io/)）
+所以 **Claude Code** 和 **Antigravity** 都支援同樣的格式
+
+這代表你可以用 `ln -s`（符號連結）讓兩個工具**共用同一套 Skills**
+原理就像「Windows 的捷徑」：
+
+{% darrellImage800Alt "UNIX 符號連結與 Windows 捷徑的概念對照圖：左側展示 ln -s 指令如何將 Claude Skills 連結到 Antigravity Skills，右側展示 Windows 捷徑如何指向原始資料夾" unix-symlink-windows-shortcut.jpg max-800 %}
+
+```bash
+# 把 Claude Code 的 skill 連結到 Antigravity
+ln -s ~/.claude/skills/my-skill ~/.gemini/antigravity/skills/my-skill
+```
+
+**路徑對照**：
+
+{% dataTable align="left" %}                                                                                              
+  [            
+    {"工具": "Claude Code", "Skills 路徑": "~/.claude/skills/"},                                               
+    {"工具": "Antigravity", "Skills 路徑": "~/.gemini/antigravity/skills/"}   
+  ]            
+{% enddataTable %}  
+這樣只需要維護一份 Skills，兩個工具都能使用！
+對於同時使用 Claude Code 和 Antigravity 的開發者來說非常方便
+
+官方文件：[Antigravity Skills Documentation](https://antigravity.google/docs/skills)
+
+### Skills 使用方式
+
+Skills 是需要才會被使用，所以有點考驗你在 Skills 的 name 跟 description 寫的描述有沒有很清楚
+讓 AI 能知道說 
+當遇到 xx 需求時，我需要載入 aaa 這個 Skill 來使用
+
+
 <h2 id="model-limits">模型選項與配額限制</h2>
 
 ### 支援的 AI 模型
 
 Antigravity 目前支援以下模型：
 
-| 模型 | 說明 |
-|------|------|
-| **Gemini 3 Pro (High)** | Google 最新旗艦模型，效果最好但消耗配額較快 |
-| **Gemini 3 Pro (Low)** | 較省配額的選項，適合日常開發 |
-| **Claude Opus 4.5 Thinking** | Anthropic 最強模型，支援 extended thinking 功能 |
-| **Claude Sonnet 4.5** | Anthropic 的日常模型，程式碼品質不錯 |
-| **GPT-OSS** | OpenAI 的開源模型選項 |
-
-### 新增支援 Claude Opus 4.5 Thinking
-
-Antigravity 現已支援 **Claude Opus 4.5**，包含 extended thinking 功能。
-這讓 Antigravity 在模型選擇上更具競爭力，可以在 Gemini 3 和 Opus 4.5 之間自由切換。
-
-Opus 4.5 的 thinking 模式特別適合：
-- 複雜的程式架構設計
-- 需要深度推理的除錯任務
-- 多步驟的重構工作
+- **Gemini 3 Pro (High)**
+- **Gemini 3 Pro (Low)**
+- **Claude Opus 4.5 Thinking**
+- **Claude Sonnet 4.5**
+- **GPT-OSS**
 
 ### 使用配額限制
 
 - Ultra 和 Pro 用戶的 Quota 是**每 5 小時重置一次**
 - Free 用戶的 Quota 是 weekly limit，使用到上限後需要等到下週
+
+{%callout type="error" %}
+2026/01 Google 近期宣布
+Pro 方案的用戶要是遇到用量較大的情形，也會變成 `weekly limit`
+所以要是用太多，也可能變成要等幾天才能繼續使用
+{%endcallout%}
 
 官方文件說明：[https://antigravity.google/docs/plans](https://antigravity.google/docs/plans)
 
@@ -298,6 +378,10 @@ Opus 4.5 的 thinking 模式特別適合：
   {
     "question": "與 Cursor、Claude Code 有什麼不同？",
     "answer": "<strong>Antigravity vs Cursor</strong><br>兩者使用體驗相似，現在模型支援也趨近一致（都支援 Opus 4.5）。Antigravity 最大亮點是內建 Chrome 自動化測試功能，不需要額外安裝第三方工具。<br><br><strong>Antigravity vs Claude Code</strong><br>這兩者定位不同。Claude Code 是 <code>Command Line</code> 終端機工具，而 Antigravity 是完整的 IDE。比較合理的對比應該是 Antigravity vs Cursor（IDE 類）、Claude Code vs Gemini CLI（CLI 類）。"
+  },
+  {
+    "question": "Agent Skills 可以跟 Claude Code 共用嗎？",
+    "answer": "可以！Agent Skills 是由 Anthropic 發布的<strong>開放標準</strong>，Claude Code 和 Antigravity 都支援同樣的 SKILL.md 格式。你可以用 <code>ln -s</code> 符號連結讓兩個工具共用同一套 Skills，只需維護一份就能兩邊使用。"
   }
 ]
 {% endfaq %}
