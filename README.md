@@ -2,20 +2,26 @@
 
 ## 📚 最新文章
 
+### [Claude Cowork 教學：給大眾用的 Claude Code](https://www.darrelltw.com/claude-cowork-intro/?utm_source=github_readme&utm_medium=referral)
+📅 2026/01/17 · 6 小時內
+
+> Claude Cowork 是 Anthropic 推出的桌面 AI 助理，能自動整理檔案、處理文件，還能學習你的工作流程。實測三大應用場景，看看它如何提升工作效率。
+
+
 ### [n8n 爬蟲神器 Apify 教學：不會寫程式也能爬資料](https://www.darrelltw.com/n8n-apify-node/?utm_source=github_readme&utm_medium=referral)
-📅 2026/01/13 · 15 小時前
+📅 2026/01/13 · 4 天前
 
 > 完整教學 n8n Apify 節點實現網頁爬蟲自動化。包含 API Token 設定、Run Actor 操作、Instagram 數據爬取等功能介紹。實測別人 IG 帳號發文數據自動同步到 Google Sheets 案例。
 
 
 ### [n8n 資安漏洞 CVE-2025-68613 快點來更新你的 n8n 版本！](https://www.darrelltw.com/n8n-security-vulnerability-2025/?utm_source=github_readme&utm_medium=referral)
-📅 2025/12/25 · 20 天前
+📅 2025/12/25 · 23 天前
 
 > n8n CVE-2025-68613（CVSS 9.9）高風險漏洞懶人包：快速確認影響版本、檢查目前版本，並用 Docker／Zeabur／npm 更新到修復版本，降低 RCE 風險。
 
 
 ### [n8n Time Saved Node 教學 - 省下多少時間？量化 n8n 的 ROI](https://www.darrelltw.com/n8n-time-saved-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/12/20 · 25 天前
+📅 2025/12/20 · 1 個月前
 
 > 老闆問「自動化到底省多少時間？」答不出來？n8n 2.1.0 的 Time Saved Node 讓你量化 ROI。本文教你 Fixed vs Dynamic 兩種計算方式，含 LINE 自動回覆實例。
 
@@ -56,16 +62,10 @@
 > n8n LINE Messaging 社群節點完整教學!使用 @aotoki/n8n-nodes-line-messaging 簡化 LINE Bot 開發,視覺化介面降低出錯率。涵蓋安裝設定、4 大核心功能操作、常見問題排解,以及與 HTTP Request 的使用時機比較
 
 
-### [Claude Code 更新！ 全新 Extension for VSCode/Cursor 介面](https://www.darrelltw.com/claude_code_update_202509/?utm_source=github_readme&utm_medium=referral)
-📅 2025/09/30 · 3 個月前
-
-> Claude Code 2025年11月更新：新的 Cursor IDE 介面，讓不是工程師的你也能輕鬆使用 Claude Code
-
-
 ## 📊 部落格統計
-![文章總數](https://img.shields.io/badge/文章總數-117-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-272,589+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2026/01/14-green?style=flat-square)
+![文章總數](https://img.shields.io/badge/文章總數-118-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-275,564+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2026/01/17-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -97,7 +97,7 @@
 10月 ██░░░░░░░░ 2篇
 11月 ███░░░░░░░ 3篇
 12月 ███░░░░░░░ 3篇
-01月 █░░░░░░░░░ 1篇
+01月 ██░░░░░░░░ 2篇
 ```
 
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-01-14 08:58:41*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-01-17 09:17:17*
