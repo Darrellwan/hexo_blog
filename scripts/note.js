@@ -34,7 +34,7 @@ hexo.extend.tag.register('callout', function(args, content) {
   let type = 'tip';
   let title = '';
 
-  // 嘗試解析 type="value" 格式
+  // 嘗試解析 type="value" 或 type=value 格式
   const typeMatch = argsStr.match(/type\s*=\s*["']?(\w+)["']?/);
   if (typeMatch) {
     type = typeMatch[1];
@@ -46,10 +46,11 @@ hexo.extend.tag.register('callout', function(args, content) {
     }
   }
 
-  // 嘗試解析 title="value" 格式
-  const titleMatch = argsStr.match(/title\s*=\s*["']([^"']+)["']/);
-  if (titleMatch) {
-    title = titleMatch[1];
+  // 嘗試解析 title="value" 或 title=value 格式（Hexo 會移除引號）
+  // 先找 title= 開頭的 arg
+  const titleArg = args.find(arg => arg.startsWith('title='));
+  if (titleArg) {
+    title = titleArg.replace(/^title=["']?/, '').replace(/["']?$/, '');
   } else {
     // 使用預設標題
     title = defaultTitles[type] || defaultTitles.tip;
