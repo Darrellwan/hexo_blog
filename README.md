@@ -3,7 +3,7 @@
 ## 📚 最新文章
 
 ### [Claude Cowork 教學：給大眾用的 Claude Code](https://www.darrelltw.com/claude-cowork-intro/?utm_source=github_readme&utm_medium=referral)
-📅 2026/01/17 · 5 小時內
+📅 2026/01/17 · 11 小時前
 
 > Claude Cowork 是 Anthropic 推出的桌面 AI 助理，能自動整理檔案、處理文件，還能學習你的工作流程。實測三大應用場景，看看它如何提升工作效率。
 
@@ -65,7 +65,7 @@
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-118-blue?style=flat-square)
 ![總字數](https://img.shields.io/badge/總字數-276,640+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2026/01/17-green?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2026/01/18-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-01-17 10:04:28*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-01-18 02:20:31*
