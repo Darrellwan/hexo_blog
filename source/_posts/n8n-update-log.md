@@ -7,16 +7,69 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2026/01/13 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.4.0（Pre-release），正式版本為 2.3.4
+description: n8n 的更新記錄(2026/01/21 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.5.0（Pre-release），正式版本為 2.4.4
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2026-01-13 20:40:00
+modified: 2026-01-21 15:30:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 2.5.0 Pre-release - 2026-01-20
+
+[Github 2.5.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%402.5.0)
+
+### Data Table Node 新增排序功能
+Add Order By feature (Data Table Node)
+
+Data Table 節點內建排序功能
+
+以前如果想要對 Data Table 的資料排序
+我通常後面還要接一個 `Sort Node` 來排序資料
+現在直接在取資料的同時就能指定**排序方式**
+
+使用方式很簡單：
+- **欄位名稱**：選擇你要排序的欄位（例如 `name`、`date`、`amount`）
+- **排序方向**：`ASC`（小到大）或 `DESC`（大到小）
+
+
+{% darrellImage800Alt "Data Table Node 新增 Order By 排序功能" n8n-2.5.0-data_table_order_by.png max-800 %}
+
+### Autosave 自動重試機制
+Implement exponential backoff (Autosave)
+
+2.4.x 推出了自動儲存功能，這次針對「儲存失敗」的情況做優化
+
+如果網路不穩或伺服器暫時有問題，自動儲存的功能就會失效
+(但使用者的我們可能沒發現！)，結果什麼都沒存到
+
+現在 n8n 會自動幫你重試：
+1. 第一次失敗 → 等 2 秒後重試
+2. 還是失敗 → 等 4、8、16 秒，最多 32 秒後重試
+
+等待時間會越來越長，給網路和伺服器喘息的空間
+一旦網路恢復，就會自動儲存成功
+
+畫面右下角會顯示類似這樣的提示：
+{% darrellImage800Alt "Autosave 失敗時會自動重試，顯示 Retrying in 8s" n8n-2.5.0-autosave_retry.png max-800 %}
+
+讓你知道說現在其實還沒存檔，不要任意地關閉視窗或瀏覽器！
+
+
+### OpenAI 預設模型更新為 GPT-5-mini
+Update default model to gpt-5-mini (LmChatOpenAi Node)
+
+OpenAI Chat Model 節點的預設模型從 `gpt-4o-mini` 更新為 `gpt-5-mini`
+
+模型當然是越新越好，隨著 `gpt-5-mini` 已經推出這麼久
+終於等到預設模型的改動了！
+
+這只是預設值的更新，你還是能切換成自己需要的模型來使用
+
+{% darrellImage800Alt "OpenAI Chat Model 預設模型改為 gpt-5-mini" n8n-2.5.0-openai_gpt5_mini_default.png max-800 %}
 
 ## 2.4.0 Pre-release - 2026-01-12
 
