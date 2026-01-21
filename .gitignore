@@ -15,6 +15,7 @@ twitter_rerun.sh
 temp/
 
 # Python
+requirements.txt
 __pycache__/
 *.py[cod]
 *$py.class
