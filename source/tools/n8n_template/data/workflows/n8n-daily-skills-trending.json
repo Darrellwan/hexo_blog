@@ -1,0 +1,486 @@
+{
+  "name": "[Template]Daily Skills.sh Trending",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 8
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -336,
+        -32
+      ],
+      "id": "ca71638e-9f0e-4772-a209-9b4bb8baa6d3",
+      "name": "每日早上 8 點觸發"
+    },
+    {
+      "parameters": {
+        "url": "https://skills.sh/trending",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -128,
+        -32
+      ],
+      "id": "2c555302-7b36-49ab-acaf-5cc954e6b72a",
+      "name": "抓取 Skills.sh 趨勢頁面"
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "skills_html",
+              "cssSelector": "main div div a.group",
+              "returnValue": "html",
+              "returnArray": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        80,
+        -32
+      ],
+      "id": "bc8cf040-b805-4e2d-8981-94eac4c80477",
+      "name": "提取排行榜列表"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "skills_html",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        288,
+        -32
+      ],
+      "id": "3d1811b8-d130-454a-8d90-a9fdab24b9ab",
+      "name": "拆分為獨立項目"
+    },
+    {
+      "parameters": {
+        "maxItems": 20
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        496,
+        -32
+      ],
+      "id": "a412c28b-5c49-4725-880e-b78e05c92d1d",
+      "name": "取前 20 名"
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "dataPropertyName": "skills_html",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "skill_name",
+              "cssSelector": "div h3"
+            },
+            {
+              "key": "skills_repo",
+              "cssSelector": "div p"
+            },
+            {
+              "key": "installs",
+              "cssSelector": "div span.text-foreground"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        704,
+        -32
+      ],
+      "id": "8bbfab7b-b652-4e9a-8d28-424d12553a82",
+      "name": "提取技能名稱和安裝數"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c473d02e-4223-45cb-ae18-23cd2cc5b500",
+              "name": "installs",
+              "value": "={{ \n  (() => {\n    let str = ($json.installs || \"\").trim().toUpperCase();\n    if (!str) return 0;\n    \n    let multiplier = 1;\n    let lastChar = str.slice(-1);\n    \n    if (lastChar === \"K\") multiplier = 1000;\n    if (lastChar === \"M\") multiplier = 1000000;\n    if (lastChar === \"B\") multiplier = 1000000000;\n    \n    let numStr = str;\n    if ([\"K\",\"M\"].includes(lastChar)) {\n      numStr = str.slice(0, -1);\n    }\n    \n    let num = parseFloat(numStr);\n    if (isNaN(num)) return 0;\n    \n    return num * multiplier;\n  })()\n}}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        912,
+        -32
+      ],
+      "id": "3f6f8b61-a992-447a-a947-268261feda80",
+      "name": "轉換安裝數為數字"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        -208
+      ],
+      "id": "35890c5b-0bec-4e60-a2a6-0cdb77e68d8e",
+      "name": "彙總全部資料"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "",
+          "mode": "list",
+          "cachedResultName": "",
+          "cachedResultUrl": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": ""
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "skill_name",
+              "displayName": "skill_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "skills_repo",
+              "displayName": "skills_repo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "installs",
+              "displayName": "installs",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "date",
+              "displayName": "date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1424,
+        80
+      ],
+      "id": "3792e76b-a7f1-4314-b42f-1f50b4d8f1f1",
+      "name": "寫入 Google Sheets"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "bab9e197-3aaa-4e22-8256-57bf59732322",
+              "name": "date",
+              "value": "={{ $today.format('yyyy-MM-dd') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1216,
+        80
+      ],
+      "id": "b42d1b51-a0ce-41ac-b7d1-b528dbd8fcff",
+      "name": "加入今日日期"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6606106b-f6a4-4e93-9177-fdd1ea62d3ab",
+              "name": "template",
+              "value": "={{ (function() {\n  const items = $json.data.sort((a, b) => parseInt(b.installs) - parseInt(a.installs));\n  const total = items.reduce((sum, item) => sum + parseInt(item.installs), 0);\n  \n  const rows = items.map((item, i) => {\n    const rank = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : (i + 1) + '.';\n    const rankColor = i < 3 ? '#888' : '#666';\n    const installs = parseInt(item.installs).toLocaleString();\n    return '<tr><td style=\"padding:12px 24px;\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td width=\"28\" style=\"font-size:' + (i < 3 ? '14' : '12') + 'px; color:' + rankColor + ';\">' + rank + '</td><td style=\"font-size:14px; color:#fff;\"><a href=\"https://skills.sh/' + item.skills_repo + '/' + item.skill_name + '\" style=\"color:#fff; text-decoration:none;\">' + item.skill_name + '</a></td><td width=\"70\" align=\"right\"><span style=\"background-color:#2a2a2a; padding:2px 8px; border-radius:4px; font-size:12px; color:#ccc;\">' + installs + '</span></td></tr></table></td></tr>';\n  }).join('');\n  \n  return '<!DOCTYPE html><html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><meta name=\"color-scheme\" content=\"dark\"><title>Claude Skills</title></head><body style=\"margin:0; padding:0; background-color:#0d0d0d; font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"background-color:#0d0d0d;\"><tr><td align=\"center\" style=\"padding:32px 16px;\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"max-width:520px; background-color:#1a1a1a; border-radius:16px;\"><tr><td style=\"padding:24px 24px 16px 24px;\"><span style=\"font-size:18px; font-weight:700; color:#ffffff;\">Claude Skills 安裝排行榜</span></td></tr><tr><td style=\"padding:0 24px;\"><div style=\"border-top:1px solid #333;\"></div></td></tr>' + rows + '<tr><td style=\"padding:8px 24px 0 24px;\"><div style=\"border-top:1px solid #333;\"></div></td></tr><tr><td style=\"padding:16px 24px 24px 24px;\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td style=\"font-size:13px; color:#888;\">共 ' + items.length + ' 個技能 · 總安裝 ' + total.toLocaleString() + ' 次</td><td align=\"right\"><a href=\"https://skills.sh/trending\" style=\"display:inline-block; background-color:#fff; padding:8px 16px; border-radius:6px; font-size:13px; font-weight:600; color:#111; text-decoration:none;\">瀏覽全部 →</a></td></tr></table></td></tr></table></td></tr></table></body></html>';\n})() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1424,
+        -144
+      ],
+      "id": "0f908a38-4e5e-480f-8b03-d81b03de7b5f",
+      "name": "生成 Email 排行榜模板"
+    },
+    {
+      "parameters": {
+        "sendTo": "",
+        "subject": "=[n8n] {{ $today.format('yyyy-MM-dd') }} Skills 排行榜",
+        "message": "={{ $json.template }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1632,
+        -144
+      ],
+      "id": "f6e6d7ad-bcb9-48eb-a794-c4f60ee5b346",
+      "name": "寄送 Email 報告"
+    },
+    {
+      "parameters": {
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "",
+          "mode": "list",
+          "cachedResultName": ""
+        },
+        "messageType": "block",
+        "blocksUi": "={{ JSON.stringify({\n  blocks: [\n    {\n      type: \"header\",\n      text: {\n        type: \"plain_text\",\n        text: \"📊 Claude Skills 安裝排行榜\",\n        emoji: true\n      }\n    },\n    {\n      type: \"divider\"\n    },\n    ...$json.data\n      .sort((a, b) => parseInt(b.installs) - parseInt(a.installs))\n      .slice(0, 10)\n      .map((item, i) => ({\n        type: \"section\",\n        text: {\n          type: \"mrkdwn\",\n          text: (i === 0 ? \"🥇\" : i === 1 ? \"🥈\" : i === 2 ? \"🥉\" : (i + 1) + \".\") + \" *\" + item.skill_name + \"*  ·  `\" + parseInt(item.installs).toLocaleString() + \"`\"\n        },\n        accessory: {\n          type: \"button\",\n          text: {\n            type: \"plain_text\",\n            text: \"查看\",\n            emoji: true\n          },\n          url: \"https://skills.sh/\" + item.skills_repo + \"/\" + item.skill_name\n        }\n      })),\n    {\n      type: \"divider\"\n    },\n    {\n      type: \"section\",\n      text: {\n        type: \"mrkdwn\",\n        text: \"共 \" + $json.data.length + \" 個技能 · 總安裝 \" + $json.data.reduce((sum, item) => sum + parseInt(item.installs), 0).toLocaleString() + \" 次\"\n      },\n      accessory: {\n        type: \"button\",\n        text: {\n          type: \"plain_text\",\n          text: \"瀏覽全部 →\",\n          emoji: true\n        },\n        url: \"https://skills.sh\"\n      }\n    }\n  ]\n}) }}",
+        "text": "skills",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.4,
+      "position": [
+        1424,
+        -352
+      ],
+      "id": "e52fe972-0e47-42f3-bb1c-93ac7cdc9c29",
+      "name": "發送 Slack 排行榜通知",
+      "alwaysOutputData": true,
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "content": "## Created by darrell_tw_ \n\nHi 我是 Darrell\n有 n8n 問題可以找我聊聊\n\n- [n8n 教學資源網站](https://www.darrelltw.com/n8n-tutorial-resources/)\n- [n8n 模板分享網站](https://www.darrelltw.com/tools/n8n_template/models.html)\n\n### Social Media:\n[Website](https://www.darrelltw.com/)\n[X](https://x.com/darrell_tw_)\n[Threads](https://www.threads.net/@darrell_tw_)\n[Instagram](https://www.instagram.com/darrell_tw_/)\n![](https://pub-c093258f61a1463ea03e1a40c141968a.r2.dev/darrell-icon-128.svg)",
+        "height": 468,
+        "width": 312,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -720,
+        -320
+      ],
+      "id": "b8401f31-d830-44cb-bb62-6dd65af89d3b",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "## Attachment(附件)\n\n請複製一份 Google Sheet 到自己的 Drive 中\n\n### Google Sheet Template(模板)\n\nhttps://docs.google.com/spreadsheets/d/16h1oqwq4_Z2jpV-zFLxlSN7j643sbvzHN5QIDzGOF5k/copy",
+        "height": 220,
+        "width": 316,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -720,
+        160
+      ],
+      "id": "5242d608-2d3b-463e-bc95-7c0852085be3",
+      "name": "Sticky Note2"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "每日早上 8 點觸發": {
+      "main": [
+        [
+          {
+            "node": "抓取 Skills.sh 趨勢頁面",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "抓取 Skills.sh 趨勢頁面": {
+      "main": [
+        [
+          {
+            "node": "提取排行榜列表",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "提取排行榜列表": {
+      "main": [
+        [
+          {
+            "node": "拆分為獨立項目",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "拆分為獨立項目": {
+      "main": [
+        [
+          {
+            "node": "取前 20 名",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "取前 20 名": {
+      "main": [
+        [
+          {
+            "node": "提取技能名稱和安裝數",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "提取技能名稱和安裝數": {
+      "main": [
+        [
+          {
+            "node": "轉換安裝數為數字",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "轉換安裝數為數字": {
+      "main": [
+        [
+          {
+            "node": "彙總全部資料",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "加入今日日期",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "彙總全部資料": {
+      "main": [
+        [
+          {
+            "node": "發送 Slack 排行榜通知",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "生成 Email 排行榜模板",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "加入今日日期": {
+      "main": [
+        [
+          {
+            "node": "寫入 Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "生成 Email 排行榜模板": {
+      "main": [
+        [
+          {
+            "node": "寄送 Email 報告",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "tags": []
+}

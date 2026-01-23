@@ -3,9 +3,17 @@
   <!-- 主頁 -->
   <url>
     <loc>https://www.darrelltw.com/tools/n8n_template/models.html</loc>
-    <lastmod>2025-12-27</lastmod>
+    <lastmod>2026-01-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+
+  <!-- 模型詳情頁 - n8n-daily-skills-trending -->
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n-daily-skills-trending.html</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <!-- 模型詳情頁 - darrell_n8n_line_auto_reply -->

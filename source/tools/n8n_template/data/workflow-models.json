@@ -1,5 +1,77 @@
 {
     "models": {
+        "n8n-daily-skills-trending": {
+            "id": "n8n-daily-skills-trending",
+            "title": "每日 Skills.sh 趨勢排行榜追蹤",
+            "description": "自動抓取 skills.sh 趨勢排行榜，透過 Slack、Email、Google Sheets 三管道分發每日報告，追蹤熱門技能安裝排名變化。\n\n主要功能：\n\n多管道通知：Slack Block Kit 排行榜 + HTML Email 報告\n網頁爬蟲：HTML 解析提取技能名稱、Repo、安裝數\n數據追蹤：Google Sheets 記錄每日歷史數據\n智能排序：安裝數字串轉數字（支援 K/M 單位）",
+            "detailedDescription": [
+                "每日早上 8 點定時觸發抓取任務",
+                "透過 HTTP Request 抓取 skills.sh/trending 頁面",
+                "HTML Extract 解析 CSS Selector 提取排行榜資料",
+                "Split Out 將陣列資料拆分為獨立項目",
+                "安裝數字串智能轉換（K→千, M→百萬）",
+                "Aggregate 彙總資料供 Slack 和 Email 使用",
+                "Slack Block Kit 格式化 Top 10 排行榜通知",
+                "HTML Email 完整排行榜精美報告",
+                "Google Sheets 記錄每日數據供歷史追蹤"
+            ],
+            "tags": [
+                "skills.sh",
+                "排行榜",
+                "趨勢追蹤",
+                "Slack",
+                "Gmail",
+                "Google Sheets",
+                "爬蟲"
+            ],
+            "nodes": 13,
+            "createdAt": "2026-01-23",
+            "updatedAt": "2026-01-23",
+            "setup": {
+                "prerequisites": "Gmail OAuth、Google Sheets OAuth、Slack API Token",
+                "steps": [
+                    {
+                        "title": "複製 Google Sheet 模板",
+                        "description": "點擊模板中的 Google Sheet 連結複製一份到自己的 Drive",
+                        "options": [
+                            "開啟 Sticky Note 中的模板連結",
+                            "點擊「建立副本」",
+                            "確認欄位：skill_name, skills_repo, installs, date"
+                        ]
+                    },
+                    {
+                        "title": "設定 Google 憑證",
+                        "description": "在 n8n 建立 Gmail OAuth2 和 Google Sheets OAuth2 憑證",
+                        "options": [
+                            "建立 Gmail OAuth2 Credential",
+                            "建立 Google Sheets OAuth2 Credential",
+                            "授權讀寫權限"
+                        ]
+                    },
+                    {
+                        "title": "設定 Slack 憑證",
+                        "description": "建立 Slack API Token 並選擇目標頻道",
+                        "options": [
+                            "建立 Slack Bot Token",
+                            "邀請 Bot 到目標頻道",
+                            "在節點選擇頻道"
+                        ]
+                    },
+                    {
+                        "title": "填入個人設定",
+                        "description": "設定收件人 Email、Google Sheet ID、Slack Channel",
+                        "options": [
+                            "Send email 節點填入收件人 Email",
+                            "Google Sheets 節點選擇複製的試算表",
+                            "Slack 節點選擇目標頻道"
+                        ]
+                    }
+                ]
+            },
+            "examples": [],
+            "fields": {},
+            "relatedArticles": []
+        },
         "darrell_n8n_line_auto_reply": {
             "id": "darrell_n8n_line_auto_reply",
             "title": "LINE 自動回覆 + Time Saved 示範",

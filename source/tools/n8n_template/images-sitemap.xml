@@ -5,6 +5,11 @@
   <url>
     <loc>https://www.darrelltw.com/tools/n8n_template/models.html</loc>
     <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-daily-skills-trending.webp</image:loc>
+      <image:title>每日 Skills.sh 趨勢排行榜追蹤</image:title>
+      <image:caption>自動抓取 skills.sh 趨勢排行榜，透過 Slack、Email、Google Sheets 三管道分發每日報告，追蹤熱門技能安裝排名變化。  主要功能：  多管道通知：Slack Block </image:caption>
+    </image:image>
+    <image:image>
       <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/darrell_n8n_line_auto_reply.webp</image:loc>
       <image:title>LINE 自動回覆 + Time Saved 示範</image:title>
       <image:caption>LINE Bot 關鍵字自動回覆範本，支援營業時間、地址、停車資訊查詢，並整合 Time Saved 節點追蹤省下的時間。適合客服自動化場景。</image:caption>
@@ -146,6 +151,14 @@
     </image:image>
   </url>
 
+  <url>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/n8n-daily-skills-trending.html</loc>
+    <image:image>
+      <image:loc>https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-daily-skills-trending.webp</image:loc>
+      <image:title>每日 Skills.sh 趨勢排行榜追蹤</image:title>
+      <image:caption>自動抓取 skills.sh 趨勢排行榜，透過 Slack、Email、Google Sheets 三管道分發每日報告，追蹤熱門技能安裝排名變化。  主要功能：  多管道通知：Slack Block </image:caption>
+    </image:image>
+  </url>
   <url>
     <loc>https://www.darrelltw.com/tools/n8n_template/model/darrell_n8n_line_auto_reply.html</loc>
     <image:image>

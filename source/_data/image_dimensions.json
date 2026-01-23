@@ -7153,5 +7153,15 @@
     "width": 2916,
     "height": 2144,
     "mtimeMs": 1768405422304.122
+  },
+  "/tools/n8n_template/data/bg/n8n-daily-skills-trending.webp": {
+    "width": 1000,
+    "height": 1000,
+    "mtimeMs": 1769162307475.7244
+  },
+  "/tools/n8n_template/data/bg/Gemini_Generated_Image_ub3ulkub3ulkub3u.webp": {
+    "width": 1000,
+    "height": 1000,
+    "mtimeMs": 1769161838906.317
   }
 }

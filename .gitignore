@@ -58,9 +58,13 @@ log.txt
 .secrets
 source/_posts/test-article.md
 
-# Claude local tools and settings
+# AI tools and settings
 .claude/
 */.claude/
+.agents/
+.codex/
+.cursor/
+.gemini/
 CLAUDE.local.md
 docs/n8n-writing-style.md
 
