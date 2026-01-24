@@ -1,14 +1,14 @@
 ---
 title: Google Antigravity 搭配 Gemini 3 模型還能自動化測試！Vibe Coding 新神器
 date: 2025-11-19 21:52:39
-modified: 2025-12-05 15:30:00
+modified: 2026-01-24 12:00:00
 tags:
   - Google
   - AI
   - Antigravity
 categories:
   - 開發工具
-description: "深入體驗 Google Antigravity，這款 Agentic AI 程式開發工具。包含完整安裝教學、Agent Manager 使用、自動化測試、使用技巧。"
+description: "深入體驗 Google Antigravity。包含完整安裝教學、Agent Manager 使用、自動化測試、Antigravity Skills 設定教學與跨工具共用技巧。"
 bgImage: blog-google-antigravity.jpg
 page_type: post
 preload:
@@ -269,9 +269,25 @@ description: Reviews code changes for bugs, style violations, and security issue
 在這裡寫詳細的指令內容...
 ```
 
+**YAML frontmatter 欄位說明**：
+- `name`（選用）：識別名稱，預設為資料夾名稱
+- `description`（**必要**）：清楚描述這個 skill 做什麼、何時使用
+
+**完整資料夾結構**：
+
+```
+.agent/skills/my-skill/
+├── SKILL.md          # 主要指令（必要）
+├── scripts/          # 輔助腳本（選用）
+├── examples/         # 參考實作（選用）
+└── resources/        # 模板和素材（選用）
+```
+
+Agent 在執行 skill 時可以讀取這些檔案，讓你的 skill 更完整。
+
 **存放位置**：
 - 專案級：`.agent/skills/`（只在該專案生效）
-- 全域：`~/.gemini/antigravity/skills/`（所有專案都能用）
+- 全域：`~/.gemini/antigravity/global_skills/`（所有專案都能用）
 
 ### 直接把 Claude Skills 連結過來
 
@@ -287,7 +303,7 @@ Agent Skills 是**開放標準**（由 [Anthropic 發布](https://agentskills.io
 
 ```bash
 # 把 Claude Code 的 skill 連結到 Antigravity
-ln -s ~/.claude/skills/my-skill ~/.gemini/antigravity/skills/my-skill
+ln -s ~/.claude/skills/my-skill ~/.gemini/antigravity/global_skills/my-skill
 ```
 
 **路徑對照**：
@@ -295,7 +311,7 @@ ln -s ~/.claude/skills/my-skill ~/.gemini/antigravity/skills/my-skill
 {% dataTable align="left" %}                                                                                              
   [            
     {"工具": "Claude Code", "Skills 路徑": "~/.claude/skills/"},                                               
-    {"工具": "Antigravity", "Skills 路徑": "~/.gemini/antigravity/skills/"}   
+    {"工具": "Antigravity", "Skills 路徑": "~/.gemini/antigravity/global_skills/"}   
   ]            
 {% enddataTable %}  
 這樣只需要維護一份 Skills，兩個工具都能使用！
@@ -305,10 +321,30 @@ ln -s ~/.claude/skills/my-skill ~/.gemini/antigravity/skills/my-skill
 
 ### Skills 使用方式
 
-Skills 是需要才會被使用，所以有點考驗你在 Skills 的 name 跟 description 寫的描述有沒有很清楚
+Skills 採用 **Progressive Disclosure（漸進式揭露）** 機制：
+
+1. **Discovery（發現）**：Agent 看到可用的 skills 列表（名稱和描述）
+2. **Activation（啟用）**：如果判斷相關，Agent 讀取完整的 SKILL.md 內容
+3. **Execution（執行）**：Agent 依照 skill 的指令執行任務
+
+這個機制可以避免 context saturation（情境過載），只在需要時才載入相關知識。
+
+所以有點考驗你在 Skills 的 name 跟 description 寫的描述有沒有很清楚
 讓 AI 能知道說 
 當遇到 xx 需求時，我需要載入 aaa 這個 Skill 來使用
 
+### 實際使用範例
+
+下圖展示一個 Remotion best practices Skill 的實際運作：
+
+{% darrellImage800Alt "Antigravity Skills 實際使用範例：Agent 根據 Remotion best practices Skill 分析程式碼結構，提出模組化、字體載入、資料分離、參數化四個優化方向，並交叉驗證 Skill 檔案內容" antigravity-skills-demo-remotion_best_practices_code_analysis.webp max-800 %}
+
+Agent 會：
+1. 讀取 Skill 中的 best practices 知識
+2. 分析你的程式碼，提出具體優化建議
+3. 被質疑時，能交叉比對 Skill 檔案（如 fonts.md、transitions.md）來佐證建議
+
+這就是 Skills 的價值：不只是給 Agent 一段指令，而是讓它有**可驗證的知識來源**。
 
 <h2 id="model-limits">模型選項與配額限制</h2>
 
