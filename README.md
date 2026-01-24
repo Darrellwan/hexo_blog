@@ -3,13 +3,13 @@
 ## 📚 最新文章
 
 ### [Claude Cowork 教學：給大眾用的 Claude Code](https://www.darrelltw.com/claude-cowork-intro/?utm_source=github_readme&utm_medium=referral)
-📅 2026/01/17 · 4 天前
+📅 2026/01/17 · 7 天前
 
 > Claude Cowork 是 Anthropic 推出的桌面 AI 助理，能自動整理檔案、處理文件，還能學習你的工作流程。實測三大應用場景，看看它如何提升工作效率。
 
 
 ### [n8n 爬蟲神器 Apify 教學：不會寫程式也能爬資料](https://www.darrelltw.com/n8n-apify-node/?utm_source=github_readme&utm_medium=referral)
-📅 2026/01/13 · 8 天前
+📅 2026/01/13 · 11 天前
 
 > 完整教學 n8n Apify 節點實現網頁爬蟲自動化。包含 API Token 設定、Run Actor 操作、Instagram 數據爬取等功能介紹。實測別人 IG 帳號發文數據自動同步到 Google Sheets 案例。
 
@@ -27,7 +27,7 @@
 
 
 ### [n8n AI 模型 Router 教學：Zeabur AI Hub 智慧切換模型](https://www.darrelltw.com/n8n-zeabur-ai-hub-model-router/?utm_source=github_readme&utm_medium=referral)
-📅 2025/12/06 · 1 個月前
+📅 2025/12/06 · 2 個月前
 
 > n8n 搭配 Zeabur AI Hub 打造 AI 模型 Router，一個 API Key 串接 GPT、Claude、Gemini。根據問題複雜度智慧切換模型：簡單問題用便宜模型、複雜問題用強模型，省成本又兼顧品質
 
@@ -47,7 +47,7 @@
 ### [Google Antigravity 搭配 Gemini 3 模型還能自動化測試！Vibe Coding 新神器](https://www.darrelltw.com/google-antigravity-ide/?utm_source=github_readme&utm_medium=referral)
 📅 2025/11/19 · 2 個月前
 
-> 深入體驗 Google Antigravity，這款 Agentic AI 程式開發工具。包含完整安裝教學、Agent Manager 使用、自動化測試、使用技巧。
+> 深入體驗 Google Antigravity。包含完整安裝教學、Agent Manager 使用、自動化測試、Antigravity Skills 設定教學與跨工具共用技巧。
 
 
 ### [n8n Merge 節點教學-解決多來源資料合併的問題](https://www.darrelltw.com/n8n-merge-node/?utm_source=github_readme&utm_medium=referral)
@@ -64,8 +64,8 @@
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-118-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-277,378+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2026/01/21-green?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-277,984+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2026/01/24-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-01-21 06:55:14*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-01-24 10:43:41*
