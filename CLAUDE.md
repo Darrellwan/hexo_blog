@@ -101,6 +101,7 @@ modified: YYYY-MM-DD HH:MM:SS
 - 台灣繁體中文，技術詞保留英文
 - 個人測試語氣（「實測」「自己測試」「其實」「蠻」）
 - 問題解決導向，搭配截圖
+- **禁止使用「——」（em dash）**：這是明顯的 AI 寫作痕跡，改用逗號、句號或直接斷句
 - Emoji：⚠️ 警告、✅ 確認、💡 提示
 
 ## Documentation References
