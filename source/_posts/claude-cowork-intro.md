@@ -12,6 +12,7 @@ id: claude-cowork-intro
 description: Claude Cowork 是 Anthropic 推出的桌面 AI 助理，能自動整理檔案、處理文件，還能學習你的工作流程。實測三大應用場景，看看它如何提升工作效率。
 bgImage: blog-claude-cowork-intro-bg.jpg
 date: 2026-01-17 15:33:17
+modified: 2026-01-26 14:30:00
 ---
 
 
@@ -23,6 +24,17 @@ date: 2026-01-17 15:33:17
 - 能直接讀取、編輯、建立電腦上的檔案
 - Claude Pro（$20/月）以上即可使用，目前僅支援 macOS
 {% endcallout %}
+
+{% quickNav %}
+[
+  {"text": "什麼是 Cowork", "anchor": "what-is-cowork", "desc": "基本介紹"},
+  {"text": "Code vs Cowork", "anchor": "code-vs-cowork", "desc": "兩者差異比較"},
+  {"text": "安全提醒", "anchor": "safety-tips", "desc": "使用前注意事項"},
+  {"text": "實測場景", "anchor": "use-cases", "desc": "三大應用場景"},
+  {"text": "進階功能", "anchor": "advanced-features", "desc": "連接器與 Chrome 整合"},
+  {"text": "常見問題", "anchor": "faq", "desc": "FAQ"}
+]
+{% endquickNav %}
 
 最近應該蠻多人看到 Claude Code 被說多好用，但自己要使用時往往只能硬著頭皮學 Command Line 介面
 或是需要用 Cursor 或 Antigravity 然後使用 Claude Code 的 extension 
@@ -43,7 +55,7 @@ Claude Code 好用的地方在於它能直接存取電腦上的檔案
 現在推出 Claude Cowork
 你一樣可以用圖形化介面來操作，就好像是一個可以直接存取你電腦某個資料夾的 ChatGPT
 
-## 什麼是 Claude Cowork？
+<h2 id="what-is-cowork">什麼是 Claude Cowork？</h2>
 
 Claude Cowork 是 Anthropic 推出的桌面 AI 工具，基於 Claude Code，
 Cowork 專為非開發者設計，不用寫程式就能使用。
@@ -59,7 +71,7 @@ Cowork 專為非開發者設計，不用寫程式就能使用。
 目前僅支援 macOS，Windows 版本預計之後推出。
 {% endcallout %}
 
-## Claude Code vs Cowork 差在哪？
+<h2 id="code-vs-cowork">Claude Code vs Cowork 差在哪？</h2>
 
 很多人會問：「這跟 Claude Code 有什麼不同？」
 
@@ -77,7 +89,7 @@ Cowork 專為非開發者設計，不用寫程式就能使用。
 如果你已經會用 Claude Code，Cowork 對你來說可能沒有太大吸引力。
 但如果你是想讓 AI 幫忙處理檔案，又不想碰終端機的人，Cowork 就是為你設計的。
 
-## 使用前的安全提醒
+<h2 id="safety-tips">使用前的安全提醒</h2>
 
 {% callout type="warning" %}
 Cowork 能直接存取你的檔案，使用前請注意：
@@ -88,7 +100,7 @@ Cowork 能直接存取你的檔案，使用前請注意：
 Anthropic 有內建防護機制，但建議先用測試資料夾試用，熟悉後再處理重要檔案。
 {% endcallout %}
 
-## 實測三大應用場景
+<h2 id="use-cases">實測三大應用場景</h2>
 
 ### 場景 1：下載資料夾自動整理
 
@@ -136,6 +148,84 @@ Anthropic 有內建防護機制，但建議先用測試資料夾試用，熟悉�
 
 {% darrellImage800Alt "Cowork 自動產出的 Threads 數據分析報告" cowork_data_analysis_report.png max-800 %}
 
+<h2 id="advanced-features">進階功能：連接器與 Chrome 整合</h2>
+
+Cowork 不只能處理本機檔案，還能透過**連接器（Connectors）**連接外部服務，以及搭配 **Claude in Chrome** 執行瀏覽器任務。
+
+### 連接器 (Connectors)
+
+Connectors 讓 Claude Cowork 可以存取外部工具和資料
+透過 MCP 來實現，目前已經支援超多種整合
+
+{% darrellImage800Alt "Claude Connectors 設定頁面，顯示 Google Drive、Gmail、GitHub 等官方連接器的連線狀態" cowork_connectors_settings.png max-800 %}
+
+**官方預建連接器**：
+
+{% dataTable style="minimal" %}
+[
+  {"連接器": "Gmail", "功能": "讀取、發送郵件", "狀態": "✅ 可用"},
+  {"連接器": "GitHub", "功能": "程式碼倉庫管理", "狀態": "✅ 可用"},
+  {"連接器": "Microsoft 365", "功能": "Office 文件處理", "狀態": "✅ 可用"},
+  {"連接器": "Google Drive", "功能": "雲端檔案存取", "狀態": "⏳ 尚未上線"},
+  {"連接器": "Google Calendar", "功能": "日曆管理", "狀態": "⏳ 尚未上線"}
+]
+{% enddataTable %}
+
+**第三方連接器**（部分列舉）：
+- **生產力**：Asana、ClickUp、Notion、Jira、Confluence
+- **設計**：Figma
+- **資料分析**：Snowflake、Amplitude
+- **行銷**：HubSpot、ActiveCampaign、Bitly
+
+{% darrellImage800Alt "Claude Connectors 市集介面，顯示多種第三方連接器如 Circleback、Day AI、Fireflies 等" cowork_connectors_marketplace.png max-800 %}
+
+### Chrome 瀏覽器整合
+
+搭配 **Claude in Chrome** 擴充功能，Cowork 可以在瀏覽器中執行任務：
+
+- 點擊按鈕、填寫表單
+- 導覽網頁分頁
+- 批次處理網頁任務（如取消電子報訂閱）
+- 網頁資料擷取
+
+例如我請 Cowork 幫我瀏覽自己的網站，看看有哪些文章：
+
+{% darrellImage800Alt "Claude in Chrome 擴充功能瀏覽 Darrell TW 網站的畫面" cowork_chrome_browse_website.png max-800 %}
+
+它會自動開啟瀏覽器、捲動頁面，最後整理出文章清單給我：
+
+{% darrellImage800Alt "Cowork 搭配 Chrome 瀏覽網站後列出文章清單的執行結果" cowork_chrome_article_list.png max-800 %}
+
+{% callout type="warning" %}
+Chrome 整合有兩個限制：
+1. **速度較慢**：需要截圖往返處理，不如本機操作流暢
+2. **安全考量**：避免在銀行、金融等敏感網站使用
+3. **瀏覽器限制**：僅支援 Chrome，不支援 Brave、Arc 等其他瀏覽器
+{% endcallout %}
+
+<h2 id="faq">常見問題</h2>
+
+{% faq %}
+[
+  {
+    "question": "Cowork 和 Claude Code 有什麼不同？",
+    "answer": "兩者的底層其實很像，差別在介面：Claude Code 是終端機指令，Cowork 是圖形化介面。"
+  },
+  {
+    "question": "Cowork 支援 Windows 嗎？",
+    "answer": "目前僅支援 macOS。Anthropic 表示 Windows 版本預計 2026 年中推出，但尚未公布確切時間。"
+  },
+  {
+    "question": "Cowork 會刪掉我的檔案嗎？",
+    "answer": "會！請非常小心，Claude 在永久刪除任何檔案前都需要你的明確許可，會跳出權限提示讓你確認。建議先用測試資料夾試用，避免授權敏感資料夾。"
+  },
+  {
+    "question": "使用 Cowork 會消耗多少配額？",
+    "answer": "比一般聊天消耗更多。複雜的多步驟任務需要更多運算資源和 tokens。如果你使用 Max 5x 方案，大約可以執行 10-20 個完整的 Cowork 操作，配額每 5 小時重置。"
+  }
+]
+{% endfaq %}
+
 ## 結語
 
 Claude Cowork 特別適合經常處理檔案整理、文件製作的人，特別是不會寫程式的一般用戶。目前需要 Claude Pro 以上的訂閱（macOS）才能使用。
@@ -160,4 +250,5 @@ Claude Cowork 特別適合經常處理檔案整理、文件製作的人，特別
 - [Introducing Cowork - Claude Blog](https://claude.com/blog/cowork-research-preview)
 - [Getting Started with Cowork - Claude Help Center](https://support.claude.com/en/articles/13345190-getting-started-with-cowork)
 - [Introducing Anthropic Labs](https://www.anthropic.com/news/introducing-anthropic-labs)
+
 
