@@ -7,16 +7,78 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2026/01/21 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.5.0（Pre-release），正式版本為 2.4.4
+description: n8n 的更新記錄(2026/01/27 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.6.0（Pre-release），正式版本為 2.4.6
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2026-01-21 15:30:00
+modified: 2026-01-27 17:30:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 2.6.0 Pre-release - 2026-01-27
+
+[Github 2.6.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%402.6.0)
+
+### AI Agent 的 HITL 工具終於能正常等待
+feat(core): Generate HITL tool nodes for sendAndWait operations
+
+{% callout info %}
+HITL（Human-in-the-Loop）= 人機協作，讓 AI 執行到某步驟時暫停等人確認
+{% endcallout %}
+
+如果你有在用 AI Agent 搭配「人工審核」的工作流程，之前的問題會是：
+
+在下面的 Tool 掛上 Slack 或 Telegram 節點
+選了 **Send and Wait for Response**
+結果根本沒作用，
+因為沒有正確處理「等待」的機制。
+
+現在修好了！
+
+當 AI Agent 呼叫有 sendAndWait 操作的工具時：
+1. 會正確暫停執行，發送通知給你
+2. 等你回覆後，AI Agent 才會繼續處理
+
+{% dataTable %}
+[
+  {"情境": "Slack 節點單獨使用 sendAndWait", "以前": "✅ 正常等待", "現在": "✅ 正常等待"},
+  {"情境": "Slack 當 AI Agent 工具", "以前": "❌ 不會等", "現在": "✅ 會等了"}
+]
+{% enddataTable %}
+
+{% darrellImage800Alt "AI Agent 使用 HITL 工具時現在會正確等待人類回覆" n8n-2.6.0-hitl_tool_fix.png max-800 %}
+
+### 工作流程列表頁新增 Unpublish 選項
+feat(editor): Add unpublish to workflow list
+
+現在直接在** Workflow列表**就能直接 Unpublish
+不用再特地點開 Workflow 來做取消發布
+
+{% darrellImage800Alt "工作流程列表頁新增 Unpublish 選項" n8n-2.6.0-workflow_unpublish.png max-800 %}
+
+### Slack 節點新增 User Group 成員操作
+feat(editor): New operations in the Slack node
+
+{% callout info %}
+User Group 是 Slack 的群組功能，可以一次 @ 提及整個群組（如 @designers），群組內所有人都會收到通知
+{% endcallout %}
+
+{% darrellImage800Alt "Slack User Group 說明：可以一次通知多名使用者" n8n-2.6.0-slack_usergroup_info.png max-800 %}
+
+Slack 節點在 User Group 資源下新增了兩個操作：
+
+**Get Users**：取得 User Group 的成員列表
+
+**Add Users**：把使用者加入 User Group
+
+這對需要管理 Slack 群組成員的自動化場景蠻有用的，例如：
+- 新員工入職時自動加入相關群組
+- 定期同步部門成員到對應的 User Group
+
+{% darrellImage800Alt "Slack 節點新增 User Group 成員操作" n8n-2.6.0-slack_usergroup_operations.png max-800 %}
 
 ## 2.5.0 Pre-release - 2026-01-20
 
