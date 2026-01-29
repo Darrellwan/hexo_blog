@@ -53,7 +53,7 @@ preload:
   {% endquickNav %}
 
 Google 今天推出了一款名為 **Antigravity** 的全新 AI Coding 工具，
-主打 "Agentic"。
+主打 "{% term def="AI 具備自主決策和行動能力的特性，能主動完成複雜任務" %}Agentic{% endterm %}"。
 也是一款基於 Visual Studio Code 開發的
 用起來很像是 Cursor 和 
 
@@ -257,7 +257,7 @@ Skills 你可以想成是一個方法論，又或者是一個 SOP
 ### SKILL.md 格式
 
 每個 Skill 就是一個包含 `SKILL.md` 檔案的資料夾
-格式很簡單，用 YAML frontmatter 定義名稱和描述：
+格式很簡單，用 {% term def="檔案開頭的設定區塊，用三個破折號包圍，定義標題、描述等 metadata" %}YAML frontmatter{% endterm %} 定義名稱和描述：
 
 ```yaml
 ---
@@ -321,13 +321,13 @@ ln -s ~/.claude/skills/my-skill ~/.gemini/antigravity/global_skills/my-skill
 
 ### Skills 使用方式
 
-Skills 採用 **Progressive Disclosure（漸進式揭露）** 機制：
+Skills 採用 **{% term def="漸進式揭露，只在需要時才顯示相關資訊的設計模式" %}Progressive Disclosure{% endterm %}** 機制：
 
 1. **Discovery（發現）**：Agent 看到可用的 skills 列表（名稱和描述）
 2. **Activation（啟用）**：如果判斷相關，Agent 讀取完整的 SKILL.md 內容
 3. **Execution（執行）**：Agent 依照 skill 的指令執行任務
 
-這個機制可以避免 context saturation（情境過載），只在需要時才載入相關知識。
+這個機制可以避免 {% term def="AI 一次載入太多資訊導致效能下降或遺忘重要內容的問題" %}context saturation{% endterm %}，只在需要時才載入相關知識。
 
 所以有點考驗你在 Skills 的 name 跟 description 寫的描述有沒有很清楚
 讓 AI 能知道說 
@@ -363,11 +363,11 @@ Antigravity 目前支援以下模型：
 - Ultra 和 Pro 用戶的 Quota 是**每 5 小時重置一次**
 - Free 用戶的 Quota 是 weekly limit，使用到上限後需要等到下週
 
-{%callout type="error" %}
+{% callout type="error" %}
 2026/01 Google 近期宣布
 Pro 方案的用戶要是遇到用量較大的情形，也會變成 `weekly limit`
 所以要是用太多，也可能變成要等幾天才能繼續使用
-{%endcallout%}
+{% endcallout %}
 
 官方文件說明：[https://antigravity.google/docs/plans](https://antigravity.google/docs/plans)
 
@@ -413,7 +413,7 @@ Pro 方案的用戶要是遇到用量較大的情形，也會變成 `weekly limi
   },
   {
     "question": "與 Cursor、Claude Code 有什麼不同？",
-    "answer": "<strong>Antigravity vs Cursor</strong><br>兩者使用體驗相似，現在模型支援也趨近一致（都支援 Opus 4.5）。Antigravity 最大亮點是內建 Chrome 自動化測試功能，不需要額外安裝第三方工具。<br><br><strong>Antigravity vs Claude Code</strong><br>這兩者定位不同。Claude Code 是 <code>Command Line</code> 終端機工具，而 Antigravity 是完整的 IDE。比較合理的對比應該是 Antigravity vs Cursor（IDE 類）、Claude Code vs Gemini CLI（CLI 類）。"
+    "answer": "<strong>Antigravity vs Cursor</strong><br>兩者使用體驗相似，現在模型支援也趨近一致（都支援 Opus 4.5）。Antigravity 最大亮點是內建 Chrome 自動化測試功能，不需要額外安裝第三方工具。<br><br><strong>Antigravity vs Claude Code</strong><br>這兩者定位不同。Claude Code 是 <code>Command Line</code> 終端機工具，而 Antigravity 是完整的 {% term def="Integrated Development Environment，整合開發環境，提供程式編輯、除錯、編譯等功能的軟體" %}IDE{% endterm %}。比較合理的對比應該是 Antigravity vs Cursor（IDE 類）、Claude Code vs Gemini CLI（CLI 類）。"
   },
   {
     "question": "Agent Skills 可以跟 Claude Code 共用嗎？",

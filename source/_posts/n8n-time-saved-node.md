@@ -23,7 +23,7 @@ preload:
 老闆問你：「我們花這麼多時間建自動化，到底省了多少時間？」
 你答不出來？
 
-n8n 在 2.1.0 版本推出了 **Time Saved** 功能，讓你可以追蹤每個工作流程節省的時間，量化自動化帶來的 ROI。
+n8n 在 2.1.0 版本推出了 **Time Saved** 功能，讓你可以追蹤每個工作流程節省的時間，量化自動化帶來的 {% term def="Return on Investment，投資報酬率，用來衡量投入成本和獲得效益的比例" %}ROI{% endterm %}。
 
 ---
 
@@ -43,7 +43,7 @@ n8n 在 2.1.0 版本推出了 **Time Saved** 功能，讓你可以追蹤每個�
 
 ### Insights 簡介
 
-其實 Insights 就是 n8n 內建的「成績單」功能——追蹤你的工作流程跑了幾次、成功率多少、還有最重要的：**到底省了多少時間**。
+其實 Insights 就是 n8n 內建的「成績單」功能，追蹤你的工作流程跑了幾次、成功率多少、還有最重要的：**到底省了多少時間**。
 
 我自己覺得這功能蠻實用的，尤其是要跟老闆或客戶報告成效的時候，終於有數據可以拿出來了。
 
@@ -114,7 +114,7 @@ n8n 在 2.1.0 版本推出了 **Time Saved** 功能，讓你可以追蹤每個�
 在使用 Time Saved 之前，有個概念要先知道：
 
 {% callout warning %}
-**手動測試不會計入節省時間**，只有透過 Webhook 觸發或排程的正式執行才會計算。
+**手動測試不會計入節省時間**，只有透過 {% term def="一種讓外部服務主動通知你的機制，當事件發生時自動呼叫指定網址" %}Webhook{% endterm %} 觸發或排程的正式執行才會計算。
 {% endcallout %}
 
 ### 新增 Time Saved Node
@@ -187,7 +187,7 @@ n8n 在 2.1.0 版本推出了 **Time Saved** 功能，讓你可以追蹤每個�
 用 n8n 建一個自動回覆流程：
 
 1. **Webhook** 接收 LINE 訊息
-2. **Switch Node** 判斷關鍵字
+2. **{% term def="n8n 條件判斷節點，根據不同條件執行不同的分支路徑" %}Switch Node{% endterm %}** 判斷關鍵字
 3. 根據關鍵字走不同分支，各分支放 **Time Saved Node**
 
 {% darrellImage800Alt "LINE 自動回覆常見問題的 n8n 工作流程，包含 Webhook、Switch 分支和各路徑的 Time Saved Node" n8n-time-saved-use-case-workflow.png max-800 %}

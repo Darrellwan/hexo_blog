@@ -27,12 +27,13 @@ Hexo 8.0 blog for MarTech/automation. **Node.js**: `^20.17.0 || >=22.9.0`
   - 使用 `layout: false` front-matter 繞過 Hexo 渲染
   - 在 `main.yml` 的 `skip_render` 加入路徑
 - **n8n Template 工具**: `/source/tools/n8n_template/`
-- **Documentation**: `/docs/` 存放指南和研究筆記
+- **Documentation**: `/docs/drafts/` 備存草稿、`/docs/guides/` 知識文件
 - **Auto-categorization**: n8n 相關文章由 `/scripts/index.js` 自動加 tag/category
 
 ## Claude Code Skills
-專案內建 6 個 skills（定義於 `.claude/skills/`，已 gitignore）：
+專案內建 7 個 skills（定義於 `.claude/skills/`，已 gitignore）：
 - `commit-guide` - Git commit 規範（必用）
+- `article-review` - 文章語法審查（檢查 dataTable、callout、term 等最新寫法）
 - `n8n-node-research` - 節點研究資料搜集
 - `n8n-article-writer` - n8n 教學文章撰寫
 - `n8n-update-write` - n8n 版本更新紀錄（6 階段流程 + 評分系統）
@@ -94,7 +95,14 @@ modified: YYYY-MM-DD HH:MM:SS
 {% endcallout %}
 
 {% articleCard url="/path/" title="標題" previewText="描述" thumbnail="url" %}
+
+{% term def="解釋文字" %}專有名詞{% endterm %}
 ```
+- **重要**：加了 term 後，移除原本的括號說明，避免重複
+- 適用：技術名詞、縮寫、需要解釋的概念
+- 樣式：橘色底線，hover 顯示深色 tooltip
+- 常用定義參考：`/docs/guides/term-definitions.md`
+
 **Note**: Anchor ID 必須使用小寫+連字號格式（如 `<h2 id="my-section">`）
 
 ## Writing Style
@@ -104,7 +112,12 @@ modified: YYYY-MM-DD HH:MM:SS
 - **禁止使用「——」（em dash）**：這是明顯的 AI 寫作痕跡，改用逗號、句號或直接斷句
 - Emoji：⚠️ 警告、✅ 確認、💡 提示
 
+## Debug 原則
+- **先找已有的正確實作**：當某功能壞掉但類似功能正常時，先查正常的那個怎麼做，直接複製方法，不要猜測或亂試
+- 例：Social Share 的 icon 壞掉 → 先看 Social Links 用什麼（Font Awesome），直接用同樣方式
+
 ## Documentation References
-- `/docs/n8n-template-guide.md` - Switch node 結構、LINE Bot 流程
-- `/docs/n8n-node-article-guide.md` - n8n 節點文章架構指南
-- `/docs/faq-usage-guide.md` - FAQ 標籤使用指南
+- `/docs/guides/n8n-template-guide.md` - Switch node 結構、LINE Bot 流程
+- `/docs/guides/n8n-node-article-guide.md` - n8n 節點文章架構指南
+- `/docs/guides/faq-usage-guide.md` - FAQ 標籤使用指南
+- `/docs/guides/term-definitions.md` - Term Tooltip 常用定義庫

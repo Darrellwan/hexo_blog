@@ -80,7 +80,7 @@ modified: 2026-01-13 17:36:00
 
 他是個爬蟲的平台，你可以想像成 App Store 或 Google Play。
 大家可以把自已做好的爬蟲(應用程式)上傳到 Apify。
-在 Apify 中他不是叫做 App，它叫做 **Actor**（演員，但在這裡指的是「爬蟲程式」）
+在 Apify 中他不是叫做 App，它叫做 **{% term def="Apify 平台上的爬蟲程式，是預先寫好的自動化爬蟲工具" %}Actor{% endterm %}**
 
 更有趣的是，同一種爬蟲會有多個相似的 Actor
 每個 Actor 之間會因為熱門的程度或是功能的差異，而有不同的計算價格方式。
@@ -111,7 +111,7 @@ Actor 可以想像成「外送平台上的餐廳」，當你想要取得一份�
 
 ### Dataset = 爬取的資料
 
-每次 Actor 執行完，結果會存放在 Dataset（資料集）中。
+每次 Actor 執行完，結果會存放在 {% term def="Apify 執行結果儲存的資料集，會保留 7 天供使用者下載" %}Dataset{% endterm %} 中。
 像是一個 **暫存的資料表**，資料會保留 7 天讓你取用。
 
 {% callout tip title="進階：Dataset 保留時間可以延長" %}
@@ -125,8 +125,8 @@ Actor 可以想像成「外送平台上的餐廳」，當你想要取得一份�
 {% dataTable style="minimal" highlight="2" %}
 [
   {"情境": "爬取靜態網頁", "推薦": "HTTP Request", "原因": "簡單直接，不需額外費用"},
-  {"情境": "爬取需要 JavaScript 渲染的頁面", "推薦": "Apify", "原因": "內建 headless browser（無頭瀏覽器）"},
-  {"情境": "爬取有反爬機制的網站", "推薦": "Apify", "原因": "內建 proxy（代理伺服器）和反偵測"},
+  {"情境": "爬取需要 JavaScript 渲染的頁面", "推薦": "Apify", "原因": "內建 {% term def="沒有圖形介面的瀏覽器，可以在背景自動執行網頁操作，常用於爬蟲和自動化測試" %}headless browser{% endterm %}"},
+  {"情境": "爬取有反爬機制的網站", "推薦": "Apify", "原因": "內建 {% term def="代理伺服器，幫你用不同 IP 位址發送請求，避免被網站封鎖" %}proxy{% endterm %} 和反偵測"},
   {"情境": "爬取社群平台 (Meta/X)", "推薦": "Apify", "原因": "專門的 Actor 已處理好複雜邏輯"}
 ]
 {% enddataTable %}
@@ -147,7 +147,7 @@ API Token（API 金鑰）是讓 n8n 能夠連接到你的 Apify 帳號的通行�
 
 ### Step 2：在 n8n 設定 Credentials
 
-Credentials（憑證）是 n8n 用來儲存各種服務帳號資訊的地方。
+{% term def="n8n 用來儲存各種服務帳號資訊（如 API Key）的安全機制" %}Credentials{% endterm %} 是 n8n 的憑證管理功能。
 
 1. 在 n8n 左側選單進入 **Credentials**（憑證）
 2. 點選 **Add Credential**（新增憑證）並搜尋「Apify API」
@@ -169,7 +169,7 @@ Apify 的 n8n 節點提供蠻多操作，
 
 ### Run Actor and get dataset items
 
-這是最常用的操作——啟動 Actor、等它跑完、直接拿結果，一步到位。
+這是最常用的操作，啟動 Actor、等它跑完、直接拿結果，一步到位。
 
 {% darrellImage800Alt "Run Actor and get dataset items 設定畫面" n8n_apify-run-actor.jpg max-800 %}
 
@@ -199,7 +199,7 @@ Apify 的 n8n 節點提供蠻多操作，
 
 {% darrellImage800Alt "搜尋 YouTube Scraper Actor" n8n_apify-youtube-scraper-selection.png max-400 %}
 
-- **Input JSON**：Actor 需要的 JSON（一種資料格式）參數
+- **Input JSON**：Actor 需要的 {% term def="JavaScript Object Notation，輕量化的資料交換格式，常用於 API 傳輸" %}JSON{% endterm %} 參數
 通常我的習慣都會是在 Apify 根據 Actor 的說明先測試
 舉例這是一個 YouTube Scraper，在 Apify 網頁版可以先試跑看看參數怎麼設定：
 
@@ -254,11 +254,11 @@ Apify 的 n8n 節點提供蠻多操作，
 舉個例子：
 你去餐廳點餐時，如果是付完錢在旁邊等候餐點完成，這樣子就像是 `Run Actor and get dataset items`
 但是如果他有給你一個感應器，會在餐點完成時發出通知，那就像是 `Run Actor` + `Apify Trigger` 的組合，
-你手中拿的感應器就是一個 Webhook（網址回呼，當事情完成時自動通知你的機制）。
+你手中拿的感應器就是一個 {% term def="一種讓外部服務主動通知你的機制，當事件發生時自動呼叫指定網址" %}Webhook{% endterm %}。
 {% endcallout %}
 
 {% callout tip title="進階：什麼時候該用 Run Actor + Trigger？" %}
-當你需要爬取大量資料（例如 1000 筆以上），Actor 可能會執行超過 5 分鐘。這時候用 `Run Actor and get dataset items` 可能會 timeout（逾時）。
+當你需要爬取大量資料（例如 1000 筆以上），Actor 可能會執行超過 5 分鐘。這時候用 `Run Actor and get dataset items` 可能會 {% term def="當程式執行超過預設時間上限時自動停止的機制" %}timeout{% endterm %}。
 
 正確做法：
 1. 用 `Run Actor` 啟動爬蟲
