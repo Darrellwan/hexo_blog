@@ -36,7 +36,7 @@ modified: 2026-01-26 14:30:00
 ]
 {% endquickNav %}
 
-最近應該蠻多人看到 Claude Code 被說多好用，但自己要使用時往往只能硬著頭皮學 Command Line 介面
+最近應該蠻多人看到 Claude Code 被說多好用，但自己要使用時往往只能硬著頭皮學 {% term def="終端機指令介面，透過文字輸入指令來操作電腦" %}Command Line{% endterm %} 介面
 或是需要用 Cursor 或 Antigravity 然後使用 Claude Code 的 extension 
 
 開始使用這些工具之前可能就會想問：
@@ -75,13 +75,13 @@ Cowork 專為非開發者設計，不用寫程式就能使用。
 
 很多人會問：「這跟 Claude Code 有什麼不同？」
 
-簡單來說，**Cowork 就是給非工程師用的 Claude Code**。技術上兩者用的是同一個底層引擎（Claude Agent SDK），差別在於：
+簡單來說，**Cowork 就是給非工程師用的 Claude Code**。技術上兩者用的是同一個底層引擎（{% term def="Anthropic 開發的 AI Agent 框架，讓開發者能建立具備自主決策能力的 AI 應用" %}Claude Agent SDK{% endterm %}），差別在於：
 
 {% dataTable style="minimal" %}
 [
   {"項目": "介面", "Claude Code": "終端機（Command Line）", "Cowork": "圖形化介面"},
   {"項目": "目標用戶", "Claude Code": "工程師", "Cowork": "一般用戶"},
-  {"項目": "安全機制", "Claude Code": "需自行設定", "Cowork": "內建 sandbox（沙盒隔離）"},
+  {"項目": "安全機制", "Claude Code": "需自行設定", "Cowork": "內建 {% term def="一種安全隔離技術，讓程式在受限的環境中執行，避免影響系統" %}sandbox{% endterm %}"},
   {"項目": "學習門檻", "Claude Code": "需懂基本指令", "Cowork": "選資料夾就能用"}
 ]
 {% enddataTable %}
@@ -95,7 +95,7 @@ Cowork 專為非開發者設計，不用寫程式就能使用。
 Cowork 能直接存取你的檔案，使用前請注意：
 
 1. **不要授權敏感資料夾** - 避免給它存取財務文件、密碼檔案等
-2. **指令要明確** - 模糊的指令可能導致誤刪檔案
+2. **{% term def="給 AI 的指令或提示詞，用來引導 AI 產生特定回應" %}prompt{% endterm %} 要明確** - 模糊的指令可能導致誤刪檔案
 
 Anthropic 有內建防護機制，但建議先用測試資料夾試用，熟悉後再處理重要檔案。
 {% endcallout %}
@@ -150,12 +150,12 @@ Anthropic 有內建防護機制，但建議先用測試資料夾試用，熟悉�
 
 <h2 id="advanced-features">進階功能：連接器與 Chrome 整合</h2>
 
-Cowork 不只能處理本機檔案，還能透過**連接器（Connectors）**連接外部服務，以及搭配 **Claude in Chrome** 執行瀏覽器任務。
+Cowork 不只能處理本機檔案，還能透過 **{% term def="連接器，用來串接外部服務和工具的功能模組" %}Connectors{% endterm %}** 連接外部服務，以及搭配 **Claude in Chrome** 執行瀏覽器任務。
 
 ### 連接器 (Connectors)
 
 Connectors 讓 Claude Cowork 可以存取外部工具和資料
-透過 MCP 來實現，目前已經支援超多種整合
+透過 {% term def="Model Context Protocol，Anthropic 發布的開放協議，讓 AI 工具能連接外部服務和資料來源" %}MCP{% endterm %} 來實現，目前已經支援超多種整合
 
 {% darrellImage800Alt "Claude Connectors 設定頁面，顯示 Google Drive、Gmail、GitHub 等官方連接器的連線狀態" cowork_connectors_settings.png max-800 %}
 
@@ -221,7 +221,7 @@ Chrome 整合有兩個限制：
   },
   {
     "question": "使用 Cowork 會消耗多少配額？",
-    "answer": "比一般聊天消耗更多。複雜的多步驟任務需要更多運算資源和 tokens。如果你使用 Max 5x 方案，大約可以執行 10-20 個完整的 Cowork 操作，配額每 5 小時重置。"
+    "answer": "比一般聊天消耗更多。複雜的多步驟任務需要更多運算資源和 {% term def="AI 計費單位，大約 1 個中文字 = 2-3 tokens" %}tokens{% endterm %}。如果你使用 Max 5x 方案，大約可以執行 10-20 個完整的 Cowork 操作，配額每 5 小時重置。"
   }
 ]
 {% endfaq %}

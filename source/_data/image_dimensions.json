@@ -7198,5 +7198,25 @@
     "width": 1042,
     "height": 628,
     "mtimeMs": 1769440949163.374
+  },
+  "/_posts/n8n-update-log/n8n-2.6.0-workflow_unpublish.png": {
+    "width": 1604,
+    "height": 1014,
+    "mtimeMs": 1769572656884.704
+  },
+  "/_posts/n8n-update-log/n8n-2.6.0-slack_usergroup_operations.png": {
+    "width": 1788,
+    "height": 1356,
+    "mtimeMs": 1769572656884.458
+  },
+  "/_posts/n8n-update-log/n8n-2.6.0-slack_usergroup_info.png": {
+    "width": 1312,
+    "height": 1130,
+    "mtimeMs": 1769572656884.0774
+  },
+  "/_posts/n8n-update-log/n8n-2.6.0-hitl_tool_fix.png": {
+    "width": 1392,
+    "height": 1334,
+    "mtimeMs": 1769572656883.282
   }
 }
