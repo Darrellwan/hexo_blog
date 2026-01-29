@@ -1,0 +1,103 @@
+// ========================================
+// Term Tooltip Styles
+// 專有名詞解釋 tooltip
+// ========================================
+
+.term-tooltip
+  position: relative
+  display: inline
+  cursor: help
+  // 橘色細實線底線
+  border-bottom: 1px solid rgba(255, 117, 0, 0.5)
+  transition: border-color 0.3s ease
+
+  &:hover
+    border-color: rgba(255, 117, 0, 0.9)
+
+// 圖示（隱藏）
+.term-icon
+  display: none
+
+// Tooltip 氣泡
+.term-tooltip::after
+  content: attr(data-def)
+  position: absolute
+  bottom: calc(100% + 12px)
+  left: 50%
+  transform: translateX(-50%) translateY(8px)
+
+  // 深色實色背景 + 橘色光暈
+  background: #191919
+  color: #fff
+  border: 1px solid rgba(255, 117, 0, 0.4)
+  box-shadow: 0 0 20px rgba(255, 117, 0, 0.15), 0 8px 32px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.2)
+
+  // 排版
+  border-radius: 8px
+  padding: 10px 14px
+  font-size: 14px
+  line-height: 1.6
+  text-align: left
+  max-width: 280px
+  width: max-content
+
+  // 隱藏狀態
+  opacity: 0
+  visibility: hidden
+  pointer-events: none
+  transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease
+  z-index: 1000
+
+// 小三角
+.term-tooltip::before
+  content: ''
+  position: absolute
+  bottom: calc(100% + 4px)
+  left: 50%
+  transform: translateX(-50%)
+  border: 8px solid transparent
+  border-top-color: #191919
+  opacity: 0
+  visibility: hidden
+  transition: opacity 0.25s ease, visibility 0.25s ease
+  z-index: 1001
+
+// Hover 顯示
+.term-tooltip:hover::after
+  opacity: 1
+  visibility: visible
+  transform: translateX(-50%) translateY(0)
+
+.term-tooltip:hover::before
+  opacity: 1
+  visibility: visible
+
+// Mobile active 狀態
+.term-tooltip.active::after
+  opacity: 1
+  visibility: visible
+  transform: translateX(-50%) translateY(0)
+
+.term-tooltip.active::before
+  opacity: 1
+  visibility: visible
+
+// ========================================
+// 手機版：置中彈出
+// ========================================
+@media (max-width: 768px)
+  .term-tooltip::after
+    position: fixed
+    left: 50%
+    top: 50%
+    bottom: auto
+    transform: translate(-50%, -50%) scale(0.95)
+    max-width: calc(100vw - 48px)
+    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1)
+
+  .term-tooltip:hover::after,
+  .term-tooltip.active::after
+    transform: translate(-50%, -50%) scale(1)
+
+  .term-tooltip::before
+    display: none
