@@ -2,12 +2,6 @@
 
 ## 📚 最新文章
 
-### [n8n AI Agent 教學 - 用「管家」概念打造 LINE 智能助理](https://www.darrelltw.com/n8n-ai-agent-node/?utm_source=github_readme&utm_medium=referral)
-📅 2026/01/17 · 11 天前
-
-> n8n AI Agent 完整教學！用「管家」比喻秒懂核心概念，5 分鐘快速上手。實戰打造 LINE 智能助理（查天氣、查行事曆）。含價格比較、參數設定、Multi-Agent 進階應用。
-
-
 ### [Claude Cowork 教學：給大眾用的 Claude Code](https://www.darrelltw.com/claude-cowork-intro/?utm_source=github_readme&utm_medium=referral)
 📅 2026/01/17 · 12 天前
 
@@ -62,9 +56,15 @@
 > n8n Merge 節點完整教學！學會 Append、Combine、Choose Branch、SQL Query 選項的差異，深入了解 Matching Fields、Position 和 All Possible Combinations 的用法
 
 
+### [n8n Line Messaging 社群節點教學](https://www.darrelltw.com/n8n-line-messaging-community-node/?utm_source=github_readme&utm_medium=referral)
+📅 2025/10/21 · 3 個月前
+
+> n8n LINE Messaging 社群節點完整教學!使用 @aotoki/n8n-nodes-line-messaging 簡化 LINE Bot 開發,視覺化介面降低出錯率。涵蓋安裝設定、4 大核心功能操作、常見問題排解,以及與 HTTP Request 的使用時機比較
+
+
 ## 📊 部落格統計
-![文章總數](https://img.shields.io/badge/文章總數-119-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-288,984+-blue?style=flat-square)
+![文章總數](https://img.shields.io/badge/文章總數-118-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-281,540+-blue?style=flat-square)
 ![最後更新](https://img.shields.io/badge/最後更新-2026/01/29-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
@@ -88,7 +88,7 @@
 
 
 ## 🏷️ 熱門主題
-![n8n](https://img.shields.io/badge/n8n-32-orange?style=flat-square) ![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-15-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![AI](https://img.shields.io/badge/AI-8-orange?style=flat-square)
+![n8n](https://img.shields.io/badge/n8n-31-orange?style=flat-square) ![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-15-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![AI](https://img.shields.io/badge/AI-8-orange?style=flat-square)
 
 ## 📈 更新頻率
 ```text
@@ -97,7 +97,7 @@
 10月 ██░░░░░░░░ 2篇
 11月 ███░░░░░░░ 3篇
 12月 ███░░░░░░░ 3篇
-01月 ███░░░░░░░ 3篇
+01月 ██░░░░░░░░ 2篇
 ```
 
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-01-29 09:58:34*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-01-29 10:02:24*
