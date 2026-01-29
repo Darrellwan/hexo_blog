@@ -308,6 +308,9 @@
         {{ partial('_partials/post/post-followme.swig', {}, {cache: theme.cache.enable}) }}
       {%- endif %}
 
+      {# 社群分享按鈕 #}
+      {{ partial('_partials/post/post-share.swig') }}
+
       <footer class="post-footer">
         {%- if post.tags and post.tags.length %}
           {%- if theme.tag_icon %}
