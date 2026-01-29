@@ -9,6 +9,7 @@
 {% include scheme_script %}
 
 {{- next_js('next-boot.js') }}
+{{- next_js('darrell.js') }}
 {%- if theme.bookmark.enable %}
   {{- next_js('bookmark.js') }}
 {%- endif %}
