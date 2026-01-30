@@ -355,6 +355,19 @@
             }
         }
 
+        /* ===== QR CODE ===== */
+        .qrcode-wrapper {
+            margin-top: 1.5rem;
+        }
+
+        .qrcode {
+            width: 120px;
+            height: 120px;
+            border-radius: var(--radius-md);
+            background: #fff;
+            padding: 8px;
+        }
+
         /* ===== CONTENT ===== */
         .content {
             padding: 2rem 1rem;
@@ -784,6 +797,11 @@
                     <svg><use href="#icon-globe"/></svg>
                 </a>
             </nav>
+
+            <!-- QR Code -->
+            <div class="qrcode-wrapper">
+                <img src="images/qrcode.png" alt="QR Code" class="qrcode" width="120" height="120">
+            </div>
         </header>
 
         <main class="content">
