@@ -31,12 +31,14 @@ archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
-skip_render: 
- - 'smart_ping.html' 
+skip_render:
+ - 'smart_ping.html'
  - 'tool-hash-sha256.html'
  - 'resume-page.html'
  - tools/**
  - 'tools/**'
+ - links/**
+ - 'links/**'
 
 archive_generator:
   enabled: true
