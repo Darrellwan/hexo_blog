@@ -7218,5 +7218,45 @@
     "width": 1392,
     "height": 1334,
     "mtimeMs": 1769572656883.282
+  },
+  "/links/images/qrcode.png": {
+    "width": 444,
+    "height": 444,
+    "mtimeMs": 1769766628274.9004
+  },
+  "/links/images/og-image.webp": {
+    "width": 1200,
+    "height": 630,
+    "mtimeMs": 1769741443992.8762
+  },
+  "/_posts/claude-cowork-intro/cowork_plugin_marketplace.png": {
+    "width": 2322,
+    "height": 1580,
+    "mtimeMs": 1769839285089.86
+  },
+  "/_posts/claude-cowork-intro/cowork_plugin_data_analysis_result.png": {
+    "width": 1500,
+    "height": 1196,
+    "mtimeMs": 1769846776173.0364
+  },
+  "/_posts/claude-cowork-intro/cowork_plugin_commands_interface.png": {
+    "width": 1444,
+    "height": 1008,
+    "mtimeMs": 1769846282840.8638
+  },
+  "/_posts/claude-cowork-intro/cowork_plugin_browse_list.png": {
+    "width": 2276,
+    "height": 1900,
+    "mtimeMs": 1769840029453.869
+  },
+  "/_posts/claude-cowork-intro/cowork_plugin_button_location.png": {
+    "width": 2416,
+    "height": 2212,
+    "mtimeMs": 1769873354334.405
+  },
+  "/_posts/claude-cowork-intro/cowork_plugin_upload_local.png": {
+    "width": 898,
+    "height": 1342,
+    "mtimeMs": 1769881587708.0664
   }
 }

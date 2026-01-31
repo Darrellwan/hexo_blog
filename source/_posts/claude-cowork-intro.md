@@ -12,7 +12,7 @@ id: claude-cowork-intro
 description: Claude Cowork 是 Anthropic 推出的桌面 AI 助理，能自動整理檔案、處理文件，還能學習你的工作流程。實測三大應用場景，看看它如何提升工作效率。
 bgImage: blog-claude-cowork-intro-bg.jpg
 date: 2026-01-17 15:33:17
-modified: 2026-01-26 14:30:00
+modified: 2026-01-31 10:00:00
 ---
 
 
@@ -32,6 +32,7 @@ modified: 2026-01-26 14:30:00
   {"text": "安全提醒", "anchor": "safety-tips", "desc": "使用前注意事項"},
   {"text": "實測場景", "anchor": "use-cases", "desc": "三大應用場景"},
   {"text": "進階功能", "anchor": "advanced-features", "desc": "連接器與 Chrome 整合"},
+  {"text": "Plugins", "anchor": "plugins", "desc": "11 個官方 plugins 介紹"},
   {"text": "常見問題", "anchor": "faq", "desc": "FAQ"}
 ]
 {% endquickNav %}
@@ -155,7 +156,7 @@ Cowork 不只能處理本機檔案，還能透過 **{% term def="連接器，用
 ### 連接器 (Connectors)
 
 Connectors 讓 Claude Cowork 可以存取外部工具和資料
-透過 {% term def="Model Context Protocol，Anthropic 發布的開放協議，讓 AI 工具能連接外部服務和資料來源" %}MCP{% endterm %} 來實現，目前已經支援超多種整合
+透過 {% term def="讓 Claude 能連接你的工具（如 HubSpot、Notion）的技術標準" %}MCP{% endterm %} 來實現，目前已經支援超多種整合
 
 {% darrellImage800Alt "Claude Connectors 設定頁面，顯示 Google Drive、Gmail、GitHub 等官方連接器的連線狀態" cowork_connectors_settings.png max-800 %}
 
@@ -203,6 +204,83 @@ Chrome 整合有兩個限制：
 3. **瀏覽器限制**：僅支援 Chrome，不支援 Brave、Arc 等其他瀏覽器
 {% endcallout %}
 
+<h2 id="plugins">Plugins （2026/01/30 新功能）</h2>
+
+Anthropic 在 2026/01/30 推出 **Cowork Plugins**，讓 Claude 能在特定工作領域變得更專業。
+
+### 什麼是 Plugins？
+
+Plugins 讓 Claude 成為特定領域的專家，提供相關技能的專業知識。
+
+每個 Plugin 由三個部分組成：
+- **Skills**：自動載入的專業知識，Claude 會在相關情境自動套用
+- **Commands**：斜線指令，手動觸發特定工作流程
+- **Connectors**：{% term def="讓 Claude 能連接你的工具（如 HubSpot、Notion）的技術標準" %}MCP{% endterm %} 整合，連接外部工具
+
+
+### 官方 11 個 Plugins 一覽
+
+{% dataTable style="minimal" align="left" %}
+[
+  {"Plugin": "productivity", "用途": "任務管理、日曆、工作流程", "整合工具": "Slack、Notion、Asana"},
+  {"Plugin": "sales", "用途": "客戶研究、通話準備、CRM 更新", "整合工具": "HubSpot、Salesforce"},
+  {"Plugin": "customer-support", "用途": "工單處理、回覆草稿、知識庫查詢", "整合工具": "Intercom、Zendesk"},
+  {"Plugin": "product-management", "用途": "PRD 撰寫、路線圖規劃", "整合工具": "Linear、Jira、Figma"},
+  {"Plugin": "marketing", "用途": "內容創作、活動規劃、素材設計", "整合工具": "Canva、HubSpot"},
+  {"Plugin": "legal", "用途": "合約審查、合規評估", "整合工具": "Box、Jira"},
+  {"Plugin": "finance", "用途": "日記帳、財務報表、預算分析", "整合工具": "Snowflake、BigQuery"},
+  {"Plugin": "data", "用途": "SQL 查詢、資料視覺化", "整合工具": "Snowflake、Hex"},
+  {"Plugin": "enterprise-search", "用途": "跨工具統一搜尋", "整合工具": "Slack、Notion、Guru"},
+  {"Plugin": "bio-research", "用途": "文獻搜尋、基因分析", "整合工具": "PubMed、Benchling"},
+  {"Plugin": "cowork-plugin-management", "用途": "建立/管理其他 plugins", "整合工具": "—"}
+]
+{% enddataTable %}
+
+{% darrellImage800Alt "Cowork Plugin Marketplace，顯示 10 個官方 plugins" cowork_plugin_marketplace.png max-800 %}
+
+### 安裝與使用
+
+1. Cowork 介面左下角有個 Plugin 的按鈕：
+
+{% darrellImage800Alt "Cowork 介面左下角的 Plugins 按鈕位置" cowork_plugin_button_location.png max-800 %}
+
+2. 點進去後，就能瀏覽所有可用的 plugins：
+
+{% darrellImage800Alt "Browse plugins 介面，可以瀏覽和安裝各種 plugins" cowork_plugin_browse_list.png max-800 %}
+
+安裝後，Plugin 提供的 Commands 會直接顯示在主介面，方便你快速使用：
+
+{% darrellImage800Alt "安裝 Data plugin 後的 Cowork 介面，顯示 6 個斜線指令" cowork_plugin_commands_interface.png max-800 %}
+
+### 實際應用範例
+
+**Data Plugin 應用場景**：
+裡面有資料分析、統計分析、資料視覺化等技能可以使用。
+
+實測用 Data plugin 分析 Threads 發文數據，直接產出完整的統計報表：
+
+{% darrellImage800Alt "Data plugin 分析 Threads 發文數據的結果，顯示近一個月發文統計" cowork_plugin_data_analysis_result.png max-800 %}
+
+### 自訂 Plugins
+
+{% callout info %}
+這段是進階內容，目前要自訂 Plugin 難度較高
+{% endcallout %}
+
+官方 plugins 可以在 [GitHub](https://github.com/anthropics/knowledge-work-plugins) 上找到完整 source code。
+
+除了從 Marketplace 安裝，你也可以上傳自己打包的 plugin：
+
+1. 在 Plugins 管理介面點選「+」
+2. 選擇「Upload local plugin」
+3. 拖曳或選擇 `.zip` 檔案
+
+{% darrellImage800Alt "上傳自訂 Plugin 介面，可拖曳 .zip 檔案或點選瀏覽" cowork_plugin_upload_local.png max-800 %}
+
+{% callout type="warning" %}
+自訂 plugin 不受 Anthropic 審核，安裝前請確認來源可信任。
+{% endcallout %}
+
 <h2 id="faq">常見問題</h2>
 
 {% faq %}
@@ -220,8 +298,12 @@ Chrome 整合有兩個限制：
     "answer": "會！請非常小心，Claude 在永久刪除任何檔案前都需要你的明確許可，會跳出權限提示讓你確認。建議先用測試資料夾試用，避免授權敏感資料夾。"
   },
   {
-    "question": "使用 Cowork 會消耗多少配額？",
-    "answer": "比一般聊天消耗更多。複雜的多步驟任務需要更多運算資源和 {% term def="AI 計費單位，大約 1 個中文字 = 2-3 tokens" %}tokens{% endterm %}。如果你使用 Max 5x 方案，大約可以執行 10-20 個完整的 Cowork 操作，配額每 5 小時重置。"
+    "question": "Plugins 是免費的嗎？",
+    "answer": "是的，官方 11 個 plugins 都是開源免費的，可以從 GitHub 下載或直接從 Cowork 介面安裝。不過使用 plugins 會消耗你的 Claude 配額。"
+  },
+  {
+    "question": "可以自己開發 Plugins 嗎？",
+    "answer": "可以！Plugins 只是 markdown 和 JSON 檔案，不需要寫程式。可以用 cowork-plugin-management plugin 協助建立，或直接 fork 官方 GitHub repo 修改。"
   }
 ]
 {% endfaq %}
@@ -250,5 +332,8 @@ Claude Cowork 特別適合經常處理檔案整理、文件製作的人，特別
 - [Introducing Cowork - Claude Blog](https://claude.com/blog/cowork-research-preview)
 - [Getting Started with Cowork - Claude Help Center](https://support.claude.com/en/articles/13345190-getting-started-with-cowork)
 - [Introducing Anthropic Labs](https://www.anthropic.com/news/introducing-anthropic-labs)
+- [Cowork Plugins - Claude Blog](https://claude.com/blog/cowork-plugins)
+- [knowledge-work-plugins - GitHub](https://github.com/anthropics/knowledge-work-plugins)
+- [TechCrunch: Anthropic brings agentic plugins to Cowork](https://techcrunch.com/2026/01/30/anthropic-brings-agentic-plugins-to-cowork/)
 
 
