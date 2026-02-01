@@ -21,6 +21,8 @@ Hexo 8.0 blog for MarTech/automation. **Node.js**: `^20.17.0 || >=22.9.0`
 
 - **Config**: `main.yml` 主設定，`main.local.yml` 本地覆蓋（不進 git）
 - **Assets**: `/source/_posts/post-name/` 文章專屬資料夾
+  - 截圖命名：`{功能}_{描述}.png`（如 `cowork_plugin_button_location.png`）
+  - 禁止使用系統自動產生的名稱（如 `Screenshot_20260201_...`）
 - **Custom Tags**: `/scripts/` (data-table.js, quicknav.js, faq.js, note.js)
 - **Theme CSS**: `/themes/next/source/css/_custom/`
 - **獨立頁面**: `/source/n8n-expert/`、`/source/n8n-2025-wrapped/` 等
@@ -101,7 +103,18 @@ modified: YYYY-MM-DD HH:MM:SS
 - **重要**：加了 term 後，移除原本的括號說明，避免重複
 - 適用：技術名詞、縮寫、需要解釋的概念
 - 樣式：橘色底線，hover 顯示深色 tooltip
+- **白話原則**：用一般人聽得懂的說明，不要用技術定義
+  - ❌ 「Model Context Protocol，Anthropic 發布的開放協議」
+  - ✅ 「讓 Claude 能連接你的工具（如 HubSpot、Notion）的技術標準」
 - 常用定義參考：`/docs/guides/term-definitions.md`
+
+### 進階內容標示
+對於新手可跳過的進階內容，加上 callout 提示：
+```markdown
+{% callout info %}
+這段是進階內容，新手可以先跳過
+{% endcallout %}
+```
 
 **Note**: Anchor ID 必須使用小寫+連字號格式（如 `<h2 id="my-section">`）
 
