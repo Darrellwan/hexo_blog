@@ -129,8 +129,32 @@ modified: YYYY-MM-DD HH:MM:SS
 - **先找已有的正確實作**：當某功能壞掉但類似功能正常時，先查正常的那個怎麼做，直接複製方法，不要猜測或亂試
 - 例：Social Share 的 icon 壞掉 → 先看 Social Links 用什麼（Font Awesome），直接用同樣方式
 
+## 獨立頁面設計紀錄
+
+### /links/ - Link in Bio 頁面
+**位置**：`/source/links/index.html`
+**風格**：極簡工業風（深色）
+**Mockup**：`/source/links/mockup-b-dark.html`
+
+| 元素 | 設定 |
+|------|------|
+| 背景 | `#111111` + 網格線 |
+| 字體 | JetBrains Mono（標題/標籤）+ Noto Sans TC |
+| 配色 | 黑白灰 + 藍色 `#3b82f6` |
+| 卡片 | 左圖右文、Premium 預設藍框 |
+| Hover | 上移 `translateY(-4px)` + 陰影 |
+| 版面 | 左對齊、打破對稱 |
+
+**設計原則**（來自 UI/UX Pro Max + Frontend Design 分析）：
+- 必備：`prefers-reduced-motion`、`focus-visible` 樣式
+- 避免 AI 感：不用紫藍漸層、不完美對稱、用 Mono 字體增加技術感
+
+### /n8n-expert/ - 專家服務頁面
+詳見：`/docs/guides/n8n-expert-page.md`
+
 ## Documentation References
 - `/docs/guides/n8n-template-guide.md` - Switch node 結構、LINE Bot 流程
 - `/docs/guides/n8n-node-article-guide.md` - n8n 節點文章架構指南
 - `/docs/guides/faq-usage-guide.md` - FAQ 標籤使用指南
 - `/docs/guides/term-definitions.md` - Term Tooltip 常用定義庫
+- `/docs/guides/n8n-expert-page.md` - n8n 專家服務頁面設計參考
