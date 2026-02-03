@@ -8,7 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Type：`[NEW POST]` 新文章、`[UPDATE]` 更新、`[FIX]` 修復、`feat:` 新功能、`chore:` 雜項
 
 ## Build Commands
-- **Dev**: `npm run test` - clean + generate + server（本地開發常用）
+- **Dev**: `npm run dev` - clean + generate + server（本地開發常用）
 - **Dev with drafts**: `npm run test_draft` - 包含草稿文章
 - **Dev full**: `npm run test-full` - 含圖片處理的完整開發流程
 - **Build**: `npm run build` - 完整建置（images + hexo generate + n8n-sitemap + n8n-snapshots）
