@@ -7,16 +7,87 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2026/01/27 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.6.0（Pre-release），正式版本為 2.4.6
+description: n8n 的更新記錄(2026/02/03 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.7.0（Pre-release），正式版本為 2.6.3
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2026-01-27 17:30:00
+modified: 2026-02-03 11:30:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 2.7.0 Pre-release - 2026-02-02
+
+[Github 2.7.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%402.7.0)
+
+### MySQL 連線錯誤能使用「Continue on Fail」
+fix(MySQL Node): Support "Continue on Error" for connection-related errors
+
+以前用 MySQL Node 時，就算開了「Continue on Fail」設定，資料庫連不上時整個 Workflow 還是會直接炸掉。
+
+現在修好了！資料庫斷線或是遇到什麼問題，可以正確的額外處理這個錯誤
+
+{% dataTable %}
+[
+  {"Continue on Fail 設定": "❌ 關閉", "資料庫斷線時的行為": "正常拋出錯誤，Workflow 停止"},
+  {"Continue on Fail 設定": "✅ 開啟", "資料庫斷線時的行為": "輸出錯誤訊息，Workflow 繼續執行"}
+]
+{% enddataTable %}
+
+這樣就能做備援流程了，例如：資料庫掛掉時發 Slack 通知、改用快取資料、或記錄 Log 等待之後重試。
+
+{% darrellImage800Alt "MySQL Node 的 Continue on Fail 現在對連線錯誤也有效了" n8n-2.7.0-mysql_continue_on_fail.png max-800 %}
+
+### FormTrigger 新增 IP 白名單功能
+feat(FormTrigger Node): Support ip filtering for the FormTrigger node
+
+如果你有用 FormTrigger 做內部表單，之前只能靠 Basic Auth 保護。問題是：帳密要分享給所有同事，而且每次填都要輸入，蠻麻煩的。
+
+現在多了一個選項：**IP 白名單**。
+設定方式：Form Trigger Node → Options → IP(s) Allowlist
+
+支援的格式：
+- 單一 IP：`203.1.2.3`
+- 多個 IP：`203.1.2.3, 10.0.0.5`（逗號分隔）
+- CIDR 網段：`192.168.0.0/16`、`10.0.0.0/8`
+- IPv6：`2001:db8::/32`
+
+不在白名單內的 IP 會直接收到 403 Forbidden 錯誤，連表單都看不到。
+
+適合的場景：
+- 內部簽核：限公司對外 IP
+- 合作夥伴：限對方公司 IP
+- 測試環境：限開發團隊 IP 或 VPN 網段
+
+{% callout info %}
+IP 白名單就是「只允許特定 IP 進入」的門禁清單。每台連上網路的裝置都有一個 IP 位址，就像門牌號碼一樣。設定白名單後，只有名單上的 IP 才能打開你的表單，其他人連頁面都看不到。
+{% endcallout %}
+
+{% darrellImage800Alt "FormTrigger 新增 IP 白名單功能，可限制特定 IP 才能存取表單" n8n-2.7.0-formtrigger_ip_allowlist.png max-800 %}
+
+### Crypto Node 金鑰可以存 Credential 管理
+feat(Crypto Node): Add credentials for Hmac and Sign operations
+
+以前用 Crypto 節點時，Secret Key 只能直接寫在節點裡面。
+這樣有很大的問題：
+- 匯出 Workflow 時 Key 會跟著出去
+- 執行記錄可能看到 Key
+
+現在 Crypto Node 有專屬的 Credential 類型了！
+
+設定方式：
+1. Credentials → Add Credential → 選「Crypto」
+2. 填入 Hmac Secret 或 Private Key（看你用哪個功能）
+3. Crypto Node 選擇剛建的 Credential
+
+如果你有在用 Crypto Node 驗證 Webhook 簽名（LINE、Stripe 等），建議把金鑰搬進 Credential，更安全。
+
+{% darrellImage800Alt "Crypto Node 現在可以選擇 Credential，不用直接輸入金鑰" n8n-2.7.0-crypto_node_select.png max-800 %}
+
+{% darrellImage800Alt "Crypto Credential 設定頁面，填入 Hmac Secret 後會以密碼形式顯示" n8n-2.7.0-crypto_credential.png max-800 %}
+
 
 ## 2.6.0 Pre-release - 2026-01-27
 
