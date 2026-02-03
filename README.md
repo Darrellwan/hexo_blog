@@ -3,13 +3,13 @@
 ## 📚 最新文章
 
 ### [Claude Cowork 教學：給大眾用的 Claude Code](https://www.darrelltw.com/claude-cowork-intro/?utm_source=github_readme&utm_medium=referral)
-📅 2026/01/17 · 14 天前
+📅 2026/01/17 · 17 天前
 
 > Claude Cowork 是 Anthropic 推出的桌面 AI 助理，能自動整理檔案、處理文件，還能學習你的工作流程。實測三大應用場景，看看它如何提升工作效率。
 
 
 ### [n8n 爬蟲神器 Apify 教學：不會寫程式也能爬資料](https://www.darrelltw.com/n8n-apify-node/?utm_source=github_readme&utm_medium=referral)
-📅 2026/01/13 · 18 天前
+📅 2026/01/13 · 21 天前
 
 > 完整教學 n8n Apify 節點實現網頁爬蟲自動化。包含 API Token 設定、Run Actor 操作、Instagram 數據爬取等功能介紹。實測別人 IG 帳號發文數據自動同步到 Google Sheets 案例。
 
@@ -64,8 +64,8 @@
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-118-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-283,274+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2026/02/01-green?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-284,637+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2026/02/03-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-02-01 02:51:41*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-02-03 11:59:07*
