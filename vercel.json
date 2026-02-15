@@ -1,15 +1,15 @@
 {
     "rewrites": [
       {
-        "source": "/:path+/",
+        "source": "/:path*",
         "has": [
           {
             "type": "header",
             "key": "accept",
-            "value": "(.*)text/markdown(.*)"
+            "value": "text/markdown"
           }
         ],
-        "destination": "/:path+/index.md"
+        "destination": "/:path*/index.md"
       }
     ],
     "headers": [
