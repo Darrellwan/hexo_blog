@@ -1,7 +1,7 @@
 {
     "rewrites": [
       {
-        "source": "/:path*",
+        "source": "/:slug",
         "has": [
           {
             "type": "header",
@@ -9,7 +9,7 @@
             "value": "text/markdown"
           }
         ],
-        "destination": "/:path*/index.md"
+        "destination": "/:slug/index.md"
       }
     ],
     "headers": [
