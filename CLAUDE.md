@@ -152,6 +152,48 @@ modified: YYYY-MM-DD HH:MM:SS
 ### /n8n-expert/ - 專家服務頁面
 詳見：`/docs/guides/n8n-expert-page.md`
 
+## Markdown for Agents
+
+實作 AI Agent 可透過 `Accept: text/markdown` 取得文章原始內容：
+
+- **實作方式**：Vercel Edge Middleware (`/middleware.js`)
+- **原因**：`vercel.json` rewrites 無法用於純靜態網站（Vercel 優先檢查靜態檔案）
+- **效能**：無負面影響（< 1ms overhead），HTML 請求不受影響
+- **成本**：$0（省下 Cloudflare Pro $240/年）
+
+**技術細節：**
+
+### Vercel Header-based Rewrites 限制
+- `vercel.json` 的 `rewrites` with `has: [{ type: "header" }]` 無法用於 Hexo 靜態網站
+- **原因**：Vercel 執行順序是 Static Files → Rewrites → Functions
+- 靜態檔案存在時，直接回傳，繞過 rewrite 規則
+- **解決方案**：使用 Edge Middleware 在請求進入前攔截
+
+### Edge Middleware 實作
+```
+Request → Middleware → Static Files → Functions
+          ↑ 在這裡攔截！
+```
+
+- 檢查 `Accept: text/markdown` header
+- 302 redirect 到 `/{path}/index.md`
+- Matcher 排除靜態資源（圖片、CSS、JS）
+- 執行成本極低（< 1ms）
+
+### Hexo 自訂標籤對 AI 的影響
+- Hexo 自訂標籤（如 `{% darrellImage %}`）AI Agent 看不懂
+- 但主要文字內容完整（90%+），影響有限
+- AI 可從檔名推測內容（如 `n8n_gmail-message.png` → Gmail 訊息截圖）
+- **建議**：保持現狀，不需轉換成標準 Markdown
+
+**參考文件：**
+- `/docs/guides/markdown-for-agents-verification.md` - 完整驗證報告
+- `/docs/guides/markdown-for-agents-performance.md` - 效能與成本分析
+- `/docs/guides/middleware-impact-analysis.md` - Middleware 對 HTML 請求的影響
+- `/docs/guides/markdown-custom-tags-issue.md` - 自訂標籤影響評估
+
+---
+
 ## Documentation References
 - `/docs/guides/n8n-template-guide.md` - Switch node 結構、LINE Bot 流程
 - `/docs/guides/n8n-node-article-guide.md` - n8n 節點文章架構指南
