@@ -92,29 +92,71 @@ description: 完整教學 n8n Gmail 節點實現郵件自動化流程...
 
 ---
 
-## 部署後測試計畫
+## 部署後測試結果
 
-### 測試指令
+### Edge Middleware 實作
+
+**日期：** 2026-02-16
+**方案：** Vercel Edge Middleware（取代 vercel.json rewrites）
+
+#### 為何改用 Middleware
+
+`vercel.json` 的 header-based rewrites **無法用於純靜態網站**：
+- Vercel 優先檢查靜態檔案，找到 `index.html` 就直接回傳
+- Rewrites 規則只在 dynamic routes 生效
+- 靜態檔案會繞過 rewrite 檢查
+
+Middleware 在**請求進入前**執行，可以攔截並處理所有請求。
+
+### 功能測試
 
 ```bash
-# 1. 測試 Accept: text/markdown 請求
-curl -H "Accept: text/markdown" https://www.darrelltw.com/n8n-gmail-node/
-
-# 2. 測試一般瀏覽器請求（應該回傳 HTML）
-curl https://www.darrelltw.com/n8n-gmail-node/
-
-# 3. 檢查 Content-Type header
+# 測試 1: Accept: text/markdown
 curl -I -H "Accept: text/markdown" https://www.darrelltw.com/n8n-gmail-node/
+# HTTP/2 302
+# location: /n8n-gmail-node/index.md
+
+# 測試 2: 正常請求
+curl -I https://www.darrelltw.com/n8n-gmail-node/
+# HTTP/2 200
+# content-type: text/html; charset=utf-8
+
+# 測試 3: 實際內容
+curl -L -H "Accept: text/markdown" https://www.darrelltw.com/n8n-gmail-node/ | head -20
+# 成功拿到 markdown front matter 和內容
 ```
+
+**結果：** ✅ 所有測試通過
+
+### 效能測試
+
+| 文章 | Markdown | HTML | 差異 |
+|------|----------|------|------|
+| n8n-gmail-node | 0.268s | 0.610s | **-0.34s** |
+| claude-code-new-command-line-tool | 0.514s | 0.720s | **-0.21s** |
+| n8n-update-log | 0.348s | 0.983s | **-0.63s** |
+
+**結論：** Markdown 請求**反而更快**（.md 檔案比完整 HTML 小很多）
+
+### Cache 行為
+
+```
+cf-cache-status: DYNAMIC
+```
+
+- Middleware 每次都會執行（需檢查 header）
+- 不影響靜態檔案的 CDN cache
+- Redirect 後的 `.md` 檔案可以被 CDN cache
 
 ### 驗證清單
 
-部署後需確認：
-- [ ] `.md` 檔有正確部署到 Vercel
-- [ ] `Accept: text/markdown` 請求拿到 markdown 內容
-- [ ] 一般瀏覽器請求不受影響，還是拿到 HTML
-- [ ] `Content-Type` response header 是 `text/markdown`
-- [ ] front matter 格式正確、內容完整
+- [x] `.md` 檔有正確部署到 Vercel
+- [x] `Accept: text/markdown` 請求拿到 markdown 內容（302 → .md）
+- [x] 一般瀏覽器請求不受影響，拿到 HTML
+- [x] `Content-Type` response header 是 `text/markdown`
+- [x] front matter 格式正確、內容完整
+- [x] 效能測試通過（無延遲，甚至更快）
+- [x] 多篇文章測試通過
 
 ---
 
