@@ -76,6 +76,6 @@ local_n8n_workflows/
 GTM-*.json
 
 # Documentation files
-docs/*.md
+docs/
 # Antigravity agent files
 .agent/
