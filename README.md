@@ -64,8 +64,8 @@
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-118-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-284,637+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2026/02/15-green?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-286,824+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2026/02/19-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-02-15 02:45:12*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-02-19 09:05:03*
