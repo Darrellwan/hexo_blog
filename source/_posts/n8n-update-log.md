@@ -7,16 +7,130 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2026/02/03 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.7.0（Pre-release），正式版本為 2.6.3
+description: n8n 的更新記錄(2026/02/19 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.9.0（Pre-release），正式版本為 2.8.3
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2026-02-03 11:30:00
+modified: 2026-02-19 16:00:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 2.9.0 Pre-release - 2026-02-16
+
+[Github 2.9.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%402.9.0)
+
+這版是 **2.9.0 Pre-release**，Chat Hub 可以掛任何工具了、Sticky Note 終於能自訂顏色、Data Table 下載 CSV 也能排除系統欄位。
+
+### Chat Hub 開放使用所有 n8n 工具
+feat(core): Support most tools on Chat hub
+
+之前 Chat Hub 只能用幾個預設的搜尋工具（Google Search、Wikipedia 之類的）
+想用其他工具就得自己建 workflow 接 AI Agent。
+
+現在直接開放所有具
+可以看到有 **275 個工具**可以選擇
+包含 Google Sheets、Gmail、Google Calendar、HTTP Request、甚至 MCP Client Tool 都有。
+
+設定方式：
+1. 進 Chat Hub
+2. 在輸入框點「+ Tools」
+3. 搜尋或瀏覽你要的工具，點「+ Add」
+4. 設定好 Credential 就能用了
+
+同一個工具還能建多份不同設定（例如兩個不同的 Gmail 帳號），也可以隨時開關切換。
+
+其實就是把 Chat Hub 從一個單純的聊天介面，變成一個可以直接連到工具使用的小助手。
+
+{% darrellImage800Alt "Chat Hub 現在可以掛載 275 個 n8n 工具，包含 Google Sheets、Gmail 等" n8n-2.9.0-chat_hub_tools.png max-800 %}
+
+### Sticky Note 自訂顏色
+feat(editor): Add custom color picker for sticky notes
+
+以前 Sticky Note 只有 7 個預設顏色可以選，workflow 一複雜起來，顏色根本不夠分類。
+
+現在多了 color picker，可以直接選一個自己喜歡的顏色。
+
+對 workflow 管理蠻有幫助的，例如：
+- 紅色 = 注意事項
+- 綠色 = 已完成的區塊
+- 藍色 = 待測試
+- 自訂色 = 你自己的分類邏輯
+
+另外貼心提醒：深色模式不能選淺色，會看不到字
+感覺之後官方應該會讓我們設定文字的顏色才對，不然淺色跟深色模式顏色會互相衝突。
+
+{% darrellImage800Alt "Sticky Note 新增自訂顏色選擇器，支援色譜選擇和 RGB 輸入" n8n-2.9.0-sticky_note_color_picker.png max-800 %}
+
+### Data Table 下載 CSV 可排除系統欄位
+feat(core): Allow downloading data table data without system columns
+
+之前從 Data Table 下載 CSV，系統欄位（id、createdAt、updatedAt）一定會跟著匯出。
+如果你只是要純資料，每次都得手動刪這三個欄位，有夠煩
+
+現在下載時會跳出一個選項：**Include system columns (id, createdAt, updatedAt)**
+取消勾選就能下載乾淨的資料，不用再後處理。
+
+{% darrellImage800Alt "Data Table 下載 CSV 現在可以選擇是否包含系統欄位" n8n-2.9.0-data_table_download_csv.png max-800 %}
+
+## 2.8.0 Pre-release - 2026-02-10
+
+[Github 2.8.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%402.8.0)
+
+這版是 **2.8.0 Pre-release**，Chat Hub 終於支援審批按鈕、社群節點在模板裡不再顯示問號、還有 Code Node 的 pairedItem 自動對應修復。
+
+### Chat Hub 支援 Send and Wait 審批按鈕
+editor: Support Chat node's 'Send and Wait for Response' mode approval buttons on Chat hub
+
+之前在 Chat Hub 裡觸發包含 Send and Wait 的 workflow，審批按鈕是顯示不出來的。
+你只能跑去 email 或其他管道點 Approve，蠻不方便的。
+
+現在 Chat Hub 會直接渲染審批按鈕，點了就能繼續執行 workflow。
+
+設定方式：
+1. Chat Trigger 的 Response Mode 設為 **「Using Response Nodes」**
+2. 接一個 Chat Node，Operation 選 **「Send and Wait for Response」**
+3. Response Type 選 Approval，設定按鈕文字
+4. Activate workflow 後從 Chat Hub 觸發
+
+按下按鈕後，workflow 會從 Chat Node 繼續往下跑，你可以用後面的節點判斷使用者按了 Approve 還是 Reject。
+
+{% darrellImage800Alt "Chat Hub 現在支援 Send and Wait 的審批按鈕" n8n-2.8.0-chat_hub_approval_buttons.png max-800 %}
+
+### 模板中未安裝的社群節點可正常預覽
+editor: Preview not installed community tools
+
+以前匯入一個用了社群節點的模板（例如 Tavily），如果你還沒安裝那個節點，畫面上就只會顯示一個 **「?」圖示**，沒有連接點，完全看不出這是什麼節點。
+
+現在就算沒安裝，節點也會正常顯示圖示、名稱和連接點，讓你看得懂整個模板的流程結構。
+而且可以直接從模板裡安裝缺少的社群節點，不用另外跑去 Settings 找。
+
+{% darrellImage800Alt "未安裝的社群節點現在能在模板中正常顯示圖示和連接點" n8n-2.8.0-community_node_preview.png max-800 %}
+
+### Code Node 聚合輸出自動對應 pairedItem
+core: Auto set pairedItem when N input items create 1 output item
+
+這個修復蠻重要的。如果你有用 Code Node 把多筆資料合併成一筆輸出：
+
+```javascript
+const items = $input.all();
+return [{
+  json: {
+    total: items.length,
+    combined: items.map(i => i.json)
+  }
+}];
+```
+
+之前在後面的節點用 `$('Code').item` 取資料會直接報錯，被迫改用 `$('Code').first()` 繞路。
+
+原因是 Code Node 把多筆合成一筆的時候，pairedItem 的對應關係斷掉了，後面的節點不知道這筆輸出對應到哪筆輸入。
+
+現在 n8n 會自動處理這個對應，`$('Code').item` 可以正常使用了。
+
+{% darrellImage800Alt "Code Node 聚合多筆輸入為單筆輸出時，pairedItem 現在會自動對應" n8n-2.8.0-paired_item_auto.png max-800 %}
 
 ## 2.7.0 Pre-release - 2026-02-02
 
