@@ -6,7 +6,7 @@
     "node": "^20.17.0 || >=22.9.0"
   },
   "scripts": {
-    "build": "npm run images:process && hexo generate --config 'main.yml' && npm run n8n-sitemap && npm run n8n-snapshots",
+    "build": "npm run images:process && hexo generate --config 'main.yml' && npm run n8n-sitemap",
     "clean": "hexo clean",
     "deploy": "hexo deploy",
     "server": "hexo server --config 'main.yml'",
@@ -16,7 +16,7 @@
     "generate_custom": "hexo generate --config './main.yml' | grep -vE 'Generated:|Rendered:|Updated:'",
     "server_custom": "hexo server --config './main.yml'",
     "server_custom_draft": "hexo server --drafts --config './main.yml'",
-    "generate": "hexo clean && npm run images:process && hexo generate --config 'main.yml' && npm run n8n-sitemap && npm run n8n-snapshots && hexo server --config 'main.yml' ",
+    "generate": "hexo clean && npm run images:process && hexo generate --config 'main.yml' && npm run n8n-sitemap && hexo server --config 'main.yml' ",
     "add_post": "hexo new gtm %npm_config_posttitle%",
     "test-readme": "node scripts/test-readme-generation.js",
     "restore-readme": "node scripts/restore-readme.js",

@@ -22,31 +22,20 @@ let sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
   
 `;
 
-// 為每個模型添加動態 URL 和靜態快照 URL
+// 為每個模型添加靜態詳情頁 URL
 for (const modelId in models) {
   const model = models[modelId];
   const lastmod = model.updatedAt || new Date().toISOString().split('T')[0];
   
-  // 添加主要 URL (model-detail.html?model=xxx)
+  // 添加靜態詳情頁 URL (model/xxx.html)
   sitemapContent += `  <!-- 模型詳情頁 - ${modelId} -->
   <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/model-detail.html?model=${modelId}</loc>
+    <loc>https://www.darrelltw.com/tools/n8n_template/model/${modelId}.html</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-`;
 
-  // 添加靜態快照 URL (snapshots/xxx.html) - 但優先級稍低
-  sitemapContent += `  <!-- 模型快照頁 - ${modelId} -->
-  <url>
-    <loc>https://www.darrelltw.com/tools/n8n_template/snapshots/${modelId}.html</loc>
-    <lastmod>${lastmod}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
 `;
 }
 
