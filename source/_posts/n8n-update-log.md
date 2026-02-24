@@ -7,16 +7,67 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2026/02/19 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.9.0（Pre-release），正式版本為 2.8.3
+description: n8n 的更新記錄(2026/02/24 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.10.0（Pre-release），正式版本為 2.9.2
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2026-02-19 16:00:00
+modified: 2026-02-24 17:00:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 2.10.0 Pre-release - 2026-02-23
+
+[Github 2.10.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%402.10.0)
+
+這版是 **2.10.0 Pre-release**，Canvas Chat 終於支援串流回應、Data Table 匯入 CSV 可以先整理欄位、多分頁編輯同一個 workflow 不會再互相覆蓋了。
+
+### Canvas Chat 支援串流回應
+feat: Enable streaming in canvas chat
+
+Chat Trigger 的 Response Mode 多了一個 **「Streaming」** 選項，
+選了之後回應會像 ChatGPT 一樣**即時串流顯示**。
+
+設定方式：
+1. 點開 Chat Trigger 節點
+2. Options → Response Mode 選 **「Streaming」**
+3. 用 Test chat 測試，就能看到串流效果
+
+對測試 AI Agent workflow 來說蠻有感的，以前需要乾等到所有回覆完成才能看到結果
+現在會很快就到回覆，然後他會依序顯示完整的答案
+
+{% darrellImage800Alt "Chat Trigger 新增 Streaming Response Mode，回應即時串流顯示" n8n-2.10.0-canvas_chat_streaming.png max-800 %}
+
+### Data Table 匯入 CSV 可刪除和重命名欄位
+editor: Allow discarding and renaming columns during CSV import
+
+之前把 CSV 匯入 Data Table 時，所有欄位全部照吃，
+如果有不需要的欄位（像是 phone_number、notes 之類的），匯進去之後還得另外刪除。
+
+現在匯入前會多一個步驟，讓你可以：
+- **取消勾選**不需要的欄位
+- **重命名**欄位名稱（例如把 `full_name` 改成 `name`）
+
+匯入完就是乾淨的資料，不用再多一道步驟。
+
+{% darrellImage800Alt "CSV 匯入現在可以勾選保留的欄位和重命名" n8n-2.10.0-csv_import_columns.png max-800 %}
+
+### Tab 級別編輯鎖定
+feat: Add tab scoped collaboration
+
+以前同一個 workflow 在多個分頁打開，每個分頁都能編輯，
+最後存檔的那個會蓋掉其他分頁的改動，超級可怕！
+例如原本在第一個分頁改了 A -> B -> C
+但另一個分頁改的 A -> D
+結果就是 B -> C 都不見
+
+現在同一個 workflow **只有一個分頁能編輯**，
+其他分頁會顯示「Editing in another tab」
+讓你知道說已經有其他分頁在編輯這個 workflow 了
+
+{% darrellImage800Alt "同一個 workflow 在其他分頁會顯示 Editing in another tab" n8n-2.10.0-tab_scoped_collaboration.png max-800 %}
 
 ## 2.9.0 Pre-release - 2026-02-16
 
