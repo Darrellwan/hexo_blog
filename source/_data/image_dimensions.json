@@ -7338,5 +7338,30 @@
     "width": 1214,
     "height": 1138,
     "mtimeMs": 1771927959609.2297
+  },
+  "/_posts/claude-cowork-intro/cowork_scheduled_tasks_sidebar.png": {
+    "width": 3087,
+    "height": 1442,
+    "mtimeMs": 1772288100696.2485
+  },
+  "/_posts/claude-cowork-intro/cowork_scheduled_tasks_running.png": {
+    "width": 2706,
+    "height": 1452,
+    "mtimeMs": 1772288470932.0771
+  },
+  "/_posts/claude-cowork-intro/cowork_scheduled_tasks_result_summary.png": {
+    "width": 1808,
+    "height": 1406,
+    "mtimeMs": 1772288496083.229
+  },
+  "/_posts/claude-cowork-intro/cowork_scheduled_tasks_result_report.png": {
+    "width": 1784,
+    "height": 1760,
+    "mtimeMs": 1772288505646.4587
+  },
+  "/_posts/claude-cowork-intro/cowork_scheduled_tasks_create_form.png": {
+    "width": 1508,
+    "height": 2284,
+    "mtimeMs": 1772288153946.5876
   }
 }
