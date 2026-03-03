@@ -2,6 +2,12 @@
 
 ## 📚 最新文章
 
+### [rclone - 雲端同步與檔案備份的瑞士刀 搭配 Claude Code 超好用](https://www.darrelltw.com/rclone-cloud-sync-backup/?utm_source=github_readme&utm_medium=referral)
+📅 2026/03/03 · 13 小時內
+
+> rclone 實測教學：Google Drive 和 Cloudflare R2 設定、copy/sync/move 指令差異比較、rclone.conf 設定檔解析，以及用 crontab 做每日自動雲端備份。
+
+
 ### [Claude Cowork 教學：給大眾用的 Claude Code](https://www.darrelltw.com/claude-cowork-intro/?utm_source=github_readme&utm_medium=referral)
 📅 2026/01/17 · 1 個月前
 
@@ -56,16 +62,10 @@
 > n8n Merge 節點完整教學！學會 Append、Combine、Choose Branch、SQL Query 選項的差異，深入了解 Matching Fields、Position 和 All Possible Combinations 的用法
 
 
-### [n8n Line Messaging 社群節點教學](https://www.darrelltw.com/n8n-line-messaging-community-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/10/21 · 4 個月前
-
-> n8n LINE Messaging 社群節點完整教學!使用 @aotoki/n8n-nodes-line-messaging 簡化 LINE Bot 開發,視覺化介面降低出錯率。涵蓋安裝設定、4 大核心功能操作、常見問題排解,以及與 HTTP Request 的使用時機比較
-
-
 ## 📊 部落格統計
-![文章總數](https://img.shields.io/badge/文章總數-118-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-288,809+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2026/03/01-green?style=flat-square)
+![文章總數](https://img.shields.io/badge/文章總數-119-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-293,040+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2026/03/03-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -97,7 +97,7 @@
 12月 ███░░░░░░░ 3篇
 01月 ██░░░░░░░░ 2篇
 02月 ░░░░░░░░░░ 0篇
-03月 ░░░░░░░░░░ 0篇
+03月 █░░░░░░░░░ 1篇
 ```
 
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-03-01 02:47:29*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-03-03 08:14:09*
