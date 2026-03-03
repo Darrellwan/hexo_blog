@@ -335,7 +335,8 @@ Claude Code 就會自己組出 `rclone copy` 指令並執行：
 
 {% darrellImage800Alt "R2 Dashboard 確認備份檔案已上傳" r2_dashboard_backup_files.png max-800 %}
 
-不用記指令、不用查路徑，講一句話就搞定備份。
+再也不需要自己辛辛苦苦的組合指令
+用口語化的方式請 AI 幫忙就好
 
 ### 場景 3：雲端搬家
 
