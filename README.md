@@ -3,7 +3,7 @@
 ## 📚 最新文章
 
 ### [rclone - 雲端同步與檔案備份的瑞士刀 搭配 Claude Code 超好用](https://www.darrelltw.com/rclone-cloud-sync-backup/?utm_source=github_readme&utm_medium=referral)
-📅 2026/03/03 · 10 小時前
+📅 2026/03/03 · 13 小時前
 
 > rclone 實測教學：Google Drive 和 Cloudflare R2 設定、copy/sync/move 指令差異比較、rclone.conf 設定檔解析，以及用 crontab 做每日自動雲端備份。
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-03-04 07:41:33*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-03-04 10:16:32*
