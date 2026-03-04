@@ -2369,9 +2369,9 @@ editor: Insights summary banner (#13424) (df474f3)
 可以當作是 n8n 的儀表板，檢視整體的運作狀況!
 
 
-## 1.84.1 release
+## 1.84.1 release - 2025-03-18
 
-## 1.84.0 
+## 1.84.0 - 2025-03-17
 
 
 ### MongoDB Atlas Vector Store Node
@@ -2394,11 +2394,11 @@ editor: Insights summary banner (#13424) (df474f3)
 
 [完整更新內容 github_n8n@1.84.0](https://github.com/n8n-io/n8n/releases)
 
-## 1.83.2 
+## 1.83.2 - 2025-03-14
 
 目前正式版已經更新到 1.83.2
 
-## 1.83.1 
+## 1.83.1 - 2025-03-12
 
 ### Bug Fix 居多
 
@@ -2417,11 +2417,11 @@ editor: Insights summary banner (#13424) (df474f3)
 
 [github_n8n@1.83.0](https://github.com/n8n-io/n8n/releases)
 
-## 1.82.2 
+## 1.82.2 - 2025-03-12
 
 目前正式版已經更新到 1.82.2
 
-## 1.82.0 
+## 1.82.0 - 2025-03-03
 
 一些重要的新功能分享
 但必須先說 **資料夾功能還沒下放**
@@ -2459,7 +2459,7 @@ n8n-1.82.0-node_modity
 但要是貼上 `{{ $now }}` 這種語法並不會自動切換
 在這個版本加上了這個功能!
 
-## 1.81.4 Release
+## 1.81.4 Release - 2025-03-03
 
 2025/03/03 正式把最新發布版本更新為 1.81.4
 
@@ -2478,7 +2478,7 @@ editor: Add workflows to the store when fetching current page
 editor: Undo keybinding changes related to window focus/blur events
 Postgres Node: Accommodate null values in query parameters for expressions
 
-## 1.81.0 
+## 1.81.0 - 2025-02-24
 
 [Github 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%401.81.0)
 
