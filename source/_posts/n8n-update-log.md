@@ -7,16 +7,65 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2026/02/24 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.10.0（Pre-release），正式版本為 2.9.2
+description: n8n 的更新記錄(2026/03/04 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.11.0（Pre-release），正式版本為 2.10.2
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2026-02-24 17:00:00
+modified: 2026-03-04 12:00:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 2.11.0 Pre-release - 2026-03-03
+
+[Github 2.11.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%402.11.0)
+
+這版是 **2.11.0 Pre-release**，Chat Hub 可以設定建議提示詞、Data Table 總覽頁多了搜尋和排序功能。
+
+### Chat Trigger 建議提示詞
+feat(Chat Trigger Node): Add Suggested prompts, shown on Chat hub
+
+Chat Hub 新增了 **Suggested Prompts** 功能，可以在 Chat Trigger 設定幾個建議提示詞，
+使用者開新對話時就會看到這些**提示詞**，點一下就自動填入輸入框。
+
+設定方式：
+1. 打開 Chat Trigger 節點
+2. 開啟 `availableInChat`（讓 workflow 出現在 Chat Hub）
+3. 在新的 `suggestedPrompts` 欄位加入提示詞，每個還可以配一個 emoji 圖示
+
+點擊提示詞後不會自動送出，使用者可以先修改再按 Enter，這個設計不錯，可以讓使用者再稍微改一下。
+
+{% darrellImage800Alt "Chat Trigger 節點的 Suggestions 設定，可以加入建議提示詞和 emoji 圖示" n8n-2.11.0-chat_suggested_prompts_setting.png max-800 %}
+
+{% darrellImage800Alt "Chat Hub 顯示建議提示詞，使用者點一下就能開始對話" n8n-2.11.0-chat_suggested_prompts_hub.png max-800 %}
+
+### Data Table 總覽頁搜尋和排序
+feat(editor): Add searching and sorting to data table overviews
+
+Data Table 越建越多之後，要找某一張表變得有點麻煩。
+
+這次 Data Table 列表頁面加了 **搜尋框** 和 **排序功能**：
+- 搜尋：直接輸入名稱就能篩選
+- 排序：可以用名稱、建立日期、大小來排
+
+排序的選擇還會記住，下次打開頁面會自動套用上次的設定。
+
+{% darrellImage800Alt "Data Table 總覽頁新增搜尋和排序功能" n8n-2.11.0-data_table_search_sort.png max-800 %}
+
+### Loop Over Items 的 Replace Me 變更明顯了
+Update Replace Me placeholder in Loop Over Items
+
+以前新增 Loop Over Items 節點時，loop 輸出會接一個「Replace Me」節點，
+但那個節點長得跟一般節點一樣，我們得把它刪除才能建立我們要的節點
+
+現在改成點一下就能替換，整個流程變順暢很多。
+很多人應該不見得會使用右鍵選單的替換節點功能，所以官方直接改成點一下就能換！
+
+{% darrellImage800Alt "以前的 Replace Me 是實心節點，需要先刪除才能換" n8n-2.11.0-loop_replace_me_before.png max-800 %}
+
+{% darrellImage800Alt "現在改成虛線框加號，點擊可以直接更換節點" n8n-2.11.0-loop_replace_me_after.png max-800 %}
 
 ## 2.10.0 Pre-release - 2026-02-23
 
