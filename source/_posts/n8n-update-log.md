@@ -7,16 +7,52 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2026/03/04 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.11.0（Pre-release），正式版本為 2.10.2
+description: n8n 的更新記錄(2026/03/10 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.12.0（Pre-release），正式版本為 2.10.4
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2026-03-04 12:00:00
+modified: 2026-03-10 00:34:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 2.12.0 Pre-release - 2026-03-09
+
+[Github 2.12.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%402.12.0)
+
+這版是 **2.12.0 Pre-release**，Personal Agent 也能設建議提示詞了、Expression 的 `?.` 自動完成修好了、Dark Mode 的拖曳把手也終於看得到了。
+
+### Personal Agent 建議提示詞
+feat(core): Add suggested prompts to Personal Agents on Chat hub
+
+上一版在 Chat Trigger 加了建議提示詞，這版把同樣的功能也加到 **Personal Agent** 了。
+
+在建立或編輯 Personal Agent 時，可以在 Editor 裡面設定最多 **6 個建議提示詞**，
+每個都可以搭配一個 icon，使用者在 Chat Hub 開新對話時就會看到這些提示詞按鈕。
+
+{% darrellImage800Alt "Personal Agent Editor 中的 Suggestions 設定，Chat Hub 上會顯示建議提示詞按鈕" n8n-2.12.0-personal_agent_suggested_prompts.png max-800 %}
+
+### Expression 自動完成支援 `?.` 可選鏈語法
+fix(editor): Fix expression autocomplete for optional chaining
+
+之前在 Expression 欄位打 `?.` 的時候，auto fill 會壞掉，
+沒辦法正常跳出後面可用的欄位名稱。
+
+`?.` 是 JavaScript 的語法，處理可能是 null 或 undefined 的值時蠻常用的，
+像 `$json.data?.name`：如果 `json` 裡面沒有 `data` 就不會錯誤！
+
+
+{% darrellImage800Alt "Expression 自動完成現在正確支援 ?. 可選鏈語法" n8n-2.12.0-expression_optional_chaining.png max-800 %}
+
+### Dark Mode 拖曳把手對比度改善
+fix(editor): Improve NDV panel drag handle contrast in dark mode
+
+用 Dark Mode 的人應該有注意到，節點設定面板上方那個調整寬度的拖曳框框（`|`）非常不明顯，深灰色跟黑色背景有點太接近。
+調了顏色好，現在如果要拖曳視窗大小有稍微對眼睛負擔小一點哈哈哈。
+
+{% darrellImage800Alt "Dark Mode 下 NDV 拖曳把手對比度改善，左邊是改之前幾乎看不到，右邊是改之後" n8n-2.12.0-ndv_drag_handle_dark_mode.png max-800 %}
 
 ## 2.11.0 Pre-release - 2026-03-03
 

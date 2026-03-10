@@ -7453,5 +7453,20 @@
     "width": 2190,
     "height": 1726,
     "mtimeMs": 1772603201741.2239
+  },
+  "/_posts/n8n-update-log/n8n-2.12.0-personal_agent_suggested_prompts.png": {
+    "width": 2028,
+    "height": 2438,
+    "mtimeMs": 1773123255602.8782
+  },
+  "/_posts/n8n-update-log/n8n-2.12.0-ndv_drag_handle_dark_mode.png": {
+    "width": 2336,
+    "height": 1444,
+    "mtimeMs": 1773123255622.5144
+  },
+  "/_posts/n8n-update-log/n8n-2.12.0-expression_optional_chaining.png": {
+    "width": 3354,
+    "height": 1614,
+    "mtimeMs": 1773123255643.0154
   }
 }
