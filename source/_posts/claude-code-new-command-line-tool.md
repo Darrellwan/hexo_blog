@@ -22,6 +22,26 @@ preload:
 [Claude Code](https://github.com/anthropics/claude-code) 是 Anthropic 公司最近推出的 CLI 工具，讓開發者可以在終端機中直接與 Claude AI 模型互動。
 讓我們用一種全新的 Command Line 方式來跟 Claude 和專案的程式碼互動
 
+## 最新更新
+
+### /btw 快速問問題
+
+Claude Code 有時候一個任務會跑超級久(1x分鐘以上甚至更久)
+有時候會突然想問一個小問題，但又不想打斷它目前的工作
+
+現在可以直接打 `/btw` 加上你的問題，Claude 會另外開一個小視窗回答你
+
+{% darrellImage800Alt "/btw 快速問問題範例" btw_side_question_example.png max-800 %}
+
+幾個重點：
+
+- **不用等 Claude 做完**：它正在讀檔案、寫程式的時候你就能問
+- **不會進對話歷史**：問完就消失，不會佔 context 空間
+- **看得到但不能動手**：它能看到目前對話的所有內容，但不會去讀檔案或跑指令
+- 按 `Space`、`Enter` 或 `Escape` 就能關掉回答
+
+蠻適合拿來問「這個 error 是什麼意思」「這個套件的用法」之類的快速問題
+
 ## 202512 更新
 
 ### 2.0.64 更新 - /stats 指令
