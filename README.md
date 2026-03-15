@@ -3,7 +3,7 @@
 ## 📚 最新文章
 
 ### [rclone - 雲端同步與檔案備份的瑞士刀 搭配 Claude Code 超好用](https://www.darrelltw.com/rclone-cloud-sync-backup/?utm_source=github_readme&utm_medium=referral)
-📅 2026/03/03 · 8 天前
+📅 2026/03/03 · 11 天前
 
 > rclone 實測教學：Google Drive 和 Cloudflare R2 設定、copy/sync/move 指令差異比較、rclone.conf 設定檔解析，以及用 crontab 做每日自動雲端備份。
 
@@ -21,7 +21,7 @@
 
 
 ### [n8n 資安漏洞 CVE-2025-68613 快點來更新你的 n8n 版本！](https://www.darrelltw.com/n8n-security-vulnerability-2025/?utm_source=github_readme&utm_medium=referral)
-📅 2025/12/25 · 2 個月前
+📅 2025/12/25 · 3 個月前
 
 > n8n CVE-2025-68613（CVSS 9.9）高風險漏洞懶人包：快速確認影響版本、檢查目前版本，並用 Docker／Zeabur／npm 更新到修復版本，降低 RCE 風險。
 
@@ -39,7 +39,7 @@
 
 
 ### [n8n 2.0 大更新：除了新功能，更該擔心能不能順利 Migrate](https://www.darrelltw.com/n8n-2-0-update/?utm_source=github_readme&utm_medium=referral)
-📅 2025/11/26 · 3 個月前
+📅 2025/11/26 · 4 個月前
 
 > n8n 2.0 大更新要來了！包含新功能介紹、Migration Report 使用教學、Breaking Changes 詳解和常見升級問題解決方案
 
@@ -57,7 +57,7 @@
 
 
 ### [n8n Merge 節點教學-解決多來源資料合併的問題](https://www.darrelltw.com/n8n-merge-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/10/27 · 4 個月前
+📅 2025/10/27 · 5 個月前
 
 > n8n Merge 節點完整教學！學會 Append、Combine、Choose Branch、SQL Query 選項的差異，深入了解 Matching Fields、Position 和 All Possible Combinations 的用法
 
@@ -65,7 +65,7 @@
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-119-blue?style=flat-square)
 ![總字數](https://img.shields.io/badge/總字數-295,239+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2026/03/11-green?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2026/03/15-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-03-11 09:25:31*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-03-15 02:52:12*
