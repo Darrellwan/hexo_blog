@@ -7473,5 +7473,35 @@
     "width": 1530,
     "height": 716,
     "mtimeMs": 1773220400639.8867
+  },
+  "/_posts/claude-cowork-intro/cowork_dispatch_paired_success.jpg": {
+    "width": 1179,
+    "height": 2301,
+    "mtimeMs": 1773807916474.1338
+  },
+  "/_posts/claude-cowork-intro/cowork_dispatch_mobile_sidebar.jpg": {
+    "width": 1179,
+    "height": 911,
+    "mtimeMs": 1773807916473.4312
+  },
+  "/_posts/claude-cowork-intro/cowork_dispatch_qr_code_pairing.png": {
+    "width": 1286,
+    "height": 1420,
+    "mtimeMs": 1773807916475.5354
+  },
+  "/_posts/claude-cowork-intro/cowork_dispatch_permissions_setup.png": {
+    "width": 1286,
+    "height": 1456,
+    "mtimeMs": 1773807916474.8792
+  },
+  "/_posts/claude-code-new-command-line-tool/claude_code-select_model_opus_1m.png": {
+    "width": 1728,
+    "height": 462,
+    "mtimeMs": 1773491267030.098
+  },
+  "/_posts/claude-code-new-command-line-tool/claude_code-effort_command.png": {
+    "width": 644,
+    "height": 110,
+    "mtimeMs": 1773491267046.9587
   }
 }

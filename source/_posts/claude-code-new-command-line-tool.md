@@ -1,7 +1,7 @@
 ---
 title: Claude Code 發佈 Command Line 的新工具
 date: 2025-02-25 08:49:50
-modified: 2025-08-09 20:50:00
+modified: 2026-03-14 14:00:00
 tags:
   - Claude
   - AI
@@ -23,6 +23,77 @@ preload:
 讓我們用一種全新的 Command Line 方式來跟 Claude 和專案的程式碼互動
 
 ## 最新更新
+
+### Opus 4.6 + 1M Context 成為預設模型 (Max 方案)
+
+Claude Code 在 3 月中迎來一個蠻有感的更新
+**Opus 4.6 with 1M context** 正式成為 Max、Team、Enterprise 方案的預設模型
+
+{% darrellImage800Alt "Claude Code Select Model 選單，Opus 4.6 with 1M context 為預設" claude_code-select_model_opus_1m.png max-800 %}
+
+重點是**價格完全沒變**，沒有什麼長 context 需要加價的問題
+
+實際使用上最有感的差別是 **compaction 變得很難觸發**
+以前對話長一點，Claude 就會壓縮前面的對話來釋放空間
+現在 1M context 讓它能記住更多前面討論過的內容
+
+使用上也要小心注意
+AI 模型對於對話內有較多內容時，表現的水準就會開始下滑
+儘管現在有 1M 的大小，但官方數據在 1M 時準確率會比 200k 低大約 1x%
+大家還是要養成任務做完就重新 `/clear` 等等習慣，讓 AI 模型能保持在最佳狀態
+
+### /effort 調整思考深度
+
+新增 `/effort` 指令，可以控制 Claude 花多少力氣思考
+
+{% darrellImage800Alt "Claude Code /effort 指令，可選 low、medium、high、max、auto" claude_code-effort_command.png max-800 %}
+
+可選的等級：
+
+- **low**：簡單任務用
+- **medium**：預設值
+- **high**：複雜任務用
+- **auto**：讓 Claude 自己判斷該用哪個
+
+medium 和 high 看起來雖然就是一個階段的差別
+但實質上 high 會帶來比 medium 好幾倍思考的時間和 token 消耗
+雖然可能得到的成果很不錯，但還是要考量當下的工作是否需要這麼深度思考
+
+我覺得可以在得到的內容不符合預期時就試試看
+也能使用 `ultrathink` 來實現當下的對話轉成 `high` 的方式來思考
+
+### /plan 可以直接帶描述
+
+以前要進 plan mode 得先切換模式再開始描述需求
+現在可以直接打：
+
+```
+/plan fix the auth bug
+```
+
+Claude 就會帶著這個方向進入 plan mode，省掉一步
+
+### /copy 按 w 直接寫入檔案
+
+`/copy` 指令新增了一個 `w` 鍵的選項
+選取 Claude 的輸出後按 `w`，可以直接寫入指定檔案
+
+以前的流程是：`/copy` → 複製到剪貼簿 → 自己打開檔案貼上
+現在按 `w` 就一步到位，省掉中間手動貼上的步驟
+
+### /context 加入優化建議
+
+`/context` 指令本身不是新的，但這次加了蠻實用的功能
+現在它會主動告訴你：
+
+- 哪些工具吃掉最多 context 空間
+- Memory 是不是太膨脹了
+- 目前 context 容量的使用狀況
+
+還會給你具體的優化建議，例如該清哪些 memory、哪個工具可以考慮關掉
+
+對長時間使用 Claude Code 的人來說蠻有幫助的
+尤其是覺得「怎麼 context 又滿了」的時候，跑一下 `/context` 就知道問題在哪
 
 ### /btw 快速問問題
 
