@@ -12,7 +12,7 @@ id: claude-cowork-intro
 description: Claude Cowork 是 Anthropic 推出的桌面 AI 助理，能自動整理檔案、處理文件，還能學習你的工作流程。實測三大應用場景，看看它如何提升工作效率。
 bgImage: blog-claude-cowork-intro-bg.jpg
 date: 2026-01-17 15:33:17
-modified: 2026-02-28 12:00:00
+modified: 2026-03-18 12:00:00
 ---
 
 
@@ -27,6 +27,7 @@ modified: 2026-02-28 12:00:00
 
 {% quickNav %}
 [
+  {"text": "Dispatch", "anchor": "dispatch", "desc": "用手機來操作 Cowork（新功能）"},
   {"text": "什麼是 Cowork", "anchor": "what-is-cowork", "desc": "基本介紹"},
   {"text": "Code vs Cowork", "anchor": "code-vs-cowork", "desc": "兩者差異比較"},
   {"text": "安全提醒", "anchor": "safety-tips", "desc": "使用前注意事項"},
@@ -37,6 +38,87 @@ modified: 2026-02-28 12:00:00
   {"text": "常見問題", "anchor": "faq", "desc": "FAQ"}
 ]
 {% endquickNav %}
+
+<h2 id="dispatch">Dispatch — 用手機來操作 Cowork（2026/03/17 新功能）</h2>
+
+{% callout type="tip" title="Dispatch 重點" %}
+**人在外面也能透過手機來使用 Claude Cowork**
+- 支援檔案搜尋、Connectors、Chrome 操控等等
+{% endcallout %}
+
+新推出的 Dispatch 和 Claude Code 的 remote control 有一點類似
+都是 Claude 在為手機操控的一個佈局準備
+Dispatch 現在只要配對好手機和電腦後，就能用手機來達成遙控電腦幫忙
+
+### 方案支援
+
+{% dataTable style="minimal" %}
+[
+  {"方案": "Max（$100以上/月）", "狀態": "✅ 已開放"},
+  {"方案": "Pro（$20/月）", "狀態": "⏳ 尚未開放"},
+  {"方案": "Free", "狀態": "❌ 未提及"}
+]
+{% enddataTable %}
+
+### 設定方式
+
+需要桌面和手機都安裝最新版 Claude app，並登入同一個帳號。
+
+**Step 1：手機開啟 Dispatch**
+
+手機 Claude app 的左側選單，往下滑會看到 **Dispatch** 入口。
+
+{% darrellImage800Alt "手機 Claude app 側邊欄出現 Dispatch 入口" cowork_dispatch_mobile_sidebar.jpg max-800 %}
+
+**Step 2：掃描 QR Code 配對**
+
+桌面 Claude Desktop 切到 Cowork，點 Dispatch 後會顯示 QR code，用手機掃描就能配對。
+
+{% darrellImage800Alt "桌面顯示 QR Code 等待手機掃描配對" cowork_dispatch_qr_code_pairing.png max-800 %}
+
+配對成功後手機會顯示確認畫面，點「Let's go」就可以開始用了。
+
+{% darrellImage800Alt "手機顯示配對成功，手機和桌面已連線" cowork_dispatch_paired_success.jpg max-800 %}
+
+**Step 3：桌面設定權限**
+
+最後在桌面設定 Dispatch 的權限，包含檔案存取、防止電腦睡眠、Chrome 操控、Connectors 連接。
+
+{% darrellImage800Alt "桌面 Dispatch 權限設定頁面，包含檔案存取、防睡眠、Chrome、Connectors 四個選項" cowork_dispatch_permissions_setup.png max-800 %}
+
+{% dataTable style="minimal" %}
+[
+  {"設定": "Give Claude access to your files", "說明": "讓 Dispatch 存取你的檔案"},
+  {"設定": "Keep this computer awake", "說明": "Dispatch 運作時防止電腦睡眠"},
+  {"設定": "Claude is ready to use Chrome", "說明": "讓 Dispatch 操控瀏覽器"},
+  {"設定": "All connectors are on", "說明": "讓 Dispatch 使用已授權的 Connector"}
+]
+{% enddataTable %}
+
+### 能做什麼？不能做什麼？
+
+根據國外看到的實測，Dispatch 的能力範圍目前還沒有很全面：
+
+**✅ sandbox 內的都行：**
+- 搜尋本地檔案（例如找含特定文字的截圖）
+- 透過 Connectors 操作（Notion 查詢、Gmail 摘要）
+- 操控 Chrome 瀏覽器
+
+**❌ sandbox 外的都不行：**
+- 開啟原生 Mac app
+- 存取系統層級資訊（Terminal）
+- 辨識圖片內容（只能靠檔名比對）
+
+### 目前限制
+
+{% callout type="warning" title="Research Preview 階段" %}
+- 電腦必須保持開啟，Mac 睡眠 = 任務停擺（建議開啟 Keep awake）
+- 回應速度比一般 Chat 慢很多
+- 只有一條 thread，不能同時管理多條對話
+- 不能開啟原生 app
+{% endcallout %}
+
+---
 
 最近應該蠻多人看到 Claude Code 被說多好用，但自己要使用時往往只能硬著頭皮學 {% term def="終端機指令介面，透過文字輸入指令來操作電腦" %}Command Line{% endterm %} 介面
 或是需要用 Cursor 或 Antigravity 然後使用 Claude Code 的 extension 
@@ -342,6 +424,14 @@ Cowork 現在可以設定排程了！
 {% faq %}
 [
   {
+    "question": "Dispatch 需要什麼方案才能用？",
+    "answer": "目前 Dispatch 僅開放給 Max 方案（$100/月）用戶，Pro 方案尚未開放。使用前需要桌面和手機都安裝最新版 Claude app，並登入同一個帳號。"
+  },
+  {
+    "question": "用 Dispatch 時電腦可以關機嗎？",
+    "answer": "不行，電腦必須保持開啟且 Claude Desktop app 要在執行中，Dispatch 才能運作。建議在設定中開啟「Keep this computer awake」防止電腦自動睡眠。"
+  },
+  {
     "question": "Cowork 支援 Windows 嗎？",
     "answer": "支援！Windows 版本已在 2026/02/10 上線，功能跟 macOS 完全一樣。到 claude.com/download 下載桌面版即可使用。"
   },
@@ -385,6 +475,7 @@ Claude Cowork 特別適合經常處理檔案整理、文件製作的人，特別
 
 ## 參考來源
 
+- [Assign tasks to Claude from anywhere in Cowork - Help Center](https://support.claude.com/en/articles/13947068-assign-tasks-to-claude-from-anywhere-in-cowork)
 - [Introducing Cowork - Claude Blog](https://claude.com/blog/cowork-research-preview)
 - [Getting Started with Cowork - Claude Help Center](https://support.claude.com/en/articles/13345190-getting-started-with-cowork)
 - [Introducing Anthropic Labs](https://www.anthropic.com/news/introducing-anthropic-labs)
