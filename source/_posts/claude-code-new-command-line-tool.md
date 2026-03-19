@@ -1,7 +1,7 @@
 ---
 title: Claude Code 發佈 Command Line 的新工具
 date: 2025-02-25 08:49:50
-modified: 2026-03-14 14:00:00
+modified: 2026-03-19 14:00:00
 tags:
   - Claude
   - AI
@@ -24,12 +24,12 @@ preload:
 
 ## 最新更新
 
-### Opus 4.6 + 1M Context 成為預設模型 (Max 方案)
+### Opus + 1M Context 成為預設模型 (Max 方案)
 
 Claude Code 在 3 月中迎來一個蠻有感的更新
-**Opus 4.6 with 1M context** 正式成為 Max、Team、Enterprise 方案的預設模型
+**Opus with 1M context** 正式成為 Max、Team、Enterprise 方案的預設模型
 
-{% darrellImage800Alt "Claude Code Select Model 選單，Opus 4.6 with 1M context 為預設" claude_code-select_model_opus_1m.png max-800 %}
+{% darrellImage800Alt "Claude Code Select Model 選單，Opus with 1M context 為預設" claude_code-select_model_opus_1m.png max-800 %}
 
 重點是**價格完全沒變**，沒有什麼長 context 需要加價的問題
 
@@ -147,10 +147,10 @@ option+P （MacOS）
 
 {% darrellImage800Alt "Claude Code 用快捷鍵切換模型" claudecode-change-model-hotkey.gif max-800 %}
 
-### Pro Plan 使用 Opus 4.5 模型
-**Pro** 方案現在也能使用 Opus 4.5 模型了！
+### Pro Plan 模型更新
+**Pro** 方案預設使用 Sonnet，如果想用 Opus 需要開啟 Extra Usage（按 API 價格計費）
 
-{% darrellImage800Alt "Claude Code Pro 方案現在也能使用 Opus 4.5 模型了！" claude_code-pro_can_use_opus_model.png max-800 %}
+{% darrellImage800Alt "Claude Code Pro 方案的模型選擇" claude_code-pro_can_use_opus_model.png max-800 %}
 
 ### -usage 指令
 
@@ -161,36 +161,48 @@ option+P （MacOS）
 {% darrellImage800Alt "Claude Code -usage 指令" claude_code-pro_can_use_opus_model_alt.png max-800 %}
 
 
-## Claude Code 價格 - 202508 更新
+## Claude Code 價格
 
-目前價格除了以前要用 API 儲值以外，也包含在 訂閱 Claude 的 Pro 以上方案中
+目前價格除了以前要用 API 儲值以外，也包含在訂閱 Claude 的 Pro 以上方案中
+用量是跟 Claude 網頁版、桌面版**共用**的，所有活動都算在同一個額度裡
 
 分別有三種訂閱方式：
 
 ### Claude Pro
 每月 20 美金
-用量為大約 每 5 小時約可送 10–40 次指令，僅支援 Sonnet 4。
+預設使用 Sonnet，Opus 需要開啟 Extra Usage 才能用
+用量每 5 小時約可送 45 次指令
 
-### Claude Max 100
+### Claude Max 5x
 每月 100 美金
-用量為大約 每 5 小時約可送 50–200 次指令，可用 Opus 4 / Sonnet 4
+Pro 的 5 倍用量，每 5 小時約可送 225 次指令
+可用 Opus / Sonnet / Haiku，預設就是 Opus（含 1M context）
 
-### Claude Max 200
+### Claude Max 20x
 每月 200 美金
-用量為大約 每 5 小時約可送 200–800 次指令，可用 Opus 4 / Sonnet 4。
+Pro 的 20 倍用量，每 5 小時約可送 900 次指令
+可用 Opus / Sonnet / Haiku，預設就是 Opus（含 1M context）
 
 ### 比較表格
-| 方案 | 月費 | 用量（每 5 小時） | 可用模型 |
-|---|---|---|---|
-| Claude Pro | 每月 20 美金 | 10–40 次指令 | Sonnet 4 |
-| Claude Max 100 | 每月 100 美金 | 50–200 次指令 | Opus 4 / Sonnet 4 |
-| Claude Max 200 | 每月 200 美金 | 200–800 次指令 | Opus 4 / Sonnet 4 |
+
+{% dataTable style="minimal" align="left" %}
+[
+  {"方案": "Claude Pro", "月費": "$20", "每 5 小時約": "~45 次", "預設模型": "Sonnet", "可用模型": "Sonnet / Haiku"},
+  {"方案": "Claude Max 5x", "月費": "$100", "每 5 小時約": "~225 次", "預設模型": "Opus (1M)", "可用模型": "Opus / Sonnet / Haiku"},
+  {"方案": "Claude Max 20x", "月費": "$200", "每 5 小時約": "~900 次", "預設模型": "Opus (1M)", "可用模型": "Opus / Sonnet / Haiku"}
+]
+{% enddataTable %}
+
+實際可以送出的次數會根據對話長度、附件大小、使用的模型而有所不同
 
 ### 價格心得
-其實仔細觀察可以發現 20 美金和 100 美金的用量是剛好 5 倍
-但 200 美金的用量是 5 美金的 40 倍。
+Max 5x 是 Pro 價格的 5 倍、用量也剛好 5 倍，等比例升級
+但 Max 20x 只要 Pro 的 10 倍價格，用量卻是 20 倍
 
-所以 20 美金要再往上升級的話，200 美金是比較划算的選擇(價格比 100 美金多 2 倍，但用量是 4 倍！)
+所以 Pro 要再往上升級的話，Max 20x 是比較划算的選擇（價格比 Max 5x 多 2 倍，但用量是 4 倍）
+
+另外 Pro 方案要注意，預設只能用 Sonnet
+想用 Opus 的話需要額外開啟 Extra Usage（按 API 價格計費），或是直接升級到 Max
 
 ## 主要功能
 
