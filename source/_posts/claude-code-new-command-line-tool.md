@@ -7,7 +7,7 @@ tags:
   - AI
   - 開發工具
 page_type: post
-description: 介紹安裝 Claude Code和指令，以及一些簡易的操作方式，最新的價格方案，以及使用心得
+description: Claude Code 價格方案比較：Pro $20、Max 5x $100、Max 20x $200，台幣換算與選擇建議。完整安裝教學、指令介紹與實際使用心得
 categories: 
   - 工具
 bgImage: claude_code.jpg
@@ -169,17 +169,17 @@ option+P （MacOS）
 分別有三種訂閱方式：
 
 ### Claude Pro
-每月 20 美金
+每月 20 美金（約台幣 630 元）
 預設使用 Sonnet，Opus 需要開啟 Extra Usage 才能用
 用量每 5 小時約可送 45 次指令
 
 ### Claude Max 5x
-每月 100 美金
+每月 100 美金（約台幣 3,150 元）
 Pro 的 5 倍用量，每 5 小時約可送 225 次指令
 可用 Opus / Sonnet / Haiku，預設就是 Opus（含 1M context）
 
 ### Claude Max 20x
-每月 200 美金
+每月 200 美金（約台幣 6,300 元）
 Pro 的 20 倍用量，每 5 小時約可送 900 次指令
 可用 Opus / Sonnet / Haiku，預設就是 Opus（含 1M context）
 
@@ -187,9 +187,9 @@ Pro 的 20 倍用量，每 5 小時約可送 900 次指令
 
 {% dataTable style="minimal" align="left" %}
 [
-  {"方案": "Claude Pro", "月費": "$20", "每 5 小時約": "~45 次", "預設模型": "Sonnet", "可用模型": "Sonnet / Haiku"},
-  {"方案": "Claude Max 5x", "月費": "$100", "每 5 小時約": "~225 次", "預設模型": "Opus (1M)", "可用模型": "Opus / Sonnet / Haiku"},
-  {"方案": "Claude Max 20x", "月費": "$200", "每 5 小時約": "~900 次", "預設模型": "Opus (1M)", "可用模型": "Opus / Sonnet / Haiku"}
+  {"方案": "Claude Pro", "月費": "$20（約 NT$630）", "每 5 小時約": "~45 次", "預設模型": "Sonnet", "可用模型": "Sonnet / Haiku"},
+  {"方案": "Claude Max 5x", "月費": "$100（約 NT$3,150）", "每 5 小時約": "~225 次", "預設模型": "Opus (1M)", "可用模型": "Opus / Sonnet / Haiku"},
+  {"方案": "Claude Max 20x", "月費": "$200（約 NT$6,300）", "每 5 小時約": "~900 次", "預設模型": "Opus (1M)", "可用模型": "Opus / Sonnet / Haiku"}
 ]
 {% enddataTable %}
 
@@ -203,6 +203,15 @@ Max 5x 是 Pro 價格的 5 倍、用量也剛好 5 倍，等比例升級
 
 另外 Pro 方案要注意，預設只能用 Sonnet
 想用 Opus 的話需要額外開啟 Extra Usage（按 API 價格計費），或是直接升級到 Max
+
+<h2 id="faq">常見問題</h2>
+
+{% faq %}
+[
+  {"question": "Claude Code 是免費的嗎？", "answer": "Claude Code 本身可以免費安裝，但使用時需要有 Claude Pro 以上的訂閱方案，或是用 API Key 搭配儲值的方式付費。免費的 Claude 帳號無法使用 Claude Code。"},
+  {"question": "Claude Code 的用量怎麼算？", "answer": "用量是跟 Claude 網頁版、桌面版共用的，每 5 小時為一個週期重置。實際可送出的次數會根據對話長度、附件大小、使用的模型而不同，官方給的數字是參考值。"}
+]
+{% endfaq %}
 
 ## 主要功能
 
