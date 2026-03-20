@@ -2,8 +2,14 @@
 
 ## 📚 最新文章
 
+### [Claude Code Channels 設定教學，用 Discord、Telegram 遠端使用 Claude Code](https://www.darrelltw.com/claude-code-channels-discord-telegram/?utm_source=github_readme&utm_medium=referral)
+📅 2026/03/20 · 3 小時前
+
+> Claude Code Channels 讓你從手機 Discord 或 Telegram 傳訊息給正在跑的 Claude Code，不用坐在電腦前也能讓 AI 幫你改 code、跑指令。完整 Discord Bot 和 Telegram Bot 設定教學和幾個場景測試
+
+
 ### [rclone - 雲端同步與檔案備份的瑞士刀 搭配 Claude Code 超好用](https://www.darrelltw.com/rclone-cloud-sync-backup/?utm_source=github_readme&utm_medium=referral)
-📅 2026/03/03 · 16 天前
+📅 2026/03/03 · 17 天前
 
 > rclone 實測教學：Google Drive 和 Cloudflare R2 設定、copy/sync/move 指令差異比較、rclone.conf 設定檔解析，以及用 crontab 做每日自動雲端備份。
 
@@ -56,15 +62,9 @@
 > 深入體驗 Google Antigravity。包含完整安裝教學、Agent Manager 使用、自動化測試、Antigravity Skills 設定教學與跨工具共用技巧。
 
 
-### [n8n Merge 節點教學-解決多來源資料合併的問題](https://www.darrelltw.com/n8n-merge-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/10/27 · 5 個月前
-
-> n8n Merge 節點完整教學！學會 Append、Combine、Choose Branch、SQL Query 選項的差異，深入了解 Matching Fields、Position 和 All Possible Combinations 的用法
-
-
 ## 📊 部落格統計
-![文章總數](https://img.shields.io/badge/文章總數-119-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-298,371+-blue?style=flat-square)
+![文章總數](https://img.shields.io/badge/文章總數-120-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-304,958+-blue?style=flat-square)
 ![最後更新](https://img.shields.io/badge/最後更新-2026/03/20-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
@@ -97,7 +97,7 @@
 12月 ███░░░░░░░ 3篇
 01月 ██░░░░░░░░ 2篇
 02月 ░░░░░░░░░░ 0篇
-03月 █░░░░░░░░░ 1篇
+03月 ██░░░░░░░░ 2篇
 ```
 
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-03-20 08:31:49*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-03-20 15:45:33*
