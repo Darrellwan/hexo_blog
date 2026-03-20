@@ -1998,5 +1998,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     color: var(--n8n-date-color);
   }
 </style>
+
+<!-- n8n Chat Widget -->
+<link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+<script type="module">
+  import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+  createChat({
+    webhookUrl: 'https://darrellinfo-n8n.hnd1.zeabur.app/webhook/eab02f88-0af1-4711-8c7c-bbed1a1de3d7',
+    mode: 'window',
+    defaultLanguage: 'en',
+    initialMessages: [
+      '嗨！我是 n8n 教學小幫手',
+      '你可以問我任何 n8n 相關問題，我會推薦適合的教學文章給你！',
+    ],
+    i18n: {
+      en: {
+        title: '有什麼 n8n 問題嗎？',
+        subtitle: '我可以幫你找到適合的教學文章',
+        footer: '',
+        getStarted: 'New Conversation',
+        inputPlaceholder: '輸入你的 n8n 問題...',
+      },
+    },
+  });
+</script>
 </body>
 </html>
