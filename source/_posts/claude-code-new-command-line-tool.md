@@ -8,8 +8,8 @@ tags:
   - 開發工具
 page_type: post
 description: Claude Code 價格方案比較：Pro $20、Max 5x $100、Max 20x $200，台幣換算與選擇建議。完整安裝教學、指令介紹與實際使用心得
-categories: 
-  - 工具
+categories:
+  - Claude
 bgImage: claude_code.jpg
 preload:
   - claude_code.jpg

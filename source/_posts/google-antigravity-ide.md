@@ -7,7 +7,7 @@ tags:
   - AI
   - Antigravity
 categories:
-  - 開發工具
+  - 工具
 description: "深入體驗 Google Antigravity。包含完整安裝教學、Agent Manager 使用、自動化測試、Antigravity Skills 設定教學與跨工具共用技巧。"
 bgImage: blog-google-antigravity.jpg
 page_type: post

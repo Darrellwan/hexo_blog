@@ -5,7 +5,7 @@ tags:
   - 雲端備份
   - 檔案同步
 categories:
-  - 工具教學
+  - 工具
 page_type: post
 id: rclone-cloud-sync-backup
 description: rclone 實測教學：Google Drive 和 Cloudflare R2 設定、copy/sync/move 指令差異比較、rclone.conf 設定檔解析，以及用 crontab 做每日自動雲端備份。

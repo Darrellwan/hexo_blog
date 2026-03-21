@@ -6,7 +6,7 @@ tags:
   - 自動化
   - 生產力工具
 categories:
-  - AI工具
+  - Claude
 page_type: post
 id: claude-cowork-intro
 description: Claude Cowork 是 Anthropic 推出的桌面 AI 助理，能自動整理檔案、處理文件，還能學習你的工作流程。實測三大應用場景，看看它如何提升工作效率。

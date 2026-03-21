@@ -3,7 +3,7 @@ title: CompressX MacOS 強大的壓縮圖片工具(需付費)
 tags:
   - Tools
 categories:
-  - Tools
+  - 工具
 page_type: post
 id: tool-compressx
 description: 如果你常常需要壓縮圖片，但免費的工具常會有操作複雜、或是需要多個工具互相搭配，甚至壓縮率也普普通通，CompressX 是一個很好的替代工具，非常值得它的價格!

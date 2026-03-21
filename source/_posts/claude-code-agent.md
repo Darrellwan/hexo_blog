@@ -9,8 +9,8 @@ tags:
   - 開發工具
 page_type: post
 description: Claude Code 新推出的 Agent 功能讓你可以建立專屬的開發 Agent，透過自然語言指令自動處理重複性的程式設計任務。不再需要每次重新解釋需求，讓 Claude Code Agent 記住你的開發模式。
-categories: 
-  - 工具
+categories:
+  - Claude
 bgImage: claude_code_agent-bg.jpg
 preload:
   - claude_code_agent-bg.jpg

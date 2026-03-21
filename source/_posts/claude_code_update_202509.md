@@ -3,8 +3,8 @@ title: Claude Code 更新！ 全新 Extension for VSCode/Cursor 介面
 tags:
   - Claude Code
   - AI
-categories: 
-  - AI
+categories:
+  - Claude
 page_type: post
 id: claude_code_update_202509
 description: Claude Code 2025年11月更新：新的 Cursor IDE 介面，讓不是工程師的你也能輕鬆使用 Claude Code

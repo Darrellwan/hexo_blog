@@ -8,7 +8,7 @@ tags:
   - Discord
   - Telegram
 categories:
-  - 工具
+  - Claude
 page_type: post
 id: claude-code-channels-discord-telegram
 description: Claude Code Channels 讓你從手機 Discord 或 Telegram 傳訊息給正在跑的 Claude Code，不用坐在電腦前也能讓 AI 幫你改 code、跑指令。完整 Discord Bot 和 Telegram Bot 設定教學和幾個場景測試
