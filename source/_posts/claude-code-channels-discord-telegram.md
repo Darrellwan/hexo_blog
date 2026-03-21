@@ -377,6 +377,17 @@ Claude 去讀信箱，整理出重點回覆到 Telegram
 
 {% darrellImage800Alt "透過 Telegram 請 Claude 整理今天的促銷信" telegram_actual_usage.png max-800 %}
 
+### 人在外，遠端臨時改簡報
+
+這應該是蠻多人很需要的一個需求
+人在外面通勤時突然有靈感或是需要調整簡報內容
+直接在 Discord 跟 Claude 說「幫我傳 XX 簡報給我」，收到檔案確認內容後
+再說「第七頁不需要 XX，幫我刪掉」，改完直接再傳回最新檔案
+
+如果有串聯 Google 相關服務或是 CLI，還能直接上傳到 Google Drive 或是寄信給對方！
+
+{% darrellImage800Alt "透過 Discord 遠端請 Claude 修改 PPTX 簡報內容" discord_pptx_remote_edit.png max-800 %}
+
 ### 傳 PDF 讓 Claude 分析
 
 在 Discord 直接丟一個 PDF 檔案，問「這 PDF 在說什麼」
