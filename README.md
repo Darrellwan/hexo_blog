@@ -3,7 +3,7 @@
 ## 📚 最新文章
 
 ### [Claude Code Channels 設定教學，用 Discord、Telegram 遠端使用 Claude Code](https://www.darrelltw.com/claude-code-channels-discord-telegram/?utm_source=github_readme&utm_medium=referral)
-📅 2026/03/20 · 3 小時前
+📅 2026/03/20 · 17 小時前
 
 > Claude Code Channels 讓你從手機 Discord 或 Telegram 傳訊息給正在跑的 Claude Code，不用坐在電腦前也能讓 AI 幫你改 code、跑指令。完整 Discord Bot 和 Telegram Bot 設定教學和幾個場景測試
 
@@ -64,8 +64,8 @@
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-120-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-304,958+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2026/03/20-green?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-305,181+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2026/03/21-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-03-20 15:45:33*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-03-21 06:04:40*
