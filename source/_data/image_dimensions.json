@@ -7620,9 +7620,9 @@
     "mtimeMs": 1774021368893.8687
   },
   "/_posts/claude-code-channels-discord-telegram/claude_code_channels_bg.jpg": {
-    "width": 1080,
-    "height": 1350,
-    "mtimeMs": 1774021368899.295
+    "width": 1620,
+    "height": 2025,
+    "mtimeMs": 1774073911197.4307
   },
   "/_posts/claude-code-channels-discord-telegram/telegram_react_emoji.png": {
     "width": 464,
@@ -7688,5 +7688,10 @@
     "width": 1518,
     "height": 1718,
     "mtimeMs": 1774067387863.6658
+  },
+  "/_posts/claude-code-channels-discord-telegram/discord_permission_relay.png": {
+    "width": 944,
+    "height": 534,
+    "mtimeMs": 1774361919831.5918
   }
 }
