@@ -7,16 +7,103 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2026/03/10 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.12.0（Pre-release），正式版本為 2.10.4
+description: n8n 的更新記錄(2026/03/26 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.14.0（Pre-release），正式版本為 2.13.2
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2026-03-10 00:34:00
+modified: 2026-03-26 00:00:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 2.14.0 Pre-release - 2026-03-24
+
+[Github 2.14.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%402.14.0)
+
+這版是 **2.14.0 Pre-release**，n8n 推出了客戶端 CLI 工具，不用 SSH 進伺服器就能管 workflow。Credential 和 Workflow 列表頁也能看到依賴關係了，刪東西前終於知道誰在用。
+
+### n8n CLI 
+Add @n8n/cli: a client CLI to manage n8n from the terminal
+
+n8n 本來就有 CLI（`n8n start`、`n8n export` 那些），但那是要在 n8n 伺服器上跑的。
+
+這次的 `@n8n/cli` 不太一樣，是透過 REST API 遠端操作，
+在自己電腦裝好、設定 API Key 就能用，不用另外連線到 n8n 的伺服器中。
+
+```bash
+# 不想裝也行，npx 直接跑
+npx @n8n/cli workflow list
+
+# 或全域安裝
+npm install -g @n8n/cli
+
+# 設定連線
+n8n-cli config set-url https://你的n8n網址
+n8n-cli config set-api-key n8n_api_xxxxx
+```
+
+目前有 **54 個指令**，Workflow、Execution、Credential、Project、Tag、Variable、Data Table 都能操作。
+
+幾個蠻實用的用法：
+
+```bash
+# 列出啟用中的 workflow
+n8n-cli workflow list --active
+
+# 查最近失敗的 execution
+n8n-cli execution list --status=error --limit=5
+
+# 內建 jq 語法篩選
+n8n-cli workflow get <id> --jq '.nodes[].name'
+```
+
+蠻貼心的是 pipe 的時候會自動切成 JSON 輸出，不用再加 `--json`，跟其他工具串接很方便。
+
+另外有個 **`skill install`** 指令，可以把 n8n CLI 的使用說明裝進 Claude Code，
+裝完之後 AI 就比較知道怎麼幫你操作
+
+```bash
+n8n-cli skill install
+```
+
+目前是 Beta（v0.2.0），官方文件還沒上 docs.n8n.io，不過套件裡有附完整文件。
+npm：https://www.npmjs.com/package/@n8n/cli
+
+{% darrellImage800Alt "n8n 客戶端 CLI 工具指令總覽，涵蓋 Workflow、Execution、Credential 等操作" n8n-2.14.0-n8n_cli.png max-800 %}
+
+### Credential 和 Workflow 顯示依賴關係
+Display workflow, credential and data table dependencies
+
+Workflow 多了之後，要刪一個 Credential 都不確定有多少 workflow 在使用。
+
+現在 Credential 的列表頁會多一個數字，
+點下去就能看到有哪些 workflow 在用它：
+
+點清單裡的項目可以直接跳過去，多的時候也有搜尋框。
+刪東西之前先看一下這個數字就好。
+
+{% darrellImage800Alt "Credential 列表顯示依賴關係數字，點開可看到哪些 Workflow 在使用" n8n-2.14.0-dependency_display.png max-800 %}
+
+### Execution 頁面新增版本資訊
+Add history version info to execution page / Add new execution filter by workflow version
+
+Execution 頁面多了兩個跟版本有關的功能。
+
+第一個是 Execution 詳情頁多了**版本標籤**，
+直接告訴你這次執行是用哪個版本的 workflow 跑的。
+點標籤可以跳到 Workflow History 看那個版本的內容。
+
+第二個是 Execution 列表頁的篩選器多了 **Version 下拉選單**，
+可以只看某個版本的執行紀錄。
+
+workflow 改版後如果出問題，直接篩出舊版的 execution 來比對就好，
+不用在一大堆紀錄裡面翻。
+
+{% darrellImage800Alt "Execution 詳情頁顯示 Version 標籤，可以看到這次執行用的 workflow 版本" n8n-2.14.0-execution_version_info.png max-800 %}
+
+{% darrellImage800Alt "Execution 篩選器新增 Version 下拉選單，可篩選特定版本的執行紀錄" n8n-2.14.0-execution_version_filter.png max-800 %}
 
 ## 2.12.0 Pre-release - 2026-03-09
 

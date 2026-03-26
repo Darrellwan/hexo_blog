@@ -7693,5 +7693,25 @@
     "width": 944,
     "height": 534,
     "mtimeMs": 1774361919831.5918
+  },
+  "/_posts/n8n-update-log/n8n-2.14.0-n8n_cli.png": {
+    "width": 1736,
+    "height": 1616,
+    "mtimeMs": 1774454136698.4666
+  },
+  "/_posts/n8n-update-log/n8n-2.14.0-dependency_display.png": {
+    "width": 1750,
+    "height": 568,
+    "mtimeMs": 1774454157582.658
+  },
+  "/_posts/n8n-update-log/n8n-2.14.0-execution_version_info.png": {
+    "width": 1268,
+    "height": 670,
+    "mtimeMs": 1774454158010.9385
+  },
+  "/_posts/n8n-update-log/n8n-2.14.0-execution_version_filter.png": {
+    "width": 1500,
+    "height": 1352,
+    "mtimeMs": 1774454158940.572
   }
 }
