@@ -3,13 +3,13 @@
 ## 📚 最新文章
 
 ### [Claude Code Channels 設定教學，用 Discord、Telegram 遠端使用 Claude Code](https://www.darrelltw.com/claude-code-channels-discord-telegram/?utm_source=github_readme&utm_medium=referral)
-📅 2026/03/20 · 4 天前
+📅 2026/03/20 · 6 天前
 
 > Claude Code Channels 讓你從手機 Discord 或 Telegram 傳訊息給正在跑的 Claude Code，不用坐在電腦前也能讓 AI 幫你改 code、跑指令。完整 Discord Bot 和 Telegram Bot 設定教學和幾個場景測試
 
 
 ### [rclone - 雲端同步與檔案備份的瑞士刀 搭配 Claude Code 超好用](https://www.darrelltw.com/rclone-cloud-sync-backup/?utm_source=github_readme&utm_medium=referral)
-📅 2026/03/03 · 21 天前
+📅 2026/03/03 · 22 天前
 
 > rclone 實測教學：Google Drive 和 Cloudflare R2 設定、copy/sync/move 指令差異比較、rclone.conf 設定檔解析，以及用 crontab 做每日自動雲端備份。
 
@@ -64,8 +64,8 @@
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-120-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-305,672+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2026/03/24-green?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-306,922+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2026/03/26-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-03-24 16:06:52*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-03-26 08:49:53*
