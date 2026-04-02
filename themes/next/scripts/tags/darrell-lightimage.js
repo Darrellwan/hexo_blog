@@ -528,7 +528,7 @@ function customLightGalleryCover(args) {
   let height = 450;
 
   if(!className || className == ""){
-    className = "max-1024";
+    className = "max-800";
   }
 
   const imageDimensionsData = hexo.locals.get('data')?.image_dimensions;
