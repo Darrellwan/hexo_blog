@@ -3,25 +3,25 @@
 ## 📚 最新文章
 
 ### [Claude Code Channels 設定教學，用 Discord、Telegram 遠端使用 Claude Code](https://www.darrelltw.com/claude-code-channels-discord-telegram/?utm_source=github_readme&utm_medium=referral)
-📅 2026/03/20 · 9 天前
+📅 2026/03/20 · 16 天前
 
 > Claude Code Channels 讓你從手機 Discord 或 Telegram 傳訊息給正在跑的 Claude Code，不用坐在電腦前也能讓 AI 幫你改 code、跑指令。完整 Discord Bot 和 Telegram Bot 設定教學和幾個場景測試
 
 
 ### [rclone - 雲端同步與檔案備份的瑞士刀 搭配 Claude Code 超好用](https://www.darrelltw.com/rclone-cloud-sync-backup/?utm_source=github_readme&utm_medium=referral)
-📅 2026/03/03 · 25 天前
+📅 2026/03/03 · 1 個月前
 
 > rclone 實測教學：Google Drive 和 Cloudflare R2 設定、copy/sync/move 指令差異比較、rclone.conf 設定檔解析，以及用 crontab 做每日自動雲端備份。
 
 
 ### [Claude Cowork 教學：給大眾用的 Claude Code](https://www.darrelltw.com/claude-cowork-intro/?utm_source=github_readme&utm_medium=referral)
-📅 2026/01/17 · 2 個月前
+📅 2026/01/17 · 3 個月前
 
 > Claude Cowork 是 Anthropic 推出的桌面 AI 助理，能自動整理檔案、處理文件，還能學習你的工作流程。實測三大應用場景，看看它如何提升工作效率。
 
 
 ### [n8n 爬蟲神器 Apify 教學：不會寫程式也能爬資料](https://www.darrelltw.com/n8n-apify-node/?utm_source=github_readme&utm_medium=referral)
-📅 2026/01/13 · 2 個月前
+📅 2026/01/13 · 3 個月前
 
 > 完整教學 n8n Apify 節點實現網頁爬蟲自動化。包含 API Token 設定、Run Actor 操作、Instagram 數據爬取等功能介紹。實測別人 IG 帳號發文數據自動同步到 Google Sheets 案例。
 
@@ -33,7 +33,7 @@
 
 
 ### [n8n Time Saved Node 教學 - 省下多少時間？量化 n8n 的 ROI](https://www.darrelltw.com/n8n-time-saved-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/12/20 · 3 個月前
+📅 2025/12/20 · 4 個月前
 
 > 老闆問「自動化到底省多少時間？」答不出來？n8n 2.1.0 的 Time Saved Node 讓你量化 ROI。本文教你 Fixed vs Dynamic 兩種計算方式，含 LINE 自動回覆實例。
 
@@ -57,7 +57,7 @@
 
 
 ### [Google Antigravity 搭配 Gemini 3 模型還能自動化測試！Vibe Coding 新神器](https://www.darrelltw.com/google-antigravity-ide/?utm_source=github_readme&utm_medium=referral)
-📅 2025/11/19 · 4 個月前
+📅 2025/11/19 · 5 個月前
 
 > 深入體驗 Google Antigravity。包含完整安裝教學、Agent Manager 使用、自動化測試、Antigravity Skills 設定教學與跨工具共用技巧。
 
@@ -65,7 +65,7 @@
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-120-blue?style=flat-square)
 ![總字數](https://img.shields.io/badge/總字數-306,922+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2026/03/29-green?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2026/04/05-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -92,12 +92,12 @@
 
 ## 📈 更新頻率
 ```text
-10月 ██░░░░░░░░ 2篇
 11月 ███░░░░░░░ 3篇
 12月 ███░░░░░░░ 3篇
 01月 ██░░░░░░░░ 2篇
 02月 ░░░░░░░░░░ 0篇
 03月 ██░░░░░░░░ 2篇
+04月 ░░░░░░░░░░ 0篇
 ```
 
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-03-29 02:54:26*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-04-05 02:56:39*
