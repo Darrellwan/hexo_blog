@@ -7,16 +7,77 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2026/03/26 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.14.0（Pre-release），正式版本為 2.13.2
+description: n8n 的更新記錄(2026/04/03 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.15.0（Pre-release），正式版本為 2.14.2
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2026-03-26 00:00:00
+modified: 2026-04-03 23:00:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 2.15.0 Pre-release - 2026-03-30
+
+[Github 2.15.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%402.15.0)
+
+### Error Workflow 依賴關係顯示
+Support error workflows in workflow dependency
+
+之前在 2.14.0 介紹了 Dependency 功能，
+可以看到 Workflow 和對應的 Credential
+
+這次更新補上了兩個新的 Dependency：
+- **Error workflow**：這個 Workflow 的錯誤由誰處理
+- **Error handler for**：誰把這個 Workflow 當成 Error Handler
+
+而且是**雙向**的。
+假設 A 設定 B 為 Error Workflow，那 A 的面板會顯示「Error workflow: B」，B 的面板也會顯示「Error handler for: A」。
+
+這樣要改 Error Workflow 的時候，很直覺能看到誰影響誰。
+
+{% darrellImage800Alt "Dependency 面板新增 Error Workflow 依賴顯示" n8n-2.15.0-error_workflow_dependency.png max-800 %}
+
+### Workflow Archive / Unarchive API
+Public API endpoints for workflow archive and unarchive
+
+目前想要 Archive workflow 都需要打開 n8n 來操作
+這次補上了兩個 Public API 端點，未來可以透過 API 封存 Workflow
+期待他們也更新到 `n8n-cli` 中
+
+```
+POST /api/v1/workflows/{id}/archive
+```
+
+Archive 後 Workflow 會：
+- 立即停用（如果正在 active）
+- 無法編輯或執行
+- 資料不會消失（soft delete）
+
+Unarchive 後會恢復成**停用狀態**，不會自動重新啟用，需要另外手動 activate。
+如果你有用 API 管理 Workflow，例如定期清理不用的自動化，現在可以用 API 封存而不用真的刪除。
+
+{% darrellImage800Alt "Workflow Archive/Unarchive API 端點" n8n-2.15.0-workflow_archive_api.png max-800 %}
+
+### MCP 新增測試 Workflow 工具
+Implement Test workflow MCP tool
+
+n8n 的 MCP Server 新增了兩個工具，讓 AI Agent 可以直接測試你的 Workflow。
+
+**`prepare_test_pin_data`**：告訴 AI 每個節點需要什麼格式的輸入資料。
+它會優先從你之前的執行紀錄推導 schema，如果沒有紀錄就從節點定義去猜（大概能涵蓋 55% 的節點）。
+
+**`test_workflow`**：用 AI 生成的測試資料直接跑 Workflow。
+Trigger 和有 Credential 的節點會用假資料替代，Set、If、Code 這些邏輯節點正常執行。
+
+跟在 UI 上手動按 Test 的差別是：不用開瀏覽器，AI 可以自動化整個測試流程。
+搭配 Claude Code 這漾的 MCP Client 使用，開發 Workflow 的時候 AI 可以邊改邊測。
+
+需要先啟用 n8n MCP Server 才能使用。
+加上之前版本新增的 `update_workflow`、`archive_workflow`、`search_projects`、`search_folders`，目前 n8n MCP Server 已經有 18 個工具了。
+
+{% darrellImage800Alt "n8n MCP Server v2.15.0 共 18 個工具，本次新增 6 個" n8n-2.15.0-mcp_server_tools.png max-800 %}
 
 ## 2.14.0 Pre-release - 2026-03-24
 
