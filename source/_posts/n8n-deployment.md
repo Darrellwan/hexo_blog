@@ -17,14 +17,14 @@ modified: 2025-05-10 18:22:12
 
 {% darrellImageCover blog-n8n-deployment-bg blog-n8n-deployment-bg.jpg %}
 
-## n8n Cloud
+<h2 id="n8n-cloud">n8n Cloud</h2>
 
 n8n 雲端版可能是很多人的第一步，14 天的免費試用，如果有時間的話，其實真的可以做出一兩個有用的自動化
 況且現在的模板越來越多，可以先馬上套用一些有興趣的模板再來做修改
 一定會比自己從頭建立一個來的快，也能學到別人怎麼做自動化的！
 
 
-### AI 輔助
+<h3 id="ai-assist">AI 輔助</h3>
 
 n8n 也一直在優化雲端版的功能
 例如 AI 輔助模板！讓你可能達成 prompt to workflow 
@@ -61,7 +61,7 @@ Create a multi-branch workflow that is triggered by a webhook with user input, l
 看來官方的 prompt 調整的有進步
 
 
-### 優點
+<h3 id="cloud-pros">優點</h3>
 
 官方版本的優點有很多
 1. 穩定可靠：不用擔心維護的問題
@@ -69,7 +69,7 @@ Create a multi-branch workflow that is triggered by a webhook with user input, l
 3. 更新容易：能簡單的更新到最新的正式版本
 4. AI 輔助：如上面介紹，官方版本的 AI 產生模板或是問答有一定的水準，可能不是最好用，但很多情況應該很夠用了
 
-### 缺點
+<h3 id="cloud-cons">缺點</h3>
 
 1. 最大的缺點就是付費！
 但這很看個人，其實個人 Starter 方案就是大概七八百元台幣
@@ -78,7 +78,7 @@ Create a multi-branch workflow that is triggered by a webhook with user input, l
 如果是大量使用者，可能就會遇到這個瓶頸
 
 
-### 價格和方案（2025/05）
+<h3 id="cloud-pricing">價格和方案（2025/05）</h3>
 
 {% darrellImage800 n8n-cloud_pricing n8n-cloud_pricing.jpg max-800 %}
 
@@ -93,7 +93,7 @@ Create a multi-branch workflow that is triggered by a webhook with user input, l
   - 包含：無限執行次數、企業級支持、SSO等高級功能
   - 適合：大型企業和需求複雜的團隊
 
-### Cloud 怎麼更新
+<h3 id="cloud-update">Cloud 怎麼更新</h3>
 
 如果你發現左下角出現了更新符號
 請到這個網址
@@ -106,7 +106,7 @@ Create a multi-branch workflow that is triggered by a webhook with user input, l
 更新介面
 {% darrellImage800 n8n_cloud-how_to_update_in_cloud_version n8n_cloud-how_to_update_in_cloud_version.png max-800 %}
 
-### Cloud 版本一鍵匯出
+<h3 id="cloud-export">Cloud 版本一鍵匯出</h3>
 
 如果想要從 Cloud 版本搬家到其他提到的部署方式
 也可以在到期前一鍵匯出所有 workflows
@@ -117,7 +117,7 @@ Create a multi-branch workflow that is triggered by a webhook with user input, l
 
 
 
-## Zeabur 部署
+<h2 id="zeabur">Zeabur 部署</h2>
 
 Zeabur 相信是台灣的 n8n 使用者中討論度最高的另一個方案
 因為費用非常划算，部署也相當簡單(幾乎是一鍵部署)
@@ -127,20 +127,20 @@ Zeabur 相信是台灣的 n8n 使用者中討論度最高的另一個方案
 
 {% darrellImage800 n8n_zeabur-templates n8n_zeabur-templates.jpg max-800 %}
 
-### 優點
+<h3 id="zeabur-pros">優點</h3>
 
 1. 價格固定：專用伺服器最低兩美金起，通常五～六美金的方案已經很夠用
 2. 部署簡單：部署的模板有維護更新，也能自由選擇部署版本
 3. 網域：如果 local 部署，會需要自行處理網域來接收串接資料
 4. n8n 開源社群版本無限制工作流程和執行數
 
-### 缺點
+<h3 id="zeabur-cons">缺點</h3>
 
 1. Google 等 OAuth 服務需要較為麻煩的設定(目前已有很多文件教學可以參考)
 2. n8n 開源社群版本功能較少
 
 
-### 價格
+<h3 id="zeabur-pricing">價格</h3>
 
 目前部署需要先購買專用伺服器
 亞洲區域常見的選擇大約在 $2-12(月) 之間
@@ -148,7 +148,7 @@ Zeabur 相信是台灣的 n8n 使用者中討論度最高的另一個方案
 {% darrellImage800 zeabur_private_server_pricing zeabur_private_server_pricing.png max-800 %}
 
 
-### 專用伺服器部署步驟
+<h3 id="zeabur-deploy-steps">專用伺服器部署步驟</h3>
 
 除了購買 Zeabur 的專用伺服器外，Zeabur 也支援綁定自己的私人伺服器來部署
 好處是可以完全掌控硬體規格和資料存放位置，適合對資安或效能有更高要求的使用者
@@ -199,7 +199,7 @@ Zeabur 相信是台灣的 n8n 使用者中討論度最高的另一個方案
 
 {% darrellImage800 zeabur_private_deploying zeabur_private_deploying.png max-800 %}
 
-## Docker 本地部署
+<h2 id="docker">Docker 本地部署</h2>
 
 做為開源的 n8n ，當然也可以直接部署在自己的電腦上
 就能完全免費！
@@ -207,13 +207,13 @@ Zeabur 相信是台灣的 n8n 使用者中討論度最高的另一個方案
 但必須要知道免費的方案，伴隨而來的就是一些設定上的麻煩
 例如網域、備份、電腦關機是否影響自動化等等
 
-### 優點
+<h3 id="docker-pros">優點</h3>
 
 1. 免費！
 2. 可以和本機電腦的資料夾或檔案做協作
 3. 執行 n8n 的硬體設備可能相對較好
 
-### 缺點
+<h3 id="docker-cons">缺點</h3>
 
 1. 如果要接收 webhook 等串接，需要網域(Ngrok、Cloudflare Tunnel等額外服務)
 2. 24小時有排程等工作流程，或許電腦無法關機
@@ -221,7 +221,7 @@ Zeabur 相信是台灣的 n8n 使用者中討論度最高的另一個方案
 要有更高的資安意識
 
 
-## Glows.ai - n8n + GPU 運算整合方案
+<h2 id="glows-ai">Glows.ai - n8n + GPU 運算整合方案</h2>
 
 {% darrellImage800 n8n_glowsai-intro n8n_glowsai-intro.jpg max-800 %}
 
@@ -253,19 +253,19 @@ Glows ai 可能大家就比較不會把他跟 n8n 連想再一起
   thumbnail="https://www.darrelltw.com/glows-ai-cloud-gpu-service/glows-ai_bg.jpg" 
 %}
 
-### 優點
+<h3 id="glows-pros">優點</h3>
 
 1. 可以部署本地運算模型，不用串 OpenAI 等另外花費 API 費用
 2. 結合生成圖片影片聲音等地端運算服務，讓自動化的情境更豐富
 3. 如有能力訓練模型，AI 輔助的自動化情境效果更好
 
-### 缺點
+<h3 id="glows-cons">缺點</h3>
 
 1. 費用較高，4090 的話每天約 300 台幣左右
 2. 如果有 n8n 以外的 AI 需求，需要額外維護安裝
 3. 需要熟悉 command line 和 docker 的相關操作
 
-### 價格
+<h3 id="glows-pricing">價格</h3>
 
 - 4090 約每小時 0.39 美元
 - 5090 約每小時 1.00 美元
@@ -273,13 +273,13 @@ Glows ai 可能大家就比較不會把他跟 n8n 連想再一起
 
 
 
-## 綜合比較
+<h2 id="comparison">綜合比較</h2>
 
 這邊做一個綜合比較表！
 
 {% darrellImage800 n8n-deployment-compare n8n-deployment-compare.png max-800 %}
 
-## 結論
+<h2 id="conclusion">結論</h2>
 
 本次介紹多種的 n8n 部署方式
 希望是讓大家了解不同部署之間的差異
