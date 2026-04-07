@@ -7,16 +7,74 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2026/04/03 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.15.0（Pre-release），正式版本為 2.14.2
+description: n8n 的更新記錄(2026/04/07 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.16.0（Pre-release），正式版本為 2.15.0
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2026-04-03 23:00:00
+modified: 2026-04-07 15:30:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 2.16.0 Pre-release - 2026-04-07
+
+[Github 2.16.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%402.16.0)
+
+### Chat Trigger 自動記錄 Execution Data
+feat(Chat Trigger Node): Auto-add highlighted execution data
+
+以前跑完 AI workflow，想在執行紀錄裡看到「AI 回了什麼」「用了哪個 tool」這些重點，
+你得自己手動加一個 Execution Data 節點，然後設定要記錄哪些欄位。
+
+現在只要 workflow 裡有 Chat Trigger、Respond To Chat、Tools Agent 這些 AI 節點，
+系統會**自動把重要資訊標記出來**，直接顯示在執行紀錄的摘要上。
+
+節點也有提供設定可以關掉，預設開啟。
+
+{% darrellImage800Alt "Chat Trigger 自動記錄 highlighted execution data" n8n-2.16.0-chat_trigger_auto_execution_data.png max-800 %}
+
+### Notion 支援 OAuth 連線
+feat(Notion Node): Add support for OAuth
+
+之前要串 Notion，只能用 Internal Integration Token，
+得到 Notion 後台建 Integration、複製 Token、再手動把 Integration 加到每個要存取的 Database 頁面。
+
+現在多了 OAuth 選項，流程跟串 Google、Slack 一樣：
+
+**Step 1**：到 Notion 後台建一個 Public Integration，設定 OAuth redirect URI
+
+{% darrellImage800Alt "Notion 後台建立 Public Integration，設定 OAuth domains" n8n-2.16.0-notion_oauth_integration.png max-800 %}
+
+**Step 2**：在 n8n 的 Credential 選 OAuth2，填入 Client ID 和 Secret，按 Connect to Notion
+
+{% darrellImage800Alt "n8n Notion OAuth2 Credential 設定畫面" n8n-2.16.0-notion_oauth_credential.png max-800 %}
+
+**Step 3**：Notion 會跳出授權頁面，確認權限後選擇要授權的頁面
+
+{% darrellImage800Alt "Notion OAuth 授權確認頁面，顯示權限列表" n8n-2.16.0-notion_oauth.png max-800 %}
+
+{% darrellImage800Alt "選擇要授權 n8n 存取的 Notion 頁面" n8n-2.16.0-notion_oauth_select_pages.png max-800 %}
+
+整個流程比以前直覺很多，對不熟 API Token 的人來說方便不少。
+
+### Data Table MCP 工具
+feat(core): Data table MCP tool
+
+n8n 的 MCP Server 又多了新工具，這次是讓 AI 可以直接操作 Data Table。
+
+新增了 7 個 MCP 工具：
+- `search-data-tables` - 搜尋現有表格
+- `create-data-table` - 建立新表格
+- `rename-data-table` - 改名
+- `add-data-table-column` / `delete-data-table-column` / `rename-data-table-column` - 管理欄位
+- `add-data-table-rows` - 寫入資料
+
+搭配 Claude Code 或其他 MCP Client 使用的話，
+AI 可以幫你建表、設計欄位結構、寫入資料，不用自己開 n8n 操作或是匯入。
+
+{% darrellImage800Alt "n8n MCP Server 新增 Data Table 操作工具" n8n-2.16.0-data_table_mcp_tool.png max-800 %}
 
 ## 2.15.0 Pre-release - 2026-03-30
 
