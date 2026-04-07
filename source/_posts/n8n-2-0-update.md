@@ -6,7 +6,7 @@ tags:
 categories:
   - n8n
 page_type: post
-id: n8n-2.0-update
+id: n8n-2-0-update
 description: n8n 2.0 大更新要來了！包含新功能介紹、Migration Report 使用教學、Breaking Changes 詳解和常見升級問題解決方案
 bgImage: n8n-2.0-update-bg.jpg
 preload:

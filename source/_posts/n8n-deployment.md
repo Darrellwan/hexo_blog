@@ -123,37 +123,81 @@ Zeabur 相信是台灣的 n8n 使用者中討論度最高的另一個方案
 因為費用非常划算，部署也相當簡單(幾乎是一鍵部署)
 資料的備份和環境變數的調整都很方便
 
-2025/10 更新: Zeabur 推出了全新的免費方案，現在不一定要從 5美金的付費方案才能使用了！
-
 [![Deployed on Zeabur](https://zeabur.com/deployed-on-zeabur-dark.svg)](https://zeabur.com/referral?referralCode=darrelltw&utm_source=infoelID) 是一個專為開發者設計的部署平台，提供簡單的一鍵部署體驗，特別適合快速啟動專案。
 
 {% darrellImage800 n8n_zeabur-templates n8n_zeabur-templates.jpg max-800 %}
 
 ### 優點
 
-1. 價格划算：直接使用免費方案，或是開發者方案只需要五美元
+1. 價格固定：專用伺服器最低兩美金起，通常五～六美金的方案已經很夠用
 2. 部署簡單：部署的模板有維護更新，也能自由選擇部署版本
-3. 支援即時：有 Discord 可以詢問遇到的問題
-4. 網域：如果 local 部署，會需要自行處理網率來接收串接資料
-5. n8n 開源社群版本無限制工作流程和執行數！
-6. Zeabur 是個雲端部署平台，基於 AWS 等機房，還能架設 Wordpress、MySQL 或是 vibe coding 的其他服務！
+3. 網域：如果 local 部署，會需要自行處理網域來接收串接資料
+4. n8n 開源社群版本無限制工作流程和執行數
 
 ### 缺點
 
-1. 免費方案的機房較遠，付費方案可以選擇近距離的機房
-2. Google 等 OAuth 服務需要較為麻煩的設定(目前已有很多文件教學可以參考)
-3. n8n 開源社群版本功能較少
+1. Google 等 OAuth 服務需要較為麻煩的設定(目前已有很多文件教學可以參考)
+2. n8n 開源社群版本功能較少
 
-{% darrellImage800 n8n_zeabur-free_plan_server n8n_zeabur-free_plan_server.png max-800 %}
 
-圖片中列出可以選的 Server 有 AWS 台北、香港、東京等等
-免費方案能選擇的只有 Silicon Valley(美國)、Jakarta (印尼)
+### 價格
 
-### 價格(2025/10)
+目前部署需要先購買專用伺服器
+亞洲區域常見的選擇大約在 $2-12(月) 之間
 
-{% darrellImage800 n8n_zeabur-price n8n_zeabur-price.png max-800 %}
+{% darrellImage800 zeabur_private_server_pricing zeabur_private_server_pricing.png max-800 %}
 
-建議可以直接使用 $5 美元的 developer plan
+
+### 專用伺服器部署步驟
+
+除了購買 Zeabur 的專用伺服器外，Zeabur 也支援綁定自己的私人伺服器來部署
+好處是可以完全掌控硬體規格和資料存放位置，適合對資安或效能有更高要求的使用者
+
+以下是從零開始用私人伺服器部署 n8n 的完整流程：
+
+**Step 1. 建立專案**
+
+進入 Zeabur 後台，點選右上角的「建立專案」
+
+{% darrellImage800 zeabur_private_create_project zeabur_private_create_project.png max-800 %}
+
+**Step 2. 選擇私人伺服器**
+
+選擇你已經綁定好的伺服器，如果還沒有也可以點「購買新伺服器」或「綁定外部伺服器」透過 SSH 連接自己的機器
+
+{% darrellImage800 zeabur_private_select_server zeabur_private_select_server.png max-800 %}
+
+**Step 3. 部署新服務**
+
+專案建立後會是空的，點選「部署新服務」開始加入服務
+
+{% darrellImage800 zeabur_private_deploy_service zeabur_private_deploy_service.png max-800 %}
+
+**Step 4. 選擇模板**
+
+在部署方式中選擇「模板」，這裡可以從模板庫直接部署各種常見服務
+
+{% darrellImage800 zeabur_private_select_template zeabur_private_select_template.png max-800 %}
+
+**Step 5. 選擇 n8n 模板並部署**
+
+在模板列表中找到 n8n，點選「部署」
+
+{% darrellImage800 zeabur_private_n8n_template zeabur_private_n8n_template.png max-800 %}
+
+**Step 6. 設定 Domain 和 API Key**
+
+填入你想要的 n8n 網域名稱（會是 `xxx.zeabur.app` 的格式）
+下方還可以設定 Zeabur AI Hub 的 API Key，讓 n8n 可以直接使用 Gemini、GPT、Claude、DeepSeek 等模型
+
+{% darrellImage800 zeabur_private_domain_apikey zeabur_private_domain_apikey.png max-800 %}
+
+**Step 7. 等待部署完成**
+
+點下部署後，Zeabur 會自動建立 PostgreSQL 資料庫、n8n 本體和 Task Runner 三個服務
+大約等待三到五分鐘就部署完成了
+
+{% darrellImage800 zeabur_private_deploying zeabur_private_deploying.png max-800 %}
 
 ## Docker 本地部署
 
@@ -221,7 +265,7 @@ Glows ai 可能大家就比較不會把他跟 n8n 連想再一起
 2. 如果有 n8n 以外的 AI 需求，需要額外維護安裝
 3. 需要熟悉 command line 和 docker 的相關操作
 
-### 價格(2025/05)
+### 價格
 
 - 4090 約每小時 0.39 美元
 - 5090 約每小時 1.00 美元

@@ -7730,33 +7730,73 @@
     "mtimeMs": 1775368479318.3625
   },
   "/_posts/n8n-update-log/n8n-2.16.0-notion_oauth.png": {
-    "width": 1376,
-    "height": 1908,
-    "mtimeMs": 1775554675628.9211
+    "width": 987,
+    "height": 1401,
+    "mtimeMs": 1775557711998.9434
   },
   "/_posts/n8n-update-log/n8n-2.16.0-data_table_mcp_tool.png": {
     "width": 2000,
     "height": 1034,
-    "mtimeMs": 1775553950534.8264
+    "mtimeMs": 1775557711998.3545
   },
   "/_posts/n8n-update-log/n8n-2.16.0-chat_trigger_auto_execution_data.png": {
     "width": 2000,
     "height": 1152,
-    "mtimeMs": 1775553596514.734
+    "mtimeMs": 1775557711997.6887
   },
   "/_posts/n8n-update-log/n8n-2.16.0-notion_oauth_select_pages.png": {
-    "width": 1808,
-    "height": 2114,
-    "mtimeMs": 1775555275922.3433
+    "width": 1408,
+    "height": 1573,
+    "mtimeMs": 1775557712000.3164
   },
   "/_posts/n8n-update-log/n8n-2.16.0-notion_oauth_integration.png": {
     "width": 3226,
     "height": 2506,
-    "mtimeMs": 1775555275904.9817
+    "mtimeMs": 1775557712000.0881
   },
   "/_posts/n8n-update-log/n8n-2.16.0-notion_oauth_credential.png": {
     "width": 1642,
     "height": 1520,
-    "mtimeMs": 1775555275887.1655
+    "mtimeMs": 1775557711999.6956
+  },
+  "/_posts/n8n-deployment/zeabur_private_select_template.png": {
+    "width": 1710,
+    "height": 1212,
+    "mtimeMs": 1775566284585.5283
+  },
+  "/_posts/n8n-deployment/zeabur_private_select_server.png": {
+    "width": 1710,
+    "height": 1212,
+    "mtimeMs": 1775566284557.708
+  },
+  "/_posts/n8n-deployment/zeabur_private_n8n_template.png": {
+    "width": 1710,
+    "height": 1212,
+    "mtimeMs": 1775566284605.3984
+  },
+  "/_posts/n8n-deployment/zeabur_private_domain_apikey.png": {
+    "width": 1710,
+    "height": 1212,
+    "mtimeMs": 1775566284620.4827
+  },
+  "/_posts/n8n-deployment/zeabur_private_deploying.png": {
+    "width": 1710,
+    "height": 1212,
+    "mtimeMs": 1775566284635.7717
+  },
+  "/_posts/n8n-deployment/zeabur_private_deploy_service.png": {
+    "width": 1710,
+    "height": 1236,
+    "mtimeMs": 1775566284571.4858
+  },
+  "/_posts/n8n-deployment/zeabur_private_create_project.png": {
+    "width": 1710,
+    "height": 1212,
+    "mtimeMs": 1775566284543.8865
+  },
+  "/_posts/n8n-deployment/zeabur_private_server_pricing.png": {
+    "width": 1694,
+    "height": 2000,
+    "mtimeMs": 1775566698420.706
   }
 }
