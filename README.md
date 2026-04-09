@@ -2,10 +2,10 @@
 
 ## 📚 最新文章
 
-### [Claude Managed Agents 實測：用 API 建立雲端 AI Agent](https://www.darrelltw.com/claude-managed-agents/?utm_source=github_readme&utm_medium=referral)
+### [Claude Managed Agents 實測：簡單快速建立自己的雲端 AI Agent](https://www.darrelltw.com/claude-managed-agents/?utm_source=github_readme&utm_medium=referral)
 📅 2026/04/09 · 4 小時內
 
-> Anthropic 推出 Claude Managed Agents，讓開發者用 API 在雲端建立、部署生產等級的 AI Agent。實測 Quickstart 流程，從建立 Agent 到跑出第一個 Session，分享踩坑心得。
+> Anthropic 推出 Claude Managed Agents，讓開發者用 Console 或 API 在雲端建立、部署生產等級的 AI Agent。實測 Quickstart 流程，從建立 Agent 到跑出第一個 Session 和心得分享。
 
 
 ### [Claude Code Channels 設定教學，用 Discord、Telegram 遠端使用 Claude Code](https://www.darrelltw.com/claude-code-channels-discord-telegram/?utm_source=github_readme&utm_medium=referral)
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-04-09 06:16:06*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-04-09 06:27:02*
