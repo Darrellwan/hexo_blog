@@ -2,8 +2,14 @@
 
 ## 📚 最新文章
 
+### [Claude Managed Agents 實測：用 API 建立雲端 AI Agent](https://www.darrelltw.com/claude-managed-agents/?utm_source=github_readme&utm_medium=referral)
+📅 2026/04/09 · 4 小時內
+
+> Anthropic 推出 Claude Managed Agents，讓開發者用 API 在雲端建立、部署生產等級的 AI Agent。實測 Quickstart 流程，從建立 Agent 到跑出第一個 Session，分享踩坑心得。
+
+
 ### [Claude Code Channels 設定教學，用 Discord、Telegram 遠端使用 Claude Code](https://www.darrelltw.com/claude-code-channels-discord-telegram/?utm_source=github_readme&utm_medium=referral)
-📅 2026/03/20 · 18 天前
+📅 2026/03/20 · 20 天前
 
 > Claude Code Channels 讓你從手機 Discord 或 Telegram 傳訊息給正在跑的 Claude Code，不用坐在電腦前也能讓 AI 幫你改 code、跑指令。完整 Discord Bot 和 Telegram Bot 設定教學和幾個場景測試
 
@@ -56,16 +62,10 @@
 > n8n Edit Fields Set 節點 3 大技巧：欄位組合格式化、$now 時間與條件判斷、Include Other Input Fields。90% 工作流都會用到的核心節點完整教學。
 
 
-### [Google Antigravity 搭配 Gemini 3 模型還能自動化測試！Vibe Coding 新神器](https://www.darrelltw.com/google-antigravity-ide/?utm_source=github_readme&utm_medium=referral)
-📅 2025/11/19 · 5 個月前
-
-> 深入體驗 Google Antigravity。包含完整安裝教學、Agent Manager 使用、自動化測試、Antigravity Skills 設定教學與跨工具共用技巧。
-
-
 ## 📊 部落格統計
-![文章總數](https://img.shields.io/badge/文章總數-120-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-309,981+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2026/04/07-green?style=flat-square)
+![文章總數](https://img.shields.io/badge/文章總數-121-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-317,161+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2026/04/09-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -88,7 +88,7 @@
 
 
 ## 🏷️ 熱門主題
-![n8n](https://img.shields.io/badge/n8n-31-orange?style=flat-square) ![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-15-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![Claude](https://img.shields.io/badge/Claude-6-orange?style=flat-square)
+![n8n](https://img.shields.io/badge/n8n-31-orange?style=flat-square) ![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-15-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![Claude](https://img.shields.io/badge/Claude-7-orange?style=flat-square)
 
 ## 📈 更新頻率
 ```text
@@ -97,7 +97,7 @@
 01月 ██░░░░░░░░ 2篇
 02月 ░░░░░░░░░░ 0篇
 03月 ██░░░░░░░░ 2篇
-04月 ░░░░░░░░░░ 0篇
+04月 █░░░░░░░░░ 1篇
 ```
 
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-04-07 13:21:00*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-04-09 06:16:06*
