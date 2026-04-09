@@ -21,10 +21,19 @@
  *   - center: 全部置中
  *   - l,c,r: 精確控制每欄（l=左, c=中, r=右），例如 "l,c,c" 表示第一欄左、後兩欄中
  *
+ * @align_guide 對齊選擇指南
+ *   置左（align="left"）：內容是文字描述、說明、key-value 配對、欄位內容長短差異大
+ *   置中（align="auto" 預設）：內容是短標籤、數字、狀態（✅/❌、$0.08、Yes/No）、比較表格
+ *   簡單判斷：內容是句子 → left，內容是關鍵字/數字 → auto
+ *
  * @param {string} [highlight] - 重點欄位索引（從 1 開始），逗號分隔
  *   - 例: highlight="2,3" 表示第 2、3 欄套用重點樣式
  *   - 重點欄位會套用 .data-table-emphasis class（避開 Hexo 的 .highlight）
  *   - 樣式：--table-highlight 顏色 + 等寬字體
+ *
+ * @param {boolean} [noHeader] - 隱藏表頭列
+ *   - 加上 noHeader 即可，不需要值
+ *   - 例: {% dataTable noHeader %} 隱藏 thead
  *
  * @param {string} [color=primary] - 重點欄位顏色
  *   - primary: var(--n8n-primary) #ff6d5a 橘紅
@@ -73,6 +82,9 @@ hexo.extend.tag.register('dataTable', function(args, content) {
     const highlightCols = highlightMatch
       ? highlightMatch[1].split(',').map(n => parseInt(n.trim(), 10))
       : [];
+    const noHeader = /\bnoHeader\b/i.test(argsStr);
+    const colWidthMatch = argsStr.match(/colWidth\s*=\s*["']?([^"'\s]+)["']?/);
+    const colWidths = colWidthMatch ? colWidthMatch[1].split(',').map(w => w.trim()) : null;
     const color = colorMatch ? colorMatch[1] : 'primary';
 
     // 解析 JSON 內容
@@ -108,16 +120,28 @@ hexo.extend.tag.register('dataTable', function(args, content) {
     let html = '<div class="data-table-wrapper">\n';
     html += `<table class="data-table data-table--${style}${alignClass ? ' ' + alignClass : ''}">\n`;
 
+    // 欄寬
+    if (colWidths) {
+      html += '  <colgroup>\n';
+      columns.forEach((_, index) => {
+        const w = colWidths[index] || 'auto';
+        html += `    <col style="width: ${w}">\n`;
+      });
+      html += '  </colgroup>\n';
+    }
+
     // 表頭
-    html += '  <thead>\n    <tr>\n';
-    columns.forEach((col, index) => {
-      let style = '';
-      if (customAligns && customAligns[index]) {
-        style = ` style="text-align: ${customAligns[index]}"`;
-      }
-      html += `      <th${style}>${col}</th>\n`;
-    });
-    html += '    </tr>\n  </thead>\n';
+    if (!noHeader) {
+      html += '  <thead>\n    <tr>\n';
+      columns.forEach((col, index) => {
+        let style = '';
+        if (customAligns && customAligns[index]) {
+          style = ` style="text-align: ${customAligns[index]}"`;
+        }
+        html += `      <th${style}>${col}</th>\n`;
+      });
+      html += '    </tr>\n  </thead>\n';
+    }
 
     // 表身
     html += '  <tbody>\n';
