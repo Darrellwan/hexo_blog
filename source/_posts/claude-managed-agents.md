@@ -1,5 +1,5 @@
 ---
-title: Claude Managed Agents 實測：用 API 建立雲端 AI Agent
+title: Claude Managed Agents 實測：簡單快速建立自己的雲端 AI Agent
 tags:
   - Claude
   - AI Agent
@@ -9,7 +9,7 @@ categories:
   - Claude
 page_type: post
 id: claude-managed-agents
-description: Anthropic 推出 Claude Managed Agents，讓開發者用 API 在雲端建立、部署生產等級的 AI Agent。實測 Quickstart 流程，從建立 Agent 到跑出第一個 Session，分享踩坑心得。
+description: Anthropic 推出 Claude Managed Agents，讓開發者用 Console 或 API 在雲端建立、部署生產等級的 AI Agent。實測 Quickstart 流程，從建立 Agent 到跑出第一個 Session 和心得分享。
 bgImage: blog-claude-managed-agents-bg.jpg
 date: 2026-04-09 10:43:34
 modified: 2026-04-09 10:43:34
