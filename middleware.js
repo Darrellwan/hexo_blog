@@ -2,69 +2,70 @@
  * Vercel Edge Middleware for Content Negotiation
  *
  * 根據 Accept header 回傳不同格式：
- * - Accept: text/markdown → 回傳 Markdown 原始檔
- * - 其他 → 回傳正常 HTML
+ * - Accept: text/markdown → fetch 對應 .md 並回傳 (Content-Type: text/markdown)
+ * - 其他 → 讓請求正常通過回傳 HTML
+ *
+ * 特殊路徑：
+ * - `/` → 回傳 /llms.txt（沒有 root index.md）
  */
 
-export default function middleware(request) {
+export default async function middleware(request) {
   const url = new URL(request.url);
   const acceptHeader = request.headers.get('accept') || '';
 
-  // 排除不需要處理的路徑
+  // 只處理明確要求 markdown 的請求
+  if (!acceptHeader.includes('text/markdown')) {
+    return;
+  }
+
+  // 排除不需要處理的路徑（這些沒有 markdown 版本）
   const excludePaths = [
-    '/_next',
-    '/api',
-    '/static',
-    '/images',
-    '/css',
-    '/js',
-    '/tools',
-    '/links',
-    '/favicon',
-    '/manifest',
-    '/robots',
-    '/sitemap'
+    '/_next', '/api', '/static', '/images', '/css', '/js',
+    '/tools', '/links', '/favicon', '/manifest', '/robots',
+    '/sitemap', '/.well-known'
   ];
-
-  // 檢查是否為排除路徑
-  const isExcluded = excludePaths.some(path => url.pathname.startsWith(path));
-  if (isExcluded) {
-    return; // 讓請求正常通過
+  if (excludePaths.some(p => url.pathname.startsWith(p))) {
+    return;
   }
 
-  // 檢查是否為靜態檔案（副檔名）
-  const hasFileExtension = /\.[a-zA-Z0-9]+$/.test(url.pathname);
-  if (hasFileExtension) {
-    return; // 讓請求正常通過
+  // 有副檔名的檔案（圖片等）不處理
+  if (/\.[a-zA-Z0-9]+$/.test(url.pathname)) {
+    return;
   }
 
-  // 檢查 Accept header 是否包含 text/markdown
-  if (acceptHeader.includes('text/markdown')) {
-    // 移除 trailing slash（如果有）
+  // 決定要 fetch 的目標
+  let targetPath;
+  if (url.pathname === '/' || url.pathname === '') {
+    // 首頁沒有 index.md，改給 llms.txt（內容是 AI-friendly summary）
+    targetPath = '/llms.txt';
+  } else {
     const cleanPath = url.pathname.replace(/\/$/, '');
-
-    // Rewrite 到 .md 檔案
-    const markdownUrl = new URL(`${cleanPath}/index.md`, request.url);
-
-    console.log(`[Middleware] Content negotiation: ${url.pathname} → ${cleanPath}/index.md`);
-
-    return Response.redirect(markdownUrl, 302);
+    targetPath = `${cleanPath}/index.md`;
   }
 
-  // 其他請求正常通過
-  return;
+  const targetUrl = new URL(targetPath, request.url);
+  const upstream = await fetch(targetUrl, {
+    headers: { 'accept': 'text/plain' },
+  });
+
+  if (!upstream.ok) {
+    // Fallback: 讓原始 HTML 請求通過
+    return;
+  }
+
+  const body = await upstream.text();
+  return new Response(body, {
+    status: 200,
+    headers: {
+      'content-type': 'text/markdown; charset=utf-8',
+      'cache-control': 'public, max-age=3600',
+      'x-content-source': targetPath,
+    },
+  });
 }
 
-// 設定 matcher 避免處理靜態資源
 export const config = {
   matcher: [
-    /*
-     * 匹配所有路徑，除了：
-     * - _next/static (Next.js static files，雖然 Hexo 不用但保險起見)
-     * - _next/image (Next.js image optimization)
-     * - favicon.ico
-     * - 所有帶副檔名的檔案 (圖片、CSS、JS 等)
-     */
     '/((?!_next/static|_next/image|favicon.ico|.*\\..*).*)',
   ],
 };

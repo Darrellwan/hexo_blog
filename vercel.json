@@ -1,18 +1,14 @@
 {
-    "rewrites": [
-      {
-        "source": "/:slug",
-        "has": [
-          {
-            "type": "header",
-            "key": "accept",
-            "value": "text/markdown"
-          }
-        ],
-        "destination": "/:slug/index.md"
-      }
-    ],
     "headers": [
+      {
+        "source": "/",
+        "headers": [
+          {
+            "key": "Link",
+            "value": "</llms.txt>; rel=\"llms-txt\"; type=\"text/plain\", </sitemap.xml>; rel=\"sitemap\"; type=\"application/xml\""
+          }
+        ]
+      },
       {
         "source": "/(.*_bg.*)\\.(jpg|jpeg|png|gif|webp|svg)$",
         "headers": [
