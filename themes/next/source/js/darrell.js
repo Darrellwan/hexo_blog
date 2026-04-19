@@ -32,6 +32,49 @@
 })();
 
 /**
+ * Heading anchor links - click to copy URL with hash
+ */
+(function() {
+  function copyHeadingLink(id, indicator) {
+    var url = window.location.origin + window.location.pathname + '#' + id;
+    navigator.clipboard.writeText(url).then(function() {
+      indicator.classList.add('copied');
+      setTimeout(function() { indicator.classList.remove('copied'); }, 1500);
+    });
+  }
+
+  function initHeadingAnchors() {
+    document.querySelectorAll('.post-body h2[id], .post-body h3[id]').forEach(function(el) {
+      if (el.querySelector('.header-anchor')) return;
+
+      var a = document.createElement('a');
+      a.className = 'header-anchor';
+      a.href = '#' + el.id;
+      a.title = '複製連結';
+      a.innerHTML = '<i class="fa fa-link fa-fw"></i>';
+
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        copyHeadingLink(el.id, a);
+      });
+
+      el.insertBefore(a, el.firstChild);
+
+      el.addEventListener('click', function(e) {
+        if (e.target === a || a.contains(e.target)) return;
+        copyHeadingLink(el.id, a);
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHeadingAnchors);
+  } else {
+    initHeadingAnchors();
+  }
+})();
+
+/**
  * 複製文章連結到剪貼簿
  */
 function copyPostLink() {
