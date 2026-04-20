@@ -616,6 +616,42 @@ pre, code {
 
 // Article Card 行動版樣式已移至 post.styl 統一管理
 
+// ========================================
+// Heading Anchor Copy Link
+// ========================================
+
+.post-body h2,
+.post-body h3 {
+  .header-anchor {
+    display: inline-block;
+    overflow: hidden;
+    width: 0;
+    opacity: 0;
+    color: var(--text-color-light, #888);
+    transition: width 0.25s ease, opacity 0.2s ease;
+    vertical-align: middle;
+    text-decoration: none;
+    border-bottom: none !important;
+
+    &::before {
+      display: none !important;
+    }
+
+    &.copied {
+      color: #4caf50;
+    }
+  }
+
+  &:hover .header-anchor {
+    width: 1.4em;
+    opacity: 0.7;
+  }
+
+  &:hover .header-anchor:hover {
+    opacity: 1;
+  }
+}
+
 // Import n8n Resources Page Styles
 @import "_custom/n8n-resources.styl";
 
