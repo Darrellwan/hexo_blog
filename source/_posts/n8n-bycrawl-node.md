@@ -1,5 +1,5 @@
 ---
-title: n8n ByCrawl 節點教學：一次爬取 15 個平台
+title: n8n ByCrawl 節點教學：簡單好用的台灣爬蟲服務
 tags:
   - n8n節點介紹
   - n8n教學
@@ -11,8 +11,7 @@ description: n8n ByCrawl 社群節點完整教學！一把 API Key 就能抓 Thr
 bgImage: blog-n8n-bycrawl-node-bg.jpg
 preload:
   - blog-n8n-bycrawl-node-bg.jpg
-date: 2026-03-19 16:18:21
-modified: 2026-04-20 16:00:00
+date: 2026-04-20 13:37:21
 ---
 
 {% darrellImageCover n8n-bycrawl-node-bg blog-n8n-bycrawl-node-bg.jpg %}
