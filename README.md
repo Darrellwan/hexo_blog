@@ -2,6 +2,12 @@
 
 ## 📚 最新文章
 
+### [n8n ByCrawl 節點教學：簡單好用的台灣爬蟲服務](https://www.darrelltw.com/n8n-bycrawl-node/?utm_source=github_readme&utm_medium=referral)
+📅 2026/04/20 · 8 小時內
+
+> n8n ByCrawl 社群節點完整教學！一把 API Key 就能抓 Threads、IG、X、Reddit、Dcard、PTT 等 15 個平台的社群數據。包含安裝設定、功能介紹、品牌聲量監控實戰案例和定價分析。
+
+
 ### [Claude Managed Agents 實測：簡單快速建立自己的雲端 AI Agent](https://www.darrelltw.com/claude-managed-agents/?utm_source=github_readme&utm_medium=referral)
 📅 2026/04/09 · 11 天前
 
@@ -12,12 +18,6 @@
 📅 2026/03/20 · 1 個月前
 
 > Claude Code Channels 讓你從手機 Discord 或 Telegram 傳訊息給正在跑的 Claude Code，不用坐在電腦前也能讓 AI 幫你改 code、跑指令。完整 Discord Bot 和 Telegram Bot 設定教學和幾個場景測試
-
-
-### [n8n ByCrawl 節點教學：一次爬取 15 個平台](https://www.darrelltw.com/n8n-bycrawl-node/?utm_source=github_readme&utm_medium=referral)
-📅 2026/03/19 · 1 個月前
-
-> n8n ByCrawl 社群節點完整教學！一把 API Key 就能抓 Threads、IG、X、Reddit、Dcard、PTT 等 15 個平台的社群數據。包含安裝設定、功能介紹、品牌聲量監控實戰案例和定價分析。
 
 
 ### [rclone - 雲端同步與檔案備份的瑞士刀 搭配 Claude Code 超好用](https://www.darrelltw.com/rclone-cloud-sync-backup/?utm_source=github_readme&utm_medium=referral)
@@ -96,8 +96,8 @@
 12月 ███░░░░░░░ 3篇
 01月 ██░░░░░░░░ 2篇
 02月 ░░░░░░░░░░ 0篇
-03月 ███░░░░░░░ 3篇
-04月 █░░░░░░░░░ 1篇
+03月 ██░░░░░░░░ 2篇
+04月 ██░░░░░░░░ 2篇
 ```
 
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-04-20 05:33:36*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-04-20 05:39:12*
