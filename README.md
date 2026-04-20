@@ -3,7 +3,7 @@
 ## 📚 最新文章
 
 ### [Claude Managed Agents 實測：簡單快速建立自己的雲端 AI Agent](https://www.darrelltw.com/claude-managed-agents/?utm_source=github_readme&utm_medium=referral)
-📅 2026/04/09 · 10 天前
+📅 2026/04/09 · 11 天前
 
 > Anthropic 推出 Claude Managed Agents，讓開發者用 Console 或 API 在雲端建立、部署生產等級的 AI Agent。實測 Quickstart 流程，從建立 Agent 到跑出第一個 Session 和心得分享。
 
@@ -12,6 +12,12 @@
 📅 2026/03/20 · 1 個月前
 
 > Claude Code Channels 讓你從手機 Discord 或 Telegram 傳訊息給正在跑的 Claude Code，不用坐在電腦前也能讓 AI 幫你改 code、跑指令。完整 Discord Bot 和 Telegram Bot 設定教學和幾個場景測試
+
+
+### [n8n ByCrawl 節點教學：一次爬取 15 個平台](https://www.darrelltw.com/n8n-bycrawl-node/?utm_source=github_readme&utm_medium=referral)
+📅 2026/03/19 · 1 個月前
+
+> n8n ByCrawl 社群節點完整教學！一把 API Key 就能抓 Threads、IG、X、Reddit、Dcard、PTT 等 15 個平台的社群數據。包含安裝設定、功能介紹、品牌聲量監控實戰案例和定價分析。
 
 
 ### [rclone - 雲端同步與檔案備份的瑞士刀 搭配 Claude Code 超好用](https://www.darrelltw.com/rclone-cloud-sync-backup/?utm_source=github_readme&utm_medium=referral)
@@ -56,16 +62,10 @@
 > n8n 2.0 大更新要來了！包含新功能介紹、Migration Report 使用教學、Breaking Changes 詳解和常見升級問題解決方案
 
 
-### [n8n Edit Fields (Set) 節點教學 - 組合欄位、動態表達式、Include Fields](https://www.darrelltw.com/n8n-set-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/11/24 · 5 個月前
-
-> n8n Edit Fields Set 節點 3 大技巧：欄位組合格式化、$now 時間與條件判斷、Include Other Input Fields。90% 工作流都會用到的核心節點完整教學。
-
-
 ## 📊 部落格統計
-![文章總數](https://img.shields.io/badge/文章總數-121-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-317,161+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2026/04/19-green?style=flat-square)
+![文章總數](https://img.shields.io/badge/文章總數-122-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-324,267+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2026/04/20-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -88,7 +88,7 @@
 
 
 ## 🏷️ 熱門主題
-![n8n](https://img.shields.io/badge/n8n-31-orange?style=flat-square) ![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-15-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![Claude](https://img.shields.io/badge/Claude-7-orange?style=flat-square)
+![n8n](https://img.shields.io/badge/n8n-32-orange?style=flat-square) ![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-15-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![Claude](https://img.shields.io/badge/Claude-7-orange?style=flat-square)
 
 ## 📈 更新頻率
 ```text
@@ -96,7 +96,7 @@
 12月 ███░░░░░░░ 3篇
 01月 ██░░░░░░░░ 2篇
 02月 ░░░░░░░░░░ 0篇
-03月 ██░░░░░░░░ 2篇
+03月 ███░░░░░░░ 3篇
 04月 █░░░░░░░░░ 1篇
 ```
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-04-19 03:26:34*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-04-20 05:33:36*
