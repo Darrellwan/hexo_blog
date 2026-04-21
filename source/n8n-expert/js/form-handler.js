@@ -52,6 +52,40 @@
         form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
     };
 
+    async function verifyCaptcha() {
+        if (typeof turnstile === 'undefined') {
+            console.warn('[Turnstile] API not loaded, submitting without verification');
+            return 'api-not-loaded';
+        }
+
+        let token;
+        try {
+            token = turnstile.getResponse();
+        } catch (error) {
+            console.warn('[Turnstile] getResponse failed (widget not rendered):', error);
+            return 'widget-not-rendered';
+        }
+
+        if (!token) {
+            console.warn('[Turnstile] No token available, submitting without verification');
+            return 'no-token';
+        }
+
+        try {
+            const validateResponse = await fetch(
+                'https://turnsite-validate-n8n-template.api-worker-darrell-martech.workers.dev/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams({ 'cf-turnstile-response': token })
+                }
+            );
+            return validateResponse.ok ? 'verified' : 'validation-failed';
+        } catch (error) {
+            console.warn('[Turnstile] Validation request failed:', error);
+            return 'validation-error';
+        }
+    }
+
     async function handleFormSubmit(event) {
         event.preventDefault();
 
@@ -63,31 +97,9 @@
         successMessage.style.display = 'none';
         errorMessage.style.display = 'none';
 
+        let captchaStatus = 'skipped-dev';
         if (!isLocalDev) {
-            const token = turnstile.getResponse();
-            if (!token) {
-                errorMessage.textContent = 'Please complete the security check';
-                errorMessage.classList.remove('hidden');
-                return;
-            }
-
-            try {
-                const validateResponse = await fetch(
-                    'https://turnsite-validate-n8n-template.api-worker-darrell-martech.workers.dev/', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                        body: new URLSearchParams({ 'cf-turnstile-response': token })
-                    }
-                );
-
-                if (!validateResponse.ok) {
-                    throw new Error('Security check failed');
-                }
-            } catch (error) {
-                console.error('Turnstile validation error:', error);
-                errorMessage.style.display = 'flex';
-                return;
-            }
+            captchaStatus = await verifyCaptcha();
         } else {
             console.log('%c[DEV] Skipping Turnstile', 'color: #fbbf24;');
         }
@@ -99,6 +111,7 @@
         try {
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
+            data._captcha_status = captchaStatus;
 
             const webhookUrl = 'https://darrellinfo-n8n.hnd1.zeabur.app/webhook/darrell-n8n-expert-form';
 
@@ -117,7 +130,7 @@
                 successMessage.style.display = 'block';
                 form.reset();
                 if (!isLocalDev && typeof turnstile !== 'undefined') {
-                    turnstile.reset();
+                    try { turnstile.reset(); } catch (e) { /* widget may not exist */ }
                 }
             } else {
                 throw new Error('Submission failed');

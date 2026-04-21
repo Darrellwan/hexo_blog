@@ -408,12 +408,14 @@ layout: false
     <link rel="stylesheet" href="css/mobile.css">
 
     <!-- Cloudflare Turnstile (localhost 時不載入) -->
-    <script>
+    <!-- data-cfasync="false" 避免 Rocket Loader 延後執行、導致 widget 沒完整渲染 -->
+    <script data-cfasync="false">
         if (!['localhost', '127.0.0.1'].includes(window.location.hostname)) {
             const script = document.createElement('script');
             script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
             script.async = true;
             script.defer = true;
+            script.setAttribute('data-cfasync', 'false');
             document.head.appendChild(script);
         }
     </script>
