@@ -796,6 +796,10 @@ layout: false
                 </div>
 
                 <form id="contactForm">
+                    <div aria-hidden="true" style="position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;">
+                        <label for="phone">Phone (leave this field empty)</label>
+                        <input type="tel" name="phone" id="phone" tabindex="-1" autocomplete="off">
+                    </div>
                     <div style="display: grid; grid-template-columns: 1fr; gap: var(--space-6);">
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6);">
                             <div class="form-group reveal-fade-up delay-100">
