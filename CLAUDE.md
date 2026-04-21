@@ -2,10 +2,24 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Astro 遷移交接
+進行中的 Hexo → Astro 遷移，詳細交接文件在 `.claude/handoff.md`，新 session 開始前先讀。
+
+### Astro 模板殘留清理
+`astro-blog/` 內仍有 AstroPaper 模板預設值待替換：
+- `src/pages/about.md` — 整頁是模板內容（satnaing），需改寫為 Darrell 的自介
+- 其他檔案如發現 `satnaing`、`astro-paper` 等字串，一律替換
+
 ## Git Commit 強制規則
 **在執行任何 git commit 指令前，必須先使用 `commit-guide` skill 查看規範**
 - 格式：`[TYPE] 簡短描述`（50 字元內，英文）
 - Type：`[NEW POST]` 新文章、`[UPDATE]` 更新、`[FIX]` 修復、`feat:` 新功能、`chore:` 雜項
+
+## Push 後自動檢查流程（強制）
+git push 完成後，**不需要問用戶**，自動執行以下步驟：
+1. 用 `gh api` 檢查 Vercel 部署狀態，等到 `success`
+2. 部署成功後，用 `agent-browser` 開啟對應頁面確認改動正常
+3. 回報檢查結果給用戶
 
 ## Build Commands
 - **Dev**: `npm run dev` - clean + generate + server（本地開發常用）
@@ -128,6 +142,7 @@ modified: YYYY-MM-DD HH:MM:SS
 ## Debug 原則
 - **先找已有的正確實作**：當某功能壞掉但類似功能正常時，先查正常的那個怎麼做，直接複製方法，不要猜測或亂試
 - 例：Social Share 的 icon 壞掉 → 先看 Social Links 用什麼（Font Awesome），直接用同樣方式
+- **Heading anchor 沒有出現**：CSS `.header-anchor` 樣式存在於 theme，但 `main.yml` 的 `permalink: false` 讓 Hexo 不產生對應 HTML 元素。`permalink: false` 的原始原因不明（勿輕易改動，先確認影響範圍）。現行解法：在 `darrell.js` 用 JS 全域 inject，selector 鎖 `.post-body h2[id]`，先判斷 `.header-anchor` 是否已存在再 inject
 
 ## 獨立頁面設計紀錄
 
@@ -176,9 +191,26 @@ Request → Middleware → Static Files → Functions
 ```
 
 - 檢查 `Accept: text/markdown` header
-- 302 redirect 到 `/{path}/index.md`
-- Matcher 排除靜態資源（圖片、CSS、JS）
+- **fetch-and-serve**：middleware 內部 `await fetch('/{path}/index.md')` 拿到內容後，用 `Content-Type: text/markdown; charset=utf-8` 直接回 200（**不能用 302 redirect**，grader 不 follow redirect 會判失敗）
+- 首頁 `/` 特例：沒有 root index.md，改 serve `/llms.txt`
+- Matcher 排除靜態資源（圖片、CSS、JS）和 `/tools/`、`/links/`、`/.well-known/` 等非文章路徑
 - 執行成本極低（< 1ms）
+
+### Hexo 會自動產生 122+ 個 `{slug}/index.md`
+Hexo build 時觸發 `[Markdown for Agents] Generated` plugin，把每篇文章額外輸出一份 `.md` 版本到 `public/{slug}/index.md`。middleware 就是 fetch 這些檔案。**首頁沒有對應的 md**，所以才特別 route 到 llms.txt。
+
+### Agent Discovery：robots.txt + Link Header
+**robots.txt Content-Signal**（宣告 AI 使用偏好）：
+```
+Content-Signal: ai-train=no, search=yes, ai-input=yes
+```
+`ai-input=yes` 表示允許 AI 引用內容回答問題 — 跟 llms.txt 意圖一致，帶來源流量。
+
+**Link response header**（`vercel.json` 的 `/` 路徑）：
+```
+Link: </llms.txt>; rel="describedby"; type="text/plain", </sitemap.xml>; rel="sitemap"; type="application/xml"
+```
+⚠️ `rel` 值**必須用 IANA registered relation types**，不要自創。isitagentready 認可的 agent-useful rel 清單：`api-catalog`、`service-desc`、`service-doc`、`describedby`。靜態部落格用 `describedby` 指向 llms.txt 最合用。
 
 ### Hexo 自訂標籤對 AI 的影響
 - Hexo 自訂標籤（如 `{% darrellImage %}`）AI Agent 看不懂
@@ -195,6 +227,7 @@ Request → Middleware → Static Files → Functions
 ---
 
 ## Documentation References
+- `/docs/guides/hexo-to-astro-migration-plan.md` - Hexo → Astro 遷移計畫（備用方案，暫不執行）
 - `/docs/guides/n8n-template-guide.md` - Switch node 結構、LINE Bot 流程
 - `/docs/guides/n8n-node-article-guide.md` - n8n 節點文章架構指南
 - `/docs/guides/faq-usage-guide.md` - FAQ 標籤使用指南
