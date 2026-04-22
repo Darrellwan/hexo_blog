@@ -118,7 +118,7 @@ jobs:
         
         python .github/scripts/webhook_article.py
       env:
-        WEBHOOK_URL: https://darn8n.darrelltw.com/webhook/blog-new-post
+        WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
         WEBSITE_URL: ${{ secrets.WEBSITE_URL || 'https://www.darrelltw.com' }}
         ARTICLE_ID: ${{ steps.check-new-md-files.outputs.article_id }}
         POST_DATE: ${{ steps.check-new-md-files.outputs.post_date }}
