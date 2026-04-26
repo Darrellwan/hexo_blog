@@ -3,13 +3,13 @@
 ## 📚 最新文章
 
 ### [n8n ByCrawl 節點教學：簡單好用的台灣爬蟲服務](https://www.darrelltw.com/n8n-bycrawl-node/?utm_source=github_readme&utm_medium=referral)
-📅 2026/04/20 · 1 天前
+📅 2026/04/20 · 6 天前
 
 > n8n ByCrawl 社群節點完整教學！一把 API Key 就能抓 Threads、IG、X、Reddit、Dcard、PTT 等 15 個平台的社群數據。包含安裝設定、功能介紹、品牌聲量監控實戰案例和定價分析。
 
 
 ### [Claude Managed Agents 實測：簡單快速建立自己的雲端 AI Agent](https://www.darrelltw.com/claude-managed-agents/?utm_source=github_readme&utm_medium=referral)
-📅 2026/04/09 · 12 天前
+📅 2026/04/09 · 17 天前
 
 > Anthropic 推出 Claude Managed Agents，讓開發者用 Console 或 API 在雲端建立、部署生產等級的 AI Agent。實測 Quickstart 流程，從建立 Agent 到跑出第一個 Session 和心得分享。
 
@@ -65,7 +65,7 @@
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-122-blue?style=flat-square)
 ![總字數](https://img.shields.io/badge/總字數-326,534+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2026/04/21-green?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2026/04/26-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-04-21 16:42:56*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-04-26 03:31:38*
