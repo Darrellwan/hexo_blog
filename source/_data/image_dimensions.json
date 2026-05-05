@@ -7918,5 +7918,35 @@
     "width": 2362,
     "height": 1814,
     "mtimeMs": 1776661355296.424
+  },
+  "/_posts/n8n-update-log/n8n-2.18.0-schedule_self_heal.png": {
+    "width": 1088,
+    "height": 884,
+    "mtimeMs": 1776848529940.1206
+  },
+  "/_posts/n8n-update-log/n8n-2.18.0-minimax_chat_model.png": {
+    "width": 1492,
+    "height": 968,
+    "mtimeMs": 1776848529958.9465
+  },
+  "/_posts/n8n-update-log/n8n-2.18.0-favorites_sidebar.png": {
+    "width": 904,
+    "height": 386,
+    "mtimeMs": 1776848529920.9492
+  },
+  "/_posts/n8n-update-log/n8n-2.20.0-notion_url_fix.png": {
+    "width": 1384,
+    "height": 1100,
+    "mtimeMs": 1777977337817.5857
+  },
+  "/_posts/n8n-update-log/n8n-2.20.0-mcp_env_managed.png": {
+    "width": 1338,
+    "height": 900,
+    "mtimeMs": 1777977337808.0483
+  },
+  "/_posts/n8n-update-log/n8n-2.20.0-anthropic_adaptive_thinking.png": {
+    "width": 1820,
+    "height": 1206,
+    "mtimeMs": 1777977337826.341
   }
 }

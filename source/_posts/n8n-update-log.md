@@ -7,16 +7,119 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2026/04/07 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.16.0（Pre-release），正式版本為 2.15.0
+description: n8n 的更新記錄(2026/05/05 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.20.0（Pre-release），正式版本為 2.19.2
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2026-04-07 15:30:00
+modified: 2026-05-05 12:00:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 2.20.0 Pre-release - 2026-05-05
+
+[Github 2.20.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%402.20.0)
+
+這版是 **2.20.0 Pre-release**，重點有 Claude Opus 4.7+ 自適應思考模式、MCP 環境變數管理、以及 Notion 新域名支援。
+
+### Claude Opus 4.7+ 新增自適應思考模式
+fix(Anthropic Chat Model Node): Add adaptive thinking mode for Claude Opus 4.7+
+
+Claude Opus 4.7 推出後，n8n 也終於推出更新來配合新的思考模式 Adaptive！
+
+這次更新新增了三個模式：
+- **Disabled**：不思考
+- **Adaptive（推薦）**：讓 Claude 自己決定要想多久，設定努力程度（Effort）就好
+- **Manual**：舊版固定預算模式，Opus 4.7+ 會顯示友善錯誤訊息提醒你切換
+
+Adaptive 模式的 Effort 等級：
+- Opus 系列：Low / Medium / High / X-High / Max
+- 其他系列：Low / Medium / High
+
+{% darrellImage800Alt "n8n Anthropic Chat Model 節點新增 Adaptive 思考模式，可設定 Effort 等級" n8n-2.20.0-anthropic_adaptive_thinking.png max-800 %}
+
+### MCP 功能改用環境變數管理
+feat(core): Manage MCP settings via environment variables
+
+之前要開關 n8n 的 MCP 功能，只能進 Settings 頁面手動開關。
+
+這次加了兩個環境變數：
+- `N8N_MCP_ENABLED=true/false`：控制 MCP 功能開關
+- `N8N_MCP_MANAGED_BY_ENV=true`：把 UI 的 MCP 開關鎖成唯讀
+
+啟用 `N8N_MCP_MANAGED_BY_ENV=true` 後，Settings 裡的開關會顯示目前狀態但不能手動改，避免有人在介面亂動造成設定不一致。
+
+讓 n8n mcp 的管理上多了另一種方式，需要的話就在 env 直接設定啟用與否就好，不需要個別做設定
+
+{% darrellImage800Alt "在 n8n Variables 新增 N8N_MCP_MANAGED_BY_ENV=true 設定，讓 MCP 開關由環境變數控制" n8n-2.20.0-mcp_env_managed.png max-800 %}
+
+### Notion 節點支援新版 app.notion.com 網址
+fix(Notion Node): Support app.notion.com URL format for page and block ID extraction
+
+Notion 最近把網址從 `notion.so` 換成 `app.notion.com`，但 n8n 的 Notion 節點只認舊的網域，直接貼新 URL 會 error
+
+> Invalid URL, could not find block ID or page ID
+
+這次修復兩種網域都支援，從 Notion 複製連結直接貼上就行，不用手動把 domain 改回 `notion.so`。
+
+{% darrellImage800Alt "n8n Notion 節點現在支援 app.notion.com 新版網址格式，貼上直接用不報錯" n8n-2.20.0-notion_url_fix.png max-800 %}
+
+## 2.18.0 Pre-release - 2026-04-21
+
+[Github 2.18.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%402.18.0)
+
+### 收藏 Workflow、資料夾、專案
+feat(editor): Add favoriting for projects, folders, workflows and data tables
+
+workflow 多了之後，最頭痛的就是找。每次要開常用的幾個，都要滾半天或靠搜尋，
+偏偏那幾個名字又記不住在哪個資料夾。
+
+這次加了收藏功能，workflow、資料夾、專案都可以點星號加入收藏。
+左側 sidebar 會出現專屬的 **Favorites** 區塊，按類型分組顯示，點一下直接跳過去。
+
+{% darrellImage800Alt "n8n sidebar 顯示 Favorites 收藏區塊，按類型分組列出常用 workflow" n8n-2.18.0-favorites_sidebar.png max-800 %}
+
+常用的 workflow 終於不用每次從頭找了。
+
+### MiniMax Chat Model 節點
+feat(MiniMax Chat Model Node): Add MiniMax Chat Model sub-node
+
+又多了一個可以接的 AI 模型，這次是 **MiniMax**，中國的 AI 公司，API 相容 OpenAI 格式。
+
+跟其他 LangChain 子節點一樣，直接接到 AI Agent 或 Chain 上用。
+Credentials 需要 API Key（從 platform.minimax.io 申請），有國際區和中國區可以選。
+
+支援 7 個模型，都有一般版和高速版：
+- MiniMax-M2.7 / M2.7-highspeed
+- MiniMax-M2.5 / M2.5-highspeed
+- MiniMax-M2.1 / M2.1-highspeed
+- MiniMax-M2
+
+比較特別的是有個 **Hide Thinking** 選項（預設開啟），
+會自動把模型的 `<think>` 推理過程濾掉，output 乾淨不帶思考過程。
+
+{% darrellImage800Alt "n8n MiniMax Chat Model 節點設定畫面，可選模型和區域" n8n-2.18.0-minimax_chat_model.png max-800 %}
+
+### Schedule Node 觸發失效可以自動修復了
+fix(Schedule Node): Use elapsed-time check to self-heal after missed triggers
+
+這個修復比看起來嚴重很多。
+
+以前 Schedule Node 用的是嚴格比對（`===`）判斷要不要觸發。
+只要錯過一次觸發時間（n8n 重啟、Redis failover、切換主節點），
+`lastExecution` 的值就會永久卡住，之後完全不會觸發，**最長可以沉默 364 天**。
+
+問題是完全無聲，沒有錯誤、沒有通知，你只會發現資料不知道什麼時候開始沒更新了。
+
+另外改排程間隔也會觸發同樣的 bug：舊的 `lastExecution` 跟新設定不匹配，
+workflow 就永久停擺。
+
+這次把比對邏輯改成 elapsed-time 檢查（`>=`），只要超過設定的間隔就觸發，
+下次 cron tick 就會自動修復，不用手動停用再重新啟用。
+
+{% darrellImage800Alt "Schedule Node 修復後可自動偵測並補跑錯過的排程觸發" n8n-2.18.0-schedule_self_heal.png max-800 %}
 
 ## 2.16.0 Pre-release - 2026-04-07
 
