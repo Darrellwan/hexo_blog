@@ -2,6 +2,12 @@
 
 ## 📚 最新文章
 
+### [n8n Google Sheets 節點教學](https://www.darrelltw.com/n8n-google-sheets-node/?utm_source=github_readme&utm_medium=referral)
+📅 2026/05/09 · 1 小時前
+
+> n8n Google Sheets 節點完整教學。6 個操作怎麼選（含決策樹）、Trigger polling 限制說明，以及 Gmail 電子發票 AI 自動解析去重實戰案例。
+
+
 ### [n8n ByCrawl 節點教學：簡單好用的台灣爬蟲服務](https://www.darrelltw.com/n8n-bycrawl-node/?utm_source=github_readme&utm_medium=referral)
 📅 2026/04/20 · 19 天前
 
@@ -56,15 +62,9 @@
 > n8n 搭配 Zeabur AI Hub 打造 AI 模型 Router，一個 API Key 串接 GPT、Claude、Gemini。根據問題複雜度智慧切換模型：簡單問題用便宜模型、複雜問題用強模型，省成本又兼顧品質
 
 
-### [n8n 2.0 大更新：除了新功能，更該擔心能不能順利 Migrate](https://www.darrelltw.com/n8n-2-0-update/?utm_source=github_readme&utm_medium=referral)
-📅 2025/11/26 · 5 個月前
-
-> n8n 2.0 大更新要來了！包含新功能介紹、Migration Report 使用教學、Breaking Changes 詳解和常見升級問題解決方案
-
-
 ## 📊 部落格統計
-![文章總數](https://img.shields.io/badge/文章總數-122-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-328,654+-blue?style=flat-square)
+![文章總數](https://img.shields.io/badge/文章總數-123-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-335,173+-blue?style=flat-square)
 ![最後更新](https://img.shields.io/badge/最後更新-2026/05/09-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
@@ -88,7 +88,7 @@
 
 
 ## 🏷️ 熱門主題
-![n8n](https://img.shields.io/badge/n8n-32-orange?style=flat-square) ![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-15-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![Claude](https://img.shields.io/badge/Claude-7-orange?style=flat-square)
+![n8n](https://img.shields.io/badge/n8n-33-orange?style=flat-square) ![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-15-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![Claude](https://img.shields.io/badge/Claude-7-orange?style=flat-square)
 
 ## 📈 更新頻率
 ```text
@@ -97,7 +97,7 @@
 02月 ░░░░░░░░░░ 0篇
 03月 ██░░░░░░░░ 2篇
 04月 ██░░░░░░░░ 2篇
-05月 ░░░░░░░░░░ 0篇
+05月 █░░░░░░░░░ 1篇
 ```
 
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-05-09 08:21:39*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-05-09 10:58:34*
