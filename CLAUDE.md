@@ -15,6 +15,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - 格式：`[TYPE] 簡短描述`（50 字元內，英文）
 - Type：`[NEW POST]` 新文章、`[UPDATE]` 更新、`[FIX]` 修復、`feat:` 新功能、`chore:` 雜項
 
+### 文章 commit 前必查：日期
+commit 文章前，**必須確認 front matter 的 `date` 和 `modified` 是正確日期**，不是預設或舊值。
+```bash
+rg "^date:|^modified:" source/_posts/<file>.md
+```
+
+### Push 必須等用戶授權
+commit 完成後**不能自動 push**，必須回報「commit 完成，確認要 push 嗎？」，等用戶明確說「push」才推。
+
 ## Push 後自動檢查流程（強制）
 git push 完成後，**不需要問用戶**，自動執行以下步驟：
 1. 用 `gh api` 檢查 Vercel 部署狀態，等到 `success`
