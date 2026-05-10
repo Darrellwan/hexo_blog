@@ -15,7 +15,7 @@ bgImage: blog-n8n-google-sheets-bg.jpg
 preload:
   - blog-n8n-google-sheets-bg.jpg
 date: 2026-05-09 10:00:00
-modified: 2026-05-09 10:00:00
+modified: 2026-05-10 10:00:00
 ---
 
 {% darrellImageCover n8n-google-sheets-node-bg blog-n8n-google-sheets-bg.jpg max-800 %}
@@ -52,6 +52,11 @@ modified: 2026-05-09 10:00:00
     "text": "實戰案例",
     "anchor": "example",
     "desc": "Gmail 發票自動記錄"
+  },
+  {
+    "text": "錯誤修正",
+    "anchor": "errors",
+    "desc": "503 / 429 常見錯誤"
   },
   {
     "text": "常見問題",
@@ -249,6 +254,26 @@ AI 輸出的 JSON 欄位名通常和你 Sheet 的 header 不一致。舉例：AI
 
 ---
 
+<h2 id="errors">常見錯誤修正</h2>
+
+### 503 Service Unavailable：開 Retry On Fail
+
+執行時偶爾會出現 503，是 Google 服務端的暫時性問題
+這很麻煩，因為目前觀察的出現頻率可能是幾天突然出現一次
+必須要在設定時就先加以排除或是防範！
+
+修法：節點的 **Settings**，開啟 **Retry On Fail**，Max Tries 設 3、Wait Between Tries 設 2000（2 秒）
+意思是失敗的話，我們會等待兩秒再試一次，最多嘗試三次
+你也可以調整頻率跟次數，如果資料很重要，也可以把 **on error** 另外錯誤處理的設定
+
+{% darrellImage800Alt "Google Sheets 節點 Settings tab：Retry On Fail 開啟、Max Tries 3、Wait 2000ms" n8n_google_sheets_retry_on_fail_settings.png max-800 %}
+
+### 429 Too Many Requests：開 Minimise API Calls
+
+大量寫入時被 rate limit 擋住，出現 429。解法：Append / Append or Update 節點的 **Options** 裡開啟 **Minimise API Calls**，n8n 會把多筆資料合併成一次 API 請求送出，減少打 Google API 的次數。
+
+---
+
 <h2 id="faq">常見問題</h2>
 
 {% faq %}
@@ -259,7 +284,7 @@ AI 輸出的 JSON 欄位名通常和你 Sheet 的 header 不一致。舉例：AI
   },
   {
     "question": "執行 Append Row 或 Append or Update Row 的時候出現 Service unavailable 錯誤，是什麼問題？",
-    "answer": "這個 503 錯誤是 Google 服務端的暫時性問題，不是你的 API 配額超過（配額超過是 HTTP 429，完全不同的錯）。解法：節點右上角 ⚙️ → Settings → On Error → 選「Retry on Fail」，設定重試 3 次、間隔 5 秒，絕大多數情況自動重試就過了。"
+    "answer": "這個 503 錯誤是 Google 服務端的暫時性問題，不是你的 API 配額超過（配額超過是 HTTP 429，完全不同的錯）。解法：節點 Settings tab 開啟 Retry On Fail，Max Tries 設 3、Wait Between Tries 設 2000（2 秒），絕大多數情況自動重試就過了。"
   },
   {
     "question": "用 Get Rows 讀資料，只讀到一半就沒了，後面的資料呢？",
