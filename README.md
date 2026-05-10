@@ -3,13 +3,13 @@
 ## 📚 最新文章
 
 ### [n8n Google Sheets 節點教學](https://www.darrelltw.com/n8n-google-sheets-node/?utm_source=github_readme&utm_medium=referral)
-📅 2026/05/09 · 1 小時前
+📅 2026/05/09 · 18 小時前
 
 > n8n Google Sheets 節點完整教學。6 個操作怎麼選（含決策樹）、Trigger polling 限制說明，以及 Gmail 電子發票 AI 自動解析去重實戰案例。
 
 
 ### [n8n ByCrawl 節點教學：簡單好用的台灣爬蟲服務](https://www.darrelltw.com/n8n-bycrawl-node/?utm_source=github_readme&utm_medium=referral)
-📅 2026/04/20 · 19 天前
+📅 2026/04/20 · 20 天前
 
 > n8n ByCrawl 社群節點完整教學！一把 API Key 就能抓 Threads、IG、X、Reddit、Dcard、PTT 等 15 個平台的社群數據。包含安裝設定、功能介紹、品牌聲量監控實戰案例和定價分析。
 
@@ -65,7 +65,7 @@
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-123-blue?style=flat-square)
 ![總字數](https://img.shields.io/badge/總字數-335,173+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2026/05/09-green?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2026/05/10-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-05-09 10:58:34*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-05-10 03:48:40*
