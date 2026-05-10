@@ -15,7 +15,7 @@ bgImage: blog-n8n-google-sheets-bg.jpg
 preload:
   - blog-n8n-google-sheets-bg.jpg
 date: 2026-05-09 10:00:00
-modified: 2026-05-10 10:00:00
+modified: 2026-05-10 17:09:05
 ---
 
 {% darrellImageCover n8n-google-sheets-node-bg blog-n8n-google-sheets-bg.jpg max-800 %}
