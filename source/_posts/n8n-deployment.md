@@ -12,7 +12,7 @@ bgImage: blog-n8n-deployment-bg.jpg
 preload:
   - blog-n8n-deployment-bg.jpg
 date: 2025-05-10 18:22:12
-modified: 2025-05-10 18:22:12
+modified: 2026-05-16 14:14:39
 ---
 
 {% darrellImageCover blog-n8n-deployment-bg blog-n8n-deployment-bg.jpg %}
@@ -198,6 +198,18 @@ Zeabur 相信是台灣的 n8n 使用者中討論度最高的另一個方案
 大約等待三到五分鐘就部署完成了
 
 {% darrellImage800 zeabur_private_deploying zeabur_private_deploying.png max-800 %}
+
+<h3 id="zeabur-update">Zeabur 怎麼更新</h3>
+
+Zeabur 更新 n8n 版本只要改 Docker image 的標籤就好，不需要重新部署：
+
+**Step 1. 進入 n8n 服務的「設定」頁籤**，往下捲動到「來源」區塊，點擊 `docker.io/n8nio/n8n` 那列
+
+{% darrellImage800Alt "Zeabur 服務設定頁面，往下捲到「來源」區塊，點擊 docker.io/n8nio/n8n 那列進入版本設定" n8n-zeabur-settings-source.png max-800 %}
+
+**Step 2.** 彈窗中找到「映像標籤」欄位，將版本號改為目標版本，點「儲存」，服務會自動重新部署
+
+{% darrellImage800Alt "Zeabur 來源設定彈窗，在「映像標籤」欄位輸入新的 n8n 版本號，儲存後服務會自動重新部署" n8n-zeabur-version-modal.png max-800 %}
 
 <h2 id="docker">Docker 本地部署</h2>
 
