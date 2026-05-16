@@ -199,7 +199,7 @@ Zeabur 相信是台灣的 n8n 使用者中討論度最高的另一個方案
 
 {% darrellImage800 zeabur_private_deploying zeabur_private_deploying.png max-800 %}
 
-<h3 id="zeabur-update">Zeabur 怎麼更新</h3>
+<h3 id="zeabur-update">Zeabur 怎麼更新 n8n</h3>
 
 Zeabur 更新 n8n 版本只要改 Docker image 的標籤就好，不需要重新部署：
 
