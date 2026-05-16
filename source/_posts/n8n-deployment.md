@@ -1,5 +1,5 @@
 ---
-title: n8n 安裝部署教學 - 官方Cloud、Zeabur、本機部署和Glows.ai 該怎麼選?
+title: n8n 安裝部署與更新教學：Cloud、Zeabur、Docker 比較
 tags:
   - n8n
   - deployment
@@ -7,12 +7,12 @@ categories:
   - n8n
 page_type: post
 id: n8n-deployment
-description: n8n 部署教學：官方 Cloud、Zeabur、Docker 和 Glows.ai 方案完整比較，從成本、效能到擴展性，掌握各種部署方式的關鍵差異，找到屬於自己合適的部署方式。
+description: n8n 安裝、部署、更新完整教學：官方 Cloud、Zeabur、Docker 和 Glows.ai 各方案比較，從成本、效能到更新方式，找到最適合自己的 n8n 部署方案。
 bgImage: blog-n8n-deployment-bg.jpg
 preload:
   - blog-n8n-deployment-bg.jpg
 date: 2025-05-10 18:22:12
-modified: 2026-05-16 14:14:39
+modified: 2026-05-16 14:28:08
 ---
 
 {% darrellImageCover blog-n8n-deployment-bg blog-n8n-deployment-bg.jpg %}
@@ -232,6 +232,25 @@ Zeabur 更新 n8n 版本只要改 Docker image 的標籤就好，不需要重新
 3. 潛在的安全性問題，n8n 服務如果對外，就算是多一個入口
 要有更高的資安意識
 
+<h3 id="docker-update">Docker 怎麼更新 n8n</h3>
+
+Docker 更新只要重新拉取最新 image 再重啟容器就好，workflow 和資料都存在 volume 裡，不會遺失：
+
+```bash
+# 拉取最新版本
+docker pull docker.io/n8nio/n8n:latest
+
+# 重新啟動（停止舊容器並用新 image 啟動）
+docker compose down && docker compose up -d
+```
+
+如果想指定版本而不是 latest：
+
+```bash
+docker pull docker.io/n8nio/n8n:2.21.0
+```
+
+把 `docker-compose.yml` 裡的 image tag 改成對應版本號再重啟即可。
 
 <h2 id="glows-ai">Glows.ai - n8n + GPU 運算整合方案</h2>
 
