@@ -126,6 +126,18 @@
                     window.trackFormSubmit(data);
                 }
 
+                // 專屬 conversion event：給 GTM → Google Ads Conversion Tag 用
+                // 跟 form_submit 區隔，避免之後 GA4 報表混雜
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    event: 'n8n_consult_lead_submitted',
+                    lead_source: 'n8n-expert-form',
+                    service_type: data.type,
+                    budget: data.budget,
+                    conversion_value: 500,
+                    currency: 'TWD'
+                });
+
                 form.style.display = 'none';
                 successMessage.style.display = 'block';
                 form.reset();
