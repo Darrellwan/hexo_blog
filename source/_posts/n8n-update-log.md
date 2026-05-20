@@ -7,16 +7,118 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2026/05/05 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.20.0（Pre-release），正式版本為 2.19.2
+description: n8n 的更新記錄(2026/05/20 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.22.0（Pre-release），正式版本為 2.21.4
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2026-05-05 12:00:00
+modified: 2026-05-20 12:40:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 2.22.0 Pre-release - 2026-05-19
+
+[Github 2.22.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%402.22.0)
+
+這版是 **2.22.0 Pre-release**，重點有 Crypto 節點補上加解密功能、NVIDIA Nemotron 新的 AI Chat Model 節點、以及 Facebook Graph API 支援 OAuth2 認證。
+
+### Crypto 節點新增加解密 Action
+feat(Crypto Node): Add encryption and decryption actions
+
+之前在 n8n 想做「加密一段字串再存到 Google Sheets / Notion / Supabase」這種事，沒有現成節點，只能進 Code 節點自己用 Node.js 的 `crypto` 模組刻。
+
+這次 Crypto 節點終於補上了 **Encrypt** 和 **Decrypt** 兩個 action，原本只有 Hash、Hmac、Sign、Generate。
+
+{% darrellImage800Alt "Crypto 節點 Action 下拉新增 Encrypt（用 Passphrase 或 Public Key 加密）和 Decrypt（用 Passphrase 或 Private Key 解密）兩個選項" n8n-2.22.0-crypto_encrypt_decrypt_actions.png max-800 %}
+
+支援兩種模式：
+
+**對稱加密（Symmetric）**：用同一組 Passphrase 加解密，4 種演算法可選
+
+**非對稱加密（Asymmetric）**：用 RSA-OAEP-SHA256，公鑰加密、私鑰解密。
+
+### NVIDIA Nemotron 加入 Chat Model 節點
+feat(core): Add NVIDIA Nemotron Models with cloud and self-hosted NIM support
+
+n8n 這次新增了 **NVIDIA Nemotron Chat Model** 節點，可以在 AI Agent 裡選用 NVIDIA 自家的 Nemotron 模型。
+
+{% darrellImage800Alt "AI Agent 節點透過 Chat Model 接口連接到 NVIDIA Nemotron Chat Model 節點" n8n-2.22.0-nvidia_nemotron_chat_model.png max-800 %}
+
+**支援兩種部署方式**：
+
+{% dataTable align="left" %}
+[
+  {"部署方式": "<strong>NVIDIA 雲端</strong>", "Base URL": "<code>https://integrate.api.nvidia.com/v1</code>", "適合誰": "想用開源模型但不想自己架推理服務的人，註冊 <a href=\"https://build.nvidia.com/\">build.nvidia.com</a> 就有免費額度（約 1,000 次推理）"},
+  {"部署方式": "<strong>自架 NIM</strong>", "Base URL": "自家 GPU 伺服器，如 <code>http://localhost:8000/v1</code>", "適合誰": "有 NVIDIA GPU（A100 / H100 / RTX 4090）的話，資料就不用上傳到雲端模型"}
+]
+{% enddataTable %}
+
+### Facebook Graph API 節點支援 OAuth2 認證
+feat(Facebook Graph API Node): Add OAuth2 support
+
+之前在 n8n 連 Facebook Graph API，要先去 [Meta for Developers](https://developers.facebook.com/) 的 APP 找到方法產生 Access Token 貼過來。
+
+這次新增了 **Facebook Graph OAuth2 API** credential，認證流程從「自己找 token、貼上、過期」變成「點一下 Connect、跳授權頁同意就完成」。
+
+{% darrellImage800Alt "Facebook Graph OAuth2 API credential 設定畫面，需填入 Client ID、Client Secret，可選自訂 Scope" n8n-2.22.0-facebook_graph_oauth2_credential.png max-800 %}
+
+目前實測這個 Token 無法使用在粉絲專頁上，只能授權使用在個人帳號上
+所以想取得粉絲專頁的貼文成效或是發文的話，無法使用這個 OAuth 方式來授權
+
+## 2.21.0 Pre-release - 2026-05-12
+
+[Github 2.21.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%402.21.0)
+
+這版是 **2.21.0 Pre-release**，重點有 Jira 支援 OAuth2 登入、Notion 資料庫突破 100 筆限制、Google Sheets Append 修復配額超量問題、以及 14 個 Trigger 節點加入 Webhook 簽名驗證。
+
+### Jira 節點支援 OAuth2 認證
+feat(Jira Node): Add OAuth2 (3LO) support
+
+以前要在 n8n 連 Jira，流程是：去 Atlassian 帳號設定頁手動建一個 API token、複製那串字、貼回 n8n。Token 本身不會自動更新，過期或被撤銷就要重建一次。
+
+這次新增了 `Cloud (OAuth2)` 認證選項，設定流程：
+1. 到 Atlassian Developer Console 建一個 OAuth2 App，拿到 Client ID 和 Client Secret
+2. 在 n8n 建立 `Jira SW Cloud OAuth2 API` credential，填入 Client ID、Client Secret 和 Atlassian 網址（例如 `https://yourcompany.atlassian.net`）
+3. 點 Connect，跳出 Atlassian 授權頁，同意後自動完成
+
+OAuth2 的好處是 token 自動更新，不用擔心哪天突然失效。設定比 API token 多一步（要先在 Atlassian 建 OAuth2 App），但之後維護起來省事很多。
+
+{% darrellImage800Alt "Jira SW Cloud OAuth2 API credential 設定畫面，需填入 Client ID、Client Secret 和 Atlassian 網址" n8n-2.21.0-jira_oauth2_credential.png max-800 %}
+
+### Notion Get Many 突破 100 筆限制
+fix(Notion Node): Paginate Get Many operations beyond 100-item API cap
+
+Notion API 有個限制：每次最多回傳 100 筆資料。
+
+以前在 n8n 用 Notion 節點的 Get Many，就算你設 Limit 為 150，實際上只會拿到 100 筆，而且沒有任何錯誤訊息，你根本不知道資料被切掉了。如果你的 Notion 資料庫有 200 筆，跑完 workflow 可能以為拿到全部，其實只有一半。
+
+這次修復後，n8n 會自動分頁查詢直到拿齊。設 150 就真的拿 150 筆、開 Return All 就拿全部，不用自己寫 pagination 邏輯。
+
+{% darrellImage800Alt "Notion 節點 Get Many 設定 Limit 為 150，現在會真正回傳 150 筆而不被 100 筆上限截斷" n8n-2.21.0-notion_get_many_pagination.png max-800 %}
+
+### Google Sheets Append 解決配額超量問題
+fix(Google Sheets Node): Reduce duplicate API calls in append operation to avoid quota limits
+
+在 Loop 裡跑 Google Sheets 的 Append Row，跑一段時間後會遇到 **429 Too Many Requests**，然後整個 workflow 就停了。
+
+原因是每次 Append 一筆資料，n8n 內部會打 **3 次** Google Sheets API，三個函式各自去讀同一件事：試算表的標題列（欄位名稱），沒有共用結果。
+
+Google Sheets 讀取配額是 60 次/分鐘，等於每分鐘只能 Append 約 20 筆就觸發限制。
+
+這次修復改成只讀 1 次，同樣配額可以跑 60 次 Append，是之前的 3 倍。如果你有跑過 Loop + Append 遇到 429，更新後就可以解除這個瓶頸了。
+
+{% darrellImage800Alt "Google Sheets 節點 Append Row 操作，這次修復讓每次 Append 的 API 呼叫從 3 次降為 1 次，有效避免配額超量" n8n-2.21.0-google_sheets_append_row.png max-800 %}
+
+### 14 個 Trigger 節點加入 Webhook 簽名驗證
+Multiple Trigger Nodes: Add webhook request verification
+
+以前這些 Trigger 節點收到 webhook 就執行，不會驗證「這個請求真的是服務本身發的嗎？」只要有人知道你的 webhook URL，就能發假請求觸發 workflow。
+
+這次 n8n 替以下 14 個 Trigger 節點加入 HMAC 簽名驗證，不合法的請求直接 401 拒絕。對你來說**不需要額外設定**，只要 credential 有效，驗證自動啟用：
+
+Acuity Scheduling、Asana、Cal.com、Calendly、Customer.io、Figma、Formstack、GitLab、MailerLite、Mautic、Onfleet、Taiga、Trello、Twilio
 
 ## 2.20.0 Pre-release - 2026-05-05
 

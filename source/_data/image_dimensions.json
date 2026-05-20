@@ -8078,5 +8078,20 @@
     "width": 1235,
     "height": 642,
     "mtimeMs": 1778911869335.3723
+  },
+  "/_posts/n8n-update-log/n8n-2.22.0-nvidia_nemotron_chat_model.png": {
+    "width": 2152,
+    "height": 1640,
+    "mtimeMs": 1779251968031.149
+  },
+  "/_posts/n8n-update-log/n8n-2.22.0-facebook_graph_oauth2_credential.png": {
+    "width": 2204,
+    "height": 1876,
+    "mtimeMs": 1779251968042.8384
+  },
+  "/_posts/n8n-update-log/n8n-2.22.0-crypto_encrypt_decrypt_actions.png": {
+    "width": 1654,
+    "height": 1130,
+    "mtimeMs": 1779251968016.2935
   }
 }
