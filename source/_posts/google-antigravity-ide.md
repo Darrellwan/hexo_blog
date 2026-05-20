@@ -1,14 +1,17 @@
 ---
-title: Google Antigravity 搭配 Gemini 3 模型還能自動化測試！Vibe Coding 新神器
+title: Google Antigravity 全解析：從 IDE 變成 Agent 開發平台（含 CLI 取代 Gemini CLI）
 date: 2025-11-19 21:52:39
-modified: 2026-01-24 12:00:00
+modified: 2026-05-20 14:00:00
 tags:
   - Google
   - AI
   - Antigravity
+  - Antigravity CLI
+  - Antigravity 2.0
+  - Gemini CLI
 categories:
   - 工具
-description: "深入體驗 Google Antigravity。包含完整安裝教學、Agent Manager 使用、自動化測試、Antigravity Skills 設定教學與跨工具共用技巧。"
+description: "Google Antigravity 2026/05 重大更新：從單一 IDE 變成 Agent 開發平台。完整解析 Antigravity IDE、Antigravity 2.0 桌面 app、Antigravity CLI（取代 Gemini CLI）三大產品差異，搭配 IDE 完整安裝教學、Agent Manager、Skills 設定。"
 bgImage: blog-google-antigravity.jpg
 page_type: post
 preload:
@@ -20,9 +23,19 @@ preload:
 {% quickNav %}
   [
     {
-      "text": "安裝設定流程",
-      "anchor": "installation",
-      "desc": "6 個步驟完成初始設定"
+      "text": "三大產品總覽",
+      "anchor": "products",
+      "desc": "Antigravity、IDE、CLI"
+    },
+    {
+      "text": "Antigravity（桌面 app）",
+      "anchor": "antigravity-2",
+      "desc": "像 Codex App 的 Agent 介面"
+    },
+    {
+      "text": "Antigravity CLI",
+      "anchor": "antigravity-cli",
+      "desc": "取代 Gemini CLI"
     },
     {
       "text": "實際開發體驗",
@@ -35,101 +48,46 @@ preload:
       "desc": "平行處理多專案任務"
     },
     {
-      "text": "自動化測試功能",
-      "anchor": "browser-extension",
-      "desc": "Chrome 擴充功能整合"
-    },
-    {
       "text": "Agent Skills",
       "anchor": "skills",
       "desc": "跨平台共用技能系統"
-    },
-    {
-      "text": "模型與配額限制",
-      "anchor": "model-limits",
-      "desc": "支援模型與使用限制"
     }
   ]
   {% endquickNav %}
 
-Google 今天推出了一款名為 **Antigravity** 的全新 AI Coding 工具，
-主打 "{% term def="AI 具備自主決策和行動能力的特性，能主動完成複雜任務" %}Agentic{% endterm %}"。
-也是一款基於 Visual Studio Code 開發的
-用起來很像是 Cursor 和 
+Google Antigravity 自 2025 年 11 月推出時，是一款基於 Visual Studio Code 的 AI Coding IDE，
+主打 "{% term def="AI 具備自主決策和行動能力的特性，能主動完成複雜任務" %}Agentic{% endterm %}" 開發體驗，
+用起來很像 Cursor 和 Windsurf。
 
-這篇文章將帶大家實際走一遍 Antigravity 的完整安裝與設定流程，從初次啟動到實際執行開發任務，看看它究竟有什麼過人之處。
+但 **2026 年 5 月 19 日 Google I/O** 公布 Antigravity 2.0 後，
+Antigravity 不再只是 IDE，而是變成一個完整的 Agent 開發平台。
 
-<h2 id="installation">第一次啟動：完整的引導流程</h2>
+<h2 id="products">Antigravity 2.0 帶來的三個產品</h2>
 
-### Step 1: 歡迎畫面
-啟動 Antigravity 後，首先會看到簡潔的歡迎畫面，顯示 "Welcome to Antigravity" 與 "Let's get you set up" 的提示。
+<h3 id="antigravity-2">Antigravity</h3>
 
-{% darrellImageCover antigravity_cover step1-welcome-splash-screen.png max-800 %}
+變成很像 Codex App 的桌面應用程式，使用者只會看到 Prompt 的輸入欄位
+但能同時啟動多個 Session 來工作
 
-### Step 2: 選擇設定來源
-第一個選項是選擇如何設定你的開發環境。Antigravity 提供三種方式：
+{% darrellImage800Alt "Antigravity 2.0 桌面 app 主介面：左側 sidebar 顯示專案列表與對話歷史，使用者只看到 Prompt 輸入欄位，設計類似 Codex App" antigravity_2_chat_interface.png max-800 %}
 
-{% darrellImage800Alt "Google Antigravity 初始設定畫面，提供三種設定匯入選項：Start fresh、Import from VS Code、Import from Cursor" step2-setup-import-settings.png max-800 %}
+<h3 id="antigravity-ide-rename">Antigravity IDE</h3>
 
-- **Start fresh**：從零開始設定
-- **Import from VS Code**：從 VS Code 匯入設定
-- **Import from Cursor**：從 Cursor 匯入設定
+其實就是我們熟悉的 Antigravity，只是更名為 Antigravity IDE
+不要小看一個改名字，目前社群上大家都偏反感
+因為需要 IDE 的使用者還需要重新下載安裝一次
 
-如果原本的編輯器有些特殊的個人設定，也可以直接帶到 Antigravity 中使用。
+{% darrellImage800Alt "Antigravity IDE Workspace 歡迎畫面：更名後使用者需要重新下載安裝，是社群反感的主因" antigravity_ide_welcome_screen.png max-800 %}
 
-### Step 3: 選擇編輯器主題
-接下來選擇你喜歡的編輯器主題，Antigravity 提供四種主題：
+[Antigravity IDE 下載網址](https://antigravity.google/download#antigravity-ide)
 
-{% darrellImage800Alt "Google Antigravity 編輯器主題選擇畫面，提供 Dark、Tokyo Night、Light、Solarized Light 四種主題選項" step3-choose-editor-theme.png max-800 %}
+<h3 id="antigravity-cli">Antigravity CLI</h3>
 
-- **Dark**：經典深色主題（預設選項）
-- **Tokyo Night**：看起來是深藍色
-- **Light**：淺色主題
-- **Solarized Light**：淺色但顏色比較和諧
+取代 Gemini CLI，用 Go 整個重寫，保留部分 Gemini CLI 的核心功能
+安裝完成後，可以用 `agy` 命令來啟動
+驚喜的是能使用 Claude Opus 和 Sonnet 模型
 
-### Step 4: 選擇 Agent 工作模式
-這是 Antigravity 最核心的設定。你需要決定 AI Agent 如何與你協作：
-
-{% darrellImage800Alt "Google Antigravity Agent 模式選擇畫面，提供 Agent-driven、Agent-assisted、Review-driven、Custom configuration 四種開發模式" step4-agent-mode-selection.png max-800 %}
-
-- **Agent-driven development**：AI 主導開發流程
-- **Agent-assisted development**：AI 輔助開發（推薦）
-- **Review-driven development**：以 Code Review 為主
-- **Custom configuration**：自訂設定
-
-右側可以設定：
-- **Terminal execution policy**：終端機執行權限（Auto/Manual）
-- **Review policy**：審查政策（Agent Decides/Always Ask）
-
-### Step 5: 編輯器詳細配置
-在這個步驟中，你可以設定更細節的編輯器選項：
-
-{% darrellImage800Alt "Google Antigravity 編輯器配置畫面，可設定 Keybindings（Normal/Vim）、安裝 7 個擴充功能、安裝 Command Line 工具" step5-editor-configuration.png max-800 %}
-
-- **Keybindings**：選擇 Normal 或 Vim 快捷鍵模式
-- **Extensions**：準備會安裝的擴充套件，截圖中的七個是從 cursor 中原本就有安裝的
-- **Command Line**：安裝 `agy` 命令列工具
-
-### Step 6: Google 帳號登入
-完成基本設定後，需要使用 Google 帳號登入才能開始使用 Antigravity：
-
-{% darrellImage800Alt "Google Antigravity Google 登入畫面，要求使用者透過 Google 帳號登入以存取 Antigravity 服務" step6-google-signin.png max-800 %}
-
-點選 "Sign in with Google" 按鈕，完成授權後就能正式進入主介面。
-
-## Antigravity 介面
-
-登入後，你會看到 Antigravity 的主介面：
-
-{% darrellImage800Alt "Antigravity IDE 主介面展示三欄式佈局：左側檔案總管、中間程式碼編輯器、右側 Agent 聊天面板" antigravity-ide-overview.png max-800 %}
-
-主介面包含幾個關鍵區域：
-- 左側面板：檔案總管、搜尋、Git 等工具
-- 中間區域：工作區列表（Workspaces）
-- 右側面板：Antigravity Agent 聊天介面
-- 頂部工具列：Open Agent Manager、Open Browser 測試 等功能
-
-你可以點選 "Open Folder" 開啟新專案，或是從 Workspaces 中選擇已有的專案。
+{% darrellImage800Alt "Antigravity CLI 切換模型選單：意外支援 Claude Opus 和 Claude Sonnet，不只 Gemini 系列" antigravity_cli_model_switch.png max-800 %}
 
 <h2 id="development-experience">實際開發體驗</h2>
 
@@ -381,7 +339,12 @@ Pro 方案的用戶要是遇到用量較大的情形，也會變成 `weekly limi
 
 ## 結論
 
-這次的 Google Antigravity 搭配 Gemini 3 是一個不錯的體驗
+Antigravity 經過半年從「單一 IDE」變成「6 產品平台」，
+等於 Google 想跟 Anthropic（Claude Code + Claude Desktop + Agent SDK）和 OpenAI（Codex CLI + ChatGPT Desktop + Agents SDK）正面對打。
+
+### IDE 心得
+
+這次的 Antigravity IDE 搭配 Gemini 3 是一個不錯的體驗
 對於小型專案的建立和開發又更方便了
 
 以往在 Cursor 例如要自動化測試，自己就需要安裝別的套件或是第三方工具
@@ -390,12 +353,28 @@ Pro 方案的用戶要是遇到用量較大的情形，也會變成 `weekly limi
 不過 Gemini 3 模型是否能像 Claude Sonnet 4.5 在各種類型的專案都一樣表現不錯
 就需要時間和大家的心得來驗證
 
-目前 Antigravity 還在早期階段，並且是免費讓大家使用
+目前 Antigravity IDE 還在早期階段，並且是免費讓大家使用
 很常會遇到 error 或是 model overloaded 的情況
 也算是美中不足的地方，畢竟開發時被打斷很容易就索性不用
 不如用付費的 Claude Code 穩穩定定開發
 
 也期待 Antigravity 後續的付費方案是否能跟 Google AI Pro 或 Ultra 整併
+
+### 平台化後的觀察
+
+最關鍵的訊號是 **Gemini CLI 在 6/18 停服**，等於 Google 自己承認「Gemini CLI 在跟 Claude Code 對打時輸了」，
+所以才砍掉重練一套 Antigravity CLI（改用 Go 重寫、共用 Antigravity 2.0 brain）。
+
+Antigravity 2.0 桌面 app 「沒有編輯器、只有 chat 視窗」的設計也很大膽，
+比較像 Claude Desktop 而不是 Cursor，
+這是賭「未來開發者不再看 code、只看 agent 結果」的方向。
+
+兩個新產品我都還沒實測，後續會分別寫深度文：
+
+- **Antigravity CLI vs Claude Code 比較實測**
+- **Antigravity 2.0 桌面 app 體驗報告**
+
+有興趣的朋友可以追蹤一下。
 
 {% darrellImage800Alt "Google AI 付費方案比較表：免費版、Google AI Pro（每月 NT$660）、Google AI Ultra（前 3 個月每月 NT$4050）三種方案的功能差異" google_ai_pro_ultra_pricing_plan.png max-800 %}
 
@@ -403,6 +382,14 @@ Pro 方案的用戶要是遇到用量較大的情形，也會變成 `weekly limi
 
 {% faq %}
 [
+  {
+    "question": "Antigravity IDE、Antigravity 2.0、Antigravity CLI 三個怎麼分？",
+    "answer": "三個是<strong>同一平台底下的三種使用介面</strong>，後端 agent harness 共用。<br><br><strong>Antigravity IDE</strong>：原本的 VS Code fork IDE，2025/11 推出。看程式碼、改程式碼、跑 debugger 都在這。<br><br><strong>Antigravity 2.0</strong>：2026/05 新推出的桌面 app。<strong>沒有編輯器</strong>，只有 chat 視窗，定位是管理多個 agent 的 Agent Workstation。<br><br><strong>Antigravity CLI</strong>：2026/05 新推出的終端機工具（Go 寫），取代 Gemini CLI。比較對象是 Claude Code、Codex CLI。"
+  },
+  {
+    "question": "Gemini CLI 什麼時候停服？要怎麼遷移？",
+    "answer": "<strong>2026/06/18</strong> Gemini CLI 與 Gemini Code Assist IDE extensions 停止服務 Google AI Pro、Ultra、免費 Gemini Code Assist 用戶。要繼續用必須遷移到 <strong>Antigravity CLI</strong>。<br><br>例外：用 Gemini Code Assist <strong>Standard / Enterprise 授權</strong>，或透過 Google Cloud 用 Gemini Code Assist for GitHub 的組織，不受影響。<br><br>Antigravity CLI 保留 Gemini CLI 的核心功能：Agent Skills、Hooks、Subagents、Extensions（改名 plugins），遷移成本不算高。"
+  },
   {
     "question": "Antigravity 是否完全免費？",
     "answer": "目前 Antigravity 處於早期階段，完全免費讓大家使用。不過實測發現經常會遇到 <code>model overloaded</code> 錯誤，影響開發體驗。配額每 5 小時重置一次，建議使用 Gemini 3 (Low) 模型來節省配額。未來 Google 可能會推出付費方案，預估個人版約 $10-20 美元/月。"
@@ -413,7 +400,7 @@ Pro 方案的用戶要是遇到用量較大的情形，也會變成 `weekly limi
   },
   {
     "question": "與 Cursor、Claude Code 有什麼不同？",
-    "answer": "<strong>Antigravity vs Cursor</strong><br>兩者使用體驗相似，現在模型支援也趨近一致（都支援 Opus 4.5）。Antigravity 最大亮點是內建 Chrome 自動化測試功能，不需要額外安裝第三方工具。<br><br><strong>Antigravity vs Claude Code</strong><br>這兩者定位不同。Claude Code 是 <code>Command Line</code> 終端機工具，而 Antigravity 是完整的 {% term def="Integrated Development Environment，整合開發環境，提供程式編輯、除錯、編譯等功能的軟體" %}IDE{% endterm %}。比較合理的對比應該是 Antigravity vs Cursor（IDE 類）、Claude Code vs Gemini CLI（CLI 類）。"
+    "answer": "2026/05 平台化後對應關係更清楚：<br><br><strong>Antigravity IDE vs Cursor</strong><br>兩者使用體驗相似，現在模型支援也趨近一致（都支援 Opus 4.5）。Antigravity IDE 最大亮點是內建 Chrome 自動化測試功能，不需要額外安裝第三方工具。<br><br><strong>Antigravity CLI vs Claude Code</strong><br>都是終端機 agent，差別在後端模型（Gemini 3 vs Claude）、開發語言（Go vs Node.js）、計價方式（Google AI Pro/Ultra vs Anthropic API + 月費）。功能面 Skills、Hooks、Subagents 都有對齊。"
   },
   {
     "question": "Agent Skills 可以跟 Claude Code 共用嗎？",
