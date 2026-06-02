@@ -7,16 +7,54 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2026/05/20 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.22.0（Pre-release），正式版本為 2.21.4
+description: n8n 的更新記錄(2026/06/02 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.24.0（Pre-release），正式版本為 2.22.6
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2026-05-20 12:40:00
+modified: 2026-06-02 19:10:09
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 2.24.0 Pre-release - 2026-06-02
+
+[Github 2.24.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%402.24.0)
+
+這版 **2.24.0 Pre-release** 沒有特別大的新功能，但修了幾個讓人頭痛的 bug，加上一個 Form Trigger 的實用新選項。
+
+### Postgres 節點：SELECT 無結果改回傳空陣列
+Postgres Node: Return empty array for SELECTs that match no rows
+
+這是個讓很多人踩到的雷。
+之前用 Postgres 節點執行 `SELECT`，如果沒有任何符合條件的資料，節點回傳的不是空陣列 `[]`，而是 `{ "success": true }`。
+
+要用這個 return 的結果來判斷到底有沒有資料，非常麻煩跟不直覺
+現在改成回傳空陣列，可以直接判斷陣列裡面的資料長度是否為 0 或是大於 0 !
+
+{% darrellImage800Alt "Postgres 節點 SELECT 查詢無結果時，現在正確回傳空陣列 [] 而不是 { success: true }" n8n-2.24.0-postgres_select_empty_array.png max-800 %}
+
+### AI Tool 節點預設改為 Continue on Error
+Make AI tool nodes continue on error by default
+
+在 n8n 用 AI Agent 搭配 Tool 的時候，之前只要 Tool 出錯，整個 workflow 就直接停掉
+Agent 節點完全不知道發生什麼事，也沒辦法嘗試用別的方式繼續。
+
+現在 Tool 節點的預設行為改成 **Continue on Error**：工具出錯時，錯誤訊息會被包成 `{ error: "..." }` 傳回給 AI Agent，workflow 繼續跑。Agent 收到之後可以自己決定要重試或是回報給使用者。
+
+{% darrellImage800Alt "AI Tool 節點出錯時，錯誤訊息傳給 Agent，節點顯示紅色，workflow 不中斷" n8n-2.24.0-ai_tool_continue_on_error.png max-800 %}
+
+### Form 表單觸發器新增 n8n 用戶驗證
+Form Trigger Node: Add n8n user authentication option
+
+如果你有在用 Form Trigger 做內部工具，之前的選項只有：完全開放或 Basic Auth（要另外管理授權）。
+這次加了第三種：**n8n User Auth**。設定後，只有能登入這個 n8n 的用戶才能看到並提交表單，沒登入的人會被導向 n8n 登入頁
+
+還有個 **Include User in Output** 選項（預設開啟），提交表單時會把用戶的 id、email、姓名一起帶進 workflow，方便記錄是誰填的。
+適合用在內部表單搜集資料時，讓有開權限的人進來填寫表單
+
+{% darrellImage800Alt "Form Trigger 節點的 Authentication 設定新增 n8n User Auth 選項，下方有 Include User in Output 切換" n8n-2.24.0-form_trigger_n8n_user_auth.png max-800 %}
 
 ## 2.22.0 Pre-release - 2026-05-19
 
