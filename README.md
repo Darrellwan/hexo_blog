@@ -3,13 +3,13 @@
 ## 📚 最新文章
 
 ### [n8n Google Sheets 節點教學](https://www.darrelltw.com/n8n-google-sheets-node/?utm_source=github_readme&utm_medium=referral)
-📅 2026/05/09 · 22 天前
+📅 2026/05/09 · 1 個月前
 
 > n8n Google Sheets 節點完整教學。6 個操作怎麼選（含決策樹）、Trigger polling 限制說明，以及 Gmail 電子發票 AI 自動解析去重實戰案例。
 
 
 ### [n8n ByCrawl 節點教學：簡單好用的台灣爬蟲服務](https://www.darrelltw.com/n8n-bycrawl-node/?utm_source=github_readme&utm_medium=referral)
-📅 2026/04/20 · 1 個月前
+📅 2026/04/20 · 2 個月前
 
 > n8n ByCrawl 社群節點完整教學！一把 API Key 就能抓 Threads、IG、X、Reddit、Dcard、PTT 等 15 個平台的社群數據。包含安裝設定、功能介紹、品牌聲量監控實戰案例和定價分析。
 
@@ -21,7 +21,7 @@
 
 
 ### [Claude Code Channels 設定教學，用 Discord、Telegram 遠端使用 Claude Code](https://www.darrelltw.com/claude-code-channels-discord-telegram/?utm_source=github_readme&utm_medium=referral)
-📅 2026/03/20 · 2 個月前
+📅 2026/03/20 · 3 個月前
 
 > Claude Code Channels 讓你從手機 Discord 或 Telegram 傳訊息給正在跑的 Claude Code，不用坐在電腦前也能讓 AI 幫你改 code、跑指令。完整 Discord Bot 和 Telegram Bot 設定教學和幾個場景測試
 
@@ -33,7 +33,7 @@
 
 
 ### [Claude Cowork 教學：給大眾用的 Claude Code](https://www.darrelltw.com/claude-cowork-intro/?utm_source=github_readme&utm_medium=referral)
-📅 2026/01/17 · 4 個月前
+📅 2026/01/17 · 5 個月前
 
 > Claude Cowork 是 Anthropic 推出的桌面 AI 助理，能自動整理檔案、處理文件，還能學習你的工作流程。實測三大應用場景，看看它如何提升工作效率。
 
@@ -51,7 +51,7 @@
 
 
 ### [n8n Time Saved Node 教學 - 省下多少時間？量化 n8n 的 ROI](https://www.darrelltw.com/n8n-time-saved-node/?utm_source=github_readme&utm_medium=referral)
-📅 2025/12/20 · 5 個月前
+📅 2025/12/20 · 6 個月前
 
 > 老闆問「自動化到底省多少時間？」答不出來？n8n 2.1.0 的 Time Saved Node 讓你量化 ROI。本文教你 Fixed vs Dynamic 兩種計算方式，含 LINE 自動回覆實例。
 
@@ -65,7 +65,7 @@
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-123-blue?style=flat-square)
 ![總字數](https://img.shields.io/badge/總字數-338,955+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2026/05/31-green?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2026/06/07-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -92,12 +92,12 @@
 
 ## 📈 更新頻率
 ```text
-12月 ███░░░░░░░ 3篇
 01月 ██░░░░░░░░ 2篇
 02月 ░░░░░░░░░░ 0篇
 03月 ██░░░░░░░░ 2篇
 04月 ██░░░░░░░░ 2篇
 05月 █░░░░░░░░░ 1篇
+06月 ░░░░░░░░░░ 0篇
 ```
 
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-05-31 04:18:32*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-06-07 04:23:12*
