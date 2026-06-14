@@ -45,7 +45,7 @@
 
 
 ### [n8n 資安漏洞 CVE-2025-68613 快點來更新你的 n8n 版本！](https://www.darrelltw.com/n8n-security-vulnerability-2025/?utm_source=github_readme&utm_medium=referral)
-📅 2025/12/25 · 5 個月前
+📅 2025/12/25 · 6 個月前
 
 > n8n CVE-2025-68613（CVSS 9.9）高風險漏洞懶人包：快速確認影響版本、檢查目前版本，並用 Docker／Zeabur／npm 更新到修復版本，降低 RCE 風險。
 
@@ -65,7 +65,7 @@
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-123-blue?style=flat-square)
 ![總字數](https://img.shields.io/badge/總字數-338,955+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2026/06/07-green?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2026/06/14-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-06-07 04:23:12*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-06-14 04:43:00*
