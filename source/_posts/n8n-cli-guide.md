@@ -13,7 +13,7 @@ description: n8n 官方 CLI 工具（@n8n/cli）實測教學：從安裝、API k
 bgImage: blog-n8n-cli-guide-bg.jpg
 preload:
   - blog-n8n-cli-guide-bg.jpg
-date: 2026-06-12 14:00:00
+date: 2026-06-22 14:00:00
 modified: 2026-06-22 14:00:00
 ---
 
