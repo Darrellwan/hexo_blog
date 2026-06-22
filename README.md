@@ -3,7 +3,7 @@
 ## 📚 最新文章
 
 ### [n8n CLI 教學 - 用終端機管理 workflow，備份、批次操作、AI 整合](https://www.darrelltw.com/n8n-cli-guide/?utm_source=github_readme&utm_medium=referral)
-📅 2026/06/12 · 10 天前
+📅 2026/06/22 · 9 小時內
 
 > n8n 官方 CLI 工具（@n8n/cli）實測教學：從安裝、API key 連線設定，到 workflow 備份、execution 錯誤排查、批次停用，再用 skill install 讓 Claude Code 直接幫你管理 n8n。包含指令安全分級、npm 同名套件陷阱、--id-only 改版注意事項與目前限制整理。
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-06-22 05:19:02*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-06-22 05:23:13*
