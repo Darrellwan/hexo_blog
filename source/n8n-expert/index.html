@@ -184,6 +184,14 @@ layout: false
         "mainEntity": [
             {
                 "@type": "Question",
+                "name": "n8n 導入要多少錢？",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "AI 自動化導入專案 5 萬起，常見區間 5–15 萬（視流程數量與串接系統複雜度而定），多系統整合的大型專案 15 萬以上。表單送出後會先免費診斷需求，再給正式報價。"
+                }
+            },
+            {
+                "@type": "Question",
                 "name": "專案開始前需要準備什麼？",
                 "acceptedAnswer": {
                     "@type": "Answer",
@@ -204,6 +212,14 @@ layout: false
                 "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "視複雜度而定，單一流程通常 2-4 週，涉及多系統整合可能需要 4-8 週。諮詢後會給明確時程，過程中有變動會提前告知，不會拖著不說。"
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "可以把流程自動化整個外包給你做嗎？",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "可以。從需求診斷、n8n 建置、系統串接到上線後維運都能整包承接，你只需要指定一位窗口對齊需求。也可以先外包一條流程試作，滿意再擴大範圍。"
                 }
             }
         ]
@@ -472,8 +488,8 @@ layout: false
             </h1>
 
             <p class="reveal-fade-up delay-200" style="max-width: 768px; margin: var(--space-4) auto var(--space-10); font-size: var(--text-xl); color: var(--text-tertiary);">
-                專注於 n8n 自動化流程設計與 AI Agent 開發。<br>
-                從企業內訓到客製化系統建置，協助您打造高效率的數位工作流。
+                協助台灣中小企業導入 n8n 自動化：流程診斷、ERP／CRM／LINE 系統串接、AI Agent 開發到企業內訓。<br>
+                專案 5 萬起，免費 30 分鐘診斷，48 小時內回覆。
             </p>
 
             <div class="reveal-fade-up delay-300" style="display: flex; justify-content: center; gap: var(--space-4); flex-wrap: wrap;">
@@ -495,7 +511,7 @@ layout: false
     <section id="services" class="section" style="background-color: var(--bg-elevated-1);">
         <div class="container">
             <div style="text-align: center; margin-bottom: var(--space-16);" class="reveal-fade-up">
-                <h2>專業服務項目</h2>
+                <h2>n8n 導入服務項目</h2>
                 <p style="margin-top: var(--space-4); color: var(--text-tertiary);">針對不同階段的需求，提供最適合的解決方案</p>
             </div>
 
@@ -648,7 +664,7 @@ layout: false
     <section id="portfolio" class="section" style="background-color: var(--bg-base);">
         <div class="container">
             <div style="text-align: center; margin-bottom: var(--space-16);" class="reveal-fade-up">
-                <h2>成功案例</h2>
+                <h2>n8n 自動化成功案例</h2>
                 <p style="margin-top: var(--space-4); color: var(--text-tertiary);">看看自動化如何實際解決商業問題</p>
             </div>
 
@@ -756,6 +772,10 @@ layout: false
             </div>
             <div style="display: grid; grid-template-columns: 1fr; gap: var(--space-6); max-width: 900px; margin: 0 auto;">
                 <div class="faq-card reveal-fade-up delay-100">
+                    <h3>n8n 導入要多少錢？</h3>
+                    <p>AI 自動化導入專案 5 萬起，常見區間 5–15 萬（視流程數量與串接系統複雜度而定），多系統整合的大型專案 15 萬以上。表單送出後會先免費診斷需求，再給正式報價。</p>
+                </div>
+                <div class="faq-card reveal-fade-up delay-100">
                     <h3>專案開始前需要準備什麼？</h3>
                     <p>主要是釐清「想解決什麼問題」和「目前用什麼工具」。不需要準備技術文件，諮詢時我會引導你把需求具體化。如果有相關系統的管理權限會更順利，但也可以之後再處理。</p>
                 </div>
@@ -766,6 +786,10 @@ layout: false
                 <div class="faq-card reveal-fade-up delay-200">
                     <h3>專案時程怎麼估算？</h3>
                     <p>視複雜度而定，單一流程通常 2-4 週，涉及多系統整合可能需要 4-8 週。諮詢後會給明確時程，過程中有變動會提前告知，不會拖著不說。</p>
+                </div>
+                <div class="faq-card reveal-fade-up delay-200">
+                    <h3>可以把流程自動化整個外包給你做嗎？</h3>
+                    <p>可以。從需求診斷、n8n 建置、系統串接到上線後維運都能整包承接，你只需要指定一位窗口對齊需求。也可以先外包一條流程試作，滿意再擴大範圍。</p>
                 </div>
             </div>
         </div>
@@ -819,10 +843,10 @@ layout: false
                             <label class="form-label" for="type">您的需求類型</label>
                             <select name="type" id="type" required class="form-select">
                                 <option value="">請選擇...</option>
-                                <option value="專案建置 (Solution)">專案建置 (Solution)</option>
-                                <option value="技術諮詢 (Consulting)">技術諮詢 (Consulting)</option>
-                                <option value="企業內訓 (Training)">企業內訓 (Training)</option>
-                                <option value="其他合作">其他合作</option>
+                                <option value="自動化建置">自動化建置（解決公司內部重複性質高的工作）</option>
+                                <option value="技術顧問">技術顧問（有技術團隊可以開發，但想找顧問確定方向）</option>
+                                <option value="企業內訓">企業內訓（培訓公司團隊更了解如何使用 AI）</option>
+                                <option value="還不確定/其他合作">還不確定，先諮詢／其他合作</option>
                             </select>
                         </div>
 
@@ -830,9 +854,10 @@ layout: false
                             <label class="form-label" for="budget">預算範圍 (TWD)</label>
                             <select name="budget" id="budget" required class="form-select">
                                 <option value="">請選擇...</option>
-                                <option value="3萬 - 10萬">3萬 - 10萬</option>
-                                <option value="10萬 - 30萬">10萬 - 30萬</option>
-                                <option value="30萬以上">30萬以上</option>
+                                <option value="5萬 - 15萬">5萬 - 15萬</option>
+                                <option value="15萬 - 50萬">15萬 - 50萬</option>
+                                <option value="50萬以上">50萬以上</option>
+                                <option value="尚在評估">尚在評估</option>
                             </select>
                         </div>
 

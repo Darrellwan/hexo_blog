@@ -7,7 +7,7 @@
  */
 const FORM_CONFIG = {
   typeDescriptions: {
-    '專案建置 (Solution)': {
+    '自動化建置': {
       placeholder: '例如：我們想自動化每日報表生成，目前用 Google Sheets 手動整理...',
       template: `【目前痛點】
 
@@ -16,8 +16,8 @@ const FORM_CONFIG = {
 【目前使用的工具】
 `
     },
-    '技術諮詢 (Consulting)': {
-      placeholder: '例如：想了解 n8n 是否適合我們公司的需求...',
+    '技術顧問': {
+      placeholder: '例如：團隊自己在開發 n8n 流程，想確認架構方向是否正確...',
       template: `【想諮詢的問題】
 
 【公司產業 / 規模】
@@ -25,8 +25,8 @@ const FORM_CONFIG = {
 【目前的技術架構】
 `
     },
-    '企業內訓 (Training)': {
-      placeholder: '例如：希望讓團隊學會使用 n8n 建立自動化流程...',
+    '企業內訓': {
+      placeholder: '例如：希望團隊學會用 n8n 與 AI 工具建立自動化流程...',
       template: `【培訓對象】
 
 【預期培訓時數】
@@ -34,8 +34,8 @@ const FORM_CONFIG = {
 【希望學習的主題】
 `
     },
-    '其他合作': {
-      placeholder: '請描述您的合作想法...',
+    '還不確定/其他合作': {
+      placeholder: '簡單描述你的情況或想法就好，諮詢時我會幫你釐清方向',
       template: ''
     }
   },
