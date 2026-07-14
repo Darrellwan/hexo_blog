@@ -8163,5 +8163,20 @@
     "width": 1600,
     "height": 1000,
     "mtimeMs": 1782986675409.3403
+  },
+  "/_posts/claude-cowork-intro/cowork_mode_toggle_folder_scheduled.png": {
+    "width": 1736,
+    "height": 1042,
+    "mtimeMs": 1783939247553.4956
+  },
+  "/_posts/claude-cowork-intro/cowork_chat_cowork_mode_toggle.png": {
+    "width": 1736,
+    "height": 1042,
+    "mtimeMs": 1783939247549.1025
+  },
+  "/_posts/claude-cowork-intro/cowork_new_project_or_folder.png": {
+    "width": 1768,
+    "height": 1150,
+    "mtimeMs": 1783939736164.0957
   }
 }
