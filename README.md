@@ -3,13 +3,13 @@
 ## 📚 最新文章
 
 ### [Claude Code Fable 5 限時限量回歸，該怎麼用](https://www.darrelltw.com/claude-code-fable-5/?utm_source=github_readme&utm_medium=referral)
-📅 2026/07/03 · 8 天前
+📅 2026/07/03 · 11 天前
 
 > Claude Code Fable 5 使用建議，整理限時可用期間哪些任務值得交給 Fable 5、哪些任務不划算，以及怎麼切換模型、交代任務背景、用 effort 與 ultracode 控制成本，附上額度確認方式與使用政策提醒。
 
 
 ### [n8n CLI 教學 - 用終端機管理 workflow，備份、批次操作、AI 整合](https://www.darrelltw.com/n8n-cli-guide/?utm_source=github_readme&utm_medium=referral)
-📅 2026/06/22 · 20 天前
+📅 2026/06/22 · 22 天前
 
 > n8n 官方 CLI 工具（@n8n/cli）實測教學：從安裝、API key 連線設定，到 workflow 備份、execution 錯誤排查、批次停用，再用 skill install 讓 Claude Code 直接幫你管理 n8n。包含指令安全分級、npm 同名套件陷阱、--id-only 改版注意事項與目前限制整理。
 
@@ -47,7 +47,7 @@
 ### [Claude Cowork 教學：給大眾用的 Claude Code](https://www.darrelltw.com/claude-cowork-intro/?utm_source=github_readme&utm_medium=referral)
 📅 2026/01/17 · 6 個月前
 
-> Claude Cowork 是 Anthropic 推出的桌面 AI 助理，能自動整理檔案、處理文件，還能學習你的工作流程。實測三大應用場景，看看它如何提升工作效率。
+> Claude Cowork 是 Anthropic 推出的桌面 AI 助理，能自動整理檔案、處理文件，還能學習你的工作流程。實測三大應用場景，看看它如何提升工作效率。（2026/07/07 更新：Chat 與 Cowork 介面整合，並擴大支援 Web、手機版）
 
 
 ### [n8n 爬蟲神器 Apify 教學：不會寫程式也能爬資料](https://www.darrelltw.com/n8n-apify-node/?utm_source=github_readme&utm_medium=referral)
@@ -64,8 +64,8 @@
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-125-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-348,522+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2026/07/12-green?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-349,923+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2026/07/14-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-07-12 03:25:36*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-07-14 09:33:12*
