@@ -18,6 +18,57 @@ sticky: 100
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
 
+## 2.29.0 Pre-release - 2026-06-30
+
+[Github 2.29.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%402.29.0)
+
+這版 **2.29.0 Pre-release** 我挑了兩個更新：一個是蠻嚇人的排程 bug 修復，另一個是 Slack 節點的實用功能補強。
+
+如果你的 workflow 有用到「每 N 個月」這種排程，或最近改過排程間隔的單位，建議先看第一個修復；如果你常用 Slack 節點發通知，第二個補強應該蠻用得到。
+
+### 排程可能默默停止觸發，你完全不會發現
+Schedule Node: Fix schedules that permanently stop firing
+
+這算是這版最讓我在意的一個修復。
+
+Schedule Trigger 在兩種情況下會**永久停止觸發**，而且完全不會報錯、不會留下失敗的 execution，workflow 看起來一切正常，其實已經停了：
+
+- 用「Every N Months」設定間隔 12 個月以上（例如每 12 個月、每 24 個月觸發一次），只有第一次會準時跑，之後就再也不會觸發
+- 排程間隔的單位改過（例如從「天」改成「小時」），殘留的舊設定會讓時間判斷永久卡住
+
+每天發的日報、每月的帳務彙整，都可能已經默默停了好幾週才被發現。這種完全沒有警示的 bug 最讓人不安，升級後建議心裡有個底。
+
+{% callout type="warning" title="升級後要做什麼" %}
+大部分情況下次啟用 workflow 時會自動修復。如果你用過「Every N Months」或最近改過排程間隔的單位，建議手動關掉再打開一次該 workflow，確保重新註冊排程。
+{% endcallout %}
+
+另外順手修了一個相關的執行崩潰：手動測試 workflow 時，如果起點節點剛好被停用（disabled），以前可能會直接讓那次測試整個崩潰，現在會顯示清楚的錯誤訊息，不會炸掉。
+
+{% darrellImage800Alt "n8n Schedule Trigger 節點的 Every N Months 排程間隔設定" n8n-2.29.0-schedule_trigger_bug.png max-800 %}
+
+### Slack 節點新增排程訊息和用 Email 查使用者
+Slack Node: Add schedule message and look up user by email operations
+
+Slack 節點這次補了兩個蠻實用的操作。
+
+**排程訊息（Message → Schedule）**
+
+以前要讓 Slack 訊息晚點發，得另外接 Schedule Trigger 或 Wait 節點，等於多蓋一段子流程。現在 Message 資源新增 **Schedule** 操作，直接指定 **Post At** 時間（可以排到未來 120 天內），時間到了 Slack 會自動幫你發出。
+
+同時也補了管理用的 **Delete Scheduled** 和 **Get Many Scheduled**，可以查詢或取消還沒發出的排程訊息。
+
+**用 Email 查使用者（User → Look Up by Email）**
+
+以前要從一個 email 找到對應的 Slack user ID，得先用 Get Many 撈出所有使用者，再自己寫邏輯比對，workspace 人一多這樣做很沒效率。現在新增 **Look Up by Email** 操作，填一個 Email 欄位，直接拿到對應使用者。
+
+我會拿來用在：
+- 排程訊息：例行提醒、定時發送報表摘要、避免半夜或非上班時間發通知
+- Email 查使用者：從表單或 CRM 拿到 email 後，直接找到人發 Slack 私訊，不用手動維護 email 對 Slack ID 的對照表
+
+{% darrellImage800Alt "Slack 節點 Message 資源新增 Schedule 操作，可設定 Post At 時間" n8n-2.29.0-slack_schedule_message.png max-800 %}
+
+{% darrellImage800Alt "Slack 節點 User 資源新增 Look Up by Email 操作" n8n-2.29.0-slack_lookup_by_email.png max-800 %}
+
 ## 2.28.0 Pre-release - 2026-06-23
 
 [Github 2.28.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%402.28.0)
