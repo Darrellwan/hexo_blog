@@ -18,6 +18,79 @@ sticky: 100
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
 
+## 2.28.0 Pre-release - 2026-06-23
+
+[Github 2.28.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%402.28.0)
+
+這版 **2.28.0 Pre-release** 我先看三個已經能實測的更新，都是很貼近日常自動化痛點的小補強。
+
+Webhook 可以先把不需要的請求擋掉，AI Agent 可以直接把 PDF 交給支援的模型處理，Telegram 節點則開始支援 Rich Message 和 Draft，讓 bot 訊息更像正式產品。
+
+### Webhook 節點新增 Only Run If 條件
+feat(Webhook Node): Add "Only Run If" option to filter requests
+
+Webhook 最麻煩的地方不是收到請求，而是收到一堆「你其實不想處理」的請求。
+
+例如同一個第三方服務只能打同一支 Webhook，但裡面有 `lead.created`、`lead.updated`、`campaign.clicked` 等不同事件。以前 n8n 還是會先建立 execution，進到 workflow 之後你再用 IF 節點判斷，不符合條件就結束。
+
+結果是 execution 紀錄裡多了一堆沒價值的執行，正式環境看 log 會很亂，execution 數量也會被灌高。
+
+這次 Webhook 節點新增 **Only Run If** 選項，可以直接在 Webhook 收到請求時先判斷 expression。條件不符合就不啟動 workflow，也不產生 execution。
+
+我會把它用在這幾種情境：
+- 只處理特定 `eventType`，其他事件直接忽略
+- 只接某個 campaign 或來源渠道的資料
+- 第三方服務不能設定細緻條件，只好在 n8n 入口先過濾
+- 測試環境和正式環境共用類似 payload，需要先用 header 或欄位分流
+
+這不是拿來取代安全驗證的功能。如果你要防止外部亂打 Webhook，還是要搭配驗證機制。但如果問題是「來源是真的，只是事件太雜」，Only Run If 會很實用。
+
+{% darrellImage800Alt "Webhook 節點 Options 新增 Only Run If 欄位，可以用 expression 先過濾請求" n8n-2.28.0-webhook_only_run_if-watermarked.png max-800 %}
+
+### AI Agent 可以直接傳遞 PDF 給模型
+feat(AI Agent Node): Add binary PDF passthrough for models with native PDF support
+
+以前要讓 AI Agent 讀 PDF，通常要先用 **Extract from File** 把 PDF 轉成純文字，再丟給模型。
+
+這樣能用，但多一個節點，也可能把 PDF 裡的表格、排版或文件結構弄丟。
+
+現在 AI Agent 的 Options 裡新增 **Automatically Passthrough Binary PDFs**。開啟後，PDF binary 會直接傳給支援原生 PDF input 的模型，例如 Google Gemini 或 Claude。
+
+這個差異在分析文件時蠻明顯。像合約、報表、簡報、發票 PDF 這類資料，內容不只是文字，表格位置、段落層級、頁面排版也會影響理解。直接 passthrough 給模型，有機會保留更多文件上下文。
+
+{% callout type="warning" title="注意：模型本身也要支援 PDF" %}
+這個選項不是把所有模型都變成會讀 PDF。它比較像是讓 n8n 不再先把 PDF 攤平成文字，而是把檔案交給原本就支援 PDF input 的模型。預設是關閉的，所以既有 workflow 不會被影響。
+{% endcallout %}
+
+我會優先拿來做這幾種 workflow：
+- 上傳合約 PDF，讓 Agent 摘要風險條款
+- 分析財務報表或簡報，保留表格和頁面脈絡
+- 處理表單掃描檔，比單純抽文字更容易保留原始結構
+
+{% darrellImage800Alt "AI Agent 節點 Options 開啟 Automatically Passthrough Binary PDFs，PDF 可以直接傳給支援的模型" n8n-2.28.0-ai_agent_pdf_passthrough-watermarked.png max-800 %}
+
+### Telegram 節點支援 Rich Message 和 Draft
+feat(Telegram Node): Add rich message and message draft operations
+
+Telegram 節點這次新增三個 Message 操作：
+- **Send Rich Message**
+- **Send Message Draft**
+- **Send Rich Message Draft**
+
+以前 Telegram 節點比較像「把一段文字送出去」。如果要做 AI Bot 或正式通知，很容易看起來像純文字 log，不太像產品訊息。
+
+**Send Rich Message** 可以送出比較完整的格式內容，像 heading、清單、表格、引用區塊，支援 Markdown 或 HTML。拿來做報表摘要、客服回覆、任務通知，閱讀體驗會比純文字好很多。
+
+Draft 則是比較有趣的新能力，可以先顯示「正在生成」的草稿效果，等內容準備好再送出正式訊息。Draft 比較像短時間的預覽狀態，不是正式送出的訊息，所以很適合拿來處理等待感。
+
+我會把 Rich Message 和 Draft 拆成兩種用途：
+- Rich Message：用在最終回覆，讓內容有標題、清單、表格和引用
+- Draft：用在長時間處理的流程，例如 AI 正在查資料、整理文件、產生摘要時，先讓使用者看到 bot 有在處理
+
+如果你有用 n8n 做 Telegram Bot，這版開始可以把訊息做得更像正式產品，而不是只有純文字通知。
+
+{% darrellImage800Alt "Telegram 節點 Operation 下拉新增 Send Rich Message、Send Message Draft、Send Rich Message Draft" n8n-2.28.0-telegram_rich_message_draft-watermarked.png max-800 %}
+
 ## 2.27.0 Pre-release - 2026-06-16
 
 [Github 2.27.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%402.27.0)
