@@ -18,6 +18,121 @@ sticky: 100
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
 
+## 2.30.0 Pre-release - 2026-07-07
+
+[Github 2.30.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%402.30.0)
+
+這版 **2.30.0 Pre-release** 我會先看 5 個更新：Webhook URL 設定變清楚、Data Table 可以只清資料、Send and Wait 回覆多了時間戳、AI Assistant 比較懂節點和 credential，最後是 Private Credentials 的團隊協作補強。
+
+這版不是那種「一看就很炫」的大改版，但有幾個點很貼近 self-host 或團隊使用 n8n 時會遇到的麻煩。
+
+### Webhook URL 可以用新的 N8N_WEBHOOK_URL 統一設定
+feat: Add unified N8N_WEBHOOK_URL for production and test webhook URLs
+
+這個更新看起來只是多一個環境變數，但對 self-host 其實蠻重要。
+
+以前 n8n 有兩種 webhook URL：
+
+- **Test URL**：在 editor 裡測試用
+- **Production URL**：workflow 啟用後，外部服務正式呼叫用
+
+如果你的 n8n editor 和 webhook 對外網址剛好一樣，平常可能完全感覺不到問題。像很多人是 `https://n8n.example.com` 同時拿來開 editor，也拿來接 webhook，這種就不太會遇到。
+
+會出問題的是這種架構：
+
+- Editor 放在 `https://n8n-admin.example.com`
+- Webhook 對外希望走 `https://hooks.example.com`
+- 或 self-host 時 editor 是內網 / localhost，但 webhook 是 public URL
+
+以前比較容易變成 production URL 看起來是對的，但 test URL 還是跟著 editor 的網址跑。結果你在 editor 裡複製測試 URL 給第三方服務，第三方根本打不到。
+
+2.30.0 新增 **`N8N_WEBHOOK_URL`**，可以統一指定 Test URL 和 Production URL 要用的公開 webhook base URL。
+
+```bash
+N8N_EDITOR_BASE_URL=https://n8n-admin.example.com
+N8N_WEBHOOK_URL=https://hooks.example.com
+```
+
+這樣 editor 還是走 admin 網域，但 Test URL 和 Production URL 都會走 `hooks.example.com`。
+
+{% callout type="warning" title="WEBHOOK_URL 還能用，但建議換掉" %}
+舊的 `WEBHOOK_URL` 目前還能用，但 n8n 已經把它標成 deprecated，啟動時會提醒改用 `N8N_WEBHOOK_URL`。如果你有維護 docker compose、Kubernetes env 或部署文件，這版可以順手改成新的命名。
+{% endcallout %}
+
+### Data Table 可以只清掉 rows，不刪整張表
+feat(editor): Improve data table node
+
+Data Table 節點這次補了一個很實用的操作：**Clear**。
+
+這裡的 Clear 不是刪掉整張 Data Table，而是把表裡面的 rows 清空，表本身的結構、欄位和 table ID 都會保留。
+
+差別在這裡：
+
+{% dataTable style="minimal" align="left" highlight="2" %}
+[
+  {"操作": "Delete table", "結果": "整張 Data Table 被刪掉，ID 和欄位結構也不見", "適合情境": "這張表真的不用了"},
+  {"操作": "Clear rows", "結果": "只刪資料列，保留同一張表和欄位結構", "適合情境": "暫存表、測試資料、每天重跑的 staging table"}
+]
+{% enddataTable %}
+
+我會把它用在這種情境：每天先把暫存 Data Table 清空，再重新匯入 CRM、表單或 API 抓回來的最新資料。以前如果用刪表重建的方式，很容易牽動後面節點的 table reference；現在 Clear rows 比較像是「清內容」，不會動到 workflow 依賴的那張表。
+
+同一波更新也把 table operation 裡原本的 **Update** 改名成 **Rename**，這個改名比較合理，因為它做的其實是改表名，不是更新資料。
+
+### Send and Wait 回覆多了 respondedAt
+feat: Include response timestamp in Send and Wait responses
+
+Send and Wait 類型的流程，現在回傳資料裡會多一個 **`respondedAt`**。
+
+以前你可以知道使用者按了 approve、reject，或填了什麼文字，但如果想知道「他到底幾點回覆」就沒那麼直接。現在回覆裡會直接帶 ISO timestamp。
+
+這個看起來小，但後面可以做的事不少：
+
+- 計算使用者等了多久才回覆
+- 記錄主管核准時間，方便稽核
+- 判斷 SLA 是否超時
+- 把回覆時間寫進 Notion、Google Sheets、CRM 或內部系統
+
+例如採購申請、內容上線審核、客服升級案件，光知道「已核准」有時不夠，你還會想知道是哪個時間點核准的。
+
+這次不是只有某一個節點支援，而是 Send and Wait 的回覆處理共用補強，所以 Slack、Telegram、Discord、WhatsApp、Google Chat、Gmail、Outlook、Email、Microsoft Teams 和 Chat Trigger 這類路徑都吃得到。
+
+### AI Assistant 比較懂 community node 和 credential
+feat(core): Support community node type definitions in AI Assistant
+
+這版也有兩個跟 AI Assistant 有關的更新，我覺得可以放在一起看。
+
+第一個是 AI Assistant 現在可以從目前這台 n8n instance 讀取 community node、custom node 和 MCP registry node 的 type definition。以前比較像只能靠 n8n 內建節點的知識，遇到你自己裝的 community node，就容易回答得很空。
+
+第二個是 HTTP Request node 的 credential 建議變聰明一點。以前 AI 可能看到你要打 Stripe、OpenAI、Anthropic、Gemini 這類 API，就直接做 generic header auth。現在如果 n8n 裡已經有對應的 predefined credential，AI Assistant 會優先建議使用現成 credential，而不是自己亂組 header。
+
+這對實務差很多。因為 generic auth 雖然可以用，但比較容易變成：
+
+- token 寫在某個欄位裡，不好管理
+- 換 token 時要到處找
+- 權限和連線狀態看不清楚
+- 團隊協作時不知道誰的 credential 在被使用
+
+我會把這個更新理解成：AI Assistant 不只是會幫你生一段 workflow，它開始更懂「這台 n8n 實際裝了什麼節點、有哪些比較正式的認證方式」。
+
+### Private Credentials 團隊協作變順
+feat(core): Re-enable sharing private credentials
+
+最後是 credential 相關的團隊協作更新。
+
+以前 Private Credentials 的限制比較卡：你不一定想讓同事看到 secret，但又希望他可以在同一個 workflow 裡用這個 credential 架構，自己完成 connect 或 reconnect。
+
+2.30.0 重新支援分享 private credentials，搭配新的 credential 介面狀態，會把幾種狀態分得比較清楚：
+
+- 沒連線：顯示 connect
+- 已連線：顯示 connected
+- 要斷開：有 disconnect confirmation
+- 沒權限看 secret：欄位是 read-only，但可以依權限顯示 connect / reconnect banner
+
+這對團隊裡的 OAuth credential 特別有用。管理者可以先建好 credential 的基本設定，不一定要把 client secret 攤開給每個人；使用者如果有 `credential:connect` 權限，就能自己連自己的帳號。
+
+講白一點，以前比較像「要嘛你看得到全部 secret，要嘛你什麼都不能動」。現在比較接近「設定由管理者管，實際連線可以讓使用者自己完成」。
+
 ## 2.29.0 Pre-release - 2026-06-30
 
 [Github 2.29.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%402.29.0)
