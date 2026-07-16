@@ -18,6 +18,39 @@ sticky: 100
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
 
+## 2.27.0 Pre-release - 2026-06-16
+
+[Github 2.27.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%402.27.0)
+
+這版 **2.27.0 Pre-release** 主要有 Anthropic 串流選項、GitHub 節點新增組織成員操作，另外也包含不少安全性修復和效能改善。
+
+{% callout type="warning" title="升級注意：這版有 DB Migration" %}
+這版包含一個資料庫 migration，會在 `execution_entity` 表上新增索引。大型 instance 可能需要幾分鐘才能完成，期間資料庫仍可正常使用。
+{% endcallout %}
+
+### GitHub 節點新增取得組織成員
+feat(GitHub Node): Introduce get members operation on organization resource
+
+GitHub 節點的 Organization 資源新增了 **Get Members** 操作，可以列出指定 GitHub 組織的所有成員。
+
+之前要取得組織成員清單，只能用 HTTP Request 節點自己打 GitHub API，現在直接在 GitHub 節點選 Organization → Get Members 就能拿到。
+
+適合用在：
+- 定期稽核哪些人在 GitHub 組織裡
+- 新人入職時同步帳號到其他系統
+- 比對組織成員和公司人員名單
+
+{% darrellImage800Alt "GitHub 節點 Organization 資源新增 Get Members 操作" n8n-2.27.0-github_get_org_members.png max-800 %}
+
+### Anthropic 模型節點新增串流選項
+LmChatAnthropic Node: Add streaming option
+
+在 AI Agent workflow 裡用 Anthropic 模型，現在可以開啟 **Stream Responses** 選項。
+
+開啟後，模型回應改用串流方式傳輸，不用等整個回應生成完才收到資料，對於生成長文字的場景更即時。預設是**關閉**的，不影響後續節點接收的資料格式，向後相容沒問題。
+
+{% darrellImage800Alt "Anthropic Chat Model 節點新增 Stream Responses 開關" n8n-2.27.0-anthropic_streaming.png max-800 %}
+
 ## 2.24.0 Pre-release - 2026-06-02
 
 [Github 2.24.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%402.24.0)
