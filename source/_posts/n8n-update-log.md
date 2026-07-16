@@ -7,16 +7,127 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2026/06/02 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.24.0（Pre-release），正式版本為 2.22.6
+description: n8n 的更新記錄(2026/07/14 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.31.0（Pre-release），正式版本為 2.30.4
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2026-06-02 19:10:09
+modified: 2026-07-14 18:15:28
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 2.31.0 Pre-release - 2026-07-14
+
+[Github 2.31.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%402.31.0)
+
+### Notion 節點改用 API v3，Database 和 Data Source 分開
+feat(Notion Node): Migrate to new API and overhaul the node
+
+Notion 這次不是單純把 API 版本號往前升，而是把原本的 Database 資料模型拆得更清楚。
+
+以前在 n8n 裡選一個 Database，就可以直接用 Database ID 查詢裡面的頁面。
+新版的 Notion API 把 Database 當成 container
+真正用來描述欄位、內容和查詢的部分，改由 **Data Source** 負責。
+
+簡單看差異：
+
+{% dataTable style="minimal" align="left" %}
+[
+  {"以前的做法": "Database Search / Get Many", "Notion v3": "Data Source Search / Get"},
+  {"以前的做法": "使用 database_id 查詢頁面", "Notion v3": "使用 data_source_id 查詢 Database Page"},
+  {"以前的做法": "Block append 使用 after", "Notion v3": "改用 position.after_block"},
+  {"以前的做法": "使用 archived 表示封存", "Notion v3": "改用 in_trash"}
+]
+{% enddataTable %}
+
+這版也新增幾個 action ：
+
+- Data Source：Get、Search
+- Page：Get Markdown、Update Markdown
+- Block：Get Markdown
+- Database Page：Download Files
+- 建立頁面或追加 Block 時，可以用 Block Builder、JSON Blocks 或 Markdown
+
+實際跑一次 Data Source 的 Search，它會把工作區裡的 Data Source 直接列出來，回傳 `id`、`name`、`url`。
+這個 `id` 就是新版拿來查 Database Page 的 `data_source_id`：
+
+{% darrellImage800Alt "Notion 節點 Resource 選 Data Source、Operation 選 Search，輸出回傳 data source 的 id、name 和 url" n8n-2.31.0-notion_data_source_search.png max-800 %}
+
+### Form Ending 可以一次回傳多個檔案
+feat(Form Node): Support multiple files when returning binary from form ending
+
+這個更新要先釐清：它不是把單一 File Upload 欄位改成一次選取多個檔案，也不是把檔案打包成 ZIP。
+
+它改的是 Form Ending 的 **Return Binary File**。以前只能指定一個 binary 欄位，現在可以在 **Input Data Field Name(s)** 填入多個 binary 欄位名稱，讓完成頁個別觸發下載。
+
+假設上游資料裡有兩個 binary 欄位：
+
+```text
+test_1
+test_2
+```
+
+Form Ending 可以這樣設定：
+
+```text
+Operation: Completion
+Respond With: Return Binary File
+Input Data Field Name(s): test_1, test_2
+```
+
+送出表單後，瀏覽器會分別下載這兩個檔案。只填 `test_1` 就只下載一個；如果填入不存在的 binary 欄位，Form Ending 會報錯提醒找不到檔案。
+
+實測時可以打開 Form Ending 節點確認，左邊 INPUT 會看到 `test_1`、`test_2` 兩個 binary 欄位，欄位說明也直接寫了可以用逗號分隔多個欄位名稱：
+
+{% darrellImage800Alt "Form Ending 節點 Input Data Field Name(s) 填 test_1, test_2，INPUT 面板顯示 test_1.txt 與 test_2.txt 兩個 binary 檔案" n8n-2.31.0-form_multiple_binary_files.png max-800 %}
+
+這個功能適合用在表單流程最後要交付多個產出檔的情境，例如：
+
+- 一次回傳原始檔和處理後的檔案
+- 表單送出後提供報表與附件
+- 同時交付圖片、PDF 或其他 binary 結果
+
+它不需要第三方服務，Community 或 self-hosted 都可以直接測。不過「瀏覽器會阻擋多重下載」這點我實測真的踩到了。完成頁的做法是每個檔案建一個下載連結、各點一次，Chrome 預設只放行第一個，`test_2.txt` 就這樣被靜靜擋掉，連錯誤訊息都沒有。
+
+為了確認不是 n8n 的問題，我去看了完成頁實際帶幾個檔案，兩個都有正常送到，是瀏覽器擋掉第二個。
+要兩個都下載，得先允許這個網站的多重下載。
+
+### Form Trigger 可以顯示請求 headers
+feat(Form Trigger Node): Add "Show Headers" option
+
+Form Trigger 新增 **Options → Show Headers**。開啟後，使用者送出表單時，這次 HTTP request 的 headers 會一起出現在節點輸出資料裡。
+
+例如用 curl 送出一個自訂 header：
+
+```bash
+curl -X POST "你的 Form URL" \
+  -H "X-Demo: hello" \
+  -F "name=Darrell"
+```
+
+在 Form Trigger 的輸出裡，就可以看到 `X-Demo`、`User-Agent`、`Content-Type` 等請求資訊。這對除錯或根據請求來源做分流很方便，也可以協助確認瀏覽器或第三方服務實際送了哪些 header。
+
+{% darrellImage800Alt "Form Trigger 開啟 Show Headers 後，輸出的 headers 欄位完整顯示 authorization、x-auth-token、x-demo 等請求標頭" n8n-2.31.0-form_trigger_show_headers.png max-800 %}
+
+這裡有個大坑，我實測才發現：**自架版的敏感 header 根本沒被遮**。
+
+n8n 的節點定義裡確實把 `headers.authorization`、`headers.cookie`、`headers.x-auth-token` 標成敏感欄位，看起來這幾個值會自動遮掉。
+但遮不遮，其實要看你有沒有 Enterprise 的 Data Redaction 授權。
+
+我在自架的 2.31.0 上故意帶 `Authorization: Bearer super-secret-token-12345` 送出表單，輸出裡就是完整的 token，一個字都沒遮，上面那張圖直接看得到。
+翻原始碼也對得起來，遮蔽邏輯第一行就是「沒授權就不遮」：
+
+```ts
+if (!this.licenseState.isDataRedactionLicensed()) return 'none';
+```
+
+{% callout warning %}
+自架 Community 版開啟 Show Headers，等於把整包 header 原封不動寫進 execution 資料，token 也一樣。看得到 execution 記錄的人就看得到 token，這種 execution 別留太久。
+{% endcallout %}
+
+它同樣不需要外部服務，本機啟動 Form Trigger，開啟 Show Headers 後用瀏覽器或 curl 送出資料，就能看到結果。
 
 ## 2.30.0 Pre-release - 2026-07-07
 
@@ -3275,4 +3386,3 @@ A ---> B ---> C
 A ---> C
 
 算是大部分使用上會比較方便的版本
-
