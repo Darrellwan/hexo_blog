@@ -58,9 +58,10 @@ Notion 這次不是單純把 API 版本號往前升，而是把原本的 Databas
 ### Form Ending 可以一次回傳多個檔案
 feat(Form Node): Support multiple files when returning binary from form ending
 
-這個更新要先釐清：它不是把單一 File Upload 欄位改成一次選取多個檔案，也不是把檔案打包成 ZIP。
+Form Ending 的 **Return Binary File**
 
-它改的是 Form Ending 的 **Return Binary File**。以前只能指定一個 binary 欄位，現在可以在 **Input Data Field Name(s)** 填入多個 binary 欄位名稱，讓完成頁個別觸發下載。
+以前只能指定一個 binary 欄位，現在可以在 **Input Data Field Name(s)** 填入多個 binary 欄位名稱
+讓完成頁個別觸發下載。
 
 假設上游資料裡有兩個 binary 欄位：
 
@@ -81,53 +82,30 @@ Input Data Field Name(s): test_1, test_2
 
 實測時可以打開 Form Ending 節點確認，左邊 INPUT 會看到 `test_1`、`test_2` 兩個 binary 欄位，欄位說明也直接寫了可以用逗號分隔多個欄位名稱：
 
-{% darrellImage800Alt "Form Ending 節點 Input Data Field Name(s) 填 test_1, test_2，INPUT 面板顯示 test_1.txt 與 test_2.txt 兩個 binary 檔案" n8n-2.31.0-form_multiple_binary_files.png max-800 %}
+{% darrellImage800Alt "Form Ending 節點 Input Data Field Name(s) 填 test_1, test_2，INPUT 面板顯示 test_1.txt 與 test_2.txt 兩個 binary 檔案" n8n-2.31.0-form_multiple_binary_files-annotated.png max-800 %}
 
-這個功能適合用在表單流程最後要交付多個產出檔的情境，例如：
+這個功能適合用在表單流程最後要回傳多個檔案的情境
 
-- 一次回傳原始檔和處理後的檔案
-- 表單送出後提供報表與附件
-- 同時交付圖片、PDF 或其他 binary 結果
+但是在使用者端下載時，可能會有個問題
+就是 Chrome 預設不能一次下載多個檔案(安全考量)
 
-它不需要第三方服務，Community 或 self-hosted 都可以直接測。不過「瀏覽器會阻擋多重下載」這點我實測真的踩到了。完成頁的做法是每個檔案建一個下載連結、各點一次，Chrome 預設只放行第一個，`test_2.txt` 就這樣被靜靜擋掉，連錯誤訊息都沒有。
-
-為了確認不是 n8n 的問題，我去看了完成頁實際帶幾個檔案，兩個都有正常送到，是瀏覽器擋掉第二個。
-要兩個都下載，得先允許這個網站的多重下載。
+所以有這個需求的話，可能要再訊息上面提醒使用者
+先允許這個網站的**多重下載**
 
 ### Form Trigger 可以顯示請求 headers
 feat(Form Trigger Node): Add "Show Headers" option
 
-Form Trigger 新增 **Options → Show Headers**。開啟後，使用者送出表單時，這次 HTTP request 的 headers 會一起出現在節點輸出資料裡。
+Form Trigger 新增 **Options → Show Headers**。開啟後，使用者送出表單時，這次 HTTP request 的 headers 會一起出現在節點的輸出資料
 
-例如用 curl 送出一個自訂 header：
+這對 debug 或根據來源做判斷分流很方便
+也可以協助確認瀏覽器或第三方服務實際送了哪些 header
 
-```bash
-curl -X POST "你的 Form URL" \
-  -H "X-Demo: hello" \
-  -F "name=Darrell"
-```
+{% darrellImage800Alt "Form Trigger 開啟 Show Headers 後，輸出的 headers 欄位完整顯示 authorization、x-auth-token、x-demo 等請求標頭" n8n-2.31.0-form_trigger_show_headers-annotated.png max-800 %}
 
-在 Form Trigger 的輸出裡，就可以看到 `X-Demo`、`User-Agent`、`Content-Type` 等請求資訊。這對除錯或根據請求來源做分流很方便，也可以協助確認瀏覽器或第三方服務實際送了哪些 header。
-
-{% darrellImage800Alt "Form Trigger 開啟 Show Headers 後，輸出的 headers 欄位完整顯示 authorization、x-auth-token、x-demo 等請求標頭" n8n-2.31.0-form_trigger_show_headers.png max-800 %}
-
-這裡有個大坑，我實測才發現：**自架版的敏感 header 根本沒被遮**。
-
-n8n 的節點定義裡確實把 `headers.authorization`、`headers.cookie`、`headers.x-auth-token` 標成敏感欄位，看起來這幾個值會自動遮掉。
-但遮不遮，其實要看你有沒有 Enterprise 的 Data Redaction 授權。
-
-我在自架的 2.31.0 上故意帶 `Authorization: Bearer super-secret-token-12345` 送出表單，輸出裡就是完整的 token，一個字都沒遮，上面那張圖直接看得到。
-翻原始碼也對得起來，遮蔽邏輯第一行就是「沒授權就不遮」：
-
-```ts
-if (!this.licenseState.isDataRedactionLicensed()) return 'none';
-```
 
 {% callout warning %}
 自架 Community 版開啟 Show Headers，等於把整包 header 原封不動寫進 execution 資料，token 也一樣。看得到 execution 記錄的人就看得到 token，這種 execution 別留太久。
 {% endcallout %}
-
-它同樣不需要外部服務，本機啟動 Form Trigger，開啟 Show Headers 後用瀏覽器或 curl 送出資料，就能看到結果。
 
 ## 2.30.0 Pre-release - 2026-07-07
 
