@@ -3,7 +3,7 @@
 ## 📚 最新文章
 
 ### [Claude Code Fable 5 限時限量回歸，該怎麼用](https://www.darrelltw.com/claude-code-fable-5/?utm_source=github_readme&utm_medium=referral)
-📅 2026/07/03 · 17 天前
+📅 2026/07/03 · 22 天前
 
 > Claude Code Fable 5 使用建議，整理限時可用期間哪些任務值得交給 Fable 5、哪些任務不划算，以及怎麼切換模型、交代任務背景、用 effort 與 ultracode 控制成本，附上額度確認方式與使用政策提醒。
 
@@ -15,7 +15,7 @@
 
 
 ### [n8n Google Sheets 節點教學](https://www.darrelltw.com/n8n-google-sheets-node/?utm_source=github_readme&utm_medium=referral)
-📅 2026/05/09 · 2 個月前
+📅 2026/05/09 · 3 個月前
 
 > n8n Google Sheets 節點完整教學。6 個操作怎麼選（含決策樹）、Trigger polling 限制說明，以及 Gmail 電子發票 AI 自動解析去重實戰案例。
 
@@ -27,7 +27,7 @@
 
 
 ### [Claude Managed Agents 實測：簡單快速建立自己的雲端 AI Agent](https://www.darrelltw.com/claude-managed-agents/?utm_source=github_readme&utm_medium=referral)
-📅 2026/04/09 · 3 個月前
+📅 2026/04/09 · 4 個月前
 
 > Anthropic 推出 Claude Managed Agents，讓開發者用 Console 或 API 在雲端建立、部署生產等級的 AI Agent。實測 Quickstart 流程，從建立 Agent 到跑出第一個 Session 和心得分享。
 
@@ -65,7 +65,7 @@
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-125-blue?style=flat-square)
 ![總字數](https://img.shields.io/badge/總字數-358,786+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2026/07/20-green?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2026/07/26-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-07-20 14:07:19*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-07-26 03:26:54*
