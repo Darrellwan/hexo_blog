@@ -3,7 +3,7 @@
 ## 📚 最新文章
 
 ### [Claude Code Fable 5 限時限量回歸，該怎麼用](https://www.darrelltw.com/claude-code-fable-5/?utm_source=github_readme&utm_medium=referral)
-📅 2026/07/03 · 22 天前
+📅 2026/07/03 · 23 天前
 
 > Claude Code Fable 5 使用建議，整理 2026/07 額度規則、Opus 5 與 Fable 5 的 benchmark 對照，以及哪些任務值得用 Fable、怎麼切換模型與控制成本。
 
@@ -64,7 +64,7 @@
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-125-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-358,786+-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-360,102+-blue?style=flat-square)
 ![最後更新](https://img.shields.io/badge/最後更新-2026/07/26-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-07-26 03:26:54*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-07-26 15:10:49*
