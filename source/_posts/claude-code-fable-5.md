@@ -1,14 +1,14 @@
 ---
 title: Claude Code Fable 5 限時限量回歸，該怎麼用
 date: 2026-07-03 16:35:59
-modified: 2026-07-03 16:35:59
+modified: 2026-07-26 23:04:41
 tags:
   - Claude Code
   - Claude
 page_type: post
 id: claude-code-fable-5
 bgImage: blog-claude-code-fable-5-bg.jpg
-description: Claude Code Fable 5 使用建議，整理限時可用期間哪些任務值得交給 Fable 5、哪些任務不划算，以及怎麼切換模型、交代任務背景、用 effort 與 ultracode 控制成本，附上額度確認方式與使用政策提醒。
+description: Claude Code Fable 5 使用建議，整理 2026/07 額度規則、Opus 5 與 Fable 5 的 benchmark 對照，以及哪些任務值得用 Fable、怎麼切換模型與控制成本。
 categories:
   - Claude
 ---
@@ -17,29 +17,40 @@ categories:
 
 {% quickNav %}
 [
-  {"text": "限時回歸", "anchor": "202607-return", "desc": "開放一週與額度上限"},
-  {"text": "先講結論", "anchor": "answer-first", "desc": "什麼時候值得用 Fable 5"},
+  {"text": "額度現況", "anchor": "202607-return", "desc": "時間限制結束後各方案怎麼用"},
+  {"text": "什麼時候用", "anchor": "answer-first", "desc": "什麼時候值得用 Fable 5"},
+  {"text": "Opus 5 對照", "anchor": "opus5-vs-fable5", "desc": "Benchmark 與成本曲線"},
   {"text": "使用方法", "anchor": "how-to-use", "desc": "切換模型、任務背景、effort"},
   {"text": "方法論與限制", "anchor": "methodology-and-limits", "desc": "工作流程、成本與政策邊界"},
-  {"text": "常見問題", "anchor": "faq", "desc": "限時、額度與模型差異"}
+  {"text": "常見問題", "anchor": "faq", "desc": "額度、方案與模型差異"}
 ]
 {% endquickNav %}
 
 
-<h2 id="202607-return">限時限量的回歸</h2>
+<h2 id="202607-return">額度現況（2026/07 更新）</h2>
 
-### 202607 開放一週
+### Fable 的去留？
 
-自從上次公布 Fable 模型不到幾天就被美國政府監管之後
-這次在七月一號正式回歸
-雖然不知道未來是不是還有被監管的可能
+Fable 5 七月初回歸時，官方先給了一段**訂閱額度內可用**的限時優惠
+一路將試用的時間又延長到 **7/19 23:59:59 PT**
 
-但這次官方是公佈可以在**訂閱額度**內使用一週
-之後就要儲值 credit 並用 API 方式計價 (非常貴)
+最後定案的方式是：
+- **Max, Team premium** 以上方案將能繼續使用，額度一樣是 weekly limit 的 50%
+- 其他方案都改為 Extra Usage Credit (API 計價) 收費，使用完畢後需要另外儲值
+- Pro 方案會贈送 $100 美元額度的 Credit
 
-另外使用額度上也有限制
-會是訂閱額度的 50%
-也可以直接查看自己的 Usage 上面會顯示剩餘多少
+{% dataTable style="minimal" align="left" %}
+[
+  {"方案": "Max、Team premium、Enterprise premium", "現在怎麼用": "使用訂閱方案額度", "還有上限嗎": "有，每週用量的 50%"},
+  {"方案": "Pro、Team standard", "現在怎麼用": "走 usage credits，另外計費", "還有上限嗎": "錢包決定你的上限"},
+  {"方案": "Free", "現在怎麼用": "不能用", "還有上限嗎": "—"}
+]
+{% enddataTable %}
+
+Usage Credit 的 API 計價超級貴：約 **$10 / M input、$50 / M output**
+可能幾個問答來回，就會把 $100 美元的贈送額度用完
+
+### 怎麼查自己還剩多少
 
 在 claude.ai 的設定頁可以看到，Fable 會獨立列一條每週用量：
 
@@ -48,6 +59,9 @@ categories:
 或是在 Claude Code 裡直接打 `/usage`，終端機也會顯示同樣的資訊：
 
 {% darrellImage800Alt "Claude Code CLI usage 畫面，Current week Fable 顯示本週已使用百分比與重置時間" fable5-usage-limit-cli.png max-800 %}
+
+政策這類東西可能會一變再變，歡迎參考最新官方說明：
+[Claude Fable 5 on your plan](https://support.claude.com/en/articles/15424964-claude-fable-5-on-your-plan)
 
 
 <h2 id="answer-first">什麼時候該用 Fable 5？</h2>
@@ -67,6 +81,22 @@ Fable 5 真正值得用的情境，是一個新專案的策略完整規劃，或
 ]
 {% enddataTable %}
 
+
+<h2 id="opus5-vs-fable5">Opus 5 vs Fable 5</h2>
+
+Anthropic 在台灣時間 7/24 推出了最新的 **Opus 5** 模型
+就 Benchmark 來看，Opus 5 可能在不少場景都能接近或是超越 Fable 5
+
+{% darrellImage800Alt "Opus 5 與 Fable 5、Opus 4.8、GPT-5.6 Sol 的多項 benchmark 對照表" opus5-vs-fable5-benchmark.jpg max-800 %}
+
+下圖可以看到寫程式的場景中，Opus 5 在成本或效能上可能都超過 Fable 5
+(但要注意這是 Benchmark，我會建議參考就好！)
+
+{% darrellImage800Alt "Frontier-Bench agentic coding：不同 effort 等級下分數與每次成本對照，Opus 5、Fable 5、Opus 4.8、GPT-5.6 Sol" opus5-vs-fable5-effort-cost.jpg max-800 %}
+
+所以大家也不用太糾結自己的方案有沒有 **Fable 5** 可以使用
+現在 Opus 5 使用體感和社群的 Feedback 都是比以前的 4.8 好上不少
+未來 Fable 5.1 已經有傳聞要在 2026年 8月推出，到時再來看看新版 Fable 能進步多少！
 
 <h2 id="how-to-use">在 Claude Code 裡使用 Fable 5</h2>
 
@@ -118,14 +148,22 @@ Fable 5 的重點不是「一句話下對就會成功」，而是讓它先理解
 
 ### 成本與政策邊界
 
-成本部分前面已經講過小任務不值得用。另外提醒，限時期間結束後要繼續用 Fable 5，需要啟用 {% term def="訂閱方案內建額度之外，另外加值付費購買的用量" %}usage credits{% endterm %}，如果需要繼續使用，那先確認自己還有多少額度
-[確認額度的連結](https://claude.ai/new#settings/billing)
+成本部分前面已經講過小任務不值得用。
+
+再對一下現在的計費：
+
+- **Max / premium**：Fable 還在訂閱裡，但每週最多 50%，燒完就得 credits 或換模型
+- **Pro / standard**：Fable 走 {% term def="訂閱方案內建額度之外，另外加值付費購買的用量" %}usage credits{% endterm %}，訂閱週額度不再包它
+- **API / usage credits 單價**：約 $10 / M input、$50 / M output，大概是 Opus 級的 2 倍
+
+額度可以在這裡查：[Usage 設定](https://claude.ai/settings/usage)
+有 credits 需求的，Billing 也一起看：[Billing 設定](https://claude.ai/settings/billing)
 
 這裡再補兩個不是效率問題的邊界。
 
-第一，公司和企業要先確認資料保留與合規限制，不要因為模型能力強就直接上傳客戶的個資等等敏感資料
+第一，公司和企業要先確認資料保留與合規限制。Fable 有 **30 天 data retention** 的安全監控要求，不要因為模型能力強就直接上傳客戶個資
 
-第二，高風險資安、生物、或可能觸發安全限制，會被直接降級到其他模型來回答
+第二，高風險資安、生物相關請求，可能被直接降級到其他模型來回答，這段不會用 Fable 價格計費
 
 最後的判斷不是 **Fable 5 比其他模型強，所以全部切過去**
 而是這個任務是否真的很複雜，或需要策略發想。
@@ -148,15 +186,20 @@ Fable 5 的重點不是「一句話下對就會成功」，而是讓它先理解
 
 ### 官方資料參考
 - Anthropic Claude Fable 官方頁面：https://www.anthropic.com/claude/fable
+- 各方案怎麼用 Fable：https://support.claude.com/en/articles/15424964-claude-fable-5-on-your-plan
+- Pro / Team standard 一次性 free credits：https://support.claude.com/en/articles/15862783
 
 <h2 id="faq">常見問題</h2>
 
 {% faq %}
 [
-  {"question": "Claude Fable 5 是什麼？跟 Opus 差在哪？", "answer": "Fable 5 是 Anthropic Claude 5 家族的第一個模型，定位在 Opus 之上，屬於新的 Mythos 級模型層。它跟 Opus 的差別不只是「更聰明」，而是更適合長時間、多階段、需要持續判斷與驗證的 agent 任務。價格約為 Opus 的 2 倍，所以短任務用它通常不划算。"},
+  {"question": "Claude Fable 5 是什麼？跟 Opus 差在哪？", "answer": "Fable 5 是 Anthropic 的 Mythos 級公開模型，原本定位在 Opus 之上。2026/07/24 的 Opus 5 推出後，官方 benchmark 顯示不少場景已接近或超越 Fable 5，而且通常更省成本。Fable 仍適合特別長、特別難的硬仗，但日常 agent 任務可以先試 Opus 5。"},
   {"question": "Fable 5 跟 Mythos 5 有什麼不同？", "answer": "兩者共用同一個底層模型。Fable 5 是一般用戶可以用的版本，針對高風險能力多了額外的安全措施；Mythos 5 只開放給通過 Anthropic 審核的組織。在 Claude Code 裡你接觸到的是 Fable 5。"},
-  {"question": "Fable 5 限時可用到什麼時候？之後還能用嗎？", "answer": "依 2026/07/02 的官方公告，7/1 到 7/7 期間包含在部分方案額度內，最多約佔每週用量的 50%；期間結束後需要啟用 usage credits 才能繼續使用。這類政策可能變動，開始跑長任務前建議先到官方頁面再確認一次。"},
-  {"question": "什麼任務不該用 Fable 5？", "answer": "單輪問答、小段改寫、已知解法的小 bug、批次格式轉換，這些用 Sonnet、Opus 或直接寫腳本更划算。判斷原則很簡單：任務越長、unknown 越多、越需要驗證，才越值得開 Fable 5。"}
+  {"question": "Fable 5 限時可用到什麼時候？之後還能用嗎？", "answer": "7/1 到 7/19 的「訂閱內可用」限時優惠已結束。7/20 起：Max 與 premium 席次把 Fable 納入訂閱標準功能，但仍有每週 50% 上限；Pro 與 standard 席次改走 usage credits。模型本身還在，不是下架。"},
+  {"question": "Max 方案還有時間限制嗎？", "answer": "沒有時間限制那檔優惠了，但量的限制還在。你可以把最多 50% 的每週用量花在 Fable；燒到上限後，要嘛 credits 續用，要嘛換 Sonnet / Opus。"},
+  {"question": "Pro 方案現在怎麼用 Fable？", "answer": "Pro 的訂閱週額度不再包含 Fable，要啟用 usage credits。合格 Pro / Team standard 有一次性 $100 free credits，需在 2026/8/2 前領取，credits 到 9/17 到期。也可考慮升級 Max。"},
+  {"question": "什麼任務不該用 Fable 5？", "answer": "單輪問答、小段改寫、已知解法的小 bug、批次格式轉換，這些用 Sonnet、Opus 或直接寫腳本更划算。判斷原則很簡單：任務越長、unknown 越多、越需要驗證，才越值得開 Fable 5。"},
+  {"question": "有 Opus 5 了還需要搶 Fable 5 嗎？", "answer": "多數情況不用硬搶。Opus 5 在多項 benchmark 已接近或超越 Fable，成本曲線也常更划算。Max 還有 Fable 額度可以留給最難的長任務；Pro 或 credits 有限的，日常先用 Opus 5 就好。"}
 ]
 {% endfaq %}
 

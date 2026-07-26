@@ -8047,17 +8047,17 @@
   "/_posts/n8n-update-log/n8n-2.21.0-notion_get_many_pagination.png": {
     "width": 1296,
     "height": 1356,
-    "mtimeMs": 1779287438476.7942
+    "mtimeMs": 1782105506209.4797
   },
   "/_posts/n8n-update-log/n8n-2.21.0-jira_oauth2_credential.png": {
     "width": 2996,
     "height": 1882,
-    "mtimeMs": 1779287438475.8945
+    "mtimeMs": 1782105506208.124
   },
   "/_posts/n8n-update-log/n8n-2.21.0-google_sheets_append_row.png": {
     "width": 1296,
     "height": 1160,
-    "mtimeMs": 1779287438474.5803
+    "mtimeMs": 1782105506207.2593
   },
   "/_posts/n8n-security-vulnerability-2025/n8n-zeabur-version-modal.png": {
     "width": 1227,
@@ -8112,57 +8112,162 @@
   "/_posts/n8n-update-log/n8n-2.24.0-postgres_select_empty_array.png": {
     "width": 1612,
     "height": 1132,
-    "mtimeMs": 1780405842739.6414
+    "mtimeMs": 1782105506211.707
   },
   "/_posts/n8n-update-log/n8n-2.24.0-form_trigger_n8n_user_auth.png": {
     "width": 1430,
     "height": 996,
-    "mtimeMs": 1780405842761.058
+    "mtimeMs": 1782105506211.4014
   },
   "/_posts/n8n-update-log/n8n-2.24.0-ai_tool_continue_on_error.png": {
     "width": 3310,
     "height": 1802,
-    "mtimeMs": 1780405842750.378
+    "mtimeMs": 1782105506210.8657
   },
   "/_posts/claude-code-fable-5/fable5-usage-limit-web.png": {
     "width": 1822,
     "height": 1218,
-    "mtimeMs": 1783065215290.7737
+    "mtimeMs": 1783068676077.8083
   },
   "/_posts/claude-code-fable-5/fable5-usage-limit-cli.png": {
     "width": 2108,
     "height": 1144,
-    "mtimeMs": 1783065215466.7097
+    "mtimeMs": 1783068676077.65
   },
   "/_posts/claude-code-fable-5/codex_plugin_for_claude_code.png": {
     "width": 1954,
     "height": 1124,
-    "mtimeMs": 1783066481570.7356
+    "mtimeMs": 1783068676076.3035
   },
   "/_posts/claude-code-fable-5/blog-claude-code-fable-5-bg.jpg": {
     "width": 1080,
     "height": 1350,
-    "mtimeMs": 1783063672307.9595
+    "mtimeMs": 1783068676076.1165
   },
   "/_posts/claude-code-fable-5/fable5-model-choice-ladder.png": {
     "width": 1600,
     "height": 900,
-    "mtimeMs": 1782986877813.524
+    "mtimeMs": 1783068676077.323
   },
   "/_posts/claude-code-fable-5/fable5-claude-code-workflow.png": {
     "width": 1600,
     "height": 900,
-    "mtimeMs": 1782986877601.9973
+    "mtimeMs": 1783068676076.7297
   },
   "/_posts/claude-code-fable-5/fable5-model-choice-ladder.svg": {
     "width": 1600,
     "height": 1000,
-    "mtimeMs": 1782986744861.5352
+    "mtimeMs": 1783068676077.4229
   },
   "/_posts/claude-code-fable-5/fable5-claude-code-workflow.svg": {
     "width": 1600,
     "height": 1000,
-    "mtimeMs": 1782986675409.3403
+    "mtimeMs": 1783068676076.8506
+  },
+  "/_posts/chatgpt-work-vs-codex/codex-sidebar.png": {
+    "width": 1626,
+    "height": 920,
+    "mtimeMs": 1783909793008.1072
+  },
+  "/_posts/chatgpt-work-vs-codex/chatgpt-work-sidebar.png": {
+    "width": 1626,
+    "height": 920,
+    "mtimeMs": 1783909792957.3962
+  },
+  "/_posts/n8n-cli-guide/blog-n8n-cli-guide-bg.jpg": {
+    "width": 1620,
+    "height": 2025,
+    "mtimeMs": 1782105506220.7808
+  },
+  "/_posts/n8n-update-log/n8n-2.29.0-slack_schedule_message.png": {
+    "width": 1600,
+    "height": 1000,
+    "mtimeMs": 1784558172206.0542
+  },
+  "/_posts/n8n-update-log/n8n-2.29.0-slack_lookup_by_email.png": {
+    "width": 1280,
+    "height": 577,
+    "mtimeMs": 1784556389292.0251
+  },
+  "/_posts/n8n-update-log/n8n-2.29.0-schedule_trigger_bug.png": {
+    "width": 1600,
+    "height": 1000,
+    "mtimeMs": 1784558171899.5623
+  },
+  "/_posts/n8n-update-log/n8n-2.28.0-webhook_only_run_if-watermarked.png": {
+    "width": 1600,
+    "height": 950,
+    "mtimeMs": 1784558171609.2378
+  },
+  "/_posts/n8n-update-log/n8n-2.28.0-webhook_only_run_if-annotated.png": {
+    "width": 1600,
+    "height": 950,
+    "mtimeMs": 1784558171201.844
+  },
+  "/_posts/n8n-update-log/n8n-2.28.0-telegram_rich_message_draft-watermarked.png": {
+    "width": 1600,
+    "height": 950,
+    "mtimeMs": 1784558170818.681
+  },
+  "/_posts/n8n-update-log/n8n-2.28.0-telegram_rich_message_draft-annotated.png": {
+    "width": 1600,
+    "height": 950,
+    "mtimeMs": 1784558170425.4453
+  },
+  "/_posts/n8n-update-log/n8n-2.28.0-ai_agent_pdf_passthrough-watermarked.png": {
+    "width": 1600,
+    "height": 950,
+    "mtimeMs": 1784558170064.479
+  },
+  "/_posts/n8n-update-log/n8n-2.28.0-ai_agent_pdf_passthrough-annotated.png": {
+    "width": 1600,
+    "height": 950,
+    "mtimeMs": 1784558169714.129
+  },
+  "/_posts/n8n-update-log/n8n-2.27.0-github_get_org_members.png": {
+    "width": 940,
+    "height": 608,
+    "mtimeMs": 1784556389272.799
+  },
+  "/_posts/n8n-update-log/n8n-2.27.0-anthropic_streaming.png": {
+    "width": 1418,
+    "height": 1176,
+    "mtimeMs": 1782105749479.6702
+  },
+  "/_posts/n8n-cli-guide/n8n_cli-workflow_list.png": {
+    "width": 1714,
+    "height": 264,
+    "mtimeMs": 1782105506222.1116
+  },
+  "/_posts/n8n-cli-guide/n8n_cli-npm_install.png": {
+    "width": 1422,
+    "height": 290,
+    "mtimeMs": 1782105506221.9854
+  },
+  "/_posts/n8n-cli-guide/n8n_cli-multi_instance_alias.png": {
+    "width": 1980,
+    "height": 634,
+    "mtimeMs": 1782105506221.799
+  },
+  "/_posts/n8n-cli-guide/n8n_cli-login.png": {
+    "width": 1586,
+    "height": 314,
+    "mtimeMs": 1782105506221.5544
+  },
+  "/_posts/n8n-cli-guide/n8n_cli-claude_code_debug.png": {
+    "width": 1392,
+    "height": 1162,
+    "mtimeMs": 1782105506221.393
+  },
+  "/_posts/n8n-cli-guide/n8n_cli-api_key_setting.png": {
+    "width": 3038,
+    "height": 1126,
+    "mtimeMs": 1782105506221.2288
+  },
+  "/_posts/n8n-cli-guide/blog-n8n-cli-guide-bg.webp": {
+    "width": 1620,
+    "height": 2025,
+    "mtimeMs": 1782105506220.9006
   },
   "/_posts/claude-cowork-intro/cowork_mode_toggle_folder_scheduled.png": {
     "width": 1736,
@@ -8179,84 +8284,69 @@
     "height": 1150,
     "mtimeMs": 1783939736164.0957
   },
-  "/_posts/n8n-update-log/n8n-2.27.0-github_get_org_members.png": {
-    "width": 940,
-    "height": 608,
-    "mtimeMs": 1781866801356.3054
+  "/_posts/chatgpt-work-vs-codex/work-web-vs-desktop-runtime-infographic.png": {
+    "width": 1672,
+    "height": 941,
+    "mtimeMs": 1784006673460.776
   },
-  "/_posts/n8n-update-log/n8n-2.27.0-anthropic_streaming.png": {
-    "width": 1418,
-    "height": 1176,
-    "mtimeMs": 1782105749479.6702
+  "/_posts/chatgpt-work-vs-codex/sandbox-container-venv-explained.png": {
+    "width": 1672,
+    "height": 941,
+    "mtimeMs": 1784006673457.71
   },
-  "/_posts/n8n-update-log/n8n-2.28.0-webhook_only_run_if-watermarked.png": {
-    "width": 2560,
-    "height": 1520,
-    "mtimeMs": 1782367782296.9548
+  "/_posts/chatgpt-work-vs-codex/execution-environment-verification.png": {
+    "width": 1672,
+    "height": 941,
+    "mtimeMs": 1784006583615.7878
   },
-  "/_posts/n8n-update-log/n8n-2.28.0-ai_agent_pdf_passthrough-watermarked.png": {
-    "width": 2560,
-    "height": 1520,
-    "mtimeMs": 1782367782475.3071
-  },
-  "/_posts/n8n-update-log/n8n-2.28.0-telegram_rich_message_draft-watermarked.png": {
-    "width": 2560,
-    "height": 1520,
-    "mtimeMs": 1782367782688.3013
-  },
-  "/_posts/n8n-update-log/n8n-2.29.0-schedule_trigger_bug.png": {
-    "width": 2560,
-    "height": 1600,
-    "mtimeMs": 1783002899734.0195
-  },
-  "/_posts/n8n-update-log/n8n-2.29.0-slack_schedule_message.png": {
-    "width": 2560,
-    "height": 1600,
-    "mtimeMs": 1783002953842.7795
-  },
-  "/_posts/n8n-update-log/n8n-2.29.0-slack_lookup_by_email.png": {
-    "width": 1280,
-    "height": 577,
-    "mtimeMs": 1782987088633.26
-  },
-  "/_posts/n8n-update-log/n8n-2.31.0-notion_data_source_search.png": {
-    "width": 2000,
-    "height": 1177,
-    "mtimeMs": 1784194859451.5098
-  },
-  "/_posts/n8n-update-log/n8n-2.31.0-notion_data_source_success.png": {
-    "width": 1280,
-    "height": 577,
-    "mtimeMs": 1784082035083.7456
+  "/_posts/chatgpt-work-vs-codex/chatgpt-mode-decision-flow.png": {
+    "width": 1672,
+    "height": 941,
+    "mtimeMs": 1784006507883.877
   },
   "/_posts/n8n-update-log/n8n-2.31.0-notion_page_markdown.png": {
     "width": 1280,
     "height": 577,
-    "mtimeMs": 1784082035080.38
+    "mtimeMs": 1784556389314.505
+  },
+  "/_posts/n8n-update-log/n8n-2.31.0-notion_data_source_success.png": {
+    "width": 1280,
+    "height": 577,
+    "mtimeMs": 1784556389313.9014
+  },
+  "/_posts/n8n-update-log/n8n-2.31.0-notion_data_source_search.png": {
+    "width": 1600,
+    "height": 942,
+    "mtimeMs": 1784558173246.5159
+  },
+  "/_posts/chatgpt-work-vs-codex/local-vs-remote-workspace-explained.png": {
+    "width": 1672,
+    "height": 941,
+    "mtimeMs": 1784019278094.5579
+  },
+  "/_posts/chatgpt-work-vs-codex/chatgpt-work-web-runtime-command.png": {
+    "width": 1151,
+    "height": 600,
+    "mtimeMs": 1784023789654.6775
   },
   "/_posts/n8n-update-log/n8n-2.31.0-form_trigger_show_headers-annotated.png": {
-    "width": 2560,
-    "height": 1600,
-    "mtimeMs": 1784195847983.5066
+    "width": 1600,
+    "height": 1000,
+    "mtimeMs": 1784558172900.8713
   },
   "/_posts/n8n-update-log/n8n-2.31.0-form_multiple_binary_files-annotated.png": {
-    "width": 2560,
-    "height": 1600,
-    "mtimeMs": 1784195848194.521
+    "width": 1600,
+    "height": 1000,
+    "mtimeMs": 1784558172546.4475
   },
-  "/_posts/n8n-update-log/n8n-2.28.0-webhook_only_run_if-annotated.png": {
-    "width": 2560,
-    "height": 1520,
-    "mtimeMs": 1782366265736.7366
+  "/_posts/claude-code-fable-5/opus5-vs-fable5-effort-cost.jpg": {
+    "width": 2000,
+    "height": 1125,
+    "mtimeMs": 1785078281381.3467
   },
-  "/_posts/n8n-update-log/n8n-2.28.0-telegram_rich_message_draft-annotated.png": {
-    "width": 2560,
-    "height": 1520,
-    "mtimeMs": 1782361802236.282
-  },
-  "/_posts/n8n-update-log/n8n-2.28.0-ai_agent_pdf_passthrough-annotated.png": {
-    "width": 2560,
-    "height": 1520,
-    "mtimeMs": 1782361802047.3967
+  "/_posts/claude-code-fable-5/opus5-vs-fable5-benchmark.jpg": {
+    "width": 1558,
+    "height": 1545,
+    "mtimeMs": 1785078281372.676
   }
 }

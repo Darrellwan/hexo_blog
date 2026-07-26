@@ -5,7 +5,7 @@
 ### [Claude Code Fable 5 限時限量回歸，該怎麼用](https://www.darrelltw.com/claude-code-fable-5/?utm_source=github_readme&utm_medium=referral)
 📅 2026/07/03 · 22 天前
 
-> Claude Code Fable 5 使用建議，整理限時可用期間哪些任務值得交給 Fable 5、哪些任務不划算，以及怎麼切換模型、交代任務背景、用 effort 與 ultracode 控制成本，附上額度確認方式與使用政策提醒。
+> Claude Code Fable 5 使用建議，整理 2026/07 額度規則、Opus 5 與 Fable 5 的 benchmark 對照，以及哪些任務值得用 Fable、怎麼切換模型與控制成本。
 
 
 ### [n8n CLI 教學 - 用終端機管理 workflow，備份、批次操作、AI 整合](https://www.darrelltw.com/n8n-cli-guide/?utm_source=github_readme&utm_medium=referral)
