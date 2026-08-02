@@ -18,7 +18,11 @@
 
     <a href="{{ config.root }}" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
+      {%- if isHome %}
       <h1 class="site-title">{{ config.display_title or title }}</h1>
+      {%- else %}
+      <p class="site-title">{{ config.display_title or title }}</p>
+      {%- endif %}
       <span class="logo-line-after"><i></i></span>
     </a>
     {%- if subtitle %}

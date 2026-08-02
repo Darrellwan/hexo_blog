@@ -1,3 +1,5 @@
+const { resolve } = require('url');
+
 function jsonLd() {
   const page = this.page;
   const config = this.config;
@@ -43,7 +45,7 @@ function jsonLd() {
       dateCreated: page.date.format(),
       dateModified: page.updated.format(),
       datePublished: page.date.format(),
-      description: this.strip_html(page.excerpt),
+      description: page.description ? this.strip_html(page.description) : this.strip_html(page.excerpt),
       headline: page.title,
       image: images,
       mainEntityOfPage: {
@@ -60,25 +62,26 @@ function jsonLd() {
       schema.keywords = page.tags.map((tag) => tag.name).join(", ");
     }
 
-    if (page.coverImage) {
+    if (page.bgImage) {
+      const bgImageUrl = resolve(this.url, page.bgImage);
       const coverImageObj = {
         "@type": "ImageObject",
-        url: page.coverImage,
-        contentUrl: page.coverImage,
+        url: bgImageUrl,
+        contentUrl: bgImageUrl,
         caption: `${page.title} - 封面圖`,
         description: `${page.title} 文章的封面圖片`,
-        encodingFormat: page.coverImage.includes('.png') ? 'image/png' : 
-                       page.coverImage.includes('.jpg') || page.coverImage.includes('.jpeg') ? 'image/jpeg' :
-                       page.coverImage.includes('.webp') ? 'image/webp' : 'image/jpeg'
+        encodingFormat: page.bgImage.includes('.png') ? 'image/png' :
+                       page.bgImage.includes('.jpg') || page.bgImage.includes('.jpeg') ? 'image/jpeg' :
+                       page.bgImage.includes('.webp') ? 'image/webp' : 'image/jpeg'
       };
-      
+
       if (page.coverImageWidth && page.coverImageHeight) {
         coverImageObj.width = page.coverImageWidth;
         coverImageObj.height = page.coverImageHeight;
       }
-      
+
       images.push(coverImageObj);
-      schema.thumbnailUrl = page.coverImage;
+      schema.thumbnailUrl = bgImageUrl;
     } else if (config.defaultImage) {
       const defaultImageObj = {
         "@type": "ImageObject",
