@@ -11,6 +11,7 @@ id: ga4-search-console-mcp-install
 description: 實測和分享 GA4 , Search Console 的 MCP 安裝流程，讓 Claude Desktop 串接後就能輕鬆分析 GA4 報表和 Search Console 排名數據。
 bgImage: ga4-search-console-mcp-cover.jpg
 date: 2026-08-02 18:13:12
+modified: 2026-08-03 00:45:24
 ---
 
 {% darrellImageCover ga4-search-console-mcp-install ga4-search-console-mcp-cover.jpg max-800 %}
@@ -220,9 +221,6 @@ AI 時代如何控制 AI 會不會讀取錯誤的帳號不小心外洩出去很�
 
 <h2 id="related">相關推薦</h2>
 
+{% articleCard url="/claude-desktop-new-mcp-features-review/" title="Claude MCP 應用測試心得 - Claude Desktop" previewText="從 FileSystem、Fetch 到 Google Maps，看看 Claude Desktop 的 MCP 實際使用方式。" thumbnail="https://www.darrelltw.com/claude-desktop-new-mcp-features-review/claude_desktop_mcp_bg.jpg" %}
 
-{% articleCard url="/meta-ads-mcp/" title="Meta 廣告 MCP 來了！真的可以讓 AI 來投廣告了嗎？" previewText="了解 Meta Ads MCP 能查哪些廣告資料，以及導入 AI 前要注意的權限風險。" %}
-
-{% articleCard url="/claude-desktop-new-mcp-features-review/" title="Claude MCP 應用測試心得 - Claude Desktop" previewText="從 FileSystem、Fetch 到 Google Maps，看看 Claude Desktop 的 MCP 實際使用方式。" %}
-
-{% articleCard url="/line-mcp-server/" title="LINE MCP Server 測試心得" previewText="用 MCP 讓 Claude 直接操作 LINE Messaging API，延伸了解 MCP 的實作場景。" %}
+{% articleCard url="/line-mcp-server/" title="LINE MCP Server 測試心得" previewText="用 MCP 讓 Claude 直接操作 LINE Messaging API，延伸了解 MCP 的實作場景。" thumbnail="https://www.darrelltw.com/line-mcp-server/line_mcp_server_bg.jpg" %}

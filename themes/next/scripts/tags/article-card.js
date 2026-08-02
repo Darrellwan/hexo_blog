@@ -22,12 +22,12 @@ function articleCard(args) {
           <div class="article-card-title">${title}</div>
           ${previewText ? `<p class="article-card-preview">${previewText}</p>` : ''}
         </div>
-        <div class="article-card-image">
+        ${thumbnail ? `<div class="article-card-image">
           <img src="${thumbnail}" alt="${title}">
-        </div>
+        </div>` : ''}
       </div>
     </a>
   </div>`;
 }
 
-hexo.extend.tag.register('articleCard', articleCard); 
+hexo.extend.tag.register('articleCard', articleCard);
