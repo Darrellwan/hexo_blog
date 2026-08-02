@@ -1,0 +1,83 @@
+// ========================================
+// Copyable chip
+// 用法：
+// <div class="copyable-list">
+//   <a class="copyable" data-copy="要複製的文字">顯示文字</a>
+// </div>
+// ========================================
+
+.copyable-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 16px 0;
+}
+
+a.copyable {
+  cursor: pointer;
+  position: relative;
+  text-decoration: none !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  padding: 6px 14px 6px 34px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-family: $code-font-family;
+  font-size: 0.9em;
+  color: var(--text-color) !important;
+  background-clip: border-box !important;
+  -webkit-background-clip: border-box !important;
+  transition: background 0.2s ease, border-color 0.2s ease;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 14px;
+    height: 14px;
+    opacity: 0.55;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%233498db' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='9' y='9' width='13' height='13' rx='2' ry='2'%3E%3C/rect%3E%3Cpath d='M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1'%3E%3C/path%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  &:hover {
+    background: rgba(52, 152, 219, 0.1);
+    border-color: rgba(52, 152, 219, 0.4);
+
+    &::before {
+      opacity: 1;
+      transform: translateY(-50%) scale(1.1);
+    }
+  }
+}
+
+#copyable-notification {
+  position: absolute;
+  background-color: rgba(76, 175, 80, 0.85);
+  color: #FFFFFF;
+  padding: 4px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  display: none;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-weight: 400;
+  letter-spacing: 0.3px;
+
+  &.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -75,6 +75,59 @@
 })();
 
 /**
+ * Copyable inline chips - click <a class="copyable" data-copy="...">text</a> to copy
+ * 使用方式：<a class="copyable" data-copy="要複製的文字">顯示文字</a>
+ */
+(function() {
+  function showCopyNotification(target, text) {
+    var notification = document.getElementById('copyable-notification');
+    if (!notification) {
+      notification = document.createElement('div');
+      notification.id = 'copyable-notification';
+      document.body.appendChild(notification);
+    }
+    notification.textContent = text || '複製成功！';
+
+    var rect = target.getBoundingClientRect();
+    notification.style.position = 'absolute';
+    notification.style.top = (rect.top + window.scrollY) + 'px';
+    notification.style.left = (rect.right + 10 + window.scrollX) + 'px';
+    notification.style.display = 'block';
+
+    requestAnimationFrame(function() {
+      notification.classList.add('show');
+    });
+
+    clearTimeout(notification._hideTimer);
+    notification._hideTimer = setTimeout(function() {
+      notification.classList.remove('show');
+      setTimeout(function() { notification.style.display = 'none'; }, 300);
+    }, 2000);
+  }
+
+  function initCopyableChips() {
+    document.addEventListener('click', function(e) {
+      var el = e.target.closest('.copyable');
+      if (!el) return;
+      e.preventDefault();
+
+      var text = el.dataset.copy || el.textContent.trim();
+      navigator.clipboard.writeText(text).then(function() {
+        showCopyNotification(el, '複製成功！');
+      }).catch(function(err) {
+        console.error('複製失敗', err);
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCopyableChips);
+  } else {
+    initCopyableChips();
+  }
+})();
+
+/**
  * 複製文章連結到剪貼簿
  */
 function copyPostLink() {

@@ -415,8 +415,11 @@ pre, code {
         font-weight: 500;
         font-size: 0.95em;
         margin-right: 12px;
-        width: 160px;
+        width: 220px;
         flex-shrink: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
         transition: color 0.2s ease;
       }
       
@@ -667,6 +670,9 @@ pre, code {
 
 // Import Term Tooltip Styles
 @import "_custom/term.styl";
+
+// Import Copyable Chip Styles
+@import "_custom/copyable.styl";
 
 // ========================================
 // Hide site-subtitle on mobile
