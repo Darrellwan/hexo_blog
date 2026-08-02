@@ -2,6 +2,12 @@
 
 ## 📚 最新文章
 
+### [如何在 Claude Desktop 安裝 GA4、SEO MCP](https://www.darrelltw.com/ga4-search-console-mcp-install/?utm_source=github_readme&utm_medium=referral)
+📅 2026/08/02 · 8 小時內
+
+> 實測和分享 GA4 , Search Console 的 MCP 安裝流程，讓 Claude Desktop 串接後就能輕鬆分析 GA4 報表和 Search Console 排名數據。
+
+
 ### [Claude Code Fable 5 限時限量回歸，該怎麼用](https://www.darrelltw.com/claude-code-fable-5/?utm_source=github_readme&utm_medium=referral)
 📅 2026/07/03 · 1 個月前
 
@@ -45,7 +51,7 @@
 
 
 ### [Claude Cowork 教學：給大眾用的 Claude Code](https://www.darrelltw.com/claude-cowork-intro/?utm_source=github_readme&utm_medium=referral)
-📅 2026/01/17 · 6 個月前
+📅 2026/01/17 · 7 個月前
 
 > Claude Cowork 是 Anthropic 推出的桌面 AI 助理，能自動整理檔案、處理文件，還能學習你的工作流程。實測三大應用場景，看看它如何提升工作效率。（2026/07/07 更新：Chat 與 Cowork 介面整合，並擴大支援 Web、手機版）
 
@@ -56,15 +62,9 @@
 > 完整教學 n8n Apify 節點實現網頁爬蟲自動化。包含 API Token 設定、Run Actor 操作、Instagram 數據爬取等功能介紹。實測別人 IG 帳號發文數據自動同步到 Google Sheets 案例。
 
 
-### [n8n 資安漏洞 CVE-2025-68613 快點來更新你的 n8n 版本！](https://www.darrelltw.com/n8n-security-vulnerability-2025/?utm_source=github_readme&utm_medium=referral)
-📅 2025/12/25 · 7 個月前
-
-> n8n CVE-2025-68613（CVSS 9.9）高風險漏洞懶人包：快速確認影響版本、檢查目前版本，並用 Docker／Zeabur／npm 更新到修復版本，降低 RCE 風險。
-
-
 ## 📊 部落格統計
-![文章總數](https://img.shields.io/badge/文章總數-125-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-360,102+-blue?style=flat-square)
+![文章總數](https://img.shields.io/badge/文章總數-126-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-364,497+-blue?style=flat-square)
 ![最後更新](https://img.shields.io/badge/最後更新-2026/08/02-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
@@ -97,7 +97,7 @@
 05月 █░░░░░░░░░ 1篇
 06月 █░░░░░░░░░ 1篇
 07月 █░░░░░░░░░ 1篇
-08月 ░░░░░░░░░░ 0篇
+08月 █░░░░░░░░░ 1篇
 ```
 
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-08-02 03:25:36*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-08-02 10:32:12*
