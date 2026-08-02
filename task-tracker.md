@@ -64,6 +64,16 @@
 
 ## ✅ 已完成
 
+- [x] **8/2 GA4/Search Console MCP 安裝教學文章完成並上線**
+  - 文章 `source/_posts/ga4-search-console-mcp-install.md` 補齊全部截圖（服務帳戶建立表單、JSON key 下載、GA4 Property Access Management 加使用者、Search Console 加使用者、Claude Desktop connectors 檢查等），正式封面圖已換掉 TODO 佔位
+  - Search Console Service Account 路徑本次已實測（`sites.list`／`searchAnalytics.query`／`sitemaps.list`／URL Inspection 用「限制」權限皆 200），文章內容已對應修正（原本誤寫「沒有唯讀權限」已更正）
+  - QuickNav 死錨點（`install-ga4-mcp`）與標籤錯位已修正；總結段落補進 QuickNav
+  - 新增全站共用 `copyable` chip 元件（`themes/next/source/css/_custom/copyable.styl` + `darrell.js`），取代原本每篇文章重複貼的複製功能 HTML/CSS/JS
+  - SEO audit 抓到並修復全站性 bug：`json_ld.js` 的 BlogPosting schema `description`/`image` 抓錯欄位（原本判斷不存在的 `page.coverImage`，全站文章結構化資料都 fallback 到預設圖示）；首頁與文章頁 H1 重複（`brand.swig` 加 `is_home()` 判斷，過程中另修正 Hexo `partial()` fragment cache key 只認字串不看 locals 的坑）；全站 title 後綴過長導致 SERP 截斷風險（`main.yml` title 從 38 字砍到 5 字）
+  - QuickNav 桌面版長標題換行問題已修（`nav-title` 固定寬度 160px→220px）
+  - commit：文章與截圖 `0185810`、SEO schema/H1 修復 `8c992b0`、copyable chip 補齊/QuickNav 寬度 `0adfe38`、title 後綴 `7b618c5`，皆已 push；正式站 https://www.darrelltw.com/ga4-search-console-mcp-install/ 已驗證 200、title 長度、chip 樣式
+  - `main.yml` 仍有 2 個跟本任務無關的既有未提交變更（`ignore: '**/*.prompt.md'`、EOF 換行符），非本次動作，維持未提交狀態待其他工作線處理
+
 - [x] **7/26 Claude Code Fable 5 文章更新額度現況 + Opus 5 對照並上線**
   - 查官方 support：限時優惠 7/19 結束；7/20 起 Max/premium 訂閱內建（每週 50% 上限），Pro/standard 走 usage credits
   - 新增 `Opus 5 vs Fable 5` 段（anchor `opus5-vs-fable5`）與兩張 benchmark 圖：`opus5-vs-fable5-benchmark.jpg`、`opus5-vs-fable5-effort-cost.jpg`
