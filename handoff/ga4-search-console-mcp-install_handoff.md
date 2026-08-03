@@ -3,22 +3,21 @@ name: "GA4/Search Console MCP 安裝教學"
 project: "blog"
 slug: ga4-search-console-mcp-install
 status: active
-updated: 2026-08-02
+updated: 2026-08-03
 type: handoff-track
 project_root: "/Users/darrellwang/Darrell/code/blog"
 ---
-> 最後更新：2026-08-02 23:57
+> 最後更新：2026-08-03 11:23
 
-## 本次 session 完成的事（2026-08-02）
+## 本次 session 完成的事（2026-08-03）
 
-- 完成 GA4/Search Console MCP 教學文章的截圖、內容、QuickNav 與 SEO 修復，並部署至正式站。
-- 將 GA4 與 Search Console connector 截圖放入文章，保留原始未裁切版本。
-- 將文章內 API 複製功能重構為共用 copyable 元件，三個 API 可各自複製，並完成本機瀏覽器驗證。
-- 修正 BlogPosting 結構化資料、文章頁 H1、QuickNav 與全站 title 後綴。
+- 修復文章推薦卡片：正式頁只保留 Claude 與 LINE 兩張推薦卡，並補上兩張封面。
+- 修正文章卡片元件的空縮圖防呆，避免沒有 `thumbnail` 時輸出空圖片標籤。
+- 建立 commit `bab027f` 並推送至 `origin/main`，正式站已更新。
 
 ## 下次接手第一步
 
-先讀取 task-tracker 與目前 git 狀態，確認文章完成狀態、`main.yml` 未提交變更的實際內容，以及是否需要補做正式站圖片的自然滾動瀏覽器驗證；再更新 task-tracker 與本交接文件中的文章狀態。
+文章與推薦卡修復都已完成。若再次接手，先讀取 task-tracker 與目前 git 狀態；`main.yml` 的既有未提交變更不屬於本工作線，只有收到新需求時才繼續修改文章。
 
 ## 重要 ID / 路徑
 
@@ -28,15 +27,17 @@ project_root: "/Users/darrellwang/Darrell/code/blog"
 - task tracker：`/Users/darrellwang/Darrell/code/blog/task-tracker.md`
 - 服務帳戶 JSON：`/Users/darrellwang/.claude/ga4_service_account.json`
 - 正式文章網址：`https://www.darrelltw.com/ga4-search-console-mcp-install/`
+- 本次修復 commit：`bab027f`
 - SEO 修復 commit：`8c992b0`
 - 文章相關 commit：`0185810`
-- title 修復 commit：`5143e6d`
+- title 修復 commit：`7b618c5`（`5143e6d` 是後續 merge commit）
 
 ## 已知限制 / 決策
 
 - 工作區仍有大量與本工作線無關的未提交與未追蹤變更，不得視為本 session 已清乾淨。
-- `main.yml` 的新鮮 git status 仍有未提交變更；需確認是否屬於本工作線或其他內容。
-- 正式站圖片網址目前已確認回應 200，但尚未完成自然滾動瀏覽器截圖驗證。
+- `main.yml` 仍有本工作線開始前就存在的未提交變更，維持原狀，不納入本次 commit。
+- 正式站已用瀏覽器實查：只顯示 Claude 與 LINE 兩張推薦卡，兩張封面均載入成功，沒有 Meta 卡片或空圖片來源。
+- Meta 文章尚未上線，因此不作為推薦文章引用；保留移除 Meta 卡片的修改。
 - Search Console 使用「限制」權限已實測可讀取網站清單、關鍵字報表、sitemap 與 URL Inspection 資料。
 - GCP IAM 角色與 GA4/Search Console 後台使用者權限是兩套獨立系統；IAM 選填角色可留空。
 
@@ -63,5 +64,8 @@ project_root: "/Users/darrellwang/Darrell/code/blog"
 □ 確認 `main.yml` 未提交變更內容：
   git -C /Users/darrellwang/Darrell/code/blog diff -- main.yml
 
-□ 若要進行正式站圖片驗證，先確認文章網址回應：
+□ 確認正式文章仍正常回應：
   curl -s -o /dev/null -w "%{http_code}\n" https://www.darrelltw.com/ga4-search-console-mcp-install/
+
+□ 確認本次推薦卡修復 commit：
+  git -C /Users/darrellwang/Darrell/code/blog show --stat --oneline bab027f

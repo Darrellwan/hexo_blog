@@ -72,6 +72,7 @@
   - SEO audit 抓到並修復全站性 bug：`json_ld.js` 的 BlogPosting schema `description`/`image` 抓錯欄位（原本判斷不存在的 `page.coverImage`，全站文章結構化資料都 fallback 到預設圖示）；首頁與文章頁 H1 重複（`brand.swig` 加 `is_home()` 判斷，過程中另修正 Hexo `partial()` fragment cache key 只認字串不看 locals 的坑）；全站 title 後綴過長導致 SERP 截斷風險（`main.yml` title 從 38 字砍到 5 字）
   - QuickNav 桌面版長標題換行問題已修（`nav-title` 固定寬度 160px→220px）
   - commit：文章與截圖 `0185810`、SEO schema/H1 修復 `8c992b0`、copyable chip 補齊/QuickNav 寬度 `0adfe38`、title 後綴 `7b618c5`，皆已 push；正式站 https://www.darrelltw.com/ga4-search-console-mcp-install/ 已驗證 200、title 長度、chip 樣式
+  - 8/3 推薦卡修復：移除尚未上線的 Meta 文章，只保留 Claude 與 LINE 兩張推薦卡並補上正式封面；缺少 `thumbnail` 時不再輸出空圖片標籤。commit `bab027f` 已 push，Vercel production 為 `READY`，正式頁實查兩張封面均載入成功且沒有空圖片來源
   - `main.yml` 仍有 2 個跟本任務無關的既有未提交變更（`ignore: '**/*.prompt.md'`、EOF 換行符），非本次動作，維持未提交狀態待其他工作線處理
 
 - [x] **7/26 Claude Code Fable 5 文章更新額度現況 + Opus 5 對照並上線**
