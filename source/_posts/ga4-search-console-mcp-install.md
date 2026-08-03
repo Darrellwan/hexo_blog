@@ -11,7 +11,7 @@ id: ga4-search-console-mcp-install
 description: 實測和分享 GA4 , Search Console 的 MCP 安裝流程，讓 Claude Desktop 串接後就能輕鬆分析 GA4 報表和 Search Console 排名數據。
 bgImage: ga4-search-console-mcp-cover.jpg
 date: 2026-08-02 18:13:12
-modified: 2026-08-03 14:57:28
+modified: 2026-08-03 17:26:48
 ---
 
 {% darrellImageCover ga4-search-console-mcp-install ga4-search-console-mcp-cover.jpg max-800 %}
@@ -202,6 +202,10 @@ Search Console 沒有 Google 官方 MCP。這裡用的是社群維護的第三�
   {
     "question": "裝完 MCP Server 起不來，是什麼問題？",
     "answer": "最常見的是本機同時裝了多份 uv 或 uvx，PATH 排序讓舊版本先被執行。這點會隨著電腦和作業系統不同，建議可以請 AI 幫忙 debug，請他排查的時候方向往 uv, uvx 這些關鍵字檢查看看"
+  },
+  {
+    "question": "MCP 連上了，但查詢時顯示查不到任何 GA4 資源或 Search Console 網站，是什麼問題？",
+    "answer": "先確認錯誤訊息是什麼。如果是明確的錯誤訊息（例如認證失敗），通常是路徑或格式問題。但如果是「查詢成功、只是清單是空的」，代表 Service Account 認證其實有過，只是這組身分沒被加進 GA4 或 Search Console 的權限清單。最常見的原因是換過 JSON key 之後，忘記同步更新 claude_desktop_config.json 裡的路徑，導致 MCP 讀到的還是舊金鑰。建議打開 JSON key 檔案核對 client_email，再回 GA4/Search Console 的權限畫面逐字比對，確認兩邊是同一個 email。"
   }
 ]
 {% endfaq %}
