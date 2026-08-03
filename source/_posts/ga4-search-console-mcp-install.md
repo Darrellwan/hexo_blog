@@ -11,7 +11,7 @@ id: ga4-search-console-mcp-install
 description: 實測和分享 GA4 , Search Console 的 MCP 安裝流程，讓 Claude Desktop 串接後就能輕鬆分析 GA4 報表和 Search Console 排名數據。
 bgImage: ga4-search-console-mcp-cover.jpg
 date: 2026-08-02 18:13:12
-modified: 2026-08-03 14:36:56
+modified: 2026-08-03 14:57:28
 ---
 
 {% darrellImageCover ga4-search-console-mcp-install ga4-search-console-mcp-cover.jpg max-800 %}
@@ -31,7 +31,7 @@ MCP 對於大家使用 AI 工具來說非常重要，自從 Meta Ads 出了 MCP 
   {"text": "GA4 MCP 能做哪些", "anchor": "ga4-mcp-tools", "desc": "run_report、即時資料等工具"},
   {"text": "安裝 Search Console MCP", "anchor": "search-console-mcp", "desc": "Claude Desktop 與 JSON key path 設定"},
   {"text": "常見問題", "anchor": "faq", "desc": "安裝雷點與限制"},
-  {"text": "總結", "anchor": "summary", "desc": "Service Account 的安全優勢"},
+  {"text": "總結", "anchor": "summary", "desc": "Service Account 與 OAuth 的憑證差異"},
   {"text": "相關推薦", "anchor": "related", "desc": "延伸閱讀"}
 ]
 {% endquickNav %}
@@ -110,7 +110,7 @@ GA4 這邊用的是 Google 官方釋出的 MCP Server，repo 在 [googleanalytic
 前面的 Google Cloud 前置設定完成後，這一段只需要做 GA4 MCP 和 Claude Desktop 設定
 
 前面有下載的 Service Account JSON key 路徑複製好
-修改下面的 `GOOGLE_APPLICATION_CREDENTIAL` 欄位把路徑貼上就好
+修改下面的 `GOOGLE_APPLICATION_CREDENTIALS` 欄位把路徑貼上就好
 
 ```json
 {
@@ -212,8 +212,11 @@ Search Console 沒有 Google 官方 MCP。這裡用的是社群維護的第三�
 先建立好 Google Cloud Project 和設定 Service Account 是比較麻煩跟複雜的步驟
 還要到 GA4, Search Console 授權給這個 SA 的 email
 
-但這樣做的好處是，這個 email 就只有我們授權的相關帳號權限
-比起 OAuth 整個帳號的授權資料都能拿到會相對安全不少
+使用 Service Account 的好處是，可以把自動化身分獨立出來，只接收另外分享的 GA4 和 Search Console 權限
+不過 JSON key 仍是長期有效的私密憑證，必須妥善保管
+
+OAuth 的存取範圍則受 scope 和使用者既有資源權限限制
+至於要怎麼選，取決於你要分開自動化身分，還是更在意憑證的實體管理
 
 AI 時代如何控制 AI 會不會讀取錯誤的帳號不小心外洩出去很重要！
 
