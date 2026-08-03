@@ -3,7 +3,7 @@
 ## 📚 最新文章
 
 ### [如何在 Claude Desktop 安裝 GA4、SEO MCP](https://www.darrelltw.com/ga4-search-console-mcp-install/?utm_source=github_readme&utm_medium=referral)
-📅 2026/08/02 · 1 小時內
+📅 2026/08/02 · 12 小時前
 
 > 實測和分享 GA4 , Search Console 的 MCP 安裝流程，讓 Claude Desktop 串接後就能輕鬆分析 GA4 報表和 Search Console 排名數據。
 
@@ -65,7 +65,7 @@
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-126-blue?style=flat-square)
 ![總字數](https://img.shields.io/badge/總字數-364,541+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2026/08/02-green?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2026/08/03-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-08-02 16:55:52*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-08-03 06:40:02*
