@@ -11,7 +11,7 @@ id: ga4-search-console-mcp-install
 description: 實測和分享 GA4 , Search Console 的 MCP 安裝流程，讓 Claude Desktop 串接後就能輕鬆分析 GA4 報表和 Search Console 排名數據。
 bgImage: ga4-search-console-mcp-cover.jpg
 date: 2026-08-02 18:13:12
-modified: 2026-08-03 00:45:24
+modified: 2026-08-03 14:36:56
 ---
 
 {% darrellImageCover ga4-search-console-mcp-install ga4-search-console-mcp-cover.jpg max-800 %}
@@ -157,7 +157,7 @@ Search Console 沒有 Google 官方 MCP。這裡用的是社群維護的第三�
 或是 Google 官方有推出 MCP 的話我也會盡快更新到文章中！
 {% endcallout %}
 
-目前是使用 [AminForou/mcp-search-console](https://github.com/AminForou/mcp-search-console)
+目前是使用 [AminForou/mcp-gsc](https://github.com/AminForou/mcp-gsc)
 
 也把 Service Account 加到要查詢的 property
 這裡只要安裝套件，再把同一個 JSON key 的路徑放進 Claude Desktop 設定檔
