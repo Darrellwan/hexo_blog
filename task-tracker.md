@@ -2,6 +2,22 @@
 
 ## 🔴 待完成
 
+### Meta Ads MCP 文章改寫（實測 + 競品差異化）
+- **建立日期**：2026-08-08
+- **交接文件**：`handoff/meta-ads-mcp_handoff.md`
+- **背景**：`source/_posts/meta-ads-mcp.md`（2026-06-29 寫的觀點文）從未 commit。缺封面圖、內文圖、articleCard、安裝步驟；GA4 MCP 文章 8/3 commit `bab027f` 曾移除指向本篇的推薦卡，本篇上線後要補回。
+- **競品盤點**：13 站（中文最強對手 = 行銷地圖 DMAP 8/07，唯一有截圖；英文最深 = Soku）。結論：我方強項（風險判斷、不能做什麼、跟 Ads Manager 比較）競品多半也有；缺安裝步驟、前置條件、截圖；全場空白的是台灣開通實況、AI 真實回傳、AI 答錯實例。
+- **本次已實測**（Claude Code 連 `mcp.facebook.com/ads`，唯讀，未做任何寫入）：
+  - 工具實際載入 **95 個**，非競品全體宣稱的 29 個（4/29 發布時數字）
+  - 台灣三個廣告帳戶 `is_ads_mcp_enabled` 皆 `true`、`is_queryable` 皆 `true`、幣別 TWD
+  - 27 檔 campaign 查 2026 YTD 只有 7 檔回成效欄位；改拉 2020 起全期間後那 20 檔全部有花費、`stop_time` 皆早於 2026-01-01 → 確認是「查詢期間無投放則該期間 metric 欄位不回傳」，**不是 bug**，文章不得寫成 bug
+  - `status` / `effective_status` / `delivery` 三欄意義不同（6 檔 status=ACTIVE 但 `delivery.status=completed`）。用戶決定此複雜情況不寫進文章
+  - **方案門檻更正**：官方文件寫 Free／Pro／Max／Team／Enterprise 皆支援自訂連接器（Free 限一個），競品「需 Pro 以上」為錯誤
+- **已產出**：前置條件／安裝步驟／95 工具重點／實測發現 四段草稿；匿名化 dashboard（`scratchpad/meta-ads-dashboard.html`，四張圖已截）
+- **待辦**：用戶補 5 張 Claude 介面截圖（僅 OAuth 授權那張需打碼）→ 整併草稿進正式文章 → 砍重複段落調順序 → 換標題（關鍵字加觀點合一，slug 不動）→ `article-review`
+- **不做**：token 消耗實測（用戶 8/8 決定跳過）；不建立測試廣告（用戶選唯讀）
+- **匿名規則**：campaign 用 A–G 代號、花費改佔比、CPC 改倍數；CTR／曝光／點擊維持真實值
+
 ### 實測 n8n Facebook Graph OAuth2 token 過期行為
 - **建立日期**：2026-05-20
 - **背景**：n8n 2.22.0 新增 Facebook Graph OAuth2 credential（PR #27112）。Facebook OAuth2 與一般 OAuth2 不同 —— **沒有 refresh_token**。短期 token 1-2 小時、長期 token ~60 天，PR diff 沒看到 `fb_exchange_token` 邏輯，實際 token 期限未知。
