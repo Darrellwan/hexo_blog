@@ -92,10 +92,10 @@ function main() {
   const { data, content } = matter(raw);
 
   const startDate = normalizeDate(data.date, 'date');
-  const endDate = data.modified ? normalizeDate(data.modified, 'modified') : new Date();
+  const endDate = data.updated ? normalizeDate(data.updated, 'updated') : new Date();
   const durationMs = endDate - startDate;
   if (durationMs < 0) {
-    throw new Error('"modified" is earlier than "date".');
+    throw new Error('"updated" is earlier than "date".');
   }
 
   const h2Headings = [...content.matchAll(/^##\s+(.+)$/gm)].map((match) => match[1].trim());
