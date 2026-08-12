@@ -104,14 +104,25 @@ document.addEventListener('DOMContentLoaded', () => {
         let indexOfTitle = [];
         let indexOfContent = [];
         let searchTextCount = 0;
+        // 本地改動：記錄「命中了幾個不同的關鍵字」，供排序用。
+        // 原本只累計總命中次數，導致長文只要重複提到其中一個字就能壓過
+        // 同時命中全部關鍵字的文章（搜「n8n google」時 n8n 文章排不上來）。
+        let matchedKeywords = 0;
         keywords.forEach(keyword => {
-          indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-          indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+          const titleHits = getIndexByWord(keyword, titleInLowerCase, false);
+          const contentHits = getIndexByWord(keyword, contentInLowerCase, false);
+          if (titleHits.length > 0 || contentHits.length > 0) {
+            matchedKeywords++;
+          }
+          indexOfTitle = indexOfTitle.concat(titleHits);
+          indexOfContent = indexOfContent.concat(contentHits);
         });
 
         // Show search results
         if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
           let hitCount = indexOfTitle.length + indexOfContent.length;
+          // 標題命中數要在 indexOfContent 被 while 迴圈消耗掉之前先存起來
+          let titleHitCount = indexOfTitle.length;
           // Sort index by position of keyword
           [indexOfTitle, indexOfContent].forEach(index => {
             index.sort((itemLeft, itemRight) => {
@@ -183,7 +194,9 @@ document.addEventListener('DOMContentLoaded', () => {
             item: resultItem,
             id  : resultItems.length,
             hitCount,
-            searchTextCount
+            searchTextCount,
+            matchedKeywords,
+            titleHitCount
           });
         }
       });
@@ -193,8 +206,18 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (resultItems.length === 0) {
       resultContent.innerHTML = '<div id="no-result"><i class="far fa-frown fa-5x"></i></div>';
     } else {
+      // 本地改動：排序優先序改為
+      //   1. 命中的關鍵字種類數（命中全部關鍵字的文章優先）
+      //   2. 標題命中數（標題有關鍵字比內文提到更相關）
+      //   3. 完整搜尋字串出現次數
+      //   4. 總命中次數
+      // 原本只有 3、4 兩層，長文靠單一關鍵字刷次數就能排到最前面。
       resultItems.sort((resultLeft, resultRight) => {
-        if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+        if (resultLeft.matchedKeywords !== resultRight.matchedKeywords) {
+          return resultRight.matchedKeywords - resultLeft.matchedKeywords;
+        } else if (resultLeft.titleHitCount !== resultRight.titleHitCount) {
+          return resultRight.titleHitCount - resultLeft.titleHitCount;
+        } else if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
           return resultRight.searchTextCount - resultLeft.searchTextCount;
         } else if (resultLeft.hitCount !== resultRight.hitCount) {
           return resultRight.hitCount - resultLeft.hitCount;

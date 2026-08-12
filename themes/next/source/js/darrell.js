@@ -160,3 +160,237 @@ function copyPostLink() {
     }, 2000);
   });
 }
+
+/**
+ * Local search - 鍵盤操作層
+ *
+ * 1. ⌘K / Ctrl+K 與 ⌘F / Ctrl+F 開啟搜尋 modal
+ *    ⌘F 會蓋掉瀏覽器原生的頁內尋找；按 Esc 關閉即可恢復原生行為。
+ *    要停用 ⌘F 只需把 SEARCH_HOTKEYS 裡的 'f' 移除。
+ * 2. ↑ / ↓ 在結果間移動，Enter 開啟選中項（Raycast 式整列選取）
+ * 3. 注入底部快捷鍵提示列
+ *
+ * 開啟一律轉發給主題既有的 .popup-trigger click handler，
+ * 不自行操作 .search-active，避免和 local-search.js 的 fetchData / focus 邏輯不同步。
+ */
+(function() {
+  const SEARCH_HOTKEYS = ['k', 'f'];
+
+  function getOverlay() {
+    return document.querySelector('.search-pop-overlay');
+  }
+
+  function isOpen() {
+    const overlay = getOverlay();
+    return !!overlay && overlay.classList.contains('search-active');
+  }
+
+  function openSearch() {
+    const trigger = document.querySelector('.popup-trigger');
+    if (trigger) trigger.click();
+  }
+
+  function getRows() {
+    return Array.from(document.querySelectorAll('#search-result .search-result-list > li'));
+  }
+
+  function selectRow(rows, index) {
+    rows.forEach(function(row) {
+      row.classList.remove('is-selected');
+    });
+    if (index < 0 || index >= rows.length) return;
+    const row = rows[index];
+    row.classList.add('is-selected');
+    row.scrollIntoView({ block: 'nearest' });
+  }
+
+  function currentIndex(rows) {
+    return rows.findIndex(function(row) {
+      return row.classList.contains('is-selected');
+    });
+  }
+
+  function injectFooter() {
+    const popup = document.querySelector('.search-popup');
+    if (!popup || popup.querySelector('.search-footer')) return;
+
+    const isMac = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
+    const mod = isMac ? '⌘' : 'Ctrl';
+    const hints = [
+      [[mod + 'K'], '開啟搜尋'],
+      [['↑', '↓'], '移動'],
+      [['↵'], '開啟'],
+      [['Esc'], '關閉']
+    ];
+
+    const footer = document.createElement('div');
+    footer.className = 'search-footer';
+    hints.forEach(function(pair) {
+      const hint = document.createElement('span');
+      hint.className = 'search-footer-hint';
+      pair[0].forEach(function(key) {
+        const kbd = document.createElement('kbd');
+        kbd.className = 'search-key';
+        kbd.textContent = key;
+        hint.appendChild(kbd);
+      });
+      const label = document.createElement('span');
+      label.textContent = pair[1];
+      hint.appendChild(label);
+      footer.appendChild(hint);
+    });
+    popup.appendChild(footer);
+  }
+
+  function initSearchKeyboard() {
+    if (!getOverlay()) return;
+    injectFooter();
+
+    // 開啟快捷鍵
+    document.addEventListener('keydown', function(e) {
+      if (!(e.metaKey || e.ctrlKey) || e.altKey || e.shiftKey) return;
+      if (SEARCH_HOTKEYS.indexOf(e.key.toLowerCase()) === -1) return;
+      if (isOpen()) return;
+      e.preventDefault();
+      openSearch();
+    });
+
+    // 結果導覽
+    document.addEventListener('keydown', function(e) {
+      if (!isOpen()) return;
+      if (['ArrowDown', 'ArrowUp', 'Enter'].indexOf(e.key) === -1) return;
+
+      const rows = getRows();
+      if (!rows.length) return;
+
+      if (e.key === 'Enter') {
+        const index = currentIndex(rows);
+        if (index === -1) return;
+        const link = rows[index].querySelector('a.search-result-title');
+        if (!link) return;
+        e.preventDefault();
+        // 用 click() 而不是直接改 location：讓鍵盤選取和滑鼠點擊
+        // 走同一條事件路徑，GA4 的 select_item 只需要掛一個 click 委派。
+        link.click();
+        return;
+      }
+
+      e.preventDefault();
+      const index = currentIndex(rows);
+      const next = e.key === 'ArrowDown'
+        ? (index + 1) % rows.length
+        : (index <= 0 ? rows.length - 1 : index - 1);
+      selectRow(rows, next);
+    });
+
+    // 重新查詢後清掉舊的選取狀態
+    const result = document.getElementById('search-result');
+    if (result && window.MutationObserver) {
+      new MutationObserver(function() {
+        const rows = getRows();
+        if (rows.length && currentIndex(rows) === -1) selectRow(rows, 0);
+      }).observe(result, { childList: true, subtree: true });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSearchKeyboard);
+  } else {
+    initSearchKeyboard();
+  }
+})();
+
+/**
+ * Local search - GA4 dataLayer 追蹤
+ *
+ * 送兩個 GA4 建議事件到 GTM（容器 GTM-WRZDBFS）：
+ *
+ * 1. search        — 讀者停止輸入後送出，參數 search_term
+ *                    去抖動 700ms + 去重，避免每按一個鍵就送一次
+ * 2. select_item   — 點擊搜尋結果時送出（GA4 的 ecommerce 類事件，
+ *                    參數要包在 ecommerce 物件裡）
+ *                    先 push ecommerce: null 清掉前一次的值，
+ *                    這是 GTM 官方建議做法，否則物件會互相合併殘留
+ *
+ * 鍵盤 Enter 走 link.click()，所以會被同一個 click 委派接到，不需另外處理。
+ */
+(function() {
+  const LIST_ID = 'site_search';
+  const LIST_NAME = 'Site Search Results';
+  const DEBOUNCE_MS = 700;
+  const MIN_TERM_LENGTH = 2;
+
+  function dl() {
+    window.dataLayer = window.dataLayer || [];
+    return window.dataLayer;
+  }
+
+  function currentTerm() {
+    const input = document.querySelector('.search-popup input.search-input');
+    return input ? input.value.trim() : '';
+  }
+
+  function initSearchTracking() {
+    const input = document.querySelector('.search-popup input.search-input');
+    const result = document.getElementById('search-result');
+    if (!input || !result) return;
+
+    // ---- search ----
+    let timer = null;
+    let lastSent = '';
+
+    input.addEventListener('input', function() {
+      clearTimeout(timer);
+      timer = setTimeout(function() {
+        const term = currentTerm();
+        if (term.length < MIN_TERM_LENGTH || term === lastSent) return;
+        lastSent = term;
+        dl().push({
+          event      : 'search',
+          search_term: term
+        });
+      }, DEBOUNCE_MS);
+    });
+
+    // ---- select_item ----
+    result.addEventListener('click', function(e) {
+      const link = e.target.closest('a');
+      if (!link || !result.contains(link)) return;
+
+      const row = link.closest('li');
+      if (!row) return;
+
+      const rows = Array.from(result.querySelectorAll('.search-result-list > li'));
+      const titleLink = row.querySelector('a.search-result-title');
+      let itemId = link.getAttribute('href') || '';
+      try {
+        itemId = new URL(link.href, window.location.origin).pathname;
+      } catch (err) {
+        // 保留原始 href
+      }
+
+      dl().push({ ecommerce: null });
+      dl().push({
+        event      : 'select_item',
+        search_term: currentTerm(),
+        ecommerce  : {
+          item_list_id  : LIST_ID,
+          item_list_name: LIST_NAME,
+          items         : [{
+            item_id       : itemId,
+            item_name     : titleLink ? titleLink.textContent.trim() : '',
+            item_list_id  : LIST_ID,
+            item_list_name: LIST_NAME,
+            index         : rows.indexOf(row) + 1
+          }]
+        }
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSearchTracking);
+  } else {
+    initSearchTracking();
+  }
+})();

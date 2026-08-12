@@ -133,10 +133,18 @@ seo_structured_data:
 
 defaultImage: https://www.darrelltw.com/images/darrell_icon_512.png
 
+# local search 索引（hexo-generator-searchdb）
+# build 時產生 public/search.json，讀者打開搜尋才下載
+search:
+  path: search.json
+  field: post
+  content: true
+  format: striptags
+
 algolia:
-  appId: "JPTDAB3P1B" 
-  applicationID: "JPTDAB3P1B" 
-  apiKey: "c601a1734d187668e0114b376086b1ca" 
+  appId: "JPTDAB3P1B"
+  applicationID: "JPTDAB3P1B"
+  apiKey: "c601a1734d187668e0114b376086b1ca"
   chunkSize: 5000
   indexName: "dev_post"
   fields:

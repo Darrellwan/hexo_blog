@@ -60,6 +60,21 @@
 - **背景**：修好評測成本紀律後才回頭處理 n8n-cli 文章發布
 - **交接文件**：`.claude/reader-sim-efficiency-handoff.md`
 
+### 站內搜尋（local_search）＋ 相依清理
+- **建立日期**：2026-08-13
+- **狀態**：功能已完成並本機驗證，**已 commit 未 push**；視覺待用戶評分
+- **已完成（本機實測通過）**：
+  - 移除 5 個殭屍套件（`hexo-related-popular-posts`、`hexo-helper-seo-structured-data`、`hexo-dynamic-config`、`@vercel/analytics`、`@vercel/speed-insights`），漏洞 48 → 1；剩下的 `image-size` 無修補版且本專案不處理不受信任輸入
+  - `npm update` 同 major 升版：hexo 8.1.1→8.1.2、next 主題套件 8.27→8.29（註：站台實際讀本地 `themes/next/`，node_modules 那份未使用）
+  - 啟用 `hexo-generator-searchdb@1.5.0`，`search.json` 128 筆 / 936 KB（gzip 340 KB），`preload: false` 只在打開搜尋時下載
+  - 搜尋 modal 改 Raycast 風（`themes/next/source/css/_custom/search.styl`），第一版被退 40 分後重做：拉開浮層與頁面的明度階差、加可見邊界、尺寸放大、標題關鍵字不再用底色方塊
+  - 鍵盤層（`darrell.js`）：⌘K／⌘F 開啟、↑↓ 移動、Enter 開啟、Esc 關閉、底部快捷鍵提示
+  - GA4 dataLayer：`search`（去抖動 700ms）與 `select_item`（ecommerce 結構），兩者都在 GTM-WRZDBFS 實測收到
+  - 修 `local-search.js` 排序：原本只看命中總次數，長文刷單一關鍵字就能排第一；改為先比命中關鍵字種類數、再比標題命中數
+- **本次修掉的坑**（都已註解在檔內）：Stylus 的 `url()` 不能餵字串變數、CSS `min()` 被 Stylus 內建數學函式攔截、`custom.styl` 會被單獨編譯成 `custom.css` 且載入順序在 `main.css` 之後（所以不能用 `+mobile()` mixin）、NexT 全域 `a` 的 `border-bottom` 會在搜尋結果畫多餘橫線
+- **待辦**：用戶評分視覺 → 決定是否再調 → `git push`（push 後照 CLAUDE.md 流程等 Vercel 部署並驗證）
+- **未處理**：`main.yml` 的 `search:` 設定與本 tracker 更新因同檔混有先前 session 的未提交改動，需分開處理
+
 ## 🟡 等外部
 
 ### darrell-voice 平台 format 檔待補（FB / IG）

@@ -1,0 +1,380 @@
+// Local search — Raycast / Spotlight 風格（v2）
+//
+// 覆蓋 _common/components/third-party/search.styl 的預設值。
+// 預設值是為淺色主題寫的（.search-header 用 $gainsboro #eee），
+// 在本站的深色底下輸入框文字會變成 #ccc on #eee 幾乎看不見。
+//
+// v1 被退（40 分）：表面色 rgba(28,28,30,.85) 跟站台底色 #282828 明度幾乎一樣，
+// backdrop 只有 blur(3px)，兩層沒有階差，看起來像頁面上的一塊區域而不是浮層。
+// v2 的前提改成「明確的明度階差」：
+//   1. backdrop 大幅壓暗＋加大模糊，讓頁面確實退到背景
+//   2. 浮層表面明顯亮於頁面（往上跳兩階），並保留可見的邊界 hairline
+//   3. 尺寸一次拉到位，並給 min-height 避免結果少時塌成小方塊
+//
+// 本站為純深色（:root 無條件套深色值），不提供 light 變體。
+
+// 頁面底色是 #282828；浮層要明顯亮於它才會有「浮起來」的感覺
+$search-surface       = rgba(56, 56, 61, .88)
+$search-edge          = rgba(255, 255, 255, .13)
+$search-text          = #f7f7f8
+$search-text-muted    = rgba(255, 255, 255, .55)
+$search-row-hover     = rgba(255, 255, 255, .07)
+$search-row-active    = rgba(255, 255, 255, .13)
+$search-hairline      = rgba(255, 255, 255, .09)
+
+// 細線條圖示（stroke 1.5），取代 Font Awesome 實心圖
+// 用 unquote() 輸出整個 url(...)：Stylus 的 url() 是內建函式，
+// 直接把字串變數餵進去會 CoercionError。
+$icon-search = 'url("data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%2024%2024%27%20fill=%27none%27%20stroke=%27%23ffffff%27%20stroke-width=%271.5%27%20stroke-linecap=%27round%27%3E%3Ccircle%20cx=%2711%27%20cy=%2711%27%20r=%277%27/%3E%3Cpath%20d=%27M20%2020l-4-4%27/%3E%3C/svg%3E")'
+$icon-close  = 'url("data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%2024%2024%27%20fill=%27none%27%20stroke=%27%23ffffff%27%20stroke-width=%271.5%27%20stroke-linecap=%27round%27%3E%3Cpath%20d=%27M6%206l12%2012M18%206L6%2018%27/%3E%3C/svg%3E")'
+
+.search-pop-overlay {
+  background: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(0);
+  transition: visibility 0s linear .2s, background .2s ease, backdrop-filter .2s ease;
+
+  // 壓暗到 .62 並把模糊拉到 8px：頁面必須確實退成背景，
+  // 浮層才會被讀成另一個層次（v1 的 .45 / 3px 不夠）
+  &.search-active {
+    background: rgba(0, 0, 0, .62);
+    backdrop-filter: blur(8px);
+    transition: background .2s ease, backdrop-filter .2s ease;
+  }
+}
+
+.search-popup {
+  background: $search-surface;
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  // 可見的邊界 hairline：卡片要有明確的邊，不能只靠陰影暗示
+  border: 1px solid $search-edge;
+  border-radius: 18px;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, .7), 0 8px 24px rgba(0, 0, 0, .45);
+  color: $search-text;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  left: 50%;
+  max-height: 70vh;
+  // 不能用 CSS 的 min()：Stylus 有同名的內建數學函式（functions/index.styl:31），
+  // 會把 calc() 當數字比較而 CoercionError。改用 width + max-width 等效表達。
+  max-width: calc(100vw - 48px);
+  // 結果只有一兩筆時不要塌成小方塊，維持面板的量體
+  min-height: 340px;
+  overflow: hidden;
+  top: 10vh;
+  transform: translateX(-50%) translateY(-8px) scale(.97);
+  transform-origin: top center;
+  transition: transform .2s cubic-bezier(.2, .8, .3, 1), opacity .2s ease;
+  opacity: 0;
+  width: 720px;
+
+  .search-active & {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+
+  // ---- 輸入列 ----
+  .search-header {
+    align-items: center;
+    background: transparent;
+    border-bottom: 1px solid $search-hairline;
+    border-radius: 0;
+    display: flex;
+    flex: 0 0 auto;
+    gap: 14px;
+    padding: 20px 22px;
+  }
+
+  .search-icon, .popup-btn-close {
+    align-items: center;
+    color: transparent;
+    display: flex;
+    flex: 0 0 auto;
+    font-size: 0;
+    justify-content: center;
+    padding: 0;
+
+    // 蓋掉 Font Awesome 實心圖，改用細線條 SVG
+    .fa, .far, .fas, i {
+      display: none;
+    }
+
+    &::before {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      content: '';
+      display: block;
+      height: 22px;
+      width: 22px;
+    }
+  }
+
+  .search-icon::before {
+    background-image: unquote($icon-search);
+    opacity: .5;
+  }
+
+  .popup-btn-close {
+    border-radius: 8px;
+    cursor: pointer;
+    height: 32px;
+    transition: background .15s ease;
+    width: 32px;
+
+    &::before {
+      background-image: unquote($icon-close);
+      height: 17px;
+      opacity: .5;
+      width: 17px;
+    }
+
+    &:hover {
+      background: $search-row-hover;
+
+      &::before {
+        opacity: .95;
+      }
+    }
+
+    &:hover .fa {
+      color: transparent;
+    }
+  }
+
+  .search-input-container {
+    flex: 1 1 auto;
+    padding: 0;
+  }
+
+  input.search-input {
+    background: transparent;
+    border: 0;
+    color: $search-text;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.4;
+    outline: 0;
+    padding: 0;
+    width: 100%;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, .35);
+    }
+
+    &::-webkit-search-cancel-button {
+      display: none;
+    }
+  }
+
+  // ---- 結果區 ----
+  #search-result {
+    display: block;
+    flex: 1 1 auto;
+    height: auto;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 10px;
+    scrollbar-color: rgba(255, 255, 255, .2) transparent;
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, .18);
+      border: 3px solid transparent;
+      border-radius: 10px;
+      background-clip: content-box;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    // NexT 全域規則 `a, span.exturl { border-bottom: 1px solid #999 }`
+    // 會在標題與摘要底下畫一條多餘橫線，這裡整區關掉
+    a {
+      border-bottom: 0;
+    }
+  }
+
+  ul.search-result-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+
+    li {
+      border-radius: 11px;
+      margin: 0 0 3px;
+      padding: 14px 16px;
+      transition: background .12s ease;
+
+      &:hover {
+        background: $search-row-hover;
+      }
+
+      // 鍵盤選中：底色更明顯，再加一條左側指示線跟滑鼠 hover 區分
+      &.is-selected {
+        background: $search-row-active;
+        box-shadow: inset 3px 0 0 rgba(255, 255, 255, .7);
+      }
+    }
+  }
+
+  a.search-result-title {
+    border-bottom: 0;
+    color: $search-text;
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    text-decoration: none;
+  }
+
+  p.search-result {
+    border-bottom: 0;
+    color: $search-text-muted;
+    display: -webkit-box;
+    font-size: 13.5px;
+    line-height: 1.7;
+    margin: 5px 0 0;
+    overflow: hidden;
+    padding: 0;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  // 關鍵字高亮：不用預設的亮紅 $red + 虛線。
+  // 標題與摘要分開處理——標題本身已經是 600 的亮字，再加底色方塊會把
+  // 標題切成一格一格、變得很碎；只用更亮＋更粗就足以辨識。
+  // 摘要是灰階小字，對比不夠，才需要底色撐起來。
+  .search-keyword {
+    border-bottom: 0;
+    border-radius: 4px;
+    color: #fff;
+  }
+
+  a.search-result-title .search-keyword {
+    background: transparent;
+    font-weight: 700;
+    padding: 0;
+  }
+
+  p.search-result .search-keyword {
+    background: rgba(255, 255, 255, .16);
+    font-weight: 600;
+    padding: 1px 3px;
+  }
+
+  // ---- 無結果 / 載入中 ----
+  #no-result {
+    align-items: center;
+    color: $search-text-muted;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: center;
+    height: 100%;
+    margin: 0;
+    padding: 40px 0;
+
+    .fa, .far, .fas {
+      font-size: 0;
+
+      &::before {
+        background-image: unquote($icon-search);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        content: '';
+        display: block;
+        height: 44px;
+        opacity: .2;
+        width: 44px;
+      }
+    }
+  }
+
+  // ---- 底部快捷鍵提示（由 darrell.js 注入）----
+  .search-footer {
+    align-items: center;
+    border-top: 1px solid $search-hairline;
+    color: rgba(255, 255, 255, .45);
+    display: flex;
+    flex: 0 0 auto;
+    font-size: 12px;
+    gap: 18px;
+    padding: 11px 20px;
+  }
+
+  .search-footer-hint {
+    align-items: center;
+    display: flex;
+    gap: 6px;
+    white-space: nowrap;
+  }
+
+  kbd.search-key {
+    background: rgba(255, 255, 255, .13);
+    border: 0;
+    border-radius: 5px;
+    box-shadow: none;
+    color: rgba(255, 255, 255, .8);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 11.5px;
+    line-height: 1;
+    min-width: 20px;
+    padding: 4px 6px;
+    text-align: center;
+  }
+}
+
+// 這裡刻意用字面 @media，不用 NexT 的 +mobile() mixin。
+// custom.styl 會被 Hexo 單獨編譯成 custom.css，而 head.swig 又另外載入它、
+// 順序排在 main.css 之後。那個單獨編譯的情境沒有 import _mixins.styl，
+// +mobile() 產不出任何規則，結果 custom.css 只帶 base 規則，
+// 反而把 main.css 裡的手機版覆蓋掉（top 被蓋回 10vh、footer 沒隱藏）。
+@media (max-width: 767px) {
+  .search-popup {
+    border: 0;
+    border-radius: 0;
+    height: 100%;
+    left: 0;
+    max-height: none;
+    // 一定要一起解除 max-width，否則 width:100% 會被 base 的
+    // max-width: calc(100vw - 48px) 卡住，變成左右留白的浮動卡片
+    max-width: none;
+    min-height: 0;
+    top: 0;
+    transform: none;
+    width: 100%;
+
+    .search-active & {
+      transform: none;
+    }
+
+    // 觸控裝置沒有鍵盤，快捷鍵提示沒有意義
+    .search-footer {
+      display: none;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .search-pop-overlay, .search-popup, .search-result-list li, .popup-btn-close {
+    transition: none;
+  }
+
+  .search-popup {
+    transform: translateX(-50%);
+
+    .search-active & {
+      transform: translateX(-50%);
+    }
+  }
+}
