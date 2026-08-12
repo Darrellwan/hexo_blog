@@ -3,7 +3,7 @@
 ## 📚 最新文章
 
 ### [如何在 Claude Desktop 安裝 GA4、SEO MCP](https://www.darrelltw.com/ga4-search-console-mcp-install/?utm_source=github_readme&utm_medium=referral)
-📅 2026/08/02 · 13 小時前
+📅 2026/08/02 · 6 天前
 
 > 實測和分享 GA4 , Search Console 的 MCP 安裝流程，讓 Claude Desktop 串接後就能輕鬆分析 GA4 報表和 Search Console 排名數據。
 
@@ -15,7 +15,7 @@
 
 
 ### [n8n CLI 教學 - 用終端機管理 workflow，備份、批次操作、AI 整合](https://www.darrelltw.com/n8n-cli-guide/?utm_source=github_readme&utm_medium=referral)
-📅 2026/06/22 · 1 個月前
+📅 2026/06/22 · 2 個月前
 
 > n8n 官方 CLI 工具（@n8n/cli）實測教學：從安裝、API key 連線設定，到 workflow 備份、execution 錯誤排查、批次停用，再用 skill install 讓 Claude Code 直接幫你管理 n8n。包含指令安全分級、npm 同名套件陷阱、--id-only 改版注意事項與目前限制整理。
 
@@ -27,7 +27,7 @@
 
 
 ### [n8n ByCrawl 節點教學：簡單好用的台灣爬蟲服務](https://www.darrelltw.com/n8n-bycrawl-node/?utm_source=github_readme&utm_medium=referral)
-📅 2026/04/20 · 3 個月前
+📅 2026/04/20 · 4 個月前
 
 > n8n ByCrawl 社群節點完整教學！一把 API Key 就能抓 Threads、IG、X、Reddit、Dcard、PTT 等 15 個平台的社群數據。包含安裝設定、功能介紹、品牌聲量監控實戰案例和定價分析。
 
@@ -39,7 +39,7 @@
 
 
 ### [Claude Code Channels 設定教學，用 Discord、Telegram 遠端使用 Claude Code](https://www.darrelltw.com/claude-code-channels-discord-telegram/?utm_source=github_readme&utm_medium=referral)
-📅 2026/03/20 · 4 個月前
+📅 2026/03/20 · 5 個月前
 
 > Claude Code Channels 讓你從手機 Discord 或 Telegram 傳訊息給正在跑的 Claude Code，不用坐在電腦前也能讓 AI 幫你改 code、跑指令。完整 Discord Bot 和 Telegram Bot 設定教學和幾個場景測試
 
@@ -64,8 +64,8 @@
 
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-126-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-364,634+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2026/08/03-green?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-364,923+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2026/08/09-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-08-03 07:13:19*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-08-09 02:03:36*
