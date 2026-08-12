@@ -12,7 +12,7 @@ bgImage: blog-n8n-deployment-bg.jpg
 preload:
   - blog-n8n-deployment-bg.jpg
 date: 2025-05-10 18:22:12
-modified: 2026-05-16 14:28:08
+updated: 2026-05-16 14:28:08
 ---
 
 {% darrellImageCover blog-n8n-deployment-bg blog-n8n-deployment-bg.jpg %}

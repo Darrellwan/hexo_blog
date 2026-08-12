@@ -1,7 +1,7 @@
 ---
 title: Claude Code Fable 5 限時限量回歸，該怎麼用
 date: 2026-07-03 16:35:59
-modified: 2026-07-26 23:04:41
+updated: 2026-07-26 23:04:41
 tags:
   - Claude Code
   - Claude

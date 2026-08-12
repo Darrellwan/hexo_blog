@@ -250,7 +250,8 @@ post_meta:
   created_at: true
   updated_at:
     enable: true
-    another_day: false
+    # true = 只有 updated 與 date 不同天才顯示「更新於」，避免同一天重複顯示兩次日期
+    another_day: true
   categories: true
 
 # Post wordcount display settings

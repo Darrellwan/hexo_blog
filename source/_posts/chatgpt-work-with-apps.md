@@ -11,7 +11,7 @@ description: Work with Apps 一起運作，讓 ChatGPT 開始讀取 VSCode 的�
 bgImage: chatgpt_work_with_apps_bg.png
 preload:
   - chatgpt_work_with_apps_bg.png
-modified: 2025-03-07 10:25:08
+updated: 2025-03-07 10:25:08
 date: 2024-11-25 15:07:13
 ---
 {% darrellImageCover chatgpt_work_with_apps_bg chatgpt_work_with_apps_bg.png max-800 %}

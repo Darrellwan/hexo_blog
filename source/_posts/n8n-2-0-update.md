@@ -12,7 +12,7 @@ bgImage: n8n-2.0-update-bg.jpg
 preload:
   - n8n-2.0-update-bg.jpg
 date: 2025-11-26 16:17:12
-modified: 2025-12-17 16:16:00
+updated: 2025-12-17 16:16:00
 ---
 
 {% darrellImageCover n8n-2.0-update-bg n8n-2.0-update-bg.jpg %}

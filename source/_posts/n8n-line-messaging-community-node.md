@@ -13,7 +13,7 @@ bgImage: blog-n8n-line-messaging-node-bg.jpg
 preload:
   - blog-n8n-line-messaging-node-bg.jpg
 date: 2025-10-21 13:23:12
-modified: 2025-10-30 16:50:12
+updated: 2025-10-30 16:50:12
 ---
 
 {% darrellImageCover blog-n8n-line-messaging-node blog-n8n-line-messaging-node-bg.jpg max-800 %}

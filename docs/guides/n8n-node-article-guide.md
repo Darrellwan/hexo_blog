@@ -50,7 +50,7 @@ bgImage: n8n-[節點名稱]-node-bg.jpg
 preload:
   - n8n-[節點名稱]-node-bg.jpg
 date: [發布日期]
-modified: [修改日期]
+updated: [修改日期]   # 欄位名不可用 modified，Hexo 只讀 updated
 ---
 ```
 

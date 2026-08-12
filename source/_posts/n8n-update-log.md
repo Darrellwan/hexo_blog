@@ -12,7 +12,7 @@ bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2026-08-12 16:41:07
+updated: 2026-08-12 16:41:07
 sticky: 100
 ---
 

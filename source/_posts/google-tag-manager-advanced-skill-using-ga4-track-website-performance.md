@@ -9,7 +9,7 @@ categories:
   - Google Tag Manager
 page_type: post
 date: 2022-12-23 23:38:02
-modified: 2024-04-25 22:11:05
+updated: 2024-04-25 22:11:05
 description: 以前使用舊版的GA中看得到使用者的網頁載入時間，目前在 GA4 預設是沒有這個功能的，於是找到了可以使用 JavaScript 來取得相關的載入時間後，用GA4 的 event 來搜集相關訊息 
 ---
 

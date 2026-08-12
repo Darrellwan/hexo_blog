@@ -14,7 +14,7 @@ bgImage: blog-n8n-cli-guide-bg.jpg
 preload:
   - blog-n8n-cli-guide-bg.jpg
 date: 2026-06-22 14:00:00
-modified: 2026-06-22 14:00:00
+updated: 2026-06-22 14:00:00
 ---
 
 {% darrellImageCover blog-n8n-cli-guide blog-n8n-cli-guide-bg.jpg max-800 %}

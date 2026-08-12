@@ -12,7 +12,7 @@ bgImage: blog-claudecode-update-202509-bg.jpg
 preload:
   - blog-claude code-update-202509-bg.jpg
 date: 2025-09-30 09:57:21
-modified: 2025-11-27 20:48:55
+updated: 2025-11-27 20:48:55
 ---
 {% darrellImageCover blog-claudecode-update-202509-bg blog-claudecode-update-202509-bg.jpg max-800 %}
 

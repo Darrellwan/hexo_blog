@@ -11,7 +11,7 @@ id: ga4-search-console-mcp-install
 description: 實測和分享 GA4 , Search Console 的 MCP 安裝流程，讓 Claude Desktop 串接後就能輕鬆分析 GA4 報表和 Search Console 排名數據。
 bgImage: ga4-search-console-mcp-cover.jpg
 date: 2026-08-02 18:13:12
-modified: 2026-08-03 17:26:48
+updated: 2026-08-03 17:26:48
 ---
 
 {% darrellImageCover ga4-search-console-mcp-install ga4-search-console-mcp-cover.jpg max-800 %}

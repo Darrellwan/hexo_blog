@@ -11,7 +11,7 @@ bgImage: blog-gemini-cli-bg.jpg
 preload:
   - blog-gemini-cli-bg.jpg
 date: 2025-06-26 00:40:04
-modified: 2025-07-02 13:21:32
+updated: 2025-07-02 13:21:32
 ---
 
 {% darrellImageCover blog-gemini-cli-bg blog-gemini-cli-bg.jpg %}

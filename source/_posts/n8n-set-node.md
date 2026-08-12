@@ -1,7 +1,7 @@
 ---
 title: n8n Edit Fields (Set) 節點教學 - 組合欄位、動態表達式、Include Fields
 date: 2025-11-24 23:45:31
-modified: 2025-11-24 23:45:31
+updated: 2025-11-24 23:45:31
 tags:
   - n8n
   - n8n節點介紹

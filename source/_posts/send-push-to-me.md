@@ -12,7 +12,7 @@ bgImage: push_yourself_bg.jpg
 preload:
   - push_yourself_bg.jpg
 date: 2024-10-07 22:36:11
-modified: 2025-03-02 22:01:11
+updated: 2025-03-02 22:01:11
 ---
 
 {% darrellImageCover push_yourself_bg push_yourself_bg.jpg max-800 %}

@@ -1,7 +1,7 @@
 ---
 title: Google Antigravity 全解析：從 IDE 變成 Agent 開發平台（含 CLI 取代 Gemini CLI）
 date: 2025-11-19 21:52:39
-modified: 2026-05-20 14:00:00
+updated: 2026-05-20 14:00:00
 tags:
   - Google
   - AI

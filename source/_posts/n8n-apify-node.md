@@ -14,7 +14,7 @@ bgImage: blog-n8n-apify-node-bg.jpg
 preload:
   - blog-n8n-apify-node-bg.jpg
 date: 2026-01-13 17:36:00
-modified: 2026-01-13 17:36:00
+updated: 2026-01-13 17:36:00
 ---
 
 {% darrellImageCover n8n-apify-node-bg blog-n8n-apify-node-bg.jpg%}

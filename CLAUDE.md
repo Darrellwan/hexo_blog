@@ -16,10 +16,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Type：`[NEW POST]` 新文章、`[UPDATE]` 更新、`[FIX]` 修復、`feat:` 新功能、`chore:` 雜項
 
 ### 文章 commit 前必查：日期
-commit 文章前，**必須確認 front matter 的 `date` 和 `modified` 是正確日期**，不是預設或舊值。
+commit 文章前，**必須確認 front matter 的 `date` 和 `updated` 是正確日期**，不是預設或舊值。
 ```bash
-rg "^date:|^modified:" source/_posts/<file>.md
+rg "^date:|^updated:" source/_posts/<file>.md
 ```
+⚠️ 欄位名必須是 `updated`（Hexo 標準欄位），**不是 `modified`**。`modified` 是舊自創欄位，Hexo 不讀，會讓更新日期 fallback 成檔案 mtime（Vercel 每次部署都是 fresh clone，mtime 會變成部署日，導致全站文章顯示「今天更新」）。沒有實質更新的文章就不要寫 `updated`，主題會自動不顯示「更新於」。
 
 ### Push 必須等用戶授權
 commit 完成後**不能自動 push**，必須回報「commit 完成，確認要 push 嗎？」，等用戶明確說「push」才推。
@@ -90,7 +91,7 @@ id: lowercase-hyphenated-id  # 必須小寫+連字號
 description: SEO 描述（約 150 字）
 bgImage: cover-image.jpg
 date: YYYY-MM-DD HH:MM:SS
-modified: YYYY-MM-DD HH:MM:SS
+updated: YYYY-MM-DD HH:MM:SS   # 只在文章有實質更新時才寫；欄位名不可用 modified
 ---
 ```
 

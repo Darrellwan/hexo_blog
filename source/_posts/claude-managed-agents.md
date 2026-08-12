@@ -12,7 +12,7 @@ id: claude-managed-agents
 description: Anthropic 推出 Claude Managed Agents，讓開發者用 Console 或 API 在雲端建立、部署生產等級的 AI Agent。實測 Quickstart 流程，從建立 Agent 到跑出第一個 Session 和心得分享。
 bgImage: blog-claude-managed-agents-bg.jpg
 date: 2026-04-09 10:43:34
-modified: 2026-04-09 10:43:34
+updated: 2026-04-09 10:43:34
 ---
 
 {% darrellImageCover claude-managed-agents-bg blog-claude-managed-agents-bg.jpg %}

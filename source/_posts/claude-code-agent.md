@@ -1,7 +1,7 @@
 ---
 title: Claude Code Agent 實測，建立專屬的開發助理
 date: 2025-07-25 13:18:17
-modified: 2025-07-25 16:29:17
+updated: 2025-07-25 16:29:17
 tags:
   - Claude Code
   - Claude Code Agent

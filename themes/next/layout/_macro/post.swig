@@ -72,7 +72,7 @@
               </span>
               <span class="post-meta-item-text">{{ __('post.posted') }}</span>
 
-              {%- if not date_diff and time_diff and theme.post_meta.updated_at.enable and theme.post_meta.updated_at.another_day and post.modified %}
+              {%- if not date_diff and time_diff and theme.post_meta.updated_at.enable and theme.post_meta.updated_at.another_day and post.updated %}
                 {%- set create_title = __('post.created') + __('symbol.colon') + full_date(post.date) + ' / ' + __('post.modified') + __('symbol.colon') + time(post.updated) %}
               {% else %}
                 {%- set create_title = __('post.created') + __('symbol.colon') + full_date(post.date) %}
@@ -82,7 +82,7 @@
             </span>
           {%- endif %}
 
-          {%- if theme.post_meta.updated_at.enable and datetime_diff and post.modified %}
+          {%- if theme.post_meta.updated_at.enable and datetime_diff and post.updated %}
             {%- set display_updated = not theme.post_meta.updated_at.another_day or theme.post_meta.updated_at.another_day and date_diff %}
 
             {%- if display_updated or not theme.post_meta.created_at %}
