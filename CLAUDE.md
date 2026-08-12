@@ -27,9 +27,14 @@ commit 完成後**不能自動 push**，必須回報「commit 完成，確認要
 
 ## Push 後自動檢查流程（強制）
 git push 完成後，**不需要問用戶**，自動執行以下步驟：
-1. 用 `gh api` 檢查 Vercel 部署狀態，等到 `success`
-2. 部署成功後，用 `agent-browser` 開啟對應頁面確認改動正常
-3. 回報檢查結果給用戶
+1. 查最新部署拿 URL：`vercel ls --format json | jq -r '.deployments[0] | .url'`（比 `gh api` 穩定，不依賴 GitHub webhook）
+2. **背景**跑 `vercel inspect <url> --wait --timeout 10m` 等部署完成。`--wait` 會阻塞到結束，背景指令結束時 Claude 會被自動叫醒＝事件通知。
+   ⚠️ **禁止自己寫輪詢迴圈**（`for i in $(seq 1 30); do vercel ls; sleep 15; done`）。那是每 15 秒發一次網路請求＋佔自己的 turn，`--wait` 把輪詢交給 CLI 自己的 process。
+   `--timeout` 預設只有 3m，這個專案含圖片處理常超過，一定要自己加大。
+3. 部署成功後，用 `agent-browser` 開啟對應頁面確認改動正常；只驗日期／meta 這類純文字輸出時，`curl` + `rg` 就夠，不必開瀏覽器
+4. 回報檢查結果給用戶
+
+**禁止用 `vercel deploy` 部署**：它上傳本機工作目錄，會把未追蹤檔案一起送上線。部署一律走 git push 觸發 GitHub 整合。
 
 ## Build Commands
 - **Dev**: `npm run dev` - clean + generate + server（本地開發常用）
