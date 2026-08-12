@@ -250,14 +250,24 @@ function copyPostLink() {
     document.addEventListener('keydown', function(e) {
       if (!(e.metaKey || e.ctrlKey) || e.altKey || e.shiftKey) return;
       if (SEARCH_HOTKEYS.indexOf(e.key.toLowerCase()) === -1) return;
-      if (isOpen()) return;
+      // preventDefault 要在 isOpen 判斷之前：modal 已經開著時再按一次 ⌘F，
+      // 若這裡直接 return 就會讓瀏覽器原生的頁內尋找列跳出來壓在 modal 上面。
       e.preventDefault();
+      if (isOpen()) {
+        const input = document.querySelector('.search-popup input.search-input');
+        if (input) input.focus();
+        return;
+      }
       openSearch();
     });
 
     // 結果導覽
     document.addEventListener('keydown', function(e) {
       if (!isOpen()) return;
+      // 中文輸入法組字期間，Enter 是「確認候選字」、↑↓ 是「換候選字」，
+      // 都不該被搜尋結果導覽攔走。isComposing 是標準屬性，keyCode 229 是
+      // 舊版瀏覽器在組字時的通用值，兩個都擋才涵蓋得完整。
+      if (e.isComposing || e.keyCode === 229) return;
       if (['ArrowDown', 'ArrowUp', 'Enter'].indexOf(e.key) === -1) return;
 
       const rows = getRows();
@@ -318,7 +328,9 @@ function copyPostLink() {
   const LIST_ID = 'site_search';
   const LIST_NAME = 'Site Search Results';
   const DEBOUNCE_MS = 700;
-  const MIN_TERM_LENGTH = 2;
+  // 設 1 不設 2：中文一個字就是有效搜尋（搜「水」實測有 7 筆結果），
+  // 門檻設 2 會讓這類查詢完全不進 GA4，事件數跟實際搜尋行為對不起來。
+  const MIN_TERM_LENGTH = 1;
 
   function dl() {
     window.dataLayer = window.dataLayer || [];
@@ -338,8 +350,9 @@ function copyPostLink() {
     // ---- search ----
     let timer = null;
     let lastSent = '';
+    let composing = false;
 
-    input.addEventListener('input', function() {
+    function schedule() {
       clearTimeout(timer);
       timer = setTimeout(function() {
         const term = currentTerm();
@@ -350,6 +363,23 @@ function copyPostLink() {
           search_term: term
         });
       }, DEBOUNCE_MS);
+    }
+
+    // 注音／拼音組字期間，input 事件帶的是還沒選字的中間字串（「ㄕㄨㄟ」）。
+    // 組字時不排程，等 compositionend 拿到定稿的字再送，避免 GA4 收到半成品。
+    input.addEventListener('compositionstart', function() {
+      composing = true;
+      clearTimeout(timer);
+    });
+
+    input.addEventListener('compositionend', function() {
+      composing = false;
+      schedule();
+    });
+
+    input.addEventListener('input', function() {
+      if (composing) return;
+      schedule();
     });
 
     // ---- select_item ----

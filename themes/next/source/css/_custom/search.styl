@@ -366,7 +366,10 @@ $icon-close  = 'url("data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .search-pop-overlay, .search-popup, .search-result-list li, .popup-btn-close {
+  // .search-pop-overlay.search-active 的 specificity 是 0,2,0，比單一 class 高，
+  // 只列 .search-pop-overlay 關不掉它的 transition，要把 active 態一起寫出來
+  .search-pop-overlay, .search-pop-overlay.search-active,
+  .search-popup, .search-result-list li, .popup-btn-close {
     transition: none;
   }
 
@@ -375,6 +378,20 @@ $icon-close  = 'url("data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000
 
     .search-active & {
       transform: translateX(-50%);
+    }
+  }
+}
+
+// 這段必須排在上面兩個 @media 之後。手機版用 left:0 + transform:none 撐滿全螢幕，
+// 但 reduced-motion 區塊會把 transform 蓋回 translateX(-50%)——兩者 specificity 相同、
+// 後者在後面就贏——結果 modal 往左位移半個寬度，只剩左半邊看得到。
+// 這裡把兩個條件的交集補回 transform: none。
+@media (max-width: 767px) and (prefers-reduced-motion: reduce) {
+  .search-popup {
+    transform: none;
+
+    .search-active & {
+      transform: none;
     }
   }
 }
