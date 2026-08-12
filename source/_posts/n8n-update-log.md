@@ -7,16 +7,399 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄(2026/07/14 更新)，包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.31.0（Pre-release），正式版本為 2.30.4
+description: n8n 的更新記錄（2026/08/11 更新），包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.35.0（Pre-release），正式版本為 2.34.4
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-modified: 2026-07-14 18:15:28
+modified: 2026-08-12 16:41:07
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 2.35.0 Pre-release - 2026-08-11
+
+[Github 2.35.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%402.35.0)
+
+n8n Agents 持續更新中，新增 Discord 可以當做介面使用(目前也支援 Slack, Linear, Telegram)
+
+### AI Assistant 開始開放給社群版！
+feat: Add self-hosted AI Assistant onboarding
+
+以前 AI Assistant 都只有 Cloud 或是官方版本才能使用
+現在終於下放給 Community 社群版本使用
+也就是說
+**大家都可以直接在 n8n 介面請 AI 幫忙你設定節點啦！**
+
+2.35.0 會有一個設定精靈引導你設定
+環境變數加上 `N8N_ENABLED_MODULES=instance-ai`
+開 `/assistant`，會先看到這個畫面
+
+{% darrellImage800Alt "n8n 自架版 AI Assistant 入口畫面，標示 Preview，列出建立編輯 workflow、除錯失敗執行、詢問 n8n 問題三項能力，下方有 Set up 按鈕" n8n-2.35.0-assistant-setup.png max-800 %}
+
+按 Set up 進去總共三步：接模型、接 code sandbox、選配網頁搜尋
+每一步都會即時打一次驗證，設定沒走完之前，一般成員看不到這個功能
+
+不過驗證這關要先提醒一下，模型選 OpenAI 的話**現在一定過不了**
+不是你的 key 有問題，是 n8n 送出去的那個測試請求參數不合法，換幾把 key、換哪個型號都一樣
+可以直接用環境變數設模型跳過驗證
+這是我在 2.35.0 實測的狀況，之後版本應該就會修掉
+完整的原因和繞法我會另外寫一篇分享
+
+第一步的說明寫得很直白：**The Assistant runs on a model you pay for directly**
+你的 prompt、workflow，還有它讀到的執行資料，都是用 API 的方式跟 AI 溝通
+要注意選的模型能力如何，但也要注意價格是否會太貴
+
+支援的模型清單也蠻完整的，可以參考截圖
+
+{% darrellImage800Alt "AI Assistant 的 Connect a model 步驟，Provider 選 OpenAI，Model 下拉展開顯示 GPT-5.6 Sol Recommended 排第一，往下依序是 Terra、5.6、Luna、5.5、5.5 Pro、5.4 mini、5.4 nano" n8n-2.35.0-assistant-model-list.png max-800 %}
+
+注意 Recommended 的模型都很聰明，但都非常昂貴
+如果不是公司願意補助 API 的話勁量不要使用
+個人嘗試可以先用 gpt-5.6-lunar 試試看
+
+### n8n Agents 更新
+
+n8n Agents 現在自架社群版也能設定，環境變數加上 `N8N_ENABLED_MODULES=agents`
+
+接進 workflow 之後長這樣，一個全新節點就把模型、工具和 skill 全包起來：
+
+{% darrellImage800Alt "n8n 畫布上三個節點：LINE Messaging Trigger 接到 n8n Agent 測試機節點（內含 GPT-5.6 Luna、Get current datetime 工具、n8n-agent-能力說明 skill），再接到 Line Messaging reply，全部顯示執行成功" n8n-2.35.0-agent-line-workflow.png max-800 %}
+
+從 LINE、Telegram、Slack 丟訊息進去，它會自己判斷要不要用工具，再從同一條線回話：
+
+{% darrellImage800Alt "LINE 對話畫面，使用者問你能幫我改 n8n 的 workflow 嗎，agent 回覆分兩種情況說明自己能做和不能做的事" n8n-2.35.0-agent-line-reply.png max-800 %}
+
+這版跟 Agents 有關的更新很多，我挑三個看得到的
+
+#### 新增 Discord 當作 Channel
+（feat: Add Discord as an agent chat channel）
+
+升級前的 Channels 只有這些
+
+{% darrellImage800Alt "2.34.0 的 Channels 彈窗，只有 Slack、Telegram、Linear 三個選項，Telegram 顯示 Connected" n8n-2.35.0-agent-channels-before.png max-800 %}
+
+升上 2.35.0 之後多了 Discord
+
+{% darrellImage800Alt "2.35.0 的 Channels 彈窗，Slack、Telegram、Linear 之外多了 Discord，各自有 Connect 按鈕" n8n-2.35.0-agent-channels-after.png max-800 %}
+
+#### Instructions 欄位新增 Markdown 工具列
+feat(editor): Add more Markdown editor toolbar options）
+
+以前寫 agent 的 Instructions 只能靠 Markdown 語法自己貼
+這版工具列補上底線、引用、程式碼區塊、清單、待辦清單和連結編輯
+寬度不夠時可以橫向移動
+
+雖然大部分的 Instructions 我們已經很少手動編輯了
+但讓 AI 產生的 Markdown 語法貼在這也能至少有個好看的排版
+自己想要微調也不會那麽痛苦
+
+{% darrellImage800Alt "Agent 編輯畫面的 Instructions 欄位，上方 Markdown 工具列有標題、粗體、斜體、刪除線、底線、引用、程式碼區塊、連結、有序清單、項目清單、待辦清單、復原、重做等按鈕" n8n-2.35.0-agent-markdown-toolbar.png max-800 %}
+
+#### token 用量計算更精準
+（feat(core): Add local agent token counting）
+
+以前是拿字元數去估 token，這版改成在本機用 tiktoken 實算
+OpenAI 的模型走 `o200k_base`，其他供應商走 `cl100k_base`
+從估算變成現在有更精準的算法！
+
+Sessions 列表可以直接看到每一輪消耗多少：
+
+{% darrellImage800Alt "Agent 的 Sessions 分頁，一筆 Telegram 來源的對話紀錄顯示時間 Aug 11 17:31:10、token 數 10,830t、耗時 14.8s" n8n-2.35.0-agent-sessions-token.png max-800 %}
+
+工具回傳值太多時的截斷門檻也會靠這個預估的 Token 攔截（50,000 token）
+
+### AI Agent 節點：工具還沒跑，模型的碎話就先黏進答案
+fix(AI Agent Node): Stop pre-tool-call text leaking into agent responses
+
+AI Agent 要用工具時，n8n 其實會跟模型講兩次話
+第一次問「這件事你要怎麼做」，模型回「我要用計算機」；第二次把計算機算出來的答案送回去，讓模型組一句給人看的回話
+
+問題出在第一次。有些模型除了說「我要用計算機」，還會順便多講一句心裡話
+那句話只是它的過程，不該給使用者看到，但舊版會把它直接黏在最後答案的前面，中間連空格都沒有
+
+回報者實際看到的畫面是這樣：
+
+```
+Room 1101Work order created successfully!
+```
+
+`Room 1101` 是模型的碎念，`Work order created successfully!` 才是真正的結果，兩句擠成一團
+
+測試時 prompt 寫
+```
+先用一句話說出你接下來要做什麼，然後一定要呼叫 Calculator 算出 1234 * 5678
+```
+用 **gpt-5.6-luna** 當作模型時會看到以下的輸出同時包含這兩種：
+
+{% dataTable style="minimal" align="left" %}
+[
+  {"第一次 call": "文字", "內容": "我接下來會計算 1234 × 5678。"},
+  {"第一次 call": "工具呼叫", "內容": "Calculator，參數 1234 * 5678"},
+  {"第一次 call": "第二次呼叫的產出", "內容": "7006652"}
+]
+{% enddataTable %}
+
+AI Agent 節點最終輸出只有 `7006652`，那句「我接下來會計算 1234 × 5678。」沒有被附上
+以前舊版的話就會全部輸出： `我接下來會計算 1234 × 5678。7006652`
+
+所以會不會踩到這個 bug，跟選用哪一種模型有關
+PR 的兩個回報者用的是 Claude Sonnet 4.5 和 Qwen，都是比較會邊講邊做的模型
+
+### Merge 節點搜 append、combine 可以被找到
+feat(Merge Node): Add "Append" and "Combine" search aliases
+
+Append & Combined 是大家用 Merge 時裡面的選項
+有些人可能很習慣知道自己要 `append` 但搜尋 `append` 會說沒這個節點
+一定要去找 `Merge` 才可以
+
+現在直接搜尋 `appedn` 也會出現，直覺很多！
+
+{% darrellImage800Alt "n8n 節點面板搜尋 append，Merge 節點出現在第一個，說明文字為 Merges data of multiple streams once data from both is available" n8n-2.35.0-merge-search-append.png max-800 %}
+
+### MCP server 節點：換新版協定，回傳也可以只拿要用的
+feat(core): Support the MCP 2026-07-28 discovery handshake on the instance server
+
+把 Claude Code 或 Cursor 接上自己的 n8n，走的就是 n8n 內建的 MCP server
+連線時會跳出這張同意畫面，可以選 All、Read only 或自己挑 scope：
+
+{% darrellImage800Alt "n8n 的 MCP 授權畫面，標題為 Claude Code 要求存取你的 n8n instance，Scopes 可選 All、Read only、Custom，顯示 11 of 11 scopes selected，下方要求確認回呼網址可信任" n8n-2.35.0-mcp-oauth-consent.png max-800 %}
+
+這版跟上 MCP 新版協定，改成 stateless
+拿掉了連線時的握手，client 改成每次請求都把自己的協定版本和身分塞在 `params._meta` 裡
+舊版 client 還是認得出來，不用急著調整
+
+另一個是 `get_workflow_details` 多了 detailLevel 參數，可以填 full 或 execution，這個才是省 token 的
+
+最有感的是「先查再跑」這種流程：
+AI 只是想執行你的某個 workflow，得先查一下 trigger 是什麼、要餵什麼參數
+這樣會把整個 workflow json 都塞到 context 裡面
+
+現在填 execution 就只拿執行需要的資料
+整個 json payload 大小差很多
+兩種模式差在哪一張表看完：
+
+{% dataTable style="minimal" align="l,c,c" %}
+[
+  {"回傳的內容": "名稱、ID、是否啟用", "execution": "✅", "full（預設）": "✅"},
+  {"回傳的內容": "節點數量、trigger 數量", "execution": "✅", "full（預設）": "✅"},
+  {"回傳的內容": "tag、所在資料夾、你的權限", "execution": "✅", "full（預設）": "✅"},
+  {"回傳的內容": "怎麼觸發它（webhook 網址、要帶什麼認證）", "execution": "✅", "full（預設）": "✅"},
+  {"回傳的內容": "nodes：每個節點的完整設定", "execution": "❌", "full（預設）": "✅"},
+  {"回傳的內容": "connections：節點之間怎麼接", "execution": "❌", "full（預設）": "✅"},
+  {"回傳的內容": "nodeGroups：畫布上的節點群組", "execution": "❌", "full（預設）": "✅"},
+  {"回傳的內容": "activeVersion + meta：已發布版本的內容和中繼資料", "execution": "❌", "full（預設）": "✅"}
+]
+{% enddataTable %}
+
+關鍵是 execution 沒有拿掉「怎麼觸發它」，AI 還是知道要餵什麼進去，只是不用再吞整張圖
+n8n 在程式碼註解裡也寫得很直接：回應大小主要就是被 nodes 和 connections 撐起來的，只是要執行的話跳過就好
+
+
+
+## 2.34.0 Pre-release - 2026-08-04
+
+[Github 2.34.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%402.34.0)
+
+這版我挑了三個更新
+
+HTTP 自訂認證憑證是最有感的，以前要自己手打 JSON，現在變成填表單
+OpenAI 節點多了 Extra Body，串第三方相容模型終於能傳自家參數
+排程「每 N 分鐘」則是修掉一個很多人踩到、但幾乎不會發現的坑
+
+### HTTP 自訂認證從手打 JSON 變成填表單
+feat(HTTP Request Node): Add Simplified Custom Auth generic credential
+
+要串一個 n8n 沒有內建節點的 API，通常會卡在認證這關
+
+以前 Generic Credential Type 就 Basic Auth、Header Auth、Query Auth 那幾種
+遇到「header 要帶 `Authorization: Bearer xxx`、query 還要再補一個版本號」這種組合，只能自己想辦法拼
+
+2.34.0 新增 **Simplified Custom Auth**
+做法是先寫一段 JSON 範本，會變動的地方用 `{{ }}` 標起來：
+
+```json
+{"headers":{"Authorization":"Bearer {{apiKey}}"}}
+```
+
+n8n 會掃這段範本，每個 `{{ }}` 自動變成下面 Fields 區的一張欄位卡片
+Label 會自動帶（`apiKey` 變成 Api Key），還能自己補 Hint、選要不要當密碼遮起來：
+
+{% darrellImage800Alt "Simplified Custom Auth 的 Edit setup 畫面，Auth template 填入 JSON 範本後，Fields 區自動長出 apiKey 的欄位卡片，可設定 Label、Hint 和 Secret" n8n-2.34.0-custom-auth-template.png max-800 %}
+
+範本設定完收起來，畫面就只剩下要填的那格
+
+我把 Test URL 指到 postman-echo，填一個假 token 存檔
+n8n 會拿這組憑證去打一次真實請求，回來顯示 **The service accepted the credential**：
+
+{% darrellImage800Alt "Simplified Custom Auth 存檔後顯示綠色橫幅 The service accepted the credential，Api Key 欄位以圓點遮罩" n8n-2.34.0-custom-auth-result.png max-800 %}
+
+這句話寫得蠻精準
+它只說「服務接受了」，沒說「驗證通過」，因為有些 API 就算 token 是錯的也照樣回 200
+
+以前建這種憑證沒有測試按鈕，打錯字要等 workflow 跑起來才知道
+現在存檔當下就知道，省事很多
+
+### OpenAI 節點可以傳自訂參數了
+feat(OpenAI Chat Model Node): Add optional extraBody option
+
+現在很多模型服務都說自己相容 OpenAI 格式，像 Qwen、vLLM、LM Studio
+但這些服務常常多幾個 OpenAI 官方沒有的參數，例如 Qwen 的 `enable_thinking`
+
+以前 n8n 的 OpenAI Chat Model 節點只認官方那組參數
+想多傳一個就沒地方放，只能放棄這個節點，改用 HTTP Request 自己組請求
+
+2.34.0 在 Options 裡加了 **Extra Body**
+填一段 JSON 進去，就會跟著 chat completion 請求一起送出：
+
+{% darrellImage800Alt "OpenAI Chat Model 節點的 Options 新增 Extra Body 欄位，填入 enable_thinking 和 top_k 的 JSON" n8n-2.34.0-openai-extra-body.png max-800 %}
+
+我在 2.34.0 確認了這個選項存在、也能正常存進 JSON
+但參數是不是真的送到對方 API，要架一台相容服務看它收到什麼才算數，這段我沒測
+PR 裡作者有附 LM Studio 的 debug log，參數確實出現在請求 body
+
+如果你在用 LM Studio 或其他 OpenAI 相容服務，這個更新可以省掉一整個 HTTP Request 節點
+
+### 排程設「每 50 分鐘」，以前根本不是每 50 分鐘
+fix(Schedule Node): Run non-dividing minute intervals by elapsed time
+
+這個是這版最容易踩到、又最不容易發現的
+
+Schedule Trigger 選 Minutes 填一個數字，看起來就是「每隔這麼多分鐘跑一次」
+但只要那個數字沒辦法整除 60，實際行為跟你想的不一樣
+
+舊版是把它翻成 cron 的「分鐘數能被 50 整除」，所以一小時內只會在 :00 和 :50 觸發：
+
+{% dataTable style="minimal" align="left" %}
+[
+  {"版本": "舊版", "觸發時間": "12:00 → 12:50", "實際間隔": "50 分鐘"},
+  {"版本": "舊版", "觸發時間": "12:50 → 13:00", "實際間隔": "10 分鐘"},
+  {"版本": "2.34.0", "觸發時間": "12:50 → 13:40 → 14:30", "實際間隔": "每次都是 50 分鐘"}
+]
+{% enddataTable %}
+
+設定畫面完全沒變，一樣是填一個數字：
+
+{% darrellImage800Alt "Schedule Trigger 的 Trigger Interval 選 Minutes、Minutes Between Triggers 填 50，畫面與舊版相同" n8n-2.34.0-schedule-minutes.png max-800 %}
+
+改的是底層算法，從「看時鐘的分鐘數」改成「算實際過了幾分鐘」
+
+填 15、30 這種能整除 60 的不受影響，行為跟以前一樣
+會受影響的是 7、45、50 這種除不盡的數字
+
+{% callout type="warning" title="這項我沒有等滿一輪實測" %}
+上面的觸發序列是從 PR 附的測試檔（`ScheduleTrigger.node.test.ts`）來的，裡面直接寫死了 50 分鐘的預期觸發時間
+
+要在自己的環境確認，等待成本太高，我這次只驗證了設定畫面沒有變動
+{% endcallout %}
+
+如果你手上有排程填的是這種數字，值得去 Executions 對一下實際時間
+
+## 2.33.0 Pre-release - 2026-07-28
+
+[Github 2.33.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%402.33.0)
+
+這版我最後挑了三個更新
+
+HTTP Request 的改動最實用，發生錯誤後終於拿得到 API 真正回傳的內容，debug 會省事很多
+OAuth 自訂權限比較偏公司使用，Package export 自動帶入子工作流則更進階，而且目前還是 Beta
+
+### HTTP Request 發生錯誤後也會保留 API 回傳內容
+fix(HTTP Request Node): Include error body in continueOnFail mode
+
+以前把 HTTP Request 的 **On Error** 設成 **Continue**
+workflow 是會繼續跑，但 API 到底回了什麼，不太好直接交給後面的節點處理
+
+debug 時還得從一長串錯誤訊息裡面找 response body，蠻麻煩的
+
+2.33.0 的 HTTP Request node version 4.5 多了一個 `details`
+錯誤的 status code、response body，還有目前跑到哪一筆 item 都會保留下來
+
+我實際呼叫 DummyJSON 的 [HTTP 422 測試端點](https://dummyjson.com/http/422/Validation%20failed%3A%20email%20is%20required)
+故意讓 API 回傳 `Validation failed: email is required`，再把 **On Error** 設成 **Continue**
+
+結果節點成功輸出 1 item
+`details.httpCode` 是 `422`，`details.body` 也完整留下 `status`、`title`、`type`、`detail` 和 `message`：
+
+{% darrellImage800Alt "HTTP Request 節點將 On Error 設為 Continue，收到 HTTP 422 後仍輸出 1 item，details.body 完整保留 API 回傳的錯誤內容" n8n-2.33.0-http-request-error-body.png max-800 %}
+
+這個更新我覺得蠻實用
+後面的節點可以直接用 `{{$json.details.body.message}}` 讀錯誤原因，或用 `{{$json.details.httpCode}}` 判斷狀態碼
+
+要重試、發通知或走其他分支都方便很多
+
+### Google 和 Microsoft OAuth 可以自訂權限範圍
+feat(credentials): Add support for custom Google and Microsoft OAuth scopes
+
+以前使用 Google 或 Microsoft 的 OAuth credential
+n8n 會直接帶入節點預設需要的整組權限
+
+如果公司會逐項審核 OAuth 權限，之前很難直接在 credential 畫面裡面調整
+
+2.33.0 新增 **Custom Scopes**
+開啟後就能修改 **Enabled Scopes**，刪掉不需要的權限，或補上公司要求的額外 scope
+
+這次涵蓋的 credential 有：
+
+- **Google 共 19 種**：Gmail、Google Workspace Admin、Google Ads、Google Analytics、Google Books、Google Business Profile、Google Chat、Google Cloud Natural Language、Google Contacts、Google Docs、Google Drive、Google Firebase Cloud Firestore、Google Firebase Realtime Database、Google Perspective、Google Sheets Trigger、Google Slides、Google Tasks、Google Translate、YouTube
+- **Microsoft 共 4 種**：Azure Monitor、Dynamics、Graph Security、Azure Storage
+
+Google 這邊我先用 Gmail OAuth2 credential 測試
+開啟 Custom Scopes 後，原本需要的 Gmail scopes 已經先填進 Enabled Scopes
+
+這點蠻重要，不然每個 scope 都要自己從空白開始查，真的蠻麻煩的
+
+{% darrellImage800Alt "Gmail OAuth2 credential 開啟 Custom Scopes，畫面顯示修改權限可能讓節點無法運作的警告，Enabled Scopes 已預填 Gmail 權限" n8n-2.33.0-google-custom-scopes.png max-800 %}
+
+Microsoft 這邊我另外打開 **Microsoft Azure Monitor OAuth2 API** 實測
+Enabled Scopes 預設是 `{resource}/.default`
+
+`{resource}` 會帶入上方選擇的 Resource，例如截圖中的 Azure Log Analytics：
+
+{% darrellImage800Alt "Microsoft Azure Monitor OAuth2 credential 開啟 Custom Scopes，警告說明 resource placeholder，Enabled Scopes 顯示 resource/.default" n8n-2.33.0-microsoft-custom-scopes.png max-800 %}
+
+如果公司有最小權限原則，或 Microsoft Entra 管理員會逐項審核 scope，這個功能就蠻有用的
+
+我的建議是先保留預設值
+真的需要縮小權限時，再確認 API 需要哪些 scope，刪太多會讓節點直接報錯
+
+### Package export 可以自動帶入子工作流
+feat(cli): Automatically include sub-workflows in package export
+
+Package export 可以把 workflow 和依賴的資源包成 `.n8np` 檔案
+搬到另一個 n8n 環境時，可以把相關資源一起帶走
+
+以前主 workflow 只要有用 **Execute Sub-workflow** 呼叫其他 workflow
+漏匯出其中一個，通常都是匯入後才發現流程少了一塊
+
+2.33.0 新增 `include-in-package` 處理方式
+用 CLI 匯出時，n8n 會去找主 workflow 指定的子工作流，一起放進同一個 package：
+
+```bash
+n8n-cli package export \
+  --workflow-id=<workflow-id> \
+  --output=workflow.n8np \
+  --missing-workflow-dependency-policy=include-in-package
+```
+
+如果子工作流又呼叫下一層，n8n 也會繼續往下找
+遇到循環呼叫則不會一直重複打包
+
+{% callout type="warning" title="目前仍是 Beta，而且沒有操作畫面" %}
+這項功能走 n8n CLI，不是在 editor 裡按一個匯出按鈕
+
+我原本想直接跑一次，但測試用的 2.33.0 Docker 映像裡沒有另外安裝 `@n8n/cli`
+執行 `n8n-cli` 只會得到 `executable file not found in $PATH`
+
+目前比較適合已經在使用 Package CLI 的進階使用者，不建議為了這一項就直接改正式環境的匯出流程
+{% endcallout %}
+
+還有一個限制
+這個功能只能追蹤 workflow 設定裡面已經寫好 ID 的子工作流
+
+如果 workflow ID 是執行時才由 expression 決定，匯出工具沒辦法預先知道要帶哪一個
+這種情況還是要自己檢查 package 內容
 
 ## 2.31.0 Pre-release - 2026-07-14
 

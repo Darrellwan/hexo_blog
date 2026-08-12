@@ -8348,5 +8348,60 @@
     "width": 1558,
     "height": 1545,
     "mtimeMs": 1785078281372.676
+  },
+  "/_posts/n8n-update-log/n8n-2.35.0-merge-search-append.png": {
+    "width": 1440,
+    "height": 900,
+    "mtimeMs": 1786453383665.3894
+  },
+  "/_posts/n8n-update-log/n8n-2.35.0-mcp-oauth-consent.png": {
+    "width": 1706,
+    "height": 1656,
+    "mtimeMs": 1786453383667.5137
+  },
+  "/_posts/n8n-update-log/n8n-2.35.0-assistant-setup.png": {
+    "width": 1750,
+    "height": 1384,
+    "mtimeMs": 1786453383650.6045
+  },
+  "/_posts/n8n-update-log/n8n-2.35.0-assistant-model-list.png": {
+    "width": 1652,
+    "height": 1814,
+    "mtimeMs": 1786453383653.4404
+  },
+  "/_posts/n8n-update-log/n8n-2.35.0-agent-sessions-token.png": {
+    "width": 2166,
+    "height": 1572,
+    "mtimeMs": 1786453383662.8499
+  },
+  "/_posts/n8n-update-log/n8n-2.35.0-agent-markdown-toolbar.png": {
+    "width": 1440,
+    "height": 1200,
+    "mtimeMs": 1786453383660.6077
+  },
+  "/_posts/n8n-update-log/n8n-2.35.0-agent-channels-before.png": {
+    "width": 1970,
+    "height": 910,
+    "mtimeMs": 1786453383655.9597
+  },
+  "/_posts/n8n-update-log/n8n-2.35.0-agent-channels-after.png": {
+    "width": 780,
+    "height": 420,
+    "mtimeMs": 1786453689100.2068
+  },
+  "/_posts/n8n-update-log/n8n-2.35.0-schedule-executions.png": {
+    "width": 845,
+    "height": 602,
+    "mtimeMs": 1786459634284.7478
+  },
+  "/_posts/n8n-update-log/n8n-2.35.0-agent-line-workflow.png": {
+    "width": 2340,
+    "height": 1084,
+    "mtimeMs": 1786459680853.5508
+  },
+  "/_posts/n8n-update-log/n8n-2.35.0-agent-line-reply.png": {
+    "width": 1280,
+    "height": 1630,
+    "mtimeMs": 1786459680855.5784
   }
 }
