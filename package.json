@@ -30,25 +30,20 @@
     "images:force-process": "node scripts/generate-image-dimensions.js --force"
   },
   "hexo": {
-    "version": "8.1.1"
+    "version": "8.1.2"
   },
   "dependencies": {
-    "@vercel/analytics": "^1.5.0",
-    "@vercel/speed-insights": "^1.2.0",
     "dotenv": "^16.4.7",
     "hexo": "^8.1.1",
     "hexo-algoliasearch": "^2.0.1",
     "hexo-clean-css": "^2.0.0",
     "hexo-deployer-git": "^4.0.0",
-    "hexo-dynamic-config": "^1.0.0",
     "hexo-generator-archive": "^2.0.0",
     "hexo-generator-category": "^2.0.0",
     "hexo-generator-feed": "^3.0.0",
     "hexo-generator-index": "^4.0.0",
     "hexo-generator-sitemap": "^3.0.1",
     "hexo-generator-tag": "^2.0.0",
-    "hexo-helper-seo-structured-data": "^0.0.3",
-    "hexo-related-popular-posts": "^5.0.1",
     "hexo-renderer-ejs": "^2.0.0",
     "hexo-renderer-markdown-it": "github:hexojs/hexo-renderer-markdown-it",
     "hexo-renderer-stylus": "^3.0.1",
