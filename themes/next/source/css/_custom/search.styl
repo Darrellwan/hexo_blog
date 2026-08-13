@@ -21,13 +21,19 @@ $search-text-muted    = rgba(255, 255, 255, .55)
 $search-row-hover     = rgba(255, 255, 255, .07)
 $search-hairline      = rgba(255, 255, 255, .09)
 
-// 站台品牌橘＝ _variables/base.styl 的 $orange（#fc6423），側欄按鈕與 active tab 都用它。
-// 這裡必須寫死色值：custom.styl 被 Hexo 單獨編譯，拿不到主題的變數檔，
-// 直接寫 $orange 會原封不動漏進 custom.css 變成無效宣告。
-// 注意名字叫 $orange-main 的 #ffa500 是死的，全站沒有真正輸出過。
-$search-accent        = #fc6423
-$search-accent-bright = #ff8a4d
-$search-row-selected  = rgba(252, 100, 35, .14)
+// 鍵盤選中列：不透明的中性亮底，比表面 #36363a 亮兩階。
+// 不用半透明彩色疊底——rgba 橘壓在中性深灰上會合成出泥褐色（實測 #523c37），
+// 而且會把標題對比壓到 3.4:1，比一般列的 11.2:1 還糟，等於「正在看的那列最難讀」。
+// 中性提亮完全不影響文字對比（白標題在這個底上仍有 8.9:1）。
+$search-row-selected  = #45454b
+
+// 關鍵字高亮色＝站台品牌橘 #fc6423（_variables/base.styl 的 $orange）提亮後的版本。
+// 純品牌橘當小字放在這個深色表面上只有 3.2:1，過不了 WCAG AA 的 4.5:1；
+// 提亮到 #ff9d66 後一般列 5.9:1、選取列 4.7:1，兩種底色都過。
+// 色值必須寫死：custom.styl 被 Hexo 單獨編譯，拿不到主題的變數檔，
+// 寫 $orange 會原封不動漏進 custom.css 變成無效宣告
+//（順帶一提，名字叫 $orange-main 的 #ffa500 是死的，全站沒有真正輸出過）。
+$search-keyword-color = #ff9d66
 
 // 細線條圖示（stroke 1.5），取代 Font Awesome 實心圖
 // 用 unquote() 輸出整個 url(...)：Stylus 的 url() 是內建函式，
@@ -225,22 +231,13 @@ $icon-close  = 'url("data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000
         background: $search-row-hover;
       }
 
-      // 鍵盤選中：整列淡橘底 + 標題轉品牌橘，不用左側指示線。
-      // 原本的 inset 白線是直的、卡在 11px 圓角外緣，看起來像捲軸殘影而不是選取標記。
-      // 寫在 :hover 後面：兩者 specificity 相同，後寫的贏，所以滑鼠移過選中列時
-      // 仍然維持橘色而不是被 hover 的灰底蓋掉。
+      // 鍵盤選中：只換底色，文字一律不動。
+      // 「游標在這一列」和「這是你搜的字」是兩件事，用兩個不同的訊號表達——
+      // 前者是整列的明度提升，後者是關鍵字的橘色，互不干擾。
+      // 寫在 :hover 後面：兩者 specificity 相同，後寫的贏，所以滑鼠移過鍵盤
+      // 選中的那列時仍維持選中底色，不會被 hover 的灰底蓋掉。
       &.is-selected {
         background: $search-row-selected;
-
-        a.search-result-title {
-          color: $search-accent;
-        }
-
-        // 標題裡的關鍵字在未選中時是「比標題更亮的白」，選中後要維持同一個
-        // 「更亮一階」的關係，否則橘標題裡插一塊白字會對比反轉、看起來像斷字
-        a.search-result-title .search-keyword {
-          color: $search-accent-bright;
-        }
       }
     }
   }
@@ -268,26 +265,17 @@ $icon-close  = 'url("data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000
     -webkit-line-clamp: 2;
   }
 
-  // 關鍵字高亮：不用預設的亮紅 $red + 虛線。
-  // 標題與摘要分開處理——標題本身已經是 600 的亮字，再加底色方塊會把
-  // 標題切成一格一格、變得很碎；只用更亮＋更粗就足以辨識。
-  // 摘要是灰階小字，對比不夠，才需要底色撐起來。
+  // 關鍵字高亮：一律不加底色，只換色加粗。
+  // 原本摘要用灰底方塊，但一行摘要命中七八次時，句子會被切成碎片
+  //（docker pull docker.[n8n].io/[n8n]io/[n8n]:latest），整片清單看起來很躁。
+  // 換成橘字之後，「你搜的字」在標題與摘要是同一個訊號，也不再破壞句子的連貫。
   .search-keyword {
-    border-bottom: 0;
-    border-radius: 4px;
-    color: #fff;
-  }
-
-  a.search-result-title .search-keyword {
     background: transparent;
+    border-bottom: 0;
+    border-radius: 0;
+    color: $search-keyword-color;
     font-weight: 700;
     padding: 0;
-  }
-
-  p.search-result .search-keyword {
-    background: rgba(255, 255, 255, .16);
-    font-weight: 600;
-    padding: 1px 3px;
   }
 
   // ---- 無結果 / 載入中 ----
