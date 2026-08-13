@@ -98,12 +98,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let resultItems = [];
     if (searchText.length > 0) {
       // Perform local searching
-      datas.forEach(({ title, content, url }) => {
+      datas.forEach(({ title, content, url, weight, description }) => {
         let titleInLowerCase = title.toLowerCase();
         let contentInLowerCase = content.toLowerCase();
         let indexOfTitle = [];
         let indexOfContent = [];
-        let searchTextCount = 0;
         // 本地改動：記錄「命中了幾個不同的關鍵字」，供排序用。
         // 原本只累計總命中次數，導致長文只要重複提到其中一個字就能壓過
         // 同時命中全部關鍵字的文章（搜「n8n google」時 n8n 文章排不上來）。
@@ -120,8 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Show search results
         if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-          let hitCount = indexOfTitle.length + indexOfContent.length;
-          // 標題命中數要在 indexOfContent 被 while 迴圈消耗掉之前先存起來
+          // 標題命中數要在 indexOfTitle 被 mergeIntoSlice 消耗掉之前先存起來
           let titleHitCount = indexOfTitle.length;
           // Sort index by position of keyword
           [indexOfTitle, indexOfContent].forEach(index => {
@@ -136,7 +134,6 @@ document.addEventListener('DOMContentLoaded', () => {
           let slicesOfTitle = [];
           if (indexOfTitle.length !== 0) {
             let tmp = mergeIntoSlice(0, title.length, indexOfTitle, searchText);
-            searchTextCount += tmp.searchTextCountInSlice;
             slicesOfTitle.push(tmp);
           }
 
@@ -157,7 +154,6 @@ document.addEventListener('DOMContentLoaded', () => {
               end = content.length;
             }
             let tmp = mergeIntoSlice(start, end, indexOfContent, searchText);
-            searchTextCount += tmp.searchTextCountInSlice;
             slicesOfContent.push(tmp);
           }
 
@@ -185,16 +181,23 @@ document.addEventListener('DOMContentLoaded', () => {
             resultItem += `<li><a href="${url}" class="search-result-title">${title}</a>`;
           }
 
-          slicesOfContent.forEach(slice => {
-            resultItem += `<a href="${url}"><p class="search-result">${highlightKeyword(content, slice)}...</p></a>`;
-          });
+          if (description) {
+            // 入口頁用固定摘要。它的 content 前面掛了純比對用的關鍵字，
+            // 照一般做法截內文會把那串關鍵字顯示出來，看起來像關鍵字堆砌。
+            resultItem += `<a href="${url}"><p class="search-result">${description}</p></a>`;
+          } else {
+            slicesOfContent.forEach(slice => {
+              resultItem += `<a href="${url}"><p class="search-result">${highlightKeyword(content, slice)}...</p></a>`;
+            });
+          }
 
           resultItem += '</li>';
           resultItems.push({
             item: resultItem,
             id  : resultItems.length,
-            hitCount,
-            searchTextCount,
+            // 標題沒命中就不給權重，否則入口頁的長清單只要提到關鍵字
+            // 就會壓過標題直接對題的文章（搜「Gmail」時蓋掉 Gmail 節點教學）
+            weight: titleHitCount > 0 ? Number(weight) || 0 : 0,
             matchedKeywords,
             titleHitCount
           });
@@ -206,23 +209,23 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (resultItems.length === 0) {
       resultContent.innerHTML = '<div id="no-result"><i class="far fa-frown fa-5x"></i></div>';
     } else {
-      // 本地改動：排序優先序改為
-      //   1. 命中的關鍵字種類數（命中全部關鍵字的文章優先）
-      //   2. 標題命中數（標題有關鍵字比內文提到更相關）
-      //   3. 完整搜尋字串出現次數
-      //   4. 總命中次數
-      // 原本只有 3、4 兩層，長文靠單一關鍵字刷次數就能排到最前面。
+      // 本地改動：排序優先序為
+      //   1. 命中的關鍵字種類數（命中全部關鍵字的優先）
+      //   2. 手動權重 search_weight（front matter 設定，用來置頂旗艦文章）
+      //   3. 標題命中數（標題有關鍵字比內文提到更相關）
+      //   4. search.json 的原始順序，由 scripts/search-ranking.js 排成日期新到舊
+      //
+      // 刻意不看「內文命中次數」：長文和版本更新紀錄只要重複提到關鍵字就會壓過
+      // 真正對題的短文（搜「n8n」時只提 1 次的文章 vs 提 102 次的 CLI 教學）。
       resultItems.sort((resultLeft, resultRight) => {
         if (resultLeft.matchedKeywords !== resultRight.matchedKeywords) {
           return resultRight.matchedKeywords - resultLeft.matchedKeywords;
+        } else if (resultLeft.weight !== resultRight.weight) {
+          return resultRight.weight - resultLeft.weight;
         } else if (resultLeft.titleHitCount !== resultRight.titleHitCount) {
           return resultRight.titleHitCount - resultLeft.titleHitCount;
-        } else if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-          return resultRight.searchTextCount - resultLeft.searchTextCount;
-        } else if (resultLeft.hitCount !== resultRight.hitCount) {
-          return resultRight.hitCount - resultLeft.hitCount;
         }
-        return resultRight.id - resultLeft.id;
+        return resultLeft.id - resultRight.id;
       });
       resultContent.innerHTML = `<ul class="search-result-list">${resultItems.map(result => result.item).join('')}</ul>`;
       window.pjax && window.pjax.refresh(resultContent);

@@ -21,6 +21,10 @@ $search-text-muted    = rgba(255, 255, 255, .55)
 $search-row-hover     = rgba(255, 255, 255, .07)
 $search-hairline      = rgba(255, 255, 255, .09)
 
+// 結果列之間的分隔線，比容器的 hairline 再淡一階。
+// 這條線是輔助分組的，不是結構邊界，跟 .09 同亮度會搶掉標題的注意力。
+$search-divider       = rgba(255, 255, 255, .06)
+
 // 鍵盤選中列：不透明的中性亮底，比表面 #36363a 亮兩階。
 // 不用半透明彩色疊底——rgba 橘壓在中性深灰上會合成出泥褐色（實測 #523c37），
 // 而且會把標題對比壓到 3.4:1，比一般列的 11.2:1 還糟，等於「正在看的那列最難讀」。
@@ -223,9 +227,27 @@ $icon-close  = 'url("data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000
 
     li {
       border-radius: 11px;
-      margin: 0 0 3px;
-      padding: 14px 16px;
+      margin: 0 0 10px;
+      padding: 12px 16px;
+      position: relative;
       transition: background .12s ease;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      // 分隔線畫在列與列的間距正中間（margin 10px 的一半），不是列的邊緣。
+      // 這樣它落在 hover 背景的範圍之外，圓角底色跟直線不會互相干擾，
+      // 也就不需要在選中列特地把線藏起來。
+      & + li::before {
+        background: $search-divider;
+        content: '';
+        height: 1px;
+        left: 16px;
+        position: absolute;
+        right: 16px;
+        top: -5px;
+      }
 
       &:hover {
         background: $search-row-hover;
@@ -257,8 +279,11 @@ $icon-close  = 'url("data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000
     color: $search-text-muted;
     display: -webkit-box;
     font-size: 13.5px;
-    line-height: 1.7;
-    margin: 5px 0 0;
+    // 行高與上緣都收緊，讓摘要黏在自己的標題下面成為一組。
+    // 原本 1.7 行高 + 5px 上緣撐出的空白，和列與列之間的空白幾乎一樣寬，
+    // 眼睛因此讀不出哪兩行是一組。
+    line-height: 1.5;
+    margin: 2px 0 0;
     overflow: hidden;
     padding: 0;
     -webkit-box-orient: vertical;
