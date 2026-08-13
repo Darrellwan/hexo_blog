@@ -12,6 +12,7 @@
  *   npm run images:compress                        壓縮 source/_posts/ 全部
  *   npm run images:compress -- n8n-update-log      只壓某篇文章的圖
  *   npm run images:compress -- --dry               只列出待壓清單，不改檔案
+ *   npm run images:compress -- --min-kb=200        只壓 200KB 以上的圖
  *
  * 重複執行是安全的：已經是 palette 的 PNG 會被跳過，不會反覆有損壓縮。
  *
@@ -29,28 +30,32 @@ const POSTS_DIR = path.join(__dirname, '../source/_posts');
 const QUALITY = '65-85';
 
 /**
- * 讀 PNG 的 IHDR 判斷是否已經壓過。
+ * 讀 PNG 的 IHDR 取出 color type，副檔名是 .png 但內容不是 PNG 的回傳 null。
  *
  * PNG 檔頭固定佈局：8 bytes 簽章 + 4 length + 4 "IHDR" + 4 width + 4 height
  * + 1 bit depth + 1 color type，所以 color type 固定在 offset 25。
  * 值 3 代表 palette（pngquant 的產物），0/2/4/6 是 gray/RGB/gray+alpha/RGBA。
  *
  * 用檔頭而不是呼叫 file 指令：快，而且不必解析不同系統的文字輸出格式。
+ *
+ * 一定要區分「不是 PNG」和「是 PNG 但沒壓過」：本站有副檔名叫 .png、
+ * 實際是 WebP 的檔案（the_martech_handbook/martech_talent.png），
+ * 把它算進待壓清單只會讓統計多一張、然後在 pngquant 那裡失敗。
  */
-function isPalettePng(filePath) {
+function pngColorType(filePath) {
   const buffer = Buffer.alloc(26);
   const fd = fs.openSync(filePath, 'r');
   try {
     if (fs.readSync(fd, buffer, 0, 26, 0) < 26) {
-      return false;
+      return null;
     }
   } finally {
     fs.closeSync(fd);
   }
   if (buffer.toString('latin1', 1, 4) !== 'PNG') {
-    return false;
+    return null;
   }
-  return buffer[25] === 3;
+  return buffer[25];
 }
 
 function hasPngquant() {
@@ -82,8 +87,23 @@ async function main() {
     process.exit(1);
   }
 
-  const targets = files.filter(file => !isPalettePng(file));
-  const label = scope ? `source/_posts/${scope}` : 'source/_posts';
+  // --min-kb=N：只處理 N KB 以上的圖。小圖壓了也省不到多少，
+  // 想先處理掉佔空間的大頭時用這個限縮範圍。
+  const minKbArg = process.argv.find(arg => arg.startsWith('--min-kb='));
+  const minBytes = minKbArg ? Number(minKbArg.split('=')[1]) * 1024 : 0;
+
+  const typed = files.map(file => ({ file, colorType: pngColorType(file) }));
+  const notPng = typed.filter(item => item.colorType === null);
+  const targets = typed
+    .filter(item => item.colorType !== null && item.colorType !== 3)
+    .map(item => item.file)
+    .filter(file => fs.statSync(file).size >= minBytes);
+  const label = (scope ? `source/_posts/${scope}` : 'source/_posts')
+    + (minBytes ? `（≥${minBytes / 1024}KB）` : '');
+
+  notPng.forEach(({ file }) => {
+    console.warn(`[Compress] 副檔名是 .png 但內容不是 PNG，已略過：${path.relative(POSTS_DIR, file)}`);
+  });
 
   if (targets.length === 0) {
     console.log(`[Compress] ${label} 的 ${files.length} 張 PNG 全部壓縮過了，沒有待處理的檔案`);
