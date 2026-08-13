@@ -62,7 +62,7 @@
 
 ### 站內搜尋（local_search）＋ 相依清理
 - **建立日期**：2026-08-13
-- **狀態**：功能完成、外部 review 完成、四項必修已修並實測，**6 個 commit 未 push**（`db9465f` `3069e6e` `952a3b4` `6996a47` `ab04a1f` `0fbb042`）
+- **狀態**：✅ 已 push 並部署上線，正式站實測通過（2026-08-13）。過程中造成一次約 4 分鐘的正式站事故，已修復，見下方「事故」段
 - **已完成（本機實測通過）**：
   - 移除 5 個殭屍套件（`hexo-related-popular-posts`、`hexo-helper-seo-structured-data`、`hexo-dynamic-config`、`@vercel/analytics`、`@vercel/speed-insights`），漏洞 48 → 1；剩下的 `image-size` 無修補版且本專案不處理不受信任輸入
   - `npm update` 同 major 升版：hexo 8.1.1→8.1.2、next 主題套件 8.27→8.29（註：站台實際讀本地 `themes/next/`，node_modules 那份未使用）
@@ -81,7 +81,14 @@
   - 中文單字（如「水」，實際 7 筆結果）不送 GA4：`MIN_TERM_LENGTH` 2 → 1
   - 選取列樣式重做兩次。**關鍵教訓**：半透明橘疊在深灰上會合成泥褐 `#523c37`，標題對比掉到 3.39:1（比一般列 11.24:1 還糟）。定案為中性不透明亮底 `#45454b`（標題 8.89:1），橘色改給關鍵字用提亮版 `#ff9d66`（純品牌橘 `#fc6423` 當小字只有 3.17:1，過不了 AA），並移除摘要關鍵字的灰底方塊
   - 三個 dataLayer 路徑格式對齊成 GA4 內建 `page_path` 的形狀：`page_path` 加開頭斜線並去掉 `index.html`、`post_path` 移除多餘斜線（`post-related.swig:49`）
-- **待辦**：用戶評分視覺 → `git push`（push 後照 CLAUDE.md 流程等 Vercel 部署並驗證）→ 設定 GTM tag/trigger 讓 GA4 真的收到 `search`／`select_item`（`select_item` 頂層的 `search_term` 需另外映射 + 建 event-scoped 自訂維度才會進 GA4）
+- **🔴 事故：移除套件導致正式站所有文章頁空白（2026-08-13，約 4 分鐘）**
+  - **現象**：push 後正式站每個文章頁 HTTP 200 但 **0 bytes**（真 Chrome 實測 `document.title` 空、body 0 字元）；首頁與分類頁正常
+  - **根因**：`db9465f` 移除 `hexo-related-popular-posts`，但 `post-related.swig:1` 呼叫的 `popular_posts_json()` 替代實作 `scripts/related-posts.js` **從未進版控**。本機有該檔所以建置正常，Vercel 是乾淨 checkout → helper 未定義 → 文章頁渲染失敗。首頁／分類頁不含 `post-related.swig` 故倖免
+  - **修復**：`b4f81d9` 把 `scripts/related-posts.js` 加入版控並 push，部署後真瀏覽器驗證恢復（正文 6717 字、熱門文章 5 筆）
+  - **兩個早就存在的警訊我都沒接住**：① 本 tracker 第 155 行先前 session 已明寫「`scripts/related-posts.js` 未追蹤，本機與線上跑的是兩套不同實作」；② 更早一次 codex review 報過「fresh clone build 產出 0 bytes 文章頁」，當時被判**誤報**（因套件尚在、線上實查正常）——那個觀察其實成立，只是要等移除套件才觸發
+  - **防線**：移除套件前先 `git ls-files --error-unmatch <替代實作>`；掃 `git ls-files --others --exclude-standard | rg "^(scripts/|themes/[^/]+/scripts/).*\.js$"`。已寫入記憶 `feedback_verify_against_clean_checkout.md`。**被判誤報的 review finding 要連前提一起記錄，前提改變時重新評估**
+- **上線後實測（正式站真瀏覽器）**：文章頁正文 6717 字、熱門文章 5 筆；`page_path=/n8n-google-sheets-node/`、`post_path=/n8n-cli-guide/` 皆為單斜線；搜尋 42 筆、選取列 `rgb(69,69,75)`、標題近白、關鍵字 `rgb(255,157,102)` 且底色 transparent；`search` 事件送出一次
+- **待辦**：用戶評分視覺 → 設定 GTM tag/trigger 讓 GA4 真的收到 `search`／`select_item`（`select_item` 頂層的 `search_term` 需另外映射 + 建 event-scoped 自訂維度才會進 GA4）
 - **已知延後，未做**：
   - 無障礙整套（focus trap、關閉後焦點還給開啟按鈕、`role="dialog"`、`aria-activedescendant`、關閉鈕改真 `button`）——要動 swig 模板
   - 結果 HTML 改 `createElement` 硬化（目前索引全是自家文章，需索引被污染才可利用，非當前可攻擊）
@@ -118,7 +125,8 @@
   - codex 另一項「fresh clone build 產出 0 bytes 文章頁」是誤報（它的測試環境沒 npm install）。線上實查 HTTP 200／187 KB／`popular-posts` 出現 12 次
   - commit：`f5af90c`（日期修正）、`38412b6`（統計腳本）、`b46ee2f`（合併遠端 README bot）皆已 push；`f5f8ac4`（CLAUDE.md 的 push 後檢查流程改用 `vercel inspect --wait`）**尚未 push**
   - 線上驗證：`claude-code-fable-5` 顯示 2026-07-26 23:04:41、`n8n-google-sheets-node` 2026-05-10、`ga4-search-console-mcp-install` 2026-08-03；沒有實質更新的 `n8n-cli-guide`／`cursor-mcp-server-guide` 已不顯示「更新於」
-  - 未處理（非本次範圍）：codex 建議加 lint（禁 `modified`、驗 `updated >= date`）；`scripts/related-posts.js` 未追蹤，本機與線上跑的是兩套不同的相關文章實作（線上仍用舊 npm plugin，「移除 GA 依賴」從未上線）
+  - 未處理（非本次範圍）：codex 建議加 lint（禁 `modified`、驗 `updated >= date`）
+  - ✅ **已解決（2026-08-13）**：`scripts/related-posts.js` 未追蹤這條，在移除 `hexo-related-popular-posts` 後直接引爆正式站文章頁全白，已由 `b4f81d9` 加入版控。第 152 行那個「被判誤報的 fresh clone 0 bytes」也是同一件事，詳見「站內搜尋」條目的事故段
   - 部分暫存手法：`CLAUDE.md`、`main.yml`、`docs/guides/n8n-node-article-guide.md`、`claude-code-new-command-line-tool.md`、`claude-managed-agents.md` 都有既有未提交改動，用 `git hash-object -w` + `git update-index --cacheinfo` 只把本次那幾行進 index，工作區未受影響（`git checkout --` 被 hook 攔下是對的）
 
 - [x] **8/2 追加：n8n-expert 首頁文案調整與部署確認**：移除首頁 Hero 定價文案並保留 FAQ 完整說明；確認修改內容已部署至 https://www.darrelltw.com/n8n-expert/（commit `af674b4`）
