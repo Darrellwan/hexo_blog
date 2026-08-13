@@ -23,7 +23,11 @@
     page_updated : "{{ page.updated }}",
     page_categories : category_arr,
     page_tags : tags_arr,
-    page_path : "{{ page.path }}",
+    {#- page.path 是 Hexo 的輸出檔路徑（首頁是 index.html、分類頁是 categories/n8n/index.html），
+        跟 GA4 內建的 page_path 形狀不同。補開頭斜線並去掉 index.html 之後，
+        首頁→/、分類→/categories/n8n/、文章→/n8n-xxx/，
+        才能跟 GA4 內建維度以及站內搜尋 select_item 的 item_id 對得起來 -#}
+    page_path : "/{{ page.path | replace('index.html', '') }}",
     url : "{{ url }}",
     post_created : "{{ page.created }}",
     post_description : "{{ page.description }}",

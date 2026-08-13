@@ -46,7 +46,9 @@
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       "event" : "popular_post_view",
-      "post_path" : "{{ popular_post.path }}/",
+      {#- popular_post.path 已經是 /slug/ 形狀（第 39 行直接拿它當 href），
+          後面再補一條斜線會送出 /slug//，跟其他來源的路徑對不起來 -#}
+      "post_path" : "{{ popular_post.path }}",
       "post_title" : "{{ popular_post.title }}",
     })
   </script>

@@ -411,6 +411,9 @@ function copyPostLink() {
             item_name     : titleLink ? titleLink.textContent.trim() : '',
             item_list_id  : LIST_ID,
             item_list_name: LIST_NAME,
+            // 刻意用 1 起算：GA4 官方範例的第一筆是 index: 0，但 index 本身是選填、
+            // 值是任意整數，報表上「第 1 名」比「第 0 名」直覺。之後若加 view_item_list
+            // 等其他 ecommerce 事件，要記得沿用同一套起算方式。
             index         : rows.indexOf(row) + 1
           }]
         }
