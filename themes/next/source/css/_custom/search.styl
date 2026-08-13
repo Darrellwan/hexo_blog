@@ -19,8 +19,15 @@ $search-edge          = rgba(255, 255, 255, .13)
 $search-text          = #f7f7f8
 $search-text-muted    = rgba(255, 255, 255, .55)
 $search-row-hover     = rgba(255, 255, 255, .07)
-$search-row-active    = rgba(255, 255, 255, .13)
 $search-hairline      = rgba(255, 255, 255, .09)
+
+// 站台品牌橘＝ _variables/base.styl 的 $orange（#fc6423），側欄按鈕與 active tab 都用它。
+// 這裡必須寫死色值：custom.styl 被 Hexo 單獨編譯，拿不到主題的變數檔，
+// 直接寫 $orange 會原封不動漏進 custom.css 變成無效宣告。
+// 注意名字叫 $orange-main 的 #ffa500 是死的，全站沒有真正輸出過。
+$search-accent        = #fc6423
+$search-accent-bright = #ff8a4d
+$search-row-selected  = rgba(252, 100, 35, .14)
 
 // 細線條圖示（stroke 1.5），取代 Font Awesome 實心圖
 // 用 unquote() 輸出整個 url(...)：Stylus 的 url() 是內建函式，
@@ -218,10 +225,22 @@ $icon-close  = 'url("data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000
         background: $search-row-hover;
       }
 
-      // 鍵盤選中：底色更明顯，再加一條左側指示線跟滑鼠 hover 區分
+      // 鍵盤選中：整列淡橘底 + 標題轉品牌橘，不用左側指示線。
+      // 原本的 inset 白線是直的、卡在 11px 圓角外緣，看起來像捲軸殘影而不是選取標記。
+      // 寫在 :hover 後面：兩者 specificity 相同，後寫的贏，所以滑鼠移過選中列時
+      // 仍然維持橘色而不是被 hover 的灰底蓋掉。
       &.is-selected {
-        background: $search-row-active;
-        box-shadow: inset 3px 0 0 rgba(255, 255, 255, .7);
+        background: $search-row-selected;
+
+        a.search-result-title {
+          color: $search-accent;
+        }
+
+        // 標題裡的關鍵字在未選中時是「比標題更亮的白」，選中後要維持同一個
+        // 「更亮一階」的關係，否則橘標題裡插一塊白字會對比反轉、看起來像斷字
+        a.search-result-title .search-keyword {
+          color: $search-accent-bright;
+        }
       }
     }
   }
