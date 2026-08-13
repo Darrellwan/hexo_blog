@@ -62,17 +62,33 @@
 
 ### 站內搜尋（local_search）＋ 相依清理
 - **建立日期**：2026-08-13
-- **狀態**：功能已完成並本機驗證，**已 commit 未 push**；視覺待用戶評分
+- **狀態**：功能完成、外部 review 完成、四項必修已修並實測，**6 個 commit 未 push**（`db9465f` `3069e6e` `952a3b4` `6996a47` `ab04a1f` `0fbb042`）
 - **已完成（本機實測通過）**：
   - 移除 5 個殭屍套件（`hexo-related-popular-posts`、`hexo-helper-seo-structured-data`、`hexo-dynamic-config`、`@vercel/analytics`、`@vercel/speed-insights`），漏洞 48 → 1；剩下的 `image-size` 無修補版且本專案不處理不受信任輸入
   - `npm update` 同 major 升版：hexo 8.1.1→8.1.2、next 主題套件 8.27→8.29（註：站台實際讀本地 `themes/next/`，node_modules 那份未使用）
   - 啟用 `hexo-generator-searchdb@1.5.0`，`search.json` 128 筆 / 936 KB（gzip 340 KB），`preload: false` 只在打開搜尋時下載
   - 搜尋 modal 改 Raycast 風（`themes/next/source/css/_custom/search.styl`），第一版被退 40 分後重做：拉開浮層與頁面的明度階差、加可見邊界、尺寸放大、標題關鍵字不再用底色方塊
   - 鍵盤層（`darrell.js`）：⌘K／⌘F 開啟、↑↓ 移動、Enter 開啟、Esc 關閉、底部快捷鍵提示
-  - GA4 dataLayer：`search`（去抖動 700ms）與 `select_item`（ecommerce 結構），兩者都在 GTM-WRZDBFS 實測收到
+  - GA4 dataLayer：`search`（去抖動 700ms）與 `select_item`（ecommerce 結構）。⚠️ **只驗證到「有推進 dataLayer」**，GTM-WRZDBFS 的 tag／trigger 尚未設定，GA4 端未收到任何資料——不可宣稱追蹤已完成
   - 修 `local-search.js` 排序：原本只看命中總次數，長文刷單一關鍵字就能排第一；改為先比命中關鍵字種類數、再比標題命中數
 - **本次修掉的坑**（都已註解在檔內）：Stylus 的 `url()` 不能餵字串變數、CSS `min()` 被 Stylus 內建數學函式攔截、`custom.styl` 會被單獨編譯成 `custom.css` 且載入順序在 `main.css` 之後（所以不能用 `+mobile()` mixin）、NexT 全域 `a` 的 `border-bottom` 會在搜尋結果畫多餘橫線
-- **待辦**：用戶評分視覺 → 決定是否再調 → `git push`（push 後照 CLAUDE.md 流程等 Vercel 部署並驗證）
+- **外部 review**（2026-08-13，codex `gpt-5.6-sol` @ max 三輪，唯讀）：給 70/100。報告在 `docs/reviews/2026-08-13-local-search-review.md`（⚠️ `docs/` 在 `.gitignore:79`，只在本機、不進版控）
+  - 三條必修我逐條回源核對：手機 reduced-motion 破版與 IME 誤觸**屬實**；「GA4 未端到端驗收」屬實但是驗收缺口、不是程式碼 bug
+- **本輪已修（每項都在瀏覽器實測，不只看程式碼）**：
+  - 手機＋`prefers-reduced-motion` 時 modal 左偏半屏（兩個 `@media` specificity 相同、後者蓋掉 `transform:none`）：補 `(max-width:767px) and (prefers-reduced-motion:reduce)` 交集區塊。實測 x 由 -187.5 → 0
+  - 注音組字時 Enter 誤開文章、↑↓ 誤移選取：加 `e.isComposing || e.keyCode === 229` 防護；追蹤層另加 `compositionstart/end`，組字中不送半成品。正常方向鍵未受影響（回歸已驗）
+  - modal 開啟時 ⌘F 叫出瀏覽器原生尋找列：`preventDefault()` 移到 `isOpen()` 判斷之前
+  - 中文單字（如「水」，實際 7 筆結果）不送 GA4：`MIN_TERM_LENGTH` 2 → 1
+  - 選取列樣式重做兩次。**關鍵教訓**：半透明橘疊在深灰上會合成泥褐 `#523c37`，標題對比掉到 3.39:1（比一般列 11.24:1 還糟）。定案為中性不透明亮底 `#45454b`（標題 8.89:1），橘色改給關鍵字用提亮版 `#ff9d66`（純品牌橘 `#fc6423` 當小字只有 3.17:1，過不了 AA），並移除摘要關鍵字的灰底方塊
+  - 三個 dataLayer 路徑格式對齊成 GA4 內建 `page_path` 的形狀：`page_path` 加開頭斜線並去掉 `index.html`、`post_path` 移除多餘斜線（`post-related.swig:49`）
+- **待辦**：用戶評分視覺 → `git push`（push 後照 CLAUDE.md 流程等 Vercel 部署並驗證）→ 設定 GTM tag/trigger 讓 GA4 真的收到 `search`／`select_item`（`select_item` 頂層的 `search_term` 需另外映射 + 建 event-scoped 自訂維度才會進 GA4）
+- **已知延後，未做**：
+  - 無障礙整套（focus trap、關閉後焦點還給開啟按鈕、`role="dialog"`、`aria-activedescendant`、關閉鈕改真 `button`）——要動 swig 模板
+  - 結果 HTML 改 `createElement` 硬化（目前索引全是自家文章，需索引被污染才可利用，非當前可攻擊）
+  - 排序的 token 去重（完整片語與重複字都被算成不同關鍵字）
+  - `lastSent` 關閉 modal 時不重設、大小寫未正規化——牽涉「一次搜尋互動」怎麼定義
+  - 中文分類／標籤頁的 `page_path` 未做百分比編碼，與 GA4 內建維度對不上（不影響文章頁與搜尋）
+  - `custom.css` 會漏出未解析的 `$orange-main`／`$link-main` 字面值（既有問題，與搜尋無關）
 - **未處理**：`main.yml` 的 `search:` 設定與本 tracker 更新因同檔混有先前 session 的未提交改動，需分開處理
 
 ## 🟡 等外部
@@ -94,6 +110,18 @@
 （無）
 
 ## ✅ 已完成
+
+- [x] **8/12 全站文章更新日期修正（顯示為部署日的 bug）並上線**
+  - 成因：`main.yml` 是 `updated_option: 'mtime'`，而 front matter 寫的是 Hexo 不認的自創欄位 `modified`，所以更新日 fallback 成檔案 mtime；Vercel 每次部署都是 fresh clone → 全站顯示部署當天。考古：2024-04-25 `d9f582d` 首次手寫 `modified`，2024-07-24 `e25fa18` 把主題顯示開關掛在 `post.modified` 上，但顯示值一直是 `post.updated`
+  - 改動：29 個檔案 front matter `modified:` → `updated:`（值不動，其中 27 篇 tracked 進 commit）；`main.yml`／`_config.yml` 的 `updated_option` 改 `'date'`；`themes/next/layout/_macro/post.swig:75,85` 顯示開關改 `post.updated`；`themes/next/_config.yml` 的 `another_day` 改 `true`；`CLAUDE.md`＋`docs/guides/n8n-node-article-guide.md` 模板同步
+  - codex（`gpt-5.6-sol` @ max）review 抓到真回歸：`bin/calc-n8n-update-log-stats.js:95` 也讀 `data.modified`，會 fallback 成執行時間；已改讀 `data.updated`，實跑驗證 `end_date` 正確
+  - codex 另一項「fresh clone build 產出 0 bytes 文章頁」是誤報（它的測試環境沒 npm install）。線上實查 HTTP 200／187 KB／`popular-posts` 出現 12 次
+  - commit：`f5af90c`（日期修正）、`38412b6`（統計腳本）、`b46ee2f`（合併遠端 README bot）皆已 push；`f5f8ac4`（CLAUDE.md 的 push 後檢查流程改用 `vercel inspect --wait`）**尚未 push**
+  - 線上驗證：`claude-code-fable-5` 顯示 2026-07-26 23:04:41、`n8n-google-sheets-node` 2026-05-10、`ga4-search-console-mcp-install` 2026-08-03；沒有實質更新的 `n8n-cli-guide`／`cursor-mcp-server-guide` 已不顯示「更新於」
+  - 未處理（非本次範圍）：codex 建議加 lint（禁 `modified`、驗 `updated >= date`）；`scripts/related-posts.js` 未追蹤，本機與線上跑的是兩套不同的相關文章實作（線上仍用舊 npm plugin，「移除 GA 依賴」從未上線）
+  - 部分暫存手法：`CLAUDE.md`、`main.yml`、`docs/guides/n8n-node-article-guide.md`、`claude-code-new-command-line-tool.md`、`claude-managed-agents.md` 都有既有未提交改動，用 `git hash-object -w` + `git update-index --cacheinfo` 只把本次那幾行進 index，工作區未受影響（`git checkout --` 被 hook 攔下是對的）
+
+- [x] **8/2 追加：n8n-expert 首頁文案調整與部署確認**：移除首頁 Hero 定價文案並保留 FAQ 完整說明；確認修改內容已部署至 https://www.darrelltw.com/n8n-expert/（commit `af674b4`）
 
 - [x] **8/2 GA4/Search Console MCP 安裝教學文章完成並上線**
   - 文章 `source/_posts/ga4-search-console-mcp-install.md` 補齊全部截圖（服務帳戶建立表單、JSON key 下載、GA4 Property Access Management 加使用者、Search Console 加使用者、Claude Desktop connectors 檢查等），正式封面圖已換掉 TODO 佔位
