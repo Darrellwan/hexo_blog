@@ -2,6 +2,54 @@
 
 ## 🔴 待完成
 
+### automation.darrelltw.com 接案站獨立（新站已部署、上線前保護中）
+- **建立日期**：2026-08-16
+- **狀態**：新站已部署且視覺與 v2 一致，**未正式公開**（robots 全擋＋noindex header＋Cloudflare Access 只允許本人兩信箱）
+- **計畫**：`docs/plans/2026-08-15-automation-site-plan.md`（docs/ gitignored，僅本機）；**交接**：`handoff/automation-site_handoff.md`
+- **已完成（均實測驗證）**：
+  - 新 repo `Darrellwan/automation-site`（Astro）→ Cloudflare Workers Static Assets＋Custom Domain `automation.darrelltw.com`
+  - v2 深色設計原樣移植（中途 codex 擅自重做淺色版已抓回修正）；hero demo 動畫被 CSP 擋 inline script 已修（外部化 `home.js`）
+  - 案例內頁 ×6（v2 portfolio 文案、未編造數據）、服務頁 ×3、sitemap＋robots、`_headers` 安全 header
+  - 表單前端 fail-closed＋蜜罐 phone 欄位；聊天端點改指 darn8n；聊天 workflow 已搬 darn8n（**inactive**，缺 Qdrant credential、CORS allowedOrigins 還是 localhost:4000）
+  - GTM `GTM-K4GHVMVP` 埋碼（外部檔繞 CSP）＋GTM 內 GA4 接線已發布 v2（GA4 tag `G-6TBPT8PQEJ`＋`form_submit_success`/`chat_open` 事件）
+  - blog 側止血：`main.yml` exclude 已 commit（`ac72c83`），防 push 後 v2 原始檔公開
+- **待辦**：Turnstile hostname 加新網域＋Secret Key 進 darn8n credential → n8n webhook 加 siteverify/蜜罐丟棄/dedupe 節點；Qdrant credential 建立＋聊天 workflow 綁定啟用；正式上線切換（撤 Access/robots/noindex → blog `vercel.json` 301（statusCode:301 非 permanent:true）→ Phase 5 舊連結 6 檔清理）
+- ⚠️ **blog 分支領先 origin 5、落後 1**，push 前先 pull；push 會一併帶出另一 session 的 RAG chat commits
+
+### n8n AI Assistant 自架（獨立文章 + upstream issue）
+- **建立日期**：2026-08-12
+- **狀態**：sandbox 已跑通、issue 已送出、文章草稿完成待補圖，**未 commit**
+- **文章草稿**：`docs/drafts/n8n-instance-ai-assistant-selfhosted.md`（391 行，尚未公開，用戶指定先放 docs）
+- **素材**：`docs/drafts/n8n-instance-ai-assets/`（修復 patch、issue 內文、裁切好的錯誤截圖兩版）
+- **upstream issue**：[n8n-io/n8n#36093](https://github.com/n8n-io/n8n/issues/36093)（帳號 darrell-tw，OPEN）。送出時未附圖，要補需上網頁拖曳
+- **核心發現（文章護城河，網路上查不到）**：
+  - 官方兩份文件打架：使用手冊寫「Cloud only」，部署文件有完整自架步驟；**實測自架 Community 版無 license 可跑**
+  - 官方文件環境變數名稱**寫錯**：文件寫 `N8N_INSTANCE_AI_SANDBOX_API_URL`，原始碼實際讀 `N8N_SANDBOX_SERVICE_URL` / `N8N_SANDBOX_SERVICE_API_KEY`
+  - OpenAI 驗證必失敗：`verifyModel()` 寫死 `maxOutputTokens: 8`，Responses API 下限 16。`model-factory.ts:84-85` 決定無 baseURL 就走 Responses API，故**所有** OpenAI 模型皆中；繞法＝用環境變數設模型跳過驗證
+  - OpenRouter 驗證會過但對話會炸（路由到第三方上游，tool schema 不相容）
+  - reasoning effort 寫死在 `apply-agent-thinking.ts`（openai=high、anthropic=medium），無 env 可覆蓋
+- **已驗證**：修復 patch 在 n8n master 666fde3c 上，回歸測試 master 紅（`expected 8 to be greater than or equal to 16`）、修完 30 綠
+- **未驗證**：`256` 這個新值沒有實際打過 OpenAI（key 已刪），只從 API 規格推論
+- **待辦**：撤銷兩把外洩的 OpenAI key（尾數 `nksA`、`gTgA`）→ 文章補封面圖與截圖、查三張 articleCard 的 `bgImage` → 決定發布時機 → update-log 的「之後補連結」要指回本篇
+- **環境**：sandbox 在 mbp-old colima（`~/n8n-sandbox/`），**無開機自動啟動**，重開機要手動 `colima start`
+
+### n8n 2.34.0 更新紀錄（寫完待 commit）
+- **建立日期**：2026-08-10
+- **狀態**：文章已寫完、圖已處理、本地預覽驗證通過，**用戶 review 中，尚未 commit**
+- **已完成**：
+  - preview 站（`https://n8n-preview-mbp.darrelltw.com/`）升到 2.34.0，`/rest/settings` 確認 `versionCli=2.34.0`、enterprise flags 全 false（與自架 Community 讀者環境一致）
+  - `source/_posts/n8n-update-log.md` 新增 2.34.0 章節，三項：HTTP Simplified Custom Auth 憑證、OpenAI Chat Model Extra Body、Schedule 非整除分鐘間隔修復
+  - 四張截圖裁切至與舊圖同規格（1008x720 / 838x755 / 960x700）並經 pngquant 壓縮；`npm run images:process` 已更新 `source/_data/image_dimensions.json`
+  - meta 已更新：description 改 2026/08/10、最新測試版 2.34.0、正式版 2.33.7；`updated: 2026-08-10 18:16:56`（欄位名 8/12 由 `modified` 改成 `updated`，見已完成區「文章更新日期修正」）
+- **驗收結果**：
+  - Simplified Custom Auth：**PASS**。範本 `{{apiKey}}` 自動生成欄位卡片，存檔後連線測試回 `The service accepted the credential`；Test URL 用 postman-echo，token 為假值
+  - OpenAI Extra Body：**部分 PASS**。Options 有此選項且 JSON 存得進去；**參數是否真的送達 API 未測**，文章已標明並註記 PR 附有 LM Studio debug log
+  - Schedule 每 N 分鐘：**未實測**（等滿一輪成本太高）。文章用 warning callout 標明，觸發序列引用 PR #35062 的 `ScheduleTrigger.node.test.ts`；只驗證了設定畫面無新選項
+- **待辦**：用戶 review → commit（repo 有大量無關既有變更，須逐路徑挑本次檔案）→ 授權後 push → Vercel 部署驗證
+- **可選未納入**：2.34.0 另修了多行密鑰貼上被吃掉換行、且改用表達式模式繞過會覆蓋遺失私鑰的 bug（PR #35157）。用戶選寫 3 項故未納入，可補一段警語
+- **已排除**：Workflow Review 系列（#35041 / #35199 / #35233 / #35390）為 Enterprise 限定（`workflow-reviews.ee/` + `feat:workflowReviews` 授權），自架 Community 看不到
+- **已知既有問題（非本次造成）**：手機版水平溢出來自舊章節「NVIDIA Nemotron 加入 Chat Model 節點」的表格（寬 505px）
+
 ### Meta Ads MCP 文章改寫（實測 + 競品差異化）
 - **建立日期**：2026-08-08
 - **交接文件**：`handoff/meta-ads-mcp_handoff.md`
@@ -46,6 +94,7 @@
   - 定價一致性後續：① ~~maintenance deck 重工~~ ✅ 2026-07-07 已完成（單項 5–8 萬起、包月 15,000/25,000 月，PPTX 重產；Drive Slides 仍舊價，覆蓋前不可外發——見該專案 task-tracker）；② ⚠️ 恢復 Ads 投放時：廣告文案加「專案 5 萬起」預過濾點擊、暫停「n8n 接案」關鍵字（QS=1 且與高價定位意圖錯配）
 - **2026-07-07 上線前文案補強 ✅ 已執行完成**（Sonnet subagent）：`docs/plans/2026-07-07-n8n-expert-v2-copy-prelaunch-plan.md` 五項全過——hero-lede 改寫（去工程語言、帶 n8n 自動化/導入/串接關鍵字）、hero-meta 三格（10+ 專案／5萬 起價／48h 回覆）、導覽中文化（nav/Contact/trust-label）、H2 ×2 帶關鍵字、FAQ 7 題含外包（JSON-LD + JS 雙軌一致）。驗收：關鍵字覆蓋齊、noindex 未動、桌面+手機截圖無破版。→ 剩版型最終確認 + 上線替換（改 noindex）
 - **2026-07-08 重大 pivot：文字優化直接上線 v1，不等 v2 版型** ✅（commit `9ceee7b` 已 push，Vercel 部署）。用戶拍板「只要改文字」：同一套文案移植到現行版 `source/n8n-expert/`——lede（5 萬起+關鍵字）、H2 ×2、FAQ 3→5 題（價格帶+外包，JSON-LD 同步）、預算選項新制、**需求類型選項改處境描述**（自動化建置/技術顧問/企業內訓/還不確定，value 用短版、form-config.js key 同步，v1/v2 四檔案一起改）。v2 版型決策照舊獨立進行，v2 的 QS 文字優勢已被 v1 追平，v2 剩純版型/設計價值
+- **2026-08-16 決策定案：v2 不在 blog 內上線，已拆成獨立站 `automation.darrelltw.com`**（見上方「automation.darrelltw.com 接案站獨立」條目），本項的版型上線決策由獨立站取代
 - **後續方向**：第二波 = 六篇公開版案例文 + 卡片接文章連結（吃「n8n 應用案例」搜尋意圖）；第三波 = 案例區 build 時預渲染進 HTML（現為 JS innerHTML，爬蟲風險）、blog 既有 n8n 文章內鏈、Ads sitelinks 對齊新內容
 - **相關反饋**：[[feedback_chinese_ui_typography]] / [[feedback_claude_design_import_to_production]]
 
