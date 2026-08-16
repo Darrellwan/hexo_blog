@@ -104,6 +104,7 @@ pagination_dir: page
 include:
   - .well-known/**
 exclude:
+  - n8n-expert-v2/**
 ignore:
 
 # Comments
