@@ -4,7 +4,7 @@
 
 ### automation.darrelltw.com 接案站獨立（新站已部署、上線前保護中）
 - **建立日期**：2026-08-16
-- **狀態**：新站已部署且視覺與 v2 一致，**未正式公開**（robots 全擋＋noindex header＋Cloudflare Access 只允許本人兩信箱）
+- **狀態**（8/17 更新）：新站已部署，**表單整條線實測可用**；**聊天仍不可用**（Qdrant credential 不存在）。**未正式公開**（robots 全擋＋noindex header＋Cloudflare Access 允許本人三信箱）
 - **計畫**：`docs/plans/2026-08-15-automation-site-plan.md`（docs/ gitignored，僅本機）；**交接**：`handoff/automation-site_handoff.md`
 - **已完成（均實測驗證）**：
   - 新 repo `Darrellwan/automation-site`（Astro）→ Cloudflare Workers Static Assets＋Custom Domain `automation.darrelltw.com`
@@ -13,8 +13,22 @@
   - 表單前端 fail-closed＋蜜罐 phone 欄位；聊天端點改指 darn8n；聊天 workflow 已搬 darn8n（**inactive**，缺 Qdrant credential、CORS allowedOrigins 還是 localhost:4000）
   - GTM `GTM-K4GHVMVP` 埋碼（外部檔繞 CSP）＋GTM 內 GA4 接線已發布 v2（GA4 tag `G-6TBPT8PQEJ`＋`form_submit_success`/`chat_open` 事件）
   - blog 側止血：`main.yml` exclude 已 commit（`ac72c83`），防 push 後 v2 原始檔公開
-- **待辦**：Turnstile hostname 加新網域＋Secret Key 進 darn8n credential → n8n webhook 加 siteverify/蜜罐丟棄/dedupe 節點；Qdrant credential 建立＋聊天 workflow 綁定啟用；正式上線切換（撤 Access/robots/noindex → blog `vercel.json` 301（statusCode:301 非 permanent:true）→ Phase 5 舊連結 6 檔清理）
-- ⚠️ **blog 分支領先 origin 5、落後 1**，push 前先 pull；push 會一併帶出另一 session 的 RAG chat commits
+- **2026-08-17 完成（automation-site 共 7 個 commit，皆已 push＋部署，線上版本 `213dacd5`）**：
+  - **表單驗證改做在新站自己的 Worker，不是 n8n 節點**（`worker/index.js` 的 `/api/contact`）。決策理由：原本那支 n8n workflow `GYmyA5jBvqisBjgJ` 同時服務部落格 `/n8n-expert/`、`/n8n-expert-v2/`、`/links/`，直接加驗證會擋掉舊頁的真實詢問單。Secret 存 Cloudflare Worker secret，Darrell 自己貼（後台加完**必須部署才生效**，這點踩過）
+  - Worker 功能：siteverify＋Turnstile hostname 核對＋蜜罐 `phone` 丟棄＋KV `FORM_DEDUPE` 10 分鐘去重＋欄位 2000 字上限＋必填檢查＋siteverify 5s／n8n 10s 逾時＋上游失敗回 502＋secret 未設定 fail closed（503）
+  - **表單真單端到端通過**：n8n 執行 `107294`，payload 帶 `source: automation-site`＋`verified: true`（只有經過 Worker 才會有），Slack／Gmail 草稿／通知信／Sheet 四個出口全跑
+  - SEO：五頁 title／description 前置 `n8n`（原本五頁 title 一個 n8n 都沒有，301 導過來會相關性不匹配）；`ProfessionalService` 改用固定站根＋`@id`（原本每頁都把該頁 canonical 當公司網址）；新增 `Person`；首頁 H1 改「用 n8n 讓工作自動運轉」
+  - 文案：頁尾標語與全站 6 處把客群縮成「行銷人／中小企業／要會看 code」的用詞改掉；移除點了會落空的頁尾「維運訂閱」連結
+  - 修 bug：下拉選單箭頭 hover 時鋪成整排（`background` 簡寫洗掉 `no-repeat`）；FAQ 點擊被 CSP 擋（inline onclick 改事件委派）；新增 `404.html`
+  - 聊天數字查核從 **fail open 改 fail closed**：閘門 webhook 失敗時原本會把模型講的價格原封放上畫面，現在含金額或工期的回覆改走罐頭回覆（`gateScrub` 判斷式已用檔內真實函式測 7 情境全過）
+  - 聊天兩支 workflow（`pmZZqqc7Oik4WEKA`、`HMXBjbMlB0lAKofq`）`allowedOrigins` 改成 `https://automation.darrelltw.com,http://localhost:4321` 並啟用
+  - codex 全站唯讀 review（`gpt-5.6-sol` @ max）：2 紅／13 黃／3 綠，報告在 `~/.codex-handoff/inbox/`。13 黃已修 6 條
+  - 導流腳本 `docs/plans/2026-08-17-automation-launch-redirect-runbook.md`（commit `851dc94`，`docs/` 被 gitignore 故用 `-f`）
+  - 測試資料已清：Sheet 4 列、Gmail 4 草稿＋2 通知信（**Slack 4 則未清**，本 session 沒有 Slack 工具）
+- **待辦（卡在 Darrell）**：**建立 Qdrant credential**（節點掛的 `4g6kI0PK7lWRQz66` 已不存在，整台 n8n 無任何 `qdrantApi`；Qdrant Cloud 叢集仍活著，`/collections` 回 403 非 DNS 失敗，故知識庫不需重建。URL `https://26f0bcf2-d1e6-4cac-9eed-a3dec676bb4a.us-east-1-1.aws.cloud.qdrant.io`）；Slack 4 則測試通知；外部連結（Threads／IG／X 個人檔案、電子報頁尾、確認有無 Google Ads 指舊網址）
+- **待辦（可做）**：**首頁案例卡與 FAQ 只在 JS 執行後出現**（靜態 HTML 的 `#portfolioGrid`／`#faqList` 是空的，直接抵銷 SEO；資料寫死在 `home.js` 且與 `src/content/cases/` 重複）；手機版主導覽全隱藏無替代入口；聊天 timeout 在等閘門前被清掉；KV 去重讀寫競態；表單無 rate limit；首頁「10+ 專案」「300+ hrs」無佐證（需 Darrell 判斷）；正式上線切換（撤 Access/robots/noindex → 依 runbook 跑 301 與舊連結清理）
+- **Darrell 已明示不處理**：GA4 DebugView 驗收（不需要）；`/n8n-service/` 那條不在 repo 裡的 301 來源（不用管，代價是上線後會變兩跳轉址）
+- ⚠️ **blog 分支領先 origin 8、落後 1**，push 前先 pull；push 會一併帶出另一 session 的 RAG chat commits
 
 ### n8n AI Assistant 自架（獨立文章 + upstream issue）
 - **建立日期**：2026-08-12
