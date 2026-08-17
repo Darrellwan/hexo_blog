@@ -10,10 +10,10 @@
   - 新 repo `Darrellwan/automation-site`（Astro）→ Cloudflare Workers Static Assets＋Custom Domain `automation.darrelltw.com`
   - v2 深色設計原樣移植（中途 codex 擅自重做淺色版已抓回修正）；hero demo 動畫被 CSP 擋 inline script 已修（外部化 `home.js`）
   - 案例內頁 ×6（v2 portfolio 文案、未編造數據）、服務頁 ×3、sitemap＋robots、`_headers` 安全 header
-  - 表單前端 fail-closed＋蜜罐 phone 欄位；聊天端點改指 darn8n；聊天 workflow 已搬 darn8n（**inactive**，缺 Qdrant credential、CORS allowedOrigins 還是 localhost:4000）
+  - 表單前端 fail-closed＋蜜罐 phone 欄位；聊天端點改指 darn8n；聊天 workflow 已搬 darn8n（此列為 8/16 當下狀態，credential 與 allowedOrigins 已於 8/17 補齊，見下方 8/17 完成區）
   - GTM `GTM-K4GHVMVP` 埋碼（外部檔繞 CSP）＋GTM 內 GA4 接線已發布 v2（GA4 tag `G-6TBPT8PQEJ`＋`form_submit_success`/`chat_open` 事件）
   - blog 側止血：`main.yml` exclude 已 commit（`ac72c83`），防 push 後 v2 原始檔公開
-- **2026-08-17 完成（automation-site 共 8 個 commit，皆已 push＋部署，線上版本 `38b57163`）**：
+- **2026-08-17 完成（automation-site 共 9 個 commit；前 8 個已 push＋部署＝線上版本 `38b57163`，第 9 個 `e78684b` 只改註解、尚未 push）**：
   - **表單驗證改做在新站自己的 Worker，不是 n8n 節點**（`worker/index.js` 的 `/api/contact`）。決策理由：原本那支 n8n workflow `GYmyA5jBvqisBjgJ` 同時服務部落格 `/n8n-expert/`、`/n8n-expert-v2/`、`/links/`，直接加驗證會擋掉舊頁的真實詢問單。Secret 存 Cloudflare Worker secret，Darrell 自己貼（後台加完**必須部署才生效**，這點踩過）
   - Worker 功能：siteverify＋Turnstile hostname 核對＋蜜罐 `phone` 丟棄＋KV `FORM_DEDUPE` 10 分鐘去重＋欄位 2000 字上限＋必填檢查＋siteverify 5s／n8n 10s 逾時＋上游失敗回 502＋secret 未設定 fail closed（503）
   - **表單真單端到端通過**：n8n 執行 `107294`，payload 帶 `source: automation-site`＋`verified: true`（只有經過 Worker 才會有），Slack／Gmail 草稿／通知信／Sheet 四個出口全跑
@@ -28,10 +28,15 @@
   - **首頁案例卡與 FAQ 改成伺服器端渲染**（commit `b479dee`，已 push＋部署，線上版本 `38b57163`）：`index.astro` 直接從 cases collection（新增 `homeOrder`／`cardSummary`／`cardMetric` 三欄）與新檔 `src/data/faqs.ts` 產出 HTML；`home.js` 少 100 行，只留依 slug 對應的裝飾用流程圖（`CASE_DIAGRAMS`）與 FAQ 開合。實查 `dist/index.html`：6 條 `/cases/{slug}/` 連結、6 個標題、7 題 FAQ 問答全在靜態 HTML（原本一個都沒有）。瀏覽器實測版型不變、FAQ 開合與 aria 正常、hero 動畫與 scroll reveal 未受影響、console 無錯誤。未加 FAQPage 結構化資料（Google 已限縮 FAQ rich results 到政府／醫療類站）
   - **✅ 聊天已修好、整條線實測可用（2026-08-17 傍晚）**：Qdrant credential 重建完成（新 ID `FhSzheVbdg2hdwAx`，名稱 `Qdrant Cloud - kb_v1`），兩支 workflow（`pmZZqqc7Oik4WEKA`、`HMXBjbMlB0lAKofq`）的 `查知識庫` 節點已改掛新 credential，線上實查 `activeVersionId` = `versionId`（跑的就是新版）。實測：聊天端點問「n8n 導入多少錢」回串流答案且數字與 FAQ 一致（代表真的有檢索到知識庫）；閘門端點帶 `{"chatInput":"..."}` 回 200 與 contextPairs／pagePairs；兩個端點的 CORS preflight 對 `https://automation.darrelltw.com` 回 204 且 allow-origin 正確，換成其他來源不會被放行。知識庫 collection `kb_v1` 完好，不需重建
   - **key 的下落（供日後查）**：Qdrant API key 一直都在 `~/Downloads/darn8n_api_key.txt`（Darrell 2026-08-13 用檔案交付），實測帶這把打叢集 `/collections` 回 200。前一版交接誤判成「金鑰遺失、卡在 Darrell」，是因為只搜了專案目錄與環境變數名，沒搜對話紀錄。**教訓：宣稱某金鑰不存在之前，要一併搜 `~/.claude/projects` 逐字稿與 `~/Downloads`**
-- **待辦（卡在 Darrell）**：外部連結（Threads／IG／X 個人檔案、電子報頁尾、確認有無 Google Ads 指舊網址）
-- **待辦（可做）**：手機版主導覽全隱藏無替代入口；聊天 timeout 在等閘門前被清掉；KV 去重讀寫競態；表單無 rate limit；首頁「10+ 專案」「300+ hrs」無佐證（需 Darrell 判斷）；正式上線切換（撤 Access/robots/noindex → 依 runbook 跑 301 與舊連結清理）
+  - **三份文件對齊到已驗證狀態**：`chat-handler.js` 第 15–16 行過期註解（原寫「生產 workflow 尚未搬移」）改成兩支 workflow ID＋credential＋驗收日期（commit `e78684b`）；交接文件的「下次接手第一步」原本叫人去驗已經驗完的東西，改成真實下一步並補上 runbook 的順序陷阱；tracker 同步（blog commit `12e7e39`，只含 tracker 與交接兩檔）
+
+- **🔴 待決問題（卡在 Darrell，3 項）**：
+  1. **首頁 hero 兩個數字沒有佐證**——「10+ 專案實戰經驗」「300+ hrs 每年幫客戶省下的工時」要留、改成有佐證的說法、還是拿掉。這是流量進來第一眼看到的東西，決定了再上線比較不會回頭改
+  2. **外部入口連結**：Threads／IG／X 個人檔案、電子報頁尾、確認有無 Google Ads 指舊網址（都在 Darrell 帳號裡）
+  3. **正式公開的時間點**——功能面已無阻擋（表單、聊天、首頁 SEO 三條線都實測過）
+- **待辦（可做）**：手機版主導覽全隱藏無替代入口；聊天 timeout 在等閘門前被清掉；KV 去重讀寫競態；表單無 rate limit；正式上線切換（撤 Access/robots/noindex → 依 runbook 跑 301 與舊連結清理，⚠️ 必須先搬 Link in Bio 圖片再加 301，否則 og-image 被 `/n8n-expert/:path*` 吃掉變破圖）
 - **Darrell 已明示不處理**：GA4 DebugView 驗收（不需要）；`/n8n-service/` 那條不在 repo 裡的 301 來源（不用管，代價是上線後會變兩跳轉址）
-- ⚠️ **blog 分支領先 origin 9、落後 2**（2026-08-17 18:20 實查），push 前先 pull；push 會一併帶出另一 session 的 RAG chat commits
+- ⚠️ **blog 分支領先 origin 10、落後 2**（2026-08-18 00:45 實查），push 前先 pull；push 會一併帶出另一 session 的 RAG chat commits
 
 ### n8n AI Assistant 自架（獨立文章 + upstream issue）
 - **建立日期**：2026-08-12
