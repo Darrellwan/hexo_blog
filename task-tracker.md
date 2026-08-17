@@ -4,7 +4,7 @@
 
 ### automation.darrelltw.com 接案站獨立（新站已部署、上線前保護中）
 - **建立日期**：2026-08-16
-- **狀態**（8/17 更新）：新站已部署，**表單整條線實測可用**；**聊天仍不可用**（Qdrant credential 不存在）。**未正式公開**（robots 全擋＋noindex header＋Cloudflare Access 允許本人三信箱）
+- **狀態**（8/17 傍晚更新）：新站已部署，**表單與聊天兩條線都實測可用**（聊天的 Qdrant credential 已於 8/17 傍晚重建並驗過）。**未正式公開**（robots 全擋＋noindex header＋Cloudflare Access 允許本人三信箱）
 - **計畫**：`docs/plans/2026-08-15-automation-site-plan.md`（docs/ gitignored，僅本機）；**交接**：`handoff/automation-site_handoff.md`
 - **已完成（均實測驗證）**：
   - 新 repo `Darrellwan/automation-site`（Astro）→ Cloudflare Workers Static Assets＋Custom Domain `automation.darrelltw.com`
@@ -13,7 +13,7 @@
   - 表單前端 fail-closed＋蜜罐 phone 欄位；聊天端點改指 darn8n；聊天 workflow 已搬 darn8n（**inactive**，缺 Qdrant credential、CORS allowedOrigins 還是 localhost:4000）
   - GTM `GTM-K4GHVMVP` 埋碼（外部檔繞 CSP）＋GTM 內 GA4 接線已發布 v2（GA4 tag `G-6TBPT8PQEJ`＋`form_submit_success`/`chat_open` 事件）
   - blog 側止血：`main.yml` exclude 已 commit（`ac72c83`），防 push 後 v2 原始檔公開
-- **2026-08-17 完成（automation-site 共 7 個 commit，皆已 push＋部署，線上版本 `213dacd5`）**：
+- **2026-08-17 完成（automation-site 共 8 個 commit，皆已 push＋部署，線上版本 `38b57163`）**：
   - **表單驗證改做在新站自己的 Worker，不是 n8n 節點**（`worker/index.js` 的 `/api/contact`）。決策理由：原本那支 n8n workflow `GYmyA5jBvqisBjgJ` 同時服務部落格 `/n8n-expert/`、`/n8n-expert-v2/`、`/links/`，直接加驗證會擋掉舊頁的真實詢問單。Secret 存 Cloudflare Worker secret，Darrell 自己貼（後台加完**必須部署才生效**，這點踩過）
   - Worker 功能：siteverify＋Turnstile hostname 核對＋蜜罐 `phone` 丟棄＋KV `FORM_DEDUPE` 10 分鐘去重＋欄位 2000 字上限＋必填檢查＋siteverify 5s／n8n 10s 逾時＋上游失敗回 502＋secret 未設定 fail closed（503）
   - **表單真單端到端通過**：n8n 執行 `107294`，payload 帶 `source: automation-site`＋`verified: true`（只有經過 Worker 才會有），Slack／Gmail 草稿／通知信／Sheet 四個出口全跑
@@ -24,11 +24,14 @@
   - 聊天兩支 workflow（`pmZZqqc7Oik4WEKA`、`HMXBjbMlB0lAKofq`）`allowedOrigins` 改成 `https://automation.darrelltw.com,http://localhost:4321` 並啟用
   - codex 全站唯讀 review（`gpt-5.6-sol` @ max）：2 紅／13 黃／3 綠，報告在 `~/.codex-handoff/inbox/`。13 黃已修 6 條
   - 導流腳本 `docs/plans/2026-08-17-automation-launch-redirect-runbook.md`（commit `851dc94`，`docs/` 被 gitignore 故用 `-f`）
-  - 測試資料已清：Sheet 4 列、Gmail 4 草稿＋2 通知信（**Slack 4 則未清**，本 session 沒有 Slack 工具）
-- **待辦（卡在 Darrell）**：**建立 Qdrant credential**（節點掛的 `4g6kI0PK7lWRQz66` 已不存在，整台 n8n 無任何 `qdrantApi`；Qdrant Cloud 叢集仍活著，`/collections` 回 403 非 DNS 失敗，故知識庫不需重建。URL `https://26f0bcf2-d1e6-4cac-9eed-a3dec676bb4a.us-east-1-1.aws.cloud.qdrant.io`）；Slack 4 則測試通知；外部連結（Threads／IG／X 個人檔案、電子報頁尾、確認有無 Google Ads 指舊網址）
-- **待辦（可做）**：**首頁案例卡與 FAQ 只在 JS 執行後出現**（靜態 HTML 的 `#portfolioGrid`／`#faqList` 是空的，直接抵銷 SEO；資料寫死在 `home.js` 且與 `src/content/cases/` 重複）；手機版主導覽全隱藏無替代入口；聊天 timeout 在等閘門前被清掉；KV 去重讀寫競態；表單無 rate limit；首頁「10+ 專案」「300+ hrs」無佐證（需 Darrell 判斷）；正式上線切換（撤 Access/robots/noindex → 依 runbook 跑 301 與舊連結清理）
+  - 測試資料已清：Sheet 4 列、Gmail 4 草稿＋2 通知信（Slack 4 則未清，Darrell 2026-08-17 指示不用管）
+  - **首頁案例卡與 FAQ 改成伺服器端渲染**（commit `b479dee`，已 push＋部署，線上版本 `38b57163`）：`index.astro` 直接從 cases collection（新增 `homeOrder`／`cardSummary`／`cardMetric` 三欄）與新檔 `src/data/faqs.ts` 產出 HTML；`home.js` 少 100 行，只留依 slug 對應的裝飾用流程圖（`CASE_DIAGRAMS`）與 FAQ 開合。實查 `dist/index.html`：6 條 `/cases/{slug}/` 連結、6 個標題、7 題 FAQ 問答全在靜態 HTML（原本一個都沒有）。瀏覽器實測版型不變、FAQ 開合與 aria 正常、hero 動畫與 scroll reveal 未受影響、console 無錯誤。未加 FAQPage 結構化資料（Google 已限縮 FAQ rich results 到政府／醫療類站）
+  - **✅ 聊天已修好、整條線實測可用（2026-08-17 傍晚）**：Qdrant credential 重建完成（新 ID `FhSzheVbdg2hdwAx`，名稱 `Qdrant Cloud - kb_v1`），兩支 workflow（`pmZZqqc7Oik4WEKA`、`HMXBjbMlB0lAKofq`）的 `查知識庫` 節點已改掛新 credential，線上實查 `activeVersionId` = `versionId`（跑的就是新版）。實測：聊天端點問「n8n 導入多少錢」回串流答案且數字與 FAQ 一致（代表真的有檢索到知識庫）；閘門端點帶 `{"chatInput":"..."}` 回 200 與 contextPairs／pagePairs；兩個端點的 CORS preflight 對 `https://automation.darrelltw.com` 回 204 且 allow-origin 正確，換成其他來源不會被放行。知識庫 collection `kb_v1` 完好，不需重建
+  - **key 的下落（供日後查）**：Qdrant API key 一直都在 `~/Downloads/darn8n_api_key.txt`（Darrell 2026-08-13 用檔案交付），實測帶這把打叢集 `/collections` 回 200。前一版交接誤判成「金鑰遺失、卡在 Darrell」，是因為只搜了專案目錄與環境變數名，沒搜對話紀錄。**教訓：宣稱某金鑰不存在之前，要一併搜 `~/.claude/projects` 逐字稿與 `~/Downloads`**
+- **待辦（卡在 Darrell）**：外部連結（Threads／IG／X 個人檔案、電子報頁尾、確認有無 Google Ads 指舊網址）
+- **待辦（可做）**：手機版主導覽全隱藏無替代入口；聊天 timeout 在等閘門前被清掉；KV 去重讀寫競態；表單無 rate limit；首頁「10+ 專案」「300+ hrs」無佐證（需 Darrell 判斷）；正式上線切換（撤 Access/robots/noindex → 依 runbook 跑 301 與舊連結清理）
 - **Darrell 已明示不處理**：GA4 DebugView 驗收（不需要）；`/n8n-service/` 那條不在 repo 裡的 301 來源（不用管，代價是上線後會變兩跳轉址）
-- ⚠️ **blog 分支領先 origin 8、落後 1**，push 前先 pull；push 會一併帶出另一 session 的 RAG chat commits
+- ⚠️ **blog 分支領先 origin 9、落後 2**（2026-08-17 18:20 實查），push 前先 pull；push 會一併帶出另一 session 的 RAG chat commits
 
 ### n8n AI Assistant 自架（獨立文章 + upstream issue）
 - **建立日期**：2026-08-12
@@ -123,9 +126,27 @@
 - **背景**：修好評測成本紀律後才回頭處理 n8n-cli 文章發布
 - **交接文件**：`.claude/reader-sim-efficiency-handoff.md`
 
+### 文章圖片壓縮（建立自動化，還清一半技術債）
+- **建立日期**：2026-08-13
+- **狀態**：✅ 71 張已壓縮並 push 上線（`5fd4266`、`9172a36`），讀者端省下約 14.6MB。全站仍有 87 張未壓縮
+- **起點**：用戶問「n8n-update-log 新的圖片為何沒壓縮，需要我口頭告知才會做嗎」。**答案是不需要，而且這不是偶發**——專案根本沒有任何自動壓縮流程
+- **根因**：`npm run images:process` 名字像在處理圖片，實際上只用 `image-size` 讀長寬寫進 `image_dimensions.json`（`scripts/generate-image-dimensions.js`），完全不碰檔案內容；`npm run build` 也一樣。壓縮一直靠人手動跑 pngquant，而 skill 的圖片章節從沒寫過這一步
+- **已完成**：
+  - `n8n-update-log/` 43 張：6117KB → 1281KB（省 79%）
+  - 全站 200KB 以上 21 張：13379KB → 3617KB（省 73%）。最大幾張：martech 工具生態圖 1624→493KB、GA4 權限截圖 743→197KB
+  - 新增 `scripts/compress-images.js` + `npm run images:compress`：讀 PNG 檔頭 color type 判斷壓過沒有（3=palette），**重跑會全部跳過不會反覆有損壓縮**（已實測）；支援限縮單篇與 `--min-kb=N`；先壓到暫存檔、確認變小才取代原圖
+  - 寫進 `n8n-update-write` skill：`references/images.md` 新增「步驟 5.4：壓縮圖片」標明不需用戶要求，`SKILL.md` Phase 5 commit 前再確認一次
+  - 記憶 `feedback_image_optimization.md` 已改為「壓縮是預設動作，不是選配」
+- **畫質驗證**：目視檢查壓縮率最差的兩張 infographic（1374→422KB、1624→493KB），色塊與文字乾淨、無色帶。infographic 壓縮率約 70%，UI 截圖 80-85%
+- **剩餘**：
+  - 全站 87 張未壓縮、6324KB，**全在 200KB 以下**（推估再省約 5MB，但 87 個檔案換 5MB，效益比這批差很多）
+  - `chatgpt-work-vs-codex/` 4 張 infographic 已壓縮但**未追蹤**，屬於進行中文章，刻意沒 commit
+  - `the_martech_handbook/martech_talent.png` **內容是 WebP、副檔名叫 .png**，線上以 `Content-Type: image/png` 回應（瀏覽器靠 sniffing 仍顯示得出來）。要正名需同時改檔名、文章引用與舊 URL 相容
+  - 既有 bug（非本次造成）：`scripts/generate-image-dimensions.js:199` 附近 `main()` 在 `require.main` guard 之外又被呼叫一次，等於每次 `images:process` 跑兩遍
+
 ### 站內搜尋（local_search）＋ 相依清理
 - **建立日期**：2026-08-13
-- **狀態**：✅ 已 push 並部署上線，正式站實測通過（2026-08-13）。過程中造成一次約 4 分鐘的正式站事故，已修復，見下方「事故」段
+- **狀態**：✅ 已 push 並部署上線，正式站實測通過（2026-08-13，第二輪排序改動同日上線）。過程中造成一次約 4 分鐘的正式站事故，已修復，見下方「事故」段
 - **已完成（本機實測通過）**：
   - 移除 5 個殭屍套件（`hexo-related-popular-posts`、`hexo-helper-seo-structured-data`、`hexo-dynamic-config`、`@vercel/analytics`、`@vercel/speed-insights`），漏洞 48 → 1；剩下的 `image-size` 無修補版且本專案不處理不受信任輸入
   - `npm update` 同 major 升版：hexo 8.1.1→8.1.2、next 主題套件 8.27→8.29（註：站台實際讀本地 `themes/next/`，node_modules 那份未使用）
@@ -151,6 +172,15 @@
   - **兩個早就存在的警訊我都沒接住**：① 本 tracker 第 155 行先前 session 已明寫「`scripts/related-posts.js` 未追蹤，本機與線上跑的是兩套不同實作」；② 更早一次 codex review 報過「fresh clone build 產出 0 bytes 文章頁」，當時被判**誤報**（因套件尚在、線上實查正常）——那個觀察其實成立，只是要等移除套件才觸發
   - **防線**：移除套件前先 `git ls-files --error-unmatch <替代實作>`；掃 `git ls-files --others --exclude-standard | rg "^(scripts/|themes/[^/]+/scripts/).*\.js$"`。已寫入記憶 `feedback_verify_against_clean_checkout.md`。**被判誤報的 review finding 要連前提一起記錄，前提改變時重新評估**
 - **上線後實測（正式站真瀏覽器）**：文章頁正文 6717 字、熱門文章 5 筆；`page_path=/n8n-google-sheets-node/`、`post_path=/n8n-cli-guide/` 皆為單斜線；搜尋 42 筆、選取列 `rgb(69,69,75)`、標題近白、關鍵字 `rgb(255,157,102)` 且底色 transparent；`search` 事件送出一次
+- **第二輪：排序改新文優先 + 入口頁納入索引（2026-08-13 下午，`d693573` 已 push 上線）**
+  - **起點**：用戶問「搜『n8n』的排序怎麼來的」。實查後發現排序**實質上只看標題命中數**，之後直接沿用 `search.json` 的順序，而那個順序是**檔名字母序**（`n8n-datatables` < `n8n-security` < `n8n-time-saved`，與線上結果逐筆吻合）
+  - **根因是上游 typo**：`mergeIntoSlice` 回傳 `searchTextCount`，但呼叫端讀成 `tmp.searchTextCountInSlice` → `undefined` → 累加成 `NaN`。排序時 `NaN !== NaN` 恆真，comparator 回傳 `NaN` 被 JS 規範當 0，於是**第四層 hitCount 永遠跑不到**。已比對初始 commit `086abe8`，確認是 NexT 上游就有、非本地改壞
+  - **新排序**：命中關鍵字種類數 → `search_weight`（front matter 手動置頂）→ 標題命中數 → 日期新到舊。壞掉的 `searchTextCount` 層與被它擋住的 hitCount 層一併移除（刻意不看內文命中次數：長文與更新紀錄靠重複提關鍵字就會壓過對題短文）
+  - **改用 generator 產 `search.json`**（`scripts/search-ranking.js`，取代 searchdb 輸出）。**關鍵教訓**：原本寫成 `after_generate` filter，但 Hexo 是在 after_generate **之後**才把 search.json 寫進 `public/`，clean build 時 filter 根本讀不到檔案——Vercel 每次部署都是 fresh clone，等於線上永遠不會生效。本機因為 `public/` 有上一輪殘留才「看起來正常」
+  - **三個 n8n 入口頁納入索引**：教學 `/n8n-tutorial-resources/`、模板 `/tools/n8n_template/models.html`、接案 `/n8n-expert/`。它們原本全都搜不到（模板頁在 `skip_render` 的 `tools/**`、接案頁沒有 front matter）
+  - **三個實作陷阱（都已修並註解在檔內）**：① weight 放在標題命中之前太強勢，搜「Gmail」時入口頁的長清單會壓過《n8n Gmail 節點教學》→ 改成標題沒命中就不給權重 ② 入口頁互相連結，導覽列把彼此名字寫進內文，搜「n8n 接案」時模板頁贏過真正的接案頁 → 抽內文時移除 `nav/header/footer` ③ 接案頁全文無「接案」二字，補的比對關鍵字會被當摘要顯示出來（連 `--- layout: false ---` 都露出）→ 入口頁改走固定 `description` 欄位
+  - **結果列間隔**：列間距 3px → 10px、摘要行高 1.7 → 1.5 且上緣 5px → 2px（標題與摘要收成一組），並加 1px 分隔線 `rgba(255,255,255,.06)`。線畫在**間距正中間**（`top:-5px`）而非列邊緣，落在 hover 圓角背景範圍外，所以選中列不必特地把線藏起來
+  - **線上驗證**：`search.json` 129 筆（126 文章 + 3 入口頁）、三個入口頁 weight 都在、前 3 筆為最新文章；真瀏覽器搜「n8n 接案」→ 接案頁第一；三個入口頁 URL 皆 200
 - **待辦**：用戶評分視覺 → 設定 GTM tag/trigger 讓 GA4 真的收到 `search`／`select_item`（`select_item` 頂層的 `search_term` 需另外映射 + 建 event-scoped 自訂維度才會進 GA4）
 - **已知延後，未做**：
   - 無障礙整套（focus trap、關閉後焦點還給開啟按鈕、`role="dialog"`、`aria-activedescendant`、關閉鈕改真 `button`）——要動 swig 模板
