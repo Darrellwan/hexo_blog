@@ -7,16 +7,121 @@ categories:
   - n8n
 page_type: post
 id: n8n-update-log
-description: n8n 的更新記錄（2026/08/11 更新），包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.35.0（Pre-release），正式版本為 2.34.4
+description: n8n 的更新記錄（2026/08/19 更新），包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.36.0（Pre-release），正式版本為 2.35.4
 bgImage: n8n-update_bg.jpg
 preload:
   - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
-updated: 2026-08-12 16:41:07
+updated: 2026-08-19 23:20:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+## 2.36.0 Pre-release - 2026-08-18
+
+[Github 2.36.0 更新](https://github.com/n8n-io/n8n/releases/tag/n8n%402.36.0)
+
+### OpenRouter 可以指定要用哪一家供應商了
+feat(lmChatOpenRouter Node): Add provider routing options
+
+OpenRouter 是個中間商
+你選一個模型，背後常常有好幾家供應商在跑，價格、速度、會不會拿你的資料去訓練，每個 provider 狀況都不太一樣
+
+以前 n8n 的 OpenRouter 節點只能選模型，選不了背後的 Provider
+幫你配到哪家就用那一家
+
+這版在 Options 底下多了一組 **Provider Routing**，展開有八個欄位：
+
+{% dataTable style="minimal" align="left" %}
+[
+  {"欄位": "Order", "作用": "指定優先順序，填供應商代號用逗號隔開，例如 anthropic,openai,google"},
+  {"欄位": "Only", "作用": "白名單，只准這幾家跑"},
+  {"欄位": "Ignore", "作用": "黑名單，這幾家跳過"},
+  {"欄位": "Sort", "作用": "按 Price、Throughput 或 Latency 排序"},
+  {"欄位": "Allow Fallbacks", "作用": "首選掛掉時要不要自動換備援，預設開"},
+  {"欄位": "Require Parameters", "作用": "只用支援你這次請求全部參數的供應商"},
+  {"欄位": "Data Collection", "作用": "選 Deny 就只走不收集你資料的供應商"},
+  {"欄位": "Zero Data Retention (ZDR)", "作用": "更嚴格，只走完全不留紀錄的端點"}
+]
+{% enddataTable %}
+
+{% darrellImage800Alt "n8n 2.36.0 的 OpenRouter Chat Model 節點，Options 加入 Provider Routing 後展開子選項清單，依序是 Order、Allow Fallbacks、Require Parameters、Data Collection、Zero Data Retention (ZDR)、Only、Ignore、Sort" n8n-2.36.0-openrouter_provider_routing.png max-800 %}
+
+會用到的大概是這幾種情況：
+
+- 資料不想要外流 → 開 **Zero Data Retention**，或把 Data Collection 設成 Deny
+- 想降低成本 → **Sort** 選 Price
+- 想要回應速度快 → **Sort** 選 Latency
+- 單純討厭某一家 → 把它丟進 **Ignore**
+
+### 錯過的排程，可以決定要不要補跑
+feat(Schedule Trigger Node): Add "If Execution Is Missed" option
+
+自架 n8n 一定會遇到這種事
+更新版本、重開機、或是機器半夜掛掉
+這段時間該跑的排程就不會跑了，隔天才發現然後要自己補跑
+
+新版把多了節點設定，開節點的 **Settings** 分頁就有「If Execution Is Missed」，三個選項：
+
+{% dataTable style="minimal" align="left" %}
+[
+  {"選項": "Don't Run Missed Executions", "行為": "錯過就算了，不補跑（預設值）"},
+  {"選項": "Run the Most Recent Missed Execution", "行為": "整個節點只補跑一次，跑最後錯過的那一輪"},
+  {"選項": "Run the Most Recent Missed Execution Per Rule", "行為": "每條規則各自補跑一次"}
+]
+{% enddataTable %}
+
+{% darrellImage800Alt "n8n 2.36.0 Schedule Trigger 節點的 Settings 分頁，If Execution Is Missed 下拉展開顯示三個選項，底下是 Missed Execution Grace Period (Seconds) 欄位，面板最下方標示 Schedule Trigger node version 1.4 (Latest)" n8n-2.36.0-schedule_missed_execution.png max-800 %}
+
+{% callout type="warning" title="兩個前提，不知道的話會設了半天沒反應" %}
+**一、要開 durable scheduler 環境變數，它預設是關的。**
+這兩個欄位只對「資料庫排程」生效，也就是把接下來要跑的排程先寫進資料庫，重啟不會掉、多台機器也不會重複跑。要開的話環境變數加這兩個：
+
+```
+N8N_SCHEDULER_ENABLED=true
+N8N_USE_WORKFLOW_PUBLICATION_SERVICE=true
+```
+
+**二、舊的 Schedule Trigger 節點看不到這兩個欄位。** 它綁在節點版本 1.4，只有這版之後新加的節點才會出現。手上已經在跑的排程要用，得刪掉重新加一個。
+{% endcallout %}
+
+### Discord 節點可以踢人、禁言、Ban 了
+feat(Discord Node): Add member moderation actions
+
+以前 Discord 節點對成員只能做三件事：**列出成員、加角色、移除角色**
+想自動處理洗版帳號，得自己接 HTTP Request 打 Discord API，參數還要翻文件自己湊
+
+這版 member 資源一次補四個操作上去，變成七個：
+
+{% dataTable style="minimal" align="left" %}
+[
+  {"操作": "Ban", "做什麼": "封鎖成員，可以順便清掉他最近的訊息"},
+  {"操作": "Unban", "做什麼": "解除封鎖"},
+  {"操作": "Kick", "做什麼": "把人踢出伺服器（他還能再加回來）"},
+  {"操作": "Timeout", "做什麼": "暫時禁言，時間到自動解除"},
+  {"操作": "Get Many", "做什麼": "列出成員（舊有）"},
+  {"操作": "Role Add", "做什麼": "加角色（舊有）"},
+  {"操作": "Role Remove", "做什麼": "移除角色（舊有）"}
+]
+{% enddataTable %}
+
+{% darrellImage800Alt "n8n 2.36.0 節點面板中 Discord 的動作清單，搜尋 member 後顯示 7 個動作：Ban a member、Kick a member、Timeout a member、Get many members、Unban a member、Remove a role from a member、Add a role to a member" n8n-2.36.0-discord_member_actions.png max-800 %}
+
+不過這些操作只在 Connection Type 選 Bot Token 或 OAuth2 時才看得到
+用 Webhook 那種連法沒有，畢竟 Webhook 本來就只能發訊息
+
+四個新操作都有 **Reason** 欄位，而且是下拉選單，不用自己輸入
+預設就三個：可疑或垃圾帳號、帳號被盜、違反伺服器規則，選 Other 才會跳出讓你自己輸入
+填的內容會寫進 Discord 伺服器的稽核紀錄，之後回頭查誰被處理過就有東西可以對
+
+Ban 另外有個 **Delete Message History**，封鎖的同時把這個人最近的訊息一起清掉
+從「不清除」到「前 7 天」共七段：
+
+{% darrellImage800Alt "n8n 2.36.0 Discord 節點 Ban 操作的設定畫面，Resource 為 Member、Operation 為 Ban，Delete Message History 下拉展開顯示 No Cleanup、Previous Hour、Previous 6 Hours、Previous 12 Hours、Previous 24 Hours、Previous 3 Days、Previous 7 Days" n8n-2.36.0-discord_ban_cleanup.png max-800 %}
+
+如此一來就能做到 Discord 全自動社群管理
+不像在 Line 上常常遇到詐騙帳號跟訊息，卻還是只能讓管理員手動處理
 
 ## 2.35.0 Pre-release - 2026-08-11
 

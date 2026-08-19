@@ -8403,5 +8403,25 @@
     "width": 1280,
     "height": 1630,
     "mtimeMs": 1786459680855.5784
+  },
+  "/_posts/n8n-update-log/n8n-2.36.0-schedule_missed_execution.png": {
+    "width": 1440,
+    "height": 900,
+    "mtimeMs": 1787136761782.7942
+  },
+  "/_posts/n8n-update-log/n8n-2.36.0-openrouter_provider_routing.png": {
+    "width": 1440,
+    "height": 900,
+    "mtimeMs": 1787136761828.8145
+  },
+  "/_posts/n8n-update-log/n8n-2.36.0-discord_member_actions.png": {
+    "width": 1440,
+    "height": 1150,
+    "mtimeMs": 1787136761885.0698
+  },
+  "/_posts/n8n-update-log/n8n-2.36.0-discord_ban_cleanup.png": {
+    "width": 1440,
+    "height": 1150,
+    "mtimeMs": 1787136761945.789
   }
 }
