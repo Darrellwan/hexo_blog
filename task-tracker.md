@@ -2,6 +2,16 @@
 
 ## 🔴 待完成
 
+### n8n SEO 救援：教學 hub 頁改版為「入門指南＋導覽」
+- **建立日期**：2026-08-20
+- **狀態**：✅ 已上線並驗證（commit `548d3aa`，桌機／手機視覺、meta、轉址、內鏈全查過）；🔴 **待回看（9 月中）**：跑 `bin/gsc-query-trajectory.py` 看「n8n 教學」是否從 17 名回升，成功判準＝回前 10
+- **背景（GSC 實查）**：7-8 月 n8n 字群曝光 -89%，其中 79% 集中在 `/n8n-tutorial-resources/`（head 字「n8n」9→38 名、「n8n 教學」10.2→17.6）。SERP 實查第一頁已被數位時代／TibaMe 等 2025-2026 發的「完整入門指南」型文章佔據，目錄型頁被擠出。另：8 月中全站排名下滑主因是 8/12 更新日期修正移除了行之多年的假新鮮訊號（mtime→部署日），屬回歸真實水位，非懲罰
+- **本次改動**：hub 頁上半部新增入門指南（Cloud 費用為 2026-08 官網實查：Starter €20/2.5K、Pro €50/10K、Business €667/40K）＋title/H1 補「新手入門」＋`updated: 2026-08-20`；修模板 `article:modified_time` epoch 毫秒→ISO（原本 Google 讀不懂）；刪重複來源檔 `source/n8n-tutorial-resources.md`（與資料夾版輸出不同網址造成重複內容）＋`vercel.json` 加 `.html→/` 301；三篇高流量 AI 文（antigravity／cowork／claude-code-cli）加導向 hub 的 articleCard
+- **明確放掉不救**：head 字「n8n」（導航型、無點擊價值）、update-log 英文字群（非目標客群）
+- **未來寫文四原則（已與 Darrell 對齊）**：漏斗字優先維護／趨勢文預設 90 天後實質更新延壽／每季跑 striking-distance 清單挑 2-3 篇更新／往 AI 答不好的內容傾斜（實測踩坑、版本追蹤、台灣在地整合、模板）
+- **工具**：`bin/gsc-n8n-striking-distance.py`（射程內字清單）、`bin/gsc-query-trajectory.py`（字群三窗軌跡），憑證 `~/.claude/ga4_gsc_service_account.json`（webmasters.readonly scope 可用）
+- **附帶修正（commit `6df3eb5`，已上線驗證）**：hub 頁「聯絡我們」原連 `/tools/n8n_template/contact.html`，該頁表單打的舊實例 `darrellinfo-n8n.hnd1.zeabur.app` 已不存在＝**死表單**（死了多久無從查證）。已改連 `/n8n-expert/#contact` 並加 `.html→/n8n-expert/` 301。教訓：n8n 實例遷移（→darn8n）時沒有盤點所有打舊實例的前端表單
+
 ### automation.darrelltw.com 接案站獨立（新站已部署、上線前保護中）
 - **建立日期**：2026-08-16
 - **狀態**（8/17 傍晚更新）：新站已部署，**表單與聊天兩條線都實測可用**（聊天的 Qdrant credential 已於 8/17 傍晚重建並驗過）。**未正式公開**（robots 全擋＋noindex header＋Cloudflare Access 允許本人三信箱）
