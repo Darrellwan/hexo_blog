@@ -62,7 +62,7 @@ feat(Schedule Trigger Node): Add "If Execution Is Missed" option
 更新版本、重開機、或是機器半夜掛掉
 這段時間該跑的排程就不會跑了，隔天才發現然後要自己補跑
 
-新版把多了節點設定，開節點的 **Settings** 分頁就有「If Execution Is Missed」，三個選項：
+新版多了節點設定，開節點的 **Settings** 分頁就有「If Execution Is Missed」，三個選項：
 
 {% dataTable style="minimal" align="left" %}
 [
