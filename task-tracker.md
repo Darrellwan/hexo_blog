@@ -36,7 +36,15 @@
   3. **正式公開的時間點**——功能面已無阻擋（表單、聊天、首頁 SEO 三條線都實測過）
 - **待辦（可做）**：手機版主導覽全隱藏無替代入口；聊天 timeout 在等閘門前被清掉；KV 去重讀寫競態；表單無 rate limit；正式上線切換（撤 Access/robots/noindex → 依 runbook 跑 301 與舊連結清理，⚠️ 必須先搬 Link in Bio 圖片再加 301，否則 og-image 被 `/n8n-expert/:path*` 吃掉變破圖）
 - **Darrell 已明示不處理**：GA4 DebugView 驗收（不需要）；`/n8n-service/` 那條不在 repo 裡的 301 來源（不用管，代價是上線後會變兩跳轉址）
-- ⚠️ **blog 分支領先 origin 10、落後 2**（2026-08-18 00:45 實查），push 前先 pull；push 會一併帶出另一 session 的 RAG chat commits
+- ⚠️ **blog 分支 push 落差會變動，不要引用寫死數字**：2026-08-18 00:45 為領先 10／落後 2；當日已 `git pull --no-rebase` 產生合併 commit `ab18b09`（工作區 43 個既有髒檔擋住 rebase，故走 merge）。2026-08-20 06:05 重查為**領先 1／落後 1**（另一 session 已把先前那批推上去，並新增 `da0f8fa`／`63d340f` 兩顆 n8n 2.36.0 commit）。push 前一律重跑 `git rev-list --left-right --count origin/main...HEAD`
+- **push 影響範圍已查**：`main.yml` 的 `exclude` 已排除 `n8n-expert-v2/**`，這批 commit 推上去對正式站只會改到 README，不會讓 v2 原始檔公開
+
+- **2026-08-20 完成：新站設計健檢與四個改版提案（未動 automation-site 任何程式碼）**
+  - 對本機 dev server 實際畫面做視覺健檢（桌機 1440×900、手機 390×844，先捲完全頁觸發所有 scroll reveal 才截圖），不是憑記憶或看原始碼推斷
+  - 交付 canvas：https://claude.ai/code/artifact/d4cdffa9-2cfd-4243-84e5-320aec431a0e（10 個發現＋四個提案，每個提案都是「現在的樣子 vs 改完的樣子」並排對照）
+  - 提案 01 首頁憑證列**直接對應下方 🔴 待決問題 1**：把「10+ 專案」「300+ hrs」換成訪客查得到的三格（文章數／GA4 讀者數／n8n 社群身分），真實數字留 `[ ]` 等 Darrell 填
+  - 提案 02 價格從 FAQ 折疊搬成獨立第 03 段（文案原封沿用 FAQ 現有內容，未新增未確認價格）＋中段 CTA；提案 03 案例卡補產業標籤（`industry` 欄位是現成資料，只有 /cases/ 在用）與一行成效；提案 04 手機選單鈕＋底部固定 CTA，同時處理「工時」被拆行（中文誤用 JetBrains Mono＋0.16em 字距＋全大寫）
+  - 提案全部沿用現有色票、字體、元件與圓角，沒有引入新視覺語彙；**尚未實作**，等 Darrell 決定要做哪幾項
 
 ### n8n AI Assistant 自架（獨立文章 + upstream issue）
 - **建立日期**：2026-08-12
