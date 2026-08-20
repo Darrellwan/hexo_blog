@@ -32,9 +32,9 @@ layout: false
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>n8n 教學：節點介紹、模板、部署 | Darrell TW</title>
+  <title>n8n 教學：新手入門指南、節點、模板、部署 | Darrell TW</title>
   <meta name="description" content="{{ page.description or 'n8n自動化教學，包含節點、實用模板、部署。適合初學者到進階用戶，快速上手自動化。' }}">
-  <meta name="keywords" content="n8n教學, n8n節點, 工作流程自動化, n8n模板下載, n8n部署, 自動化工具, n8n中文教學, workflow automation, n8n tutorial">
+  <meta name="keywords" content="n8n教學, n8n入門, n8n是什麼, n8n費用, n8n節點, 工作流程自動化, n8n模板下載, n8n部署, 自動化工具, n8n中文教學, workflow automation, n8n tutorial">
   
   <!-- 作者和網站資訊 -->
   <meta name="author" content="Darrell TW">
@@ -62,8 +62,8 @@ layout: false
   <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ config.url }}/sitemap.xml">
   
   <!-- 頁面類型和更新時間 -->
-  <meta property="article:published_time" content="{{ page.date or date() }}">
-  <meta property="article:modified_time" content="{{ page.updated or date() }}">
+  <meta property="article:published_time" content="{{ date_xml(page.date) }}">
+  <meta property="article:modified_time" content="{{ date_xml(page.updated or page.date) }}">
   <meta property="article:author" content="Darrell TW">
   <meta property="article:section" content="n8n教學">
   <meta property="article:tag" content="n8n, 自動化, 工作流程, 教學">
@@ -71,7 +71,7 @@ layout: false
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ config.url }}{{ url_for(page.permalink) }}">
-  <meta property="og:title" content="n8n 教學：節點介紹、模板、部署">
+  <meta property="og:title" content="n8n 教學：新手入門指南、節點、模板、部署">
   <meta property="og:description" content="{{ page.description or 'n8n自動化教學，包含節點、實用模板、部署。適合初學者到進階用戶，快速上手自動化。' }}">
   <meta property="og:image" content="{{ config.url }}{{ url_for('/gallery/n8n_resource_og.jpg') }}">
   <meta property="og:image:width" content="1200">
@@ -85,7 +85,7 @@ layout: false
   <meta name="twitter:site" content="@darrell_tw">
   <meta name="twitter:creator" content="@darrell_tw">
   <meta name="twitter:url" content="{{ config.url }}{{ url_for(page.permalink) }}">
-  <meta name="twitter:title" content="n8n 教學：節點介紹、模板、部署">
+  <meta name="twitter:title" content="n8n 教學：新手入門指南、節點、模板、部署">
   <meta name="twitter:description" content="{{ page.description or 'n8n自動化教學，包含節點、實用模板、部署。適合初學者到進階用戶，快速上手自動化。' }}">
   <meta name="twitter:image" content="{{ config.url }}{{ url_for('/gallery/n8n_resource_og.jpg') }}">
   <meta name="twitter:image:alt" content="n8n 教學資源 - 節點介紹、模板分享、部署指南">
@@ -270,7 +270,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <header class="n8n-resources-header" role="banner">
   <div class="n8n-header-wrapper">
-    <h1>n8n 教學：節點介紹、模板、部署指南</h1>
+    <h1>n8n 教學：新手入門、節點介紹、模板與部署指南</h1>
     <div class="social-buttons">
       <a href="https://www.darrelltw.com/" class="social-button" target="_blank" rel="noopener noreferrer" title="Website">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41z"></path></svg>
@@ -416,6 +416,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <nav class="n8n-nav" aria-label="主導航">
     <ul>
       <li><a href="/" class="active">首頁</a></li>
+      <li><a href="#guide">入門指南</a></li>
       {% for section in sections %}
         {% set list = get_n8n_posts_by_category(section.id) %}
         {% if list.length > 0 %}
@@ -430,6 +431,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <div class="n8n-resources-content">
     <div class="n8n-main-content">
+      <section id="guide" class="n8n-section n8n-guide">
+        {{ page.content }}
+      </section>
+
       {# ========= 共用區塊 Macro ========= #}
       {% macro renderSection(cid, title, pinnedCards) %}
       {% set list = get_n8n_posts_by_category(cid) %}
@@ -1996,6 +2001,97 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   .n8n-breadcrumb li:last-child {
     color: var(--n8n-date-color);
+  }
+
+  /* 入門指南區塊：內容來自 source/n8n-tutorial-resources/index.md 的 page.content，
+     修改指南文字請改該 .md 檔（source of truth），這裡只負責樣式 */
+  .n8n-guide {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .n8n-guide h3 {
+    color: var(--n8n-primary);
+    font-size: 1.4rem;
+    margin-top: 36px;
+    margin-bottom: 14px;
+  }
+
+  .n8n-guide h3:first-child {
+    margin-top: 0;
+  }
+
+  .n8n-guide p,
+  .n8n-guide li {
+    color: var(--n8n-text);
+    line-height: 1.8;
+    font-size: 1rem;
+  }
+
+  .n8n-guide p {
+    margin: 0 0 14px;
+  }
+
+  .n8n-guide strong {
+    color: #fff;
+  }
+
+  .n8n-guide a {
+    color: var(--n8n-secondary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.3s;
+  }
+
+  .n8n-guide a:hover {
+    color: var(--n8n-primary);
+  }
+
+  .n8n-guide ol,
+  .n8n-guide ul {
+    margin: 0 0 14px;
+    padding-left: 22px;
+  }
+
+  .n8n-guide li {
+    margin-bottom: 8px;
+  }
+
+  .n8n-guide table {
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-collapse: collapse;
+    border: 1px solid var(--n8n-border);
+    margin: 0 0 18px;
+  }
+
+  .n8n-guide th,
+  .n8n-guide td {
+    border: 1px solid var(--n8n-border);
+    padding: 10px 14px;
+    text-align: left;
+    line-height: 1.6;
+  }
+
+  .n8n-guide th {
+    background-color: rgba(255, 109, 90, 0.1);
+    color: var(--n8n-text);
+    font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    .n8n-guide h3 {
+      font-size: 1.25rem;
+      margin-top: 28px;
+    }
+
+    .n8n-guide p,
+    .n8n-guide li {
+      font-size: 0.95rem;
+    }
   }
 </style>
 </body>

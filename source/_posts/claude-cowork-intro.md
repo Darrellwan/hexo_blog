@@ -699,6 +699,8 @@ Claude Cowork 特別適合經常處理檔案整理、文件製作的人，特別
 
 {% articleCard url="/claude_code_update_202509/" title="Claude Code 更新！ 全新 Extension for VSCode/Cursor 介面" previewText="Claude Code 重大更新，VSCode 和 Cursor 擴充功能全新改版" thumbnail="https://www.darrelltw.com/claude_code_update_202509/blog-claudecode-update-202509-bg.jpg" %}
 
+{% articleCard url="/n8n-tutorial-resources/" title="n8n 教學：新手入門與資源指南" previewText="從 n8n 是什麼、Cloud 與自架怎麼選、費用怎麼算，到第一個 workflow，一頁看完再挑要深入的教學。" thumbnail="https://www.darrelltw.com/gallery/n8n_resource_og.jpg" %}
+
 ## 參考來源
 
 - [Assign tasks to Claude from anywhere in Cowork - Help Center](https://support.claude.com/en/articles/13947068-assign-tasks-to-claude-from-anywhere-in-cowork)

@@ -426,3 +426,5 @@ Antigravity 2.0 桌面 app 「沒有編輯器、只有 chat 視窗」的設計�
   previewText="Claude Code 推出全新的命令列工具，讓開發者能在終端機中直接使用 Claude AI 進行開發。"
   thumbnail="https://www.darrelltw.com/claude-code-new-command-line-tool/claude_code.jpg"
 %}
+
+{% articleCard url="/n8n-tutorial-resources/" title="n8n 教學：新手入門與資源指南" previewText="從 n8n 是什麼、Cloud 與自架怎麼選、費用怎麼算，到第一個 workflow，一頁看完再挑要深入的教學。" thumbnail="https://www.darrelltw.com/gallery/n8n_resource_og.jpg" %}

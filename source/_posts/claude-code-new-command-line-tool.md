@@ -411,3 +411,6 @@ ccusage --session
 - [Claude Code Github](https://github.com/anthropics/claude-code)
 - [Claude Code 官方文件](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview)
 
+## 延伸閱讀
+
+{% articleCard url="/n8n-tutorial-resources/" title="n8n 教學：新手入門與資源指南" previewText="從 n8n 是什麼、Cloud 與自架怎麼選、費用怎麼算，到第一個 workflow，一頁看完再挑要深入的教學。" thumbnail="https://www.darrelltw.com/gallery/n8n_resource_og.jpg" %}

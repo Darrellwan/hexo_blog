@@ -49,6 +49,11 @@
         "source": "/n8n-resources",
         "destination": "/n8n-tutorial-resources",
         "permanent": true
+      },
+      {
+        "source": "/n8n-tutorial-resources.html",
+        "destination": "/n8n-tutorial-resources/",
+        "permanent": true
       }
     ]
 }
