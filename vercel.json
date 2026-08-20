@@ -54,6 +54,11 @@
         "source": "/n8n-tutorial-resources.html",
         "destination": "/n8n-tutorial-resources/",
         "permanent": true
+      },
+      {
+        "source": "/tools/n8n_template/contact.html",
+        "destination": "/n8n-expert/",
+        "permanent": true
       }
     ]
 }

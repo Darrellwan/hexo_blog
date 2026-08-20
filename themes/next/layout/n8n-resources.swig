@@ -425,7 +425,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       {% endfor %}
       <li><a href="#tutorials">外部教學</a></li>
       <li><a href="#about">相關連結</a></li>
-      <li><a href="https://www.darrelltw.com/tools/n8n_template/contact.html" class="contact-link" target="_blank" rel="noopener">聯絡我們</a></li>
+      <li><a href="/n8n-expert/#contact" class="contact-link" target="_blank" rel="noopener">聯絡我們</a></li>
     </ul>
   </nav>
 
