@@ -50,7 +50,8 @@
 
 {{ next_font() }}
 
-<link rel="stylesheet" href="/css/fa-icons.css">
+<link rel="stylesheet" href="/css/fa-icons.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/css/fa-icons.css"></noscript>
 
 {%- if theme.fancybox %}
   {%- set fancybox_css_uri = theme.vendors.fancybox_css or next_vendors('//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css') %}

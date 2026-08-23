@@ -23,7 +23,7 @@ function articleCard(args) {
           ${previewText ? `<p class="article-card-preview">${previewText}</p>` : ''}
         </div>
         ${thumbnail ? `<div class="article-card-image">
-          <img src="${thumbnail}" alt="${title}">
+          <img src="${thumbnail}" alt="${title}" loading="lazy" decoding="async">
         </div>` : ''}
       </div>
     </a>
