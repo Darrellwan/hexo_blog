@@ -2033,4 +2033,4 @@ Publish workflows
 
 ---
 
-{% articleCard url="/n8n-update-log-v1/" title="n8n 1.0 歷史版本更新紀錄心得（0.x ~ 1.x 存檔）" previewText="完整收錄 n8n 0.x ~ 1.123.0 時代的歷史更新、重要節點演進與測試心得回顧" thumbnail="https://www.darrelltw.com/n8n-update-log/n8n-update_bg.jpg" %}
+{% articleCard url="/n8n-update-log-v1/" title="n8n 1.0 歷史版本更新紀錄心得（0.x ~ 1.x 存檔）" previewText="完整收錄 n8n 0.x ~ 1.123.0 時代的歷史更新、重要節點演進與測試心得回顧" thumbnail="https://www.darrelltw.com/n8n-update-log-v1/n8n-update_bg.jpg" %}
