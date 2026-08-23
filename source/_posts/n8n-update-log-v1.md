@@ -8,12 +8,12 @@ categories:
 page_type: post
 id: n8n-update-log-v1
 description: n8n 1.0 時代（0.x ~ 1.123.0）的歷史版本更新紀錄存檔，完整收錄早期各版本新功能、重要節點演進與測試心得回顧。
-bgImage: /n8n-update-log/n8n-update_bg.jpg
+bgImage: n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
 updated: 2025-12-01 23:20:00
 ---
 
-{% darrellImageCover n8n-update-log-v1-bg /n8n-update-log/n8n-update_bg.jpg %}
+{% darrellImageCover n8n-update-log-v1-bg n8n-update_bg.jpg %}
 
 {% callout type="info" title="查看 n8n 2.x 最新更新" %}
 這篇是 **n8n 1.0 時代（0.x ~ 1.123.0）** 的歷史版本歸檔紀錄。  

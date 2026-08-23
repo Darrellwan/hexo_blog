@@ -11130,5 +11130,17 @@
         "src": "n8n-2.9.0-chat_hub_tools-800.webp"
       }
     ]
+  },
+  "/_posts/n8n-update-log-v1/n8n-update_bg.jpg": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-update_bg-800.webp"
+      },
+      {
+        "width": 1080,
+        "src": "n8n-update_bg-1080.webp"
+      }
+    ]
   }
 }

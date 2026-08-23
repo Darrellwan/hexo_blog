@@ -9,14 +9,17 @@ page_type: post
 id: n8n-update-log
 description: n8n 的更新記錄（2026/08/19 更新），包含各版本新功能、改進和修復，和我測試的心得回饋。最新測試版本為 2.36.0（Pre-release），正式版本為 2.35.4
 bgImage: n8n-update_bg.jpg
-preload:
-  - n8n-update_bg.jpg
 date: 2025-02-27 12:15:12
 updated: 2026-08-19 23:20:00
 sticky: 100
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}
+
+{% callout type="info" title="歷史版本快速索引" %}
+本篇收錄 **n8n 2.x 最新版本更新紀錄**。  
+若要查詢 **n8n 0.x ~ 1.x 歷史版本紀錄與節點演進**，請前往：[n8n 1.0 歷史版本更新紀錄存檔](/n8n-update-log-v1/)。
+{% endcallout %}
 
 ## 2.36.0 Pre-release - 2026-08-18
 
