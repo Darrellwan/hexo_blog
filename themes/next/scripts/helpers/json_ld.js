@@ -1,4 +1,19 @@
 const { resolve } = require('url');
+const { unescapeHTML } = require('hexo-util');
+
+// JSON-LD 內容必須用 JSON escape，不能留 HTML entity。
+// page.content 是渲染後的 HTML，程式碼區塊裡的引號是 &quot;，strip_html 只拆標籤不還原 entity。
+// Googlebot 讀 JSON-LD 時會做一次 HTML unescape，&quot; 會變成裸引號並截斷 JSON 字串。
+// 先還原 entity，JSON.stringify 就會正確輸出成 \"。
+function toJsonLdText(text) {
+  return unescapeHTML(text || '');
+}
+
+// JSON.stringify 不會跳脫 <，正文出現 </script> 會提早關掉標籤。
+// 轉成 < 同時解決這點與 Google 建議的 Unicode escape 寫法。
+function serializeJsonLd(schema) {
+  return JSON.stringify(schema).replace(/</g, '\\u003c');
+}
 
 function jsonLd() {
   const page = this.page;
@@ -33,7 +48,7 @@ function jsonLd() {
   if (this.is_post()) {
     let images = [];
     
-    const content = this.strip_html(page.content);
+    const content = toJsonLdText(this.strip_html(page.content));
     const wordCount = content.replace(/\s+/g, ' ').trim().length;
     const readingTime = Math.ceil(wordCount / 400);
     
@@ -45,7 +60,7 @@ function jsonLd() {
       dateCreated: page.date.format(),
       dateModified: page.updated.format(),
       datePublished: page.date.format(),
-      description: page.description ? this.strip_html(page.description) : this.strip_html(page.excerpt),
+      description: toJsonLdText(page.description ? this.strip_html(page.description) : this.strip_html(page.excerpt)),
       headline: page.title,
       image: images,
       mainEntityOfPage: {
@@ -115,7 +130,7 @@ function jsonLd() {
   }
 
   return (
-    '<script type="application/ld+json">' + JSON.stringify(schema) + "</script>"
+    '<script type="application/ld+json">' + serializeJsonLd(schema) + "</script>"
   );
 }
 
@@ -184,7 +199,7 @@ function breadcrumbLd() {
   };
   
   return (
-    '<script type="application/ld+json">' + JSON.stringify(breadcrumbSchema) + "</script>"
+    '<script type="application/ld+json">' + serializeJsonLd(breadcrumbSchema) + "</script>"
   );
 }
 

@@ -62,6 +62,51 @@ function getFullUrl(imagePath, context) {
   return `${siteUrl}/${imagePath}`;
 }
 
+// 圖片實際顯示寬度（瀏覽器實測）：390px 視窗 350px、768px 視窗 566px、
+// 1280px 視窗 707px、1920px 視窗 804px。sizes 依此寫，各段稍微高估，
+// 高估只會讓瀏覽器抓大一階比較清楚，低估會糊。
+const IMG_SIZES = '(max-width: 640px) 92vw, (max-width: 1024px) 76vw, (max-width: 1600px) 58vw, 810px';
+
+/**
+ * 產生 <picture> 用的 webp <source>。
+ *
+ * 來源是 npm run images:webp 寫的 source/_data/image_variants.json，
+ * 沒有登記的圖片回傳空字串，輸出就跟以前一模一樣。所以這個改動對還沒轉檔的
+ * 舊文章沒有任何影響，不需要一次回填全站。
+ *
+ * lazy=true 用 data-srcset 交給 lazysizes 接手（5.3.2 原生支援 <picture>）；
+ * 封面圖不走 lazyload，直接給 srcset。
+ */
+function buildWebpSource(originalImageSrc, fullImageUrl, lazy) {
+  if (!originalImageSrc || originalImageSrc.startsWith('http')) return '';
+
+  const variants = hexo.locals.get('data')?.image_variants;
+  if (!variants) return '';
+
+  // 先用完整路徑對，對不到才退回檔名比對。
+  // 全站有 4 個檔名重複（n8n-zeabur-settings-source.png 同時在兩篇文章裡），
+  // 只比檔名會抓到另一篇的圖，所以路徑優先。
+  const urlPath = fullImageUrl.replace(/^https?:\/\/[^/]+/, '');
+  const imageName = originalImageSrc.split('/').pop();
+  let key = '/_posts' + urlPath;
+
+  if (!variants[key]) {
+    const matches = Object.keys(variants).filter(k => k.endsWith('/' + imageName));
+    // 有兩個以上同名的時候寧可不輸出 webp，也不要賭一個
+    key = matches.length === 1 ? matches[0] : null;
+  }
+
+  if (!key || !variants[key] || !variants[key].webp || variants[key].webp.length === 0) return '';
+
+  const baseUrl = fullImageUrl.substring(0, fullImageUrl.lastIndexOf('/') + 1);
+  const srcset = variants[key].webp
+    .map(v => `${baseUrl}${v.src} ${v.width}w`)
+    .join(', ');
+  const attr = lazy ? 'data-srcset' : 'srcset';
+
+  return `<source type="image/webp" ${attr}="${srcset}" sizes="${IMG_SIZES}">`;
+}
+
 // 生成 SVG 佔位符
 function generatePlaceholder(width, height) {
   const ratio = (height / width * 100).toFixed(2);
@@ -420,9 +465,7 @@ function customLightGallery800Alt(args, content) {
   // 轉換為完整網址
   const fullImageUrl = getFullUrl(originalImageSrc, this);
 
-  return `
-  <figure lg-background-color="#282828" class="blog-images ${className}" data-src="${fullImageUrl}" style="aspect-ratio: ${aspectRatio}; background-color: #282828; overflow: hidden;">
-    <img
+  const imgTag = `<img
       alt="${altText}"
       data-src="${fullImageUrl}"
       src="${placeholder}"
@@ -432,7 +475,15 @@ function customLightGallery800Alt(args, content) {
       loading="lazy"
       decoding="async"
       sizes="(min-width: 800px) 930px, 90vw"
-      style="display: block;height: auto; background-color: #f0f0f0">
+      style="display: block;height: auto; background-color: #f0f0f0">`;
+
+  // 有 webp 變體才包 <picture>，沒有就維持原本單一 <img>，舊文章輸出不變。
+  const webpSource = buildWebpSource(originalImageSrc, fullImageUrl, true);
+  const media = webpSource ? `<picture>${webpSource}${imgTag}</picture>` : imgTag;
+
+  return `
+  <figure lg-background-color="#282828" class="blog-images ${className}" data-src="${fullImageUrl}" style="aspect-ratio: ${aspectRatio}; background-color: #282828; overflow: hidden;">
+    ${media}
   </figure>`
 }
 
@@ -588,17 +639,24 @@ function customLightGalleryCover(args) {
   // 轉換為完整網址
   const fullImageUrl = getFullUrl(originalImageSrc, this);
 
-  return `
-  <figure lg-background-color="#282828" class="blog-images blog-cover-image ${className}" data-src="${fullImageUrl}" style="aspect-ratio: ${aspectRatio}; background-color: #f0f0f0; overflow: hidden;">
-    <img
+  const imgTag = `<img
       alt="${altText}"
       src="${fullImageUrl}"
       class=""
       width="${width}"
       height="${height}"
+      fetchpriority="high"
       decoding="async"
       sizes="(min-width: 1000px) 930px, 90vw"
-      style="display: block; width: 100%; height: 100%; object-fit: cover; background-color: #f0f0f0">
+      style="display: block; width: 100%; height: 100%; object-fit: cover; background-color: #f0f0f0">`;
+
+  // 封面不走 lazyload，所以這裡給的是一般 srcset 不是 data-srcset。
+  const webpSource = buildWebpSource(originalImageSrc, fullImageUrl, false);
+  const media = webpSource ? `<picture>${webpSource}${imgTag}</picture>` : imgTag;
+
+  return `
+  <figure lg-background-color="#282828" class="blog-images blog-cover-image ${className}" data-src="${fullImageUrl}" style="aspect-ratio: ${aspectRatio}; background-color: #f0f0f0; overflow: hidden;">
+    ${media}
   </figure>`
 }
 
