@@ -2,8 +2,14 @@
 
 ## 📚 最新文章
 
+### [Grok Bot：有自己雲端電腦的 AI Agent](https://www.darrelltw.com/grok-bot-review/?utm_source=github_readme&utm_medium=referral)
+📅 2026/08/23 · 7 小時內
+
+> xAI 推出的 Grok Bot 實測心得，每個 Bot 有自己的雲端電腦，可以開瀏覽器操作沒有 API 的網站，實測比價流程、把操作存成技能、Bot 之間互相溝通交辦，以及每天自動跑的例行任務，附三種取得方式的費用比較
+
+
 ### [如何在 Claude Desktop 安裝 GA4、SEO MCP](https://www.darrelltw.com/ga4-search-console-mcp-install/?utm_source=github_readme&utm_medium=referral)
-📅 2026/08/02 · 20 天前
+📅 2026/08/02 · 21 天前
 
 > 實測和分享 GA4 , Search Console 的 MCP 安裝流程，讓 Claude Desktop 串接後就能輕鬆分析 GA4 報表和 Search Console 排名數據。
 
@@ -56,15 +62,9 @@
 > Claude Cowork 是 Anthropic 推出的桌面 AI 助理，能自動整理檔案、處理文件，還能學習你的工作流程。實測三大應用場景，看看它如何提升工作效率。（2026/07/07 更新：Chat 與 Cowork 介面整合，並擴大支援 Web、手機版）
 
 
-### [n8n 爬蟲神器 Apify 教學：不會寫程式也能爬資料](https://www.darrelltw.com/n8n-apify-node/?utm_source=github_readme&utm_medium=referral)
-📅 2026/01/13 · 7 個月前
-
-> 完整教學 n8n Apify 節點實現網頁爬蟲自動化。包含 API Token 設定、Run Actor 操作、Instagram 數據爬取等功能介紹。實測別人 IG 帳號發文數據自動同步到 Google Sheets 案例。
-
-
 ## 📊 部落格統計
-![文章總數](https://img.shields.io/badge/文章總數-126-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-376,145+-blue?style=flat-square)
+![文章總數](https://img.shields.io/badge/文章總數-127-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-380,990+-blue?style=flat-square)
 ![最後更新](https://img.shields.io/badge/最後更新-2026/08/23-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
@@ -88,7 +88,7 @@
 
 
 ## 🏷️ 熱門主題
-![n8n](https://img.shields.io/badge/n8n-34-orange?style=flat-square) ![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-15-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![Claude](https://img.shields.io/badge/Claude-8-orange?style=flat-square)
+![n8n](https://img.shields.io/badge/n8n-34-orange?style=flat-square) ![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-15-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![AI](https://img.shields.io/badge/AI-8-orange?style=flat-square)
 
 ## 📈 更新頻率
 ```text
@@ -97,7 +97,7 @@
 05月 █░░░░░░░░░ 1篇
 06月 █░░░░░░░░░ 1篇
 07月 █░░░░░░░░░ 1篇
-08月 █░░░░░░░░░ 1篇
+08月 ██░░░░░░░░ 2篇
 ```
 
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-08-23 01:41:00*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-08-23 06:36:20*
