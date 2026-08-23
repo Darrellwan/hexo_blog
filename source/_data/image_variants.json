@@ -9974,5 +9974,17 @@
         "src": "vs_code_logo-209.webp"
       }
     ]
+  },
+  "/_posts/n8n-google-sheets-node/sheets_operation_decision_tree.webp": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "sheets_operation_decision_tree-800.webp"
+      },
+      {
+        "width": 1600,
+        "src": "sheets_operation_decision_tree-1600.webp"
+      }
+    ]
   }
 }

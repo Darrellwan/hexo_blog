@@ -78,8 +78,9 @@ async function main() {
     process.exit(1);
   }
 
-  const pattern = path.join(scope, '**/*.{png,jpg,jpeg,PNG,JPG,JPEG}').split(path.sep).join('/');
-  const files = (await glob(pattern)).sort();
+  const pattern = path.join(scope, '**/*.{png,jpg,jpeg,PNG,JPG,JPEG,webp}').split(path.sep).join('/');
+  const allFiles = (await glob(pattern)).sort();
+  const files = allFiles.filter(f => !/-\d+\.webp$/i.test(f));
 
   const manifest = fs.existsSync(MANIFEST)
     ? JSON.parse(fs.readFileSync(MANIFEST, 'utf8'))
