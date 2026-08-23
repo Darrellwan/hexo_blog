@@ -10042,5 +10042,1093 @@
         "src": "triggers_on_row_added_updated_google_sheets-800.webp"
       }
     ]
+  },
+  "/_posts/n8n-update-log/Screenshot_20250409_230245_HbvocR5E@2x_compressed.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "Screenshot_20250409_230245_HbvocR5E@2x_compressed-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.100.0-model_selector_node.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.100.0-model_selector_node-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.101.0-form_path_can_not_be_the_same.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.101.0-form_path_can_not_be_the_same-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.101.0-what_is_new_notification_2.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.101.0-what_is_new_notification_2-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.102.0-add_collapse_button.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.102.0-add_collapse_button-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.102.0-google_sheet_header.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.102.0-google_sheet_header-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.103.0-new_node-agent_tool.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.103.0-new_node-agent_tool-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.103.0-new_node-cohere_chat_model.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.103.0-new_node-cohere_chat_model-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.103.0-new_node-google_gemini.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.103.0-new_node-google_gemini-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.104.0-new_node-anthropic.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.104.0-new_node-anthropic-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.105.0-focus_panel.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.105.0-focus_panel-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.105.0-show_setting_icon_in_canva_2.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.105.0-show_setting_icon_in_canva_2-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.106.0-curl_memory_in_request_node_1.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.106.0-curl_memory_in_request_node_1-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.106.0-curl_memory_in_request_node_2.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.106.0-curl_memory_in_request_node_2-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.106.0-custom_input_bg_in_form.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.106.0-custom_input_bg_in_form-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.106.0-google_sheet_update_empty_value.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.106.0-google_sheet_update_empty_value-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.107.0-discord_oauth_custom_scopes.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.107.0-discord_oauth_custom_scopes-800.webp"
+      },
+      {
+        "width": 1600,
+        "src": "n8n-1.107.0-discord_oauth_custom_scopes-1600.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.107.0-sendandwait_security_token.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.107.0-sendandwait_security_token-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.108.0-wait_add_validate_to_number_unit.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.108.0-wait_add_validate_to_number_unit-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.109.0-fix_curl_with_comma.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.109.0-fix_curl_with_comma-800.webp"
+      },
+      {
+        "width": 1564,
+        "src": "n8n-1.109.0-fix_curl_with_comma-1564.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.111.0-gemini_node_support_nano_banana_model.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.111.0-gemini_node_support_nano_banana_model-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.111.0-google_drive_shared_fix.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.111.0-google_drive_shared_fix-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.112.0-gmail_trigger_handle_self_sent_emails.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.112.0-gmail_trigger_handle_self_sent_emails-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.112.0-perplexity_node_replace_sonar_as_default_model.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.112.0-perplexity_node_replace_sonar_as_default_model-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.113.0-google_sheets_expression_warning.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.113.0-google_sheets_expression_warning-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.113.0-node_popularity_scoring.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.113.0-node_popularity_scoring-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.114.0-binary_data_improvements.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.114.0-binary_data_improvements-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.114.0-node_update_button.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.114.0-node_update_button-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.114.0-slack_reply_fix.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.114.0-slack_reply_fix-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.115.0-gmail_recipients_only.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.115.0-gmail_recipients_only-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.116.0-lucide_icons.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.116.0-lucide_icons-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.116.0-replace_node.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.116.0-replace_node-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.117.0-import_url_validation.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.117.0-import_url_validation-800.webp"
+      },
+      {
+        "width": 1258,
+        "src": "n8n-1.117.0-import_url_validation-1258.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.117.0-openai_v2_video.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.117.0-openai_v2_video-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.119.0-guardrails_node_add_new_node.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.119.0-guardrails_node_add_new_node-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.119.0-guardrails_node_example.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.119.0-guardrails_node_example-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.119.0-openai_node_add_responses_api_support_to_chat_model.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.119.0-openai_node_add_responses_api_support_to_chat_model-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.119.0-openai_node_add_responses_api_support_to_chat_model_example_1.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.119.0-openai_node_add_responses_api_support_to_chat_model_example_1-800.webp"
+      },
+      {
+        "width": 1600,
+        "src": "n8n-1.119.0-openai_node_add_responses_api_support_to_chat_model_example_1-1600.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.120.0-code_node_error_message.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.120.0-code_node_error_message-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.121.0-expression_preview_html.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.121.0-expression_preview_html-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.122.0-data_table_csv_download.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.122.0-data_table_csv_download-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.122.0-data_table_csv_import.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.122.0-data_table_csv_import-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.123.0-form_node_default_values-demo.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.123.0-form_node_default_values-demo-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.123.0-form_node_default_values.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.123.0-form_node_default_values-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.123.0-gemini_new_model.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.123.0-gemini_new_model-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.123.0-time_saved_per_path.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.123.0-time_saved_per_path-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.123.0-time_saved_workflow_setting.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.123.0-time_saved_workflow_setting-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.82.0-azure_storage.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.82.0-azure_storage-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.82.0-chnage_to_expression_automatically.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.82.0-chnage_to_expression_automatically-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.83.0-save.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.83.0-save-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.85.0-folder.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.85.0-folder-800.webp"
+      },
+      {
+        "width": 1060,
+        "src": "n8n-1.85.0-folder-1060.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.85.0-folder_need_registered.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.85.0-folder_need_registered-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.85.0-xai_chat_model.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.85.0-xai_chat_model-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.87.1-enable_insights_in_zeabur.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.87.1-enable_insights_in_zeabur-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.87.1-think_tool.jpg": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.87.1-think_tool-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.87.1-think_tool_vs_extend_thinking.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.87.1-think_tool_vs_extend_thinking-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.88.0-mcp_sse_vs_stdio.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.88.0-mcp_sse_vs_stdio-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.89.0-track_user_using_insights.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.89.0-track_user_using_insights-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.90.0-api_scope.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.90.0-api_scope-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.91.0-open_node_editor_with_url.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.91.0-open_node_editor_with_url-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.92.0-curl_import_fix_for_special_character.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.92.0-curl_import_fix_for_special_character-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.92.0-setting_env_for_logs.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.92.0-setting_env_for_logs-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.93.0-open_subworkflow_quickly.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.93.0-open_subworkflow_quickly-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.93.0-share_with_you_section.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.93.0-share_with_you_section-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.93.0-show_community_node_in_search.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.93.0-show_community_node_in_search-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.94.0-log_shows_subworkflow_execution.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.94.0-log_shows_subworkflow_execution-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.95.0-anthropic_default_4_sonnet.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.95.0-anthropic_default_4_sonnet-800.webp"
+      },
+      {
+        "width": 1444,
+        "src": "n8n-1.95.0-anthropic_default_4_sonnet-1444.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.96.0-custom_output_path.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.96.0-custom_output_path-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.96.0-new_perplexity_node.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.96.0-new_perplexity_node-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.96.0-perplexity_models.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.96.0-perplexity_models-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.96.0-perplexity_node_result.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.96.0-perplexity_node_result-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.98.0-add_filter_in_n8n_node.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.98.0-add_filter_in_n8n_node-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.98.0-structure_output_add_auto_fix.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.98.0-structure_output_add_auto_fix-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.99.0-mcp_server_add_support_http_streamtable.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.99.0-mcp_server_add_support_http_streamtable-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-1.99.0-node_name_will_change_automatically_based_on_action.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-1.99.0-node_name_will_change_automatically_based_on_action-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.0.0-workflow_publish_with_version.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.0.0-workflow_publish_with_version-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.0.0-workflow_version_list.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.0.0-workflow_version_list-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.1.0-anthropic_chat_model_logs.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.1.0-anthropic_chat_model_logs-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.1.0-anthropic_claude_opus_settings.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.1.0-anthropic_claude_opus_settings-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.1.0-how_to_enable_chat_in_trigger.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.1.0-how_to_enable_chat_in_trigger-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.10.0-canvas_chat_streaming.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.10.0-canvas_chat_streaming-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.10.0-csv_import_columns.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.10.0-csv_import_columns-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.11.0-chat_suggested_prompts_hub.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.11.0-chat_suggested_prompts_hub-800.webp"
+      },
+      {
+        "width": 1600,
+        "src": "n8n-2.11.0-chat_suggested_prompts_hub-1600.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.11.0-loop_replace_me_after.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.11.0-loop_replace_me_after-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.11.0-loop_replace_me_before.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.11.0-loop_replace_me_before-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.14.0-n8n_cli.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.14.0-n8n_cli-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.15.0-error_workflow_dependency.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.15.0-error_workflow_dependency-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.16.0-notion_oauth.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.16.0-notion_oauth-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.16.0-notion_oauth_credential.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.16.0-notion_oauth_credential-800.webp"
+      },
+      {
+        "width": 1600,
+        "src": "n8n-2.16.0-notion_oauth_credential-1600.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.16.0-notion_oauth_select_pages.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.16.0-notion_oauth_select_pages-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.18.0-favorites_sidebar.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.18.0-favorites_sidebar-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.18.0-minimax_chat_model.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.18.0-minimax_chat_model-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.18.0-schedule_self_heal.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.18.0-schedule_self_heal-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.2.0-guardrails_unicode.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.2.0-guardrails_unicode-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.2.0-node_overlap_detection.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.2.0-node_overlap_detection-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.20.0-mcp_env_managed.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.20.0-mcp_env_managed-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.20.0-notion_url_fix.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.20.0-notion_url_fix-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.21.0-google_sheets_append_row.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.21.0-google_sheets_append_row-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.21.0-notion_get_many_pagination.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.21.0-notion_get_many_pagination-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.22.0-crypto_encrypt_decrypt_actions.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.22.0-crypto_encrypt_decrypt_actions-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.24.0-form_trigger_n8n_user_auth.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.24.0-form_trigger_n8n_user_auth-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.24.0-postgres_select_empty_array.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.24.0-postgres_select_empty_array-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.27.0-anthropic_streaming.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.27.0-anthropic_streaming-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.29.0-slack_lookup_by_email.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.29.0-slack_lookup_by_email-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.3.0-data_table_crud.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.3.0-data_table_crud-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.3.0-subworkflow_versioning.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.3.0-subworkflow_versioning-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.31.0-notion_data_source_success.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.31.0-notion_data_source_success-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.31.0-notion_page_markdown.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.31.0-notion_page_markdown-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.33.0-google-custom-scopes.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.33.0-google-custom-scopes-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.33.0-http-request-error-details.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.33.0-http-request-error-details-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.34.0-custom-auth-result.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.34.0-custom-auth-result-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.34.0-custom-auth-template.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.34.0-custom-auth-template-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.35.0-agent-line-reply.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.35.0-agent-line-reply-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.35.0-agent-line-workflow.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.35.0-agent-line-workflow-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.35.0-agent-markdown-toolbar.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.35.0-agent-markdown-toolbar-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.35.0-agent-sessions-token.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.35.0-agent-sessions-token-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.35.0-assistant-model-list.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.35.0-assistant-model-list-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.35.0-assistant-setup.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.35.0-assistant-setup-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.35.0-mcp-oauth-consent.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.35.0-mcp-oauth-consent-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.35.0-merge-search-append.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.35.0-merge-search-append-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.36.0-discord_ban_cleanup.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.36.0-discord_ban_cleanup-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.36.0-discord_member_actions.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.36.0-discord_member_actions-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.36.0-openrouter_provider_routing.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.36.0-openrouter_provider_routing-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.36.0-schedule_missed_execution.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.36.0-schedule_missed_execution-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.6.0-hitl_tool_fix.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.6.0-hitl_tool_fix-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.6.0-slack_usergroup_info.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.6.0-slack_usergroup_info-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.6.0-slack_usergroup_operations.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.6.0-slack_usergroup_operations-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.6.0-workflow_unpublish.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.6.0-workflow_unpublish-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.7.0-crypto_credential.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.7.0-crypto_credential-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.7.0-crypto_node_select.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.7.0-crypto_node_select-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.7.0-mysql_continue_on_fail.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.7.0-mysql_continue_on_fail-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-update-log/n8n-2.9.0-chat_hub_tools.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n-2.9.0-chat_hub_tools-800.webp"
+      }
+    ]
   }
 }
