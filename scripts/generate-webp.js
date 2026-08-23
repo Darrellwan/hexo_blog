@@ -116,7 +116,7 @@ async function main() {
     for (const w of widths) {
       const out = path.join(dir, `${base}-${w}.webp`);
       try {
-        execFileSync('cwebp', ['-quiet', '-q', QUALITY, '-resize', String(w), '0', file, '-o', out]);
+        execFileSync('cwebp', ['-quiet', '-q', QUALITY, '-m', '6', '-resize', String(w), '0', file, '-o', out]);
         produced.push({ width: w, file: out, size: fs.statSync(out).size });
       } catch (err) {
         console.warn(`[Webp] 轉檔失敗：${path.relative(POSTS_DIR, file)} @${w}w`);
@@ -125,26 +125,27 @@ async function main() {
 
     if (produced.length === 0) continue;
 
-    // 最大的變體沒有比原圖小，代表這張圖 webp 打不過 palette PNG，整張放棄。
-    // 只留小尺寸變體會害瀏覽器在高解析度螢幕上把 800w 放大成 1600px，那更糟。
-    const largest = produced[produced.length - 1];
-    if (largest.size >= origSize) {
-      produced.forEach(p => fs.unlinkSync(p.file));
+    const validVariants = produced.filter(p => p.size < origSize);
+    produced.filter(p => p.size >= origSize).forEach(p => {
+      try { fs.unlinkSync(p.file); } catch (e) {}
+    });
+
+    if (validVariants.length === 0) {
       delete manifest[manifestKey(file)];
       skipped++;
-      console.log(`  跳過  ${path.relative(POSTS_DIR, file)}  webp ${toKB(largest.size)}KB >= 原圖 ${toKB(origSize)}KB`);
+      console.log(`  跳過  ${path.relative(POSTS_DIR, file)}  webp >= 原圖 ${toKB(origSize)}KB`);
       continue;
     }
 
     manifest[manifestKey(file)] = {
-      webp: produced.map(p => ({ width: p.width, src: path.basename(p.file) })),
+      webp: validVariants.map(p => ({ width: p.width, src: path.basename(p.file) })),
     };
     origTotal += origSize;
-    webpTotal += largest.size;
+    webpTotal += validVariants[validVariants.length - 1].size;
     done++;
     console.log(
       `  ${path.relative(POSTS_DIR, file)}  原圖 ${toKB(origSize)}KB -> ` +
-      produced.map(p => `${p.width}w ${toKB(p.size)}KB`).join(', ')
+      validVariants.map(p => `${p.width}w ${toKB(p.size)}KB`).join(', ')
     );
   }
 

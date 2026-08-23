@@ -9986,5 +9986,61 @@
         "src": "sheets_operation_decision_tree-1600.webp"
       }
     ]
+  },
+  "/_posts/n8n-google-sheets-node/gmail_ai_workflow_diagram.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "gmail_ai_workflow_diagram-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-google-sheets-node/google_sheets_account_sheet_within_document.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "google_sheets_account_sheet_within_document-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-google-sheets-node/n8n_google_sheets_append_row_parameters.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n_google_sheets_append_row_parameters-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-google-sheets-node/n8n_google_sheets_retry_on_fail_settings.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n_google_sheets_retry_on_fail_settings-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-google-sheets-node/n8n_google_sheets_trigger_poll_times_dropdown.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n_google_sheets_trigger_poll_times_dropdown-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-google-sheets-node/n8n_google_sheets_trigger_row_added_dropdown.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "n8n_google_sheets_trigger_row_added_dropdown-800.webp"
+      }
+    ]
+  },
+  "/_posts/n8n-google-sheets-node/triggers_on_row_added_updated_google_sheets.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "triggers_on_row_added_updated_google_sheets-800.webp"
+      }
+    ]
   }
 }
