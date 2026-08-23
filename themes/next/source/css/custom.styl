@@ -703,4 +703,13 @@ pre, code {
     stroke-width: 2px !important;
   }
 }
+
+// ========================================
+// Performance: Offscreen Image Rendering
+// ========================================
+.post-body figure.blog-images:not(.blog-cover-image) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 450px;
+}
+
 @import "_custom/search.styl";

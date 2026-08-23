@@ -12,8 +12,6 @@ page_type: post
 id: n8n-google-sheets-node
 description: n8n Google Sheets 節點完整教學。6 個操作怎麼選（含決策樹）、Trigger polling 限制說明，以及 Gmail 電子發票 AI 自動解析去重實戰案例。
 bgImage: blog-n8n-google-sheets-bg.jpg
-preload:
-  - blog-n8n-google-sheets-bg.jpg
 date: 2026-05-09 10:00:00
 updated: 2026-05-10 17:09:05
 ---
