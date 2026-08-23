@@ -3,7 +3,7 @@
 ## 📚 最新文章
 
 ### [Grok Bot：有自己雲端電腦的 AI Agent](https://www.darrelltw.com/grok-bot-review/?utm_source=github_readme&utm_medium=referral)
-📅 2026/08/23 · 7 小時內
+📅 2026/08/23 · 2 小時內
 
 > xAI 推出的 Grok Bot 實測心得，每個 Bot 有自己的雲端電腦，可以開瀏覽器操作沒有 API 的網站，實測比價流程、把操作存成技能、Bot 之間互相溝通交辦，以及每天自動跑的例行任務，附三種取得方式的費用比較
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-08-23 06:36:20*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-08-23 11:12:46*
