@@ -1,0 +1,388 @@
+// ========================================
+// Reusable booking CTA previews
+// ========================================
+
+:root {
+  --dn-cta: #fc6423;
+  --dn-cta-hover: #ff7a3f;
+  --dn-cta-ink: #1f2023;
+  --dn-cta-panel: #303136;
+  --dn-cta-panel-alt: #3a3c42;
+  --dn-cta-text: #f3f4f6;
+  --dn-cta-muted: #c8cbd2;
+  --dn-cta-soft-orange: #ffb08e;
+  --dn-cta-line: rgba(243, 244, 246, 0.24);
+  --dn-cta-line-soft: rgba(243, 244, 246, 0.14);
+  --dn-cta-focus: #f3f4f6;
+  --dn-cta-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+.dn-cta-preview {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 900px;
+  min-width: 0;
+  margin: 24px auto;
+}
+
+.dn-cta-preview-label {
+  margin: 0 0 7px;
+  overflow-wrap: anywhere;
+  color: var(--dn-cta-muted);
+  font-family: var(--dn-cta-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  line-height: 1.4;
+}
+
+.dn-cta {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 56px;
+  gap: 16px;
+  padding: 12px 16px;
+  color: var(--dn-cta-text);
+  background: var(--dn-cta-panel);
+  border: 1px solid var(--dn-cta-line);
+  border-radius: 6px;
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dn-cta:hover {
+  border-color: rgba(252, 100, 35, 0.7);
+}
+
+.dn-cta-mark {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 28px;
+  width: 28px;
+  height: 28px;
+  color: var(--dn-cta-ink);
+  background: var(--dn-cta);
+  border-radius: 50%;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.dn-cta-body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.dn-cta-text {
+  margin: 0;
+  color: var(--dn-cta-muted);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.dn-cta-text p {
+  margin: 0 0 7px;
+}
+
+.dn-cta-text p:last-child {
+  margin-bottom: 0;
+}
+
+.dn-cta-offer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1 1 auto;
+  min-width: 0;
+  gap: 16px;
+}
+
+.dn-cta-body + .dn-cta-offer {
+  flex: 0 1 340px;
+  padding-left: 16px;
+  border-left: 1px solid var(--dn-cta-line-soft);
+}
+
+.dn-cta--no-body .dn-cta-offer {
+  width: 100%;
+}
+
+.dn-cta-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  color: var(--dn-cta-text);
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.dn-cta-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  flex: 0 1 auto;
+  gap: 7px;
+  min-width: 0;
+  min-height: 44px;
+  max-width: 100%;
+  padding: 10px 15px;
+  overflow-wrap: anywhere;
+  color: var(--dn-cta-ink) !important;
+  background: var(--dn-cta);
+  border: 1px solid var(--dn-cta);
+  border-radius: 5px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  line-height: 1.25;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.dn-cta-action:hover {
+  color: var(--dn-cta-ink) !important;
+  background: var(--dn-cta-hover);
+  border-color: var(--dn-cta-hover);
+}
+
+.dn-cta-action:focus-visible {
+  outline: 3px solid var(--dn-cta-focus);
+  outline-offset: 3px;
+}
+
+.dn-cta-arrow {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.dn-cta-action:hover .dn-cta-arrow {
+  transform: translateX(3px);
+}
+
+// ========================================
+// A｜極簡雙線：透明線條與文字型行動
+// ========================================
+
+.dn-cta--editorial-line {
+  padding-right: 0;
+  padding-left: 0;
+  background: transparent;
+  border-right: 0;
+  border-left: 0;
+  border-radius: 0;
+}
+
+.dn-cta--editorial-line .dn-cta-action,
+.dn-cta--inline-link .dn-cta-action {
+  padding-right: 0;
+  padding-left: 0;
+  color: var(--dn-cta-soft-orange) !important;
+  background: transparent;
+  border-color: transparent;
+  border-bottom-color: currentColor;
+  border-radius: 0;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.dn-cta--editorial-line .dn-cta-action:hover,
+.dn-cta--inline-link .dn-cta-action:hover {
+  color: #ffd0bc !important;
+  background: transparent;
+  border-color: transparent;
+  border-bottom-color: currentColor;
+}
+
+// ========================================
+// B｜顧問名片：小圓形簽名與輕量浮起的面板
+// ========================================
+
+.dn-cta--signature-card {
+  background: var(--dn-cta-panel-alt);
+  border-color: rgba(243, 244, 246, 0.28);
+  border-radius: 9px;
+  box-shadow: 0 7px 16px rgba(0, 0, 0, 0.18);
+}
+
+.dn-cta--signature-card .dn-cta-mark {
+  display: inline-flex;
+}
+
+.dn-cta--signature-card:hover {
+  box-shadow: 0 9px 20px rgba(0, 0, 0, 0.24);
+}
+
+// ========================================
+// C｜編輯側欄：橘色側軌、安靜底色與描邊行動
+// ========================================
+
+.dn-cta--side-note {
+  background: rgba(252, 100, 35, 0.07);
+  border-top-color: var(--dn-cta-line-soft);
+  border-right-color: var(--dn-cta-line-soft);
+  border-bottom-color: var(--dn-cta-line-soft);
+  border-left: 4px solid var(--dn-cta);
+  border-radius: 2px;
+}
+
+.dn-cta--side-note .dn-cta-action {
+  color: var(--dn-cta-soft-orange) !important;
+  background: transparent;
+  border-color: var(--dn-cta);
+}
+
+.dn-cta--side-note .dn-cta-action:hover {
+  color: var(--dn-cta-ink) !important;
+  background: var(--dn-cta);
+  border-color: var(--dn-cta);
+}
+
+// ========================================
+// D｜內文連結：自然嵌入文章的底線行動
+// ========================================
+
+.dn-cta--inline-link {
+  display: inline-flex;
+  width: auto;
+  max-width: 100%;
+  min-height: 44px;
+  padding: 6px 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+.dn-cta--inline-link .dn-cta-offer {
+  flex: 0 1 auto;
+  width: auto;
+  max-width: 100%;
+  gap: 12px;
+}
+
+.dn-cta--inline-link .dn-cta-title {
+  flex: 0 1 auto;
+}
+
+// ========================================
+// E｜服務列：深色雙色服務帶與收斂的橘色按鈕
+// ========================================
+
+.dn-cta--service-bar {
+  background: linear-gradient(90deg, var(--dn-cta-panel) 0 68%, var(--dn-cta-panel-alt) 68% 100%);
+  border-color: #555963;
+  border-radius: 4px;
+}
+
+.dn-cta--service-bar .dn-cta-action {
+  border-radius: 4px;
+}
+
+// ========================================
+// 淺色主題適配
+// ========================================
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --dn-cta-panel: #ffffff;
+    --dn-cta-panel-alt: #f3f5f7;
+    --dn-cta-text: #1f2023;
+    --dn-cta-muted: #50545c;
+    --dn-cta-line: rgba(31, 32, 35, 0.22);
+    --dn-cta-line-soft: rgba(31, 32, 35, 0.14);
+    --dn-cta-focus: #1f2023;
+  }
+
+  .dn-cta--editorial-line .dn-cta-action,
+  .dn-cta--inline-link .dn-cta-action,
+  .dn-cta--side-note .dn-cta-action {
+    color: #a63c18 !important;
+  }
+
+  .dn-cta--editorial-line .dn-cta-action:hover,
+  .dn-cta--inline-link .dn-cta-action:hover {
+    color: #7f2e12 !important;
+  }
+
+  .dn-cta--signature-card {
+    box-shadow: 0 6px 15px rgba(31, 32, 35, 0.12);
+  }
+
+  .dn-cta--side-note {
+    background: rgba(252, 100, 35, 0.06);
+  }
+
+  .dn-cta--service-bar {
+    background: linear-gradient(90deg, #f0f2f4 0 68%, #e2e6e9 68% 100%);
+    border-color: #aab1b8;
+  }
+}
+
+// ========================================
+// 手機版：維持小尺寸，必要時只把內容收成兩行
+// ========================================
+
+@media (max-width: 768px) {
+  .dn-cta-preview {
+    margin: 20px auto;
+  }
+
+  .dn-cta {
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 14px;
+    padding: 12px 14px;
+  }
+
+  .dn-cta-body,
+  .dn-cta-offer {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .dn-cta-body + .dn-cta-offer {
+    padding-top: 10px;
+    padding-left: 0;
+    border-top: 1px solid var(--dn-cta-line-soft);
+    border-left: 0;
+  }
+
+  .dn-cta--no-body .dn-cta-offer {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .dn-cta--inline-link {
+    display: flex;
+    width: 100%;
+    padding: 8px 0;
+  }
+
+  .dn-cta--inline-link .dn-cta-offer {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .dn-cta-action {
+    flex: 0 1 auto;
+  }
+}
+
+// ========================================
+// 尊重系統的減少動態設定
+// ========================================
+
+@media (prefers-reduced-motion: reduce) {
+  .dn-cta,
+  .dn-cta-action,
+  .dn-cta-arrow {
+    transition: none;
+  }
+
+  .dn-cta-action:hover .dn-cta-arrow {
+    transform: none;
+  }
+}
