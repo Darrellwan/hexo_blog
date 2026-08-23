@@ -35,7 +35,9 @@ function parseArg(args, name) {
   }
 
   const value = argsStr.slice(keyMatch.index + keyMatch[0].length);
-  const nextArgument = value.search(/\s+[A-Za-z][A-Za-z0-9_-]*\s*=\s*/);
+  // 空值（例如 label=""）時，keyPattern 的尾端 \s* 會吃掉分隔用的空白，
+  // 讓 value 直接以下一個 key= 開頭，所以邊界比對也要接受字串開頭（^）。
+  const nextArgument = value.search(/(?:^|\s+)[A-Za-z][A-Za-z0-9_-]*\s*=\s*/);
   return (nextArgument === -1 ? value : value.slice(0, nextArgument)).trim();
 }
 
