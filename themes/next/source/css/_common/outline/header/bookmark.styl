@@ -1,3 +1,5 @@
+$bookmark-icon = 'url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20384%20512%22%3E%3Cpath%20d%3D%22M0%2048V487.7C0%20501.1%2010.9%20512%2024.3%20512c5%200%209.9-1.5%2014-4.4L192%20400%20345.7%20507.6c4.1%202.9%209%204.4%2014%204.4c13.4%200%2024.3-10.9%2024.3-24.3V48c0-26.5-21.5-48-48-48H48C21.5%200%200%2021.5%200%2048z%22%2F%3E%3C%2Fsvg%3E")';
+
 .book-mark-link {
   border-bottom: none;
   display: inline-block;
@@ -11,11 +13,12 @@
   }
 
   &::before {
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 32px;
     color: unquote(hexo-config('bookmark.color'));
-    content: '\f02e';
-    font-size: 32px;
-    line-height: 1;
-    font-family-icons();
+    icon-mask($bookmark-icon);
   }
 }
 

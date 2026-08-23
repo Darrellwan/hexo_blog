@@ -1,3 +1,7 @@
+$schedule-icon-circle   = 'url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20512%20512%22%3E%3Cpath%20d%3D%22M256%20512A256%20256%200%201%200%20256%200a256%20256%200%201%200%200%20512z%22%2F%3E%3C%2Fsvg%3E")';
+$schedule-icon-location = 'url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20384%20512%22%3E%3Cpath%20d%3D%22M215.7%20499.2C267%20435%20384%20279.4%20384%20192C384%2086%20298%200%20192%200S0%2086%200%20192c0%2087.4%20117%20243%20168.3%20307.2c12.3%2015.3%2035.1%2015.3%2047.4%200zM192%20128a64%2064%200%201%201%200%20128%2064%2064%200%201%201%200-128z%22%2F%3E%3C%2Fsvg%3E")';
+$schedule-icon-clock    = 'url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20512%20512%22%3E%3Cpath%20d%3D%22M256%200a256%20256%200%201%201%200%20512A256%20256%200%201%201%20256%200zM232%20120l0%20136c0%208%204%2015.5%2010.7%2020l96%2064c11%207.4%2025.9%204.4%2033.3-6.7s4.4-25.9-6.7-33.3L280%20243.2%20280%20120c0-13.3-10.7-24-24-24s-24%2010.7-24%2024z%22%2F%3E%3C%2Fsvg%3E")';
+
 @keyframes dot-flash {
   from {
     opacity: 1;
@@ -42,12 +46,13 @@
       &::before {
         animation: dot-flash 1s alternate infinite ease-in-out;
         color: white;
-        content: '\f111';
+        content: '';
         display: inline-block;
-        font-size: 10px;
+        width: 10px;
+        height: 10px;
         margin-right: 25px;
         vertical-align: middle;
-        font-family-icons();
+        icon-mask($schedule-icon-circle);
       }
     }
 
@@ -70,20 +75,21 @@
 
       &::before {
         color: white;
+        content: '';
         display: inline-block;
         margin-right: 9px;
         text-align: center;
         text-indent: 0;
         width: 14px;
-        font-family-icons();
+        height: 14px;
       }
 
       &.event-location::before {
-        content: '\f041';
+        icon-mask($schedule-icon-location);
       }
 
       &.event-duration::before {
-        content: '\f017';
+        icon-mask($schedule-icon-clock);
       }
     }
   }

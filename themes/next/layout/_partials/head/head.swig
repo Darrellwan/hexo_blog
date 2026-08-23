@@ -50,9 +50,7 @@
 
 {{ next_font() }}
 
-{%- set font_awesome_uri = theme.vendors.fontawesome or next_vendors('font-awesome/css/all.min.css') %}
-<link rel="stylesheet" href="{{ font_awesome_uri }}" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="{{ font_awesome_uri }}"></noscript>
+<link rel="stylesheet" href="/css/fa-icons.css">
 
 {%- if theme.fancybox %}
   {%- set fancybox_css_uri = theme.vendors.fancybox_css or next_vendors('//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css') %}
@@ -66,10 +64,8 @@
   <script src="{{ pace_js_uri }}"></script>
 {%- endif %}
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto&family=Noto+Sans+TC:wght@300&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto&family=Noto+Sans+TC:wght@300&display=swap" rel="stylesheet"></noscript>
+<link href="/css/fonts.css" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="/css/fonts.css" rel="stylesheet"></noscript>
 <style>
   body {
     font-family: system-ui, -apple-system, sans-serif;

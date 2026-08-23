@@ -898,8 +898,9 @@ vendors:
   # Internal version: 5.13.0
   # fontawesome: //cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css
   # fontawesome: //cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css
-  fontawesome: //cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css
-  # fontawesome:
+  # fontawesome: //cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css
+  # Font Awesome is self-hosted as an SVG-mask subset (source/css/fa-icons.css); no CDN fallback.
+  fontawesome:
 
   # MathJax
   # mathjax: //cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js

@@ -108,7 +108,18 @@ flex-column() {
   justify-content: center;
 }
 
-font-family-icons() {
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 900;
+// SVG mask 版圖示（取代 Font Awesome webfont 偽元素寫法）。
+// $icon-url 需為完整的 'url("data:image/svg+xml,...")' 字串（見 _variables/base.styl 的用法）。
+// caller 仍需自行設定 width/height 決定圖示大小（原本靠 font-size 控制）。
+icon-mask($icon-url) {
+  display: inline-block;
+  background-color: currentColor;
+  -webkit-mask-image: unquote($icon-url);
+  mask-image: unquote($icon-url);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
 }

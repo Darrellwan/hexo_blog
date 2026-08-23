@@ -50,11 +50,12 @@
       padding-left: 2.5em;
 
       &::before {
-        font-size: 1.5em;
+        content: '';
+        width: 1.5em;
+        height: 1.5em;
         left: .4em;
         position: absolute;
-        top: calc(50% - 1em);
-        font-family-icons();
+        top: calc(50% - .75em);
       }
     }
   }
@@ -92,7 +93,7 @@
 
     if ($note-icons) {
       &:not(.no-icon)::before {
-        content: $note-default-icon;
+        icon-mask($note-default-icon);
 
         if ($note-style != 'modern') {
           color: $note-default-text;
@@ -134,7 +135,7 @@
 
     if ($note-icons) {
       &:not(.no-icon)::before {
-        content: $note-primary-icon;
+        icon-mask($note-primary-icon);
 
         if ($note-style != 'modern') {
           color: $note-primary-text;
@@ -176,7 +177,7 @@
 
     if ($note-icons) {
       &:not(.no-icon)::before {
-        content: $note-info-icon;
+        icon-mask($note-info-icon);
 
         if ($note-style != 'modern') {
           color: $note-info-text;
@@ -218,7 +219,7 @@
 
     if ($note-icons) {
       &:not(.no-icon)::before {
-        content: $note-success-icon;
+        icon-mask($note-success-icon);
 
         if ($note-style != 'modern') {
           color: $note-success-text;
@@ -260,7 +261,7 @@
 
     if ($note-icons) {
       &:not(.no-icon)::before {
-        content: $note-warning-icon;
+        icon-mask($note-warning-icon);
 
         if ($note-style != 'modern') {
           color: $note-warning-text;
@@ -302,7 +303,7 @@
 
     if ($note-icons) {
       &:not(.no-icon)::before {
-        content: $note-danger-icon;
+        icon-mask($note-danger-icon);
 
         if ($note-style != 'modern') {
           color: $note-danger-text;
