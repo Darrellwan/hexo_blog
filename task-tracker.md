@@ -2,6 +2,12 @@
 
 ## 🔴 待完成
 
+### Grok Bot 文章｜3 張圖尚未跑 webp 壓縮
+- **建立日期**：2026-08-23
+- 全篇已發布（見下方已完成），唯獨 `grokbot_price_compare_table.png`、`grokbot_pricing_plans.png`、`grokbot_scheduled_task_settings.png` 這 3 張沒有 `-800.webp`/`-1600.webp` 變體，其餘 12 張都有。2026-08-23 提出時 Darrell 選擇先跳過（「不需要，直接發佈」），不影響顯示，只是檔案體積較大
+- 要補的話：`npm run images:compress`
+
+
 ### n8n SEO 救援：教學 hub 頁改版為「入門指南＋導覽」
 - **建立日期**：2026-08-20
 - **狀態**：✅ 已上線並驗證（commit `548d3aa`，桌機／手機視覺、meta、轉址、內鏈全查過）；🔴 **待回看（9 月中）**：跑 `bin/gsc-query-trajectory.py` 看「n8n 教學」是否從 17 名回升，成功判準＝回前 10
@@ -234,6 +240,16 @@
 
 ## ✅ 已完成
 
+- [x] **8/23 Grok Bot 使用心得文章發布 + ctaCard 解析 bug 修復**
+  - `article-review` findings-only 審查：front matter、QuickNav 錨點（9/9 對應無死錨）、Custom Tag 語法、description 對正文、圖片存在性全過；唯一問題是 3 張圖缺 webp 壓縮（見上方 🔴，Darrell 選擇先跳過）
+  - commit 範圍刻意收窄：只加 `source/_posts/grok-bot-review.md`＋圖片資料夾＋`scripts/cta-card.js`＋`themes/next/source/css/_custom/cta-card.styl`＋`custom.styl` 一行 import；`source/_data/image_dimensions.json`（本次整檔 6500+ 行churn，混了其他任務的異動）刻意不進這次 commit，因為 `npm run build` 的 `images:process` 步驟本來就會在 Vercel 上重新產生
+  - **發布後瀏覽器驗收抓到真的線上 bug**：CTA 卡片上方多印出一行原始文字 `variant=service-bar`。根因是 `scripts/cta-card.js` 的 `parseArg()` fallback 分支——`label=""` 空值時 Hexo 會把值兩側引號整個吃掉，keyPattern 尾端的 `\s*` 又把 `label=` 後面的分隔空白吃光，導致找「下一個參數」邊界的 regex 少了判斷字串開頭（`^`）的分支，把 `variant=service-bar` 誤判成 label 的內容
+  - 修法：`nextArgument` 的 regex 從 `/\s+[A-Za-z][A-Za-z0-9_-]*\s*=\s*/` 改成 `/(?:^|\s+)[A-Za-z][A-Za-z0-9_-]*\s*=\s*/`，本機用 debug tag 印出 Hexo 實際傳入的 args 陣列驗證根因，修完在 node 裡對照「有引號」「空值」兩種情境都跑過
+  - hexo 有渲染快取：改完 script 後 `hexo generate` 沒重跑到這篇（db.json 快取住了），要 `hexo clean` 才會真的重新套用新的 tag 邏輯
+  - 兩次 push 都撞到遠端有 GitHub Actions 自動更新 README 的 commit，用 `git merge origin/main`（不用 rebase，因為 repo 裡有大量跟本次無關的既有未提交檔案，rebase 會擋在「工作目錄不乾淨」）
+  - 部署驗證踩到一個雷：`vercel ls` 抓到的第一筆不一定是最新那次 push 觸發的部署——GitHub Actions 的 README commit 也會觸發自己的部署，兩筆 created 時間只差 30 秒，必須用 `--format json` core 對 `createdAt` 才挑得出真正對應這次 commit 的部署
+  - production 網域第一次驗證還讀到 CDN 舊快取（`x-vercel-cache: HIT`、age 持續增加），加 `Cache-Control: no-cache` header 才能強制打到 origin 看到修好後的內容；一般請求隨後也自然轉成新版
+  - agent-browser 全頁截圖第一次看到全部圖片是空白，是 `lazyload` 佔位圖沒被觸發（不是壞圖），漸進式 `scroll down` 多次觸發 lazysizes 後用 `img.complete && naturalWidth>0` 逐張驗證 17 張全部載入成功才算過
 - [x] **8/12 全站文章更新日期修正（顯示為部署日的 bug）並上線**
   - 成因：`main.yml` 是 `updated_option: 'mtime'`，而 front matter 寫的是 Hexo 不認的自創欄位 `modified`，所以更新日 fallback 成檔案 mtime；Vercel 每次部署都是 fresh clone → 全站顯示部署當天。考古：2024-04-25 `d9f582d` 首次手寫 `modified`，2024-07-24 `e25fa18` 把主題顯示開關掛在 `post.modified` 上，但顯示值一直是 `post.updated`
   - 改動：29 個檔案 front matter `modified:` → `updated:`（值不動，其中 27 篇 tracked 進 commit）；`main.yml`／`_config.yml` 的 `updated_option` 改 `'date'`；`themes/next/layout/_macro/post.swig:75,85` 顯示開關改 `post.updated`；`themes/next/_config.yml` 的 `another_day` 改 `true`；`CLAUDE.md`＋`docs/guides/n8n-node-article-guide.md` 模板同步
