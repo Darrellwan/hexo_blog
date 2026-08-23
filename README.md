@@ -3,7 +3,7 @@
 ## 📚 最新文章
 
 ### [Grok Bot：有自己雲端電腦的 AI Agent](https://www.darrelltw.com/grok-bot-review/?utm_source=github_readme&utm_medium=referral)
-📅 2026/08/23 · 2 小時內
+📅 2026/08/23 · 2 小時前
 
 > xAI 推出的 Grok Bot 實測心得，每個 Bot 有自己的雲端電腦，可以開瀏覽器操作沒有 API 的網站，實測比價流程、把操作存成技能、Bot 之間互相溝通交辦，以及每天自動跑的例行任務，附三種取得方式的費用比較
 
@@ -63,8 +63,8 @@
 
 
 ## 📊 部落格統計
-![文章總數](https://img.shields.io/badge/文章總數-127-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-380,990+-blue?style=flat-square)
+![文章總數](https://img.shields.io/badge/文章總數-128-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-382,891+-blue?style=flat-square)
 ![最後更新](https://img.shields.io/badge/最後更新-2026/08/23-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
@@ -88,7 +88,7 @@
 
 
 ## 🏷️ 熱門主題
-![n8n](https://img.shields.io/badge/n8n-34-orange?style=flat-square) ![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-15-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![AI](https://img.shields.io/badge/AI-8-orange?style=flat-square)
+![n8n](https://img.shields.io/badge/n8n-35-orange?style=flat-square) ![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-15-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![AI](https://img.shields.io/badge/AI-8-orange?style=flat-square)
 
 ## 📈 更新頻率
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-08-23 11:12:46*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-08-23 15:28:43*
