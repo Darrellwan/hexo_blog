@@ -96,10 +96,10 @@
 ---
 
 ## 關於作者 (Author Profile)
-**Darrell** 是一位 Solution Engineer Lead，專長在於將複雜的行銷需求轉化為可執行的程式碼架構。
-- **角色**: Martech Engineer, n8n Expert, Backend Developer.
-- **服務**: 企業自動化導入、客製化 n8n 節點開發、GA4 檢健診。
-- **聯絡**: [社群連結頁](https://www.darrelltw.com/links/)
+**Darrell** 是一位 automation and n8n expert，專長在於自動化專案，幫客戶導入 n8n 和 AI 自動化等等
+- **角色**: n8n Expert, Backend Developer, Martech Engineer.
+- **服務**: 企業自動化導入、AI 和 n8n 導入、GA4 檢健診。
+- **聯絡**: [社群連結頁](https://www.darrelltw.com/links/), [自動化接案](https://www.darrelltw.com/n8n-expert/)
 
 ## 完整文件索引 (Full Archives)
 若需要讀取所有歷史文章的純文字內容，請存取以下路徑：
