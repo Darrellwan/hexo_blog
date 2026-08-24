@@ -3,30 +3,6 @@ title: {{ page.title }}
 date: {{ page.date }}
 layout: false
 ---
-
-{%- if theme.favicon.apple_touch_icon %}
-  <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for(theme.favicon.apple_touch_icon) }}">
-{%- endif %}
-{%- if theme.favicon.medium %}
-  <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for(theme.favicon.medium) }}">
-{%- endif %}
-{%- if theme.favicon.small %}
-  <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for(theme.favicon.small) }}">
-{%- endif %}
-{%- if theme.favicon.safari_pinned_tab %}
-  <link rel="mask-icon" href="{{ url_for(theme.favicon.safari_pinned_tab) }}" color="{{ theme.android_chrome_color }}">
-{%- endif %}
-{%- if theme.favicon.android_manifest %}
-  <link rel="manifest" href="{{ url_for(theme.favicon.android_manifest) }}">
-{%- endif %}
-{%- if theme.favicon.ms_browserconfig %}
-  <meta name="msapplication-config" content="{{ url_for(theme.favicon.ms_browserconfig) }}">
-{%- endif %}
-
-{%- if theme.google_site_verification %}
-  <meta name="google-site-verification" content="{{ theme.google_site_verification }}">
-{%- endif %}
-
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 <head>
@@ -44,7 +20,7 @@ layout: false
   <meta name="language" content="zh-TW">
   <meta name="geo.region" content="TW">
   <meta name="geo.country" content="Taiwan">
-  <link rel="canonical" href="{{ config.url }}{{ url_for(page.permalink) }}">
+  <link rel="canonical" href="{{ page.permalink }}">
   
   <!-- 技術 SEO -->
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -52,9 +28,30 @@ layout: false
   <meta name="format-detection" content="telephone=no">
   <meta name="theme-color" content="#ff6d5a">
   <meta name="msapplication-TileColor" content="#ff6d5a">
+
+  {%- if theme.favicon.apple_touch_icon %}
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for(theme.favicon.apple_touch_icon) }}">
+  {%- endif %}
+  {%- if theme.favicon.medium %}
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for(theme.favicon.medium) }}">
+  {%- endif %}
+  {%- if theme.favicon.small %}
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for(theme.favicon.small) }}">
+  {%- endif %}
+  {%- if theme.favicon.safari_pinned_tab %}
+    <link rel="mask-icon" href="{{ url_for(theme.favicon.safari_pinned_tab) }}" color="{{ theme.android_chrome_color }}">
+  {%- endif %}
+  {%- if theme.favicon.android_manifest %}
+    <link rel="manifest" href="{{ url_for(theme.favicon.android_manifest) }}">
+  {%- endif %}
+  {%- if theme.favicon.ms_browserconfig %}
+    <meta name="msapplication-config" content="{{ url_for(theme.favicon.ms_browserconfig) }}">
+  {%- endif %}
+  {%- if theme.google_site_verification %}
+    <meta name="google-site-verification" content="{{ theme.google_site_verification }}">
+  {%- endif %}
   
   <!-- 預載入重要資源 -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="dns-prefetch" href="//www.googletagmanager.com">
   <link rel="dns-prefetch" href="//www.google-analytics.com">
   
@@ -70,7 +67,7 @@ layout: false
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="{{ config.url }}{{ url_for(page.permalink) }}">
+  <meta property="og:url" content="{{ page.permalink }}">
   <meta property="og:title" content="n8n 教學：新手入門指南、節點、模板、部署">
   <meta property="og:description" content="{{ page.description or 'n8n自動化教學，包含節點、實用模板、部署。適合初學者到進階用戶，快速上手自動化。' }}">
   <meta property="og:image" content="{{ config.url }}{{ url_for('/gallery/n8n_resource_og.jpg') }}">
@@ -84,546 +81,50 @@ layout: false
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@darrell_tw">
   <meta name="twitter:creator" content="@darrell_tw">
-  <meta name="twitter:url" content="{{ config.url }}{{ url_for(page.permalink) }}">
+  <meta name="twitter:url" content="{{ page.permalink }}">
   <meta name="twitter:title" content="n8n 教學：新手入門指南、節點、模板、部署">
   <meta name="twitter:description" content="{{ page.description or 'n8n自動化教學，包含節點、實用模板、部署。適合初學者到進階用戶，快速上手自動化。' }}">
   <meta name="twitter:image" content="{{ config.url }}{{ url_for('/gallery/n8n_resource_og.jpg') }}">
   <meta name="twitter:image:alt" content="n8n 教學資源 - 節點介紹、模板分享、部署指南">
 
-
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-WRZDBFS');</script>
-  <!-- End Google Tag Manager -->
-  
-  <!-- 
-  <script src="https://cdn.jsdelivr.net/npm/algoliasearch@5.23.4/dist/algoliasearch.umd.js"></script>
-  
-  <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.78.1/dist/instantsearch.production.min.js"></script>
-  
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.4.2/themes/algolia-min.css">
-  -->
-  
+  <!-- Google Tag Manager (Deferred Loading) -->
   <script>
-    /* Algolia 搜尋相關功能暫時關閉
-    // 檢查 Algolia 是否已正確載入
-    function isAlgoliaLoaded() {
-      return typeof algoliasearch !== 'undefined' && typeof instantsearch !== 'undefined';
-    }
-    */
-
-    // 初始化頁面功能
-    window.onload = function() {
-      /* Algolia 搜尋功能暫時關閉
-      if (!isAlgoliaLoaded()) {
-        console.error('algoliasearch 或 instantsearch 未正確載入。請確認 CDN 是否正確引入。');
-        
-        // 顯示錯誤訊息給使用者
-        const searchContainer = document.querySelector('.n8n-search-container');
-        if (searchContainer) {
-          searchContainer.innerHTML = '<div style="color: #ff6d5a; padding: 15px; text-align: center;">搜尋功能載入失敗，請重新整理頁面或稍後再試</div>';
-        }
-      } else {
-        console.log('Algolia 搜尋初始化中...');
-        const searchClient = algoliasearch.algoliasearch('JPTDAB3P1B', '6e8babb8aef768a0190937d0b744dba9');
-        
-        const search = instantsearch({
-          indexName: 'n8n_post',
-          searchClient,
-          searchFunction: function(helper) {
-            // 只有在搜尋框有輸入內容時才執行搜尋
-            if (helper.state.query) {
-              helper.search();
-            }
-          }
-        });
-        
-        // 搜尋框
-        search.addWidgets([
-          instantsearch.widgets.searchBox({
-            container: '#algolia-search-box',
-            placeholder: '搜尋 n8n 文章、教學...',
-            cssClasses: {
-              root: 'algolia-searchbox-root',
-              input: 'algolia-searchbox-input',
-              submit: 'algolia-searchbox-submit',
-              reset: 'algolia-searchbox-reset'
-            }
-          }),
-          
-          // 搜尋結果
-          instantsearch.widgets.hits({
-            container: '#algolia-hits',
-            cssClasses: {
-              root: 'algolia-hits-root',
-              list: 'algolia-hits-list',
-              item: 'algolia-hit'
-            },
-            templates: {
-              item: function(hit) {
-                const title = hit._highlightResult && hit._highlightResult.title ? 
-                              hit._highlightResult.title.value : hit.title;
-                const desc = hit._snippetResult && hit._snippetResult.description ? 
-                            hit._snippetResult.description.value : 
-                            (hit.description || '');
-                
-                return `
-                  <div class="algolia-hit">
-                    <a href="${hit.url || hit.path}" target="_blank" rel="noopener"
-                      onclick="trackClick('${hit.url || hit.path}', '${hit.title}', '${hit.author || 'Darrell TW'}', '${hit.category || 'search'}')">
-                      <div class="algolia-hit-title">${title}</div>
-                      <div class="algolia-hit-snippet">${desc}</div>
-                    </a>
-                  </div>
-                `;
-              },
-              empty: `<div class="algolia-empty">沒有找到相關結果</div>`,
-            }
-          }),
-          
-          // 搜尋統計
-          instantsearch.widgets.stats({
-            container: '#algolia-hits',
-            templates: {
-              text: function(data) {
-                return `<div class="algolia-stats">找到 ${data.nbHits} 個結果</div>
-                       <div class="algolia-powered">
-                         Powered by <a href="https://www.algolia.com" target="_blank" rel="noopener">
-                           Algolia <img src="https://www.algolia.com/assets/algolia-logo-light-2d1d0725b97668f6468e31860e2e352e.svg" alt="Algolia">
-                         </a>
-                       </div>`;
-              }
-            }
-          })
-        ]);
-        
-        search.start();
-        console.log('Algolia 搜尋初始化完成');
+    window.dataLayer = window.dataLayer || [];
+    (function() {
+      var gtmLoaded = false;
+      function loadGTM() {
+        if (gtmLoaded) return;
+        gtmLoaded = true;
+        window.dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+        var f = document.getElementsByTagName('script')[0];
+        var j = document.createElement('script');
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-WRZDBFS';
+        f.parentNode.insertBefore(j, f);
       }
-      */
-      
-      // 平滑滾動效果
-      document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', e => {
-          e.preventDefault();
-          const tgt = document.getElementById(a.getAttribute('href').slice(1));
-          if (tgt) window.scrollTo({ top: tgt.offsetTop - 80, behavior: 'smooth' });
+
+      var events = ['scroll', 'mousemove', 'touchstart', 'click', 'keydown'];
+      function onUserInteraction() {
+        loadGTM();
+        events.forEach(function(e) {
+          window.removeEventListener(e, onUserInteraction, { passive: true });
         });
+      }
+
+      events.forEach(function(e) {
+        window.addEventListener(e, onUserInteraction, { passive: true });
       });
-      
-      // 導航欄固定效果
-      const nav = document.querySelector('.n8n-nav');
-      const navTop = nav.offsetTop;
-      
-      window.addEventListener('scroll', () => {
-        if (window.scrollY >= navTop) {
-          nav.classList.add('n8n-nav-fixed');
-        } else {
-          nav.classList.remove('n8n-nav-fixed');
-        }
-        
-        // 高亮當前區塊
-        const sections = document.querySelectorAll('.n8n-section');
-        const navLinks = document.querySelectorAll('.n8n-nav a');
-        
-        // 如果沒有區塊，首頁保持高亮
-        let currentSection = '';
-        
-        sections.forEach(section => {
-          const sectionTop = section.offsetTop - 100;
-          if (window.scrollY >= sectionTop) {
-            currentSection = section.getAttribute('id');
-          }
+
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(function() {
+          setTimeout(loadGTM, 2500);
         });
-        
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (currentSection && link.getAttribute('href') === '#' + currentSection) {
-            link.classList.add('active');
-          } else if (!currentSection && link.getAttribute('href') === '/') {
-            link.classList.add('active');
-          }
-        });
-      });
-    };
+      } else {
+        setTimeout(loadGTM, 2500);
+      }
+    })();
   </script>
-
-<script>
-(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-WRZDBFS')
-</script>
-
-<!-- SEO Structured Data - Generated at build time -->
-{{ n8n_collection_structured_data() }}
-</head>
-<body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WRZDBFS"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-
-<header class="n8n-resources-header" role="banner">
-  <div class="n8n-header-wrapper">
-    <h1>n8n 教學：新手入門、節點介紹、模板與部署指南</h1>
-    <div class="social-buttons">
-      <a href="https://www.darrelltw.com/" class="social-button" target="_blank" rel="noopener noreferrer" title="Website">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41z"></path></svg>
-      </a>
-      <a href="https://www.threads.net/@darrell_tw_" class="social-button" target="_blank" rel="noopener noreferrer" title="Threads">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 440 511.43" fill="currentColor"><path d="M342.383 237.038a177.282 177.282 0 00-6.707-3.046c-3.948-72.737-43.692-114.379-110.429-114.805-38.505-.255-72.972 15.445-94.454 48.041l36.702 25.178c15.265-23.159 39.221-28.096 56.864-28.096.204 0 .408 0 .61.002 21.974.14 38.555 6.529 49.287 18.987 7.81 9.071 13.034 21.606 15.621 37.425-19.483-3.311-40.553-4.329-63.077-3.038-63.45 3.655-104.24 40.661-101.501 92.08 1.391 26.083 14.385 48.523 36.587 63.181 18.772 12.391 42.95 18.45 68.077 17.079 33.183-1.819 59.215-14.48 77.377-37.63 13.793-17.58 22.516-40.363 26.368-69.069 15.814 9.544 27.535 22.103 34.007 37.2 11.006 25.665 11.648 67.84-22.764 102.223-30.15 30.121-66.392 43.151-121.164 43.554-60.758-.45-106.708-19.935-136.583-57.915-27.976-35.562-42.434-86.93-42.973-152.674.539-65.746 14.997-117.114 42.973-152.676 29.875-37.979 75.824-57.463 136.582-57.914 61.197.455 107.948 20.033 138.967 58.195 15.21 18.713 26.676 42.248 34.236 69.688L440 161.532c-9.163-33.775-23.582-62.881-43.203-87.017C357.031 25.59 298.872.519 223.936 0h-.3C148.851.518 91.344 25.683 52.709 74.795 18.331 118.499.598 179.308.002 255.535l-.002.18.002.18c.596 76.225 18.329 137.037 52.707 180.741 38.635 49.11 96.142 74.277 170.927 74.794h.3c66.486-.462 113.352-17.868 151.96-56.442 50.51-50.463 48.99-113.718 32.342-152.549-11.945-27.847-34.716-50.463-65.855-65.401zM227.587 344.967c-27.808 1.567-56.699-10.916-58.124-37.651-1.056-19.823 14.108-41.942 59.831-44.577a266.87 266.87 0 0115.422-.45c16.609 0 32.145 1.613 46.271 4.701-5.268 65.798-36.172 76.483-63.4 77.977z"></path></svg>
-      </a>
-      <a href="mailto:darrell.tw.martech@gmail.com" class="social-button" target="_blank" rel="noopener noreferrer" title="Gmail">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg>
-      </a>
-      <a href="https://www.instagram.com/darrell_tw_/" class="social-button" target="_blank" rel="noopener noreferrer" title="Instagram">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.281-.057 1.689-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
-      </a>
-      <a href="https://buymeacoffee.com/darrell_tw" class="social-button" target="_blank" rel="noopener noreferrer" title="Buy Me a Coffee">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"></path></svg>
-      </a>
-      <a href="https://www.linkedin.com/in/darrell-wang-tw/" class="social-button" target="_blank" rel="noopener noreferrer" title="LinkedIn">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
-      </a>
-      <a href="https://www.darrelltw.com/tools/n8n_template/models.html" class="social-button" target="_blank" rel="noopener noreferrer" title="n8n Workflow 模板">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M22 11V3h-7v3H9V3H2v8h7V8h2v10h4v3h7v-8h-7v3h-2V8h2v3z"></path></svg>
-      </a>
-    </div>
-  </div>
-  <div class="n8n-search-container">
-    <!-- Algolia 搜尋功能暫時關閉 
-    <div id="algolia-search-box"></div>
-    <div id="algolia-hits"></div>
-    -->
-  </div>
-</header>
-
-<main class="n8n-resources-container" role="main" itemscope itemtype="https://schema.org/CollectionPage">
-  <!-- 麵包屑導航 -->
-  <div class="n8n-breadcrumb-wrapper">
-    <nav aria-label="麵包屑導航" class="n8n-breadcrumb">
-      <ol itemscope itemtype="https://schema.org/BreadcrumbList">
-        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-          <a href="{{ config.url }}" itemprop="item">
-            <span itemprop="name">首頁</span>
-          </a>
-          <meta itemprop="position" content="1">
-        </li>
-        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-          <span itemprop="name">n8n 教學</span>
-          <meta itemprop="position" content="2">
-        </li>
-      </ol>
-    </nav>
-    <div class="n8n-stats">
-      {% set total_articles = get_n8n_total_articles() %}
-      <div class="n8n-stat-item">
-        <span class="n8n-stat-number">{{ total_articles }}</span>
-        <span class="n8n-stat-label">篇文章</span>
-      </div>
-    </div>
-  </div>
-
-  {% set sections = [
-    { id: 'node-intro', title: 'n8n 節點介紹' },
-    { id: 'tips', title: 'n8n 小撇步' },
-    { id: 'templates', title: 'n8n 模板分享' },
-    { id: 'updates', title: 'n8n 功能更新' },
-    { id: 'deployment', title: 'n8n 部署與設定' }
-  ] %}
-
-  {# n8n 模板分享區塊 - 固定置頂卡片 #}
-  {% set templatesPinnedCards = [
-    {
-      title: "Darrell 模板分享",
-      link: "https://www.darrelltw.com/tools/n8n_template/models.html",
-      image: "/gallery/n8n-template-website.webp",
-      description: "Darrell 自製分享模板頁面，提供個人的模板分享"
-    }
-  ] %}
-
-  {% set tutorials = [{
-      title: "模板分享：面試大師",
-      link: "https://www.threads.com/@ironv.careerlife/post/DLIIVgqy-HB",
-      image: "/gallery/n8n_resource_vicky_master_interview.webp",
-      author: "ironv.careerlife",
-      authorLink: "https://www.threads.com/@ironv.careerlife/",
-      description: "n8n 目前看過最火紅的模板分享：面試大師！幫你自動化抓取適合的工作職缺並且撰寫相對應的面試攻略"
-    },
-    {
-      title: "Threads：n8n 可以拿來做什麼東西？",
-      link: "https://www.threads.com/@ironv.careerlife/post/DNDs6VaS5jL",
-      image: "/gallery/n8n_resource_vicky_n8n_ideas.webp",
-      author: "ironv.careerlife",
-      authorLink: "https://www.threads.com/@ironv.careerlife/",
-      description: "Vicky 在這篇貼文中總共分享超過 20 種 n8n 能做到的事情，肯定會有你感興趣的！"
-    },{
-      title: "【一鍵安裝 n8n】圖文教學，獲得無限額度自動化工具＆限時免費升級企業版功能",
-      link: "https://raymondhouch.com/lifehacker/digital-workflow/n8n-deploy-guide/",
-      image: "https://raymondhouch.com/wp-content/uploads/2024/11/n8n-zeabur-deploy.compressed.jpg",
-      author: "侯智薰（雷蒙）",
-      authorLink: "https://www.threads.net/@raymond0917",
-      description: "完整中文圖文步驟式教學，如何一鍵用 Zeabur 自行部署安裝 n8n，獲得無限量的自動化工作流額度，並免費領取企業版升級功能。（含影片手把手教學）個人自部署的注意事項、伺服器選擇和 n8n 學習資源整理"
-    },
-    {
-      title: "【n8n 教學】如何串接 Google 自動化服務？API、Credentials 憑證設定步驟圖文教學",
-      link: "https://raymondhouch.com/lifehacker/digital-workflow/n8n-google-credentials-guide/",
-      image: "https://raymondhouch.com/wp-content/uploads/2025/01/n8n-google-credentials-guide_compressed.jpg",
-      author: "侯智薰（雷蒙）",
-      authorLink: "https://www.threads.net/@raymond0917",
-      description: "想整合 Google 服務到 n8n 自動化工作流程？本篇教學帶你逐步了解 Google API 憑證申請流程。包含如何設定 OAuth 2.0、取得 API Key，到成功串接 Gmail、Sheets、Drive 等 Google 服務。完整圖文詳細解說，幫助自動化新手，輕鬆完成設定整合，開始享受專屬的 AI 自動化工作流。"
-    },
-    {
-      title: "「超詳細教學」n8n AI 實作0基礎入門到進階",
-      link: "https://www.youtube.com/watch?v=vvqhzbp4J5A",
-      image: "/gallery/n8n_resource_vvqhzbp4J5A.webp",
-      author: "HC AI說人話",
-      authorLink: "https://www.threads.com/@hc_aichannel",
-      description: "長達三小時的 n8n 教學，從 0 到 1"
-    },
-    {
-      title: "AI免費自動排版, 免API, 解鎖自訂中文字體 = AI 平面神技?",
-      link: "https://www.youtube.com/watch?v=ncYmf5YHLks",
-      image: "/gallery/n8n_resource_ncYmf5YHLks.webp",
-      author: "HC AI說人話",
-      authorLink: "https://www.threads.com/@hc_aichannel",
-      description: "如何用 n8n 快速做出排版平面"
-    },
-    {
-      title: "資訊小白也可架設本地n8n",
-      link: "https://elisha0918.notion.site/n8n-1cedb692053680dca3bafef10d1907ca",
-      image: "/gallery/n8n_resource-elisha_n8n_docker.png",
-      author: "Elisha_0918",
-      authorLink: "https://www.threads.com/@elisha_0918",
-      description: "一起來學習如何用 Docker 安裝 n8n"
-    },
-    {
-      title: "我成功利用Zeabur部署n8n小助理",
-      link: "https://elisha0918.notion.site/Zeabur-n8n-1d7db692053680c2b996ef8234b0d09c",
-      image: "/gallery/n8n_resource-elisha_n8n_zeabur.png",
-      author: "Elisha_0918",
-      authorLink: "https://www.threads.com/@elisha_0918",
-      description: "Zeabur + Google OAuth + Line Request 完整的經驗分享"
-    }
-    
-  ] %}
-
-  <nav class="n8n-nav" aria-label="主導航">
-    <ul>
-      <li><a href="/" class="active">首頁</a></li>
-      <li><a href="#guide">入門指南</a></li>
-      {% for section in sections %}
-        {% set list = get_n8n_posts_by_category(section.id) %}
-        {% if list.length > 0 %}
-        <li><a href="#{{ section.id }}">{{ section.title }}</a></li>
-        {% endif %}
-      {% endfor %}
-      <li><a href="#tutorials">外部教學</a></li>
-      <li><a href="#about">相關連結</a></li>
-      <li><a href="/n8n-expert/#contact" class="contact-link" target="_blank" rel="noopener">聯絡我們</a></li>
-    </ul>
-  </nav>
-
-  <div class="n8n-resources-content">
-    <div class="n8n-main-content">
-      <section id="guide" class="n8n-section n8n-guide">
-        {{ page.content }}
-      </section>
-
-      {# ========= 共用區塊 Macro ========= #}
-      {% macro renderSection(cid, title, pinnedCards) %}
-      {% set list = get_n8n_posts_by_category(cid) %}
-      {% if list.length > 0 %}
-      <section id="{{ cid }}" class="n8n-section">
-        <h2>{{ title }}</h2>
-        <div class="n8n-articles">
-          {# 如果有置頂卡片陣列，先渲染所有置頂卡片 #}
-          {% if pinnedCards %}
-            {% for pinnedCard in pinnedCards %}
-              <article class="n8n-article-card n8n-pinned-card">
-                <a href="{{ pinnedCard.link }}" class="n8n-article-link" target="_blank" rel="noopener"
-                   onclick="trackClick('{{ pinnedCard.link }}', '{{ pinnedCard.title }}', 'Darrell TW', '{{ cid }}-pinned')">
-                  <div class="n8n-article-image" style="--bg-image: url('{{ pinnedCard.image }}');">
-                    <img src="{{ pinnedCard.image }}"
-                         alt="{{ pinnedCard.title }} - n8n {{ cid }}置頂卡片"
-                         loading="lazy"
-                         decoding="async"
-                         width="320" height="320">
-                  </div>
-                  <div class="n8n-article-info">
-                    <h3>{{ pinnedCard.title }}</h3>
-                    <p>{{ pinnedCard.description }}</p>
-                  </div>
-                </a>
-              </article>
-            {% endfor %}
-          {% endif %}
-
-          {# 渲染其他文章卡片 #}
-          {% set counter2 = 0 %}
-          {% for post in list %}
-              <article class="n8n-article-card">
-                <a href="{{ url_for(post.path) }}" class="n8n-article-link" target="_blank" rel="noopener"
-                   onclick="trackClick('{{ url_for(post.path) }}', '{{ post.title }}', 'Darrell TW', '{{ cid }}')">
-                  <div class="n8n-article-image" style="--bg-image: url('{{ get_n8n_post_thumbnail(post) }}');">
-                    <img src="{{ get_n8n_post_thumbnail(post) }}" 
-                         alt="{{ post.title }} - n8n {{ cid }}教學文章封面圖" 
-                         loading="lazy"
-                         decoding="async"
-                         width="320" height="320">
-                  </div>
-                  <div class="n8n-article-info">
-                    {# <div class="n8n-article-date">{{ format_n8n_date(post.date) }}</div> #}
-                    <h3>{{ post.title }}</h3>
-                    <p>{{ get_n8n_post_description(post) }}</p>
-                  </div>
-                </a>
-              </article>
-              {% set counter2 = counter2 + 1 %}
-          {% endfor %}
-        </div>
-      </section>
-      {% endif %}
-      {% endmacro %}
-
-      {% for section in sections %}
-        {% if section.id == 'templates' %}
-          {{ renderSection(section.id, section.title, templatesPinnedCards) }}
-        {% else %}
-          {{ renderSection(section.id, section.title, null) }}
-        {% endif %}
-      {% endfor %}
-      
-      <section id="tutorials" class="n8n-section">
-        <h2>推薦外部教學文件</h2>
-        <div class="n8n-tutorials">
-          {% for tutorial in tutorials %}
-            <article class="n8n-tutorial-card">
-              <div class="n8n-tutorial-image" style="--bg-image: url('{{ tutorial.image }}');">
-                <a href="{{ tutorial.link }}" class="n8n-tutorial-image-link" target="_blank" rel="noopener"
-                   onclick="trackClick('{{ tutorial.link }}', '{{ tutorial.title }}', '{{ tutorial.author }}', 'external')">
-                  <img src="{{ tutorial.image }}" 
-                       alt="{{ tutorial.title }} - 由{{ tutorial.author }}提供的n8n教學" 
-                       loading="lazy"
-                       decoding="async"
-                       width="400" height="225">
-                </a>
-              </div>
-              <div class="n8n-tutorial-info">
-                <a href="{{ tutorial.link }}" class="n8n-tutorial-title-link" target="_blank" rel="noopener"
-                   onclick="trackClick('{{ tutorial.link }}', '{{ tutorial.title }}', '{{ tutorial.author }}', 'external')">
-                  <h3>{{ tutorial.title }}</h3>
-                </a>
-                <div class="n8n-tutorial-content-wrapper">
-                  <div class="n8n-tutorial-meta">
-                    <a href="{{ tutorial.authorLink }}" class="n8n-tutorial-author" target="_blank" rel="noopener"
-                       onclick="trackClick('{{ tutorial.authorLink }}', '{{ tutorial.author }}', '{{ tutorial.author }}', 'author')">
-                      {{ tutorial.author }}
-                    </a>
-                  </div>
-                  <p>{{ tutorial.description }}</p>
-                </div>
-              </div>
-            </article>
-          {% endfor %}
-        </div>
-      </section>
-
-      <section id="about" class="n8n-section">
-        <h2>相關連結</h2>
-        <div class="n8n-about-content">
-          <div class="n8n-external-links">
-            <a href="https://n8n.io/" target="_blank" rel="noopener">官方網站</a>
-            <a href="https://docs.n8n.io/" target="_blank" rel="noopener">官方文件</a>
-            <a href="https://github.com/n8n-io/n8n" target="_blank" rel="noopener">GitHub</a>
-            <a href="https://www.darrelltw.com/tools/n8n_template/models.html" target="_blank" rel="noopener">Workflow 模板</a>
-          </div>
-        </div>
-      </section>
-
-    </div>
-  </div>
-</main>
-
-<footer class="n8n-footer">
-  <p>&copy; {% if date %}{{ date(now, 'YYYY') }}{% else %}2023{% endif %} Darrell TW - n8n 教學文章 </p>
-</footer>
-
-<!-- DataLayer點擊追蹤函數 -->
-<script>
-  function trackClick(link, title, author, category) {
-    if (typeof dataLayer !== 'undefined') {
-      dataLayer.push({
-        'event': 'n8n_card_click',
-        'link': link,
-        'title': title,
-        'author': author,
-        'category': category
-      });
-    }
-  }
-
-  // 卡片懸停隨機動畫效果
-  document.addEventListener('DOMContentLoaded', function() {
-    const cards = document.querySelectorAll('.n8n-tutorial-card');
-    const animations = [
-      'anim-border-pulse',
-      'anim-border-glow',
-      'anim-border-spin',
-      'anim-border-marquee',
-      'anim-border-spotlight',
-      'anim-border-rainbow'
-    ];
-    
-    cards.forEach(card => {
-      let currentAnimation = '';
-      
-      card.addEventListener('mouseenter', function() {
-        // 隨機選擇一個動畫效果
-        const randomIndex = Math.floor(Math.random() * animations.length);
-        currentAnimation = animations[randomIndex];
-        
-        // 移除所有動畫類，然後添加選中的動畫
-        animations.forEach(anim => card.classList.remove(anim));
-        card.classList.add(currentAnimation);
-      });
-      
-      card.addEventListener('mouseleave', function() {
-        // 在滑鼠離開時移除動畫
-        if (currentAnimation) {
-          card.classList.remove(currentAnimation);
-          currentAnimation = '';
-        }
-      });
-    });
-  });
-
-  // 確保點擊圖片區域也能導向文章連結
-  document.addEventListener('DOMContentLoaded', function() {
-    const tutorialImages = document.querySelectorAll('.n8n-tutorial-image');
-    tutorialImages.forEach(image => {
-      image.addEventListener('click', function(e) {
-        // 獲取圖片容器內的連結
-        const link = this.querySelector('a.n8n-tutorial-image-link');
-        if (link) {
-          const href = link.getAttribute('href');
-          const target = link.getAttribute('target') || '_self';
-          const onclick = link.getAttribute('onclick');
-          if (onclick) {
-            // 執行原本的onclick事件
-            eval(onclick.replace('return false', ''));
-          }
-          window.open(href, target);
-        }
-      });
-    });
-  });
-</script>
+  <!-- End Google Tag Manager -->
 
 <style>
   :root {
@@ -801,7 +302,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   .n8n-nav a:hover, .n8n-nav a.active {
     background-color: var(--n8n-primary);
-    color: white;
+    color: #121212;
+    font-weight: 600;
   }
 
   @keyframes contact-border-flow {
@@ -1154,17 +656,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
   
   .n8n-external-links a {
-    background-color: var(--n8n-secondary); 
-    color: white;
+    background-color: #0969da; 
+    color: #ffffff;
     padding: 10px 18px; 
     border-radius: 4px; 
     text-decoration: none;
-    transition: background-color .3s;
+    font-weight: 500;
+    transition: background-color .3s, color .3s;
     font-size: 1rem;
   }
   
   .n8n-external-links a:hover { 
     background-color: var(--n8n-primary); 
+    color: #121212;
   }
   
   /* 相關文章推薦樣式 */
@@ -2093,6 +1597,435 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       font-size: 0.95rem;
     }
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    .n8n-tutorial-card:hover {
+      transform: none !important;
+    }
+    .social-button:hover {
+      transform: none !important;
+    }
+  }
 </style>
+
+  <!-- SEO Structured Data - Generated at build time -->
+  {{ n8n_collection_structured_data() }}
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WRZDBFS"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="n8n-resources-header" role="banner">
+  <div class="n8n-header-wrapper">
+    <h1>n8n 教學：新手入門、節點介紹、模板與部署指南</h1>
+    <div class="social-buttons">
+      <a href="https://www.darrelltw.com/" class="social-button" target="_blank" rel="noopener noreferrer" title="Website" aria-label="前往 Darrell TW 個人網站">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41z"></path></svg>
+      </a>
+      <a href="https://www.threads.net/@darrell_tw_" class="social-button" target="_blank" rel="noopener noreferrer" title="Threads" aria-label="前往 Darrell 的 Threads 專頁">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 440 511.43" fill="currentColor"><path d="M342.383 237.038a177.282 177.282 0 00-6.707-3.046c-3.948-72.737-43.692-114.379-110.429-114.805-38.505-.255-72.972 15.445-94.454 48.041l36.702 25.178c15.265-23.159 39.221-28.096 56.864-28.096.204 0 .408 0 .61.002 21.974.14 38.555 6.529 49.287 18.987 7.81 9.071 13.034 21.606 15.621 37.425-19.483-3.311-40.553-4.329-63.077-3.038-63.45 3.655-104.24 40.661-101.501 92.08 1.391 26.083 14.385 48.523 36.587 63.181 18.772 12.391 42.95 18.45 68.077 17.079 33.183-1.819 59.215-14.48 77.377-37.63 13.793-17.58 22.516-40.363 26.368-69.069 15.814 9.544 27.535 22.103 34.007 37.2 11.006 25.665 11.648 67.84-22.764 102.223-30.15 30.121-66.392 43.151-121.164 43.554-60.758-.45-106.708-19.935-136.583-57.915-27.976-35.562-42.434-86.93-42.973-152.674.539-65.746 14.997-117.114 42.973-152.676 29.875-37.979 75.824-57.463 136.582-57.914 61.197.455 107.948 20.033 138.967 58.195 15.21 18.713 26.676 42.248 34.236 69.688L440 161.532c-9.163-33.775-23.582-62.881-43.203-87.017C357.031 25.59 298.872.519 223.936 0h-.3C148.851.518 91.344 25.683 52.709 74.795 18.331 118.499.598 179.308.002 255.535l-.002.18.002.18c.596 76.225 18.329 137.037 52.707 180.741 38.635 49.11 96.142 74.277 170.927 74.794h.3c66.486-.462 113.352-17.868 151.96-56.442 50.51-50.463 48.99-113.718 32.342-152.549-11.945-27.847-34.716-50.463-65.855-65.401zM227.587 344.967c-27.808 1.567-56.699-10.916-58.124-37.651-1.056-19.823 14.108-41.942 59.831-44.577a266.87 266.87 0 0115.422-.45c16.609 0 32.145 1.613 46.271 4.701-5.268 65.798-36.172 76.483-63.4 77.977z"></path></svg>
+      </a>
+      <a href="mailto:darrell.tw.martech@gmail.com" class="social-button" target="_blank" rel="noopener noreferrer" title="Gmail" aria-label="寄信給 Darrell">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg>
+      </a>
+      <a href="https://www.instagram.com/darrell_tw_/" class="social-button" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="前往 Darrell 的 Instagram 專頁">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.281-.057 1.689-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+      </a>
+      <a href="https://buymeacoffee.com/darrell_tw" class="social-button" target="_blank" rel="noopener noreferrer" title="Buy Me a Coffee" aria-label="在 Buy Me a Coffee 請 Darrell 喝咖啡">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"></path></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/darrell-wang-tw/" class="social-button" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="前往 Darrell 的 LinkedIn 檔案">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+      </a>
+      <a href="https://www.darrelltw.com/tools/n8n_template/models.html" class="social-button" target="_blank" rel="noopener noreferrer" title="n8n Workflow 模板" aria-label="瀏覽 n8n Workflow 模板庫">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M22 11V3h-7v3H9V3H2v8h7V8h2v10h4v3h7v-8h-7v3h-2V8h2v3z"></path></svg>
+      </a>
+    </div>
+  </div>
+  
+</header>
+
+<main class="n8n-resources-container" role="main" itemscope itemtype="https://schema.org/CollectionPage">
+  <!-- 麵包屑導航 -->
+  <div class="n8n-breadcrumb-wrapper">
+    <nav aria-label="麵包屑導航" class="n8n-breadcrumb">
+      <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="{{ config.url }}" itemprop="item">
+            <span itemprop="name">首頁</span>
+          </a>
+          <meta itemprop="position" content="1">
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <span itemprop="name">n8n 教學</span>
+          <meta itemprop="position" content="2">
+        </li>
+      </ol>
+    </nav>
+    <div class="n8n-stats">
+      {% set total_articles = get_n8n_total_articles() %}
+      <div class="n8n-stat-item">
+        <span class="n8n-stat-number">{{ total_articles }}</span>
+        <span class="n8n-stat-label">篇文章</span>
+      </div>
+    </div>
+  </div>
+
+  {% set sections = [
+    { id: 'node-intro', title: 'n8n 節點介紹' },
+    { id: 'tips', title: 'n8n 小撇步' },
+    { id: 'templates', title: 'n8n 模板分享' },
+    { id: 'updates', title: 'n8n 功能更新' },
+    { id: 'deployment', title: 'n8n 部署與設定' }
+  ] %}
+
+  {# n8n 模板分享區塊 - 固定置頂卡片 #}
+  {% set templatesPinnedCards = [
+    {
+      title: "Darrell 模板分享",
+      link: "https://www.darrelltw.com/tools/n8n_template/models.html",
+      image: "/gallery/n8n-template-website.webp",
+      description: "Darrell 自製分享模板頁面，提供個人的模板分享"
+    }
+  ] %}
+
+  {% set tutorials = [{
+      title: "模板分享：面試大師",
+      link: "https://www.threads.com/@ironv.careerlife/post/DLIIVgqy-HB",
+      image: "/gallery/n8n_resource_vicky_master_interview.webp",
+      author: "ironv.careerlife",
+      authorLink: "https://www.threads.com/@ironv.careerlife/",
+      description: "n8n 目前看過最火紅的模板分享：面試大師！幫你自動化抓取適合的工作職缺並且撰寫相對應的面試攻略"
+    },
+    {
+      title: "Threads：n8n 可以拿來做什麼東西？",
+      link: "https://www.threads.com/@ironv.careerlife/post/DNDs6VaS5jL",
+      image: "/gallery/n8n_resource_vicky_n8n_ideas.webp",
+      author: "ironv.careerlife",
+      authorLink: "https://www.threads.com/@ironv.careerlife/",
+      description: "Vicky 在這篇貼文中總共分享超過 20 種 n8n 能做到的事情，肯定會有你感興趣的！"
+    },{
+      title: "【一鍵安裝 n8n】圖文教學，獲得無限額度自動化工具＆限時免費升級企業版功能",
+      link: "https://raymondhouch.com/lifehacker/digital-workflow/n8n-deploy-guide/",
+      image: "https://raymondhouch.com/wp-content/uploads/2024/11/n8n-zeabur-deploy.compressed.jpg",
+      author: "侯智薰（雷蒙）",
+      authorLink: "https://www.threads.net/@raymond0917",
+      description: "完整中文圖文步驟式教學，如何一鍵用 Zeabur 自行部署安裝 n8n，獲得無限量的自動化工作流額度，並免費領取企業版升級功能。（含影片手把手教學）個人自部署的注意事項、伺服器選擇和 n8n 學習資源整理"
+    },
+    {
+      title: "【n8n 教學】如何串接 Google 自動化服務？API、Credentials 憑證設定步驟圖文教學",
+      link: "https://raymondhouch.com/lifehacker/digital-workflow/n8n-google-credentials-guide/",
+      image: "https://raymondhouch.com/wp-content/uploads/2025/01/n8n-google-credentials-guide_compressed.jpg",
+      author: "侯智薰（雷蒙）",
+      authorLink: "https://www.threads.net/@raymond0917",
+      description: "想整合 Google 服務到 n8n 自動化工作流程？本篇教學帶你逐步了解 Google API 憑證申請流程。包含如何設定 OAuth 2.0、取得 API Key，到成功串接 Gmail、Sheets、Drive 等 Google 服務。完整圖文詳細解說，幫助自動化新手，輕鬆完成設定整合，開始享受專屬的 AI 自動化工作流。"
+    },
+    {
+      title: "「超詳細教學」n8n AI 實作0基礎入門到進階",
+      link: "https://www.youtube.com/watch?v=vvqhzbp4J5A",
+      image: "/gallery/n8n_resource_vvqhzbp4J5A.webp",
+      author: "HC AI說人話",
+      authorLink: "https://www.threads.com/@hc_aichannel",
+      description: "長達三小時的 n8n 教學，從 0 到 1"
+    },
+    {
+      title: "AI免費自動排版, 免API, 解鎖自訂中文字體 = AI 平面神技?",
+      link: "https://www.youtube.com/watch?v=ncYmf5YHLks",
+      image: "/gallery/n8n_resource_ncYmf5YHLks.webp",
+      author: "HC AI說人話",
+      authorLink: "https://www.threads.com/@hc_aichannel",
+      description: "如何用 n8n 快速做出排版平面"
+    },
+    {
+      title: "資訊小白也可架設本地n8n",
+      link: "https://elisha0918.notion.site/n8n-1cedb692053680dca3bafef10d1907ca",
+      image: "/gallery/n8n_resource-elisha_n8n_docker.png",
+      author: "Elisha_0918",
+      authorLink: "https://www.threads.com/@elisha_0918",
+      description: "一起來學習如何用 Docker 安裝 n8n"
+    },
+    {
+      title: "我成功利用Zeabur部署n8n小助理",
+      link: "https://elisha0918.notion.site/Zeabur-n8n-1d7db692053680c2b996ef8234b0d09c",
+      image: "/gallery/n8n_resource-elisha_n8n_zeabur.png",
+      author: "Elisha_0918",
+      authorLink: "https://www.threads.com/@elisha_0918",
+      description: "Zeabur + Google OAuth + Line Request 完整的經驗分享"
+    }
+    
+  ] %}
+
+  <nav class="n8n-nav" aria-label="主導航">
+    <ul>
+      <li><a href="/" class="active">首頁</a></li>
+      <li><a href="#guide">入門指南</a></li>
+      {% for section in sections %}
+        {% set list = get_n8n_posts_by_category(section.id) %}
+        {% if list.length > 0 %}
+        <li><a href="#{{ section.id }}">{{ section.title }}</a></li>
+        {% endif %}
+      {% endfor %}
+      <li><a href="#tutorials">外部教學</a></li>
+      <li><a href="#about">相關連結</a></li>
+      <li><a href="/n8n-expert/#contact" class="contact-link" target="_blank" rel="noopener">聯絡我們</a></li>
+    </ul>
+  </nav>
+
+  <div class="n8n-resources-content">
+    <div class="n8n-main-content">
+      <section id="guide" class="n8n-section n8n-guide">
+        <h2>入門指南</h2>
+        {{ page.content }}
+      </section>
+
+      {# ========= 共用區塊 Macro ========= #}
+      {% macro renderSection(cid, title, pinnedCards) %}
+      {% set list = get_n8n_posts_by_category(cid) %}
+      {% if list.length > 0 %}
+      <section id="{{ cid }}" class="n8n-section">
+        <h2>{{ title }}</h2>
+        <div class="n8n-articles">
+          {# 如果有置頂卡片陣列，先渲染所有置頂卡片 #}
+          {% if pinnedCards %}
+            {% for pinnedCard in pinnedCards %}
+              <article class="n8n-article-card n8n-pinned-card">
+                <a href="{{ pinnedCard.link }}" class="n8n-article-link" target="_blank" rel="noopener"
+                   onclick="trackClick('{{ pinnedCard.link }}', '{{ pinnedCard.title }}', 'Darrell TW', '{{ cid }}-pinned')">
+                  <div class="n8n-article-image" style="--bg-image: url('{{ pinnedCard.image }}');">
+                    <img src="{{ pinnedCard.image }}"
+                         alt="{{ pinnedCard.title }} - n8n {{ cid }}置頂卡片"
+                         loading="lazy"
+                         decoding="async"
+                         width="320" height="320">
+                  </div>
+                  <div class="n8n-article-info">
+                    <h3>{{ pinnedCard.title }}</h3>
+                    <p>{{ pinnedCard.description }}</p>
+                  </div>
+                </a>
+              </article>
+            {% endfor %}
+          {% endif %}
+
+          {# 渲染其他文章卡片 #}
+          {% set counter2 = 0 %}
+          {% for post in list %}
+              <article class="n8n-article-card">
+                <a href="{{ url_for(post.path) }}" class="n8n-article-link" target="_blank" rel="noopener"
+                   onclick="trackClick('{{ url_for(post.path) }}', '{{ post.title }}', 'Darrell TW', '{{ cid }}')">
+                  <div class="n8n-article-image" style="--bg-image: url('{{ get_n8n_post_thumbnail(post) }}');">
+                    <img src="{{ get_n8n_post_thumbnail(post) }}" 
+                         alt="{{ post.title }} - n8n {{ cid }}教學文章封面圖" 
+                         loading="lazy"
+                         decoding="async"
+                         width="320" height="320">
+                  </div>
+                  <div class="n8n-article-info">
+                    {# <div class="n8n-article-date">{{ format_n8n_date(post.date) }}</div> #}
+                    <h3>{{ post.title }}</h3>
+                    <p>{{ get_n8n_post_description(post) }}</p>
+                  </div>
+                </a>
+              </article>
+              {% set counter2 = counter2 + 1 %}
+          {% endfor %}
+        </div>
+      </section>
+      {% endif %}
+      {% endmacro %}
+
+      {% for section in sections %}
+        {% if section.id == 'templates' %}
+          {{ renderSection(section.id, section.title, templatesPinnedCards) }}
+        {% else %}
+          {{ renderSection(section.id, section.title, null) }}
+        {% endif %}
+      {% endfor %}
+      
+      <section id="tutorials" class="n8n-section">
+        <h2>推薦外部教學文件</h2>
+        <div class="n8n-tutorials">
+          {% for tutorial in tutorials %}
+            <article class="n8n-tutorial-card">
+              <div class="n8n-tutorial-image" style="--bg-image: url('{{ tutorial.image }}');">
+                <a href="{{ tutorial.link }}" class="n8n-tutorial-image-link" target="_blank" rel="noopener"
+                   onclick="trackClick('{{ tutorial.link }}', '{{ tutorial.title }}', '{{ tutorial.author }}', 'external')">
+                  <img src="{{ tutorial.image }}" 
+                       alt="{{ tutorial.title }} - 由{{ tutorial.author }}提供的n8n教學" 
+                       loading="lazy"
+                       decoding="async"
+                       width="400" height="225">
+                </a>
+              </div>
+              <div class="n8n-tutorial-info">
+                <a href="{{ tutorial.link }}" class="n8n-tutorial-title-link" target="_blank" rel="noopener"
+                   onclick="trackClick('{{ tutorial.link }}', '{{ tutorial.title }}', '{{ tutorial.author }}', 'external')">
+                  <h3>{{ tutorial.title }}</h3>
+                </a>
+                <div class="n8n-tutorial-content-wrapper">
+                  <div class="n8n-tutorial-meta">
+                    <a href="{{ tutorial.authorLink }}" class="n8n-tutorial-author" target="_blank" rel="noopener"
+                       onclick="trackClick('{{ tutorial.authorLink }}', '{{ tutorial.author }}', '{{ tutorial.author }}', 'author')">
+                      {{ tutorial.author }}
+                    </a>
+                  </div>
+                  <p>{{ tutorial.description }}</p>
+                </div>
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+      </section>
+
+      <section id="about" class="n8n-section">
+        <h2>相關連結</h2>
+        <div class="n8n-about-content">
+          <div class="n8n-external-links">
+            <a href="https://n8n.io/" target="_blank" rel="noopener">官方網站</a>
+            <a href="https://docs.n8n.io/" target="_blank" rel="noopener">官方文件</a>
+            <a href="https://github.com/n8n-io/n8n" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://www.darrelltw.com/tools/n8n_template/models.html" target="_blank" rel="noopener">Workflow 模板</a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="n8n-footer">
+  <p>&copy; {% if date %}{{ date(now, 'YYYY') }}{% else %}2023{% endif %} Darrell TW - n8n 教學文章 </p>
+</footer>
+
+<!-- DataLayer點擊追蹤函數 -->
+<script>
+  function trackClick(link, title, author, category) {
+    if (typeof dataLayer !== 'undefined') {
+      dataLayer.push({
+        'event': 'n8n_card_click',
+        'link': link,
+        'title': title,
+        'author': author,
+        'category': category
+      });
+    }
+  }
+
+  // 卡片懸停隨機動畫效果（支援減動偏好）
+  document.addEventListener('DOMContentLoaded', function() {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+
+    const cards = document.querySelectorAll('.n8n-tutorial-card');
+    const animations = [
+      'anim-border-pulse',
+      'anim-border-glow',
+      'anim-border-spin',
+      'anim-border-marquee',
+      'anim-border-spotlight',
+      'anim-border-rainbow'
+    ];
+    
+    cards.forEach(card => {
+      let currentAnimation = '';
+      
+      card.addEventListener('mouseenter', function() {
+        const randomIndex = Math.floor(Math.random() * animations.length);
+        currentAnimation = animations[randomIndex];
+        animations.forEach(anim => card.classList.remove(anim));
+        card.classList.add(currentAnimation);
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        if (currentAnimation) {
+          card.classList.remove(currentAnimation);
+          currentAnimation = '';
+        }
+      });
+    });
+  });
+
+  // 導航欄與平滑滾動（使用 requestAnimationFrame 與 passive listener 優化滾動效能）
+  document.addEventListener('DOMContentLoaded', function() {
+    const isReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    // 平滑滾動效果
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const targetId = a.getAttribute('href').slice(1);
+        if (!targetId) return;
+        const tgt = document.getElementById(targetId);
+        if (tgt) {
+          e.preventDefault();
+          window.scrollTo({
+            top: tgt.offsetTop - 80,
+            behavior: isReducedMotion ? 'auto' : 'smooth'
+          });
+        }
+      });
+    });
+    
+    // 導航欄固定與章節高亮
+    const nav = document.querySelector('.n8n-nav');
+    if (!nav) return;
+    
+    let navTop = nav.offsetTop;
+    window.addEventListener('resize', () => {
+      if (!nav.classList.contains('n8n-nav-fixed')) {
+        navTop = nav.offsetTop;
+      }
+    }, { passive: true });
+
+    const sections = document.querySelectorAll('.n8n-section');
+    const navLinks = document.querySelectorAll('.n8n-nav a');
+    let ticking = false;
+
+    function onScroll() {
+      const scrollY = window.scrollY;
+      
+      if (scrollY >= navTop) {
+        nav.classList.add('n8n-nav-fixed');
+      } else {
+        nav.classList.remove('n8n-nav-fixed');
+      }
+      
+      let currentSection = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        if (scrollY >= sectionTop) {
+          currentSection = section.getAttribute('id');
+        }
+      });
+      
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        const href = link.getAttribute('href');
+        if (currentSection && href === '#' + currentSection) {
+          link.classList.add('active');
+        } else if (!currentSection && href === '/') {
+          link.classList.add('active');
+        }
+      });
+      
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(onScroll);
+        ticking = true;
+      }
+    }, { passive: true });
+  });
+</script>
 </body>
 </html>

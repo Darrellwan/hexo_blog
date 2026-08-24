@@ -44,7 +44,7 @@ favicon:
   medium: /images/favicon.ico
   apple_touch_icon: /images/apple-touch-icon.png
   safari_pinned_tab: /images/safari-pinned-tab.svg
-  android_manifest: /images/site.webmanifest.json
+  android_manifest: /images/site.webmanifest
   #ms_browserconfig: /images/browserconfig.xml
 
 # Show multilingual switcher in footer.
