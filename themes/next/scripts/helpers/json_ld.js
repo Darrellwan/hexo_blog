@@ -22,18 +22,23 @@ function jsonLd() {
   const authorEmail = config.author.email || "";
   const authorImage = config.author.picture || (authorEmail ? this.gravatar(authorEmail) : null);
   const authorLinks = config.authorLink;
-  const links = [];
-
-  if (authorLinks) {
-    links.push(authorLinks);
-  }
+  const links = Array.isArray(config.authorSameAs) && config.authorSameAs.length > 0
+    ? config.authorSameAs
+    : (authorLinks ? [authorLinks] : []);
 
   const author = {
     "@type": "Person",
     name: config.author,
+    url: config.url,
     sameAs: links,
   };
+
+  if (config.authorJobTitle) {
+    author.jobTitle = config.authorJobTitle;
+  }
+
   const publisher = Object.assign({}, author, { "@type": "Organization" });
+  delete publisher.jobTitle;
   let schema = {};
 
   if (authorImage) {
