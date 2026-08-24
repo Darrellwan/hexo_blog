@@ -15,8 +15,19 @@ function articleCard(args) {
   const previewText = previewTextMatch ? previewTextMatch[1] : '';
   const thumbnail = thumbnailMatch ? thumbnailMatch[1] : '';
 
+  let isExternal = false;
+  try {
+    if (/^https?:\/\//.test(url)) {
+      const parsedUrl = new URL(url, 'https://www.darrelltw.com');
+      isExternal = !['www.darrelltw.com', 'darrelltw.com', 'localhost'].includes(parsedUrl.hostname);
+    }
+  } catch (e) {
+    isExternal = false;
+  }
+  const targetAttr = isExternal ? ' target="_blank" rel="noopener noreferrer"' : '';
+
   return `<div class="article-card">
-    <a href="${url}" class="article-card-link" target="_blank">
+    <a href="${url}" class="article-card-link"${targetAttr}>
       <div class="article-card-content">
         <div class="article-card-text">
           <div class="article-card-title">${title}</div>

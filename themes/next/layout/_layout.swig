@@ -3,6 +3,7 @@
 <head>
   {{ partial('_partials/head/head.swig', {}, {cache: theme.cache.enable}) }}
   {% include '_partials/head/head-unique.swig' %}
+  {% include '_partials/head/speculation-rules.swig' %}
   {{- next_inject('head') }}
   <title>{% block title %}{% endblock %}</title>
   {{ partial('_scripts/noscript.swig', {}, {cache: theme.cache.enable}) }}
