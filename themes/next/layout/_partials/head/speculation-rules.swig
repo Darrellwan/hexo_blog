@@ -17,7 +17,8 @@
           { "not": { "href_matches": "/archives*" } },
           { "not": { "href_matches": "/page/*" } },
           { "not": { "href_matches": "/*.pdf" } },
-          { "not": { "href_matches": "/*\\?*" } },
+          { "not": { "selector_matches": "[href*='?']" } },
+          { "not": { "selector_matches": "[href*='#']" } },
           { "not": { "selector_matches": "[target=_blank]" } },
           { "not": { "selector_matches": "[rel~=nofollow]" } },
           { "not": { "selector_matches": ".no-prerender" } }
