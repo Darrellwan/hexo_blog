@@ -1,3 +1,32 @@
+<!-- SPECTRA:START v1.0.2 -->
+
+# Spectra Instructions
+
+This project uses Spectra for Spec-Driven Development(SDD). Specs live in `openspec/specs/`, change proposals in `openspec/changes/`.
+
+## Use `$spectra-*` skills when:
+
+- A discussion needs structure before coding → `$spectra-discuss`
+- User wants to plan, propose, or design a change → `$spectra-propose`
+- Tasks are ready to implement → `$spectra-apply`
+- There's an in-progress change to continue → `$spectra-ingest`
+- User asks about specs or how something works → `$spectra-ask`
+- Implementation is done → `$spectra-archive`
+- Commit only files related to a specific change → `$spectra-commit`
+
+## Workflow
+
+discuss? → propose → apply ⇄ ingest → archive
+
+- `discuss` is optional — skip if requirements are clear
+- Requirements change mid-work? `ingest` → resume `apply`
+
+## Parked Changes
+
+Changes can be parked（暫存）— temporarily moved out of `openspec/changes/`. Parked changes won't appear in `spectra list` but can be found with `spectra list --parked`. To restore: `spectra unpark <name>`. The `$spectra-apply` and `$spectra-ingest` skills handle parked changes automatically.
+
+<!-- SPECTRA:END -->
+
 # CLAUDE.md
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
@@ -24,6 +53,12 @@ rg "^date:|^updated:" source/_posts/<file>.md
 
 ### Push 必須等用戶授權
 commit 完成後**不能自動 push**，必須回報「commit 完成，確認要 push 嗎？」，等用戶明確說「push」才推。
+
+### git revert 會刪除 commit 新增的檔案
+`git revert` 不只撤銷修改，也會**刪除該 commit 新增的所有檔案**。
+- 例：commit 包含「新增圖片 + 修改文章」→ revert 後圖片消失、文章回舊版
+- 需要撤銷 push 但保留新增檔案 → 用 `git checkout <commit-hash> -- <files>` 把檔案撿回來
+- **Why:** 2026-05-09 revert 後 n8n-google-sheets-node.md 和所有圖片消失，需手動補救
 
 ## Push 後自動檢查流程（強制）
 git push 完成後，**不需要問用戶**，自動執行以下步驟：
@@ -59,6 +94,7 @@ Hexo 8.0 blog for MarTech/automation. **Node.js**: `^20.17.0 || >=22.9.0`
   - 在 `main.yml` 的 `skip_render` 加入路徑
 - **n8n Template 工具**: `/source/tools/n8n_template/`
 - **Documentation**: `/docs/drafts/` 備存草稿、`/docs/guides/` 知識文件
+- **正式文章**: 用戶要「文章 md」或正式文章時，直接建立在 `/source/_posts/`；`/docs/drafts/` 只在用戶明確要求草稿或備存時使用。
 - **Auto-categorization**: n8n 相關文章由 `/scripts/index.js` 自動加 tag/category
 
 ## Claude Code Skills
@@ -99,6 +135,12 @@ date: YYYY-MM-DD HH:MM:SS
 updated: YYYY-MM-DD HH:MM:SS   # 只在文章有實質更新時才寫；欄位名不可用 modified
 ---
 ```
+
+### Front Matter description 規範
+`description`（約 150 字 SEO 描述）必須精確對應文章**實際涵蓋**的功能。
+- **禁止**：寫文章沒提到的功能（避免讀者期望落差、SEO 誤導）
+- **Commit 前**：對照 description 和文章 heading 清單，確認每個描述點都有對應 section
+- **Why:** 2026-05-09 n8n-google-sheets-node 的 description 包含「OAuth2 vs Service Account」和「AI Agent Tool」，但文章根本沒這兩段
 
 ## Custom Tags（定義於 /scripts/）
 ```markdown
@@ -158,6 +200,26 @@ updated: YYYY-MM-DD HH:MM:SS   # 只在文章有實質更新時才寫；欄位�
 - **先找已有的正確實作**：當某功能壞掉但類似功能正常時，先查正常的那個怎麼做，直接複製方法，不要猜測或亂試
 - 例：Social Share 的 icon 壞掉 → 先看 Social Links 用什麼（Font Awesome），直接用同樣方式
 - **Heading anchor 沒有出現**：CSS `.header-anchor` 樣式存在於 theme，但 `main.yml` 的 `permalink: false` 讓 Hexo 不產生對應 HTML 元素。`permalink: false` 的原始原因不明（勿輕易改動，先確認影響範圍）。現行解法：在 `darrell.js` 用 JS 全域 inject，selector 鎖 `.post-body h2[id]`，先判斷 `.header-anchor` 是否已存在再 inject
+
+## 寫作 review 原則
+
+### 用戶二次質疑 = 重查源頭，不要只改措詞
+
+讀者（用戶）對某項敘述的**第二次質疑**——例如先說「你確定嗎」、再說「一般做法不是 X 嗎」——是強烈的 recheck signal，**不應該**：
+- 反射式認為「用戶誤解」
+- 只把措詞改溫和一點再交
+- 沒去查 PR diff / 官方文件 / 實測就回答
+
+**正確做法**：第二次質疑時立刻回到源頭——
+1. 該功能的 PR diff（看實際 code 行為）
+2. 廠商官方文件（看 spec）
+3. 必要時實測（debugger / endpoint 呼叫）
+
+往往會發現第一次回答是「直覺誤判」而非「措詞不準」。
+
+**Why:** 2026-05-20 寫 n8n 2.22.0 Facebook OAuth2 段落，第一次寫「token 自動延展」被用戶質疑「一年沒用會怎樣」我只補了「需 reconnect」；第二次質疑「一般 OAuth 不是自動 refresh」才去看 PR diff + Facebook 文件，發現根本是「Meta 政策不發 refresh_token」的設計差異，不是措詞問題。
+
+**How to apply:** 寫部落格、文章、技術說明時，用戶第二次質疑 = 停下來查源頭。先確認自己是否真的查過 PR / 文件 / 實測，沒查就先說「我沒實測，先暫停下定論」。
 
 ## 獨立頁面設計紀錄
 
@@ -242,6 +304,7 @@ Link: </llms.txt>; rel="describedby"; type="text/plain", </sitemap.xml>; rel="si
 ---
 
 ## Documentation References
+- `/docs/guides/speculation-rules-architecture.md` - Speculation Rules API 架構與實作指南
 - `/docs/guides/hexo-to-astro-migration-plan.md` - Hexo → Astro 遷移計畫（備用方案，暫不執行）
 - `/docs/guides/n8n-template-guide.md` - Switch node 結構、LINE Bot 流程
 - `/docs/guides/n8n-node-article-guide.md` - n8n 節點文章架構指南

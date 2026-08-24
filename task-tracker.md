@@ -240,6 +240,23 @@
 
 ## ✅ 已完成
 
+- [x] **8/24 全站導入 Speculation Rules API（0ms 預渲染）+ GTM 預渲染安全防護**
+  - **目標與成果**：導入 Chromium Speculation Rules API（`eagerness: "moderate"`，懸停 200ms 觸發），全站文章與 3 大核心頁面（n8n 教學 `/n8n-tutorial-resources/`、n8n 模版庫 `/tools/n8n_template/models`、自動化服務 `/n8n-expert/`）全面達成 0ms 即時切換。
+  - **GTM 安全防護閘門**：`google-analytics.swig` 使用 `document.prerendering` 與 `prerenderingchange` 延遲初始化，徹底杜絕背景預渲染期間產生虛假 Pageview。
+  - **排除機制**：精準排除次要選單與導覽（分類／標籤／彙整／分頁／訂閱）、帶 query 參數、帶錨點、外站 `target="_blank"` 連結，保留最多 2 個 Process 槽位給高價值頁面。
+  - **兩大重大踩坑與修復紀錄**：
+    1. **URLPattern 通配符誤殺全站（致命陷阱）**：原本使用 `/*\?*` 企圖排除 query，但 URLPattern 的 `search: "*"` 規範將長度為 0 的空參數也視為符合，在 `not` 規則下導致 100% 正常文章被誤殺。已全面改用 CSS 屬性選擇器 `[href*='?']` 與 `[href*='#']` 徹底修復。
+    2. **Vercel cleanUrls 路由與 404/308 轉址**：獨立工具頁 `/tools/n8n_template/models` 遭遇 Hexo `url_for` 截斷 `.html` 與 Vercel 預設 404 問題，透過 `vercel.json` 開啟 `"cleanUrls": true` 與主題配置統一乾淨路徑，直接回傳 HTTP 200 OK。
+  - **驗收與部署**：通過 Node.js 15 項正反向斷言測試、OpenCode（Tab 7）雙輪覆核、Vercel 部署與 Chrome DevTools Speculative Loads 真實頁面驗證。技術文件已歸檔至 `docs/guides/speculation-rules-architecture.md`。
+
+- [x] **8/23 效能優化上線：Antigravity commit 審查 + 字體自託管 + Font Awesome 換 SVG 子集**
+  - 審查 Antigravity 產的 `5e6a78a`（CSS 延遲載入／GTM 互動後才載＋idle 2s 保底／JSON-LD 修 `&quot;` 截斷與 `</script>` escape／WebP `<picture>` 管線）：結論合理放行。已知取捨：GTM 延遲會少記開頁 2-3 秒內跳出的訪客；**WebP 管線目前 `source/_data/image_variants.json` 只有 12 條**，全站絕大多數圖片還沒受益，Darrell 明示「圖片先不動」，回填（`npm run images:webp`）留待日後
+  - 字體自託管：120 個 woff2 分片（2.5MB，Noto Sans TC 300＋Roboto＋Roboto Mono）進 `source/fonts/`，`/css/fonts.css` 本地載入，移除 Google preconnect。FA 換法：**不改 markup**，產 `/css/fa-icons.css`（76K，48 個 icon＋9 個偽元素，CSS mask＋currentColor），vendored FA5 與 CDN fallback 全刪。實作全程委派 Sonnet subagent，主線只驗收
+  - **糾錯（審查時說錯過）**：線上原本載的是 theme `_config.yml` vendors 配置的 **CDN FA 6.7.2**，不是本地 FA5，Threads 圖示本來就正常；本次真正效益是砍掉 cdnjs＋Google Fonts 兩個第三方來源，全站字體圖示同源
+  - 偽元素圖示（`_mixins.styl` `font-family-icons()` 的 4 個 caller，含 note callout）一併轉 mask；NexT 內建 `{% note %}` icons 因 `note.icons: false` 本來就沒顯示，轉了但無法線上驗證（正式 callout 是 `.dn-note`，從不吃 FA）
+  - 已知殘留（都不在本次範圍）：`n8n-with-slack.md` 文章內文自嵌 FA5 CDN link；`/links/`、`/n8n-expert/` 等 standalone 頁自管資源
+  - commit `2d44032`（swap-stage 只收任務檔案，避開工作區 40+ 個無關髒檔）；經 Darrell 授權 push 3 顆（`5e6a78a`／`0697dd0`／`2d44032`）。部署後 curl 驗資產 200＋首頁零第三方字體參照，agent-browser 實測首頁與 grok-bot-review：選單／社群／分享列（Threads、LINE）／FAQ 箭頭／中文字體全常，console 零錯誤
+
 - [x] **8/23 Grok Bot 使用心得文章發布 + ctaCard 解析 bug 修復**
   - `article-review` findings-only 審查：front matter、QuickNav 錨點（9/9 對應無死錨）、Custom Tag 語法、description 對正文、圖片存在性全過；唯一問題是 3 張圖缺 webp 壓縮（見上方 🔴，Darrell 選擇先跳過）
   - commit 範圍刻意收窄：只加 `source/_posts/grok-bot-review.md`＋圖片資料夾＋`scripts/cta-card.js`＋`themes/next/source/css/_custom/cta-card.styl`＋`custom.styl` 一行 import；`source/_data/image_dimensions.json`（本次整檔 6500+ 行churn，混了其他任務的異動）刻意不進這次 commit，因為 `npm run build` 的 `images:process` 步驟本來就會在 Vercel 上重新產生
