@@ -122,8 +122,8 @@ menu:
   categories: /categories/ || fa fa-th
   archives: /archives/ || fa fa-archive
   emailSubscribe: /email_subscribe/ || fa fa-envelope
-  n8nResource: https://www.darrelltw.com/n8n-tutorial-resources/ || fa fa-solid fa-n highlight-n8n
-  n8n_template: https://www.darrelltw.com/tools/n8n_template/models.html || fa fa-solid fa-layer-group highlight-n8n
+  n8nResource: /n8n-tutorial-resources/ || fa fa-solid fa-n highlight-n8n
+  n8n_template: /tools/n8n_template/models.html || fa fa-solid fa-layer-group highlight-n8n
   n8n_service: /n8n-expert/ || fa fa-solid fa-briefcase highlight-n8n
   #schedule: /schedule/ || fa fa-calendar
   #sitemap: /sitemap.xml || fa fa-sitemap
