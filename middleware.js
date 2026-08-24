@@ -29,7 +29,7 @@ function parseAccept(acceptHeader) {
 /**
  * 從排序後的 Accept 清單找出最優先能服務的格式
  * 能服務：text/markdown、text/html、text/*、*\/*
- * 回傳 "markdown" | "html" | null（null 代表完全不支援 → 406）
+ * 回傳 "markdown" | "html" | null（null 代表不認得的類型，呼叫端會放行回 HTML）
  */
 function negotiate(accepts) {
   for (const { type } of accepts) {
@@ -65,15 +65,9 @@ export default async function middleware(request) {
   const accepts = parseAccept(acceptHeader);
   const result = negotiate(accepts);
 
-  // 完全不支援的格式 → 406 Not Acceptable
+  // 不認得的 Accept 類型 → 正常通過回傳 HTML（406 擋不了惡意流量，只會誤傷掃描器與監測工具）
   if (result === null) {
-    return new Response('Not Acceptable', {
-      status: 406,
-      headers: {
-        'content-type': 'text/plain',
-        'vary': 'Accept',
-      },
-    });
+    return;
   }
 
   // 最高優先是 HTML → 正常通過（讓 Vercel 回傳靜態 HTML）
