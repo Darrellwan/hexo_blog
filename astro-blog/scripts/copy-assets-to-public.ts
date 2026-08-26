@@ -39,6 +39,14 @@ type ArticleSource = {
   assetDir: string;
 };
 
+type ResolvedLocalAsset = {
+  sourcePath: string;
+  sourceRoot: string;
+  relativeAsset: string;
+  outputSlug: string;
+  publicRelativePath: string;
+};
+
 type ImageVariant = {
   width: number;
   src: string;
@@ -116,15 +124,48 @@ function decodeReference(value: string): string {
   }
 }
 
+/** Resolve `/other-post/file.png` to the owning article's asset directory. */
+function resolveAbsoluteArticleTarget(
+  normalizedReference: string
+): Pick<ResolvedLocalAsset, "sourceRoot" | "relativeAsset" | "outputSlug"> | null {
+  const rootlessReference = normalizedReference.startsWith("posts/")
+    ? normalizedReference.slice("posts/".length)
+    : normalizedReference;
+  const segments = rootlessReference.split("/").filter(Boolean);
+
+  // Prefer the longest article slug so nested article paths remain valid.
+  for (let segmentCount = segments.length - 1; segmentCount > 0; segmentCount--) {
+    const candidateSlug = segments.slice(0, segmentCount).join("/");
+    if (!isSafeManagedSlug(candidateSlug)) continue;
+
+    const flatMarkdownPath = path.join(BLOG_DIR, `${candidateSlug}.md`);
+    const indexMarkdownPath = path.join(BLOG_DIR, candidateSlug, "index.md");
+    const markdownPath = fs.existsSync(flatMarkdownPath)
+      ? flatMarkdownPath
+      : fs.existsSync(indexMarkdownPath)
+        ? indexMarkdownPath
+        : null;
+    if (!markdownPath) continue;
+
+    const targetArticle = articleSource(markdownPath);
+    return {
+      sourceRoot: path.resolve(targetArticle.assetDir),
+      relativeAsset: segments.slice(segmentCount).join("/"),
+      outputSlug: targetArticle.slug,
+    };
+  }
+
+  return null;
+}
+
 /**
- * Resolve a markdown reference against its article asset directory.
- * Returns a path relative to that directory only when the referenced file
- * exists and cannot escape the article directory.
+ * Resolve a local reference to its source file and public destination.
+ * Absolute article paths can point at another article's asset directory.
  */
 function resolveLocalAsset(
   rawReference: string,
   article: ArticleSource
-): string | null {
+): ResolvedLocalAsset | null {
   let reference = stripQuotes(rawReference)
     .replace(/^<|>$/g, "")
     .trim();
@@ -145,6 +186,7 @@ function resolveLocalAsset(
     return null;
   }
 
+  const isAbsoluteReference = reference.startsWith("/");
   reference = reference.replace(/^\.\//, "");
 
   // Accept old absolute article references while writing only the new
@@ -152,10 +194,21 @@ function resolveLocalAsset(
   const normalized = reference.replace(/^\/+/, "");
   const slugPrefix = `${toPosix(article.slug)}/`;
   const legacyPrefix = `posts/${slugPrefix}`;
+  let sourceRoot = path.resolve(article.assetDir);
+  let outputSlug = article.slug;
   if (normalized.startsWith(legacyPrefix)) {
     reference = normalized.slice(legacyPrefix.length);
   } else if (normalized.startsWith(slugPrefix)) {
     reference = normalized.slice(slugPrefix.length);
+  } else if (isAbsoluteReference) {
+    const absoluteTarget = resolveAbsoluteArticleTarget(normalized);
+    if (absoluteTarget) {
+      sourceRoot = absoluteTarget.sourceRoot;
+      outputSlug = absoluteTarget.outputSlug;
+      reference = absoluteTarget.relativeAsset;
+    } else {
+      reference = normalized;
+    }
   } else {
     reference = normalized;
   }
@@ -165,14 +218,20 @@ function resolveLocalAsset(
   reference = reference.replace(/^_css\//, "");
   if (!reference) return null;
 
-  const articleRoot = path.resolve(article.assetDir);
-  const candidate = path.resolve(articleRoot, reference);
-  if (candidate !== articleRoot && !candidate.startsWith(`${articleRoot}${path.sep}`)) {
+  const candidate = path.resolve(sourceRoot, reference);
+  if (candidate !== sourceRoot && !candidate.startsWith(`${sourceRoot}${path.sep}`)) {
     return null;
   }
   if (!fs.existsSync(candidate) || !fs.statSync(candidate).isFile()) return null;
 
-  return toPosix(path.relative(articleRoot, candidate));
+  const relativeAsset = toPosix(path.relative(sourceRoot, candidate));
+  return {
+    sourcePath: candidate,
+    sourceRoot,
+    relativeAsset,
+    outputSlug,
+    publicRelativePath: path.posix.join(toPosix(outputSlug), relativeAsset),
+  };
 }
 
 function extractReferences(source: string): string[] {
@@ -285,11 +344,12 @@ function variantRelativePath(
 
 function resolveVariantSource(
   relativeVariant: string,
-  article: ArticleSource
+  sourceRoot: string,
+  outputSlug: string
 ): string | null {
   const sourceRoots = [
-    path.resolve(article.assetDir),
-    path.resolve(HEXO_POSTS_DIR, article.slug),
+    path.resolve(sourceRoot),
+    path.resolve(HEXO_POSTS_DIR, outputSlug),
   ];
 
   for (const sourceRoot of sourceRoots) {
@@ -303,45 +363,52 @@ function resolveVariantSource(
 }
 
 function copyArticleAssets(article: ArticleSource): number {
-  if (!fs.existsSync(article.assetDir)) return 0;
-
   const source = fs.readFileSync(article.markdownPath, "utf-8");
   const assetsToCopy = new Map<string, string>();
   for (const reference of extractReferences(source)) {
-    const relativeAsset = resolveLocalAsset(reference, article);
-    if (relativeAsset) {
+    const resolvedAsset = resolveLocalAsset(reference, article);
+    if (resolvedAsset) {
       assetsToCopy.set(
-        relativeAsset,
-        path.join(article.assetDir, relativeAsset)
+        resolvedAsset.publicRelativePath,
+        resolvedAsset.sourcePath
       );
     }
   }
 
   for (const reference of extractResponsiveImageReferences(source)) {
-    const originalRelativePath = resolveLocalAsset(reference, article);
-    if (!originalRelativePath) continue;
+    const originalAsset = resolveLocalAsset(reference, article);
+    if (!originalAsset) continue;
 
     for (const variant of variantsForReference(reference, article)) {
       const relativeVariant = variantRelativePath(
-        originalRelativePath,
+        originalAsset.relativeAsset,
         variant.src
       );
-      const variantSource = resolveVariantSource(relativeVariant, article);
+      const variantSource = resolveVariantSource(
+        relativeVariant,
+        originalAsset.sourceRoot,
+        originalAsset.outputSlug
+      );
       if (!variantSource) {
         throw new Error(
-          `Missing declared image variant for ${article.slug}: ${relativeVariant}`
+          `Missing declared image variant referenced by ${article.slug}: ${originalAsset.outputSlug}/${relativeVariant}`
         );
       }
-      assetsToCopy.set(relativeVariant, variantSource);
+      assetsToCopy.set(
+        path.posix.join(toPosix(originalAsset.outputSlug), relativeVariant),
+        variantSource
+      );
     }
   }
 
   if (assetsToCopy.size === 0) return 0;
 
-  const destinationDir = path.join(PUBLIC_DIR, article.slug);
   let count = 0;
-  for (const [relativeAsset, sourcePath] of assetsToCopy) {
-    const destinationPath = path.join(destinationDir, relativeAsset);
+  for (const [publicRelativePath, sourcePath] of assetsToCopy) {
+    const destinationPath = path.resolve(PUBLIC_DIR, publicRelativePath);
+    if (!destinationPath.startsWith(`${PUBLIC_DIR}${path.sep}`)) {
+      throw new Error(`Unsafe public asset destination: ${publicRelativePath}`);
+    }
     fs.mkdirSync(path.dirname(destinationPath), { recursive: true });
     fs.copyFileSync(sourcePath, destinationPath);
     count++;
@@ -436,7 +503,7 @@ for (const article of articles) {
   if (count > 0) {
     articlesWithAssets++;
     totalFiles += count;
-    console.log(`  ${article.slug}/ → public/${article.slug}/ (${count} referenced files)`);
+    console.log(`  ${article.slug}/ (${count} referenced files copied)`);
   }
 }
 
