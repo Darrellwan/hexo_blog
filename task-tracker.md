@@ -2,6 +2,159 @@
 
 ## 🔴 待完成
 
+### Hexo → Astro 獨立 repo 上線（Phase 0、Phase 1 完成，下一步 Phase 2 開新 repo）
+- **建立日期**：2026-08-26
+- **決策唯一來源**：`docs/plans/2026-08-26-astro-standalone-repo-cutover.md`（2026-08-26 已收斂：六大決策＋原四個待決問題全數定案，細節與理由一律看該文件，不要重新爭論）
+- **狀態**：**Phase 0 與 Phase 1 全部完成**。全部只在本機 `blog/astro-blog/`，**未 push、未部署，線上 Hexo 完全沒動**。最終 build：`BUILD_EXIT=0`、0 errors、0 warnings、257 頁、128 篇已發布文章
+- **🔴 下一步是 Phase 2（開新 repo）**，動手前必讀 `~/.claude/memory/github-multi-account.md`（雙帳號、owner 填錯會 404）
+
+---
+
+## ✅ Phase 1：內容搬家（2026-08-27 完成，6 個 commit 在本機 main，未 push）
+
+**驗收方法比計畫更嚴**：計畫只要求「目錄複製到別的路徑後 `npm ci && npm run build` 跑得出來」。實際改成 `git archive HEAD:astro-blog | tar -x` —— **只拿版控裡的東西**，工作目錄的未追蹤檔案一律拿不到（[[feedback_verify_against_clean_checkout]]）。結果：`NPM_CI_EXIT=0`、`BUILD_EXIT=0`、0 errors、0 warnings、257 頁、130 個 md 來源檔、128 篇已發布，**產出與版控裡的基準檔逐位元組相同（2,653 條 URL）**
+
+| commit | 做了什麼 |
+|---|---|
+| `7adcfca2` | 130 篇文章＋3,344 個資產進版控，拿掉 `src/data/blog/*.md` 與 `*/` 兩條 ignore |
+| `f5c8d554` | `migrate-frontmatter.ts`／`validate.ts` 移進 `scripts/_migration/`＋README |
+| `8b8de774` | Pagefind 索引每次重建（見下方發現 1） |
+| `13ecd0df` | FAQ／video 的元素 id 改用內容雜湊（見下方發現 2） |
+| `e72b10e2` | `scripts/freeze-manifest.ts`＋基準檔 `tests/fixtures/frozen/build-manifest.json` |
+| `3c6c6c8b` | 兩篇未完成稿改 `draft: true`，資產不再外流（見下方發現 3） |
+
+**repo 只長了 2MB（241M → 243M）**，不是預期的 178M：3,344 個資產與 Hexo `source/_posts` 逐位元組相同，git 依內容雜湊存 blob，同內容只存一份。真正新增的只有 130 個改寫過 front matter 的 md
+
+### Phase 1 過程中挖出的三個缺陷（都不是遷移造成，但遷移是最便宜的修補時機）
+
+1. **Pagefind 索引像滾雪球**：`npm run build` 結尾把 `dist/pagefind` 複製到 `public/`，下一次 build 又把它複製回 `dist` 才開始建索引。Pagefind 的 fragment 檔名帶內容雜湊、而且**不會刪掉它不認識的檔**，所以每次 build 都留下上一次的死檔 —— 實際的 159 個檔已經漲到 758 個，等於部署包裡有 599 個沒有任何東西引用的死檔。修法是建索引前把兩邊都清掉。**搜尋行為完全沒變**：拿改動前後兩份 dist 跑 B3 的 query checker，輸出逐字相同
+2. **build 不可重現**：`renderFaqItems` 用 `faq-${Date.now()}-${i}`、`renderVideoSimple` 用 `Math.random()`（兩個都是照抄 Hexo 的 `scripts/faq.js`）。同樣的內容重 build 一次，**20 頁的位元組就不一樣**，基準檔因此完全失效；而且 FAQ 答案的 id 每次部署都變，任何指向某一則 FAQ 的連結下次部署就失效。`Date.now()` 還會撞號 —— 分類的索引每組從 0 重來、時間戳在同一次 build 內不變，所以兩個分類都吐出 `faq-<ts>-0`。改成雜湊問題文字＋全頁流水號後，**連續兩次獨立 build 的 2,653 條 URL 全部逐位元組相同**
+3. **🔴 兩篇還沒要發的文章會被推上線**：`chatgpt-work-vs-codex`、`meta-ads-mcp` 在 Hexo 是靠「檔案不進版控」擋住的（線上實測兩個網址都是 **404**）。內容一進版控那道擋牆就沒了，兩篇立刻出現在 `sitemap.xml`、`rss.xml`、`llms.txt` 與搜尋索引裡。已改成 `draft: true`，並讓 `copy-assets-to-public.ts` 跳過草稿的資產（否則未完成的截圖還是會以可猜到的網址躺在 `public/`）。修完 **128 篇已發布 = 128 篇進版控的 Hexo 文章，數字完全對上**
+   - ⚠️ **這個修補很脆**：Hexo 原始檔沒有 `draft` 欄位，重跑一次 `migrate-frontmatter.ts` 就會把 `draft: true` 洗掉。已寫進 `scripts/_migration/README.md`
+
+### 🔴 Hexo 從現在起凍結發文（阻擋 2 的第 1 步，鏈不可顛倒）
+
+Astro 這邊的 markdown 從 2026-08-27 起是**內容的唯一來源**。`migrate-frontmatter.ts` 是直接覆寫、不會問，重跑會把 Astro 端的手動修改全部蓋回去。
+
+- 要改文章 → 改 `astro-blog/src/data/blog/*.md`，不要改 `source/_posts/`
+- 真的又在 Hexo 那邊寫了東西 → **要講**，我再跑一次同步並逐項確認蓋掉了什麼
+- 同步當下 Hexo 工作目錄裡未提交的內容也一併帶過來了（`n8n-update-log` 的 2.37.0 段落等），沒有漏
+
+### 基準檔怎麼用（Phase 3 驗收）
+
+```bash
+npx tsx scripts/freeze-manifest.ts --out /tmp/now.json
+diff /tmp/now.json tests/fixtures/frozen/build-manifest.json
+```
+
+2,653 條：298 頁、135 個 markdown、2,178 個資產、5 個契約檔（`_redirects`、`robots.txt`、`sitemap.xml`、`rss.xml`、`llms.txt`）。`_astro/` 與 `pagefind/` 只計數不算雜湊，它們的檔名本來就帶內容雜湊。`_headers` 還不存在是對的 —— 那是 Phase 3 才做的事，欄位已經留好
+
+### 順帶查清楚、確認不是問題的
+
+- **6 個資產目錄沒進版控是對的**：`claude-code-skills-tutorial` 等 6 個目錄裡只有 `.DS_Store` 或完全是空的，沒有任何真資產。乾淨 checkout 的檔案總數與工作目錄一樣都是 3,474
+- **`dist` 裡殘留 2 個 `{%` 是內容不是漏轉**：都在 `hello-to-hexo` 這篇的程式碼區塊裡，那篇本來就在教 Hexo 的 Swig 語法
+- **搜尋 11/17 是既有狀態、不是這輪弄壞的**：拿改動前的 dist 跑同一支 checker 輸出逐字相同。B3 當初就把「不複製舊站的排序加權演算法」記成有意識的差異；計畫的驗收門檻（入口頁搜得到、退役頁不誤入索引）是 `requiredEntryPagesMissing: []`、`forbiddenIndexedUrls: []`，兩項都過。真正還可以再看的是「n8n 教學」查不到 `/n8n-tutorial-resources/`、「LINE API」查不到拆帳工作流這兩題，留給 Phase 3
+- **B3 的搜尋基準檔本來就是舊的**：記的是 123 篇，實際內容是 131 頁，已一併更新
+- **`copy-assets-to-public.ts` 不依賴 Hexo repo**：它讀 `HEXO_POSTS_DIR` 只是清理用的種子，`existsSync` 擋掉就回空陣列。乾淨 checkout 的產出與本機逐位元組相同，已經證明這件事
+
+---
+
+## Phase 0 與決策紀錄（2026-08-26 的完整過程，保留供查證）
+
+- **本輪定案摘要**：Markdown for Agents 改零 Worker 方案（Astro endpoint 產 `.md`＋Cloudflare 免費 URL Rewrite，坑 1 與免費額度疑慮連帶解除）；12 獨立頁 9 搬 3 放掉；staging 用 Cloudflare Access 鎖（不用 noindex）；git 歷史乾淨重開；Hexo repo 凍結保留；`/posts/` 保留；搜尋不用重做（Pagefind 已內建，Phase 0 實測中文查詢即可）
+- **2026-08-26 雙 reviewer 技術審查**：主線＋codex（sol/max）各自獨立 review 後合併，約 25 條發現已全數併入計畫文件（436→597 行）：7 篇 slug 底線不一致、getPath 的 /posts 前綴、圖片資產路徑、GTM/AdSense 零接入、sitemap 檔名、robots 模板預設、根層散檔表（OneSignal 不搬＝用戶定案）、Phase 3/4 順序重排（zone 規則鎖 hostname、cutover 單向鏈、回退演練、cache purge）、監控改 30 天
+- **留言定案（2026-08-26）**：新站先不做留言，Disqus 隨舊站凍結；未來要加首選 giscus（已記入計畫文件阻擋 5）
+- **2026-08-26 Phase 0 開工（平行派工）**：Phase 0 拆成兩波、每波 3 支 codex，各自一個 git worktree（`~/Darrell/code/blog-wt/a1|a2|a3`，分支 `wt/a1-routing`／`wt/a2-pages`／`wt/a3-gtm-schema`），合併由主線逐支驗過再併
+  - 第一波（✅ 2026-08-26 完成，4 支全部驗過才合併，主樹 build 綠：0 errors、0 warnings、240 頁）：**A1** 路由與 URL 統一＋`.md` endpoint（項目 1、3，gpt-5.6-sol/max）｜**A2** 9 個獨立頁面＋根層散檔＋AstroPaper 殘留（項目 2、11）｜**A3** GTM 接線＋schema 依頁型（項目 4 的 GTM 部分、項目 10）
+  - **第一波合併結果**：A3 `88e9ade9`（GTM＋schema）→ A2 `47ca089a`（獨立頁面＋模板清理）→ A1 `1cda9299`（根層路由＋md endpoint）→ A4 `b630e117`（頁型修正＋keywords＋getPath API 統一）。實查通過：7 篇連字號 slug 全部產出且底線版消失、4 篇原生底線 slug 保留、120 篇 `/{slug}/index.md` 與 `llms.txt` 對帳零差異、非文章頁 0 個誤標 BlogPosting、字串 `"undefined"` 0 命中、238 頁有 GTM、`/posts/` 只剩列表分頁
+  - **踩到的整合破口（值得記）**：三支各自 build 都綠，合併後才炸。A1 把 `getPath()` 從 3 參數改成 1 參數（檔名即 URL 唯一來源），但 A3 新寫的 `Layout.astro:77-78` 與 A2 新建的 `n8n-tutorial-resources:120` 是它快照裡沒有的呼叫點 → `astro check` 3 個 ts(2554)。教訓：平行拆工要另外指定「共用 util 的簽章變更」歸誰、以及合併後必須重跑一次完整 build，不能只信各支自己的綠燈
+  - **A2 自行縮減 scope**：第一輪把一份任務當成可自選的子任務清單，只做一半就回報，還自創「委派禁止提交」。第二波 prompt 要加「不可自行拆分子任務、不可自行縮減 scope」
+  - 第二波（待第一波合併）：AdSense＋Sidebar 其餘區塊＋相關文章（項目 4 剩餘、5）｜custom tag ledger＋validator（項目 6、9）｜sitemap／robots／RSS 契約（阻擋 6）＋搜尋驗收（項目 7）
+  - 尚未派工：項目 8（三個 skill 改寫），內容依賴前兩波的最終路徑與 tag ledger，排在第三順位
+- **第二波（✅ 2026-08-26 完成並全部合併）**：B1 廣告＋Sidebar 訂閱＋相關文章 `46cdd509`｜B2 custom tag ledger＋validator 收嚴 `f6951157`｜B3 sitemap／robots／RSS 契約＋搜尋 fixture `6c02a365`
+  - B3 額外建了全站「舊 URL → 預期新狀態」manifest（`astro-blog/tests/fixtures/b3/url-manifest.json`，計畫阻擋 6 要求的驗收基準），checker 腳本同目錄。2.5MB 的執行輸出不進版控（`affc3c01`）
+  - **manifest 報 2,163 條 mismatch，實查後只有一部分是真缺口**：最大那塊 2,002 個「缺少的資產」是 `-800.webp`／`-1600.webp` 變體，實查線上 HTML 只有封面圖那一條 srcset 會用到 `-800`／`-1080`，其餘變體由 `scripts/generate-webp.js` 產生但沒有任何 HTML 或 JS 引用。A1 改成依實際引用複製是對的，這些不該算缺口
+- **命名已定案（2026-08-26 用戶決定）**：本機 `~/Darrell/code/blog-astro/`、GitHub `Darrellwan/blog-astro`，兩邊同名。用戶已聽過「別用框架命名」的理由後仍選這個，不要再重提
+- **已清理（2026-08-26）**：第一二波的 7 個 worktree（5.8G）與 `blog-public-backup-20260826`（94M）已移入 Trash，`git worktree prune` 跑過。7 個 `wt/*` 分支保留（零磁碟成本，合併記錄在上面）。第三波另開了 `blog-wt/c1`、`blog-wt/c2`
+- **2026-08-26 第三波已派工（C1／C2／C3）**：
+  - **第 2 項先做完（主線，commit `066beebf`）**：`getPath()` 改成回傳帶尾斜線的正規路徑。動到 8 個檔案、10 處。實查：站內連結 `/n8n-apify-node/` 與 canonical 一致、`llms.txt`／`rss.xml`／og:image 全單斜線、239 頁 `BUILD_EXIT=0` 0 errors 0 warnings。三個 route 的 `params` 改成頭尾都剝（slug 不是 URL）
+    - 順帶查到但不修：文章內容裡本來就寫錯的連結 `/tagmanager//answer/13438771`（`google-tag-manager-google-tag-release.md`，Hexo 原始檔就錯），應該是 `https://support.google.com/tagmanager/answer/...`
+  - **C1**（✅ 2026-08-26 完成，主體 `92fb4a31`＋退件修正 `eb64444d`）圖片響應式標記回填＋變體複製
+    - 主線獨立複驗：Hexo 權威實作 `themes/next/scripts/tags/darrell-lightimage.js` 只有 `customLightGallery800Alt`（403 行）與 `customLightGalleryCover`（574 行）會包 `<picture>`，C1 只包這兩個 tag 是**正確**的；隨機抽 12 篇（換一批、非它抽的那批）picture／img／srcset 三項 **12/12 完全相同**；封面 `fetchpriority="high"` 111 張、非封面 0 張
+    - **C1 自報的 1 個 FAIL 與我另外抽到的 2 個差異，追根因後沒有一個是 C1 造成的**：`n8n-webhook` 少 2 張圖在合併前的主樹 dist 就已經少（既有問題）；`analytics-debuuger-v2-3-2` 的 `class="lazyload max-800}"` 是 markdown 裡手寫的 raw HTML，線上一模一樣；`n8n-update-log` 差 39 個 picture 是**內容漂移**不是渲染問題
+    - **退件過一次並已修好（`eb64444d`）**：全站對帳發現 14 個 srcset 引用的變體檔在 dist 不存在，全部集中在 `n8n-update-log-v1` 引用**跨文章絕對路徑** `/n8n-update-log/...` 的情況。`copy-assets-to-public.ts` 原本用「引用它的文章 slug」決定目的地，沒處理以 `/` 開頭的絕對路徑；線上該圖 `curl` 回 HTTP 200 是活的 → 是遷移後才會破的真 regression，不是既有問題。修法是解析出真正擁有素材的文章再寫回該 slug，維持「只複製實際被引用的變體」不整包複製（`n8n-update-log` 來源 309 個變體，只複製 157 個）
+    - **最終複驗（主線自己跑，主樹重跑遷移 130 篇＋清快取重建 262 頁）**：`BUILD_EXIT=0`、0 errors、0 warnings；全站 **357 個 `<picture>`／357 次 srcset／618 個不同變體檔／dist 缺檔 0／外部網域引用 0**；`n8n-update-log-v1` picture 12=12；再換第三批種子隨機抽 15 篇，**15/15 三項完全相同**
+    - 唯一殘留差異：`n8n-update-log-v1` 的 img 數 147 vs 144，差的 3 張是 `data:image/svg+xml` lazyload 佔位圖，非真內容圖（[[feedback_build_qa_false_alarms]] 記過的假警報之一）
+- **✅ 2026-08-26 定案：標籤網址全部小寫＋寫轉址表（站主決定，commit `27e8d995`）**
+  - 站主的判斷：既然搬家本來就要動全站，這是把標籤整理乾淨最便宜的時機；轉址是一次性腳本產物，不是長期人工維護
+  - **成果**：119 個舊標籤 → 114 個（5 組只差大小寫的合併掉，例如 `ChatGPT` 9 篇＋`Chatgpt` 1 篇 → `chatgpt` 8 篇實際文章）；`public/_redirects` 97 條規則全部明寫 308（Cloudflare 預設 302，不寫會錯）
+  - 轉址表內容：78 條標籤大小寫、11 條標籤分頁、6 條首頁分頁、2 條 Hexo 時代就有的頁面轉址（`/n8n-resources/`→`/n8n-tutorial-resources/`、`/n8n-service/`→`/n8n-expert/`）
+  - 分頁深度不同（Hexo 與 Astro 每頁篇數不一樣），新站沒有的深層分頁一律退回該標籤第一頁
+  - **驗過**：97 條規則的目的地全部存在於 dist、0 條重複來源、0 條指向自己、0 條轉址鏈；線上 sitemap 270 條裡 251 條有頁面或有轉址，剩 19 條全是已決定放掉的（16 條 `/categories/`、`/resume/`、`/html5-video-demo/`、`/404`）
+  - slugify 規則：沿用 Hexo 的分隔字元規則再全部小寫，**不能換回通用套件**（`lodash.kebabcase` 會把 `GA4 證照` 拆成 `ga-4-證照`，那是不同的標籤）
+- **（過程記錄）2026-08-26 先做過保留大小寫的版本（commit `c79be829`，站主指出前提有問題後才發現）**：原本主線把「網址一定會變、所以要寫 102 條轉址」當前提，站主質疑「不能自訂 slug 規則嗎，GA4 → ga-4 整個就不是同一件事」才回頭查來源。實際上 `src/utils/slugify.ts` 是專案自己的 20 行檔案，AstroPaper 預設用 `lodash.kebabcase`（把字母／數字邊界當單字邊界 → `GA4-證照` 變 `ga-4-證照`）＋ `slugify({lower:true})`（`Antigravity-2-0` 變 `antigravity-2.0`），沒有人為這些網址做過決定
+  - 改成複刻 Hexo 規則：讀 `node_modules/hexo-util/dist/slugize.js` 取得權威字元類 `[\s~\`!@#$%^&*()\-_+=[\]{}|\\;:"'<>,.?/]+` → `-`、收合、去頭尾，`main.yml` 沒設 `filename_case` 所以大小寫與 CJK 原樣保留
+  - **成效：83 條 tag 轉址降到 0 條**。實測線上 114 個 tag 目錄 vs Astro 114 個，111 個逐字相同、0 個標籤被大小寫拆開；圖片沒受影響（`<picture>` 357／srcset 357／618 引用／缺檔 0）
+  - **🔴 更正「剩 3 條」的說法：實際是 0 條**。先前用 `ls dist/tags/` 對 `ls public/tags/` 得到 114 vs 114、差 3 個，那是 **macOS 檔案系統不分大小寫造成的假象** —— 兩邊都被蓋掉。改用規則直接算出 119 個 slug、再逐條 `curl` 線上驗證：**114 個回 200，5 個回 404 且全部來自兩篇未發布的草稿**（`chatgpt-work-vs-codex`、`meta-ads-mcp` 帶進來的 `Codex`／`Claude-Managed-Agents`／`Claude-API`／`Meta-Ads`／`廣告投放`）。**線上每一個已發布的標籤網址都被保住，tag 轉址需求＝0**
+  - 附帶查明：線上本來就有 5 組只差大小寫的標籤頁同時存在且都是 200（`ChatGPT`/`Chatgpt`、`Cloudflare`/`cloudflare`、`Hexo`/`hexo`、`Zeabur`/`zeabur`、`n8n-Tips`/`n8n-tips`），內容被拆開。這是 Hexo 既有行為，新規則忠實複製了它——包括複製了這個缺點。要根治得統一 front matter 寫法，但那會改動線上現有網址，**不該在遷移期做**
+  - **🔴 驗證方法教訓**：凡是跟大小寫有關的比對，`ls` 在 macOS 上會靜默合併，本機比對不可信。要嘛打線上、要嘛在 Linux 上驗、要嘛直接從資料算不要走檔案系統
+  - **教訓**：被站主質疑時第一時間該查的是「這個前提哪來的」，不是「怎麼把既定前提做好」。我連續三輪在推銷轉址方案，沒去查那 20 行檔案
+- **✅ 2026-08-26 卡片標籤修好並升級（commit `401ac718`）**（原記為「48 個多行 articleCard 沒渲染」，**那個數字是錯的**，實際是 4 篇 9 張）
+  - **真根因不是多行寫法**：`renderArticleCard`／`renderTemplateCard` 用樣板字串組多行 HTML，欄位為空時會留下「只有縮排、沒有內容」的一行；Markdown 把它當空行 → 判定 HTML 區塊結束 → 後面縮排 4 格以上的行被當成程式碼區塊，`<a>` 也被重複開合。`articleCard` 2 處、`templateCard` 5 處（後者 2 個使用剛好填滿所以還沒炸，地雷已一併拆除）
+  - 壞掉的：`claude-code-agent` 1 張、`n8n-evaluations` 2 張、`n8n-webhook` 2 張（previewText 空）、`claude-managed-agents` 3 張（thumbnail 空）
+  - **同時升級**：沒寫的 `title`／`previewText`／`thumbnail` 自動從目標文章的 front matter 補（thumbnail = `SITE.website` + slug + `bgImage`）。**寫了的一律以寫的為準**，`=""` 也算寫了。找不到對應 .md（tools 頁、帶 query 的網址）維持手填、不報錯
+  - **主線獨立複驗**（在主樹做，不採信 agent 的 worktree 結果）：4 篇全部 `完整卡片 = 標籤數`、被當程式碼 0；全站 78 標籤 = 78 完整卡片 = 0 損壞；渲染器 36 種欄位組合下「只有空白的行」皆為 0；**78 張手填標題 0 張被自動值覆蓋**；`BUILD_EXIT=0` 0 errors 0 warnings 262 頁
+  - D1 的 build 在它自己的 worktree 沒綠，原因是 c2 種子過期（缺 `grokbot_pricing_plans-800.webp`、`claude-managed-agents` 是舊版），主樹兩者都正常。**教訓：重用舊 worktree 前要先重跑遷移對齊種子**
+- **🔴 待站主決定：標題錨點要不要沿用舊格式**（2026-08-26 查到，比卡片嚴重）
+  - **128 篇裡有 120 篇的標題 id 與線上不同**，線上共 1,675 個。例：線上 `#Analytics-Debugger-V2-4-6` → Astro `#analytics-debugger-v246`；線上 `#202407-更新-不會移除第三方-Cookie` → Astro `#202407-更新---不會移除第三方-cookie`。差在大小寫與標點處理
+  - **錨點無法用轉址救**：`#` 後面的片段瀏覽器不會送到伺服器，`_redirects` 完全無效。唯一解法是讓 Astro 產生相同的 id
+  - 站內影響小：452 條站內 `#` 連結只有 7 條斷掉（`n8n-zeabur-ai-hub-model-router` 3、`n8n-merge-node` 2、`n8n-google-sheets-node` 1、`google-tag-manager-google-tag-release` 1），其中 `n8n-google-sheets-node#example` 線上也是死的
+  - **主線建議：沿用舊格式**。理由是這題與標籤不同——標籤改小寫**修好了** 5 組被拆開的標籤，有實質收益；錨點改小寫**什麼都沒修好**，純粹換個樣子，卻要付「外部深連結失效且救不回」的代價
+  - 快速導覽（quickNav）的 142 個錨點裡有 6 個對不到正文，其中 5 個是這個 id 規則差異造成的
+- **🔴 兩個會讓驗證失真的陷阱（2026-08-26 踩到，之後每次驗收都要做）**：
+  1. **Astro 內容快取**：`astro-blog/node_modules/.astro/data-store.json`（約 4MB）存著上次的渲染結果。合併 C1 後直接 build，`dist` 仍是 0 個 `<picture>`；把快取移走重跑才變成 357 個。**驗任何 remark 外掛改動前一定要先移走這個檔**
+  2. **內容種子過期**：主 checkout 的 `src/data/blog/` 停在 3 月（121 篇），Hexo 已經 130 篇，`grok-bot-review` 等新文章根本不在。`n8n-update-log` 種子停在 `2.14.0 Pre-release - 2026-03-24`、Hexo 已到 `2.36.0 - 2026-08-18`。121 篇裡有 6 篇正文長度差 >200 字元。**已於 2026-08-26 重跑 `npx tsx scripts/migrate-frontmatter.ts`（MIGRATE_EXIT=0、130 篇、3410 個資產）**，之後拿 Astro 對線上比較前都要先重跑
+- **待確認（非阻擋，Phase 3 前要想清楚）**：`srcset` 產出的是**絕對網址** `https://www.darrelltw.com/...`（與 Hexo 一致）。staging 站掛 Cloudflare Access 驗收時，這些圖會從線上舊站載入，可能掩蓋 staging 自己缺圖的問題
+  - **C2**（✅ 2026-08-26 完成並合併 `ab419521`）ctaCard 樣式移植＋`sticky` 接回 dataLayer。主線獨立複驗（不採信 agent 自報數字）：`hexo-tags.css` 是純附加、前 1920 行未動；舊 `.styl` 與新段落各 207 個宣告、property 集合完全相同、77 個 `dn-cta` selector 一致、3 個 @media 都在；`post_sticky` 與 Hexo 逐字相同（`n8n-update-log` 送 `"100"`、無 sticky 的頁送空字串而非 null/省略）。合併後主樹 `BUILD_EXIT=0` 0 errors。分頁已關
+    - 附帶確認：`migrate-frontmatter.ts` 原本就靠 `Object.entries` 保留未知欄位帶過 `sticky`，不需改碼（agent 沒製造多餘 diff，正確）
+  - **C3**（✅ 2026-08-26 完成並 commit `bbf3539e`）三個寫作 skill 的 Astro 待命版，15 個檔案在 `astro-blog/docs/skills-astro/`。**沒有覆蓋 `~/Darrell/skills/` 現行版本** — 那三個 skill 站主現在還在用來寫 Hexo 文章，就地改會讓下一篇被帶到不存在的路徑
+    - 主線獨立複驗：三個現行 skill 目錄 `-newermt '-3 hours'` 為空（沒被動）、主 repo HEAD 沒被偷 commit、禁詞掃描（`source/_posts`／`hexo`／`themes/next`／`main.yml`）零命中、待命版教到的 15 個標籤逐個對 `remark-hexo-tags.ts` 查證全部有 handler、`audit.py --help` exit 0
+    - 3 個檔案與原版逐位元組相同（`threads-voice-analysis`、`x-articles-writing-tips`、`agents/openai.yaml`）＝**正確行為**，prompt 明令語體與聲音內容不要動，這三份沒有框架相關事實
+    - **🔴 Phase 2 checklist 要加兩條**：① 把 `astro-blog/docs/skills-astro/` 三份整份覆蓋回 `~/Darrell/skills/` ② 把 `docs/guides/term-definitions.md`（2797 bytes，已在版控）搬到 `blog-astro/docs/guides/term-definitions.md`，否則兩個 skill 的 term 定義庫查找會指到不存在的檔案（C3 發現，它沒跨界複製是對的）
+- **🔴 2026-08-26 又一個 gitignore 靜默吃檔（與阻擋 7 同一個病，已修，同 commit `bbf3539e`）**：根 `.gitignore:79` 的 `docs/` 沒錨定根目錄，一次吃掉 7 個 docs 目錄，其中 `astro-blog/docs/` 正是 ledger 與 C3 待命 skill 的所在地 — Phase 2 開新 repo 會整包消失。ledger 之前是靠 `git add -f` 硬塞進版控的，屬於補丁不是修好。已加 `!astro-blog/docs/` ＋ `!astro-blog/docs/**` 兩條放行
+  - 實測無連帶副作用：`themes/next/docs`（22 檔）與 `source/tools/n8n_template/docs`（4 檔）本來就已在版控，規則對它們從未生效；改後 `git status` 新增可追蹤的只有 `astro-blog/docs/skills-astro/`
+- **🔴 修正前一輪的誤判：B3 的「2,002 個缺失資產」不是整批誤報**：實查 1,768 個磁碟上的 webp 變體裡，線上 142 頁的 `srcset` **真正引用到 612 個**，Astro 端一個都沒有。真 regression 也比原本記的大 — 不只封面圖，同一篇文章線上 12 個 `<picture>`、Astro 0 個，**整篇的圖都掉了**。變體檔缺失要修 `copy-assets-to-public.ts`（`src/data/blog/` 是 gitignored 產生物，手動 cp 下次重跑就沒了）
+  - 另修正：線上封面變體是 `-800.webp 800w` ＋ `-1200.webp 1200w`，不是先前記的 1080
+- **第 6 項（152 條 URL 去留）決策材料已備妥，GSC 近 90 天實查（2026-05-29～08-26）**：
+  | 類型 | 條數 | 90 天曝光 | 90 天點擊 | 在 sitemap |
+  |---|---|---|---|---|
+  | tag 索引頁大小寫（`/tags/AI/`→`/tags/ai/`） | 85 | 170 | 1 | ✅ 121 條 |
+  | 分頁（`/page/2/`→`/posts/2/`、tag 分頁） | 17 | 109 | 2 | ❌ 0 條 |
+  | 年／月 archive（`/2024/03/`） | 52 | **0** | **0** | ❌ 0 條 |
+  | （對照）文章頁 | — | 283,247 | 6,324 | ✅ |
+  - **🔴 2026-08-26 實查更正：那 52 條年／月 archive 根本不存在**。`curl` 實測 `https://www.darrelltw.com/2022/07/`、`/2024/` 都是 **HTTP 404**，本機 Hexo 產出也沒有 `public/20xx/` 目錄。manifest 那 52 條的 `sources` 寫的是 `legacy-route-contract`、note 寫 `Proposed continuity contract` — 是 B3 自己提議「應該要有」的頁面，不是線上量到的。**要修的是 manifest 的 expectedStatus（retained-200 → intentional-404），不是網站**。所以第 6 項是 102 條不是 152 條
+  - **SEO 判斷（2026-08-26 用 seo-coach／seo-audit 框架分析，實查為據）**：核心原則是「該不該被收錄」與「遷移時該不該轉址」是兩個獨立問題，混在一起會做錯決定
+    - **tag 索引頁**：thin aggregation（實查單頁純文字 547 字、無 noindex、self-canonical），sitemap 279 條裡佔 121 條＝43%，但 90 天只換到 170 曝光／1 點擊。**不值得收錄，但不要主動 noindex** — 它的真價值是內部連結樞紐，靠可爬＋follow 就拿到了；crawl budget 對 130 篇的站不是瓶頸，cannibalization 風險也已被 Google 自己判掉（170 曝光＝早就不給機會）。為 1 次點擊動 noindex 風險大於收益
+    - **分頁**：Google 2019 已棄用 rel=next/prev，現行做法是自我 canonical＋保持可爬。有完整 sitemap 的站，分頁的發現價值≈0。**可爬即可，不必求收錄**
+    - **年／月 archive**：不存在，這題不成立。補做是新增零收益功能
+  - **遷移動作結論**：102 條（tag 大小寫 85＋分頁 17）**明列 308**，理由不是保那 3 次點擊，是「任何目前回 200 的網址，改變時都要有去處」，不轉址會製造 404 訊號群並斷掉外部連結，成本只有幾行 `_redirects`。52 條 archive 改 manifest 期望值即可。**待站主拍板**
+- **🔴 新發現的既有 on-page 缺陷（非遷移造成，但遷移是最便宜的修補時機）**：`/page/2/`、`/page/3/`、`/page/4/` 的 `<title>` 全部是 `Darrell TW`，六頁重複 title。Astro 版分頁在 `/posts/2/`，改網址時順手補成唯一值（例如「文章列表 - 第 2 頁 | Darrell TW」）
+- **🔴 第三波待辦（第二波挖出來的，尚未派工）**：
+  1. **封面圖響應式標記遺失**（真 regression）：線上封面是 `<picture>` + `srcset`（`-800.webp` 800w／`-1080.webp` 1080w），Astro 版 0 個 `<picture>`、0 個 `srcset`，只剩原圖 `<img>`。封面是每篇文章的 LCP 元素，等於全站 LCP 退步
+  2. `ctaCard` 只吃 Astro 基礎樣式，舊 Hexo `cta-card.styl` 沒搬，視覺與舊站不一致
+  3. `sticky` 欄位已可用（B2 完成），要接進 `Layout.astro` 的 dataLayer（第一波因為欄位掉了才拿掉）
+  4. Phase 0 項目 8：三個 skill 改寫（`article-review`、`n8n-article-writer`、`blog-article-writer`）
+  5. 年／月 archive 52 條、首頁與 tag 分頁 308 共 100 條：manifest 標為缺口，需逐條決定「保留 200／明列 308／intentional 404」，這是決策不是實作
+- **未進版控的兩篇是刻意的**（2026-08-26 站主確認：還沒要發）：`source/_posts/chatgpt-work-vs-codex.md`、`meta-ads-mcp.md`。不要 commit 進 Hexo repo。B2 因此在 worktree 只看到 128 篇、主 repo 唯讀是 130 篇，這個落差是預期的
+  - ⚠️ 但 Phase 1 凍結後 Hexo repo 不再發文，這兩篇要繼續寫就得搬進 Astro repo，不能留在凍結的 repo 裡。凍結當天要記得處理
+- **🔴 主線待辦（第二波合併後統一做）**：`getPath()` 回傳值補尾斜線。目前站內連結是 `/slug`、canonical 是 `/slug/`，舊站一律帶尾斜線，等於每個站內連結多一次轉址且與 canonical 自相矛盾。要一起修的呼叫點：`PostDetails.astro` 的 ogImage 與圖片路徑、`llms.txt.ts`、三個 route 的 `params`。已通知 B3 不要自己動 getPath
+- **既有問題（非遷移造成，範圍外）**：375px 手機寬度下文章頁有水平溢出，來源是既有文章裡寫死 560px 的 YouTube iframe
+- **🔴 待站主決定（2026-08-26 提出）**：
+  1. `/Users/darrellwang/Darrell/code/blog-public-backup-20260826`（94MB）是合併時移開的 3 月舊複製與產生物備份，確認不需要就可以刪
+- **既有線上破圖（非遷移造成，實查線上同樣 404）**：`n8n-update-log` 的 `n8n-2.8.0-chat_hub_approval_buttons.png`、`n8n-2.8.0-community_node_preview.png`、`n8n-2.8.0-paired_item_auto.png`，`source/_posts/n8n-update-log/` 裡連 webp 變體都沒有
+  - 全程禁止部署：第一個公開網址要等 Phase 3 且先掛好 Cloudflare Access（決策 6，站主要求「部署到 CF 後只有我能看到畫面」）
+- **2026-08-26 新發現的第 7 個阻擋項（已修，commit `bdb26dbf`）**：根 `.gitignore` 的 `public/` 規則把 `astro-blog/public/` 一起吃掉，該目錄 3687 個實體檔案只有 112 個進版控，`links`／`n8n-expert`／根層散檔全在 git 之外 → Phase 2 開新 repo 會整包消失。已改成 `/public/` 只鎖根目錄＋在 `astro-blog/.gitignore` 用 allowlist 放行手工檔（產生的文章圖片仍忽略）。同 commit 修掉 `scripts/validate.ts` 寫死主 checkout 路徑的問題（任何 worktree 跑它都在驗錯對象）
+
 ### Grok Bot 文章｜3 張圖尚未跑 webp 壓縮
 - **建立日期**：2026-08-23
 - 全篇已發布（見下方已完成），唯獨 `grokbot_price_compare_table.png`、`grokbot_pricing_plans.png`、`grokbot_scheduled_task_settings.png` 這 3 張沒有 `-800.webp`/`-1600.webp` 變體，其餘 12 張都有。2026-08-23 提出時 Darrell 選擇先跳過（「不需要，直接發佈」），不影響顯示，只是檔案體積較大
@@ -239,6 +392,13 @@
 （無）
 
 ## ✅ 已完成
+
+- [x] **8/24 Agent Readiness 修正（is-agentic 掃描回應）**
+  - 三筆 commit 已部署並線上驗證：llms.txt 死連結修正＋when-to-use 段落＋作者簡介改稿（`d76bcdff`/`051740a3`）、middleware 406 分支移除（`234d6580`）
+  - 掃描器三項誤判實測證偽（首頁無 JS 內容／404 回 200／sitemap 解析失敗）；406 是首頁誤判成因（我方 middleware 誤傷）
+  - 掃描器身分＝ora.ai（會偽裝各家 AI bot UA 做 cloaking 檢測）；Rescan 沿用快取不重驗，分數暫不可信，幾天後可再掃
+  - 用戶決策：**不建 /about /contact /privacy**（會打亂結構，勿再提建頁）
+  - 完整紀錄：`docs/guides/is-agentic-agent-readiness.md`
 
 - [x] **8/24 全站導入 Speculation Rules API（0ms 預渲染）+ GTM 預渲染安全防護**
   - **目標與成果**：導入 Chromium Speculation Rules API（`eagerness: "moderate"`，懸停 200ms 觸發），全站文章與 3 大核心頁面（n8n 教學 `/n8n-tutorial-resources/`、n8n 模版庫 `/tools/n8n_template/models`、自動化服務 `/n8n-expert/`）全面達成 0ms 即時切換。
