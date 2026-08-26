@@ -16,6 +16,11 @@
 蓋回 Hexo 版本，**而且不會問你**。它也只覆寫、不刪除，Hexo 那邊刪掉的圖片會留在
 `src/data/blog/` 變成孤兒（遷移收尾時清掉 1 個）。
 
+具體會炸的例子：`chatgpt-work-vs-codex.md` 與 `meta-ads-mcp.md` 這兩篇還沒要發，
+在 Hexo 是靠「檔案不進版控」擋住，搬過來之後改用 `draft: true` 擋。Hexo 的原始檔沒有
+這個欄位，重跑一次就會把 `draft: true` 洗掉，兩篇未完成的稿子直接進 sitemap、RSS 與
+llms.txt。重跑後務必檢查這兩篇。
+
 `validate.ts` 另外有個不能當最終驗收 gate 的理由：它比對時會把 `-` 和 `_` 互換再猜一次
 （見計畫文件阻擋 1），這會**掩蓋真正的斷鏈**；custom tag 清單也不完整。獨立 repo 需要的是
 只讀 frozen manifest 做 exact match 的 deterministic validator，那是另一支東西

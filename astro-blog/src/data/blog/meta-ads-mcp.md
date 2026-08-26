@@ -14,6 +14,7 @@ categories:
 page_type: post
 id: meta-ads-mcp
 slug: meta-ads-mcp
+draft: true
 ---
 
 {% quickNav %}

@@ -474,7 +474,22 @@ if (fs.existsSync(LEGACY_PUBLIC_POSTS_DIR)) {
   fs.rmSync(LEGACY_PUBLIC_POSTS_DIR, { recursive: true, force: true });
 }
 
-const articles = collectMarkdownFiles(BLOG_DIR).map(articleSource);
+/**
+ * A draft has no page, so its screenshots must not ship either. Without this
+ * the unfinished posts still land in `public/<slug>/` and stay reachable by
+ * their exact URL, which is how they behaved on Hexo only because the files
+ * were never committed.
+ */
+function isDraft(markdownPath: string): boolean {
+  const source = fs.readFileSync(markdownPath, "utf-8");
+  const frontmatter = source.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+  if (!frontmatter) return false;
+  return /^draft:\s*true\s*$/m.test(frontmatter[1]);
+}
+
+const articles = collectMarkdownFiles(BLOG_DIR)
+  .filter(markdownPath => !isDraft(markdownPath))
+  .map(articleSource);
 const currentArticleSlugs = articles.map(article => article.slug);
 const previousManagedSlugs = readManagedSlugs();
 

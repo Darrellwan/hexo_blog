@@ -1,22 +1,22 @@
 {
   "summary": {
-    "asset": 2214,
+    "asset": 2178,
     "document": 37,
-    "page": 303,
-    "markdown": 137,
+    "page": 298,
+    "markdown": 135,
     "contract": 5
   },
   "skipped": {
     "_astro": 31,
-    "pagefind": 159
+    "pagefind": 156
   },
-  "total": 2696,
+  "total": 2653,
   "entries": [
     {
       "url": "/",
       "kind": "page",
-      "bytes": 61948,
-      "sha256": "1f45cc7fa4670a5f152692c7528fc78bfd1eae37ce733a77948c6dd7882f87ac"
+      "bytes": 61924,
+      "sha256": "928c9de022fc3eed7800138c3f3605b2f329e28c1341ad2db9543e8176b716c6"
     },
     {
       "url": "/_redirects",
@@ -27,8 +27,8 @@
     {
       "url": "/.astro-blog-article-assets.manifest",
       "kind": "asset",
-      "bytes": 4475,
-      "sha256": "4348041bf8ebdc13b05f50cd96a69b31cd3417efe59b9762429cc81ffc423b5b"
+      "bytes": 4430,
+      "sha256": "1819fddf325c3e9831a2c7c33c7faee6302c05860340f82dfadda770416800e7"
     },
     {
       "url": "/.well-known/brave-rewards-verification.txt",
@@ -39,8 +39,8 @@
     {
       "url": "/2022-martech-trends-bnext/",
       "kind": "page",
-      "bytes": 82111,
-      "sha256": "c6fc531766aa1a767f64fb06899ba059e5bcfa222b045a97662333b2252ff221"
+      "bytes": 81843,
+      "sha256": "e5974ebcb9514482baae312fe57e2dd6334b58288abf6cd39cb324fe32dd0c76"
     },
     {
       "url": "/2022-martech-trends-bnext/cdp_famous_player.png",
@@ -93,8 +93,8 @@
     {
       "url": "/2024-3rd-party-cookie-in-google-chrome/",
       "kind": "page",
-      "bytes": 82937,
-      "sha256": "a10089dfd8eb428704ed0d750ddb44c2523c4e3defadaad281d000819340aa83"
+      "bytes": 82669,
+      "sha256": "33fe0520f588754e687f4420b2f30a520ec5e9042009d9be971b39a1e6bbc442"
     },
     {
       "url": "/2024-3rd-party-cookie-in-google-chrome/chrome_v120_3rd_party_release.png",
@@ -183,8 +183,8 @@
     {
       "url": "/analytics-debuuger-v2-3-2/",
       "kind": "page",
-      "bytes": 82814,
-      "sha256": "00a83dcf5cfde960a01302b358c6b0ad260724757d77395162b4ee9217afcd86"
+      "bytes": 82546,
+      "sha256": "d0172ca3abd4d2bd360f354112da3af1a1a3b82945bb938f318e0c998b1ff345"
     },
     {
       "url": "/analytics-debuuger-v2-3-2/analytics_debugger_2_4_6_support_vendors.png",
@@ -249,14 +249,14 @@
     {
       "url": "/archives/",
       "kind": "page",
-      "bytes": 271027,
-      "sha256": "81caed91dbed84ce4dbea3a3ccb3d79ec37e73798aefbee9f62fe9911b42ff55"
+      "bytes": 267356,
+      "sha256": "c06208f4594a223dba9a8fa8a95e5d02000d0ecd8fffeb03c789e90601f42e43"
     },
     {
       "url": "/bouncer-to-clean-email-list/",
       "kind": "page",
-      "bytes": 84421,
-      "sha256": "ad94e76ce365192f72ef5dcde80e56e7570b7d9900cc87b8d50f4f2ea46df339"
+      "bytes": 84153,
+      "sha256": "011783e8e18a541a31897f8670c99f016cba21b38fd7351bbc95b880dcff19cf"
     },
     {
       "url": "/bouncer-to-clean-email-list/bouncer_api_doc.png",
@@ -327,8 +327,8 @@
     {
       "url": "/chatgpt-broken-in-web-browser/",
       "kind": "page",
-      "bytes": 86510,
-      "sha256": "7e6a73701e3cab177d3bc318c7655c8d465727ced69d806ea658cfbbcea7873a"
+      "bytes": 86216,
+      "sha256": "bdd51301ec61904402d7516ec099d83fe7ab5fd97372542caffd3dae6b714826"
     },
     {
       "url": "/chatgpt-broken-in-web-browser/chatgpt_app_show_error.jpg",
@@ -441,8 +441,8 @@
     {
       "url": "/chatgpt-coding-assistant-3rdparty-detect/",
       "kind": "page",
-      "bytes": 91272,
-      "sha256": "4f654ab7031f70076648dd34be64a591a6941bde373a7fb76a266f839af3341b"
+      "bytes": 91010,
+      "sha256": "6192736f9826be5314383fb683170d62315fb3263dd4a689d6377ff3144650c2"
     },
     {
       "url": "/chatgpt-coding-assistant-3rdparty-detect/bg_chatgpt_hello_world-1584.webp",
@@ -495,8 +495,8 @@
     {
       "url": "/chatgpt-sora-create-image-with-text/",
       "kind": "page",
-      "bytes": 90122,
-      "sha256": "d912fbb83145e2e547e2880396a197534a3639f22e2f9c5d3fa91f739518ebd7"
+      "bytes": 89828,
+      "sha256": "82416ad94d5dfba72ff787fc995ce703b29f911ed01eec1b5aab0ab4f6c3bbe1"
     },
     {
       "url": "/chatgpt-sora-create-image-with-text/chatgpt_sora-4_comics_prompt_by_chatgpt.jpg",
@@ -619,112 +619,10 @@
       "sha256": "7b312685a7956f655c19a877eb941bb955cfed574f799beed42d0f6f6e521400"
     },
     {
-      "url": "/chatgpt-work-vs-codex/",
-      "kind": "page",
-      "bytes": 106036,
-      "sha256": "9d80420a80c58535a488872cef65cfcae65c2d83069d0ca0a6fbc92b7a73e7b4"
-    },
-    {
-      "url": "/chatgpt-work-vs-codex/chatgpt-mode-decision-flow-1600.webp",
-      "kind": "asset",
-      "bytes": 92700,
-      "sha256": "424ba59531168820c22b71fd423dc3eda1cca7953a438b64b4bc2366918b6ebd"
-    },
-    {
-      "url": "/chatgpt-work-vs-codex/chatgpt-mode-decision-flow-800.webp",
-      "kind": "asset",
-      "bytes": 41080,
-      "sha256": "0221194ef1b242e08ab2bbdd2834082416bdf76dbba4b2ef4654be96f51809c3"
-    },
-    {
-      "url": "/chatgpt-work-vs-codex/chatgpt-mode-decision-flow.png",
-      "kind": "asset",
-      "bytes": 395143,
-      "sha256": "7f6be639664787f56767d2e93568d32ff7e9ec68398b5c2ca3e362adaea14662"
-    },
-    {
-      "url": "/chatgpt-work-vs-codex/chatgpt-work-sidebar.png",
-      "kind": "asset",
-      "bytes": 11791,
-      "sha256": "25f4365e761d5e3f92370066e5c2852b036cec62b132f562f99140ec0f267772"
-    },
-    {
-      "url": "/chatgpt-work-vs-codex/chatgpt-work-web-runtime-command.png",
-      "kind": "asset",
-      "bytes": 19956,
-      "sha256": "a6ae0b77d50315946eae7f3d79a87962856af62ba59e91392872461d33d2d39a"
-    },
-    {
-      "url": "/chatgpt-work-vs-codex/codex-sidebar.png",
-      "kind": "asset",
-      "bytes": 12929,
-      "sha256": "123ef4acd83ffedbd152b39036d1c843d55a848305aa17b2f9254e68380fb375"
-    },
-    {
-      "url": "/chatgpt-work-vs-codex/execution-environment-verification-1600.webp",
-      "kind": "asset",
-      "bytes": 98412,
-      "sha256": "6abbb3664ccbac92f98d98559aca7bee0342013be4c2199c6cfb5565e68d55c4"
-    },
-    {
-      "url": "/chatgpt-work-vs-codex/execution-environment-verification-800.webp",
-      "kind": "asset",
-      "bytes": 44890,
-      "sha256": "b99cd7f30b570f881aafad7522f9f548d17cb2b3fecffa1398eb57904bd68827"
-    },
-    {
-      "url": "/chatgpt-work-vs-codex/execution-environment-verification.png",
-      "kind": "asset",
-      "bytes": 367663,
-      "sha256": "fb0b3a6391a4b15c9459bae09c3ab8f557f41892392a151b755b49d204be904e"
-    },
-    {
-      "url": "/chatgpt-work-vs-codex/index.md",
-      "kind": "markdown",
-      "bytes": 16833,
-      "sha256": "2b82cb5a010814c5f0a54a74590120bac629a1fc101597dee135353815c69231"
-    },
-    {
-      "url": "/chatgpt-work-vs-codex/local-vs-remote-workspace-explained-1600.webp",
-      "kind": "asset",
-      "bytes": 105232,
-      "sha256": "9b280dbff1e8f86f30c51ac2235fddf72c685d04968cea2eef5480f2865923ec"
-    },
-    {
-      "url": "/chatgpt-work-vs-codex/local-vs-remote-workspace-explained-800.webp",
-      "kind": "asset",
-      "bytes": 47358,
-      "sha256": "385598df94a89f3cd93a796f38c5e24eda8cd5fc1b3b1523f0fb6ca3ca0f3db1"
-    },
-    {
-      "url": "/chatgpt-work-vs-codex/local-vs-remote-workspace-explained.png",
-      "kind": "asset",
-      "bytes": 431710,
-      "sha256": "bf79ebaa2eb6115fed1981b1e2ebf1bcd1bbf7f934045d616aff4a6deff0b2e6"
-    },
-    {
-      "url": "/chatgpt-work-vs-codex/work-web-vs-desktop-runtime-infographic-1600.webp",
-      "kind": "asset",
-      "bytes": 84146,
-      "sha256": "46b60ddf3921b702565eab69ce9538d75820ebc96a3096ea6321f973b697cb34"
-    },
-    {
-      "url": "/chatgpt-work-vs-codex/work-web-vs-desktop-runtime-infographic-800.webp",
-      "kind": "asset",
-      "bytes": 38648,
-      "sha256": "df1d47a026781a9989b9bc3ce222194f2f7ef3c20947c623aa217084c1077cb0"
-    },
-    {
-      "url": "/chatgpt-work-vs-codex/work-web-vs-desktop-runtime-infographic.png",
-      "kind": "asset",
-      "bytes": 460927,
-      "sha256": "bfaa5f7ffd1b30fdaca3ec21bba7311fb4efafea25b79b88293d447c19de0985"
-    },
-    {
       "url": "/chatgpt-work-with-apps/",
       "kind": "page",
-      "bytes": 85548,
-      "sha256": "722c29c5af3a4618dd06f7de113bab10dbccb05cdbc434f650608238e8d0c680"
+      "bytes": 85294,
+      "sha256": "a0b73f66f85a1538703c030817712f05d8913ca0767cffa634d9d6f4403e9eab"
     },
     {
       "url": "/chatgpt-work-with-apps/chatgpt_work_with_apps_bg-800.webp",
@@ -795,8 +693,8 @@
     {
       "url": "/claude_code_update_202509/",
       "kind": "page",
-      "bytes": 85044,
-      "sha256": "0b5d14b2089ff3fc6a1ee1979bde5a9db84fe051d068dcce44c4d2e11558bb8f"
+      "bytes": 84776,
+      "sha256": "f7d7ccf9f57fdd909add5e88255ad399c99cca8b2f791964b5ed8bcbbdfd4dc4"
     },
     {
       "url": "/claude_code_update_202509/blog-claudecode-update-202509-bg-1000.webp",
@@ -861,8 +759,8 @@
     {
       "url": "/claude-code-agent/",
       "kind": "page",
-      "bytes": 91174,
-      "sha256": "962a17035375885b3c1c408411123eb64b29078143b650fdccab098635f56c67"
+      "bytes": 90906,
+      "sha256": "3feac324befedcab436cb4fb3a398b1a9e26ce90bcd56d4e8753e0b95599fa60"
     },
     {
       "url": "/claude-code-agent/claude_code_agent-agent_md_location.png",
@@ -939,8 +837,8 @@
     {
       "url": "/claude-code-channels-discord-telegram/",
       "kind": "page",
-      "bytes": 138148,
-      "sha256": "24399084cc4c282fb37793e58090144538952a0c5fbb34069154e67b26b52f32"
+      "bytes": 137880,
+      "sha256": "c5be591a319bb41244571e60ed007c3a8335787c1ce83037582eed512b18097e"
     },
     {
       "url": "/claude-code-channels-discord-telegram/bot_message_content_intent-1600.webp",
@@ -1227,8 +1125,8 @@
     {
       "url": "/claude-code-fable-5/",
       "kind": "page",
-      "bytes": 96390,
-      "sha256": "2e7bc1d639c183c8fa06f48e08b36b70db355fdaab16c6917b6028f4c933af70"
+      "bytes": 96098,
+      "sha256": "b8eec68ce8d3c0360f7986210e4cd933de6dfbf165e5c4139b2ffb8df498c554"
     },
     {
       "url": "/claude-code-fable-5/blog-claude-code-fable-5-bg-1080.webp",
@@ -1353,8 +1251,8 @@
     {
       "url": "/claude-code-new-command-line-tool/",
       "kind": "page",
-      "bytes": 128161,
-      "sha256": "e07e9d0f798335ac764a78f0b40388e742ea6f445ea9f3d72c81096925307288"
+      "bytes": 127877,
+      "sha256": "2f04b74da462b0d59d7ed3ca36ae2388ff9a99117dd1e852574c1295266bbafc"
     },
     {
       "url": "/claude-code-new-command-line-tool/btw_side_question_example-1530.webp",
@@ -1539,8 +1437,8 @@
     {
       "url": "/claude-cowork-intro/",
       "kind": "page",
-      "bytes": 155140,
-      "sha256": "8c72e11da43e1cc037a5f1cac665a6912b97f2d8d8b0a1c6db30423d14ef57a0"
+      "bytes": 154856,
+      "sha256": "a2af8510754450ab746965b15d5b6e53a347e1639652fd3db6572a76f11907d1"
     },
     {
       "url": "/claude-cowork-intro/blog-claude-cowork-intro-bg-1080.webp",
@@ -1989,8 +1887,8 @@
     {
       "url": "/claude-desktop-new-mcp-features-review/",
       "kind": "page",
-      "bytes": 85758,
-      "sha256": "e80e5237ec1f0a12c5416479ad1bf6587904bb2cee54cd506e3d9e3ebb07288b"
+      "bytes": 85492,
+      "sha256": "9c037ededaf959fbb238b284730eb70b75ade1cbd93e229cba5868d766a28d33"
     },
     {
       "url": "/claude-desktop-new-mcp-features-review/claude_desktop_mcp_bg-800.webp",
@@ -2067,8 +1965,8 @@
     {
       "url": "/claude-managed-agents/",
       "kind": "page",
-      "bytes": 125212,
-      "sha256": "3bd2c3bd13eb978da3bbf58b4b4bae5ca0bc61bb7d808ea9c03976f582714085"
+      "bytes": 124954,
+      "sha256": "4d6b1ab9a9399291e476a3829772013e62c4752c8c5205adb4c3d0d9da7e0538"
     },
     {
       "url": "/claude-managed-agents/agent_session_mcp_servers_test_run_ui.png",
@@ -2193,8 +2091,8 @@
     {
       "url": "/cloudflare-worker-url-shortener/",
       "kind": "page",
-      "bytes": 224207,
-      "sha256": "ab3ae60e19553d817cd0b16b7ea3b7b009f31f4bf10d05b6948a40f7cf57bb44"
+      "bytes": 223939,
+      "sha256": "cd972f84b0331cc2d0b32042ea773ec2006fc99f0829d7a552d01f74d09a2ffa"
     },
     {
       "url": "/cloudflare-worker-url-shortener/bg-blog-cloudflare-worker-shortenurl-1080.webp",
@@ -2283,8 +2181,8 @@
     {
       "url": "/cursor-mcp-server-guide/",
       "kind": "page",
-      "bytes": 407146,
-      "sha256": "9c7a1b528e33b6e0fa83bf47b332eacf0995a950a5781f3b9bd1378002516775"
+      "bytes": 406878,
+      "sha256": "9bce2ac8fc8042bf85ee80499710c2a8219670542fe0fddabcb293a107685fb0"
     },
     {
       "url": "/cursor-mcp-server-guide/cursor_mcp_server_bg-800.webp",
@@ -2379,8 +2277,8 @@
     {
       "url": "/email-dmarc-gmail-new-policy-in-202402/",
       "kind": "page",
-      "bytes": 86951,
-      "sha256": "53daab02bc869fe4f434c67a167410559d0d183d77c778765688cd092b96dc04"
+      "bytes": 86683,
+      "sha256": "9a15b5d5278cbbde34dad48a19fd75a828e035cce66e852fd1f90f540c3e34f0"
     },
     {
       "url": "/email-dmarc-gmail-new-policy-in-202402/add_dns_record_in_cloudflare.png",
@@ -2475,8 +2373,8 @@
     {
       "url": "/facebook-pixel-install-in-google-tag-manager/",
       "kind": "page",
-      "bytes": 88200,
-      "sha256": "55eee4e59e432409ce0bbebf59b48fa4a506a7b445ae8a20c5db1ddb8c276dc4"
+      "bytes": 87932,
+      "sha256": "829eb18b6caab5ecbbda04c557e7416c4fd537eb9a2faff0173785db145de543"
     },
     {
       "url": "/facebook-pixel-install-in-google-tag-manager/facebook_mutiple_pixel_tracking_demo.png",
@@ -2547,8 +2445,8 @@
     {
       "url": "/firebase_notification_click_any_link/",
       "kind": "page",
-      "bytes": 97241,
-      "sha256": "0df8dc52f5a8a19ac1aa0763315d7dfb64318cafb54e92d0d604119caa3ff7ef"
+      "bytes": 96973,
+      "sha256": "43a648f609c7096434f575c0342fd0895436379e50d474682e26c842d9426c23"
     },
     {
       "url": "/firebase_notification_click_any_link/firebase.png",
@@ -2583,8 +2481,8 @@
     {
       "url": "/ga4-certification-announced/",
       "kind": "page",
-      "bytes": 72652,
-      "sha256": "00f2b83ff8e9b26bbd0b55b96a3c0d0fa6ad538711f5cb820e1d995cb12d1e3c"
+      "bytes": 72384,
+      "sha256": "167db2e3219407cccf72bf83675cb9ade389a8aaef62837febe2025d0aafb7d5"
     },
     {
       "url": "/ga4-certification-announced/ga4_linkedin_certification_announced.png",
@@ -2613,8 +2511,8 @@
     {
       "url": "/ga4-certification-review/",
       "kind": "page",
-      "bytes": 89210,
-      "sha256": "a78fbded9dad8aaa23c687b87ebe37998b71009263d673e34a419026e4b0d636"
+      "bytes": 88942,
+      "sha256": "76516901afa3db7a76f71755821294ba3d18870e3d59379331d15dc8b432aa1b"
     },
     {
       "url": "/ga4-certification-review/ga4_auto_collect_user_property.webp",
@@ -2709,8 +2607,8 @@
     {
       "url": "/ga4-check-installed/",
       "kind": "page",
-      "bytes": 77514,
-      "sha256": "38d9edf1b29c04d7b626291d501150d02f40daca1baad5886568547c26cb82f0"
+      "bytes": 77246,
+      "sha256": "671ae72715f1f0cdfa71f3ebd428b8da4277c0e517980ea1a9f28601075a1041"
     },
     {
       "url": "/ga4-check-installed/check_ga4_request_in_chrome_devtool.png",
@@ -2781,8 +2679,8 @@
     {
       "url": "/ga4-countdown-less-then-80-days/",
       "kind": "page",
-      "bytes": 73893,
-      "sha256": "919fe5889c545607ed75c97b172284eeab5e3f1b08b16af82324ec4f0d111b5b"
+      "bytes": 73625,
+      "sha256": "5d0e58b711b2e95a4a8dfe2c00c48a2f68a9a87d115664f2f01b82fe0ad412dc"
     },
     {
       "url": "/ga4-countdown-less-then-80-days/button.css",
@@ -2829,8 +2727,8 @@
     {
       "url": "/ga4-data-thresholds/",
       "kind": "page",
-      "bytes": 75615,
-      "sha256": "44d95b6c771676a0bfb8c761d2a227ddbc75a70230a7828b7a3e9f3c623270c3"
+      "bytes": 75347,
+      "sha256": "b42c04b533bef3063bb4de7f275fea7c2238dce9f4777db232634c91df2e7784"
     },
     {
       "url": "/ga4-data-thresholds/change_apply_google_signal_to_ga4_report.png",
@@ -2889,8 +2787,8 @@
     {
       "url": "/ga4-ecommerce-recommend-events-datalayer/",
       "kind": "page",
-      "bytes": 124497,
-      "sha256": "9239bb73d08e879040cbecd5806c70a2a4222a67d1fbe508e01ec295b204b4eb"
+      "bytes": 124229,
+      "sha256": "4a824fe3c5ecfd83e9ef7a4c880eee99881c858599020e7c48c574bed8e001ea"
     },
     {
       "url": "/ga4-ecommerce-recommend-events-datalayer/add_to_cart_demo.webp",
@@ -2931,8 +2829,8 @@
     {
       "url": "/ga4-export-google-sheet-reports-builder/",
       "kind": "page",
-      "bytes": 83200,
-      "sha256": "4376fb740dbd95580e8b87f2d885992763a2e14384f4b1034f11faf8cb7c82ba"
+      "bytes": 82932,
+      "sha256": "ba01d752f48c4f5ad259252a4b0a823a59f9110e5d0e31fd588b097b41bc7213"
     },
     {
       "url": "/ga4-export-google-sheet-reports-builder/bg_ga4_google_sheet_get_ga4_data-800.webp",
@@ -3009,8 +2907,8 @@
     {
       "url": "/ga4-gtm-best-tool-analytics-debugger/",
       "kind": "page",
-      "bytes": 89284,
-      "sha256": "316ba0da2b0fad6d47dcf13902d5cbf816bf5e0c19bff24a3a74738c455abe95"
+      "bytes": 89016,
+      "sha256": "d790fad96c43441a6884636580071bb3688f58ac845949203a1014791b7a075e"
     },
     {
       "url": "/ga4-gtm-best-tool-analytics-debugger/analytics_debugger_apply_other_vendor.png",
@@ -3099,8 +2997,8 @@
     {
       "url": "/ga4-issue-ecommerce-revenue-inconsistency/",
       "kind": "page",
-      "bytes": 74534,
-      "sha256": "af38a1b50b67eb701b27c29f2ceabd89d9d69063324bae441ea963767183f378"
+      "bytes": 74266,
+      "sha256": "8081867f0c563a58ef7af135b606f4f58308457b200801f8d14cc3b678db8eb2"
     },
     {
       "url": "/ga4-issue-ecommerce-revenue-inconsistency/ga4_document_about_currency.png",
@@ -3147,8 +3045,8 @@
     {
       "url": "/ga4-item-name-show-zero-purchase/",
       "kind": "page",
-      "bytes": 82484,
-      "sha256": "553957bc5a5112e1bcb74208d0eab688c1745e76036a1b00d039a4e28060a4be"
+      "bytes": 82216,
+      "sha256": "ae056601233a38886ac8408a95dc2a66974059fef3196be8967b011b22729825"
     },
     {
       "url": "/ga4-item-name-show-zero-purchase/datalayer_show_add_to_cart.png",
@@ -3213,8 +3111,8 @@
     {
       "url": "/ga4-new-release-avg-pageview-average-session-duration-and-views-per-session/",
       "kind": "page",
-      "bytes": 76792,
-      "sha256": "cdfe70c036df413b84d89af831de41b3b69e86bac5d838eae234d64cddc6ba81"
+      "bytes": 76524,
+      "sha256": "325212f5d34ea18e0f4a05c8e1c9eef581b135b212b94239459f3d1f5e52c80e"
     },
     {
       "url": "/ga4-new-release-avg-pageview-average-session-duration-and-views-per-session/average_session_duration_in_demo_account.png",
@@ -3261,8 +3159,8 @@
     {
       "url": "/ga4-new-release-search-datastream-property-info/",
       "kind": "page",
-      "bytes": 81164,
-      "sha256": "69b4e203e2d43d4d92d21b5634a7bf74dc7299707561e3e19f1753c4bfc6af77"
+      "bytes": 80896,
+      "sha256": "69d3020d80b0e4fb286c75a951bc5a995211b268275e396ecc5a0f56f020d6d2"
     },
     {
       "url": "/ga4-new-release-search-datastream-property-info/ga4_new_release_20230202_bg-600.webp",
@@ -3315,8 +3213,8 @@
     {
       "url": "/ga4-new-release-user-purchase-journey/",
       "kind": "page",
-      "bytes": 79887,
-      "sha256": "2cb4740776025aa0f2589ae5a0075b85f8dcdfafe9c525f1df05dfcb6e50801d"
+      "bytes": 79619,
+      "sha256": "e9f7ef41d66475e04193b5e7572b677aeca6d38206e4be2a7b8c12a59e703019"
     },
     {
       "url": "/ga4-new-release-user-purchase-journey/GA4_funnelreport_explain.png",
@@ -3381,8 +3279,8 @@
     {
       "url": "/ga4-parameter-name-value-limit/",
       "kind": "page",
-      "bytes": 72913,
-      "sha256": "236e426e41be09f07c7a7e067932faa1e64fd9da248d3743a11879aa6ba0f1f5"
+      "bytes": 72645,
+      "sha256": "f81c05e7510dd55896fcf6cfa4a58c511e1b5983e805c6be028db69a77e3e13f"
     },
     {
       "url": "/ga4-parameter-name-value-limit/index.md",
@@ -3411,8 +3309,8 @@
     {
       "url": "/ga4-search-console-mcp-install/",
       "kind": "page",
-      "bytes": 109597,
-      "sha256": "48304d3b71bdcd3056b23147078b473c17f3c53aa01a1bb20e0099bc9293f9ac"
+      "bytes": 109331,
+      "sha256": "8631588330e5522100cf277f5b4ebd2c3d044c335098a9f65fdf73e3976812dc"
     },
     {
       "url": "/ga4-search-console-mcp-install/claude_desktop_connectors_ga4_enabled-1436.webp",
@@ -3621,8 +3519,8 @@
     {
       "url": "/ga4-session-hit-user-explain/",
       "kind": "page",
-      "bytes": 70404,
-      "sha256": "d2bd2c84fd73d7017addf53a68a560d7c3a61027c9fbddabe8951b1b0d3e864d"
+      "bytes": 70136,
+      "sha256": "29558aaaa01ede3f679155974421b7bf74a78674817174546b3b23e4e6783658"
     },
     {
       "url": "/ga4-session-hit-user-explain/ga4_event_session_user_bg-1080.webp",
@@ -3663,8 +3561,8 @@
     {
       "url": "/ga4-unwanted-referrals/",
       "kind": "page",
-      "bytes": 72721,
-      "sha256": "2afb485e0e99ae7c46f4b4ef47c2082aa4f4155cbebdfbcfa03564c35fd8b13d"
+      "bytes": 72453,
+      "sha256": "735bbd49e046ec040f66f3e657c63f16d5f60d2b9da4ede469babf92e53ebc16"
     },
     {
       "url": "/ga4-unwanted-referrals/GA4-unwanted_referrals_bg-800.webp",
@@ -3699,8 +3597,8 @@
     {
       "url": "/ga4-update-benchmark/",
       "kind": "page",
-      "bytes": 82266,
-      "sha256": "e17455a2bf1c9ea48f4c4adc981f3f261f5e94ef42f5a16a706aa29ab86d7231"
+      "bytes": 81998,
+      "sha256": "2fa8bd9b92217c8a0439383c1ec6f920392facac58dcc3328eea159782ae5f17"
     },
     {
       "url": "/ga4-update-benchmark/ga4_account_setting_turn_on_Modeling_contributions_business_insights.png",
@@ -3843,8 +3741,8 @@
     {
       "url": "/glows-ai-cloud-gpu-service/",
       "kind": "page",
-      "bytes": 81471,
-      "sha256": "5e3cfa30a2db8b56fd82887a03025049c193be829297c6b7407656792ebea565"
+      "bytes": 81203,
+      "sha256": "91f79d39127102092de3bb9b260e0672a9b53c39d24fcf4ac0c1f676e7b4d3e7"
     },
     {
       "url": "/glows-ai-cloud-gpu-service/glows_ai-choose_image_list.png",
@@ -3909,8 +3807,8 @@
     {
       "url": "/gmail-annotations-with-klaviyo/",
       "kind": "page",
-      "bytes": 89302,
-      "sha256": "8286556d899f1500fb404ac13fdc8b69a130ae5d8fcbbb93bd6b51139eef5f61"
+      "bytes": 89034,
+      "sha256": "19c58fc1054a97113d209c594574c06424f79b4cd2c89de35b52fa3902298705"
     },
     {
       "url": "/gmail-annotations-with-klaviyo/chrome_shows_annotation_sometimes_failed.png",
@@ -4023,8 +3921,8 @@
     {
       "url": "/google-analytics-data-api-filter-in-google-app-script/",
       "kind": "page",
-      "bytes": 142801,
-      "sha256": "30c87934cd360401263f8fedc02dfbab87f576112cda0468b53b314d9227b567"
+      "bytes": 142533,
+      "sha256": "c926a83ad377d5d0b5de0c354fd7ce114359d8ed654ecc8ae2220c5fdec4d812"
     },
     {
       "url": "/google-analytics-data-api-filter-in-google-app-script/ga4_data_api_google_app_script_filter.webp",
@@ -4065,8 +3963,8 @@
     {
       "url": "/google-antigravity-ide/",
       "kind": "page",
-      "bytes": 126843,
-      "sha256": "4492e6e373a614fa71b1f8bb8aa0eb748a6e89ceb8763260a556d3abc2897ca7"
+      "bytes": 126577,
+      "sha256": "4cfb2d332e7d89365a39dd18486a11d6017591b7584f9e446b0741f63d40aff6"
     },
     {
       "url": "/google-antigravity-ide/agent-browser-automation-demo-1600.webp",
@@ -4287,8 +4185,8 @@
     {
       "url": "/google-app-script-cache-service/",
       "kind": "page",
-      "bytes": 93288,
-      "sha256": "e4f3074f5d599b87b9126e818ec2316479a975fad0db7502a52768c6cd0b7280"
+      "bytes": 93020,
+      "sha256": "b8fb0b53b861b03a6f3fd27e25a82b2d72100fc32ab0612a1f730c9c7e433458"
     },
     {
       "url": "/google-app-script-cache-service/appscript_cache_bg-800.webp",
@@ -4347,8 +4245,8 @@
     {
       "url": "/google-app-script-gmail-nice-email-template/",
       "kind": "page",
-      "bytes": 108411,
-      "sha256": "2141c6eacd82210e229fd8c9d9f2828ab0aa7f6234d8d0bb888a7c07012c21de"
+      "bytes": 108117,
+      "sha256": "745f26e6d20cfd226d541488a9fd4e7a9b76c635cf9852ef622f1943727fe3af"
     },
     {
       "url": "/google-app-script-gmail-nice-email-template/google-app-script-gmail-nice-email-template_bg.webp",
@@ -4389,8 +4287,8 @@
     {
       "url": "/google-app-script-test-webhook/",
       "kind": "page",
-      "bytes": 101695,
-      "sha256": "90cfd8dbde66f58e5befc7ac40426c09347c144267a080240768e68f684adada"
+      "bytes": 101427,
+      "sha256": "2e104626af67f04e20537ad1ead85f7a5d8e3dcb02029278a21cebf0c9abad13"
     },
     {
       "url": "/google-app-script-test-webhook/API-800.webp",
@@ -4521,8 +4419,8 @@
     {
       "url": "/google-app-script-threads-api/",
       "kind": "page",
-      "bytes": 103033,
-      "sha256": "72b01ff0a52f4ea6e47b26b2f3026a9f79f01f0fd7ca1fbfdf8be5c6b5bedf9d"
+      "bytes": 102765,
+      "sha256": "f08e2af138d5979541f17a5dcafdc0e0c37172005c413b0f182074ec4633e6cc"
     },
     {
       "url": "/google-app-script-threads-api/doc_threads_api_user_insights_explain_image.png",
@@ -4629,8 +4527,8 @@
     {
       "url": "/google-app-script-with-chatgpt-openai/",
       "kind": "page",
-      "bytes": 93675,
-      "sha256": "9eaa1768af75ec115a3ebf05a03580e2af038cdccaf32dc0cf0c47b0396044d8"
+      "bytes": 93413,
+      "sha256": "8dab824762f131067b7de8009063f47947b8f964c60dc52e7950875015cc79da"
     },
     {
       "url": "/google-app-script-with-chatgpt-openai/chat_gpt_bg-1080.webp",
@@ -4701,8 +4599,8 @@
     {
       "url": "/google-gemini-cli/",
       "kind": "page",
-      "bytes": 90545,
-      "sha256": "ce9a94427b51366e7282ab85748c8e6f220da6627945afb4b1df3c5bd08740df"
+      "bytes": 90277,
+      "sha256": "90e4a1bbc357ff4d9e663b7780749052db331b5df01418710c5dd06c0156bbb5"
     },
     {
       "url": "/google-gemini-cli/blog-gemini-cli-bg-1080.webp",
@@ -4815,8 +4713,8 @@
     {
       "url": "/google-optimize-install-and-connect-ga4/",
       "kind": "page",
-      "bytes": 82581,
-      "sha256": "bf39665a75c723457e18739f8987c25671f6e8b41a63dbc63c05850c35963737"
+      "bytes": 82313,
+      "sha256": "6370845f895c9cda7c1f99651570ceb5dcf43504ae0d1b3798b31793c13e4d72"
     },
     {
       "url": "/google-optimize-install-and-connect-ga4/ab_test_with_variant.png",
@@ -4875,8 +4773,8 @@
     {
       "url": "/google-tag-manager-advanced-skill-using-ga4-track-website-performance/",
       "kind": "page",
-      "bytes": 91332,
-      "sha256": "a2a94f82392f9978ae20df098690fc9d917fd1dd694b67ae28c28e113f4258f6"
+      "bytes": 91064,
+      "sha256": "56c07e7d766ca62eb94460feafa4ac38127529fb5002b3b469843158fee07d92"
     },
     {
       "url": "/google-tag-manager-advanced-skill-using-ga4-track-website-performance/add_custom_metric_in_google_analytics_4.png",
@@ -4923,8 +4821,8 @@
     {
       "url": "/google-tag-manager-ga4-configuration-fieldtoset/",
       "kind": "page",
-      "bytes": 74822,
-      "sha256": "c3e221bff2c5bb876eaab4c58aecb7a38eedb279bbb188269a0e738ed7931c7d"
+      "bytes": 74554,
+      "sha256": "13558e967ba274e1c05a8219abad983a02bc0135ffa5230c4c446a832bd54be0"
     },
     {
       "url": "/google-tag-manager-ga4-configuration-fieldtoset/check_event_parameter.png",
@@ -4977,8 +4875,8 @@
     {
       "url": "/google-tag-manager-google-tag-release/",
       "kind": "page",
-      "bytes": 97474,
-      "sha256": "5b87ee30fba3bb00adb48a27ddf0fccd65129b7f769fbe995df54740bfa160d4"
+      "bytes": 97206,
+      "sha256": "92fbcf98fe7819b7027ac1b6fece7d8eded39cfa691ac2937bfb5cc3463871fe"
     },
     {
       "url": "/google-tag-manager-google-tag-release/custom.css",
@@ -5031,8 +4929,8 @@
     {
       "url": "/google-tag-manager-skills-css-selector-resource/",
       "kind": "page",
-      "bytes": 79297,
-      "sha256": "9d3628d4443404e252ec171e4ee9f46cfbd81c54e2ba7126ec62f5e5b0bc4577"
+      "bytes": 79029,
+      "sha256": "e27c6da9ad4d7409b9639127be369555f30adcdda85f225405816752c0465f0b"
     },
     {
       "url": "/google-tag-manager-skills-css-selector-resource/css-diner-1st-answer.png",
@@ -5079,8 +4977,8 @@
     {
       "url": "/google-tag-manager-store-data-storage-cookie/",
       "kind": "page",
-      "bytes": 115271,
-      "sha256": "57e68998d8afe731e07e8b01c39dd55735dbdfef1275b8d325f464971f2dd75b"
+      "bytes": 115003,
+      "sha256": "5ac6f2cbcc1f6de4ac3a1f3ca6a0439b79c23891996917346154e104c4a6f9c7"
     },
     {
       "url": "/google-tag-manager-store-data-storage-cookie/3_tabs_in_chrome.png",
@@ -5187,8 +5085,8 @@
     {
       "url": "/google-tag-manager-variable-datalayer-version-one-and-two/",
       "kind": "page",
-      "bytes": 77176,
-      "sha256": "4f614088229aca36626c6fd18e8027143291c243db9848b25477e45456b0efe9"
+      "bytes": 76908,
+      "sha256": "eb8d7d6440743189f37d4093412d78775bd4f41a14094521e184febf470f0a4b"
     },
     {
       "url": "/google-tag-manager-variable-datalayer-version-one-and-two/gtm_preview_datalayer_in_version1.png",
@@ -5235,8 +5133,8 @@
     {
       "url": "/grok-bot-review/",
       "kind": "page",
-      "bytes": 108679,
-      "sha256": "09a9d9282fc31bbe48cf561c7f0335a3434502e5f3d39fecb0bcd0c650791c4c"
+      "bytes": 108061,
+      "sha256": "36dad8cf0956decae862ae31d330c0afa7f594ee05f502b892a8484132b9bf28"
     },
     {
       "url": "/grok-bot-review/blog-grok-bot-review-bg-1080.webp",
@@ -5517,8 +5415,8 @@
     {
       "url": "/gtm-chrome-devtool-tracking-skill/",
       "kind": "page",
-      "bytes": 75748,
-      "sha256": "1d2dc73dd7df910db8d7a0e3b29c0612728d59e4032a4298e640ef73f7e7c8df"
+      "bytes": 75480,
+      "sha256": "37a0ba09ad7fc47d3f247f8dafbe8124b35dda19f5818b845a6c0be1bd1199f9"
     },
     {
       "url": "/gtm-chrome-devtool-tracking-skill/demo_of_using_$$_to_test_css_selector.png",
@@ -5571,8 +5469,8 @@
     {
       "url": "/gtm-datalayer-broken-reset/",
       "kind": "page",
-      "bytes": 92973,
-      "sha256": "181a601299cc82c60724311ad5104a900b25790223f9cb94ab9f17243e60e970"
+      "bytes": 92705,
+      "sha256": "9d5439662d016fb075e77e6cd8700327960b5ad744a1378ff54ca4b76f2af4fd"
     },
     {
       "url": "/gtm-datalayer-broken-reset/datalayer_push_not_show_in_preview.png",
@@ -5607,8 +5505,8 @@
     {
       "url": "/gtm-ga4-new-feature-use-ecommerce-datalayer/",
       "kind": "page",
-      "bytes": 77603,
-      "sha256": "a2ab39c702b6f833aa43143584b86402ba4da4bc2c1d5544534dc84349a7ae16"
+      "bytes": 77335,
+      "sha256": "28c8bc59a8c9f5c6a99329f2d542d71393692237ecfe75a3955be6e98034f5f8"
     },
     {
       "url": "/gtm-ga4-new-feature-use-ecommerce-datalayer/check_current_ecommerce_datalayer.webp",
@@ -5661,8 +5559,8 @@
     {
       "url": "/gtm-get-datalayer-value-by-js/",
       "kind": "page",
-      "bytes": 90509,
-      "sha256": "9f04b6ba024ece52a8f02cca0afc741311609c54458b5bc46566acff9def90dd"
+      "bytes": 90241,
+      "sha256": "3197ae132b2425c3f97a4c023623cc98f4244aec0c3f8e93260f12680716345d"
     },
     {
       "url": "/gtm-get-datalayer-value-by-js/datalayer-is-an-array-in-javascript.png",
@@ -5715,8 +5613,8 @@
     {
       "url": "/gtm-install-line-tag-pixel/",
       "kind": "page",
-      "bytes": 100140,
-      "sha256": "7c02a2c98200494ff2e6ddac3663114f0e2e6aa93159f19768080ebfa7b8ad0a"
+      "bytes": 99872,
+      "sha256": "ebc5db126bb6d1b33d47caa4a5ad3009ce4a2f6136cb5f764b0404c1a5d2327c"
     },
     {
       "url": "/gtm-install-line-tag-pixel/gtm_install_line_tag_bg-708.webp",
@@ -5841,8 +5739,8 @@
     {
       "url": "/gtm-size-limit/",
       "kind": "page",
-      "bytes": 76564,
-      "sha256": "09271eb3e9399e666dd243b18efbb609643600f52a98b96688d1f09b52824040"
+      "bytes": 76296,
+      "sha256": "88c4b910e5b755b5ea7afac93139ea75c0369643dd55d8cf09776b8f2502983c"
     },
     {
       "url": "/gtm-size-limit/gtm_check_single_version_size_change.png",
@@ -5907,8 +5805,8 @@
     {
       "url": "/gtm-trigger-all-click-link-click/",
       "kind": "page",
-      "bytes": 88764,
-      "sha256": "22d01e09a6b42e363dce5843c9c7f013f627e6137f7b4a1c096d1444465a0762"
+      "bytes": 88496,
+      "sha256": "0d2b697f155f52ee3bacb67b2893345faf156e562fbff03f077ec7d998340470"
     },
     {
       "url": "/gtm-trigger-all-click-link-click/click_builtin_variable_mapping_html.png",
@@ -5985,8 +5883,8 @@
     {
       "url": "/gtm-trigger-custom-event/",
       "kind": "page",
-      "bytes": 79890,
-      "sha256": "8654a19f3dd6bce7e33dcab62c1ae632dbd04da0350da4babf944822a2495870"
+      "bytes": 79622,
+      "sha256": "10193e62b3f70058e131ddc699fcacbb360ee6b1392f597ab5abf0ea93b6fe16"
     },
     {
       "url": "/gtm-trigger-custom-event/add_to_cart_datalayer.png",
@@ -6057,8 +5955,8 @@
     {
       "url": "/gtm-trigger-elementvisibility/",
       "kind": "page",
-      "bytes": 91338,
-      "sha256": "fb0080bf0f9f75bd806277d9d206dea0ea1678336f6e15e07e360af486bdc00b"
+      "bytes": 91070,
+      "sha256": "2e498eae2275fd2d61855c2d22a64985096ea496855ca282fb217901587dbe99"
     },
     {
       "url": "/gtm-trigger-elementvisibility/available_variable.png",
@@ -6153,8 +6051,8 @@
     {
       "url": "/gtm-trigger-pageview-domready-windowload/",
       "kind": "page",
-      "bytes": 114152,
-      "sha256": "45a3f11e9f61cf1f6bb45a3e6ca771d465f74f8286dce826f12146cde9781e68"
+      "bytes": 113884,
+      "sha256": "57c3eea86f03f45793a9092fb56fefac3effa6a748f360585ac8b59c36ab42ff"
     },
     {
       "url": "/gtm-trigger-pageview-domready-windowload/browser_html_domready_windowload.png",
@@ -6207,8 +6105,8 @@
     {
       "url": "/gtm-variable-lookuptable-introduce/",
       "kind": "page",
-      "bytes": 82756,
-      "sha256": "38da6d274ae885ddf3313d63e1415bde08033c4569c7bab84a3d22c00dd5c684"
+      "bytes": 82488,
+      "sha256": "06a39d83e455f501fb4d23cb7c91dc6d5ab176f49ab875bbc468e461d2247517"
     },
     {
       "url": "/gtm-variable-lookuptable-introduce/gtm_lookuptable_bg.webp",
@@ -6249,8 +6147,8 @@
     {
       "url": "/gtm-version-rollback/",
       "kind": "page",
-      "bytes": 86367,
-      "sha256": "ec63acba4109609dc49a87c14c9d1eb4bebeb3d390761b15d3082b53adcbfc7a"
+      "bytes": 86099,
+      "sha256": "b8896e95a5e8aace804e41578a9278206d6da2a90c54436a132e898b883e1e78"
     },
     {
       "url": "/gtm-version-rollback/check_import_detail.webp",
@@ -6357,8 +6255,8 @@
     {
       "url": "/hello-to-hexo/",
       "kind": "page",
-      "bytes": 94820,
-      "sha256": "24c20b080472eacbcf2f07be8018360a24b6a133aeea27838e2f0f6d17e316b7"
+      "bytes": 94552,
+      "sha256": "d833c0ef3c0a4f1078a32e88cb4d6c307c518bc2cb8a2bf52342b2d8c137e5e4"
     },
     {
       "url": "/hello-to-hexo/github_action_folder.png",
@@ -6393,8 +6291,8 @@
     {
       "url": "/hexo-algolia-event-tracking-with-insight/",
       "kind": "page",
-      "bytes": 79793,
-      "sha256": "4d85d9cc2d72050ae29ba8cd6ed80f6a1bc6d85f58cf7d7c79466d7236a0bdba"
+      "bytes": 79525,
+      "sha256": "c3616fd69d23a507a76b2d787a62b8c5c3e2a81fd8a1663608441e57f754bd6f"
     },
     {
       "url": "/hexo-algolia-event-tracking-with-insight/algolia_document_insight_init_with_object.png",
@@ -6459,8 +6357,8 @@
     {
       "url": "/hexo-algolia-tracking/",
       "kind": "page",
-      "bytes": 98067,
-      "sha256": "2461e55e7120934a006fe153dd6d5a7f282a9ab1330cd3dd6b44cbb6480c5cf0"
+      "bytes": 97799,
+      "sha256": "33a2ca0d97feb33fc188ad288efe86a0fb873d6ffc471372469e7bbc051873c7"
     },
     {
       "url": "/hexo-algolia-tracking/algolia_document_shows_datalayer.webp",
@@ -6525,8 +6423,8 @@
     {
       "url": "/how-martech-tools-talk-integration/",
       "kind": "page",
-      "bytes": 81859,
-      "sha256": "b0006de473babf17391265e530178b46cd63150c758edc53e00a7289fa7f63f6"
+      "bytes": 81591,
+      "sha256": "09ac1485d0fc723e32ff3a0ebecd09d2f0488e12305b467b43f6916ce559f752"
     },
     {
       "url": "/how-martech-tools-talk-integration/amplitute_api_doc.png",
@@ -6603,8 +6501,8 @@
     {
       "url": "/how-to-ask-google-tag-manager-question/",
       "kind": "page",
-      "bytes": 70695,
-      "sha256": "607bb49aa27750a1580d3d3c45f0c01ed8ba84705097860c7997d59a423106f0"
+      "bytes": 70427,
+      "sha256": "81f9be73927adbeaa19945608b9c20a73014ac968684ee1ba399aecebc7df853"
     },
     {
       "url": "/how-to-ask-google-tag-manager-question/ask_question_without_detail_1.png",
@@ -6645,8 +6543,8 @@
     {
       "url": "/line-mcp-server/",
       "kind": "page",
-      "bytes": 86851,
-      "sha256": "058e843e0187ca6ad220a98c402124934dd899c7ff01684edc1c4215a013019a"
+      "bytes": 86583,
+      "sha256": "d45a0d6e12f24fcb7a47fe0c341e9ccb12a840ea9f2c9d9a26fd108e0367ba30"
     },
     {
       "url": "/line-mcp-server/index.md",
@@ -6759,14 +6657,14 @@
     {
       "url": "/llms.txt",
       "kind": "contract",
-      "bytes": 53587,
-      "sha256": "40f358f9fe36055a7ecbdff325aa6333e98ee21889e37ea4fb4f4e9c9327bb2d"
+      "bytes": 52711,
+      "sha256": "f4dde2cb021197418f15dc11b2c1f99cf1a074d13f7fde283e4abaea77aaea23"
     },
     {
       "url": "/looker-studio-new-release-202212-ga4-api-quota/",
       "kind": "page",
-      "bytes": 77863,
-      "sha256": "1be7ee28d1c050f64c705219ac3c97e5e9e8a6af04a403cc4848ea84ec389185"
+      "bytes": 77595,
+      "sha256": "3afd305729a434ea069f6424364186faa5f7c9205c441975efc9323d340940f0"
     },
     {
       "url": "/looker-studio-new-release-202212-ga4-api-quota/find_api_quota_in_lookerstudio.png",
@@ -6817,148 +6715,10 @@
       "sha256": "ce3500a42ad756d90679b07af49eb02013751f7c8e5e1dfd0e9b7dc05b78a425"
     },
     {
-      "url": "/meta-ads-mcp/",
-      "kind": "page",
-      "bytes": 123555,
-      "sha256": "54db96220ce36387b028bfbb64e914f8848bdd7a79486e24d3a604e818416454"
-    },
-    {
-      "url": "/meta-ads-mcp/index.md",
-      "kind": "markdown",
-      "bytes": 25123,
-      "sha256": "7361fd5d370e0eace18023b6ccf2f959de36667f2b1f666b3e5cdb325c748d2b"
-    },
-    {
-      "url": "/meta-ads-mcp/index.png",
-      "kind": "asset",
-      "bytes": 26848,
-      "sha256": "3f6e5eca8e8b85751bcbe94519808ee6af0e5f1a2c4bd404236d1f6bc694acb1"
-    },
-    {
-      "url": "/meta-ads-mcp/meta_ads_mcp_add_connector_dialog-1600.webp",
-      "kind": "asset",
-      "bytes": 53220,
-      "sha256": "a1089236bf2167ac72269491054dec1ccb84783badeee8314e8c4d918bff9766"
-    },
-    {
-      "url": "/meta-ads-mcp/meta_ads_mcp_add_connector_dialog-800.webp",
-      "kind": "asset",
-      "bytes": 22334,
-      "sha256": "97fd802a19b2fc9630f8c115ebdb5c3ef8369da44d9c1e9650690e4162e8790a"
-    },
-    {
-      "url": "/meta-ads-mcp/meta_ads_mcp_add_connector_dialog.png",
-      "kind": "asset",
-      "bytes": 146094,
-      "sha256": "4ba77a4537f21d911c217470371830ee6d16efc8683f68b1ef8f834784a6ef54"
-    },
-    {
-      "url": "/meta-ads-mcp/meta_ads_mcp_analysis_dashboard.png",
-      "kind": "asset",
-      "bytes": 21912,
-      "sha256": "f0faf7eca90795fb874a5657524fc726ef70b6c4671b67b4d34669efdee673df"
-    },
-    {
-      "url": "/meta-ads-mcp/meta_ads_mcp_connectors_add_custom-1600.webp",
-      "kind": "asset",
-      "bytes": 40178,
-      "sha256": "8907a9265e231ad3ac1397d31522b1b42d6df97b2edc9a02da27e2c43fb5372c"
-    },
-    {
-      "url": "/meta-ads-mcp/meta_ads_mcp_connectors_add_custom-800.webp",
-      "kind": "asset",
-      "bytes": 16732,
-      "sha256": "f8b18455a5c01e9033f12a0170f58c8bf52f8c6ad01a63dfcfdefffcdcedc0c9"
-    },
-    {
-      "url": "/meta-ads-mcp/meta_ads_mcp_connectors_add_custom.png",
-      "kind": "asset",
-      "bytes": 205069,
-      "sha256": "78e4344089bcb7205ab7b2905750c81ec57acf35f1542dac565183067b74fd74"
-    },
-    {
-      "url": "/meta-ads-mcp/meta_ads_mcp_enable_toggle-1600.webp",
-      "kind": "asset",
-      "bytes": 38040,
-      "sha256": "4234688012a6733e2b78f13dd591e3783c35e17e61effcfa238cc330d4780acd"
-    },
-    {
-      "url": "/meta-ads-mcp/meta_ads_mcp_enable_toggle-800.webp",
-      "kind": "asset",
-      "bytes": 16194,
-      "sha256": "c6cb648f3edf97c807c92c9ccbb1c06dfdfe19bfa960c22ac8ff063513b030ce"
-    },
-    {
-      "url": "/meta-ads-mcp/meta_ads_mcp_enable_toggle.png",
-      "kind": "asset",
-      "bytes": 109047,
-      "sha256": "6ed17004cc3e10bfe4ff579a82f0042b2be400465b0858172b1a2930cff6777d"
-    },
-    {
-      "url": "/meta-ads-mcp/meta_ads_mcp_facebook_authorize-1600.webp",
-      "kind": "asset",
-      "bytes": 35938,
-      "sha256": "8e3af350508b81b76870db3641acf1e99ec7b5c108d0cc2b7f75dd220fe67590"
-    },
-    {
-      "url": "/meta-ads-mcp/meta_ads_mcp_facebook_authorize-800.webp",
-      "kind": "asset",
-      "bytes": 13148,
-      "sha256": "8c17a8254f3cabbaf7606fe2a571b291a98160c505eae57253d7bbde51de6de2"
-    },
-    {
-      "url": "/meta-ads-mcp/meta_ads_mcp_facebook_authorize.png",
-      "kind": "asset",
-      "bytes": 73950,
-      "sha256": "f3a73c567a26b3d66367aa0610e7d56e6f1e96e5afbb95157efeeefdf012e450"
-    },
-    {
-      "url": "/meta-ads-mcp/meta_ads_mcp_settings_entry.png",
-      "kind": "asset",
-      "bytes": 18461,
-      "sha256": "91e88582ef5fdba0ad42718259e18df557371131847e07368ae967d1c1ab7024"
-    },
-    {
-      "url": "/meta-ads-mcp/meta_ads_mcp_tool_permissions_expanded-1600.webp",
-      "kind": "asset",
-      "bytes": 48298,
-      "sha256": "f5687afe58914c6b1a5f88951c4c90a3f71de0371c0abe1fbe581343eae01eb6"
-    },
-    {
-      "url": "/meta-ads-mcp/meta_ads_mcp_tool_permissions_expanded-800.webp",
-      "kind": "asset",
-      "bytes": 20304,
-      "sha256": "d62aecceb0469d074e89a6ed685ce2552e77b17417e2887e3456b921b02c65f1"
-    },
-    {
-      "url": "/meta-ads-mcp/meta_ads_mcp_tool_permissions_expanded.png",
-      "kind": "asset",
-      "bytes": 91363,
-      "sha256": "7b5ba84d77781b6c9a3ac0696123d63a33d24ae7bcc098e3f1cfe7d528529eef"
-    },
-    {
-      "url": "/meta-ads-mcp/meta_ads_mcp_tool_permissions-1600.webp",
-      "kind": "asset",
-      "bytes": 26454,
-      "sha256": "58f14446d0ae84b93d9963a5b492350ea00f10d64a3da3be263725e86aa4db93"
-    },
-    {
-      "url": "/meta-ads-mcp/meta_ads_mcp_tool_permissions-800.webp",
-      "kind": "asset",
-      "bytes": 11598,
-      "sha256": "5d140a8d18c5320ac7e9380761a8ef1eaa6ef63685188f885812c959c1db4d3e"
-    },
-    {
-      "url": "/meta-ads-mcp/meta_ads_mcp_tool_permissions.png",
-      "kind": "asset",
-      "bytes": 39619,
-      "sha256": "15981dd211573b155e23492390ad18d54306b21ef7a95e4430bc1bc68143b16f"
-    },
-    {
       "url": "/n8n_structured_output_parser_node/",
       "kind": "page",
-      "bytes": 92691,
-      "sha256": "7ad3ec104f9dd23eef223808fe26d8b59a9b1b294237f15bfbb20cf094d66ef4"
+      "bytes": 92423,
+      "sha256": "eb716309e283cb7039b59795d6e405cf6e8914672bc4afc8505774e386d97c23"
     },
     {
       "url": "/n8n_structured_output_parser_node/bg-n8n-output_parser-1200.webp",
@@ -7065,8 +6825,8 @@
     {
       "url": "/n8n-2-0-update/",
       "kind": "page",
-      "bytes": 94176,
-      "sha256": "76e0b35028439994d43c48978734df5ed931f56cf51c237d6d5f8a6fc2d6942d"
+      "bytes": 93908,
+      "sha256": "a55e6044d23af28a4027404e9eca60f44b78ac3c944df4bd99f963d1a44f02a2"
     },
     {
       "url": "/n8n-2-0-update/index.md",
@@ -7203,8 +6963,8 @@
     {
       "url": "/n8n-aggregate-split-out/",
       "kind": "page",
-      "bytes": 84191,
-      "sha256": "29e2bfa6e4778616785792a86d473c0d62c79d2980ac24c6cfee942bedb44767"
+      "bytes": 83923,
+      "sha256": "2ee3d387a92da1d64b08c76b2c327ebb83db0431cc5d7df63b964dad7b9ff87b"
     },
     {
       "url": "/n8n-aggregate-split-out/index.md",
@@ -7293,8 +7053,8 @@
     {
       "url": "/n8n-apify-node/",
       "kind": "page",
-      "bytes": 125404,
-      "sha256": "b03753624856c571d9e20b1bca65ee28ac7255468764665f3acc9bf065ffff9f"
+      "bytes": 125136,
+      "sha256": "8ccb48eb10c3efe1a3f928e985d02526746cc4ff740367a2407f7359122109ed"
     },
     {
       "url": "/n8n-apify-node/blog-n8n-apify-node-bg-1200.webp",
@@ -7587,8 +7347,8 @@
     {
       "url": "/n8n-built-in-variables/",
       "kind": "page",
-      "bytes": 92256,
-      "sha256": "e9fb173947d58f173b24378ccc44de9b451e246d2de49de8fb9f3bf0c1c5a64e"
+      "bytes": 91988,
+      "sha256": "57c8b0819453012be8347bd7e67abf7979d1f1ed819e7784ba4b0a8ff1d60ea0"
     },
     {
       "url": "/n8n-built-in-variables/index.md",
@@ -7683,8 +7443,8 @@
     {
       "url": "/n8n-bycrawl-node/",
       "kind": "page",
-      "bytes": 118027,
-      "sha256": "0d35bb3a2ede036b5aee1f96c77e267c1d36bf31953752ed9b6014f2f233f124"
+      "bytes": 117759,
+      "sha256": "8a87b58e9cd40fd319195ede1b6080c2cfcf9f16df8cc30b8ae2f63ae14ce7fd"
     },
     {
       "url": "/n8n-bycrawl-node/blog-n8n-bycrawl-node-bg-1000.webp",
@@ -7809,8 +7569,8 @@
     {
       "url": "/n8n-cli-guide/",
       "kind": "page",
-      "bytes": 115956,
-      "sha256": "057a237ab20df92dac61cf24ead66c4baad3530ae8c1b54c90cad9c03eb6e6a2"
+      "bytes": 115688,
+      "sha256": "8746d5f28c5c4c50e0bb53a7ccd78d1138a41e1a46e53920367d3eb6394f3d06"
     },
     {
       "url": "/n8n-cli-guide/blog-n8n-cli-guide-bg-1600.webp",
@@ -7923,8 +7683,8 @@
     {
       "url": "/n8n-datatables-node/",
       "kind": "page",
-      "bytes": 94203,
-      "sha256": "9a6525d9cbec2ba73cba4af9e572908570c9679018a9b3fdec235c597365b6ae"
+      "bytes": 93935,
+      "sha256": "53cffbf3f9fa2c88d3a8aa6f0a7690720cc03b2b8e07583f830754367e004ece"
     },
     {
       "url": "/n8n-datatables-node/blog-n8n-datatables-bg-1600.webp",
@@ -8037,8 +7797,8 @@
     {
       "url": "/n8n-debug-line-invalid-json/",
       "kind": "page",
-      "bytes": 82738,
-      "sha256": "770223d27e4a6d01044b52b34bb75c3a74fe6af047385b23bbcdfea3cf5e0761"
+      "bytes": 82470,
+      "sha256": "35ba4b93a36e902bcb72a01e1da5b9412c641545586980932a9e7209d9b2714f"
     },
     {
       "url": "/n8n-debug-line-invalid-json/blog-n8n-invalid-json-bg-1600.webp",
@@ -8121,8 +7881,8 @@
     {
       "url": "/n8n-deployment/",
       "kind": "page",
-      "bytes": 108512,
-      "sha256": "d1b2ba2e7c6a2f17a433879f0ba1a6c53c6f7cc87dda4ab4a9f11a4342a1fbc4"
+      "bytes": 108244,
+      "sha256": "2708a3c5881d2d05fbe347d79f1c90033ffaa7e75b7bf50b7d658ed13783c69f"
     },
     {
       "url": "/n8n-deployment/blog-n8n-deployment-bg-1080.webp",
@@ -8295,8 +8055,8 @@
     {
       "url": "/n8n-elevenlabs-tts/",
       "kind": "page",
-      "bytes": 90879,
-      "sha256": "2d4f0d45f7c74b5eb8538216be8ffad08b76294537101f172939055c5a2f33b4"
+      "bytes": 90611,
+      "sha256": "3a3dc93f5530d02c35721a864c741c75d7955d10a47372be784ee9fbc849f770"
     },
     {
       "url": "/n8n-elevenlabs-tts/blog-n8n-elevenlabs-node-bg-1080.webp",
@@ -8409,8 +8169,8 @@
     {
       "url": "/n8n-evaluations/",
       "kind": "page",
-      "bytes": 88180,
-      "sha256": "efce370f26db6f9e0b8de2d4cfe04dd34cc4afd4d685cf57167bade196f8c1af"
+      "bytes": 87912,
+      "sha256": "93117c6bdc30c3405029c8e2a83099497b202ab7aa55fd8c53ee4f7925fc83af"
     },
     {
       "url": "/n8n-evaluations/blog-n8n-evaluations-new_feature-bg-1000.webp",
@@ -8613,8 +8373,8 @@
     {
       "url": "/n8n-filter-node/",
       "kind": "page",
-      "bytes": 81638,
-      "sha256": "ef6e8f93235e5211302a05929a867cb1d18009a200b3d7aad1fbd21f07ffd6a1"
+      "bytes": 81370,
+      "sha256": "d72459ab1333b03d6d841d5a99dcbea8e0a25eead835a98caf2affff1bf91208"
     },
     {
       "url": "/n8n-filter-node/index.md",
@@ -8661,8 +8421,8 @@
     {
       "url": "/n8n-gmail-node/",
       "kind": "page",
-      "bytes": 125471,
-      "sha256": "8da00e11bd672113beef114bfbb05c1cf0dd660a4e07b6917c4e4e3ddf35eed2"
+      "bytes": 125203,
+      "sha256": "f52b408db851c281a73e6f37c3581c8f73c6e3d89101af3aca24f4c13e106876"
     },
     {
       "url": "/n8n-gmail-node/blog-n8n-gmail-bg-1080.webp",
@@ -8799,8 +8559,8 @@
     {
       "url": "/n8n-google-sheets-node/",
       "kind": "page",
-      "bytes": 113993,
-      "sha256": "ea001965112653a6a9617b181ca2e7403e736b08b77cd9fd992e0bd4e2b3625a"
+      "bytes": 113725,
+      "sha256": "439f994de01a042991a172f885fff5d9cd0229f2f23b46514fd8fface1bc5c7e"
     },
     {
       "url": "/n8n-google-sheets-node/blog-n8n-google-sheets-bg-1000.webp",
@@ -8955,8 +8715,8 @@
     {
       "url": "/n8n-if-switch/",
       "kind": "page",
-      "bytes": 82568,
-      "sha256": "395521e015b636d0b8517a70fae79538e885fbaffca26c3db2d1457c1b202d50"
+      "bytes": 82300,
+      "sha256": "56f13d794780b27493b86991cbd109419b830e0ef2818cd5b2ed54f20ddffd64"
     },
     {
       "url": "/n8n-if-switch/index.md",
@@ -9033,8 +8793,8 @@
     {
       "url": "/n8n-line-message-api/",
       "kind": "page",
-      "bytes": 119131,
-      "sha256": "9df176b5fe00e577daa5b2850679e2e00df12d400eb134045343c7c02e6a8168"
+      "bytes": 118863,
+      "sha256": "5fb852e28a8ff6841f76ae8bf12a51111912cdbb1630f886f144cf14948819f3"
     },
     {
       "url": "/n8n-line-message-api/index.md",
@@ -9165,8 +8925,8 @@
     {
       "url": "/n8n-line-messaging-community-node/",
       "kind": "page",
-      "bytes": 98015,
-      "sha256": "c945009e3f8cfac3d1e3ecfe5244238bbd28a280e88d7e3ed9024382f6d5b954"
+      "bytes": 97747,
+      "sha256": "511a727d9c4031622932fdabce4fce33690248739c7c2341f6d89d63d6f79984"
     },
     {
       "url": "/n8n-line-messaging-community-node/blog-n8n-line-messaging-node-bg-1000.webp",
@@ -9261,8 +9021,8 @@
     {
       "url": "/n8n-line-split-expense-workflow/",
       "kind": "page",
-      "bytes": 99244,
-      "sha256": "5a0118493056d78f3b8691fd9806af56d695a763ee40f6f7771316e7184c03fe"
+      "bytes": 98976,
+      "sha256": "c7816432f846b4b9e3f0680efa4b9e81544daff725e810a82805d16ab5c75462"
     },
     {
       "url": "/n8n-line-split-expense-workflow/automation_thinking_by_chatgpt.jpg",
@@ -9345,8 +9105,8 @@
     {
       "url": "/n8n-merge-node/",
       "kind": "page",
-      "bytes": 91442,
-      "sha256": "d0267ccf49ff7ceff4d542cb4e29aa465f8574fc6d6f10660ad31e07bd489eda"
+      "bytes": 91174,
+      "sha256": "1ca3c779c4c2cd6f2ba99c6d899b01a84ada596b4564c4cd12d609430f0a10de"
     },
     {
       "url": "/n8n-merge-node/blog-n8n-merge-node-bg.jpg",
@@ -9423,8 +9183,8 @@
     {
       "url": "/n8n-new-feature-folders/",
       "kind": "page",
-      "bytes": 78453,
-      "sha256": "6b8a64fc697c91df73fb42abbc8270a89fca84619092817cf1ee122e53eff1a9"
+      "bytes": 78185,
+      "sha256": "d90d0cc8f79168a6db0d53298d17895fab84f639a461fbef3d7c5e4802e2a029"
     },
     {
       "url": "/n8n-new-feature-folders/index.md",
@@ -9495,8 +9255,8 @@
     {
       "url": "/n8n-node-s3-with-cloudflare-r2/",
       "kind": "page",
-      "bytes": 92921,
-      "sha256": "cab46b192dabfd7bec3b53ab05da13a6b71a6f8259c2630cda73338f1ca00380"
+      "bytes": 92653,
+      "sha256": "db724d7a34769c9da541986d36f5e358d29eda13af2a42b97df7be30bdd48dc0"
     },
     {
       "url": "/n8n-node-s3-with-cloudflare-r2/blog-n8n-s3-node-bg-1080.webp",
@@ -9579,8 +9339,8 @@
     {
       "url": "/n8n-perplexity-node/",
       "kind": "page",
-      "bytes": 88745,
-      "sha256": "ae22341806b2b420c8e3315fd0dd89ae8ae8d7291630000e25daca033b809258"
+      "bytes": 88477,
+      "sha256": "59ee5637f6be44f3f0aacaf869a66c68bd83eb26483a167441f360ca5e4110d2"
     },
     {
       "url": "/n8n-perplexity-node/blog-n8n-perplexity-node-bg-1080.webp",
@@ -9663,8 +9423,8 @@
     {
       "url": "/n8n-poll-time-setting/",
       "kind": "page",
-      "bytes": 78723,
-      "sha256": "c110a73c07cbe433a1dbac54f655bb5d33435af64884b785a59469eb66168c2c"
+      "bytes": 78455,
+      "sha256": "a91d6a51e70767038d74396f25eb40c2f0d60ae6ac9e1cfa01f2cebec55b414f"
     },
     {
       "url": "/n8n-poll-time-setting/index.md",
@@ -9711,8 +9471,8 @@
     {
       "url": "/n8n-security-vulnerability-2025/",
       "kind": "page",
-      "bytes": 97174,
-      "sha256": "6f9acb8f8ecc521b50f155e65dc5403eeb2095f0ad7b83781080b54e1a61a8f4"
+      "bytes": 96906,
+      "sha256": "5c290348618623da451cc3860e22166b480a8a3df79931fb8f7a350481e50fb0"
     },
     {
       "url": "/n8n-security-vulnerability-2025/index.md",
@@ -9801,8 +9561,8 @@
     {
       "url": "/n8n-set-node/",
       "kind": "page",
-      "bytes": 109348,
-      "sha256": "0e6444d2a11d5bdf9913779da04f6a297af943bb591846970866c0da78849cac"
+      "bytes": 109080,
+      "sha256": "8a9bad47486d19fa4d67b80afeb313d9f2067852551c2d95e5e231cde2c7cc18"
     },
     {
       "url": "/n8n-set-node/blog-n8n-line-set_field-bg-1080.webp",
@@ -9957,8 +9717,8 @@
     {
       "url": "/n8n-time-saved-node/",
       "kind": "page",
-      "bytes": 97882,
-      "sha256": "9fbcf711de5570025d03a6a8665aafb03b73ae5cb5b5ac0ab773453f628aee73"
+      "bytes": 97614,
+      "sha256": "734825533fd9895ec2a973c6a20c6b8a6ab7218bce283060c1b984bb7312c8bb"
     },
     {
       "url": "/n8n-time-saved-node/blog-n8n-time-saved-bg-1000.webp",
@@ -10059,8 +9819,8 @@
     {
       "url": "/n8n-tips-pin/",
       "kind": "page",
-      "bytes": 73229,
-      "sha256": "79e95d93d9790c9d49ec207625d31d8e91d28861c3d089bf70ef82f18cfd7099"
+      "bytes": 72961,
+      "sha256": "084c86f0fab8b833139fecaa5a5cd261822891c86be64c5ad3f8df6366007cbd"
     },
     {
       "url": "/n8n-tips-pin/index.md",
@@ -10113,8 +9873,8 @@
     {
       "url": "/n8n-update-log-v1/",
       "kind": "page",
-      "bytes": 286995,
-      "sha256": "b2c250ff26e58ef1c761105d97fb47df52c9aab35eb2dad6ef9988590f6ccd03"
+      "bytes": 286727,
+      "sha256": "f0723598ddea08d4124ee2afbfdb7f48990294e658150d95e646bb84379423e2"
     },
     {
       "url": "/n8n-update-log-v1/index.md",
@@ -10143,8 +9903,8 @@
     {
       "url": "/n8n-update-log/",
       "kind": "page",
-      "bytes": 330811,
-      "sha256": "eb0e3b8733e115b382d467668eb4dd3665afb6209e8dd6d1b5952bc9d8c1100a"
+      "bytes": 330543,
+      "sha256": "f1a18c1f794bab1b7501fa0e803fe77728d5b561bded4ea593c9cde37d54f56c"
     },
     {
       "url": "/n8n-update-log/index.md",
@@ -12597,8 +12357,8 @@
     {
       "url": "/n8n-webhook/",
       "kind": "page",
-      "bytes": 90411,
-      "sha256": "69615495add80ff8d996f478418f83bdf9d0089da2b88c0c435db4d4fecde1d1"
+      "bytes": 90143,
+      "sha256": "cab1ac82c600e78f4d7b365ddda7a4796fdd949952f1e2273948d0a5c182924b"
     },
     {
       "url": "/n8n-webhook/blog-n8n-webhook-bg-1080.webp",
@@ -12681,8 +12441,8 @@
     {
       "url": "/n8n-with-cloudflare-turnstile-CAPTCHA/",
       "kind": "page",
-      "bytes": 149910,
-      "sha256": "475374b7112d79ff3f847cbd3f494a484bb4ce36b78f8284c3eb3ab0ed1de4ec"
+      "bytes": 149642,
+      "sha256": "cf1d11fb3dcacbeab27cb6b9c2d87cb99c9a3367ef77c759f3957be1ffddff61"
     },
     {
       "url": "/n8n-with-cloudflare-turnstile-CAPTCHA/blog-n8n-cloudflare_turnstile-1080.webp",
@@ -12789,8 +12549,8 @@
     {
       "url": "/n8n-with-slack/",
       "kind": "page",
-      "bytes": 98592,
-      "sha256": "29c38205eb119a35d27fd50c061fe62d60363165557c9b2be8fe1a460e1f88f8"
+      "bytes": 98324,
+      "sha256": "2e855c12ec25eb6604f4211833f6357e8a41860cb443beca1223340f98d11249"
     },
     {
       "url": "/n8n-with-slack/index.md",
@@ -12921,8 +12681,8 @@
     {
       "url": "/n8n-with-zeabur-timezone-issue/",
       "kind": "page",
-      "bytes": 80618,
-      "sha256": "be9e6779d18ceaab130eb53b344ec669de0e0dc3aae01f325ce8d1619bfd817e"
+      "bytes": 80350,
+      "sha256": "98854bf2e739c6e810d151bf54d8f6f0803c9b5f42ad601eac4f79e028b3afc6"
     },
     {
       "url": "/n8n-with-zeabur-timezone-issue/index.md",
@@ -13005,8 +12765,8 @@
     {
       "url": "/n8n-zeabur-ai-hub-model-router/",
       "kind": "page",
-      "bytes": 113398,
-      "sha256": "97f71bedace84ed761499e4475e5fe3703dc56df1169914aff00f75dc19ab527"
+      "bytes": 113130,
+      "sha256": "9787b988120940db423a7994a564e19943a65f6a5970317468ccf5926f15e29b"
     },
     {
       "url": "/n8n-zeabur-ai-hub-model-router/index.md",
@@ -13149,8 +12909,8 @@
     {
       "url": "/openai-gpt-image-1-model-review/",
       "kind": "page",
-      "bytes": 80724,
-      "sha256": "d05c062a2037e88645445346183bad349031d0985b93c2f639a885bf5a01b3b2"
+      "bytes": 80430,
+      "sha256": "be11c6440a4f5ab135350cc1561785e7c02a7d6638d9fb1fa2c037e239436ca0"
     },
     {
       "url": "/openai-gpt-image-1-model-review/blog-chatgpt-image-1_model_bg-1080.webp",
@@ -13209,8 +12969,8 @@
     {
       "url": "/postiz-zeabur-threads-tutorial/",
       "kind": "page",
-      "bytes": 100108,
-      "sha256": "b562670b07a7c1b380feff73e795c9c6310d8cfaf8589f413279cc9c9063107b"
+      "bytes": 99840,
+      "sha256": "3bd5d067bb5dab5043d12a7448bc0a0f869063b570e2c472bc2ba1e8fb4bfb6e"
     },
     {
       "url": "/postiz-zeabur-threads-tutorial/01_meta_create_app_dialog.jpg",
@@ -13371,50 +13131,50 @@
     {
       "url": "/posts/",
       "kind": "page",
-      "bytes": 62269,
-      "sha256": "0542fd6451d10dec6e6a4bea546f914b7ce376a778e3480de77fdb92d32cdfa4"
+      "bytes": 62245,
+      "sha256": "251b53df93a4b21c9277448843d88770957c1f7b81e152f530a9d9d78d7ca5ca"
     },
     {
       "url": "/posts/2/",
       "kind": "page",
-      "bytes": 61635,
-      "sha256": "c4d3035b220db991a19727a5b78e16194038c40c04cea1907f4622423c5d167e"
+      "bytes": 61665,
+      "sha256": "be715e9d04e9ca67be9c965ee635fd30d32a08eaa173b9a14ed0df82881a707c"
     },
     {
       "url": "/posts/3/",
       "kind": "page",
-      "bytes": 60967,
-      "sha256": "8de65cb93b7aeff7630ebf6ee732945065198230bd22a6a30b2642c94531f066"
+      "bytes": 60918,
+      "sha256": "b02d91e71e49d146dce1871f2be5456602d380f4a4455435d1eedf3ace8fda86"
     },
     {
       "url": "/posts/4/",
       "kind": "page",
-      "bytes": 61229,
-      "sha256": "a6f2e7984b0b860cd76e74c61667ac049f759e57babd99bac64650d9877ac594"
+      "bytes": 61266,
+      "sha256": "5d29ce1380f5a4fbd24444d5a69ace9839cd29c4e9012e34629c3e66f34567d9"
     },
     {
       "url": "/posts/5/",
       "kind": "page",
-      "bytes": 63632,
-      "sha256": "fe4359a07af1596f8b1e2184e257b8b7dfe5d4b0797e05069d74b39116d5a45f"
+      "bytes": 64039,
+      "sha256": "2a57942d3481b4ed183a8888a1f4d15620860211782387df5fb7404022c8635d"
     },
     {
       "url": "/posts/6/",
       "kind": "page",
-      "bytes": 63749,
-      "sha256": "c64260e30a67518ce7aa1218405186849f60692a7f3e356f3deb2dc0ed569b17"
+      "bytes": 63231,
+      "sha256": "5ce192ec9bbad0f0406e74a326278d52fde114b76ca73670407dddb8ef4570ee"
     },
     {
       "url": "/posts/7/",
       "kind": "page",
-      "bytes": 41674,
-      "sha256": "15515add5df97c501c44b8f3d6546b0418fd3352978657e0f0179a962cc564cd"
+      "bytes": 38120,
+      "sha256": "795d27fe3243bf9ef8a18ea59561e6a63f2aef71ea21e166abeab15de37a9a7f"
     },
     {
       "url": "/pricing-in-martech-tools/",
       "kind": "page",
-      "bytes": 94071,
-      "sha256": "01e2f9c28a8469a7d72c4c30857a743feca771e96fc350698c188b90587cb64e"
+      "bytes": 93803,
+      "sha256": "e4a2940853a28dc33da732c534013402ee7db491e13d3a0708d42721592095cc"
     },
     {
       "url": "/pricing-in-martech-tools/amplitude_pricing.png",
@@ -13563,8 +13323,8 @@
     {
       "url": "/rclone-cloud-sync-backup/",
       "kind": "page",
-      "bytes": 124283,
-      "sha256": "4e774ccb39bd7e4876f2871af41e31871f91ff5ba997a8627ada481dddf81fde"
+      "bytes": 124015,
+      "sha256": "e9656bc999f7f463332389eb673533f1aafcc605727b6d0e79ca53b844f9d72a"
     },
     {
       "url": "/rclone-cloud-sync-backup/claude_code_rclone_copy_to_r2.png",
@@ -13767,8 +13527,8 @@
     {
       "url": "/rss.xml",
       "kind": "contract",
-      "bytes": 107032,
-      "sha256": "ad8d1fcbfe10509abde8d4e4121e0edfbf77f820e5d8290dfaea211fc70456b1"
+      "bytes": 105335,
+      "sha256": "f201a2c0dce6008de514140c5b3941661c123a81c311498569a7df3b5d5b387f"
     },
     {
       "url": "/search/",
@@ -13779,8 +13539,8 @@
     {
       "url": "/send-push-to-me/",
       "kind": "page",
-      "bytes": 121508,
-      "sha256": "9864d277a195a454eff50b2cb17f4f0bbdc13b26b6d8ed8fd423e9b6d9a2bc44"
+      "bytes": 121240,
+      "sha256": "191b827e7275168fd018ba3c701bee9ac97459091d988dc6c7e5093840821948"
     },
     {
       "url": "/send-push-to-me/advanced_telegram_message_payload.png",
@@ -13953,8 +13713,8 @@
     {
       "url": "/simmer-chrome-devtool-for-marketer/",
       "kind": "page",
-      "bytes": 88882,
-      "sha256": "3a3aa509d6d87bd89f11f545ed43b6dac39f478542868c4a88c6c17085190f74"
+      "bytes": 88614,
+      "sha256": "8e0f1ef3fc660f2e54588708cb761d2f0d37d0402d0bf8baa2367ac7c03acef1"
     },
     {
       "url": "/simmer-chrome-devtool-for-marketer/chrome_devtool_appllication_cookie.png",
@@ -14037,8 +13797,8 @@
     {
       "url": "/simmer-martech-handbook/",
       "kind": "page",
-      "bytes": 86971,
-      "sha256": "95748452600ff1d35c27f03cb6def50a81c79faef6539123e57e0ddd13a7713c"
+      "bytes": 86703,
+      "sha256": "2e4372ba7680f7d8e2317afa8ff6f1bd213a5711a2f262f17ac71e15d5676208"
     },
     {
       "url": "/simmer-martech-handbook/cro-related-martech-tools.png",
@@ -14079,14 +13839,14 @@
     {
       "url": "/sitemap.xml",
       "kind": "contract",
-      "bytes": 19355,
-      "sha256": "78684957d40a6485d2de9079fb2500e19feced452203a98867886b0285b4d401"
+      "bytes": 19013,
+      "sha256": "49b97ade80f943947ea0a12e032fbb084c8ad1a31ad97b8dcdcc1eb8905532da"
     },
     {
       "url": "/stackoverflow-gtm-click-element-css-selector/",
       "kind": "page",
-      "bytes": 79378,
-      "sha256": "ccb9391c8b1dba4af529003ec5c8db10e22bd66241d3976382e177a4f044d0a6"
+      "bytes": 79110,
+      "sha256": "19fae75228107fe8bec8f91bab4c8d6616c48edfb1fbe688c14e0e60bb85ce60"
     },
     {
       "url": "/stackoverflow-gtm-click-element-css-selector/index.md",
@@ -14115,8 +13875,8 @@
     {
       "url": "/stackoverflow-gtm-rewrite-items-in-datalayer/",
       "kind": "page",
-      "bytes": 96310,
-      "sha256": "5db59f31d3f47f67c67c06bfc01574da62309738a0b7d4110d2461184453b1e9"
+      "bytes": 96042,
+      "sha256": "443b0acec7881a2d6df12de766396a810c9eab24ccef5d2b18650ed9d006377d"
     },
     {
       "url": "/stackoverflow-gtm-rewrite-items-in-datalayer/index.md",
@@ -14151,8 +13911,8 @@
     {
       "url": "/stackoverflow-handle-comma-and-period/",
       "kind": "page",
-      "bytes": 80323,
-      "sha256": "0754e216d71d429412c74338e502300aa3aa23c5b2cd7e16ac576734aa1c3bc7"
+      "bytes": 80055,
+      "sha256": "b1931dde276c6b167cfcc4e5a8c721e9e8c3c7f1b0aab0c957db5acccbfcba20"
     },
     {
       "url": "/stackoverflow-handle-comma-and-period/google_product_from_structure_data_result_products.png",
@@ -14193,8 +13953,8 @@
     {
       "url": "/storylane-demo-website-new-feature/",
       "kind": "page",
-      "bytes": 87622,
-      "sha256": "f4740d502defe8c85b779d666ba9d040aeabb06ac0df5e510ec3e3a2a863e460"
+      "bytes": 87354,
+      "sha256": "feb8732a9a9d63b62d0290dbb77bd808deab09c6a21732ccb6663de7b2e3c31f"
     },
     {
       "url": "/storylane-demo-website-new-feature/index.md",
@@ -14301,8 +14061,8 @@
     {
       "url": "/tags/",
       "kind": "page",
-      "bytes": 361712,
-      "sha256": "83414565846de5fb0b52eb4333143696f7fff1776459fcc5af2ddb37ef381cb1"
+      "bytes": 352791,
+      "sha256": "0d312ba1a27aa3a9a2b8108eb4a20d33023b90ad6f9d391dd2633c22a14c0ab6"
     },
     {
       "url": "/tags/3rd-party-cookie/",
@@ -14377,12 +14137,6 @@
       "sha256": "64cb5f6613de10a63504f453b0e23799d52080a37fcb0dc83f83232c71eca146"
     },
     {
-      "url": "/tags/廣告投放/",
-      "kind": "page",
-      "bytes": 32412,
-      "sha256": "c9fd2f41974a114cf2d9450c5624ad097739ec3c5a4c12bd0741adb846f295ce"
-    },
-    {
       "url": "/tags/數據處理/",
       "kind": "page",
       "bytes": 32536,
@@ -14397,8 +14151,8 @@
     {
       "url": "/tags/ai-agent/",
       "kind": "page",
-      "bytes": 35939,
-      "sha256": "5270b9b09abd3c802d5df674eea5f55d19d01f97863442b1e24d165eb1f7a57d"
+      "bytes": 34011,
+      "sha256": "026f5123816fc5e9013ca67a89f7f70f29aa1817a75dba97d2132466a2ce9d0e"
     },
     {
       "url": "/tags/ai-service/",
@@ -14409,8 +14163,8 @@
     {
       "url": "/tags/ai/",
       "kind": "page",
-      "bytes": 52320,
-      "sha256": "292b206070e4a0ca4104dd4f94990e19cc5ac5766a89fa04e8e01ad86484eec2"
+      "bytes": 50577,
+      "sha256": "6334cf02df464e3347700b1ef6aee3b117c387f5ae7c25e2548d021c504770a6"
     },
     {
       "url": "/tags/algolia/",
@@ -14475,8 +14229,8 @@
     {
       "url": "/tags/chatgpt/",
       "kind": "page",
-      "bytes": 45072,
-      "sha256": "aecceabd2f3116ce8730d3f61983c5feef671444b89f5987f3fa40600e7e924f"
+      "bytes": 43144,
+      "sha256": "203d8892ae5afadfa42bacd0aa54d6e1f985af9639719a248715ad96b1004eff"
     },
     {
       "url": "/tags/chrome-devtool/",
@@ -14511,8 +14265,8 @@
     {
       "url": "/tags/claude/",
       "kind": "page",
-      "bytes": 44608,
-      "sha256": "8b07e9c4dab631f3a4f21e17d4acf608bd423a2154b9ea5f9cb4e471b7030a14"
+      "bytes": 42865,
+      "sha256": "5337d7ee319c103ab991e017ac1cb666bb5723ddf560cc6d1f91560a149eb4b8"
     },
     {
       "url": "/tags/cloudflare-turnstile/",
@@ -14525,12 +14279,6 @@
       "kind": "page",
       "bytes": 35919,
       "sha256": "b4c9396c1d41df9c91b2f0ce225cd10c9c15b44288aefe0b2276e42fcd1bfc04"
-    },
-    {
-      "url": "/tags/codex/",
-      "kind": "page",
-      "bytes": 32167,
-      "sha256": "788c8dd3526ea12ea4dd6c0d171d0cf0cb3a21da5f6aa42f463e5ed3adc27321"
     },
     {
       "url": "/tags/cursor/",
@@ -14781,20 +14529,14 @@
     {
       "url": "/tags/mcp/",
       "kind": "page",
-      "bytes": 39080,
-      "sha256": "ff9a72214d9b9733cdbe0920cfd9d976f25b0a3856aa576fea4094683423b950"
+      "bytes": 37337,
+      "sha256": "0a9c9e92c222314c7108a3e09ae7c5041226c8adde1ecdeed8d7b9195fdcf44d"
     },
     {
       "url": "/tags/measurement-skill/",
       "kind": "page",
       "bytes": 34363,
       "sha256": "5eb30c5b357e5c457e20ceda7b9a85fe032264923668dd22d6fa97ab0cdcca99"
-    },
-    {
-      "url": "/tags/meta-ads/",
-      "kind": "page",
-      "bytes": 32060,
-      "sha256": "5cca1c411ac5b59520eaa05329b970076d61a2a0fe8a64e2186321c10c1c5dfb"
     },
     {
       "url": "/tags/n8n-教學/",
@@ -14889,8 +14631,8 @@
     {
       "url": "/tags/openai/",
       "kind": "page",
-      "bytes": 34012,
-      "sha256": "a20e42d074a70e57817c281f47ed29091c01351b918e17b31053ef63e7d33cf1"
+      "bytes": 32084,
+      "sha256": "6c780cc101b4e6f7922b908e4c19d16d21893b13391d1cf0c0bd48a12f4b4af6"
     },
     {
       "url": "/tags/postiz/",
@@ -15009,8 +14751,8 @@
     {
       "url": "/the_martech_handbook/",
       "kind": "page",
-      "bytes": 75368,
-      "sha256": "6c1f592054114272142116906ce541718fa5f39cc6d4fdaba4c731aee5f29685"
+      "bytes": 75100,
+      "sha256": "8e812adad524c28ce69a5e777d2c7a877731c3c1cbe80423a379f0dc9acf2152"
     },
     {
       "url": "/the_martech_handbook/index.md",
@@ -15051,8 +14793,8 @@
     {
       "url": "/tool-compressx/",
       "kind": "page",
-      "bytes": 72902,
-      "sha256": "85b4d997c47bd8fd2028296117435bcc0e6422a0dc28fd90871c5ce09bbc389a"
+      "bytes": 72634,
+      "sha256": "6743abbf5b8e7b2c091f921422490c996a23f57ebb4bce6f3ddcece8031534a3"
     },
     {
       "url": "/tool-compressx/compressx_monitor_setting.png",
@@ -15099,8 +14841,8 @@
     {
       "url": "/tool-google-tag-manager-list-information/",
       "kind": "page",
-      "bytes": 83822,
-      "sha256": "b47b6019efb2b4a539d858586a9251952cebc4b8bfdd988371ed88104fdcd229"
+      "bytes": 83554,
+      "sha256": "3cc1bdca5458ee92b1e632b508bf5fcb23ac091c9af6c71104dc199989cc91d6"
     },
     {
       "url": "/tool-google-tag-manager-list-information/background_image_gtm_tool_preview-1080.webp",
@@ -15165,8 +14907,8 @@
     {
       "url": "/tool-remove-ga3-setting-in-gtm-tagsbuster/",
       "kind": "page",
-      "bytes": 77147,
-      "sha256": "4da1cb3bc2b62528d556bd8d0d8f299e482cf47ea8667a3fe387a492283bcb31"
+      "bytes": 76879,
+      "sha256": "00842421ef8c8bcbdc62c6cc4412f0efc9552b852555efaef5d4ec5fd37a4a0f"
     },
     {
       "url": "/tool-remove-ga3-setting-in-gtm-tagsbuster/ga3_am_i_doing_a_good_job.jpeg",
@@ -16065,8 +15807,8 @@
     {
       "url": "/unboxing-busytag/",
       "kind": "page",
-      "bytes": 78988,
-      "sha256": "a7db8cf84891edffdcee7ed6d92179e9a982c58b9d08ccd6523a48c4a64bb6e2"
+      "bytes": 78720,
+      "sha256": "390b7b73415b5aeb10566662a222658bb24becd3b231822353762f813a0c2c85"
     },
     {
       "url": "/unboxing-busytag/busytag_bg-800.webp",
@@ -16155,8 +15897,8 @@
     {
       "url": "/visual-studio-install-and-why/",
       "kind": "page",
-      "bytes": 78055,
-      "sha256": "60329946092779a9fc87e0d7bb199d9400601c5cb48b85143ed14568ff2d1f81"
+      "bytes": 77787,
+      "sha256": "073c1d655f5e8a0499df6213a9c6ae32328d186fae3a65793700ef1d78d9a420"
     },
     {
       "url": "/visual-studio-install-and-why/google_trend.png",

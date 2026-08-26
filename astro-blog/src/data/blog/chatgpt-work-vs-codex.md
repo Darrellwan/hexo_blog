@@ -15,6 +15,7 @@ id: chatgpt-work-vs-codex
 slug: chatgpt-work-vs-codex
 bgImage: chatgpt-work-sidebar.png
 ogImage: chatgpt-work-sidebar.png
+draft: true
 ---
 
 {% darrellImageCover chatgpt-work-vs-codex-cover chatgpt-work-sidebar.png max-800 %}
