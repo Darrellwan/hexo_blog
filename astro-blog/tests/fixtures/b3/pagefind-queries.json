@@ -1,0 +1,189 @@
+{
+  "generatedAt": "2026-08-26",
+  "purpose": "Build-time Pagefind acceptance for the Astro standalone blog.",
+  "intentionalDifference": "Pagefind intentionally does not copy the legacy search-ranking.js date/weight/pinned algorithm. The gates below check useful top-three relevance and explicit entry-page availability instead of requiring legacy ranking parity.",
+  "queries": [
+    {
+      "query": "n8n 憑證",
+      "top3Rule": "The S3/R2 credentials article must appear in the first three results; every result must be a blog or approved entry page, including the HTTPS certificate webhook article.",
+      "expectedAnyTop3": ["/n8n-node-s3-with-cloudflare-r2/"],
+      "acceptableTop3": [
+        "/n8n-node-s3-with-cloudflare-r2/",
+        "/n8n-tutorial-resources/",
+        "/google-app-script-test-webhook/"
+      ]
+    },
+    {
+      "query": "n8n credentials",
+      "top3Rule": "At least one n8n credentials article must appear in the first three results.",
+      "expectedAnyTop3": [
+        "/n8n-with-slack/",
+        "/n8n-elevenlabs-tts/",
+        "/n8n-node-s3-with-cloudflare-r2/"
+      ],
+      "acceptableTop3": [
+        "/n8n-with-slack/",
+        "/n8n-elevenlabs-tts/",
+        "/n8n-node-s3-with-cloudflare-r2/"
+      ]
+    },
+    {
+      "query": "DataTables",
+      "top3Rule": "The DataTables article must be in the first three results.",
+      "expectedAnyTop3": ["/n8n-datatables-node/"],
+      "acceptableTop3": [
+        "/n8n-datatables-node/",
+        "/tools/n8n_template/models.html",
+        "/n8n-tutorial-resources/"
+      ]
+    },
+    {
+      "query": "webhook",
+      "top3Rule": "A webhook article must be in the first three results, with no retired or non-template tool page.",
+      "expectedAnyTop3": ["/n8n-line-message-api/"],
+      "acceptableTop3": [
+        "/n8n-line-message-api/",
+        "/tools/n8n_template/models.html",
+        "/send-push-to-me/"
+      ]
+    },
+    {
+      "query": "Google Analytics 4",
+      "top3Rule": "A Google Analytics 4 Data API article must be in the first three results.",
+      "expectedAnyTop3": [
+        "/google-analytics-data-api-filter-in-google-app-script/"
+      ],
+      "acceptableTop3": [
+        "/google-analytics-data-api-filter-in-google-app-script/",
+        "/ga4-parameter-name-value-limit/",
+        "/ga4-data-thresholds/"
+      ]
+    },
+    {
+      "query": "GTM DataLayer",
+      "top3Rule": "A GTM/DataLayer performance article must be in the first three results.",
+      "expectedAnyTop3": [
+        "/google-tag-manager-advanced-skill-using-ga4-track-website-performance/"
+      ],
+      "acceptableTop3": [
+        "/google-tag-manager-advanced-skill-using-ga4-track-website-performance/",
+        "/ga4-item-name-show-zero-purchase/",
+        "/gtm-ga4-new-feature-use-ecommerce-datalayer/"
+      ]
+    },
+    {
+      "query": "Claude Code",
+      "top3Rule": "At least one Claude Code article must be in the first three results.",
+      "expectedAnyTop3": [
+        "/rclone-cloud-sync-backup/",
+        "/claude_code_update_202509/",
+        "/claude-code-new-command-line-tool/"
+      ],
+      "acceptableTop3": [
+        "/rclone-cloud-sync-backup/",
+        "/claude_code_update_202509/",
+        "/claude-code-new-command-line-tool/"
+      ]
+    },
+    {
+      "query": "n8n 模板",
+      "top3Rule": "The approved template entry page must be in the first three results.",
+      "expectedAnyTop3": ["/tools/n8n_template/models.html"],
+      "acceptableTop3": [
+        "/n8n-security-vulnerability-2025/",
+        "/tools/n8n_template/models.html",
+        "/n8n-tutorial-resources/"
+      ]
+    },
+    {
+      "query": "n8n 教學",
+      "top3Rule": "The n8n tutorial-resources entry page must be in the first three results.",
+      "expectedAnyTop3": ["/n8n-tutorial-resources/"],
+      "acceptableTop3": [
+        "/n8n-security-vulnerability-2025/",
+        "/tools/n8n_template/models.html",
+        "/n8n-tutorial-resources/"
+      ]
+    },
+    {
+      "query": "n8n 顧問",
+      "top3Rule": "The n8n expert entry page must be in the first three results.",
+      "expectedAnyTop3": ["/n8n-expert/"],
+      "acceptableTop3": [
+        "/n8n-expert/",
+        "/the_martech_handbook/",
+        "/tools/n8n_template/models.html"
+      ]
+    },
+    {
+      "query": "Google Tag Manager",
+      "top3Rule": "A GTM article must be in the first three results.",
+      "expectedAnyTop3": ["/gtm-size-limit/", "/how-to-ask-google-tag-manager-question/"],
+      "acceptableTop3": [
+        "/tool-remove-ga3-setting-in-gtm-tagsbuster/",
+        "/gtm-size-limit/",
+        "/how-to-ask-google-tag-manager-question/"
+      ]
+    },
+    {
+      "query": "Slack 節點",
+      "top3Rule": "The approved template entry page must be in the first three results.",
+      "expectedAnyTop3": ["/tools/n8n_template/models.html"],
+      "acceptableTop3": [
+        "/tools/n8n_template/models.html",
+        "/n8n-tutorial-resources/",
+        "/n8n-update-log/"
+      ]
+    },
+    {
+      "query": "n8n 部署",
+      "top3Rule": "The n8n deployment article must be in the first three results.",
+      "expectedAnyTop3": ["/n8n-deployment/"],
+      "acceptableTop3": [
+        "/n8n-security-vulnerability-2025/",
+        "/n8n-deployment/",
+        "/n8n-tutorial-resources/"
+      ]
+    },
+    {
+      "query": "S3 Cloudflare R2",
+      "top3Rule": "The S3/R2 article must be the first result or appear in the first three.",
+      "expectedAnyTop3": ["/n8n-node-s3-with-cloudflare-r2/"],
+      "acceptableTop3": [
+        "/n8n-node-s3-with-cloudflare-r2/",
+        "/rclone-cloud-sync-backup/",
+        "/n8n-tutorial-resources/"
+      ]
+    },
+    {
+      "query": "LINE API",
+      "top3Rule": "A LINE workflow article must be in the first three results.",
+      "expectedAnyTop3": ["/n8n-line-split-expense-workflow/"],
+      "acceptableTop3": [
+        "/tools/n8n_template/models.html",
+        "/n8n-tutorial-resources/",
+        "/n8n-line-split-expense-workflow/"
+      ]
+    },
+    {
+      "query": "GA4 事件",
+      "top3Rule": "All three results must be GA4 event or event-implementation resources.",
+      "expectedAnyTop3": ["/ga4-parameter-name-value-limit/"],
+      "acceptableTop3": [
+        "/stackoverflow-gtm-rewrite-items-in-datalayer/",
+        "/ga4-parameter-name-value-limit/",
+        "/google-tag-manager-ga4-configuration-fieldtoset/"
+      ]
+    },
+    {
+      "query": "Gmail 節點",
+      "top3Rule": "All three results must be Gmail or n8n automation resources, including the approved template entry page.",
+      "expectedAnyTop3": ["/n8n-gmail-node/"],
+      "acceptableTop3": [
+        "/tools/n8n_template/models.html",
+        "/google-app-script-gmail-nice-email-template/",
+        "/n8n-gmail-node/"
+      ]
+    }
+  ]
+}

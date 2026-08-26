@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-08-26",
+  "rootSitemapFiles": [
+    "sitemap.xml"
+  ],
+  "urlset": true,
+  "sitemapIndex": false,
+  "locCount": 237,
+  "urlCount": 237,
+  "uniqueLocCount": 237,
+  "invalidLocs": [],
+  "forbiddenLocs": [],
+  "localRSSGuidCount": 120,
+  "missingRSSGUIDPaths": [],
+  "requiredEntryPaths": [
+    "/n8n-tutorial-resources/",
+    "/n8n-expert/",
+    "/tools/n8n_template/models.html"
+  ],
+  "missingRequiredEntryPaths": [],
+  "forbiddenIndexReferences": [],
+  "passed": true
+}
