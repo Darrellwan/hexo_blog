@@ -13,7 +13,7 @@ import * as cheerio from "cheerio";
 
 // Paths resolve from this script, so the tool validates whichever checkout it runs in
 // (git worktrees included). Override with env vars when comparing across checkouts.
-const ASTRO_ROOT = path.resolve(import.meta.dirname, "..");
+const ASTRO_ROOT = path.resolve(import.meta.dirname, "../..");
 const HEXO_PUBLIC = process.env.HEXO_PUBLIC ?? path.resolve(ASTRO_ROOT, "../public");
 const ASTRO_DIST = process.env.ASTRO_DIST ?? path.resolve(ASTRO_ROOT, "dist");
 // Article URLs are canonical at /{slug}/. Set this only for an explicitly

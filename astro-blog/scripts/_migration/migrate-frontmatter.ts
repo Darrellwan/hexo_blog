@@ -17,11 +17,11 @@ const __dirname = path.dirname(__filename);
 
 // ─── Paths ─────────────────────────────────────────────────────────────────
 const HEXO_POSTS_DIR =
-  process.env.HEXO_POSTS_DIR ?? path.resolve(__dirname, "../../source/_posts");
+  process.env.HEXO_POSTS_DIR ?? path.resolve(__dirname, "../../../source/_posts");
 const ASTRO_BLOG_DIR =
-  process.env.ASTRO_BLOG_DIR ?? path.resolve(__dirname, "../src/data/blog");
+  process.env.ASTRO_BLOG_DIR ?? path.resolve(__dirname, "../../src/data/blog");
 const HEXO_DATA_DIR =
-  process.env.HEXO_DATA_DIR ?? path.resolve(__dirname, "../../source/_data");
+  process.env.HEXO_DATA_DIR ?? path.resolve(__dirname, "../../../source/_data");
 const ASTRO_DATA_DIR =
   process.env.ASTRO_DATA_DIR ?? path.dirname(ASTRO_BLOG_DIR);
 const IMAGE_METADATA_FILES = [

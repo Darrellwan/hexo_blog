@@ -57,7 +57,7 @@ type ImageVariants = Record<string, { webp?: ImageVariant[] }>;
 function readImageVariants(): ImageVariants {
   if (!fs.existsSync(IMAGE_VARIANTS_PATH)) {
     throw new Error(
-      `Missing ${IMAGE_VARIANTS_PATH}. Run scripts/migrate-frontmatter.ts first.`
+      `Missing ${IMAGE_VARIANTS_PATH}. Run scripts/_migration/migrate-frontmatter.ts first.`
     );
   }
 
