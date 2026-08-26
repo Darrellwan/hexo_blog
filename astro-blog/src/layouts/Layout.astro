@@ -83,8 +83,7 @@ const getCandidatePath = (value: string | undefined) => {
 const currentPost = blogPosts.find(post => {
   const candidatePaths = [
     getCandidatePath(post.data.canonicalURL),
-    getCandidatePath(getPath(post.id, post.filePath, false)),
-    getCandidatePath(getPath(post.id, post.filePath, true)),
+    getCandidatePath(getPath(post.filePath)),
     getCandidatePath(`/${post.id}/`),
     getCandidatePath(post.data.slug ? `/${post.data.slug}/` : undefined),
   ];
