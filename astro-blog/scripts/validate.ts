@@ -16,7 +16,16 @@ import * as cheerio from "cheerio";
 const ASTRO_ROOT = path.resolve(import.meta.dirname, "..");
 const HEXO_PUBLIC = process.env.HEXO_PUBLIC ?? path.resolve(ASTRO_ROOT, "../public");
 const ASTRO_DIST = process.env.ASTRO_DIST ?? path.resolve(ASTRO_ROOT, "dist");
-const ASTRO_POSTS_PREFIX = "posts"; // Astro outputs under /posts/
+// Article URLs are canonical at /{slug}/. Set this only for an explicitly
+// selected fixture with a different, documented output prefix.
+const ASTRO_POSTS_PREFIX = process.env.ASTRO_POSTS_PREFIX ?? "";
+
+// These tags do not all produce CSS classes. Keep the names explicit so a
+// newly handled tag cannot silently fall outside validation coverage.
+const CUSTOM_TAGS_TO_CHECK: Record<string, string> = {
+  video: "Video tag",
+  raw: "Raw block",
+};
 
 // CSS classes to check (class name → display label)
 const CLASSES_TO_CHECK: Record<string, string> = {
@@ -29,6 +38,7 @@ const CLASSES_TO_CHECK: Record<string, string> = {
   "article-card": "Article card",
   "template-card": "Template card",
   "blog-images": "Blog image (figure)",
+  "dn-cta": "CTA card",
 };
 
 // ============================================
@@ -62,31 +72,27 @@ function hasAnyCustomClass(html: string): boolean {
   for (const cls of Object.keys(CLASSES_TO_CHECK)) {
     if (html.includes(cls)) return true;
   }
+  for (const tagName of Object.keys(CUSTOM_TAGS_TO_CHECK)) {
+    if (tagName === "video" && /<video\b/i.test(html)) return true;
+  }
   return false;
 }
 
-/** Try multiple slug variations to find Astro output */
+function findResidualHexoTags(html: string): string[] {
+  const residual = new Set<string>();
+  for (const match of html.matchAll(/\{%\s*([A-Za-z][A-Za-z0-9_-]*)/g)) {
+    residual.add(match[1]);
+  }
+  return [...residual].sort();
+}
+
+/** Find the one exact Astro output path for a canonical Hexo slug. */
 function findAstroHtml(slug: string): string | null {
-  // Astro may use different slug formats
-  const variations = [
-    slug,
-    slug.replace(/-/g, "_"),
-    slug.replace(/_/g, "-"),
-    slug.replace(/_/g, "-").toLowerCase(),
-  ];
-
-  for (const variant of variations) {
-    const p = path.join(ASTRO_DIST, ASTRO_POSTS_PREFIX, variant, "index.html");
-    if (fs.existsSync(p)) return p;
-  }
-
-  // Also check root level (non-post pages)
-  for (const variant of variations) {
-    const p = path.join(ASTRO_DIST, variant, "index.html");
-    if (fs.existsSync(p)) return p;
-  }
-
-  return null;
+  const relativeDir = ASTRO_POSTS_PREFIX
+    ? path.join(ASTRO_POSTS_PREFIX, slug)
+    : slug;
+  const exactPath = path.join(ASTRO_DIST, relativeDir, "index.html");
+  return fs.existsSync(exactPath) ? exactPath : null;
 }
 
 // ============================================
@@ -110,6 +116,7 @@ interface PostResult {
   imgAstro: number;
   imgStatus: "pass" | "warn" | "fail";
   hasCustomTags: boolean;
+  residualTags: string[];
 }
 
 function validatePost(slug: string): PostResult {
@@ -129,10 +136,12 @@ function validatePost(slug: string): PostResult {
       imgAstro: 0,
       imgStatus: "pass",
       hasCustomTags: hasCustom,
+      residualTags: [],
     };
   }
 
   const astroHtml = fs.readFileSync(astroPath, "utf-8");
+  const residualTags = findResidualHexoTags(astroHtml);
 
   // Compare classes
   const classes: ClassResult[] = [];
@@ -173,6 +182,7 @@ function validatePost(slug: string): PostResult {
     imgAstro,
     imgStatus,
     hasCustomTags: hasCustom,
+    residualTags,
   };
 }
 
@@ -191,6 +201,11 @@ function main() {
 
   const slugs = getPostSlugs(HEXO_PUBLIC);
   console.log(`\n📋 Found ${slugs.length} Hexo posts\n`);
+  console.log(
+    `📋 Custom tag coverage: ${Object.entries(CUSTOM_TAGS_TO_CHECK)
+      .map(([tag, label]) => `${tag} (${label})`)
+      .join(", ")}\n`
+  );
 
   // Build Astro slug index for quick lookup
   const astroPostSlugs = new Set<string>();
@@ -230,7 +245,10 @@ function main() {
       continue;
     }
 
-    const hasFail = result.classes.some(c => c.status === "fail") || result.imgStatus === "fail";
+    const hasFail =
+      result.classes.some(c => c.status === "fail") ||
+      result.imgStatus === "fail" ||
+      result.residualTags.length > 0;
     const hasWarn = result.classes.some(c => c.status === "warn") || result.imgStatus === "warn";
 
     if (hasFail) {
@@ -262,6 +280,9 @@ function main() {
       if (r.imgStatus !== "pass") {
         const icon = r.imgStatus === "fail" ? "❌" : "⚠️";
         console.log(`     ${icon} Images: Hexo=${r.imgHexo} Astro=${r.imgAstro}`);
+      }
+      if (r.residualTags.length > 0) {
+        console.log(`     ❌ Residual Hexo tags: ${r.residualTags.join(", ")}`);
       }
     }
     console.log();
@@ -309,8 +330,8 @@ function main() {
   console.log(`  📋 Total:    ${slugs.length}`);
   console.log();
 
-  if (totalFailed > 0) {
-    console.log("❌ Validation FAILED — see failures above");
+  if (totalFailed > 0 || totalMissing > 0) {
+    console.log("❌ Validation FAILED — see failures or missing posts above");
     process.exit(1);
   } else if (totalWarnings > 0) {
     console.log("⚠️  Validation passed with warnings");
