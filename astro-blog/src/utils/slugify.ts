@@ -1,23 +1,32 @@
-import kebabcase from "lodash.kebabcase";
-import slugify from "slugify";
-
 /**
- * Check if string contains non-Latin characters
+ * Reproduce the Hexo tag URL rule so migrated tag pages keep their live URLs.
+ *
+ * Hexo builds `/tags/<name>/` with hexo-util `slugize` and the default
+ * `filename_case: 0`, which preserves case and CJK. The character class and
+ * the collapse/trim order below match `hexo-util/dist/slugize.js` exactly.
+ *
+ *   "GA4 證照"        -> "GA4-證照"
+ *   "Antigravity 2.0" -> "Antigravity-2-0"
+ *   "AI"              -> "AI"
+ *
+ * Do not swap this for a generic slug library. `lodash.kebabcase` splits on
+ * the letter/digit boundary ("GA4" -> "ga-4") and `slugify` lowercases; both
+ * change URLs that search engines already index.
  */
-const hasNonLatin = (str: string): boolean => /[^\x00-\x7F]/.test(str);
+const CONTROL_CHARACTERS = /[\u0000-\u001f]/g;
+const SEPARATOR_CHARACTERS = /[\s~`!@#$%^&*()\-_+=[\]{}|\\;:"'<>,.?/]+/g;
+const COMBINING_MARKS = /[\u0300-\u036f]/g;
 
-/**
- * Slugify a string using a hybrid approach:
- * - For Latin-only strings: use slugify (eg: "E2E Testing" -> "e2e-testing", "TypeScript 5.0" -> "typescript-5.0")
- * - For strings with non-Latin characters: use lodash.kebabcase (preserves non-Latin chars)
- */
-export const slugifyStr = (str: string): string => {
-  if (hasNonLatin(str)) {
-    // Preserve non-Latin characters (e.g., Burmese, Chinese, etc.)
-    return kebabcase(str);
-  }
-  // Handle Latin strings with better number/acronym handling
-  return slugify(str, { lower: true });
-};
+export const slugifyStr = (str: string): string =>
+  str
+    // Strip Latin diacritics the way hexo-util's escapeDiacritic does. NFC
+    // recomposition keeps Hangul and other decomposable scripts intact.
+    .normalize("NFD")
+    .replace(COMBINING_MARKS, "")
+    .normalize("NFC")
+    .replace(CONTROL_CHARACTERS, "")
+    .replace(SEPARATOR_CHARACTERS, "-")
+    .replace(/-{2,}/g, "-")
+    .replace(/^-+|-+$/g, "");
 
 export const slugifyAll = (arr: string[]) => arr.map(str => slugifyStr(str));
