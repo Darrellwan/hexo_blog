@@ -16,7 +16,12 @@ const PUBLIC_DIR = path.resolve(import.meta.dirname, "../public");
 const LEGACY_PUBLIC_POSTS_DIR = path.join(PUBLIC_DIR, "posts");
 const MANIFEST_PATH = path.join(PUBLIC_DIR, ".astro-blog-article-assets.manifest");
 const LEGACY_MANIFEST_PATH = path.join(PUBLIC_DIR, ".astro-blog-article-assets.json");
-const HEXO_POSTS_DIR = "/Users/darrellwang/Darrell/code/blog/source/_posts";
+const HEXO_POSTS_DIR =
+  process.env.HEXO_POSTS_DIR ?? path.resolve(import.meta.dirname, "../../source/_posts");
+const IMAGE_VARIANTS_PATH = path.resolve(
+  import.meta.dirname,
+  "../src/data/image_variants.json"
+);
 
 // These are manually maintained independent pages/assets.  Article output
 // reconciliation must never claim or remove them.
@@ -33,6 +38,31 @@ type ArticleSource = {
   slug: string;
   assetDir: string;
 };
+
+type ImageVariant = {
+  width: number;
+  src: string;
+};
+
+type ImageVariants = Record<string, { webp?: ImageVariant[] }>;
+
+function readImageVariants(): ImageVariants {
+  if (!fs.existsSync(IMAGE_VARIANTS_PATH)) {
+    throw new Error(
+      `Missing ${IMAGE_VARIANTS_PATH}. Run scripts/migrate-frontmatter.ts first.`
+    );
+  }
+
+  const parsed: unknown = JSON.parse(
+    fs.readFileSync(IMAGE_VARIANTS_PATH, "utf-8")
+  );
+  if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+    throw new Error(`Image variants must be a top-level object: ${IMAGE_VARIANTS_PATH}`);
+  }
+  return parsed as ImageVariants;
+}
+
+const IMAGE_VARIANTS = readImageVariants();
 
 function toPosix(value: string): string {
   return value.split(path.sep).join("/");
@@ -190,22 +220,127 @@ function extractReferences(source: string): string[] {
   return references;
 }
 
+function parseImageTagReference(args: string): string {
+  const quoteMatch = args.match(/^["']([^"']+)["']\s+(.+)$/);
+  if (quoteMatch) {
+    return quoteMatch[2].trim().split(/\s+/)[0] || "";
+  }
+  return args.trim().split(/\s+/)[1] || "";
+}
+
+/** Extract only image tags whose Hexo renderer emits a responsive source. */
+function extractResponsiveImageReferences(source: string): string[] {
+  const references: string[] = [];
+  const responsiveTag =
+    /\{%\s*(?:darrellImageCover|darrellImage800Alt)\s+([\s\S]*?)\s*%\}/gi;
+
+  for (const match of source.matchAll(responsiveTag)) {
+    const reference = parseImageTagReference(match[1]);
+    if (reference) references.push(reference);
+  }
+  return references;
+}
+
+/** Match the same exact-path-first, unique-filename fallback as Hexo. */
+function variantsForReference(
+  imageReference: string,
+  article: ArticleSource
+): ImageVariant[] {
+  if (!imageReference || imageReference.startsWith("http")) return [];
+
+  const urlPath = imageReference.startsWith("/")
+    ? imageReference
+    : `/${toPosix(article.slug)}/${imageReference}`;
+  const imageName = imageReference.split("/").pop();
+  let key: string | null = `/_posts${urlPath}`;
+
+  if (!IMAGE_VARIANTS[key]) {
+    const matches = Object.keys(IMAGE_VARIANTS).filter(candidate =>
+      candidate.endsWith(`/${imageName}`)
+    );
+    key = matches.length === 1 ? matches[0] : null;
+  }
+
+  return (key ? IMAGE_VARIANTS[key]?.webp : undefined) ?? [];
+}
+
+function variantRelativePath(
+  originalRelativePath: string,
+  variantSource: string
+): string {
+  const relativePath = path.posix.normalize(
+    path.posix.join(path.posix.dirname(originalRelativePath), variantSource)
+  );
+  if (
+    !relativePath ||
+    relativePath === "." ||
+    path.posix.isAbsolute(relativePath) ||
+    relativePath.startsWith("../") ||
+    relativePath.split("/").includes("..")
+  ) {
+    throw new Error(`Unsafe image variant path: ${variantSource}`);
+  }
+  return relativePath;
+}
+
+function resolveVariantSource(
+  relativeVariant: string,
+  article: ArticleSource
+): string | null {
+  const sourceRoots = [
+    path.resolve(article.assetDir),
+    path.resolve(HEXO_POSTS_DIR, article.slug),
+  ];
+
+  for (const sourceRoot of sourceRoots) {
+    const candidate = path.resolve(sourceRoot, relativeVariant);
+    if (!candidate.startsWith(`${sourceRoot}${path.sep}`)) continue;
+    if (fs.existsSync(candidate) && fs.statSync(candidate).isFile()) {
+      return candidate;
+    }
+  }
+  return null;
+}
+
 function copyArticleAssets(article: ArticleSource): number {
   if (!fs.existsSync(article.assetDir)) return 0;
 
   const source = fs.readFileSync(article.markdownPath, "utf-8");
-  const relativeAssets = new Set<string>();
+  const assetsToCopy = new Map<string, string>();
   for (const reference of extractReferences(source)) {
     const relativeAsset = resolveLocalAsset(reference, article);
-    if (relativeAsset) relativeAssets.add(relativeAsset);
+    if (relativeAsset) {
+      assetsToCopy.set(
+        relativeAsset,
+        path.join(article.assetDir, relativeAsset)
+      );
+    }
   }
 
-  if (relativeAssets.size === 0) return 0;
+  for (const reference of extractResponsiveImageReferences(source)) {
+    const originalRelativePath = resolveLocalAsset(reference, article);
+    if (!originalRelativePath) continue;
+
+    for (const variant of variantsForReference(reference, article)) {
+      const relativeVariant = variantRelativePath(
+        originalRelativePath,
+        variant.src
+      );
+      const variantSource = resolveVariantSource(relativeVariant, article);
+      if (!variantSource) {
+        throw new Error(
+          `Missing declared image variant for ${article.slug}: ${relativeVariant}`
+        );
+      }
+      assetsToCopy.set(relativeVariant, variantSource);
+    }
+  }
+
+  if (assetsToCopy.size === 0) return 0;
 
   const destinationDir = path.join(PUBLIC_DIR, article.slug);
   let count = 0;
-  for (const relativeAsset of relativeAssets) {
-    const sourcePath = path.join(article.assetDir, relativeAsset);
+  for (const [relativeAsset, sourcePath] of assetsToCopy) {
     const destinationPath = path.join(destinationDir, relativeAsset);
     fs.mkdirSync(path.dirname(destinationPath), { recursive: true });
     fs.copyFileSync(sourcePath, destinationPath);

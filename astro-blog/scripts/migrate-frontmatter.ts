@@ -20,6 +20,14 @@ const HEXO_POSTS_DIR =
   process.env.HEXO_POSTS_DIR ?? path.resolve(__dirname, "../../source/_posts");
 const ASTRO_BLOG_DIR =
   process.env.ASTRO_BLOG_DIR ?? path.resolve(__dirname, "../src/data/blog");
+const HEXO_DATA_DIR =
+  process.env.HEXO_DATA_DIR ?? path.resolve(__dirname, "../../source/_data");
+const ASTRO_DATA_DIR =
+  process.env.ASTRO_DATA_DIR ?? path.dirname(ASTRO_BLOG_DIR);
+const IMAGE_METADATA_FILES = [
+  "image_dimensions.json",
+  "image_variants.json",
+] as const;
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
@@ -118,6 +126,27 @@ function copyDirRecursive(src: string, dest: string): number {
     }
   }
   return count;
+}
+
+/** Keep Astro's generated image metadata in sync with the Hexo authority. */
+function copyImageMetadata(): number {
+  fs.mkdirSync(ASTRO_DATA_DIR, { recursive: true });
+
+  for (const filename of IMAGE_METADATA_FILES) {
+    const sourcePath = path.join(HEXO_DATA_DIR, filename);
+    if (!fs.existsSync(sourcePath)) {
+      throw new Error(`Missing Hexo image metadata: ${sourcePath}`);
+    }
+
+    const parsed: unknown = JSON.parse(fs.readFileSync(sourcePath, "utf-8"));
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+      throw new Error(`Image metadata must be a top-level object: ${sourcePath}`);
+    }
+
+    fs.copyFileSync(sourcePath, path.join(ASTRO_DATA_DIR, filename));
+  }
+
+  return IMAGE_METADATA_FILES.length;
 }
 
 /** Resolve an extensionless Hexo bgImage to the real article-local asset. */
@@ -242,6 +271,10 @@ function main() {
   // Ensure destination exists
   fs.mkdirSync(ASTRO_BLOG_DIR, { recursive: true });
 
+  // Image dimensions prevent CLS, while variants drive responsive <picture>
+  // markup. Both files are generated Hexo data and must migrate as a pair.
+  const imageMetadataFilesCopied = copyImageMetadata();
+
   // ── Step 1: Collect test-*.md files to preserve ──
   const preserved = new Set<string>();
   for (const f of fs.readdirSync(ASTRO_BLOG_DIR)) {
@@ -308,6 +341,7 @@ function main() {
   console.log(`  Errors:           ${errorCount}`);
   console.log(`  Asset dirs copied: ${dirsCopied}`);
   console.log(`  Asset files copied: ${totalFilesCopied}`);
+  console.log(`  Image metadata files copied: ${imageMetadataFilesCopied}`);
 
   if (errors.length > 0) {
     console.log(`\nErrors:`);
