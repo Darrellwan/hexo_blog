@@ -40,14 +40,18 @@ const { Content } = await render(post);
 
 let ogImageUrl: string | undefined;
 
-// Determine OG image source (ogImage is always a plain string)
+// Resolve local OG images beside the article.  The migration keeps the
+// original filename in `ogImage`; it is not a root-level public asset.
 if (typeof initOgImage === "string") {
-  ogImageUrl = initOgImage;
+  const imagePath = initOgImage.replace(/^\.\//, "");
+  ogImageUrl = /^(?:https?:)?\/\//i.test(imagePath) || imagePath.startsWith("/")
+    ? imagePath
+    : `${getPath(post.filePath)}/${imagePath}`;
 }
 
 // Use dynamic OG image if enabled and no remote|local ogImage
 if (!ogImageUrl && SITE.dynamicOgImage) {
-  ogImageUrl = `${getPath(post.id, post.filePath)}/index.png`;
+  ogImageUrl = `${getPath(post.filePath)}/index.png`;
 }
 
 // Resolve OG image URL (or fallback to SITE.ogImage / default `og.png`)
@@ -182,7 +186,7 @@ const nextPost =
         {
           prevPost && (
             <a
-              href={getPath(prevPost.id, prevPost.filePath)}
+              href={getPath(prevPost.filePath)}
               class="flex w-full gap-1 hover:opacity-75"
             >
               <IconChevronLeft class="inline-block flex-none rtl:rotate-180" />
@@ -196,7 +200,7 @@ const nextPost =
         {
           nextPost && (
             <a
-              href={getPath(nextPost.id, nextPost.filePath)}
+              href={getPath(nextPost.filePath)}
               class="flex w-full justify-end gap-1 text-end hover:opacity-75 sm:col-start-2"
             >
               <div>

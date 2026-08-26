@@ -85,7 +85,7 @@ function formatDate(date: Date): string {
     <ul class="recent-posts">
       {recentPosts.map(post => (
         <li class="recent-post-item">
-          <a href={getPath(post.id, post.filePath)} class="recent-post-link">
+          <a href={getPath(post.filePath)} class="recent-post-link">
             <span class="recent-post-title">{post.data.title}</span>
             <time
               class="recent-post-date"
