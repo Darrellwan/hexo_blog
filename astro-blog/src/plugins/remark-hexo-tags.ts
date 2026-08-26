@@ -85,11 +85,70 @@ export function renderVideoSimple(
 ): string {
   if (!altText || !videoSrc) return "";
   const id = "video-" + Math.random().toString(36).substr(2, 9);
+  const safeSrc = escapeHtml(videoSrc);
   return `<div class="darrell-video-container" style="max-width: 800px; margin: 0 auto; position: relative; aspect-ratio: 16/9;">
-  <video id="${id}" controls width="100%" style="display: block; aspect-ratio: 16/9;" src="${videoSrc}">
+  <video id="${id}" controls width="100%" style="display: block; aspect-ratio: 16/9;" src="${safeSrc}">
     您的瀏覽器不支援影片播放。
   </video>
 </div>`;
+}
+
+const CTA_VARIANTS = new Set([
+  "editorial-line",
+  "signature-card",
+  "side-note",
+  "inline-link",
+  "service-bar",
+]);
+
+function isSafeCtaUrl(value: string): boolean {
+  // Keep the Hexo tag's relative/http(s) contract while refusing executable
+  // schemes and control characters in an HTML attribute.
+  return (
+    !/^(?:javascript|data|vbscript):/i.test(value.trim()) &&
+    !/[\u0000-\u001f\u007f]/.test(value)
+  );
+}
+
+/** Render the CTA card emitted by scripts/cta-card.js in the Hexo source. */
+export function renderCtaCard(
+  title: string,
+  url: string,
+  button: string = "立即預約",
+  variant: string = "",
+  label: string = "",
+  body: string = ""
+): string {
+  const normalizedTitle = title.trim();
+  const normalizedUrl = url.trim();
+  if (!normalizedTitle || !normalizedUrl || !isSafeCtaUrl(normalizedUrl)) {
+    return "";
+  }
+
+  const safeTitle = escapeHtml(normalizedTitle);
+  const safeUrl = escapeHtml(normalizedUrl);
+  const safeButton = escapeHtml(button.trim() || "立即預約");
+  const safeLabel = escapeHtml(label.trim());
+  const safeVariant = CTA_VARIANTS.has(variant) ? variant : "";
+  const bodyText = body.trim();
+  const renderedBody = bodyText
+    ? `<div class="dn-cta-text">${renderInlineMarkdown(escapeHtml(bodyText))}</div>`
+    : "";
+  const bodyMarkup = renderedBody
+    ? `<div class="dn-cta-body">${renderedBody}</div>`
+    : "";
+  const isExternal = /^https?:\/\//.test(normalizedUrl);
+  const linkAttrs = isExternal ? ' target="_blank" rel="noopener"' : "";
+  const variantClass = safeVariant ? ` dn-cta--${safeVariant}` : "";
+  const noBodyClass = bodyMarkup ? "" : " dn-cta--no-body";
+  const previewLabel = safeLabel
+    ? `<p class="dn-cta-preview-label">${safeLabel}</p>`
+    : "";
+
+  // Keep the generated fragment on one line. Markdown treats indented tags
+  // nested under an inline HTML element as a code block; a compact fragment
+  // guarantees that the CTA remains real HTML after remark parsing.
+  return `<div class="dn-cta-preview">${previewLabel}<aside class="dn-cta${variantClass}${noBodyClass}"><span class="dn-cta-mark" aria-hidden="true">D</span>${bodyMarkup}<div class="dn-cta-offer"><p class="dn-cta-title">${safeTitle}</p><a class="dn-cta-action" href="${safeUrl}"${linkAttrs}>${safeButton}<span class="dn-cta-arrow" aria-hidden="true">→</span></a></div></aside></div>`;
 }
 
 // ============================================
@@ -380,6 +439,25 @@ function parseAttr(argsStr: string, key: string): string {
   return "";
 }
 
+/** Parse Hexo's key=value arguments, including unquoted values with spaces. */
+function parseTagArg(argsStr: string, key: string): string {
+  const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const keyPattern = `(?:^|\\s)${escapedKey}\\s*=\\s*`;
+  const quotedMatch =
+    argsStr.match(new RegExp(`${keyPattern}"([^"]*)"`)) ||
+    argsStr.match(new RegExp(`${keyPattern}'([^']*)'`));
+  if (quotedMatch) return quotedMatch[1];
+
+  const keyMatch = new RegExp(keyPattern).exec(argsStr);
+  if (!keyMatch) return "";
+
+  const value = argsStr.slice(keyMatch.index + keyMatch[0].length);
+  const nextArgument = value.search(
+    /(?:^|\s+)[A-Za-z][A-Za-z0-9_-]*\s*=\s*/
+  );
+  return (nextArgument === -1 ? value : value.slice(0, nextArgument)).trim();
+}
+
 /** Parse {% tag "quoted arg" arg2 %} with quote support */
 function parseQuotedArgs(argsStr: string): { altText: string; imageSrc: string; className: string } {
   const quoteMatch = argsStr.match(/^["']([^"']+)["']\s+(.+)$/);
@@ -418,9 +496,15 @@ function processInlineTags(text: string, postSlug: string = ""): string | null {
 
   // Video tags
   const videoTagRe =
-    /\{%\s*(darrellVideoSimple|darrellVideoGradient|darrellVideoLightbox|darrellVideo)\s+(.*?)\s*%\}/g;
+    /\{%\s*(darrellVideoSimple|darrellVideoGradient|darrellVideoLightbox|darrellVideo|video)\s+(.*?)\s*%\}/g;
   result = result.replace(videoTagRe, (_, tagName, argsStr) => {
     hasMatch = true;
+    if (tagName === "video") {
+      const src = argsStr.trim();
+      return src
+        ? `<video src="${escapeHtml(src)}" preload="metadata" controls playsinline poster="">Sorry, your browser does not support the video tag.</video>`
+        : "";
+    }
     const parts = argsStr.trim().split(/\s+/);
     return renderVideoSimple(parts[0] || "", parts[1] || "", parts[2] || "max-800");
   });
@@ -457,6 +541,20 @@ function processInlineTagsInSource(text: string, postSlug: string = ""): string 
 /** Process block tags: {% tag %}...{% endtag %} spanning multiple lines */
 function processBlockTags(fullText: string): string {
   let result = fullText;
+
+  // CTA card: {% ctaCard title="..." url="..." ... %}...{% endctaCard %}
+  result = result.replace(
+    /\{%\s*ctaCard\s*(.*?)\s*%\}([\s\S]*?)\{%\s*endctaCard\s*%\}/g,
+    (_, argsStr, body) =>
+      renderCtaCard(
+        parseTagArg(argsStr, "title"),
+        parseTagArg(argsStr, "url"),
+        parseTagArg(argsStr, "button") || "立即預約",
+        parseTagArg(argsStr, "variant"),
+        parseTagArg(argsStr, "label"),
+        body
+      )
+  );
 
   // Callout: {% callout type %} ... {% endcallout %}
   result = result.replace(

@@ -17,6 +17,23 @@ const blog = defineCollection({
       draft: z.boolean().optional(),
       // Hexo `no_ads`: suppresses the in-article AdSense unit on a single post.
       no_ads: z.boolean().optional(),
+      // Preserved Hexo metadata; consumers can adopt these fields incrementally.
+      sticky: z.coerce.number().optional(),
+      ai_assistance: z.string().optional(),
+      include: z.array(z.string()).optional(),
+      preload: z.array(z.string()).optional(),
+      socialText: z.string().optional(),
+      "twitter-id": z.string().optional(),
+      comments: z.boolean().optional(),
+      cover: z.string().optional(),
+      coverImage: z.string().optional(),
+      darrell_structured_data: z
+        .object({
+          type: z.string().optional(),
+          question: z.array(z.string()).optional(),
+          answer: z.array(z.string()).optional(),
+        })
+        .optional(),
       tags: z.array(z.string()).default(["others"]),
       ogImage: z.string().optional(),
       description: z.string(),

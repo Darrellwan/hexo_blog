@@ -10,113 +10,65 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { parse as parseYaml, stringify as stringifyYaml } from "yaml";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // ─── Paths ─────────────────────────────────────────────────────────────────
-const HEXO_POSTS_DIR = "/Users/darrellwang/Darrell/code/blog/source/_posts";
-const ASTRO_BLOG_DIR = path.resolve(__dirname, "../src/data/blog");
+const HEXO_POSTS_DIR =
+  process.env.HEXO_POSTS_DIR ?? path.resolve(__dirname, "../../source/_posts");
+const ASTRO_BLOG_DIR =
+  process.env.ASTRO_BLOG_DIR ?? path.resolve(__dirname, "../src/data/blog");
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
 /**
- * Very simple YAML front matter parser that handles:
- * - key: value (scalar)
- * - key: "quoted value"
- * - Sequence items under a key (indented - item)
- * - Inline sequences: [a, b, c]
- * - Trailing whitespace on values
- *
- * We intentionally avoid pulling in js-yaml to keep this zero-dep
- * beyond Node builtins (tsx handles TS compilation).
+ * Parse the complete YAML front matter block, including nested objects and
+ * arrays such as darrell_structured_data. The yaml package is already a
+ * transitive dependency of Astro, so migration does not add an install step.
  */
 function parseFrontMatter(raw: string): {
   data: Record<string, unknown>;
   content: string;
 } {
   // Split off the front matter block
-  const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
+  const match = raw.match(
+    /^---[ \t]*\r?\n([\s\S]*?)\r?\n---[ \t]*(?:\r?\n|$)([\s\S]*)$/
+  );
   if (!match) {
     return { data: {}, content: raw };
   }
 
-  const yamlBlock = match[1];
-  const content = match[2];
-  const data: Record<string, unknown> = {};
-
-  const lines = yamlBlock.split(/\r?\n/);
-  let i = 0;
-
-  while (i < lines.length) {
-    const line = lines[i];
-
-    // Skip empty lines and comments
-    if (!line.trim() || line.trim().startsWith("#")) {
-      i++;
-      continue;
-    }
-
-    // Top-level key
-    const keyMatch = line.match(/^(\w[\w-]*):\s*(.*)/);
-    if (!keyMatch) {
-      i++;
-      continue;
-    }
-
-    const key = keyMatch[1];
-    let valueRaw = keyMatch[2].trim();
-
-    // Check if next lines are sequence items (YAML list)
-    const nextLineIsSequence =
-      i + 1 < lines.length && /^\s+-\s/.test(lines[i + 1]);
-
-    if (valueRaw === "" && nextLineIsSequence) {
-      // Collect sequence items
-      const items: string[] = [];
-      i++;
-      while (i < lines.length && /^\s+-\s/.test(lines[i])) {
-        const itemMatch = lines[i].match(/^\s+-\s+(.*)/);
-        if (itemMatch) {
-          items.push(stripQuotes(itemMatch[1].trim()));
-        }
-        i++;
-      }
-      data[key] = items;
-      continue;
-    }
-
-    // Inline array: [a, b, c]
-    if (valueRaw.startsWith("[") && valueRaw.endsWith("]")) {
-      const inner = valueRaw.slice(1, -1);
-      data[key] = inner
-        .split(",")
-        .map(s => stripQuotes(s.trim()))
-        .filter(Boolean);
-      i++;
-      continue;
-    }
-
-    // Scalar value
-    if (valueRaw !== "") {
-      data[key] = stripQuotes(valueRaw);
-    }
-    // valueRaw empty + no sequence → treat as null / skip
-    i++;
+  // Several legacy posts use a tab for list indentation. YAML 1.2 rejects
+  // tabs in indentation, so normalize only the front matter block before
+  // parsing; the markdown body remains byte-for-byte unchanged.
+  const parsed = parseYaml(match[1].replace(/\t/g, "  "), {
+    intAsBigInt: true,
+  });
+  if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+    throw new Error("Front matter must contain a top-level YAML object");
   }
 
-  return { data, content };
+  return {
+    data: normalizeYamlValue(parsed) as Record<string, unknown>,
+    content: match[2],
+  };
 }
 
-function stripQuotes(s: string): string {
-  // Remove surrounding single or double quotes
-  if (
-    (s.startsWith('"') && s.endsWith('"')) ||
-    (s.startsWith("'") && s.endsWith("'"))
-  ) {
-    return s.slice(1, -1);
+/** Keep large YAML integers exact instead of silently rounding them in JS. */
+function normalizeYamlValue(value: unknown): unknown {
+  if (typeof value === "bigint") {
+    const numberValue = Number(value);
+    return Number.isSafeInteger(numberValue) ? numberValue : value.toString();
   }
-  return s;
+  if (Array.isArray(value)) return value.map(normalizeYamlValue);
+  if (value && typeof value === "object") {
+    return Object.fromEntries(
+      Object.entries(value).map(([key, nested]) => [key, normalizeYamlValue(nested)])
+    );
+  }
+  return value;
 }
 
 /**
@@ -145,34 +97,9 @@ function toISO8601Taiwan(dateStr: string): string {
   return trimmed;
 }
 
-/** Serialize a value as YAML (simple scalar / array). */
-function toYamlValue(val: unknown): string {
-  if (Array.isArray(val)) {
-    if (val.length === 0) return "[]";
-    return "\n" + val.map(v => `  - ${yamlScalar(String(v))}`).join("\n");
-  }
-  return yamlScalar(String(val));
-}
-
-/** Quote a scalar if it contains special characters. */
-function yamlScalar(s: string): string {
-  // If it contains chars that break YAML, wrap in double quotes
-  if (/[:#{}\[\],&*?|<>=!%@`]/.test(s) || s.includes("\n") || s.trim() !== s) {
-    // Escape inner double quotes
-    return `"${s.replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"`;
-  }
-  return s;
-}
-
 /** Build new front matter string from an object. */
 function buildFrontMatter(fields: Record<string, unknown>): string {
-  const lines = ["---"];
-  for (const [key, val] of Object.entries(fields)) {
-    if (val === undefined || val === null || val === "") continue;
-    lines.push(`${key}: ${toYamlValue(val)}`);
-  }
-  lines.push("---");
-  return lines.join("\n") + "\n";
+  return `---\n${stringifyYaml(fields, { lineWidth: 0 }).trimEnd()}\n---\n`;
 }
 
 /** Recursively copy a directory. */
@@ -228,7 +155,7 @@ function migratePost(
   // ── Field mapping ──
   const astro: Record<string, unknown> = {};
 
-  // title – strip surrounding quotes
+  // title – the YAML parser already strips surrounding quotes
   if (hex.title) {
     astro.title = String(hex.title).trim();
   }
@@ -267,6 +194,27 @@ function migratePost(
       : [String(hex.categories)];
   }
 
+  // Preserve source metadata that still has value to Astro or its future
+  // consumers. The explicit field transforms above take precedence over
+  // their Hexo names; unknown fields are retained so a new source field
+  // cannot disappear silently during a migration rerun.
+  const transformedFields = new Set([
+    "title",
+    "date",
+    "updated",
+    "modified",
+    "description",
+    "tags",
+    "categories",
+    "bgImage",
+    "slug",
+  ]);
+  for (const [key, value] of Object.entries(hex)) {
+    if (!transformedFields.has(key) && value !== undefined) {
+      astro[key] = value;
+    }
+  }
+
   // Canonical slug comes from the Hexo markdown filename, not frontmatter
   // `id`.  Some legacy posts use underscores in `id` even though their
   // source filename (and public URL) uses hyphens.
@@ -275,11 +223,10 @@ function migratePost(
 
   // ogImage from bgImage
   if (hex.bgImage) {
-    astro.ogImage = resolveOgImageFilename(String(hex.bgImage), hexoFile);
+    const ogImage = resolveOgImageFilename(String(hex.bgImage), hexoFile);
+    astro.bgImage = String(hex.bgImage).trim();
+    astro.ogImage = ogImage;
   }
-
-  // page_type → omit
-  // preload → omit
 
   // ── Write output ──
   const destFile = path.join(destDir, filename);
