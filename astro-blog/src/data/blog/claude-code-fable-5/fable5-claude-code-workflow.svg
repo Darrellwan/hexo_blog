@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Claude Code Fable 5 工作流</title>
+  <desc id="desc">展示 Fable 5 在 Claude Code 中從目標到交接的任務流程。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#101216"/>
+      <stop offset="1" stop-color="#1f261f"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="14" markerHeight="14" refX="11" refY="7" orient="auto">
+      <path d="M 1 1 L 13 7 L 1 13 Z" fill="#f7c873"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="14" stdDeviation="14" flood-color="#000000" flood-opacity="0.25"/>
+    </filter>
+    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse">
+      <path d="M 44 0 L 0 0 0 44" fill="none" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <rect width="1600" height="1000" fill="url(#grid)"/>
+  <text x="92" y="104" fill="#f4efe6" font-size="54" font-weight="850" font-family="'Noto Sans TC', 'PingFang TC', sans-serif">Claude Code 裡的 Fable 5，不是一次丟完就結束</text>
+  <text x="94" y="153" fill="#a9b1bd" font-size="24" font-family="'Noto Sans TC', 'PingFang TC', sans-serif">把它當成長任務負責人：先定義完成狀態，再分階段執行，每一輪都用證據校正。</text>
+
+  <g transform="translate(95 255)">
+    <rect x="0" y="0" width="1410" height="408" rx="32" fill="#15191f" stroke="#343b45" stroke-width="2" filter="url(#shadow)"/>
+    <g font-family="'Noto Sans TC', 'PingFang TC', sans-serif">
+      <g transform="translate(50 84)">
+        <rect width="210" height="170" rx="24" fill="#25313d" stroke="#7dd3fc" stroke-opacity="0.5"/>
+        <text x="105" y="58" text-anchor="middle" fill="#7dd3fc" font-size="30" font-weight="900">Goal</text>
+        <text x="105" y="105" text-anchor="middle" fill="#e6edf3" font-size="22">完成長什麼樣</text>
+        <text x="105" y="140" text-anchor="middle" fill="#9fb0bf" font-size="19">範圍、禁區、驗收</text>
+      </g>
+      <path d="M 282 170 L 358 170" stroke="#f7c873" stroke-width="5" marker-end="url(#arrow)"/>
+
+      <g transform="translate(380 84)">
+        <rect width="210" height="170" rx="24" fill="#2d2a20" stroke="#f7c873" stroke-opacity="0.62"/>
+        <text x="105" y="58" text-anchor="middle" fill="#f7c873" font-size="30" font-weight="900">Plan</text>
+        <text x="105" y="105" text-anchor="middle" fill="#e6edf3" font-size="22">先讀再拆</text>
+        <text x="105" y="140" text-anchor="middle" fill="#b9ad96" font-size="19">風險、unknown、階段</text>
+      </g>
+      <path d="M 612 170 L 688 170" stroke="#f7c873" stroke-width="5" marker-end="url(#arrow)"/>
+
+      <g transform="translate(710 84)">
+        <rect width="210" height="170" rx="24" fill="#243227" stroke="#8bd7a2" stroke-opacity="0.56"/>
+        <text x="105" y="58" text-anchor="middle" fill="#8bd7a2" font-size="30" font-weight="900">Execute</text>
+        <text x="105" y="105" text-anchor="middle" fill="#e6edf3" font-size="22">分階段改</text>
+        <text x="105" y="140" text-anchor="middle" fill="#abcbb6" font-size="19">工具、檔案、subagent</text>
+      </g>
+      <path d="M 942 170 L 1018 170" stroke="#f7c873" stroke-width="5" marker-end="url(#arrow)"/>
+
+      <g transform="translate(1040 84)">
+        <rect width="210" height="170" rx="24" fill="#31232a" stroke="#f59ab4" stroke-opacity="0.55"/>
+        <text x="105" y="58" text-anchor="middle" fill="#f59ab4" font-size="30" font-weight="900">Verify</text>
+        <text x="105" y="105" text-anchor="middle" fill="#e6edf3" font-size="22">用證據驗</text>
+        <text x="105" y="140" text-anchor="middle" fill="#d5aebe" font-size="19">test、log、browser</text>
+      </g>
+      <path d="M 1145 272 C 1080 355 820 370 585 298" fill="none" stroke="#8bd7a2" stroke-width="4" stroke-dasharray="12 12" marker-end="url(#arrow)"/>
+      <text x="735" y="348" fill="#8bd7a2" font-size="23" font-weight="800">驗證失敗就回到執行，不要假裝完成</text>
+    </g>
+  </g>
+
+  <g transform="translate(175 730)" font-family="'Noto Sans TC', 'PingFang TC', sans-serif">
+    <rect x="0" y="0" width="1250" height="130" rx="26" fill="#231c12" stroke="#ffb454" stroke-opacity="0.55"/>
+    <text x="48" y="54" fill="#ffb454" font-size="30" font-weight="900">Handoff 是長任務的保險絲</text>
+    <text x="48" y="96" fill="#e7dcc8" font-size="23">每個階段結束都留下：改了什麼、怎麼驗、結果如何、還有哪些未知、下一步需不需要人確認。</text>
+  </g>
+</svg>
