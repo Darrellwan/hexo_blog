@@ -193,6 +193,24 @@ function copyDirRecursive(src: string, dest: string): number {
   return count;
 }
 
+/** Resolve an extensionless Hexo bgImage to the real article-local asset. */
+function resolveOgImageFilename(value: string, hexoFile: string): string {
+  const filename = value.trim();
+  if (path.extname(filename)) return filename;
+
+  const assetDir = path.join(
+    path.dirname(hexoFile),
+    path.basename(hexoFile, path.extname(hexoFile))
+  );
+  for (const extension of [".jpg", ".jpeg", ".png", ".webp", ".gif", ".avif"]) {
+    if (fs.existsSync(path.join(assetDir, `${filename}${extension}`))) {
+      return `${filename}${extension}`;
+    }
+  }
+
+  return filename;
+}
+
 // ─── Main ───────────────────────────────────────────────────────────────────
 
 function migratePost(
@@ -249,21 +267,21 @@ function migratePost(
       : [String(hex.categories)];
   }
 
-  // slug from id
-  if (hex.id) {
-    astro.slug = String(hex.id).trim();
-  }
+  // Canonical slug comes from the Hexo markdown filename, not frontmatter
+  // `id`.  Some legacy posts use underscores in `id` even though their
+  // source filename (and public URL) uses hyphens.
+  const filename = path.basename(hexoFile);
+  astro.slug = filename.replace(/\.md$/i, "");
 
   // ogImage from bgImage
   if (hex.bgImage) {
-    astro.ogImage = String(hex.bgImage).trim();
+    astro.ogImage = resolveOgImageFilename(String(hex.bgImage), hexoFile);
   }
 
   // page_type → omit
   // preload → omit
 
   // ── Write output ──
-  const filename = path.basename(hexoFile);
   const destFile = path.join(destDir, filename);
   const newContent = buildFrontMatter(astro) + content;
   fs.writeFileSync(destFile, newContent, "utf-8");

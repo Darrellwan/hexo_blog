@@ -10,12 +10,11 @@ type Props = {
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog", ({ data }) => !data.draft);
-  const postResult = posts.map(post => ({
-    params: { slug: getPath(post.id, post.filePath, false) },
+  return posts.map(post => ({
+    // Astro rest params are relative; getPath is the canonical public path.
+    params: { slug: getPath(post.filePath).replace(/^\//, "") },
     props: { post },
   }));
-
-  return postResult;
 }
 
 const { post } = Astro.props;

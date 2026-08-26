@@ -4,8 +4,8 @@ import { BLOG_PATH } from "@/content.config";
 /**
  * Extract cover image URL from post's darrellImageCover tag or bgImage frontmatter.
  *
- * Image files are served from /posts/{original-dir-name}/{filename}
- * (copied by copy-assets-to-public.ts from src/data/blog/{dir}/ to public/posts/{dir}/).
+ * Image files are served from /{original-dir-name}/{filename}
+ * (copied by copy-assets-to-public.ts from src/data/blog/{dir}/ to public/{dir}/).
  * We must use the original directory name, NOT the slugified post URL.
  */
 export function getCoverImage(
@@ -16,7 +16,7 @@ export function getCoverImage(
 
   // 1. Try bgImage from frontmatter
   if (post.data.bgImage) {
-    return `/posts/${dirName}/${post.data.bgImage}`;
+    return buildAssetUrl(dirName, post.data.bgImage);
   }
 
   // 2. Parse {% darrellImageCover altText filename.jpg ... %}
@@ -25,11 +25,19 @@ export function getCoverImage(
       /\{%\s*darrellImageCover\s+\S+\s+(\S+?)(?:\s+|%\})/
     );
     if (match?.[1]) {
-      return `/posts/${dirName}/${match[1]}`;
+      return buildAssetUrl(dirName, match[1]);
     }
   }
 
   return null;
+}
+
+function buildAssetUrl(dirName: string, filename: string): string {
+  const assetName = filename.replace(/^\.\//, "");
+  if (/^(?:https?:)?\/\//i.test(assetName) || assetName.startsWith("/")) {
+    return assetName;
+  }
+  return `/${dirName}/${assetName}`;
 }
 
 /**

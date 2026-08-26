@@ -54,12 +54,12 @@ export function renderImage(
   if (!altText || !imageSrc) return "";
 
   // For absolute URLs or already-absolute paths, use as-is.
-  // For relative image filenames, prefix with /posts/{slug}/ so they resolve correctly.
+  // For relative image filenames, prefix with /{slug}/ so they resolve correctly.
   let src: string;
   if (imageSrc.startsWith("http") || imageSrc.startsWith("/")) {
     src = imageSrc;
   } else if (postSlug) {
-    src = `/posts/${postSlug}/${imageSrc}`;
+    src = `/${postSlug}/${imageSrc.replace(/^\.\//, "")}`;
   } else {
     src = imageSrc;
   }
