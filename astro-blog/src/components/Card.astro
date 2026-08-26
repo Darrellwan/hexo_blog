@@ -12,7 +12,7 @@ type Props = {
 const { variant: Heading = "h2", id, data, filePath, body } = Astro.props;
 
 const { title, description, ...dateProps } = data;
-const href = getPath(id, filePath);
+const href = getPath(filePath);
 const coverImage = getCoverImage(Astro.props as CollectionEntry<"blog">);
 ---
 

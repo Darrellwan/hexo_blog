@@ -8,7 +8,7 @@ type Props = CollectionEntry<"blog">;
 
 const post = Astro.props;
 const { title, description, tags, ...dateProps } = post.data;
-const href = getPath(post.id, post.filePath);
+const href = getPath(post.filePath);
 const coverImage = getCoverImage(post);
 ---
 

@@ -1,36 +1,35 @@
 import { BLOG_PATH } from "@/content.config";
-import { slugifyStr } from "./slugify";
 
 /**
- * Get full path of a blog post
- * @param id - id of the blog post (aka slug)
- * @param filePath - the blog post full file location
- * @param includeBase - whether to include `/posts` in return value
- * @returns blog post path
+ * Get the canonical URL path of a blog post.
+ *
+ * The markdown filename is the source of truth for the URL.  Do not accept an
+ * `id` fallback: it can be derived from frontmatter and would reintroduce the
+ * legacy hyphen/underscore mismatch.
  */
-export function getPath(
-  id: string,
-  filePath: string | undefined,
-  includeBase = true
-) {
-  const pathSegments = filePath
-    ?.replace(BLOG_PATH, "")
-    .split("/")
-    .filter(path => path !== "") // remove empty string in the segments ["", "other-path"] <- empty string will be removed
-    .filter(path => !path.startsWith("_")) // exclude directories start with underscore "_"
-    .slice(0, -1) // remove the last segment_ file name_ since it's unnecessary
-    .map(segment => slugifyStr(segment)); // slugify each segment path
-
-  const basePath = includeBase ? "/posts" : "";
-
-  // Making sure `id` does not contain the directory
-  const blogId = id.split("/");
-  const slug = blogId.length > 0 ? blogId.slice(-1) : blogId;
-
-  // If not inside the sub-dir, simply return the file path
-  if (!pathSegments || pathSegments.length < 1) {
-    return [basePath, slug].join("/");
+export function getPath(filePath: string | undefined): string {
+  if (!filePath) {
+    throw new Error("Blog file path is required to derive its canonical URL.");
+  }
+  const normalizedFilePath = filePath.replace(/\\/g, "/");
+  const marker = `${BLOG_PATH}/`;
+  const markerIndex = normalizedFilePath.lastIndexOf(marker);
+  if (markerIndex < 0) {
+    throw new Error(`Blog file path must be inside ${BLOG_PATH}: ${filePath}`);
   }
 
-  return [basePath, ...pathSegments, slug].join("/");
+  const segments = normalizedFilePath
+    .slice(markerIndex + marker.length)
+    .replace(/\.md$/i, "")
+    .split("/")
+    .filter(segment => segment !== "" && !segment.startsWith("_"));
+
+  // Support the conventional nested `slug/index.md` shape while preserving
+  // every filename character, including legacy underscores.
+  if (segments.at(-1) === "index") segments.pop();
+  if (segments.length === 0) {
+    throw new Error(`Blog file path has no canonical slug: ${filePath}`);
+  }
+
+  return `/${segments.join("/")}`;
 }
