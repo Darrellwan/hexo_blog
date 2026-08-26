@@ -7,12 +7,30 @@
 import type { Plugin } from "unified";
 import type { Root, Paragraph, Text, Html } from "mdast";
 import { visit } from "unist-util-visit";
+import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { SITE } from "../config";
 import imageDimensionsJson from "../data/image_dimensions.json";
 import imageVariantsJson from "../data/image_variants.json";
+
+// ============================================
+// Stable element ids
+// ============================================
+
+/**
+ * Element ids must be derived from content, never from the clock.
+ *
+ * The Hexo originals used `Date.now()` and `Math.random()`, which made every
+ * build emit different ids. That broke two things: a rebuilt deployment could
+ * not be byte-compared against the artifact that was reviewed, and any link to
+ * a specific FAQ answer stopped resolving on the next deploy. `Date.now()` also
+ * collided across FAQ categories, because the per-category index restarts at 0
+ * while the timestamp stays the same within one build.
+ */
+const shortHash = (value: string): string =>
+  createHash("sha1").update(value).digest("hex").slice(0, 8);
 
 // ============================================
 // Slug derivation helper
@@ -291,7 +309,7 @@ export function renderVideoSimple(
   className: string = "max-800"
 ): string {
   if (!altText || !videoSrc) return "";
-  const id = "video-" + Math.random().toString(36).substr(2, 9);
+  const id = `video-${shortHash(videoSrc)}`;
   const safeSrc = escapeHtml(videoSrc);
   return `<div class="darrell-video-container" style="max-width: 800px; margin: 0 auto; position: relative; aspect-ratio: 16/9;">
   <video id="${id}" controls width="100%" style="display: block; aspect-ratio: 16/9;" src="${safeSrc}">
@@ -444,6 +462,7 @@ export function renderFaq(items: FaqItem[]): string {
   let html = '<div class="faq-container">\n';
 
   const hasCategories = items.some((item) => item.category);
+  let renderedCount = 0;
   if (hasCategories) {
     const grouped: Record<string, FaqItem[]> = {};
     items.forEach((item) => {
@@ -453,7 +472,8 @@ export function renderFaq(items: FaqItem[]): string {
     });
     Object.entries(grouped).forEach(([category, catItems]) => {
       html += `<div class="faq-category"><h3 class="faq-category-title">${category}</h3>\n`;
-      html += renderFaqItems(catItems);
+      html += renderFaqItems(catItems, renderedCount);
+      renderedCount += catItems.length;
       html += "</div>\n";
     });
   } else {
@@ -465,10 +485,11 @@ export function renderFaq(items: FaqItem[]): string {
   return html;
 }
 
-function renderFaqItems(items: FaqItem[]): string {
+/** `offset` keeps ids unique across categories, which each restart their index. */
+function renderFaqItems(items: FaqItem[], offset: number = 0): string {
   let html = "";
   items.forEach((item, i) => {
-    const id = `faq-${Date.now()}-${i}`;
+    const id = `faq-${shortHash(item.question)}-${offset + i}`;
     html += `<div class="faq-item">
   <div class="faq-question" data-faq-id="${id}">
     <span class="faq-icon">❓</span>
