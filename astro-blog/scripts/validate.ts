@@ -11,8 +11,11 @@ import * as cheerio from "cheerio";
 // Configuration
 // ============================================
 
-const HEXO_PUBLIC = "/Users/darrellwang/Darrell/code/blog/public";
-const ASTRO_DIST = "/Users/darrellwang/Darrell/code/blog/astro-blog/dist";
+// Paths resolve from this script, so the tool validates whichever checkout it runs in
+// (git worktrees included). Override with env vars when comparing across checkouts.
+const ASTRO_ROOT = path.resolve(import.meta.dirname, "..");
+const HEXO_PUBLIC = process.env.HEXO_PUBLIC ?? path.resolve(ASTRO_ROOT, "../public");
+const ASTRO_DIST = process.env.ASTRO_DIST ?? path.resolve(ASTRO_ROOT, "dist");
 const ASTRO_POSTS_PREFIX = "posts"; // Astro outputs under /posts/
 
 // CSS classes to check (class name → display label)
@@ -182,7 +185,7 @@ function main() {
   }
   if (!fs.existsSync(ASTRO_DIST)) {
     console.error(`❌ Astro dist/ not found: ${ASTRO_DIST}`);
-    console.error("   Run: cd /Users/darrellwang/Darrell/code/blog/astro-blog && npm run build");
+    console.error("   Run `npm run build` in this checkout, or set ASTRO_DIST");
     process.exit(1);
   }
 

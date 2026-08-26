@@ -3,7 +3,7 @@ Thumbs.db
 db.json
 *.log
 node_modules/
-public/
+/public/
 .deploy*/
 _multiconfig.yml
 .vscode/launch.json
@@ -79,3 +79,8 @@ GTM-*.json
 docs/
 # Antigravity agent files
 .agent/
+
+# Skill 模擬測試資料夾
+skill-seo-coach/
+.spectra/
+openspec/.vector-search.db*
