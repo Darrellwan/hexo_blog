@@ -1,0 +1,388 @@
+---
+import { getCollection } from "astro:content";
+import getSortedPosts from "@/utils/getSortedPosts";
+import { getPath } from "@/utils/getPath";
+import IconRss from "@/assets/icons/IconRss.svg";
+import IconBrandX from "@/assets/icons/IconBrandX.svg";
+import IconGitHub from "@/assets/icons/IconGitHub.svg";
+import IconLinkedin from "@/assets/icons/IconLinkedin.svg";
+import IconMail from "@/assets/icons/IconMail.svg";
+
+const allPosts = await getCollection("blog", ({ data }) => !data.draft);
+const sortedPosts = getSortedPosts(allPosts);
+
+// 最近 5 篇文章
+const recentPosts = sortedPosts.slice(0, 5);
+
+// 分類統計
+const categoryCounts: Record<string, number> = {};
+for (const post of allPosts) {
+  const cats = post.data.categories ?? [];
+  for (const cat of cats) {
+    categoryCounts[cat] = (categoryCounts[cat] ?? 0) + 1;
+  }
+}
+const categories = Object.entries(categoryCounts).sort((a, b) => b[1] - a[1]);
+
+// 格式化日期
+function formatDate(date: Date): string {
+  return date.toLocaleDateString("zh-TW", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+}
+---
+
+<aside class="sidebar" aria-label="Sidebar">
+
+  <!-- 1. 接案 CTA -->
+  <div class="sidebar-widget sidebar-cta">
+    <div class="cta-content">
+      <p class="cta-label">n8n 自動化顧問</p>
+      <h2 class="cta-title">需要 n8n<br />自動化？</h2>
+      <p class="cta-desc">已協助 15+ 個團隊導入 n8n 自動化，從流程設計到系統整合一手包辦。</p>
+      <a href="/n8n-expert/" class="cta-btn">
+        看看我能幫你做什麼
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- 2. Social Links (icon-only) -->
+  <div class="sidebar-widget">
+    <h3 class="widget-title">找到我</h3>
+    <div class="social-icons">
+      <a href="/rss.xml" class="social-icon social-rss" target="_blank" rel="noopener noreferrer" aria-label="RSS Feed" title="RSS Feed">
+        <IconRss />
+      </a>
+      <a href="https://x.com/darrell_tw_" class="social-icon social-x" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter" title="X / Twitter">
+        <IconBrandX />
+      </a>
+      <a href="https://github.com/Darrellwan/" class="social-icon social-github" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+        <IconGitHub />
+      </a>
+      <a href="https://www.linkedin.com/in/darrell-wang-78265a8b/" class="social-icon social-linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+        <IconLinkedin />
+      </a>
+      <a href="https://www.instagram.com/darrell_tw_/" class="social-icon social-instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a href="https://www.threads.net/@darrell_tw_" class="social-icon social-threads" target="_blank" rel="noopener noreferrer" aria-label="Threads" title="Threads">
+        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.96-.065-1.187.408-2.26 1.33-3.017.88-.723 2.08-1.12 3.476-1.152 1.007-.023 1.937.1 2.788.365a8.07 8.07 0 0 0-.025-.79c-.168-1.903-1.07-2.872-2.68-2.882-1.01.007-1.82.343-2.271.943l-1.767-1.078C9.57 5.378 10.97 4.702 12.85 4.69c1.32.009 2.387.345 3.171 1 .855.714 1.345 1.78 1.458 3.166.04.494.052.999.034 1.51.416.26.79.559 1.117.895 1.167 1.2 1.738 2.778 1.696 4.691-.046 2.167-1.002 3.967-2.844 5.348C15.903 22.496 14.23 23.064 12.186 24zM10.884 14.88c-.063 0-.127.002-.192.005-.838.032-1.49.264-1.89.672-.346.354-.514.778-.486 1.227.04.66.424 1.221 1.08 1.578.59.321 1.35.47 2.133.416 1.078-.058 1.907-.443 2.464-1.142.42-.527.726-1.254.912-2.17-.94-.385-2.006-.586-3.158-.586z"/></svg>
+      </a>
+      <a href="mailto:info@darrelltw.com" class="social-icon social-mail" aria-label="Email" title="Email">
+        <IconMail />
+      </a>
+    </div>
+  </div>
+
+  <!-- 3. 最近文章 -->
+  <div class="sidebar-widget">
+    <h3 class="widget-title">最近文章</h3>
+    <ul class="recent-posts">
+      {recentPosts.map(post => (
+        <li class="recent-post-item">
+          <a href={getPath(post.id, post.filePath)} class="recent-post-link">
+            <span class="recent-post-title">{post.data.title}</span>
+            <time
+              class="recent-post-date"
+              datetime={post.data.modDatetime?.toISOString() ?? post.data.pubDatetime.toISOString()}
+            >
+              {formatDate(post.data.modDatetime ?? post.data.pubDatetime)}
+            </time>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- 4. 分類列表 -->
+  {categories.length > 0 && (
+    <div class="sidebar-widget">
+      <h3 class="widget-title">文章分類</h3>
+      <ul class="category-list">
+        {categories.map(([cat, count]) => (
+          <li class="category-item">
+            <a href="javascript:void(0)" class="category-link">
+              <span class="category-name">{cat}</span>
+              <span class="category-count">{count}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
+
+  <!-- 5. AdSense 預留位 -->
+  <div class="sidebar-widget sidebar-ad-placeholder" aria-hidden="true">
+    <div class="ad-inner">
+      <span class="ad-label">廣告</span>
+    </div>
+  </div>
+
+</aside>
+
+<style>
+  /* ========================
+   * Sidebar 外框
+   * ======================== */
+  .sidebar {
+    width: 300px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  /* ========================
+   * 通用 Widget
+   * ======================== */
+  .sidebar-widget {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+
+  .widget-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    margin: 0 0 1rem 0;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  /* ========================
+   * CTA Widget
+   * ======================== */
+  .sidebar-cta {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: #fff;
+  }
+
+  .cta-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .cta-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.85;
+    margin: 0;
+  }
+
+  .cta-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1.25;
+    margin: 0;
+    color: #fff;
+  }
+
+  .cta-desc {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    opacity: 0.9;
+    margin: 0.25rem 0 0.5rem;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    align-self: flex-start;
+    background: #fff;
+    color: var(--color-accent);
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 0.55rem 1.1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .cta-btn:hover {
+    opacity: 0.9;
+    transform: translateX(2px);
+  }
+
+  /* ========================
+   * Social Icons (icon-only)
+   * ======================== */
+  .social-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 8px;
+    color: var(--color-text-secondary);
+    background: var(--color-muted);
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    text-decoration: none;
+  }
+
+  .social-icon:hover {
+    transform: translateY(-2px);
+  }
+
+  .social-icon svg,
+  .social-icon :global(svg) {
+    width: 1.1rem;
+    height: 1.1rem;
+    stroke: currentColor;
+    fill: none;
+  }
+
+  /* Fill-based icons */
+  .social-rss svg, .social-rss :global(svg) { fill: currentColor; stroke: none; }
+  .social-threads svg { fill: currentColor; stroke: none; }
+
+  .social-rss:hover { background: #f26522; color: #fff; }
+  .social-x:hover { background: #000; color: #fff; }
+  .social-github:hover { background: #333; color: #fff; }
+  .social-linkedin:hover { background: #0077b5; color: #fff; }
+  .social-instagram:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
+  .social-threads:hover { background: #000; color: #fff; }
+  .social-mail:hover { background: var(--color-accent); color: #fff; }
+
+  html[data-theme="dark"] .social-x:hover { background: #fff; color: #000; }
+  html[data-theme="dark"] .social-github:hover { background: #f0f0f0; color: #333; }
+  html[data-theme="dark"] .social-threads:hover { background: #fff; color: #000; }
+
+  /* ========================
+   * 最近文章
+   * ======================== */
+  .recent-posts {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .recent-post-item {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .recent-post-item:last-child {
+    border-bottom: none;
+  }
+
+  .recent-post-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.65rem 0;
+    text-decoration: none;
+    color: var(--color-foreground);
+    transition: color 0.2s ease;
+  }
+
+  .recent-post-link:hover {
+    color: var(--color-accent);
+  }
+
+  .recent-post-title {
+    font-size: 0.85rem;
+    font-weight: 500;
+    line-height: 1.45;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .recent-post-date {
+    font-size: 0.7rem;
+    color: var(--color-text-secondary);
+    font-family: "Roboto Mono", monospace;
+  }
+
+  /* ========================
+   * 分類列表
+   * ======================== */
+  .category-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .category-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.45rem 0.6rem;
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--color-foreground);
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .category-link:hover {
+    background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+    color: var(--color-accent);
+  }
+
+  .category-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  .category-count {
+    font-size: 0.72rem;
+    font-family: "Roboto Mono", monospace;
+    background: var(--color-muted);
+    color: var(--color-text-secondary);
+    padding: 0.1rem 0.45rem;
+    border-radius: 999px;
+    font-weight: 600;
+  }
+
+  /* ========================
+   * AdSense 預留位
+   * ======================== */
+  .sidebar-ad-placeholder {
+    padding: 0;
+    overflow: hidden;
+    min-height: 250px;
+    background: var(--color-muted);
+    border-style: dashed;
+  }
+
+  .ad-inner {
+    width: 100%;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ad-label {
+    font-size: 0.72rem;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+</style>
