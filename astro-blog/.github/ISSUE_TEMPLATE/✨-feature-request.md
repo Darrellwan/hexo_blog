@@ -1,6 +1,6 @@
 ---
 name: "✨ Feature Request"
-about: Suggest an idea for improving AstroPaper
+about: Suggest an idea for improving Darrell TW Blog
 title: "[Feature Request]: "
 labels: enhancement
 assignees: ""

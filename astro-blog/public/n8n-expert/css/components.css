@@ -1,0 +1,1200 @@
+/**
+ * n8n-expert Components Library
+ * 元件庫 - 可重複使用的 UI 元件
+ * 依賴 design-system.css 中定義的變數
+ */
+
+/* ============================================
+   Navigation - 導覽列
+   ============================================ */
+
+.nav-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-fixed);
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: all var(--transition-base) var(--ease-out);
+}
+
+.nav-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+}
+
+.nav-logo {
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color var(--transition-base) var(--ease-out);
+}
+
+.nav-logo:hover {
+  color: var(--n8n-primary);
+}
+
+.nav-logo .highlight {
+  color: var(--n8n-primary);
+}
+
+.nav-menu {
+  display: none;
+  gap: var(--space-8);
+}
+
+.nav-menu a {
+  color: var(--text-tertiary);
+  text-decoration: none;
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
+  transition: color var(--transition-base) var(--ease-out);
+}
+
+.nav-menu a:hover {
+  color: var(--text-primary);
+}
+
+@media (min-width: 768px) {
+  .nav-menu {
+    display: flex;
+  }
+}
+
+/* Mobile menu toggle */
+.mobile-menu-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: var(--text-xl);
+  cursor: pointer;
+  transition: all var(--transition-base) var(--ease-out);
+}
+
+.mobile-menu-toggle:hover {
+  color: var(--n8n-primary);
+  background: rgba(255, 109, 90, 0.1);
+  border-radius: var(--radius-md);
+}
+
+@media (min-width: 768px) {
+  .mobile-menu-toggle {
+    display: none;
+  }
+}
+
+/* Mobile menu panel */
+.mobile-menu {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  right: 0;
+  background: var(--bg-elevated-2);
+  border-bottom: 1px solid var(--border-default);
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: all var(--transition-medium) var(--ease-out);
+  z-index: calc(var(--z-fixed) - 1);
+  overflow: hidden;
+}
+
+.mobile-menu.open {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.mobile-menu a {
+  display: block;
+  padding: var(--space-4) var(--space-6);
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: var(--text-lg);
+  font-weight: var(--font-medium);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: all var(--transition-base) var(--ease-out);
+}
+
+.mobile-menu a:hover,
+.mobile-menu a:active {
+  background: rgba(255, 109, 90, 0.1);
+  color: var(--n8n-primary);
+  padding-left: var(--space-8);
+}
+
+/* ============================================
+   Button System - 按鈕系統
+   ============================================ */
+
+/* Base button styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  line-height: 1;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-base) var(--ease-out);
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.btn:focus {
+  outline: 2px solid var(--n8n-primary);
+  outline-offset: 2px;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Primary button - 主要 CTA */
+.btn-primary {
+  background: var(--gradient-primary);
+  color: white;
+  box-shadow: var(--shadow-md), var(--shadow-glow);
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg), var(--shadow-glow-lg);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Primary large (Hero CTA) */
+.btn-primary-large {
+  padding: var(--space-4) var(--space-8);
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+}
+
+/* Secondary button - 次要按鈕 */
+.btn-secondary {
+  background: transparent;
+  color: var(--text-primary);
+  border: 2px solid var(--border-default);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: var(--bg-elevated-2);
+  border-color: var(--n8n-primary);
+  transform: translateY(-2px);
+}
+
+/* Ghost button - 幽靈按鈕 */
+.btn-ghost {
+  background: transparent;
+  color: var(--text-tertiary);
+  border: none;
+}
+
+.btn-ghost:hover:not(:disabled) {
+  color: var(--n8n-primary);
+  background: rgba(255, 109, 90, 0.1);
+}
+
+/* Icon only button */
+.btn-icon {
+  padding: var(--space-3);
+  width: 44px;
+  height: 44px;
+}
+
+/* Button loading state */
+.btn.loading {
+  position: relative;
+  color: transparent;
+  pointer-events: none;
+}
+
+.btn.loading::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   Card System - 卡片系統
+   ============================================ */
+
+/* Base card */
+.card {
+  background: var(--bg-elevated-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  transition: all var(--transition-medium) var(--ease-out);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Service grid - 服務網格 */
+.service-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+}
+
+@media (min-width: 768px) {
+  .service-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Service card - 服務卡片 */
+.service-card {
+  background: var(--bg-elevated-2);
+  padding: var(--space-8);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-default);
+  transition: all var(--transition-medium) var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: var(--n8n-primary);
+  box-shadow:
+    var(--shadow-2xl),
+    0 0 0 1px rgba(255, 109, 90, 0.3),
+    0 0 60px rgba(255, 109, 90, 0.15);
+}
+
+.service-card .icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-2xl);
+  margin-bottom: var(--space-6);
+  transition: transform var(--transition-medium) var(--ease-out);
+}
+
+.service-card:hover .icon {
+  transform: scale(1.15) rotate(5deg);
+  filter: brightness(1.2);
+}
+
+.service-card .title {
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-4);
+}
+
+.service-card .description {
+  color: var(--text-tertiary);
+  margin-bottom: var(--space-6);
+  line-height: var(--leading-relaxed);
+}
+
+.service-card .features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.service-card .features li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-2);
+}
+
+.service-card .features li i {
+  color: var(--n8n-primary);
+  font-size: var(--text-sm);
+}
+
+/* Featured badge - 已移除熱門標籤 */
+
+/* Portfolio grid - 作品網格 */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+}
+
+@media (min-width: 768px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Portfolio card - 作品卡片 */
+.portfolio-card {
+  background: var(--bg-elevated-2);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--border-default);
+  transition: all var(--transition-medium) var(--ease-out);
+}
+
+.portfolio-card:hover {
+  box-shadow: var(--shadow-xl);
+  border-color: rgba(255, 109, 90, 0.3);
+}
+
+.portfolio-card .portfolio-image {
+  height: 192px;
+  overflow: hidden;
+  position: relative;
+}
+
+.portfolio-card .portfolio-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow) var(--ease-out);
+}
+
+.portfolio-card:hover .portfolio-image img {
+  transform: scale(1.1);
+  filter: brightness(1.1);
+}
+
+.portfolio-card .portfolio-content {
+  padding: var(--space-6);
+}
+
+.portfolio-card .portfolio-title {
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.portfolio-card .portfolio-description {
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+  margin-bottom: var(--space-4);
+  line-height: var(--leading-relaxed);
+}
+
+.portfolio-card .portfolio-stats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.portfolio-card .portfolio-stats .stat {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--text-sm);
+}
+
+.portfolio-card .portfolio-stats .stat-label {
+  color: var(--text-muted);
+}
+
+.portfolio-card .portfolio-stats .stat-value {
+  color: var(--accent-green);
+  font-weight: var(--font-semibold);
+}
+
+/* Testimonial card - 見證卡片 */
+.testimonial-card {
+  background: var(--bg-elevated-2);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  padding: var(--space-10);
+  position: relative;
+}
+
+.testimonial-card .quote-icon {
+  font-size: 120px;
+  line-height: 1;
+  color: rgba(255, 109, 90, 0.1);
+  position: absolute;
+  top: -20px;
+  left: var(--space-8);
+  font-family: Georgia, serif;
+}
+
+.testimonial-card .testimonial-text {
+  position: relative;
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-6);
+  font-style: italic;
+}
+
+.testimonial-card .testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.testimonial-card .testimonial-author img {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--border-default);
+}
+
+.testimonial-card .testimonial-author .info {
+  display: flex;
+  flex-direction: column;
+}
+
+.testimonial-card .testimonial-author .name {
+  font-weight: var(--font-semibold);
+  color: var(--text-primary);
+}
+
+.testimonial-card .testimonial-author .company {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.testimonial-card .testimonial-stats {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.testimonial-card .testimonial-stats .stat {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: rgba(52, 211, 153, 0.1);
+  border: 1px solid var(--accent-green);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--accent-green);
+}
+
+/* ============================================
+   Badge & Tag System - 標籤系統
+   ============================================ */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.badge-primary {
+  background: rgba(255, 109, 90, 0.1);
+  color: var(--n8n-primary);
+  border: 1px solid var(--n8n-primary);
+}
+
+.badge-blue {
+  background: rgba(96, 165, 250, 0.1);
+  color: var(--accent-blue);
+  border: 1px solid var(--accent-blue);
+}
+
+.badge-purple {
+  background: rgba(167, 139, 250, 0.1);
+  color: var(--accent-purple);
+  border: 1px solid var(--accent-purple);
+}
+
+.badge-green {
+  background: rgba(52, 211, 153, 0.1);
+  color: var(--accent-green);
+  border: 1px solid var(--accent-green);
+}
+
+/* Tech badge (for portfolio) */
+.tech-badge {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-xs);
+  border-radius: var(--radius-full);
+  background: var(--bg-elevated-3);
+  color: var(--text-tertiary);
+  border: 1px solid var(--border-default);
+  transition: all var(--transition-base) var(--ease-out);
+}
+
+.portfolio-card:hover .tech-badge {
+  background: rgba(255, 109, 90, 0.2);
+  border-color: var(--n8n-primary);
+  color: var(--n8n-primary);
+}
+
+/* ============================================
+   Form Components - 表單元件
+   ============================================ */
+
+/* Form group */
+.form-group {
+  margin-bottom: var(--space-6);
+}
+
+.form-label {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-2);
+}
+
+.form-label .required {
+  color: var(--accent-red);
+  margin-left: var(--space-1);
+}
+
+/* Form controls */
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--text-base);
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  background: var(--bg-elevated-3);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base) var(--ease-out);
+  outline: none;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: var(--n8n-primary);
+  box-shadow:
+    0 0 0 3px rgba(255, 109, 90, 0.1),
+    0 4px 12px rgba(255, 109, 90, 0.15);
+  transform: translateY(-1px);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: var(--leading-relaxed);
+}
+
+/* Form validation states */
+.form-input.error,
+.form-select.error,
+.form-textarea.error {
+  border-color: var(--accent-red);
+}
+
+.form-input.success,
+.form-select.success,
+.form-textarea.success {
+  border-color: var(--accent-green);
+}
+
+.form-error-message {
+  display: block;
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--accent-red);
+}
+
+.form-help-text {
+  display: block;
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+/* ============================================
+   Icon Containers - 圖示容器
+   ============================================ */
+
+.icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base) var(--ease-out);
+}
+
+.icon-wrapper.blue {
+  background: rgba(96, 165, 250, 0.1);
+  color: var(--accent-blue);
+}
+
+.icon-wrapper.purple {
+  background: rgba(167, 139, 250, 0.1);
+  color: var(--accent-purple);
+}
+
+.icon-wrapper.green {
+  background: rgba(52, 211, 153, 0.1);
+  color: var(--accent-green);
+}
+
+.icon-wrapper.orange {
+  background: rgba(255, 109, 90, 0.1);
+  color: var(--n8n-primary);
+}
+
+/* ============================================
+   Alert & Message Boxes - 提示訊息
+   ============================================ */
+
+.alert {
+  padding: var(--space-4) var(--space-6);
+  border-radius: var(--radius-lg);
+  border: 1px solid;
+  margin-bottom: var(--space-4);
+  display: flex;
+  align-items: start;
+  gap: var(--space-3);
+}
+
+.alert-success {
+  background: rgba(52, 211, 153, 0.1);
+  border-color: var(--accent-green);
+  color: var(--accent-green);
+}
+
+.alert-error {
+  background: rgba(248, 113, 113, 0.1);
+  border-color: var(--accent-red);
+  color: var(--accent-red);
+}
+
+.alert-warning {
+  background: rgba(250, 204, 21, 0.1);
+  border-color: var(--accent-yellow);
+  color: var(--accent-yellow);
+}
+
+.alert-info {
+  background: rgba(96, 165, 250, 0.1);
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+}
+
+.alert .icon {
+  font-size: var(--text-lg);
+  flex-shrink: 0;
+}
+
+.alert .content {
+  flex: 1;
+}
+
+.alert .title {
+  font-weight: var(--font-semibold);
+  margin-bottom: var(--space-1);
+}
+
+.alert .message {
+  font-size: var(--text-sm);
+  opacity: 0.9;
+}
+
+/* ============================================
+   Success State - 表單成功打勾動畫
+   ============================================ */
+
+.success-state {
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+}
+
+.success-icon-wrapper {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+}
+
+.success-checkmark {
+  width: 100%;
+  height: 100%;
+}
+
+/* 圓圈繪製動畫 */
+.success-circle {
+  stroke: #4ade80;
+  stroke-width: 2;
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  animation: circle-draw 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+@keyframes circle-draw {
+  100% { stroke-dashoffset: 0; }
+}
+
+/* 打勾繪製動畫 */
+.success-check {
+  stroke: #4ade80;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: check-draw 0.4s cubic-bezier(0.65, 0, 0.45, 1) 0.5s forwards;
+}
+
+@keyframes check-draw {
+  100% { stroke-dashoffset: 0; }
+}
+
+/* 標題淡入 */
+.success-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: success-fade-up 0.4s ease-out 0.8s forwards;
+}
+
+/* 訊息淡入 */
+.success-message {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  opacity: 0;
+  transform: translateY(10px);
+  animation: success-fade-up 0.4s ease-out 0.95s forwards;
+}
+
+@keyframes success-fade-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   Progress Indicators - 進度指示器
+   ============================================ */
+
+/* Progress bar */
+.progress {
+  width: 100%;
+  height: 8px;
+  background: var(--bg-elevated-3);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-full);
+  transition: width var(--transition-medium) var(--ease-out);
+}
+
+/* Reading progress (fixed top) */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-accent);
+  transform-origin: left;
+  z-index: var(--z-fixed);
+}
+
+/* Spinner */
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--bg-elevated-3);
+  border-top-color: var(--n8n-primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.spinner-sm {
+  width: 20px;
+  height: 20px;
+  border-width: 2px;
+}
+
+.spinner-lg {
+  width: 60px;
+  height: 60px;
+  border-width: 4px;
+}
+
+/* ============================================
+   Divider - 分隔線
+   ============================================ */
+
+.divider {
+  height: 1px;
+  background: var(--border-subtle);
+  margin: var(--space-8) 0;
+}
+
+.divider-gradient {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    var(--n8n-primary) 50%,
+    transparent 100%
+  );
+}
+
+/* ============================================
+   Timeline - 時間軸 (質感動畫版)
+   ============================================ */
+
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.5rem;
+  position: relative;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 3rem 0;
+  overflow: visible;
+}
+
+/* 節點基礎樣式 */
+.timeline-step {
+  position: relative;
+  z-index: 2;
+  background: var(--bg-elevated-2);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 109, 90, 0.15);
+  opacity: 0;
+  transform: translateY(24px);
+  filter: blur(4px);
+}
+
+/* 隱藏舊的 SVG 邊框 */
+.timeline-step .border-svg {
+  display: none;
+}
+
+/* 內容容器 */
+.timeline-step .step-content {
+  position: relative;
+  text-align: center;
+  padding: 1.75rem 1.25rem 1.5rem;
+  z-index: 1;
+}
+
+/* 卡片出現動畫 */
+@keyframes card-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.timeline-step.active {
+  animation: card-appear 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* 依序出現 */
+.timeline-step:nth-child(1).active { animation-delay: 0s; }
+.timeline-step:nth-child(2).active { animation-delay: 0.15s; }
+.timeline-step:nth-child(3).active { animation-delay: 0.3s; }
+.timeline-step:nth-child(4).active { animation-delay: 0.45s; }
+.timeline-step:nth-child(5).active { animation-delay: 0.6s; }
+
+/* 連接線 - 能量流動效果 */
+@media (min-width: 768px) {
+  .timeline-step::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    width: calc(1.5rem);
+    height: 2px;
+    background: linear-gradient(90deg, #ff6d5a 0%, rgba(255,109,90,0.2) 100%);
+    transform: translateY(-50%) scaleX(0);
+    transform-origin: left;
+    z-index: -1;
+  }
+
+  .timeline-step.active::after {
+    animation: energy-flow 0.5s ease-out forwards;
+  }
+
+  /* 最後一個節點不需要連接線 */
+  .timeline-step:nth-child(5)::after {
+    display: none;
+  }
+
+  /* 連接線依序延遲 */
+  .timeline-step:nth-child(1).active::after { animation-delay: 0.4s; }
+  .timeline-step:nth-child(2).active::after { animation-delay: 0.55s; }
+  .timeline-step:nth-child(3).active::after { animation-delay: 0.7s; }
+  .timeline-step:nth-child(4).active::after { animation-delay: 0.85s; }
+}
+
+@keyframes energy-flow {
+  0% {
+    transform: translateY(-50%) scaleX(0);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-50%) scaleX(1);
+    opacity: 1;
+  }
+}
+
+/* Hover 效果 */
+.timeline-step:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 109, 90, 0.4);
+  box-shadow: 0 12px 32px rgba(255, 109, 90, 0.15);
+  transition: all 0.3s ease;
+}
+
+/* 步驟數字 - 隱藏 */
+.timeline-step .step-number {
+  display: none;
+}
+
+/* Icon - 漸層圓形設計 */
+.timeline-step .step-icon {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1.25rem;
+  background: linear-gradient(145deg, rgba(255,109,90,0.12) 0%, rgba(255,109,90,0.04) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 內圈 */
+.timeline-step .step-icon::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,109,90,0.25);
+}
+
+.timeline-step .step-icon svg {
+  position: relative;
+  z-index: 1;
+  width: 28px;
+  height: 28px;
+  stroke: #ff6d5a;
+  stroke-width: 1.5;
+  fill: none;
+}
+
+/* Hover 微浮動 */
+@keyframes gentle-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+.timeline-step:hover .step-icon {
+  animation: gentle-float 2s ease-in-out infinite;
+}
+
+.timeline-step:hover .step-icon svg {
+  stroke: #ff8a7a;
+}
+
+/* 標題 */
+.timeline-step h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+/* 文字 */
+.timeline-step p {
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+/* Badge */
+.timeline-step .badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  padding: 0.3rem 0.75rem;
+}
+
+/* 手機版 */
+@media (max-width: 767px) {
+  .timeline {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .timeline-step::after {
+    display: none;
+  }
+
+  /* 手機版動畫延遲調整 */
+  .timeline-step:nth-child(1).active { animation-delay: 0s; }
+  .timeline-step:nth-child(2).active { animation-delay: 0.1s; }
+  .timeline-step:nth-child(3).active { animation-delay: 0.2s; }
+  .timeline-step:nth-child(4).active { animation-delay: 0.3s; }
+  .timeline-step:nth-child(5).active { animation-delay: 0.4s; }
+}
+
+/* ============================================
+   Tooltip - 提示框
+   ============================================ */
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-content {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  padding: var(--space-2) var(--space-3);
+  background: var(--bg-elevated-3);
+  color: var(--text-primary);
+  font-size: var(--text-sm);
+  border-radius: var(--radius-md);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-base) var(--ease-out);
+  z-index: var(--z-tooltip);
+}
+
+.tooltip:hover .tooltip-content {
+  opacity: 1;
+}
+
+.tooltip-content::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: var(--bg-elevated-3);
+}
+
+/* ============================================
+   FAQ Card - 常見問題卡片 (重新設計)
+   ============================================ */
+
+.faq-card {
+  background: var(--bg-elevated-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  transition: all var(--transition-medium) var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+
+.faq-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--n8n-primary) 0%, var(--accent-purple) 100%);
+  opacity: 0;
+  transition: opacity var(--transition-medium) var(--ease-out);
+}
+
+.faq-card:hover {
+  transform: translateX(8px);
+  border-color: rgba(255, 109, 90, 0.3);
+  box-shadow: var(--shadow-lg);
+}
+
+.faq-card:hover::before {
+  opacity: 1;
+}
+
+.faq-card h3 {
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-3);
+  line-height: 1.4;
+}
+
+.faq-card p {
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+  font-size: var(--text-base);
+}

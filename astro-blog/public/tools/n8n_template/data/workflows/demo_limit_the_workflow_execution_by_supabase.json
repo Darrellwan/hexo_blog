@@ -1,0 +1,337 @@
+{
+  "name": "Demo-limit-the-workflow-execution",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -620,
+        -665
+      ],
+      "id": "7bcab7d8-653f-4d30-8f41-3a76b72fb37b",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "journey_counters",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "journey_id",
+              "keyValue": "={{ $workflow.id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -400,
+        -665
+      ],
+      "id": "d26991b7-241a-4770-ac6e-497017c18997",
+      "name": "Supabase",
+      "executeOnce": false,
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "CfVrhWe5pGTRTbx6",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "a871def0-ae10-46c1-a326-a5d716c4fef2",
+              "leftValue": "={{ $json.count }}",
+              "rightValue": 50,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        480,
+        -665
+      ],
+      "id": "45288331-2964-4e01-8b2a-9df7365e57e8",
+      "name": "If-check exceed limit"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "9096fea4-83af-483f-b716-779755e328e0",
+              "leftValue": "={{ $json.keys().length }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -180,
+        -665
+      ],
+      "id": "c6f9b132-9260-46b0-8082-d892ffc8e40b",
+      "name": "If-check empty"
+    },
+    {
+      "parameters": {
+        "tableId": "journey_counters",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "count",
+              "fieldValue": "0"
+            },
+            {
+              "fieldId": "updated_at",
+              "fieldValue": "={{ $now.format('yyyy-MM-dd HH:mm:ss') }}"
+            },
+            {
+              "fieldId": "journey_id",
+              "fieldValue": "={{ $workflow.id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        40,
+        -740
+      ],
+      "id": "13225928-09d6-4fca-80b1-1afaaa1ed84f",
+      "name": "Supabase-create first row",
+      "credentials": {
+        "supabaseApi": {
+          "id": "CfVrhWe5pGTRTbx6",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e39ae0a7-3ae3-4ab4-88e2-921f14c558f8",
+              "name": "count",
+              "value": "={{ $json.count || 0 }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        260,
+        -665
+      ],
+      "id": "50862f60-955e-4580-9c19-57f1dfc70c41",
+      "name": "Edit Fields-get count"
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        700,
+        -665
+      ],
+      "id": "07bd4e20-e6d7-465d-809c-3270c5a327e5",
+      "name": "Wait-original workflow",
+      "webhookId": "c5c459f1-2002-4959-ba0a-8d867a17fff5"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "journey_counters",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "journey_id",
+              "condition": "eq",
+              "keyValue": "={{ $workflow.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "count",
+              "fieldValue": "={{ $('Edit Fields-get count').first().json.count.toNumber()+1 }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        920,
+        -665
+      ],
+      "id": "1f24a3fb-cb5b-48d4-91b7-fd24403ff275",
+      "name": "Supabase-update count",
+      "credentials": {
+        "supabaseApi": {
+          "id": "CfVrhWe5pGTRTbx6",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# n8n + Supabase：旅程次數限制簡易說明\n\n這個 workflow 用於統計某個旅程的執行次數，並限制最多可執行 50 次。資料儲存在 Supabase 表 `journey_counters` 中。\n\n---\n\n## 📁 Supabase 表結構\n\n```sql\nCREATE TABLE journey_counters (\n  journey_id TEXT PRIMARY KEY,\n  count INTEGER NOT NULL DEFAULT 0,\n  updated_at timestamptz NOT NULL DEFAULT now()\n);\n```\n\n---\n\n## 🔁 n8n 流程概要\n\n1. **讀取計數資料**\n   - Supabase Node：查詢 `journey_id = $workflow.id`\n\n2. **若無資料**\n   - 建立初始 row，`count = 0`\n\n3. **若已存在**\n   - 讀取 count，判斷是否 `> 50`，超過則中斷\n\n4. **流程完成後**\n   - 更新該 row：`count +1`，`updated_at = now()`\n\n---\n\n## ✅ 特點\n\n- 單表簡潔記錄\n- 上限條件由 n8n 控制（可改每日/月等）\n- 若需 per-user 限制，可加欄位 `user_id`",
+        "height": 1040,
+        "width": 760,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -640,
+        -1800
+      ],
+      "id": "e62e5f81-0bb6-4253-9303-62af348f40df",
+      "name": "Sticky Note"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "If-check empty",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If-check exceed limit": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Wait-original workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If-check empty": {
+      "main": [
+        [
+          {
+            "node": "Supabase-create first row",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields-get count",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase-create first row": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields-get count",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields-get count": {
+      "main": [
+        [
+          {
+            "node": "If-check exceed limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait-original workflow": {
+      "main": [
+        [
+          {
+            "node": "Supabase-update count",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "f3bb204b-8e09-46cd-909c-58e1f0c3d19d",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "fddb3e91967f1012c95dd02bf5ad21f279fc44715f47a7a96a33433621caa253"
+  },
+  "id": "7MQGk2hTj4LxJhQg",
+  "tags": []
+}

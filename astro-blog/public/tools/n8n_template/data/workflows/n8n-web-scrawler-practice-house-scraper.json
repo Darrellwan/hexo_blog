@@ -1,0 +1,540 @@
+{
+  "name": "n8n-Darrell-房君子不房小人-demo",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -512,
+        -624
+      ],
+      "id": "1aad53eb-7ed1-4303-9c78-d95390c91a1f",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "content": "## 用 n8n request 來爬蟲台灣的房屋資訊\n\n### 1.用什麼爬\n- Http Request node\n### 2.整理 html\n- 整理房屋列表\n- 取出物件詳細資訊\n### 3.儲存到 Google Sheet 中",
+        "height": 256,
+        "width": 480
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1056,
+        -672
+      ],
+      "id": "4c7765ac-40d7-444d-809b-0c5299c02a7a",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Created by darrell_tw_ \n\n### contact me with following:\n[Website](https://www.darrelltw.com/)\n[X](https://x.com/darrell_tw_)\n[Threads](https://www.threads.net/@darrell_tw_)\n[Instagram](https://www.instagram.com/darrell_tw_/)\n![](https://pub-c093258f61a1463ea03e1a40c141968a.r2.dev/darrell-icon-128.svg)",
+        "height": 340,
+        "width": 296,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1056,
+        -400
+      ],
+      "id": "6df018ee-480e-4180-b3dd-94280c577f4e",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "## Attachment(附件)\n\n### 爬蟲網址：\nhttps://darrell-house-n8n.zeabur.app/\n\n### Google Sheet Template(模板)\nhttps://docs.google.com/spreadsheets/d/1-_o70OL-ysNzx339bG5HsXYE_dt9VhklNZrhv0xLp_w/copy",
+        "height": 220,
+        "width": 300,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1056,
+        -32
+      ],
+      "id": "fcba8731-548f-4686-bd76-fab24b044b07",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "item",
+              "cssSelector": "div.house-item",
+              "returnValue": "html",
+              "returnArray": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        -64,
+        -624
+      ],
+      "id": "887a54b0-498d-4f4e-8fa6-e7e4b5c643df",
+      "name": "解析房屋列表HTML"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "item",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        160,
+        -624
+      ],
+      "id": "563ee2fc-b06d-487f-aaf9-868f068bd9ad",
+      "name": "分割每筆房屋資料"
+    },
+    {
+      "parameters": {
+        "url": "https://darrell-house-n8n.zeabur.app/",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -288,
+        -624
+      ],
+      "id": "ff0440f0-4e19-45c1-a6f4-72406203aadb",
+      "name": "房屋網站資料請求"
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "dataPropertyName": "item",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "title",
+              "cssSelector": "h3.house-title"
+            },
+            {
+              "key": "community",
+              "cssSelector": "div.community-name span.community-text"
+            },
+            {
+              "key": "address",
+              "cssSelector": "div.house-address"
+            },
+            {
+              "key": "building_area",
+              "cssSelector": "div.house-details span.building-area"
+            },
+            {
+              "key": "main_balcony_area",
+              "cssSelector": "div.house-details span.main-area"
+            },
+            {
+              "key": "room_layout",
+              "cssSelector": "div.house-details span.room-layout"
+            },
+            {
+              "key": "floor_info",
+              "cssSelector": "div.house-details span.floor-info"
+            },
+            {
+              "key": "age",
+              "cssSelector": "div.house-details span.building-age"
+            },
+            {
+              "key": "building_type",
+              "cssSelector": "div.house-details span.building-type"
+            },
+            {
+              "key": "parking_info",
+              "cssSelector": "div.parking-info span.parking-type"
+            },
+            {
+              "key": "features",
+              "cssSelector": "div.house-features span.feature-tag"
+            },
+            {
+              "key": "watching_count",
+              "cssSelector": "div.watching-count span.watch-number"
+            },
+            {
+              "key": "price",
+              "cssSelector": "div.price-main span.price-amount"
+            },
+            {
+              "key": "price_unit",
+              "cssSelector": "div.price-main span.price-unit"
+            },
+            {
+              "key": "price_note",
+              "cssSelector": "div.price-note"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        384,
+        -624
+      ],
+      "id": "b93f3334-f4af-4f16-857a-665f0ecf9487",
+      "name": "個別房屋HTML詳細解析"
+    },
+    {
+      "parameters": {
+        "content": "## 解析房屋列表HTML\n![](https://st.darrelltw.com/20250804-demo-house-list_html.webp)",
+        "height": 400,
+        "width": 384,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -96,
+        -464
+      ],
+      "id": "676d38b0-4c96-4b5e-933f-13635f176f7e",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "807b46e1-3909-4595-97e6-c5abb6037001",
+              "name": "source",
+              "value": "hbhouse",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        608,
+        -624
+      ],
+      "id": "165ac1e0-8908-4c64-bb5d-d97701aafe43",
+      "name": "整理資料"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1-_o70OL-ysNzx339bG5HsXYE_dt9VhklNZrhv0xLp_w",
+          "mode": "list",
+          "cachedResultName": "房君子-demo",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-_o70OL-ysNzx339bG5HsXYE_dt9VhklNZrhv0xLp_w/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "darrell",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-_o70OL-ysNzx339bG5HsXYE_dt9VhklNZrhv0xLp_w/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "community",
+              "displayName": "community",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "address",
+              "displayName": "address",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "building_area",
+              "displayName": "building_area",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "main_balcony_area",
+              "displayName": "main_balcony_area",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "room_layout",
+              "displayName": "room_layout",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "floor_info",
+              "displayName": "floor_info",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "age",
+              "displayName": "age",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "building_type",
+              "displayName": "building_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "parking_info",
+              "displayName": "parking_info",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "features",
+              "displayName": "features",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "watching_count",
+              "displayName": "watching_count",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "price",
+              "displayName": "price",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "price_unit",
+              "displayName": "price_unit",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "price_note",
+              "displayName": "price_note",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "source",
+              "displayName": "source",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        832,
+        -624
+      ],
+      "id": "09a84b2d-dc9a-40fe-9290-c639f8da77ea",
+      "name": "儲存到 Sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "atsKA0m2aQXeL6i6",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## 個別房屋HTML詳細解析\n![](https://st.darrelltw.com/20250804-demo-house-item_html.webp)",
+        "height": 224,
+        "width": 448,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        368,
+        -464
+      ],
+      "id": "4600c79c-9599-4835-8e44-4e1b453970e5",
+      "name": "Sticky Note3"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "房屋網站資料請求",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "解析房屋列表HTML": {
+      "main": [
+        [
+          {
+            "node": "分割每筆房屋資料",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "分割每筆房屋資料": {
+      "main": [
+        [
+          {
+            "node": "個別房屋HTML詳細解析",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "房屋網站資料請求": {
+      "main": [
+        [
+          {
+            "node": "解析房屋列表HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "個別房屋HTML詳細解析": {
+      "main": [
+        [
+          {
+            "node": "整理資料",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "整理資料": {
+      "main": [
+        [
+          {
+            "node": "儲存到 Sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "5e8e44c6-372d-4c61-a836-0ccaae8dd821",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "fddb3e91967f1012c95dd02bf5ad21f279fc44715f47a7a96a33433621caa253"
+  },
+  "id": "PryJchadXNjQl2wV",
+  "tags": [
+    {
+      "createdAt": "2025-01-19T06:09:02.745Z",
+      "updatedAt": "2025-01-19T06:09:02.745Z",
+      "id": "xikUDzkBnHMO9C6y",
+      "name": "demo"
+    }
+  ]
+}

@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WRZDBFS');</script>
+    <!-- End Google Tag Manager -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日 Skills.sh 趨勢排行榜追蹤 - n8n 模板分享 | Darrell</title>
+    <meta name="description" content="自動抓取 skills.sh 趨勢排行榜，透過 Slack、Email、Google Sheets 三管道分發每日報告，追蹤熱門技能安裝排名變化。
+
+主要功能：
+
+多管道通知：Slack Block Kit 排行榜 + HTML Email 報告
+網頁爬蟲：HTML 解析提取技能名稱、Repo、安裝數
+數據追蹤：Google Sheets 記錄每日歷史數據
+智能排序：安裝數字串轉數字（支援 K/M 單位）">
+    <link rel="canonical" href="https://www.darrelltw.com/tools/n8n_template/model/n8n-daily-skills-trending.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="DarrellTW n8n 模板庫">
+    <meta property="og:title" content="每日 Skills.sh 趨勢排行榜追蹤 - n8n 模板分享 | Darrell">
+    <meta property="og:description" content="自動抓取 skills.sh 趨勢排行榜，透過 Slack、Email、Google Sheets 三管道分發每日報告，追蹤熱門技能安裝排名變化。
+
+主要功能：
+
+多管道通知：Slack Block Kit 排行榜 + HTML Email 報告
+網頁爬蟲：HTML 解析提取技能名稱、Repo、安裝數
+數據追蹤：Google Sheets 記錄每日歷史數據
+智能排序：安裝數字串轉數字（支援 K/M 單位）">
+    <meta property="og:url" content="https://www.darrelltw.com/tools/n8n_template/model/n8n-daily-skills-trending.html">
+    <meta property="og:image" content="https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-daily-skills-trending.webp">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- n8n Demo Component -->
+    <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2.6.0/webcomponents-loader.js"></script>
+    <script src="https://unpkg.com/lit@2.7.0/polyfill-support.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@n8n_io/n8n-demo-component/n8n-demo.bundled.js"></script>
+    <link rel="stylesheet" href="../css/n8n-demo.css">
+
+    <style>
+        :root {
+            --bg-color: #111;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #fff;
+            --text-muted: #9ca3af;
+            --accent: #ff6b6b;
+            --accent-glow: rgba(255, 107, 107, 0.3);
+            --card-radius: 24px;
+
+            /* n8n Demo Theme Variables */
+            --n8n-frame-background-color: #000;
+            --n8n-editor-background: #000;
+            --n8n-workflow-min-height: 800px;
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --n8n-workflow-min-height: 300px;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'DM Sans', 'Noto Sans TC', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Background Animation (Same as models.html) */
+        .node-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+            background-image: 
+                radial-gradient(circle at 20px 20px, #fff 2px, transparent 2.5px),
+                linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        .n8n-svg-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .n8n-path {
+            fill: none;
+            stroke: url(#gradient);
+            stroke-width: 1.5;
+            stroke-dasharray: 20 400;
+            stroke-linecap: round;
+            opacity: 0.6;
+            animation: flow 8s linear infinite;
+        }
+        
+        @keyframes flow {
+            from { stroke-dashoffset: 420; }
+            to { stroke-dashoffset: -1000; }
+        }
+
+        /* Header */
+        header {
+            background: rgba(20, 20, 20, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .header-logo span { color: var(--accent); }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover { color: #fff; }
+
+        /* Main Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 2rem;
+        }
+
+        /* Left Column: Hero & Preview */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .hero-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--card-radius);
+            padding: 2rem;
+            backdrop-filter: blur(12px);
+        }
+
+        .breadcrumb {
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .breadcrumb a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover { color: var(--accent); }
+
+        .model-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .tags-row {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .glass-tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Description with expand/collapse */
+        .description-wrapper {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .model-description {
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin: 0;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            transition: all 0.3s ease;
+        }
+
+        .model-description.expanded {
+            -webkit-line-clamp: unset;
+            display: block;
+        }
+
+        .expand-btn {
+            background: transparent;
+            border: none;
+            color: var(--accent);
+            cursor: pointer;
+            font-size: 0.85rem;
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: opacity 0.2s;
+        }
+
+        .expand-btn:hover {
+            opacity: 0.8;
+        }
+
+        .meta-row {
+            display: flex;
+            gap: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            align-items: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--glass-border);
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-left: auto;
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+        }
+
+        .action-btn#copy-btn {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid var(--glass-border);
+        }
+
+        .action-btn#copy-btn:hover {
+            background: rgba(255,255,255,0.12);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 600px) {
+            .action-buttons {
+                width: 100%;
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+            .action-btn {
+                flex: 1;
+                justify-content: center;
+            }
+        }
+
+        .preview-card {
+            background: #000;
+            border: 1px solid var(--glass-border);
+            border-radius: var(--card-radius);
+            overflow: hidden;
+            position: relative;
+        }
+
+        n8n-demo {
+            width: 100%;
+            height: 100%;
+            --n8n-frame-background-color: #000;
+            background: #000;
+        }
+
+        /* Right Column: Details & Author */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--card-radius);
+            padding: 1.5rem;
+            backdrop-filter: blur(12px);
+        }
+
+        .info-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-content {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .info-content ul, .info-content ol {
+            padding-left: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-content li { margin-bottom: 0.5rem; }
+
+        .info-content .service-tag {
+            background: rgba(255,107,107,0.15);
+            color: #ff6b6b;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+        }
+
+        .author-social-links a {
+            color: #fff;
+        }
+
+        .author-social-links a:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* 延伸閱讀（融入功能特色） */
+        .related-section {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed rgba(255,255,255,0.15);
+        }
+
+        .related-title {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .related-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .related-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            text-decoration: none;
+            color: #fff;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .related-item:hover {
+            color: var(--accent);
+        }
+
+        .related-item:hover .related-arrow {
+            transform: translateX(4px);
+            color: var(--accent);
+        }
+
+        .related-arrow {
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .download-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.2);
+        }
+
+        /* Author Profile (Mini) */
+        .author-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .author-img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid var(--accent);
+        }
+
+        .author-info h4 {
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .author-role {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .model-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* 手機版樣式調整 */
+        @media (max-width: 600px) {
+            header {
+                padding: 0.8rem 1rem;
+            }
+
+            .header-logo {
+                font-size: 1rem;
+            }
+
+            .nav-links {
+                gap: 0.8rem;
+            }
+
+            .nav-link {
+                font-size: 0.8rem;
+            }
+
+            .hero-card {
+                padding: 1.5rem;
+            }
+
+            .breadcrumb {
+                font-size: 0.8rem;
+                margin-bottom: 1rem;
+            }
+
+            .model-title {
+                font-size: 1.5rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .tags-row {
+                gap: 0.4rem;
+                margin-bottom: 1rem;
+            }
+
+            .glass-tag {
+                font-size: 0.7rem;
+                padding: 3px 8px;
+            }
+        }
+
+        /* 超小螢幕支援 */
+        @media (max-width: 360px) {
+            header {
+                padding: 0.6rem 0.8rem;
+            }
+
+            .header-logo {
+                font-size: 0.9rem;
+            }
+
+            .nav-links {
+                gap: 0.5rem;
+            }
+
+            .nav-link {
+                font-size: 0.75rem;
+            }
+
+            .hero-card {
+                padding: 1rem;
+            }
+
+            .breadcrumb {
+                font-size: 0.75rem;
+            }
+
+            .model-title {
+                font-size: 1.3rem;
+            }
+
+            .glass-tag {
+                font-size: 0.65rem;
+                padding: 2px 6px;
+            }
+        }
+    </style>
+
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "首頁", "item": "https://www.darrelltw.com/"},
+        {"@type": "ListItem", "position": 2, "name": "n8n 模板", "item": "https://www.darrelltw.com/tools/n8n_template/models.html"},
+        {"@type": "ListItem", "position": 3, "name": "每日 Skills.sh 趨勢排行榜追蹤", "item": "https://www.darrelltw.com/tools/n8n_template/model/n8n-daily-skills-trending.html"}
+      ]
+    }
+    </script>
+
+    <!-- SoftwareApplication Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "每日 Skills.sh 趨勢排行榜追蹤",
+      "description": "自動抓取 skills.sh 趨勢排行榜，透過 Slack、Email、Google Sheets 三管道分發每日報告，追蹤熱門技能安裝排名變化。  主要功能：  多管道通知：Slack Block Kit 排行榜 + HTML Email 報告 網頁爬蟲：HTML 解析提取技能名稱、Repo、安裝數 數據追蹤：Google Sheets 記錄每日歷史數據 智能排序：安裝數字串轉數字（支援 K/M 單位）",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "WorkflowAutomation",
+      "operatingSystem": "n8n",
+      "url": "https://www.darrelltw.com/tools/n8n_template/model/n8n-daily-skills-trending.html",
+      "image": "https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-daily-skills-trending.webp",
+      "screenshot": "https://www.darrelltw.com/tools/n8n_template/data/bg/n8n-daily-skills-trending.webp",
+      "author": {
+        "@type": "Person",
+        "name": "Darrell Wang",
+        "url": "https://www.darrelltw.com"
+      },
+      "datePublished": "2026-01-23",
+      "dateModified": "2026-01-23",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "TWD",
+        "availability": "https://schema.org/InStock"
+      },
+      "featureList": ["每日早上 8 點定時觸發抓取任務","透過 HTTP Request 抓取 skills.sh/trending 頁面","HTML Extract 解析 CSS Selector 提取排行榜資料","Split Out 將陣列資料拆分為獨立項目","安裝數字串智能轉換（K→千, M→百萬）","Aggregate 彙總資料供 Slack 和 Email 使用","Slack Block Kit 格式化 Top 10 排行榜通知","HTML Email 完整排行榜精美報告","Google Sheets 記錄每日數據供歷史追蹤"]
+    }
+    </script>
+
+    <!-- HowTo Schema (Setup Steps) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "如何設定 每日 Skills.sh 趨勢排行榜追蹤",
+      "description": "Gmail OAuth、Google Sheets OAuth、Slack API Token",
+      "totalTime": "PT15M",
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "TWD",
+        "value": "0"
+      },
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "複製 Google Sheet 模板",
+          "text": "點擊模板中的 Google Sheet 連結複製一份到自己的 Drive 開啟 Sticky Note 中的模板連結, 點擊「建立副本」, 確認欄位：skill_name, skills_repo, installs, date"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "設定 Google 憑證",
+          "text": "在 n8n 建立 Gmail OAuth2 和 Google Sheets OAuth2 憑證 建立 Gmail OAuth2 Credential, 建立 Google Sheets OAuth2 Credential, 授權讀寫權限"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "設定 Slack 憑證",
+          "text": "建立 Slack API Token 並選擇目標頻道 建立 Slack Bot Token, 邀請 Bot 到目標頻道, 在節點選擇頻道"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "填入個人設定",
+          "text": "設定收件人 Email、Google Sheet ID、Slack Channel Send email 節點填入收件人 Email, Google Sheets 節點選擇複製的試算表, Slack 節點選擇目標頻道"
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+    <div class="node-bg"></div>
+    <svg class="n8n-svg-bg" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="transparent" />
+                <stop offset="50%" stop-color="#ff6b6b" />
+                <stop offset="100%" stop-color="transparent" />
+            </linearGradient>
+        </defs>
+        <path class="n8n-path" d="M -100 100 L 200 100 Q 250 100 250 150 L 250 400 Q 250 450 300 450 L 1500 450" />
+        <path class="n8n-path" d="M -100 800 L 300 800 Q 350 800 350 750 L 350 300 Q 350 250 400 250 L 1500 250" />
+    </svg>
+
+    <header>
+        <a href="../models.html" class="header-logo">Darrell <span>n8n</span> 模板分享</a>
+        <nav class="nav-links">
+            <a href="../models.html" class="nav-link">模板列表</a>
+            <a href="../contact.html" class="nav-link" style="color: var(--accent);">聯絡我們</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="main-content">
+            <article class="hero-card">
+                <div class="breadcrumb">
+                    <a href="../models.html">首頁</a> &gt; <a href="../models.html">n8n 模板分享</a> &gt; <span>每日 Skills.sh 趨勢排行榜追蹤</span>
+                </div>
+                <h1 class="model-title">每日 Skills.sh 趨勢排行榜追蹤</h1>
+                <div class="tags-row">
+                    <span class="glass-tag">skills.sh</span><span class="glass-tag">排行榜</span><span class="glass-tag">趨勢追蹤</span><span class="glass-tag">Slack</span><span class="glass-tag">Gmail</span><span class="glass-tag">Google Sheets</span><span class="glass-tag">爬蟲</span>
+                </div>
+                <div class="description-wrapper">
+                    <p class="model-description" id="model-description">自動抓取 skills.sh 趨勢排行榜，透過 Slack、Email、Google Sheets 三管道分發每日報告，追蹤熱門技能安裝排名變化。
+
+主要功能：
+
+多管道通知：Slack Block Kit 排行榜 + HTML Email 報告
+網頁爬蟲：HTML 解析提取技能名稱、Repo、安裝數
+數據追蹤：Google Sheets 記錄每日歷史數據
+智能排序：安裝數字串轉數字（支援 K/M 單位）</p>
+                    <button class="expand-btn" id="expand-btn" style="display: none;">展開全文</button>
+                </div>
+                <div class="meta-row">
+                    <div class="meta-item">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/></svg>
+                        <span>13 Nodes</span>
+                    </div>
+                    <div class="meta-item">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M11 2.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0zM4.5 7.5A.5.5 0 0 0 4 8v4a.5.5 0 0 0 1 0V8a.5.5 0 0 0-.5-.5zm7 0a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 1 0V8a.5.5 0 0 0-.5-.5z"/></svg>
+                        <span>Updated Jan 23</span>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="action-btn" id="download-btn">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            下載
+                        </button>
+                        <button class="action-btn" id="copy-btn">
+                            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                            複製
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <div class="preview-card">
+            <div class="preview-card" id="workflow-preview-container">
+            </div>
+            </div>
+        </div>
+
+        <aside class="sidebar">
+            <div class="info-card author-info-card">
+                <div class="info-title">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    關於作者
+                </div>
+                <div class="info-content">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                        <img src="https://www.darrelltw.com/images/darrell_icon_512.png" alt="Darrell" style="width: 64px; height: 64px; border-radius: 50%; border: 2px solid var(--accent);" onerror="this.src='https://placehold.co/64x64/333/FFF?text=DW'">
+                        <div>
+                            <h4 style="color: #fff; margin-bottom: 0.25rem; font-size: 1.1rem;">Darrell Wang</h4>
+                            <span style="font-size: 0.85rem; color: var(--text-muted);">Automation Expert</span>
+                            <div style="display: flex; gap: 0.4rem; margin-top: 0.5rem; flex-wrap: wrap;">
+                                <span class="service-tag">n8n 接案</span>
+                                <span class="service-tag">n8n 顧問</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="author-social-links" style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem;">
+                        <a href="https://www.threads.net/@darrell_tw_" target="_blank" title="Threads" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px; transition: background 0.2s;"><svg width="16" height="16" fill="currentColor" viewBox="0 0 440 512"><path d="M342.383 237.038a177.282 177.282 0 00-6.707-3.046c-3.948-72.737-43.692-114.379-110.429-114.805-38.505-.255-72.972 15.445-94.454 48.041l36.702 25.178c15.265-23.159 39.221-28.096 56.864-28.096.204 0 .408 0 .61.002 21.974.14 38.555 6.529 49.287 18.987 7.81 9.071 13.034 21.606 15.621 37.425-19.483-3.311-40.553-4.329-63.077-3.038-63.45 3.655-104.24 40.661-101.501 92.08 1.391 26.083 14.385 48.523 36.587 63.181 18.772 12.391 42.95 18.45 68.077 17.079 33.183-1.819 59.215-14.48 77.377-37.63 13.793-17.58 22.516-40.363 26.368-69.069 15.814 9.544 27.535 22.103 34.007 37.2 11.006 25.665 11.648 67.84-22.764 102.223-30.15 30.121-66.392 43.151-121.164 43.554-60.758-.45-106.708-19.935-136.583-57.915-27.976-35.562-42.434-86.93-42.973-152.674.539-65.746 14.997-117.114 42.973-152.676 29.875-37.979 75.824-57.463 136.582-57.914 61.197.455 107.948 20.033 138.967 58.195 15.21 18.713 26.676 42.248 34.236 69.688L440 161.532c-9.163-33.775-23.582-62.881-43.203-87.017C357.031 25.59 298.872.519 223.936 0h-.3C148.851.518 91.344 25.683 52.709 74.795 18.331 118.499.598 179.308.002 255.535l-.002.18.002.18c.596 76.225 18.329 137.037 52.707 180.741 38.635 49.11 96.142 74.277 170.927 74.794h.3c66.486-.462 113.352-17.868 151.96-56.442 50.51-50.463 48.99-113.718 32.342-152.549-11.945-27.847-34.716-50.463-65.855-65.401zM227.587 344.967c-27.808 1.567-56.699-10.916-58.124-37.651-1.056-19.823 14.108-41.942 59.831-44.577a266.87 266.87 0 0115.422-.45c16.609 0 32.145 1.613 46.271 4.701-5.268 65.798-36.172 76.483-63.4 77.977z"></path></svg></a>
+                        <a href="https://www.instagram.com/darrell_tw_/" target="_blank" title="Instagram" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px; transition: background 0.2s;"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.281-.057 1.689-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg></a>
+                        <a href="https://x.com/darrell_tw_" target="_blank" title="X (Twitter)" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px; transition: background 0.2s;"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a>
+                        <a href="https://www.facebook.com/darrelltw" target="_blank" title="Facebook" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px; transition: background 0.2s;"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a>
+                        <a href="https://www.darrelltw.com/" target="_blank" title="Website" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px; transition: background 0.2s;"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"></path></svg></a>
+                        <a href="https://www.linkedin.com/in/darrell-wang-tw/" target="_blank" title="LinkedIn" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px; transition: background 0.2s;"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg></a>
+                        <a href="https://buymeacoffee.com/darrell_tw" target="_blank" title="Buy Me a Coffee" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px; transition: background 0.2s;"><svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"></path></svg></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="info-title">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    功能特色
+                </div>
+                <div class="info-content">
+                    <ul>
+                        <li>每日早上 8 點定時觸發抓取任務</li><li>透過 HTTP Request 抓取 skills.sh/trending 頁面</li><li>HTML Extract 解析 CSS Selector 提取排行榜資料</li><li>Split Out 將陣列資料拆分為獨立項目</li><li>安裝數字串智能轉換（K→千, M→百萬）</li><li>Aggregate 彙總資料供 Slack 和 Email 使用</li><li>Slack Block Kit 格式化 Top 10 排行榜通知</li><li>HTML Email 完整排行榜精美報告</li><li>Google Sheets 記錄每日數據供歷史追蹤</li>
+                    </ul>
+                    
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="info-title">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                    設置說明
+                </div>
+                <div class="info-content">
+                    
+                    <p><strong>預先設定：</strong>Gmail OAuth、Google Sheets OAuth、Slack API Token</p>
+                    <ol><li><strong>複製 Google Sheet 模板</strong>: 點擊模板中的 Google Sheet 連結複製一份到自己的 Drive<ul><li>開啟 Sticky Note 中的模板連結</li><li>點擊「建立副本」</li><li>確認欄位：skill_name, skills_repo, installs, date</li></ul></li><li><strong>設定 Google 憑證</strong>: 在 n8n 建立 Gmail OAuth2 和 Google Sheets OAuth2 憑證<ul><li>建立 Gmail OAuth2 Credential</li><li>建立 Google Sheets OAuth2 Credential</li><li>授權讀寫權限</li></ul></li><li><strong>設定 Slack 憑證</strong>: 建立 Slack API Token 並選擇目標頻道<ul><li>建立 Slack Bot Token</li><li>邀請 Bot 到目標頻道</li><li>在節點選擇頻道</li></ul></li><li><strong>填入個人設定</strong>: 設定收件人 Email、Google Sheet ID、Slack Channel<ul><li>Send email 節點填入收件人 Email</li><li>Google Sheets 節點選擇複製的試算表</li><li>Slack 節點選擇目標頻道</li></ul></li></ol>
+                
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <footer>
+        © 2026 DarrellTW. All rights reserved.
+    </footer>
+
+    <script>
+        const workflowData = {
+  "name": "[Template]Daily Skills.sh Trending",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 8
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -336,
+        -32
+      ],
+      "id": "ca71638e-9f0e-4772-a209-9b4bb8baa6d3",
+      "name": "每日早上 8 點觸發"
+    },
+    {
+      "parameters": {
+        "url": "https://skills.sh/trending",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -128,
+        -32
+      ],
+      "id": "2c555302-7b36-49ab-acaf-5cc954e6b72a",
+      "name": "抓取 Skills.sh 趨勢頁面"
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "skills_html",
+              "cssSelector": "main div div a.group",
+              "returnValue": "html",
+              "returnArray": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        80,
+        -32
+      ],
+      "id": "bc8cf040-b805-4e2d-8981-94eac4c80477",
+      "name": "提取排行榜列表"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "skills_html",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        288,
+        -32
+      ],
+      "id": "3d1811b8-d130-454a-8d90-a9fdab24b9ab",
+      "name": "拆分為獨立項目"
+    },
+    {
+      "parameters": {
+        "maxItems": 20
+      },
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        496,
+        -32
+      ],
+      "id": "a412c28b-5c49-4725-880e-b78e05c92d1d",
+      "name": "取前 20 名"
+    },
+    {
+      "parameters": {
+        "operation": "extractHtmlContent",
+        "dataPropertyName": "skills_html",
+        "extractionValues": {
+          "values": [
+            {
+              "key": "skill_name",
+              "cssSelector": "div h3"
+            },
+            {
+              "key": "skills_repo",
+              "cssSelector": "div p"
+            },
+            {
+              "key": "installs",
+              "cssSelector": "div span.text-foreground"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1.2,
+      "position": [
+        704,
+        -32
+      ],
+      "id": "8bbfab7b-b652-4e9a-8d28-424d12553a82",
+      "name": "提取技能名稱和安裝數"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c473d02e-4223-45cb-ae18-23cd2cc5b500",
+              "name": "installs",
+              "value": "={{ \n  (() => {\n    let str = ($json.installs || \"\").trim().toUpperCase();\n    if (!str) return 0;\n    \n    let multiplier = 1;\n    let lastChar = str.slice(-1);\n    \n    if (lastChar === \"K\") multiplier = 1000;\n    if (lastChar === \"M\") multiplier = 1000000;\n    if (lastChar === \"B\") multiplier = 1000000000;\n    \n    let numStr = str;\n    if ([\"K\",\"M\"].includes(lastChar)) {\n      numStr = str.slice(0, -1);\n    }\n    \n    let num = parseFloat(numStr);\n    if (isNaN(num)) return 0;\n    \n    return num * multiplier;\n  })()\n}}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        912,
+        -32
+      ],
+      "id": "3f6f8b61-a992-447a-a947-268261feda80",
+      "name": "轉換安裝數為數字"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        -208
+      ],
+      "id": "35890c5b-0bec-4e60-a2a6-0cdb77e68d8e",
+      "name": "彙總全部資料"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "",
+          "mode": "list",
+          "cachedResultName": "",
+          "cachedResultUrl": ""
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": ""
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "skill_name",
+              "displayName": "skill_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "skills_repo",
+              "displayName": "skills_repo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "installs",
+              "displayName": "installs",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "date",
+              "displayName": "date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1424,
+        80
+      ],
+      "id": "3792e76b-a7f1-4314-b42f-1f50b4d8f1f1",
+      "name": "寫入 Google Sheets"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "bab9e197-3aaa-4e22-8256-57bf59732322",
+              "name": "date",
+              "value": "={{ $today.format('yyyy-MM-dd') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1216,
+        80
+      ],
+      "id": "b42d1b51-a0ce-41ac-b7d1-b528dbd8fcff",
+      "name": "加入今日日期"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6606106b-f6a4-4e93-9177-fdd1ea62d3ab",
+              "name": "template",
+              "value": "={{ (function() {\n  const items = $json.data.sort((a, b) => parseInt(b.installs) - parseInt(a.installs));\n  const total = items.reduce((sum, item) => sum + parseInt(item.installs), 0);\n  \n  const rows = items.map((item, i) => {\n    const rank = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : (i + 1) + '.';\n    const rankColor = i < 3 ? '#888' : '#666';\n    const installs = parseInt(item.installs).toLocaleString();\n    return '<tr><td style=\"padding:12px 24px;\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td width=\"28\" style=\"font-size:' + (i < 3 ? '14' : '12') + 'px; color:' + rankColor + ';\">' + rank + '</td><td style=\"font-size:14px; color:#fff;\"><a href=\"https://skills.sh/' + item.skills_repo + '/' + item.skill_name + '\" style=\"color:#fff; text-decoration:none;\">' + item.skill_name + '</a></td><td width=\"70\" align=\"right\"><span style=\"background-color:#2a2a2a; padding:2px 8px; border-radius:4px; font-size:12px; color:#ccc;\">' + installs + '</span></td></tr></table></td></tr>';\n  }).join('');\n  \n  return '<!DOCTYPE html><html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><meta name=\"color-scheme\" content=\"dark\"><title>Claude Skills</title></head><body style=\"margin:0; padding:0; background-color:#0d0d0d; font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"background-color:#0d0d0d;\"><tr><td align=\"center\" style=\"padding:32px 16px;\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"max-width:520px; background-color:#1a1a1a; border-radius:16px;\"><tr><td style=\"padding:24px 24px 16px 24px;\"><span style=\"font-size:18px; font-weight:700; color:#ffffff;\">Claude Skills 安裝排行榜</span></td></tr><tr><td style=\"padding:0 24px;\"><div style=\"border-top:1px solid #333;\"></div></td></tr>' + rows + '<tr><td style=\"padding:8px 24px 0 24px;\"><div style=\"border-top:1px solid #333;\"></div></td></tr><tr><td style=\"padding:16px 24px 24px 24px;\"><table role=\"presentation\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\"><tr><td style=\"font-size:13px; color:#888;\">共 ' + items.length + ' 個技能 · 總安裝 ' + total.toLocaleString() + ' 次</td><td align=\"right\"><a href=\"https://skills.sh/trending\" style=\"display:inline-block; background-color:#fff; padding:8px 16px; border-radius:6px; font-size:13px; font-weight:600; color:#111; text-decoration:none;\">瀏覽全部 →</a></td></tr></table></td></tr></table></td></tr></table></body></html>';\n})() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1424,
+        -144
+      ],
+      "id": "0f908a38-4e5e-480f-8b03-d81b03de7b5f",
+      "name": "生成 Email 排行榜模板"
+    },
+    {
+      "parameters": {
+        "sendTo": "",
+        "subject": "=[n8n] {{ $today.format('yyyy-MM-dd') }} Skills 排行榜",
+        "message": "={{ $json.template }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1632,
+        -144
+      ],
+      "id": "f6e6d7ad-bcb9-48eb-a794-c4f60ee5b346",
+      "name": "寄送 Email 報告"
+    },
+    {
+      "parameters": {
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "",
+          "mode": "list",
+          "cachedResultName": ""
+        },
+        "messageType": "block",
+        "blocksUi": "={{ JSON.stringify({\n  blocks: [\n    {\n      type: \"header\",\n      text: {\n        type: \"plain_text\",\n        text: \"📊 Claude Skills 安裝排行榜\",\n        emoji: true\n      }\n    },\n    {\n      type: \"divider\"\n    },\n    ...$json.data\n      .sort((a, b) => parseInt(b.installs) - parseInt(a.installs))\n      .slice(0, 10)\n      .map((item, i) => ({\n        type: \"section\",\n        text: {\n          type: \"mrkdwn\",\n          text: (i === 0 ? \"🥇\" : i === 1 ? \"🥈\" : i === 2 ? \"🥉\" : (i + 1) + \".\") + \" *\" + item.skill_name + \"*  ·  `\" + parseInt(item.installs).toLocaleString() + \"`\"\n        },\n        accessory: {\n          type: \"button\",\n          text: {\n            type: \"plain_text\",\n            text: \"查看\",\n            emoji: true\n          },\n          url: \"https://skills.sh/\" + item.skills_repo + \"/\" + item.skill_name\n        }\n      })),\n    {\n      type: \"divider\"\n    },\n    {\n      type: \"section\",\n      text: {\n        type: \"mrkdwn\",\n        text: \"共 \" + $json.data.length + \" 個技能 · 總安裝 \" + $json.data.reduce((sum, item) => sum + parseInt(item.installs), 0).toLocaleString() + \" 次\"\n      },\n      accessory: {\n        type: \"button\",\n        text: {\n          type: \"plain_text\",\n          text: \"瀏覽全部 →\",\n          emoji: true\n        },\n        url: \"https://skills.sh\"\n      }\n    }\n  ]\n}) }}",
+        "text": "skills",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.4,
+      "position": [
+        1424,
+        -352
+      ],
+      "id": "e52fe972-0e47-42f3-bb1c-93ac7cdc9c29",
+      "name": "發送 Slack 排行榜通知",
+      "alwaysOutputData": true,
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "content": "## Created by darrell_tw_ \n\nHi 我是 Darrell\n有 n8n 問題可以找我聊聊\n\n- [n8n 教學資源網站](https://www.darrelltw.com/n8n-tutorial-resources/)\n- [n8n 模板分享網站](https://www.darrelltw.com/tools/n8n_template/models.html)\n\n### Social Media:\n[Website](https://www.darrelltw.com/)\n[X](https://x.com/darrell_tw_)\n[Threads](https://www.threads.net/@darrell_tw_)\n[Instagram](https://www.instagram.com/darrell_tw_/)\n![](https://pub-c093258f61a1463ea03e1a40c141968a.r2.dev/darrell-icon-128.svg)",
+        "height": 468,
+        "width": 312,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -720,
+        -320
+      ],
+      "id": "b8401f31-d830-44cb-bb62-6dd65af89d3b",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "## Attachment(附件)\n\n請複製一份 Google Sheet 到自己的 Drive 中\n\n### Google Sheet Template(模板)\n\nhttps://docs.google.com/spreadsheets/d/16h1oqwq4_Z2jpV-zFLxlSN7j643sbvzHN5QIDzGOF5k/copy",
+        "height": 220,
+        "width": 316,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -720,
+        160
+      ],
+      "id": "5242d608-2d3b-463e-bc95-7c0852085be3",
+      "name": "Sticky Note2"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "每日早上 8 點觸發": {
+      "main": [
+        [
+          {
+            "node": "抓取 Skills.sh 趨勢頁面",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "抓取 Skills.sh 趨勢頁面": {
+      "main": [
+        [
+          {
+            "node": "提取排行榜列表",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "提取排行榜列表": {
+      "main": [
+        [
+          {
+            "node": "拆分為獨立項目",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "拆分為獨立項目": {
+      "main": [
+        [
+          {
+            "node": "取前 20 名",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "取前 20 名": {
+      "main": [
+        [
+          {
+            "node": "提取技能名稱和安裝數",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "提取技能名稱和安裝數": {
+      "main": [
+        [
+          {
+            "node": "轉換安裝數為數字",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "轉換安裝數為數字": {
+      "main": [
+        [
+          {
+            "node": "彙總全部資料",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "加入今日日期",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "彙總全部資料": {
+      "main": [
+        [
+          {
+            "node": "發送 Slack 排行榜通知",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "生成 Email 排行榜模板",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "加入今日日期": {
+      "main": [
+        [
+          {
+            "node": "寫入 Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "生成 Email 排行榜模板": {
+      "main": [
+        [
+          {
+            "node": "寄送 Email 報告",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "tags": []
+};
+        
+        // Initialize n8n-demo component dynamically
+        const container = document.getElementById('workflow-preview-container');
+        if (container) {
+            const demo = document.createElement('n8n-demo');
+            demo.setAttribute('workflow', JSON.stringify(workflowData));
+            demo.setAttribute('mode', 'dark');
+            demo.setAttribute('theme', 'dark');
+            container.appendChild(demo);
+        }
+
+        function downloadWorkflow() {
+            try {
+                const blob = new Blob([JSON.stringify(workflowData, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'n8n-daily-skills-trending.json';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            } catch (e) {
+                console.error('Download failed:', e);
+                alert('下載失敗，請稍後再試');
+            }
+        }
+
+        function copyWorkflow() {
+            try {
+                const jsonStr = JSON.stringify(workflowData, null, 2);
+                navigator.clipboard.writeText(jsonStr).then(() => {
+                    const btn = document.getElementById('copy-btn');
+                    const originalText = btn.innerText;
+                    btn.innerText = '已複製！';
+                    setTimeout(() => {
+                        btn.innerText = originalText;
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Copy failed:', err);
+                    alert('複製失敗，請手動複製');
+                });
+            } catch (e) {
+                console.error('Copy error:', e);
+                alert('複製發生錯誤');
+            }
+        }
+
+        const downloadBtn = document.getElementById('download-btn');
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', downloadWorkflow);
+        }
+
+        const copyBtn = document.getElementById('copy-btn');
+        if (copyBtn) {
+            copyBtn.addEventListener('click', copyWorkflow);
+        }
+
+        // Description expand/collapse functionality
+        const descEl = document.getElementById('model-description');
+        const expandBtn = document.getElementById('expand-btn');
+
+        if (descEl && expandBtn) {
+            let needsExpand = false;
+
+            // Check if text is truncated (needs more than 3 lines)
+            function checkTruncation() {
+                // Clone element to measure full height without affecting display
+                const clone = descEl.cloneNode(true);
+                clone.style.cssText = 'position:absolute;visibility:hidden;display:block;-webkit-line-clamp:unset;width:' + descEl.offsetWidth + 'px;';
+                document.body.appendChild(clone);
+                const fullHeight = clone.scrollHeight;
+                document.body.removeChild(clone);
+
+                const lineHeight = parseFloat(getComputedStyle(descEl).lineHeight);
+                const maxHeight = lineHeight * 3;
+
+                needsExpand = fullHeight > maxHeight + 5;
+                expandBtn.style.display = needsExpand ? 'flex' : 'none';
+            }
+
+            checkTruncation();
+            window.addEventListener('resize', checkTruncation);
+
+            expandBtn.addEventListener('click', function() {
+                const isExpanded = descEl.classList.toggle('expanded');
+                expandBtn.textContent = isExpanded ? '收合' : '展開全文';
+            });
+        }
+    </script>
+</body>
+</html>

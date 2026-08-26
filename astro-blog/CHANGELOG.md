@@ -1,5 +1,8 @@
 # Changelog
 
+> This file retains the upstream AstroPaper changelog as a technical source record.
+> Darrell TW Blog project changes are tracked in Git history.
+
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
 ## v5.5.1 (2026-01-08)

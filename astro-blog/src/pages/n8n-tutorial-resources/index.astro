@@ -1,0 +1,558 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import getSortedPosts from "@/utils/getSortedPosts";
+import { getCoverImage } from "@/utils/getCoverImage";
+import { getPath } from "@/utils/getPath";
+
+type CategoryId =
+  | "node-intro"
+  | "tips"
+  | "templates"
+  | "updates"
+  | "deployment";
+
+type CategoryDefinition = {
+  id: CategoryId;
+  title: string;
+  keywords: string[];
+};
+
+const categoryDefinitions: CategoryDefinition[] = [
+  {
+    id: "node-intro",
+    title: "n8n 節點介紹",
+    keywords: [
+      "節點",
+      "node",
+      "if",
+      "switch",
+      "gmail",
+      "s3",
+      "webhook",
+      "slack",
+      "perplexity",
+      "elevenlabs",
+      "aggregate",
+      "split",
+      "節點介紹",
+      "教學",
+    ],
+  },
+  {
+    id: "tips",
+    title: "n8n 小撇步",
+    keywords: ["撇步", "技巧", "tip", "tips", "debug", "pin"],
+  },
+  {
+    id: "templates",
+    title: "n8n 模板分享",
+    keywords: ["模板", "template", "workflow", "範例", "工作流"],
+  },
+  {
+    id: "updates",
+    title: "n8n 功能更新",
+    keywords: ["更新", "新功能", "update", "feature", "folders"],
+  },
+  {
+    id: "deployment",
+    title: "n8n 部署與設定",
+    keywords: [
+      "部署",
+      "設定",
+      "deploy",
+      "config",
+      "setup",
+      "deployment",
+      "zeabur",
+    ],
+  },
+];
+
+const allPosts = await getCollection("blog");
+
+const isN8nPost = (post: CollectionEntry<"blog">) =>
+  post.data.tags.some(tag => tag.toLowerCase().includes("n8n"));
+
+const n8nPosts = getSortedPosts(allPosts.filter(isN8nPost));
+
+const getPostCategory = (post: CollectionEntry<"blog">): CategoryId => {
+  const tags = [...post.data.tags, ...(post.data.categories ?? [])].map(value =>
+    value.toLowerCase()
+  );
+  const title = post.data.title.toLowerCase();
+  const classificationOrder: CategoryId[] = [
+    "templates",
+    "node-intro",
+    "tips",
+    "updates",
+    "deployment",
+  ];
+
+  if (tags.some(tag => tag === "n8n-debug")) return "tips";
+
+  for (const categoryId of classificationOrder) {
+    const category = categoryDefinitions.find(item => item.id === categoryId);
+    if (!category) continue;
+    if (
+      category.keywords.some(keyword =>
+        [...tags, title].some(value => value.includes(keyword))
+      )
+    ) {
+      return category.id;
+    }
+  }
+
+  return "node-intro";
+};
+
+const postsByCategory = Object.fromEntries(
+  categoryDefinitions.map(category => [
+    category.id,
+    n8nPosts.filter(post => getPostCategory(post) === category.id),
+  ])
+) as Record<CategoryId, CollectionEntry<"blog">[]>;
+
+const getPostHref = (post: CollectionEntry<"blog">) =>
+  `${getPath(post.id, post.filePath, false).replace(/\/+$/, "")}/`;
+
+const pinnedTemplate = {
+  title: "Darrell 模板分享",
+  link: "https://www.darrelltw.com/tools/n8n_template/models.html",
+  image: "/gallery/n8n-template-website.webp",
+  description: "Darrell 自製分享模板頁面，提供個人的模板分享",
+};
+
+const externalTutorials = [
+  {
+    title: "模板分享：面試大師",
+    link: "https://www.threads.com/@ironv.careerlife/post/DLIIVgqy-HB",
+    image: "/gallery/n8n_resource_vicky_master_interview.webp",
+    author: "ironv.careerlife",
+    authorLink: "https://www.threads.com/@ironv.careerlife/",
+    description:
+      "n8n 目前看過最火紅的模板分享：面試大師！幫你自動化抓取適合的工作職缺並且撰寫相對應的面試攻略",
+  },
+  {
+    title: "Threads：n8n 可以拿來做什麼東西？",
+    link: "https://www.threads.com/@ironv.careerlife/post/DNDs6VaS5jL",
+    image: "/gallery/n8n_resource_vicky_n8n_ideas.webp",
+    author: "ironv.careerlife",
+    authorLink: "https://www.threads.com/@ironv.careerlife/",
+    description:
+      "Vicky 在這篇貼文中總共分享超過 20 種 n8n 能做到的事情，肯定會有你感興趣的！",
+  },
+  {
+    title:
+      "【一鍵安裝 n8n】圖文教學，獲得無限額度自動化工具＆限時免費升級企業版功能",
+    link: "https://raymondhouch.com/lifehacker/digital-workflow/n8n-deploy-guide/",
+    image:
+      "https://raymondhouch.com/wp-content/uploads/2024/11/n8n-zeabur-deploy.compressed.jpg",
+    author: "侯智薰（雷蒙）",
+    authorLink: "https://www.threads.net/@raymond0917",
+    description:
+      "完整中文圖文步驟式教學，如何一鍵用 Zeabur 自行部署安裝 n8n，獲得無限量的自動化工作流額度，並免費領取企業版升級功能。（含影片手把手教學）個人自部署的注意事項、伺服器選擇和 n8n 學習資源整理",
+  },
+  {
+    title:
+      "【n8n 教學】如何串接 Google 自動化服務？API、Credentials 憑證設定步驟圖文教學",
+    link: "https://raymondhouch.com/lifehacker/digital-workflow/n8n-google-credentials-guide/",
+    image:
+      "https://raymondhouch.com/wp-content/uploads/2025/01/n8n-google-credentials-guide_compressed.jpg",
+    author: "侯智薰（雷蒙）",
+    authorLink: "https://www.threads.net/@raymond0917",
+    description:
+      "想整合 Google 服務到 n8n 自動化工作流程？本篇教學帶你逐步了解 Google API 憑證申請流程。包含如何設定 OAuth 2.0、取得 API Key，到成功串接 Gmail、Sheets、Drive 等 Google 服務。完整圖文詳細解說，幫助自動化新手，輕鬆完成設定整合，開始享受專屬的 AI 自動化工作流。",
+  },
+  {
+    title: "「超詳細教學」n8n AI 實作0基礎入門到進階",
+    link: "https://www.youtube.com/watch?v=vvqhzbp4J5A",
+    image: "/gallery/n8n_resource_vvqhzbp4J5A.webp",
+    author: "HC AI說人話",
+    authorLink: "https://www.threads.com/@hc_aichannel",
+    description: "長達三小時的 n8n 教學，從 0 到 1",
+  },
+  {
+    title: "AI免費自動排版, 免API, 解鎖自訂中文字體 = AI 平面神技?",
+    link: "https://www.youtube.com/watch?v=ncYmf5YHLks",
+    image: "/gallery/n8n_resource_ncYmf5YHLks.webp",
+    author: "HC AI說人話",
+    authorLink: "https://www.threads.com/@hc_aichannel",
+    description: "如何用 n8n 快速做出排版平面",
+  },
+  {
+    title: "資訊小白也可架設本地n8n",
+    link: "https://elisha0918.notion.site/n8n-1cedb692053680dca3bafef10d1907ca",
+    image: "/gallery/n8n_resource-elisha_n8n_docker.png",
+    author: "Elisha_0918",
+    authorLink: "https://www.threads.com/@elisha_0918",
+    description: "一起來學習如何用 Docker 安裝 n8n",
+  },
+  {
+    title: "我成功利用Zeabur部署n8n小助理",
+    link: "https://elisha0918.notion.site/Zeabur-n8n-1d7db692053680c2b996ef8234b0d09c",
+    image: "/gallery/n8n_resource-elisha_n8n_zeabur.png",
+    author: "Elisha_0918",
+    authorLink: "https://www.threads.com/@elisha_0918",
+    description: "Zeabur + Google OAuth + Line Request 完整的經驗分享",
+  },
+];
+
+const guideTitle = "n8n 教學：節點介紹、模板、部署指南";
+const guideDescription =
+  "n8n 新手入門教學：n8n 是什麼、Cloud 與自架怎麼選、費用怎麼算、第一個 workflow 從 Webhook 開始，加上 34+ 篇節點教學、模板下載與部署指南的完整導覽。";
+---
+
+<Layout
+  title={guideTitle}
+  description={guideDescription}
+  ogImage="/gallery/n8n_resource_og.jpg"
+  pubDatetime={new Date("2024-01-01T00:00:00+08:00")}
+  modDatetime={new Date("2026-08-20T14:00:00+08:00")}
+>
+  <Header />
+  <Breadcrumb />
+  <main id="main-content">
+    <div
+      class="n8n-resources-container"
+      itemscope
+      itemtype="https://schema.org/CollectionPage"
+    >
+      <header class="n8n-header">
+        <h1>{guideTitle}</h1>
+        <p>{guideDescription}</p>
+      </header>
+
+      <nav class="n8n-nav" aria-label="主導航">
+        <ul>
+          <li><a href="/">首頁</a></li>
+          <li><a href="#guide">入門指南</a></li>
+          {
+            categoryDefinitions.map(category =>
+              postsByCategory[category.id].length > 0 ? (
+                <li>
+                  <a href={`#${category.id}`}>{category.title}</a>
+                </li>
+              ) : null
+            )
+          }
+          <li><a href="#tutorials">外部教學</a></li>
+          <li><a href="#about">相關連結</a></li>
+          <li>
+            <a href="/n8n-expert/#contact" target="_blank" rel="noopener">
+              聯絡我們
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="n8n-resources-content">
+        <div class="n8n-main-content">
+          <section id="guide" class="n8n-section n8n-guide">
+            <h2>入門指南</h2>
+
+            <p>
+              這頁上半部帶你搞懂 n8n
+              是什麼、怎麼選、怎麼算錢。下半部是全站文章導覽，34+
+              篇節點教學、模板、部署文章都收在下面。想找特定主題，直接用上面的導覽列跳過去就好，不用整頁滑。
+            </p>
+
+            <h3>n8n 是什麼？</h3>
+            <p>
+              n8n
+              是一套開源的自動化工具。用拖拉節點的方式把不同服務串起來，一個節點負責一個動作。串起來就是一條
+              workflow，取代原本要手動重複做的事。
+            </p>
+            <p>
+              n8n 跟 Zapier、Make
+              常被拿來比較。兩者最大差別在兩點。一是開源，可以自己架，不一定要綁在
+              SaaS 上。二是計費邏輯不一樣：n8n
+              是照「整條流程跑一次」算錢，Zapier、Make
+              是照「步驟」（task）算錢。細節下面費用那段會講。
+            </p>
+
+            <h3>Cloud 還是自己架？</h3>
+            <p>
+              n8n 有官方 Cloud 版，也可以自己架伺服器跑 Community
+              版。兩者怎麼選，看下面這張表：
+            </p>
+            <table>
+              <thead>
+                <tr>
+                  <th>比較項目</th>
+                  <th>n8n Cloud</th>
+                  <th>自己架（Community）</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>費用</td>
+                  <td>訂閱制，看方案</td>
+                  <td>主程式免費，只付主機費</td>
+                </tr>
+                <tr>
+                  <td>維護</td>
+                  <td>官方負責</td>
+                  <td>更新、備份、掛掉都要自己顧</td>
+                </tr>
+                <tr>
+                  <td>適合誰</td>
+                  <td>不想碰維運、想快點開始</td>
+                  <td>想省錢、想完全掌控資料</td>
+                </tr>
+              </tbody>
+            </table>
+            <p>
+              台灣社群最常見的自架方式是用 Zeabur 一鍵部署，或是自己用 Docker
+              架。兩種方式的教學都在<a href="/n8n-deployment/">n8n 部署與設定</a
+              >。
+            </p>
+            <p>
+              我自己的建議分兩種情況。只是想先玩玩看、測試流程可不可行，用 Cloud
+              免費試用或 Zeabur
+              架一個最快，不用自己顧主機。真的要跑正式業務，先估算一個月大概會跑幾次流程。再回頭比較
+              Cloud
+              方案費用跟自架主機費用哪個划算。估算量之前先看下面費用怎麼算那段。n8n
+              計費邏輯跟其他自動化工具不太一樣，很多人一開始會抓錯量。
+            </p>
+
+            <h3>費用怎麼算？</h3>
+            <p>
+              n8n 算錢的單位是 execution。一次 execution 就是整條 workflow
+              跑完一次，不管裡面串了幾個節點、處理多少筆資料，都算一次。這跟
+              Zapier、Make
+              按步驟（task）計費是完全不同的邏輯。流程節點越多但只需要跑一次的話，n8n
+              通常會划算不少。
+            </p>
+            <p>Cloud 方案目前三種：</p>
+            <ul>
+              <li>
+                <strong>Starter</strong>：€20/月（年繳），2,500 次 execution
+              </li>
+              <li><strong>Pro</strong>：€50/月，10,000 次 execution</li>
+              <li><strong>Business</strong>：€667/月，40,000 次 execution</li>
+            </ul>
+            <p>
+              Starter 跟 Pro 都有免費試用可以先測，不用綁卡。自己架 Community
+              版完全免費、開源，沒有 execution
+              上限，成本只有主機費。這也是很多台灣用戶選自架的原因。
+            </p>
+            <p>（以上為 2026 年 8 月官網實查，價格以官方為準）</p>
+
+            <h3>第一個 workflow 做什麼？</h3>
+            <p>裝好之後不用想太多，照這個順序上手就好：</p>
+            <ol>
+              <li>
+                先從<a href="/n8n-webhook/">Webhook</a
+                >開始，搞懂外部服務怎麼把資料丟進 n8n，這是幾乎所有流程的起點
+              </li>
+              <li>
+                接著串<a href="/n8n-google-sheets-node/">Google Sheets</a
+                >，把抓到的資料存下來，這步最容易有成就感，因為馬上看得到結果
+              </li>
+              <li>
+                台灣用戶通常第三步會想接<a href="/n8n-line-message-api/">LINE</a
+                >，讓流程跑完直接推播通知自己，不用回頭盯畫面
+              </li>
+            </ol>
+            <p>
+              這三步走完，n8n
+              的基本邏輯大概就懂了。剩下就是照需求換節點，玩法很多，不用照本宣科。
+            </p>
+
+            <h3>學習路徑</h3>
+            <p>
+              新手：安裝 → Webhook → Google
+              Sheets，先求流程跑得起來，不用一開始就求完美。
+            </p>
+            <p>
+              進階：開始碰 AI 相關的節點應用，再往自架部署鑽，部署教學一樣在<a
+                href="/n8n-deployment/">這裡</a
+              >。
+            </p>
+            <p>
+              跟版本：n8n 更新速度不慢，2026 年 8 月已經到
+              2.36.0。每版更新我都整理在<a href="/n8n-update-log/"
+                >n8n 功能更新</a
+              >，不想自己盯 release log 的話，定期回來看這頁就好。
+            </p>
+
+            <h3>常見問題</h3>
+            <p>
+              <strong>要會寫程式嗎？</strong><br />
+              不用。n8n 節點大多用拖拉設定就能完成。會一點 JavaScript 或 Python 在遇到複雜邏輯時會方便很多，但不是必要條件。真的卡住，站內每篇節點教學都有實際設定截圖可以對照。
+            </p>
+            <p>
+              <strong>n8n 真的免費嗎？</strong><br />
+              Community 版免費、開源，自己架主機就好。Cloud 版是訂閱制，Starter 跟
+              Pro 方案有不用綁卡的免費試用可以先測。
+            </p>
+            <p>
+              <strong>跟 Make、Zapier 差在哪？</strong><br />
+              最大差異是計費邏輯（按流程 vs 按步驟）跟能不能自架。n8n 開源可以自己架，Make、Zapier
+              都是純 SaaS，沒得選。長期跑量大的話這點差很多。
+            </p>
+            <p>
+              <strong>版本更新這麼快，要怎麼跟？</strong><br />
+              不用每版都追。升級前看<a href="/n8n-update-log/">n8n 功能更新</a
+              >就好，我每版都會整理新功能跟要注意的地方，不用自己爬 release
+              note。
+            </p>
+
+            <h3>下面找什麼</h3>
+            <p>
+              往下滑是全站的 n8n
+              文章分類，包含節點介紹、小撇步、模板分享、功能更新、部署與設定。還有幾篇外部社群寫的教學一起收在這裡，都是我看過覺得寫得不錯才放上來的。懶得慢慢滑的話，模板下載直接看<a
+                href="/tools/n8n_template/models.html">n8n Workflow 模板庫</a
+              >，裡面是我自己整理分享的模板。
+            </p>
+            <p>
+              如果公司要導入
+              n8n，或想找人代寫、代建流程，我平常也接這類案子。可以看<a
+                href="/n8n-expert/">n8n 顧問／企業導入服務</a
+              >。
+            </p>
+          </section>
+
+          {
+            categoryDefinitions.map(category => {
+              const posts = postsByCategory[category.id];
+              if (posts.length === 0) return null;
+
+              return (
+                <section id={category.id} class="n8n-section">
+                  <h2>{category.title}</h2>
+                  <div class="n8n-articles">
+                    {category.id === "templates" && (
+                      <article class="n8n-article-card">
+                        <a
+                          href={pinnedTemplate.link}
+                          target="_blank"
+                          rel="noopener"
+                        >
+                          <img
+                            src={pinnedTemplate.image}
+                            alt={`${pinnedTemplate.title} - n8n 模板分享`}
+                            loading="lazy"
+                            decoding="async"
+                            width="320"
+                            height="320"
+                          />
+                          <div class="n8n-article-info">
+                            <h3>{pinnedTemplate.title}</h3>
+                            <p>{pinnedTemplate.description}</p>
+                          </div>
+                        </a>
+                      </article>
+                    )}
+                    {posts.map(post => {
+                      const image =
+                        getCoverImage(post) ?? "/gallery/n8n_resource_og.jpg";
+                      return (
+                        <article class="n8n-article-card">
+                          <a href={getPostHref(post)}>
+                            <img
+                              src={image}
+                              alt={`${post.data.title} - ${category.title}教學文章封面圖`}
+                              loading="lazy"
+                              decoding="async"
+                              width="320"
+                              height="320"
+                            />
+                            <div class="n8n-article-info">
+                              <h3>{post.data.title}</h3>
+                              <p>{post.data.description}</p>
+                            </div>
+                          </a>
+                        </article>
+                      );
+                    })}
+                  </div>
+                </section>
+              );
+            })
+          }
+
+          <section id="tutorials" class="n8n-section">
+            <h2>推薦外部教學文件</h2>
+            <div class="n8n-articles">
+              {
+                externalTutorials.map(tutorial => (
+                  <article class="n8n-article-card">
+                    <a href={tutorial.link} target="_blank" rel="noopener">
+                      <img
+                        src={tutorial.image}
+                        alt={`${tutorial.title} - 由${tutorial.author}提供的n8n教學`}
+                        loading="lazy"
+                        decoding="async"
+                        width="400"
+                        height="225"
+                      />
+                    </a>
+                    <div class="n8n-article-info">
+                      <h3>
+                        <a href={tutorial.link} target="_blank" rel="noopener">
+                          {tutorial.title}
+                        </a>
+                      </h3>
+                      <div class="n8n-article-meta">
+                        <a
+                          href={tutorial.authorLink}
+                          target="_blank"
+                          rel="noopener"
+                        >
+                          {tutorial.author}
+                        </a>
+                      </div>
+                      <p>{tutorial.description}</p>
+                    </div>
+                  </article>
+                ))
+              }
+            </div>
+          </section>
+
+          <section id="about" class="n8n-section">
+            <h2>相關連結</h2>
+            <div class="n8n-categories">
+              <ul>
+                <li>
+                  <a href="https://n8n.io/" target="_blank" rel="noopener">
+                    官方網站
+                  </a>
+                </li>
+                <li>
+                  <a href="https://docs.n8n.io/" target="_blank" rel="noopener">
+                    官方文件
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/n8n-io/n8n"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    GitHub
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.darrelltw.com/tools/n8n_template/models.html"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    Workflow 模板
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>
