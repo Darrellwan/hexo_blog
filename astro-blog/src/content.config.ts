@@ -15,6 +15,8 @@ const blog = defineCollection({
       title: z.string(),
       featured: z.boolean().optional(),
       draft: z.boolean().optional(),
+      // Hexo `no_ads`: suppresses the in-article AdSense unit on a single post.
+      no_ads: z.boolean().optional(),
       tags: z.array(z.string()).default(["others"]),
       ogImage: z.string().optional(),
       description: z.string(),
