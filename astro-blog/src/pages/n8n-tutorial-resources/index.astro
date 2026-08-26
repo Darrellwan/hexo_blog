@@ -117,7 +117,7 @@ const postsByCategory = Object.fromEntries(
 ) as Record<CategoryId, CollectionEntry<"blog">[]>;
 
 const getPostHref = (post: CollectionEntry<"blog">) =>
-  `${getPath(post.id, post.filePath, false).replace(/\/+$/, "")}/`;
+  `${getPath(post.filePath).replace(/\/+$/, "")}/`;
 
 const pinnedTemplate = {
   title: "Darrell 模板分享",
@@ -210,6 +210,18 @@ const guideDescription =
   title={guideTitle}
   description={guideDescription}
   ogImage="/gallery/n8n_resource_og.jpg"
+  schemaType="CollectionPage"
+  keywords={[
+    "n8n教學",
+    "n8n入門",
+    "n8n是什麼",
+    "n8n費用",
+    "n8n節點",
+    "n8n模板下載",
+    "n8n部署",
+    "n8n中文教學",
+    "workflow automation",
+  ]}
   pubDatetime={new Date("2024-01-01T00:00:00+08:00")}
   modDatetime={new Date("2026-08-20T14:00:00+08:00")}
 >

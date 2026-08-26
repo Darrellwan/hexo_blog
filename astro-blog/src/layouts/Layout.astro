@@ -9,6 +9,12 @@ import "@/styles/global.css";
 import "../styles/hexo-tags.css";
 
 type Props = {
+  schemaType?:
+    | "WebSite"
+    | "ProfilePage"
+    | "CollectionPage"
+    | "BlogPosting"
+    | "WebPage";
   title?: string;
   author?: string;
   profile?: string;
@@ -17,10 +23,12 @@ type Props = {
   canonicalURL?: string | URL;
   pubDatetime?: Date;
   modDatetime?: Date | null;
+  keywords?: string[];
   scrollSmooth?: boolean;
 };
 
 const {
+  schemaType,
   title = SITE.title,
   author = SITE.author,
   profile = SITE.profile,
@@ -29,6 +37,7 @@ const {
   canonicalURL = new URL(Astro.url.pathname, Astro.url),
   pubDatetime,
   modDatetime,
+  keywords,
   scrollSmooth = false,
 } = Astro.props;
 
@@ -74,8 +83,7 @@ const getCandidatePath = (value: string | undefined) => {
 const currentPost = blogPosts.find(post => {
   const candidatePaths = [
     getCandidatePath(post.data.canonicalURL),
-    getCandidatePath(getPath(post.id, post.filePath, false)),
-    getCandidatePath(getPath(post.id, post.filePath, true)),
+    getCandidatePath(getPath(post.filePath)),
     getCandidatePath(`/${post.id}/`),
     getCandidatePath(post.data.slug ? `/${post.data.slug}/` : undefined),
   ];
@@ -90,6 +98,16 @@ const articlePublishedAt = pubDatetime ?? postData?.pubDatetime;
 const articleModifiedAt = modDatetime ?? postData?.modDatetime;
 const articleTitle = postData?.title ?? title;
 const articleDescription = postData?.description ?? description;
+
+const resolvedSchemaType =
+  schemaType ??
+  (canonicalPath === "/"
+    ? "WebSite"
+    : canonicalPath === "/about/"
+      ? "ProfilePage"
+      : currentPost
+        ? "BlogPosting"
+        : "WebPage");
 
 const pageData: Record<string, unknown> = {
   title: articleTitle,
@@ -116,45 +134,42 @@ const authorSchema = {
   ...(profile && { url: profile }),
 };
 
-const structuredData =
-  canonicalPath === "/"
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": resolvedSchemaType,
+  ...(resolvedSchemaType === "BlogPosting"
     ? {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        name: SITE.title,
-        url: canonicalHref,
-        description,
-        author: authorSchema,
+        headline: articleTitle,
+        image: socialImageURL.href,
+        ...(articlePublishedAt && {
+          datePublished: articlePublishedAt.toISOString(),
+        }),
+        ...(articleModifiedAt && {
+          dateModified: articleModifiedAt.toISOString(),
+        }),
+        author: [authorSchema],
       }
-    : canonicalPath === "/about/"
+    : resolvedSchemaType === "ProfilePage"
       ? {
-          "@context": "https://schema.org",
-          "@type": "ProfilePage",
           name: title,
           url: canonicalHref,
           description,
           mainEntity: authorSchema,
         }
-      : articlePublishedAt
+      : resolvedSchemaType === "WebSite"
         ? {
-            "@context": "https://schema.org",
-            "@type": "BlogPosting",
-            headline: articleTitle,
-            image: socialImageURL.href,
-            datePublished: articlePublishedAt.toISOString(),
-            ...(articleModifiedAt && {
-              dateModified: articleModifiedAt.toISOString(),
-            }),
-            author: [authorSchema],
+            name: SITE.title,
+            url: canonicalHref,
+            description,
+            author: authorSchema,
           }
         : {
-            "@context": "https://schema.org",
-            "@type": "WebPage",
             name: title,
             url: canonicalHref,
             description,
             author: authorSchema,
-          };
+          }),
+};
 
 // Keep JSON data safe inside an inline script element. The escaped value is
 // decoded by JSON.parse when the page data is read by the GTM navigation hook.
@@ -185,6 +200,11 @@ const serializedPageData = JSON.stringify(pageData).replace(/</g, "\\u003c");
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     <meta name="author" content={author} />
+    {
+      keywords?.length ? (
+        <meta name="keywords" content={keywords.join(", ")} />
+      ) : null
+    }
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     <!-- Open Graph / Facebook -->
