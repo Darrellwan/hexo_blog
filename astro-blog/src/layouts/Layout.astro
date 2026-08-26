@@ -1,8 +1,10 @@
 ---
 import { Font } from "astro:assets";
+import { getCollection } from "astro:content";
 import { ClientRouter } from "astro:transitions";
 import { PUBLIC_GOOGLE_SITE_VERIFICATION } from "astro:env/client";
 import { SITE } from "@/config";
+import { getPath } from "@/utils/getPath";
 import "@/styles/global.css";
 import "../styles/hexo-tags.css";
 
@@ -12,7 +14,7 @@ type Props = {
   profile?: string;
   description?: string;
   ogImage?: string;
-  canonicalURL?: string;
+  canonicalURL?: string | URL;
   pubDatetime?: Date;
   modDatetime?: Date | null;
   scrollSmooth?: boolean;
@@ -30,23 +32,133 @@ const {
   scrollSmooth = false,
 } = Astro.props;
 
-const socialImageURL = new URL(ogImage, Astro.url);
+const normalizePagePath = (pathname: string) => {
+  let normalized = pathname.split("?")[0].split("#")[0] || "/";
 
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  headline: `${title}`,
-  image: `${socialImageURL}`,
-  datePublished: `${pubDatetime?.toISOString()}`,
-  ...(modDatetime && { dateModified: modDatetime.toISOString() }),
-  author: [
-    {
-      "@type": "Person",
-      name: `${author}`,
-      ...(profile && { url: profile }),
-    },
-  ],
+  if (!normalized.startsWith("/")) normalized = `/${normalized}`;
+  normalized = normalized.replace(/\/index\.html$/, "/");
+
+  // Astro directory routes use a trailing slash, which must also be the
+  // page_path sent to GTM and GA4.
+  if (
+    normalized !== "/" &&
+    !normalized.endsWith("/") &&
+    !/\.[^/]+$/.test(normalized)
+  ) {
+    normalized = `${normalized}/`;
+  }
+
+  return normalized;
 };
+
+const canonicalHref = new URL(
+  canonicalURL instanceof URL
+    ? canonicalURL.href
+    : canonicalURL || Astro.url.pathname,
+  Astro.url
+).href;
+const canonicalPath = normalizePagePath(new URL(canonicalHref).pathname);
+const routePath = normalizePagePath(Astro.url.pathname);
+
+const blogPosts = await getCollection("blog", ({ data }) => !data.draft);
+const getCandidatePath = (value: string | undefined) => {
+  if (!value) return undefined;
+
+  try {
+    return normalizePagePath(new URL(value, Astro.url).pathname);
+  } catch {
+    return undefined;
+  }
+};
+
+const currentPost = blogPosts.find(post => {
+  const candidatePaths = [
+    getCandidatePath(post.data.canonicalURL),
+    getCandidatePath(getPath(post.id, post.filePath, false)),
+    getCandidatePath(getPath(post.id, post.filePath, true)),
+    getCandidatePath(`/${post.id}/`),
+    getCandidatePath(post.data.slug ? `/${post.data.slug}/` : undefined),
+  ];
+
+  return (
+    candidatePaths.includes(canonicalPath) || candidatePaths.includes(routePath)
+  );
+});
+
+const postData = currentPost?.data;
+const articlePublishedAt = pubDatetime ?? postData?.pubDatetime;
+const articleModifiedAt = modDatetime ?? postData?.modDatetime;
+const articleTitle = postData?.title ?? title;
+const articleDescription = postData?.description ?? description;
+
+const pageData: Record<string, unknown> = {
+  title: articleTitle,
+  page_path: canonicalPath,
+  url: canonicalHref,
+  post_description: articleDescription,
+};
+
+if (articlePublishedAt) pageData.page_date = articlePublishedAt.toISOString();
+if (articleModifiedAt) pageData.page_updated = articleModifiedAt.toISOString();
+
+if (postData) {
+  pageData.page_id = currentPost?.id;
+  pageData.page_categories = postData.categories;
+  pageData.page_tags = postData.tags;
+  pageData.post_permalink = canonicalHref;
+  if (postData.page_type) pageData.type = postData.page_type;
+}
+
+const socialImageURL = new URL(ogImage, Astro.url);
+const authorSchema = {
+  "@type": "Person",
+  name: author,
+  ...(profile && { url: profile }),
+};
+
+const structuredData =
+  canonicalPath === "/"
+    ? {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: SITE.title,
+        url: canonicalHref,
+        description,
+        author: authorSchema,
+      }
+    : canonicalPath === "/about/"
+      ? {
+          "@context": "https://schema.org",
+          "@type": "ProfilePage",
+          name: title,
+          url: canonicalHref,
+          description,
+          mainEntity: authorSchema,
+        }
+      : articlePublishedAt
+        ? {
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            headline: articleTitle,
+            image: socialImageURL.href,
+            datePublished: articlePublishedAt.toISOString(),
+            ...(articleModifiedAt && {
+              dateModified: articleModifiedAt.toISOString(),
+            }),
+            author: [authorSchema],
+          }
+        : {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: title,
+            url: canonicalHref,
+            description,
+            author: authorSchema,
+          };
+
+// Keep JSON data safe inside an inline script element. The escaped value is
+// decoded by JSON.parse when the page data is read by the GTM navigation hook.
+const serializedPageData = JSON.stringify(pageData).replace(/</g, "\\u003c");
 ---
 
 <!doctype html>
@@ -59,7 +171,7 @@ const structuredData = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="canonical" href={canonicalURL} />
+    <link rel="canonical" href={canonicalHref} />
     <meta name="generator" content={Astro.generator} />
 
     <!-- Load Font -->
@@ -78,8 +190,8 @@ const structuredData = {
     <!-- Open Graph / Facebook -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonicalURL} />
-    <meta property="og:image" content={socialImageURL} />
+    <meta property="og:url" content={canonicalHref} />
+    <meta property="og:image" content={socialImageURL.href} />
 
     <!-- Article Published/Modified time -->
     {
@@ -101,10 +213,82 @@ const structuredData = {
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:url" content={canonicalHref} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={socialImageURL} />
+    <meta property="twitter:image" content={socialImageURL.href} />
+
+    <!-- GTM page data must be available before the official loader runs. -->
+    <script
+      id="page-datalayer"
+      type="application/json"
+      is:inline
+      set:html={serializedPageData}
+    />
+    <script is:inline>
+      (function () {
+        function readPageData() {
+          const element = document.getElementById("page-datalayer");
+          if (!element?.textContent) return null;
+
+          try {
+            return JSON.parse(element.textContent);
+          } catch {
+            return null;
+          }
+        }
+
+        const initialPageData = readPageData();
+        window.dataLayer = window.dataLayer || [];
+
+        // The initial page object replaces the old Hexo head data layer push.
+        if (initialPageData && !window.__gtmInitialPageDataPushed) {
+          window.dataLayer.push(initialPageData);
+          window.__gtmInitialPageDataPushed = true;
+          window.__gtmLastPageKey =
+            initialPageData.url ||
+            initialPageData.page_path ||
+            window.location.href;
+        }
+
+        // Astro can evaluate inline scripts again after a transition. Keep one
+        // listener for the document and read the newly swapped page data.
+        if (window.__gtmNavigationListenerInstalled) return;
+        window.__gtmNavigationListenerInstalled = true;
+
+        document.addEventListener("astro:page-load", function () {
+          const nextPageData = readPageData();
+          if (!nextPageData) return;
+
+          const nextPageKey =
+            nextPageData.url || nextPageData.page_path || window.location.href;
+          if (nextPageKey === window.__gtmLastPageKey) return;
+
+          window.__gtmLastPageKey = nextPageKey;
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            ...nextPageData,
+            event: "virtual_pageview",
+          });
+        });
+      })();
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script is:inline>
+      /* eslint-disable no-var -- Preserve Google's official GTM snippet. */
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-WRZDBFS");
+      /* eslint-enable no-var */
+    </script>
 
     <!-- Google JSON-LD Structured data -->
     <script
@@ -169,6 +353,14 @@ const structuredData = {
     </script>
   </head>
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-WRZDBFS"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe></noscript
+    >
     <slot />
 
     <!-- Load full theme logic -->
