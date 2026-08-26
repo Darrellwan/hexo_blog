@@ -46,3 +46,6 @@ public/*
 src/data/blog/*.md
 src/data/blog/*/
 !src/data/blog/test-*.md
+
+# B3 checker 的執行輸出（可重跑產生，不進版控）
+tests/fixtures/b3/url-manifest-results.json
