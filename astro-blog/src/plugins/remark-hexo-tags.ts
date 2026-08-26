@@ -7,6 +7,9 @@
 import type { Plugin } from "unified";
 import type { Root, Paragraph, Text, Html } from "mdast";
 import { visit } from "unist-util-visit";
+import { SITE } from "../config";
+import imageDimensionsJson from "../data/image_dimensions.json";
+import imageVariantsJson from "../data/image_variants.json";
 
 // ============================================
 // Slug derivation helper
@@ -44,37 +47,238 @@ function escapeHtml(str: string): string {
 // Render functions (reusable for MDX Plan B)
 // ============================================
 
+type ImageTagName =
+  | "darrellImage"
+  | "darrellImage800"
+  | "darrellImage800Alt"
+  | "darrellImageh800"
+  | "darrellImageCover"
+  | "darrellOnlyImage";
+
+type ImageDimensions = {
+  width: number;
+  height: number;
+};
+
+type ImageVariant = {
+  width: number;
+  src: string;
+};
+
+const IMAGE_DIMENSIONS = imageDimensionsJson as Record<string, ImageDimensions>;
+const IMAGE_VARIANTS = imageVariantsJson as Record<
+  string,
+  { webp?: ImageVariant[] }
+>;
+const RESPONSIVE_IMAGE_SIZES =
+  "(max-width: 640px) 92vw, (max-width: 1024px) 76vw, (max-width: 1600px) 58vw, 810px";
+
+function getFullImageUrl(imageSrc: string, postSlug: string): string {
+  if (imageSrc.startsWith("http://") || imageSrc.startsWith("https://")) {
+    return imageSrc;
+  }
+
+  const siteUrl = SITE.website.replace(/\/$/, "");
+  if (imageSrc.startsWith("/")) return `${siteUrl}${imageSrc}`;
+  if (postSlug) return `${siteUrl}/${postSlug}/${imageSrc}`;
+  return `${siteUrl}/${imageSrc}`;
+}
+
+function resolveImageDimensions(
+  imageSrc: string,
+  defaultWidth: number,
+  defaultHeight: number
+): ImageDimensions {
+  let imageSrcForLookup = imageSrc;
+  const lookupKeys: string[] = [];
+
+  if (
+    imageSrcForLookup &&
+    !imageSrcForLookup.startsWith("/") &&
+    !imageSrcForLookup.startsWith("http")
+  ) {
+    imageSrcForLookup = `/${imageSrcForLookup}`;
+    lookupKeys.push(imageSrcForLookup);
+  } else {
+    lookupKeys.push(imageSrcForLookup);
+  }
+
+  if (
+    imageSrcForLookup &&
+    !imageSrcForLookup.startsWith("/_posts/") &&
+    !imageSrcForLookup.startsWith("http")
+  ) {
+    lookupKeys.push(`/_posts${imageSrcForLookup}`);
+  }
+
+  if (
+    imageSrcForLookup &&
+    imageSrcForLookup.startsWith("/") &&
+    !imageSrcForLookup.startsWith("http")
+  ) {
+    const withoutSlash = imageSrcForLookup.slice(1);
+    if (!lookupKeys.includes(withoutSlash)) lookupKeys.push(withoutSlash);
+  }
+
+  for (const key of lookupKeys) {
+    if (IMAGE_DIMENSIONS[key]) return IMAGE_DIMENSIONS[key];
+  }
+
+  if (imageSrc && !imageSrc.startsWith("http")) {
+    const imageName = imageSrc.split("/").pop();
+    const similarKey = Object.keys(IMAGE_DIMENSIONS).find(key =>
+      key.endsWith(`/${imageName}`)
+    );
+    if (similarKey) return IMAGE_DIMENSIONS[similarKey];
+  }
+
+  return { width: defaultWidth, height: defaultHeight };
+}
+
+function generateImagePlaceholder(width: number, height: number): string {
+  return `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='${width}' height='${height}' viewBox='0 0 ${width} ${height}'%3E%3Crect width='100%25' height='100%25' fill='%23282828'/%3E%3Cpath d='M${width / 3} ${height / 3} L${width / 2} ${height / 2} L${(width * 2) / 3} ${height / 3} M${width / 2} ${height / 2} L${width / 2} ${(height * 2) / 3}' stroke='%23666' stroke-width='2'/%3E%3C/svg%3E`;
+}
+
+function buildWebpSource(
+  originalImageSrc: string,
+  fullImageUrl: string,
+  lazy: boolean
+): string {
+  if (!originalImageSrc || originalImageSrc.startsWith("http")) return "";
+
+  const urlPath = fullImageUrl.replace(/^https?:\/\/[^/]+/, "");
+  const imageName = originalImageSrc.split("/").pop();
+  let key: string | null = `/_posts${urlPath}`;
+
+  if (!IMAGE_VARIANTS[key]) {
+    const matches = Object.keys(IMAGE_VARIANTS).filter(candidate =>
+      candidate.endsWith(`/${imageName}`)
+    );
+    key = matches.length === 1 ? matches[0] : null;
+  }
+
+  const variants = key ? IMAGE_VARIANTS[key]?.webp : undefined;
+  if (!variants?.length) return "";
+
+  const baseUrl = fullImageUrl.slice(0, fullImageUrl.lastIndexOf("/") + 1);
+  const srcset = variants
+    .map(variant => `${baseUrl}${variant.src} ${variant.width}w`)
+    .join(", ");
+  const attribute = lazy ? "data-srcset" : "srcset";
+
+  return `<source type="image/webp" ${attribute}="${escapeHtml(srcset)}" sizes="${RESPONSIVE_IMAGE_SIZES}">`;
+}
+
+function defaultImageClass(tagName: ImageTagName): string {
+  if (
+    tagName === "darrellImage800" ||
+    tagName === "darrellImage800Alt" ||
+    tagName === "darrellImageCover"
+  ) {
+    return "max-800";
+  }
+  if (tagName === "darrellImageh800") return "max-800h";
+  return "max-1024";
+}
+
+function defaultImageDimensions(tagName: ImageTagName): ImageDimensions {
+  if (tagName === "darrellImage" || tagName === "darrellOnlyImage") {
+    return { width: 1024, height: 576 };
+  }
+  if (tagName === "darrellImageh800") {
+    return { width: 800, height: 800 };
+  }
+  return { width: 800, height: 450 };
+}
+
 export function renderImage(
   altText: string,
   imageSrc: string,
   className: string,
   isCover: boolean = false,
-  postSlug: string = ""
+  postSlug: string = "",
+  imageTagName?: ImageTagName
 ): string {
   if (!altText || !imageSrc) return "";
 
-  // For absolute URLs or already-absolute paths, use as-is.
-  // For relative image filenames, prefix with /{slug}/ so they resolve correctly.
-  let src: string;
-  if (imageSrc.startsWith("http") || imageSrc.startsWith("/")) {
-    src = imageSrc;
-  } else if (postSlug) {
-    src = `/${postSlug}/${imageSrc.replace(/^\.\//, "")}`;
-  } else {
-    src = imageSrc;
+  const tagName =
+    imageTagName ?? (isCover ? "darrellImageCover" : "darrellImage");
+  const defaults = defaultImageDimensions(tagName);
+  const { width, height } = resolveImageDimensions(
+    imageSrc,
+    defaults.width,
+    defaults.height
+  );
+  const effectiveClass = className || defaultImageClass(tagName);
+  const fullImageUrl = getFullImageUrl(imageSrc, postSlug);
+  const safeAlt = escapeHtml(altText);
+  const safeClass = escapeHtml(effectiveClass);
+  const safeFullImageUrl = escapeHtml(fullImageUrl);
+  const aspectRatio = `${width} / ${height}`;
+
+  if (tagName === "darrellOnlyImage") {
+    const placeholder = generateImagePlaceholder(width, height);
+    return `<img
+    alt="${safeAlt}"
+    data-src="${safeFullImageUrl}"
+    src="${placeholder}"
+    class="${safeClass} lazyload"
+    width="${width}"
+    height="${height}"
+    loading="lazy"
+    decoding="async"
+    style="aspect-ratio: ${aspectRatio}; display: block;height: auto; background-color: #f0f0f0">`;
   }
 
-  const safeAlt = escapeHtml(altText);
-  const safeSrc = escapeHtml(src);
+  if (tagName === "darrellImageCover") {
+    const imgTag = `<img
+      alt="${safeAlt}"
+      src="${safeFullImageUrl}"
+      class=""
+      width="${width}"
+      height="${height}"
+      fetchpriority="high"
+      decoding="async"
+      sizes="(min-width: 1000px) 930px, 90vw"
+      style="display: block; width: 100%; height: 100%; object-fit: cover; background-color: #f0f0f0">`;
+    const webpSource = buildWebpSource(imageSrc, fullImageUrl, false);
+    const media = webpSource
+      ? `<picture>${webpSource}${imgTag}</picture>`
+      : imgTag;
 
-  if (isCover) {
-    return `<figure class="blog-images blog-cover-image ${className}" style="overflow: hidden;">
-  <img alt="${safeAlt}" src="${safeSrc}" loading="eager" decoding="async" style="display: block; width: 100%; height: auto;">
+    return `<figure lg-background-color="#282828" class="blog-images blog-cover-image ${safeClass}" data-src="${safeFullImageUrl}" style="aspect-ratio: ${aspectRatio}; background-color: #f0f0f0; overflow: hidden;">
+    ${media}
 </figure>`;
   }
 
-  return `<figure class="blog-images ${className}" style="overflow: hidden;">
-  <img alt="${safeAlt}" src="${safeSrc}" loading="lazy" decoding="async" style="display: block; width: 100%; height: auto;">
+  const placeholder = generateImagePlaceholder(width, height);
+  const sizes =
+    tagName === "darrellImage"
+      ? "(min-width: 1000px) 930px, 90vw"
+      : tagName === "darrellImageh800"
+        ? "(%) 930px, 90vw"
+        : "(min-width: 800px) 930px, 90vw";
+  const imgTag = `<img
+      alt="${safeAlt}"
+      data-src="${safeFullImageUrl}"
+      src="${placeholder}"
+      class="lazyload"
+      width="${width}"
+      height="${height}"
+      loading="lazy"
+      decoding="async"
+      sizes="${sizes}"
+      style="display: block;height: auto; background-color: #f0f0f0">`;
+  const webpSource =
+    tagName === "darrellImage800Alt"
+      ? buildWebpSource(imageSrc, fullImageUrl, true)
+      : "";
+  const media = webpSource
+    ? `<picture>${webpSource}${imgTag}</picture>`
+    : imgTag;
+
+  return `<figure lg-background-color="#282828" class="blog-images ${safeClass}" data-src="${safeFullImageUrl}" style="aspect-ratio: ${aspectRatio}; background-color: #282828; overflow: hidden;">
+    ${media}
 </figure>`;
 }
 
@@ -481,17 +685,17 @@ function processInlineTags(text: string, postSlug: string = ""): string | null {
   result = result.replace(imageTagRe, (_, tagName, argsStr) => {
     hasMatch = true;
     const parsed = parseQuotedArgs(argsStr);
-    const isCover = tagName === "darrellImageCover";
-    const defaultClass =
-      tagName === "darrellImage800" || tagName === "darrellImage800Alt"
-        ? "max-800"
-        : tagName === "darrellImageh800"
-          ? "max-800h"
-          : tagName === "darrellImageCover"
-            ? "max-1024"
-            : "max-1024";
-    const className = parsed.className || defaultClass;
-    return renderImage(parsed.altText, parsed.imageSrc, className, isCover, postSlug);
+    const imageTagName = tagName as ImageTagName;
+    const isCover = imageTagName === "darrellImageCover";
+    const className = parsed.className || defaultImageClass(imageTagName);
+    return renderImage(
+      parsed.altText,
+      parsed.imageSrc,
+      className,
+      isCover,
+      postSlug,
+      imageTagName
+    );
   });
 
   // Video tags
