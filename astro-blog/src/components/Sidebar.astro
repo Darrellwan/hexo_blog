@@ -35,94 +35,187 @@ function formatDate(date: Date): string {
 ---
 
 <aside class="sidebar" aria-label="Sidebar">
-
   <!-- 1. 接案 CTA -->
   <div class="sidebar-widget sidebar-cta">
     <div class="cta-content">
       <p class="cta-label">n8n 自動化顧問</p>
       <h2 class="cta-title">需要 n8n<br />自動化？</h2>
-      <p class="cta-desc">已協助 15+ 個團隊導入 n8n 自動化，從流程設計到系統整合一手包辦。</p>
+      <p class="cta-desc">
+        已協助 15+ 個團隊導入 n8n 自動化，從流程設計到系統整合一手包辦。
+      </p>
       <a href="/n8n-expert/" class="cta-btn">
         看看我能幫你做什麼
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M5 12h14M12 5l7 7-7 7"/>
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M5 12h14M12 5l7 7-7 7"></path>
         </svg>
       </a>
     </div>
   </div>
 
-  <!-- 2. Social Links (icon-only) -->
+  <!-- 2. 訂閱 -->
+  <div class="sidebar-widget sidebar-subscribe">
+    <h3 class="widget-title">訂閱更新</h3>
+    <p class="subscribe-desc">收到最新文章與自動化實戰分享。</p>
+    <script
+      is:inline
+      async
+      data-uid="b5e6527b64"
+      data-astro-rerun
+      src="https://darrell-tw.kit.com/b5e6527b64/index.js"></script>
+  </div>
+
+  <!-- 3. Social Links (icon-only) -->
   <div class="sidebar-widget">
     <h3 class="widget-title">找到我</h3>
     <div class="social-icons">
-      <a href="/rss.xml" class="social-icon social-rss" target="_blank" rel="noopener noreferrer" aria-label="RSS Feed" title="RSS Feed">
+      <a
+        href="/rss.xml"
+        class="social-icon social-rss"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="RSS Feed"
+        title="RSS Feed"
+      >
         <IconRss />
       </a>
-      <a href="https://x.com/darrell_tw_" class="social-icon social-x" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter" title="X / Twitter">
+      <a
+        href="https://x.com/darrell_tw_"
+        class="social-icon social-x"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="X / Twitter"
+        title="X / Twitter"
+      >
         <IconBrandX />
       </a>
-      <a href="https://github.com/Darrellwan/" class="social-icon social-github" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+      <a
+        href="https://github.com/Darrellwan/"
+        class="social-icon social-github"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="GitHub"
+        title="GitHub"
+      >
         <IconGitHub />
       </a>
-      <a href="https://www.linkedin.com/in/darrell-wang-78265a8b/" class="social-icon social-linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+      <a
+        href="https://www.linkedin.com/in/darrell-wang-78265a8b/"
+        class="social-icon social-linkedin"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="LinkedIn"
+        title="LinkedIn"
+      >
         <IconLinkedin />
       </a>
-      <a href="https://www.instagram.com/darrell_tw_/" class="social-icon social-instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      <a
+        href="https://www.instagram.com/darrell_tw_/"
+        class="social-icon social-instagram"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Instagram"
+        title="Instagram"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          ><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path
+            d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line
+            x1="17.5"
+            y1="6.5"
+            x2="17.51"
+            y2="6.5"></line></svg
+        >
       </a>
-      <a href="https://www.threads.net/@darrell_tw_" class="social-icon social-threads" target="_blank" rel="noopener noreferrer" aria-label="Threads" title="Threads">
-        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.96-.065-1.187.408-2.26 1.33-3.017.88-.723 2.08-1.12 3.476-1.152 1.007-.023 1.937.1 2.788.365a8.07 8.07 0 0 0-.025-.79c-.168-1.903-1.07-2.872-2.68-2.882-1.01.007-1.82.343-2.271.943l-1.767-1.078C9.57 5.378 10.97 4.702 12.85 4.69c1.32.009 2.387.345 3.171 1 .855.714 1.345 1.78 1.458 3.166.04.494.052.999.034 1.51.416.26.79.559 1.117.895 1.167 1.2 1.738 2.778 1.696 4.691-.046 2.167-1.002 3.967-2.844 5.348C15.903 22.496 14.23 23.064 12.186 24zM10.884 14.88c-.063 0-.127.002-.192.005-.838.032-1.49.264-1.89.672-.346.354-.514.778-.486 1.227.04.66.424 1.221 1.08 1.578.59.321 1.35.47 2.133.416 1.078-.058 1.907-.443 2.464-1.142.42-.527.726-1.254.912-2.17-.94-.385-2.006-.586-3.158-.586z"/></svg>
+      <a
+        href="https://www.threads.net/@darrell_tw_"
+        class="social-icon social-threads"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Threads"
+        title="Threads"
+      >
+        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"
+          ><path
+            d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.96-.065-1.187.408-2.26 1.33-3.017.88-.723 2.08-1.12 3.476-1.152 1.007-.023 1.937.1 2.788.365a8.07 8.07 0 0 0-.025-.79c-.168-1.903-1.07-2.872-2.68-2.882-1.01.007-1.82.343-2.271.943l-1.767-1.078C9.57 5.378 10.97 4.702 12.85 4.69c1.32.009 2.387.345 3.171 1 .855.714 1.345 1.78 1.458 3.166.04.494.052.999.034 1.51.416.26.79.559 1.117.895 1.167 1.2 1.738 2.778 1.696 4.691-.046 2.167-1.002 3.967-2.844 5.348C15.903 22.496 14.23 23.064 12.186 24zM10.884 14.88c-.063 0-.127.002-.192.005-.838.032-1.49.264-1.89.672-.346.354-.514.778-.486 1.227.04.66.424 1.221 1.08 1.578.59.321 1.35.47 2.133.416 1.078-.058 1.907-.443 2.464-1.142.42-.527.726-1.254.912-2.17-.94-.385-2.006-.586-3.158-.586z"
+          ></path></svg
+        >
       </a>
-      <a href="mailto:info@darrelltw.com" class="social-icon social-mail" aria-label="Email" title="Email">
+      <a
+        href="mailto:info@darrelltw.com"
+        class="social-icon social-mail"
+        aria-label="Email"
+        title="Email"
+      >
         <IconMail />
       </a>
     </div>
   </div>
 
-  <!-- 3. 最近文章 -->
+  <!-- 4. 最近文章 -->
   <div class="sidebar-widget">
     <h3 class="widget-title">最近文章</h3>
     <ul class="recent-posts">
-      {recentPosts.map(post => (
-        <li class="recent-post-item">
-          <a href={getPath(post.filePath)} class="recent-post-link">
-            <span class="recent-post-title">{post.data.title}</span>
-            <time
-              class="recent-post-date"
-              datetime={post.data.modDatetime?.toISOString() ?? post.data.pubDatetime.toISOString()}
-            >
-              {formatDate(post.data.modDatetime ?? post.data.pubDatetime)}
-            </time>
-          </a>
-        </li>
-      ))}
+      {
+        recentPosts.map(post => (
+          <li class="recent-post-item">
+            <a href={getPath(post.filePath)} class="recent-post-link">
+              <span class="recent-post-title">{post.data.title}</span>
+              <time
+                class="recent-post-date"
+                datetime={
+                  post.data.modDatetime?.toISOString() ??
+                  post.data.pubDatetime.toISOString()
+                }
+              >
+                {formatDate(post.data.modDatetime ?? post.data.pubDatetime)}
+              </time>
+            </a>
+          </li>
+        ))
+      }
     </ul>
   </div>
 
-  <!-- 4. 分類列表 -->
-  {categories.length > 0 && (
-    <div class="sidebar-widget">
-      <h3 class="widget-title">文章分類</h3>
-      <ul class="category-list">
-        {categories.map(([cat, count]) => (
-          <li class="category-item">
-            <a href="javascript:void(0)" class="category-link">
-              <span class="category-name">{cat}</span>
-              <span class="category-count">{count}</span>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  )}
+  <!-- 5. 分類列表 -->
+  {
+    categories.length > 0 && (
+      <div class="sidebar-widget">
+        <h3 class="widget-title">文章分類</h3>
+        <ul class="category-list">
+          {categories.map(([cat, count]) => (
+            <li class="category-item">
+              <a href="javascript:void(0)" class="category-link">
+                <span class="category-name">{cat}</span>
+                <span class="category-count">{count}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
 
-  <!-- 5. AdSense 預留位 -->
+  <!-- 6. AdSense 預留位 -->
   <div class="sidebar-widget sidebar-ad-placeholder" aria-hidden="true">
     <div class="ad-inner">
       <span class="ad-label">廣告</span>
     </div>
   </div>
-
 </aside>
 
 <style>
@@ -131,6 +224,8 @@ function formatDate(date: Date): string {
    * ======================== */
   .sidebar {
     width: 300px;
+    max-width: 100%;
+    box-sizing: border-box;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
@@ -141,6 +236,10 @@ function formatDate(date: Date): string {
    * 通用 Widget
    * ======================== */
   .sidebar-widget {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: 12px;
@@ -209,12 +308,63 @@ function formatDate(date: Date): string {
     padding: 0.55rem 1.1rem;
     border-radius: 8px;
     text-decoration: none;
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
   }
 
   .cta-btn:hover {
     opacity: 0.9;
     transform: translateX(2px);
+  }
+
+  /* ========================
+   * 訂閱 Widget
+   * ======================== */
+  .sidebar-subscribe {
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .subscribe-desc {
+    margin: -0.35rem 0 0.9rem;
+    color: var(--color-text-secondary);
+    font-size: 0.82rem;
+    line-height: 1.55;
+  }
+
+  .sidebar-subscribe :global(.formkit-form),
+  .sidebar-subscribe :global(.formkit-form > *),
+  .sidebar-subscribe :global(.formkit-fields),
+  .sidebar-subscribe :global(.formkit-field) {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .sidebar-subscribe :global(.formkit-form) {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+  }
+
+  .sidebar-subscribe :global(input),
+  .sidebar-subscribe :global(select),
+  .sidebar-subscribe :global(textarea),
+  .sidebar-subscribe :global(iframe) {
+    box-sizing: border-box;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .sidebar-subscribe :global(.formkit-submit),
+  .sidebar-subscribe :global(button[type="submit"]) {
+    box-sizing: border-box;
+    max-width: 100%;
+    white-space: normal;
   }
 
   /* ========================
@@ -235,7 +385,10 @@ function formatDate(date: Date): string {
     border-radius: 8px;
     color: var(--color-text-secondary);
     background: var(--color-muted);
-    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    transition:
+      background 0.2s ease,
+      color 0.2s ease,
+      transform 0.2s ease;
     text-decoration: none;
   }
 
@@ -252,20 +405,64 @@ function formatDate(date: Date): string {
   }
 
   /* Fill-based icons */
-  .social-rss svg, .social-rss :global(svg) { fill: currentColor; stroke: none; }
-  .social-threads svg { fill: currentColor; stroke: none; }
+  .social-rss svg,
+  .social-rss :global(svg) {
+    fill: currentColor;
+    stroke: none;
+  }
+  .social-threads svg {
+    fill: currentColor;
+    stroke: none;
+  }
 
-  .social-rss:hover { background: #f26522; color: #fff; }
-  .social-x:hover { background: #000; color: #fff; }
-  .social-github:hover { background: #333; color: #fff; }
-  .social-linkedin:hover { background: #0077b5; color: #fff; }
-  .social-instagram:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
-  .social-threads:hover { background: #000; color: #fff; }
-  .social-mail:hover { background: var(--color-accent); color: #fff; }
+  .social-rss:hover {
+    background: #f26522;
+    color: #fff;
+  }
+  .social-x:hover {
+    background: #000;
+    color: #fff;
+  }
+  .social-github:hover {
+    background: #333;
+    color: #fff;
+  }
+  .social-linkedin:hover {
+    background: #0077b5;
+    color: #fff;
+  }
+  .social-instagram:hover {
+    background: linear-gradient(
+      45deg,
+      #f09433,
+      #e6683c,
+      #dc2743,
+      #cc2366,
+      #bc1888
+    );
+    color: #fff;
+  }
+  .social-threads:hover {
+    background: #000;
+    color: #fff;
+  }
+  .social-mail:hover {
+    background: var(--color-accent);
+    color: #fff;
+  }
 
-  html[data-theme="dark"] .social-x:hover { background: #fff; color: #000; }
-  html[data-theme="dark"] .social-github:hover { background: #f0f0f0; color: #333; }
-  html[data-theme="dark"] .social-threads:hover { background: #fff; color: #000; }
+  html[data-theme="dark"] .social-x:hover {
+    background: #fff;
+    color: #000;
+  }
+  html[data-theme="dark"] .social-github:hover {
+    background: #f0f0f0;
+    color: #333;
+  }
+  html[data-theme="dark"] .social-threads:hover {
+    background: #fff;
+    color: #000;
+  }
 
   /* ========================
    * 最近文章
@@ -337,7 +534,9 @@ function formatDate(date: Date): string {
     border-radius: 6px;
     text-decoration: none;
     color: var(--color-foreground);
-    transition: background 0.2s ease, color 0.2s ease;
+    transition:
+      background 0.2s ease,
+      color 0.2s ease;
   }
 
   .category-link:hover {
@@ -384,5 +583,11 @@ function formatDate(date: Date): string {
     color: var(--color-text-secondary);
     letter-spacing: 0.1em;
     text-transform: uppercase;
+  }
+
+  @media (max-width: 1024px) {
+    .sidebar {
+      width: 100%;
+    }
   }
 </style>
