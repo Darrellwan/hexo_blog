@@ -2,7 +2,7 @@
   "generatedAt": "2026-08-26",
   "source": "dist/pagefind/pagefind.js",
   "intentionalDifference": "Pagefind intentionally does not copy the legacy search-ranking.js date/weight/pinned algorithm. The gates below check useful top-three relevance and explicit entry-page availability instead of requiring legacy ranking parity.",
-  "indexedPageCount": 123,
+  "indexedPageCount": 133,
   "requiredEntryPagesMissing": [],
   "expectedIndexedUrls": [
     "/2022-martech-trends-bnext/",
@@ -12,12 +12,15 @@
     "/chatgpt-broken-in-web-browser/",
     "/chatgpt-coding-assistant-3rdparty-detect/",
     "/chatgpt-sora-create-image-with-text/",
+    "/chatgpt-work-vs-codex/",
     "/chatgpt-work-with-apps/",
     "/claude-code-agent/",
     "/claude-code-channels-discord-telegram/",
+    "/claude-code-fable-5/",
     "/claude-code-new-command-line-tool/",
     "/claude-cowork-intro/",
     "/claude-desktop-new-mcp-features-review/",
+    "/claude-managed-agents/",
     "/claude_code_update_202509/",
     "/cloudflare-worker-url-shortener/",
     "/cursor-mcp-server-guide/",
@@ -38,6 +41,7 @@
     "/ga4-new-release-search-datastream-property-info/",
     "/ga4-new-release-user-purchase-journey/",
     "/ga4-parameter-name-value-limit/",
+    "/ga4-search-console-mcp-install/",
     "/ga4-session-hit-user-explain/",
     "/ga4-unwanted-referrals/",
     "/ga4-update-benchmark/",
@@ -58,6 +62,7 @@
     "/google-tag-manager-skills-css-selector-resource/",
     "/google-tag-manager-store-data-storage-cookie/",
     "/google-tag-manager-variable-datalayer-version-one-and-two/",
+    "/grok-bot-review/",
     "/gtm-chrome-devtool-tracking-skill/",
     "/gtm-datalayer-broken-reset/",
     "/gtm-ga4-new-feature-use-ecommerce-datalayer/",
@@ -77,10 +82,13 @@
     "/how-to-ask-google-tag-manager-question/",
     "/line-mcp-server/",
     "/looker-studio-new-release-202212-ga4-api-quota/",
+    "/meta-ads-mcp/",
     "/n8n-2-0-update/",
     "/n8n-aggregate-split-out/",
     "/n8n-apify-node/",
     "/n8n-built-in-variables/",
+    "/n8n-bycrawl-node/",
+    "/n8n-cli-guide/",
     "/n8n-datatables-node/",
     "/n8n-debug-line-invalid-json/",
     "/n8n-deployment/",
@@ -89,6 +97,7 @@
     "/n8n-expert/",
     "/n8n-filter-node/",
     "/n8n-gmail-node/",
+    "/n8n-google-sheets-node/",
     "/n8n-if-switch/",
     "/n8n-line-message-api/",
     "/n8n-line-messaging-community-node/",
@@ -103,6 +112,7 @@
     "/n8n-time-saved-node/",
     "/n8n-tips-pin/",
     "/n8n-tutorial-resources/",
+    "/n8n-update-log-v1/",
     "/n8n-update-log/",
     "/n8n-webhook/",
     "/n8n-with-cloudflare-turnstile-CAPTCHA/",
@@ -137,12 +147,15 @@
     "/chatgpt-broken-in-web-browser/",
     "/chatgpt-coding-assistant-3rdparty-detect/",
     "/chatgpt-sora-create-image-with-text/",
+    "/chatgpt-work-vs-codex/",
     "/chatgpt-work-with-apps/",
     "/claude-code-agent/",
     "/claude-code-channels-discord-telegram/",
+    "/claude-code-fable-5/",
     "/claude-code-new-command-line-tool/",
     "/claude-cowork-intro/",
     "/claude-desktop-new-mcp-features-review/",
+    "/claude-managed-agents/",
     "/claude_code_update_202509/",
     "/cloudflare-worker-url-shortener/",
     "/cursor-mcp-server-guide/",
@@ -163,6 +176,7 @@
     "/ga4-new-release-search-datastream-property-info/",
     "/ga4-new-release-user-purchase-journey/",
     "/ga4-parameter-name-value-limit/",
+    "/ga4-search-console-mcp-install/",
     "/ga4-session-hit-user-explain/",
     "/ga4-unwanted-referrals/",
     "/ga4-update-benchmark/",
@@ -183,6 +197,7 @@
     "/google-tag-manager-skills-css-selector-resource/",
     "/google-tag-manager-store-data-storage-cookie/",
     "/google-tag-manager-variable-datalayer-version-one-and-two/",
+    "/grok-bot-review/",
     "/gtm-chrome-devtool-tracking-skill/",
     "/gtm-datalayer-broken-reset/",
     "/gtm-ga4-new-feature-use-ecommerce-datalayer/",
@@ -202,10 +217,13 @@
     "/how-to-ask-google-tag-manager-question/",
     "/line-mcp-server/",
     "/looker-studio-new-release-202212-ga4-api-quota/",
+    "/meta-ads-mcp/",
     "/n8n-2-0-update/",
     "/n8n-aggregate-split-out/",
     "/n8n-apify-node/",
     "/n8n-built-in-variables/",
+    "/n8n-bycrawl-node/",
+    "/n8n-cli-guide/",
     "/n8n-datatables-node/",
     "/n8n-debug-line-invalid-json/",
     "/n8n-deployment/",
@@ -214,6 +232,7 @@
     "/n8n-expert/",
     "/n8n-filter-node/",
     "/n8n-gmail-node/",
+    "/n8n-google-sheets-node/",
     "/n8n-if-switch/",
     "/n8n-line-message-api/",
     "/n8n-line-messaging-community-node/",
@@ -228,6 +247,7 @@
     "/n8n-time-saved-node/",
     "/n8n-tips-pin/",
     "/n8n-tutorial-resources/",
+    "/n8n-update-log-v1/",
     "/n8n-update-log/",
     "/n8n-webhook/",
     "/n8n-with-cloudflare-turnstile-CAPTCHA/",
@@ -257,7 +277,7 @@
   "forbiddenIndexedUrls": [],
   "missingExpectedUrls": [],
   "extraIndexedUrls": [],
-  "expectedIndexedPageCount": 123,
+  "expectedIndexedPageCount": 133,
   "fullIndexPass": true,
   "queries": [
     {
@@ -271,35 +291,37 @@
         "/n8n-tutorial-resources/",
         "/google-app-script-test-webhook/"
       ],
-      "resultCount": 6,
+      "resultCount": 10,
       "top3": [
         {
           "rank": 1,
           "url": "/n8n-node-s3-with-cloudflare-r2/",
           "title": "n8n 雲端儲存方案 - S3 節點串接 Cloudflare R2 實戰",
           "excerpt": "<mark>n8n </mark>雲端儲存方案 - S3 節點串接 Cloudflare R2 實戰. 2025-04-25. |Edit page. <mark>n8n </mark>s3 節點.",
-          "score": 4.868034362792969
+          "score": 4.341763019561768
         },
         {
           "rank": 2,
-          "url": "/n8n-tutorial-resources/",
-          "title": "n8n 教學：節點介紹、模板、部署指南",
-          "excerpt": "接這類案子。可以看<mark>n8n </mark>顧問／企業導入服務。 <mark>n8n </mark>節點介紹. <mark>n8n </mark>爬蟲神器 Apify 教",
-          "score": 3.2185654640197754
+          "url": "/n8n-cli-guide/",
+          "title": "n8n CLI 教學 - 用終端機管理 workflow，備份、批次操作、AI 整合",
+          "excerpt": "打指令，請直接跳到 AI 整合。 <mark>n8n </mark>CLI 是什麼？跟自架的 <mark>n8n </mark>指令不一樣. 先解決一",
+          "score": 3.417079210281372
         },
         {
           "rank": 3,
-          "url": "/google-app-script-test-webhook/",
-          "title": "Google App Script 測試 Webhook 的串接",
-          "excerpt": "個需求 Webhook Site | 但最近他怪怪的有時候會有<mark>憑</mark>證問題連不上 RequestBin. 但今天當你要測",
-          "score": 3.0235543251037598
+          "url": "/n8n-tutorial-resources/",
+          "title": "n8n 教學：節點介紹、模板、部署指南",
+          "excerpt": "接這類案子。可以看<mark>n8n </mark>顧問／企業導入服務。 <mark>n8n </mark>節點介紹. <mark>n8n </mark>安裝部署與更新",
+          "score": 2.8844962120056152
         }
       ],
       "expectedMatch": true,
-      "allTop3Acceptable": true,
-      "unexpectedTop3": [],
+      "allTop3Acceptable": false,
+      "unexpectedTop3": [
+        "/n8n-cli-guide/"
+      ],
       "forbiddenResults": [],
-      "passed": true
+      "passed": false
     },
     {
       "query": "n8n credentials",
@@ -314,28 +336,28 @@
         "/n8n-elevenlabs-tts/",
         "/n8n-node-s3-with-cloudflare-r2/"
       ],
-      "resultCount": 10,
+      "resultCount": 15,
       "top3": [
         {
           "rank": 1,
           "url": "/n8n-with-slack/",
           "title": "n8n Slack 整合實測 - 訊息發送與觸發器設定完整流程",
           "excerpt": "<mark>n8n </mark>Slack 整合實測 - 訊息發送與觸發器設定完整流程. 2024-12-08. |Edit page. <mark>Credentials </mark>設",
-          "score": 5.305300712585449
+          "score": 4.680762767791748
         },
         {
           "rank": 2,
           "url": "/n8n-elevenlabs-tts/",
           "title": "n8n 語音自動化實測 - ElevenLabs TTS 節點應用場景",
           "excerpt": "找到後就能建立 API Key 了！ <mark>n8n </mark>安裝 elevenlabs 社群節點和新增 <mark>credentials</mark>. 在 <mark>n8n </mark>的節點列表中搜尋 elevenlabs",
-          "score": 5.085831642150879
+          "score": 4.502017021179199
         },
         {
           "rank": 3,
           "url": "/n8n-node-s3-with-cloudflare-r2/",
           "title": "n8n 雲端儲存方案 - S3 節點串接 Cloudflare R2 實戰",
           "excerpt": "<mark>n8n </mark>雲端儲存方案 - S3 節點串接 Cloudflare R2 實戰. 2025-04-25. |Edit page. <mark>n8n </mark>s3 節點.",
-          "score": 4.992047309875488
+          "score": 4.43283224105835
         }
       ],
       "expectedMatch": true,
@@ -362,21 +384,21 @@
           "url": "/n8n-datatables-node/",
           "title": "n8n DataTables 節點教學 - 直接把資料存在 n8n 裡",
           "excerpt": "n8n <mark>DataTables </mark>節點教學 - 直接把資料存在 n8n 裡. 2025-09-25. |Edit page. 預計閱讀時間",
-          "score": 8.00535774230957
+          "score": 8.230569839477539
         },
         {
           "rank": 2,
           "url": "/tools/n8n_template/models.html",
           "title": "n8n 模板分享",
           "excerpt": "生成OpenAISora自動化Google Drive文字轉影片 8 Nodes Oct 11 n8n <mark>DataTables </mark>完整功能示範. Form Trigger 建立互動表單,展示",
-          "score": 6.558502674102783
+          "score": 6.873110294342041
         },
         {
           "rank": 3,
           "url": "/n8n-tutorial-resources/",
           "title": "n8n 教學：節點介紹、模板、部署指南",
           "excerpt": "All Possible Combinations 的用法. n8n <mark>DataTables </mark>節點教學 - 直接把資料存在 n8n 裡. n8n 推出 <mark>DataTables</mark>！ 原生數據存儲",
-          "score": 5.4504008293151855
+          "score": 5.706348419189453
         }
       ],
       "expectedMatch": true,
@@ -396,28 +418,28 @@
         "/tools/n8n_template/models.html",
         "/send-push-to-me/"
       ],
-      "resultCount": 25,
+      "resultCount": 27,
       "top3": [
         {
           "rank": 1,
           "url": "/n8n-line-message-api/",
           "title": "n8n LINE 訊息發送實戰 - Request 節點替代 LINE Notify",
           "excerpt": "發送了喔! Line <mark>Webhook </mark>事件. Line <mark>Webhook </mark>官方文件. Line Developer Console 的 <mark>Webhook </mark>設定了 n8n 的 <mark>Webhook </mark>URL 之後，我",
-          "score": 7.707178115844727
+          "score": 8.10515308380127
         },
         {
           "rank": 2,
           "url": "/tools/n8n_template/models.html",
           "title": "n8n 模板分享",
           "excerpt": "Sheets. 自動化<mark>WebhookPortalyGoogle </mark>Sheets訂單記錄 8 Nodes Jun 18 Meta <mark>Webhook </mark>Challenge 驗證回應. 接收 Meta <mark>Webhook </mark>驗證請求",
-          "score": 7.509791374206543
+          "score": 8.022096633911133
         },
         {
           "rank": 3,
           "url": "/send-push-to-me/",
           "title": "Line Notify 結束服務，轉移到 Slack、Telegram、Discord",
           "excerpt": "/discohook.org/ https://toolscord.com/<mark>webhook</mark>. Telegram Bot <mark>Webhook</mark>. 找 BotFather 建立 Bot. 在 Telegram 中可以搜尋",
-          "score": 6.463054656982422
+          "score": 6.801497459411621
         }
       ],
       "expectedMatch": true,
@@ -437,28 +459,28 @@
         "/ga4-parameter-name-value-limit/",
         "/ga4-data-thresholds/"
       ],
-      "resultCount": 29,
+      "resultCount": 31,
       "top3": [
         {
           "rank": 1,
           "url": "/google-analytics-data-api-filter-in-google-app-script/",
           "title": "Google Analytics 4 Data API - Google App Script 使用 API 的 Filter 篇",
           "excerpt": "<mark>Google </mark><mark>Analytics </mark><mark>4 </mark>Data API - <mark>Google </mark>App Script 使用 API 的 Filter 篇. 2022-12-28. |Edit page. 在 <mark>Google </mark>App Script 中使用",
-          "score": 13.451743125915527
+          "score": 13.826704025268555
         },
         {
           "rank": 2,
           "url": "/ga4-parameter-name-value-limit/",
           "title": "GA4 Event/User Parameter 限制",
           "excerpt": "元就會造成未來很多的麻煩等等。 Edit page <mark>Google </mark><mark>Analytics </mark><mark>4</mark>. Back To Top. 分享這篇文章 已複製連結",
-          "score": 9.104528427124023
+          "score": 8.888410568237305
         },
         {
           "rank": 3,
           "url": "/ga4-data-thresholds/",
           "title": "GA4 報表有時候數字對不起來，很有可能是遇到資料閾值",
           "excerpt": "落差! (最新做法 2023-10更新) 停用報表中的 <mark>Google </mark>信號. 在 GA4 的設定中多出一個選項",
-          "score": 7.279881477355957
+          "score": 7.618526935577393
         }
       ],
       "expectedMatch": true,
@@ -485,21 +507,21 @@
           "url": "/google-tag-manager-advanced-skill-using-ga4-track-website-performance/",
           "title": "利用 GA4 GTM 來追蹤網頁載入時間 - GTM 進階技巧",
           "excerpt": "GA4 <mark>GTM </mark>來追蹤網頁載入時間 - <mark>GTM </mark>進階技巧. Updated:2024-04-25. |Edit page. 文章內",
-          "score": 11.490233421325684
+          "score": 12.27988338470459
         },
         {
           "rank": 2,
           "url": "/ga4-item-name-show-zero-purchase/",
           "title": "GA4 電子商務報表-已購買的商品數為 0",
           "excerpt": "購買的商品數 就看起來正常. 可能的原因 <mark>GTM </mark>or <mark>DataLayer </mark>or 其他. 先尋找 Purchase 事件是怎麼設定",
-          "score": 7.152275085449219
+          "score": 7.542420387268066
         },
         {
           "rank": 3,
           "url": "/gtm-ga4-new-feature-use-ecommerce-datalayer/",
           "title": "Google Tag Manager - Using Ecommerce Datalayer directly in GA4 Event tag",
           "excerpt": "- Using Ecommerce <mark>Datalayer </mark>directly in GA4 Event tag. 2022-08-25. |Edit page. GA4 Tag 支援使用 Ecommerce <mark>Datalayer</mark>. 在逛 Linkedin 時",
-          "score": 7.053281784057617
+          "score": 7.436122894287109
         }
       ],
       "expectedMatch": true,
@@ -521,35 +543,39 @@
         "/claude_code_update_202509/",
         "/claude-code-new-command-line-tool/"
       ],
-      "resultCount": 11,
+      "resultCount": 17,
       "top3": [
         {
           "rank": 1,
-          "url": "/rclone-cloud-sync-backup/",
-          "title": "rclone - 雲端同步與檔案備份的瑞士刀 搭配 Claude Code 超好用",
-          "excerpt": "案備份的瑞士刀 搭配 <mark>Claude </mark><mark>Code </mark>超好用. 2026-03-03. |Edit page. 現代人很常會同時",
-          "score": 9.471766471862793
+          "url": "/claude-code-fable-5/",
+          "title": "Claude Code Fable 5 限時限量回歸，該怎麼用",
+          "excerpt": "<mark>Claude </mark><mark>Code </mark>Fable 5 限時限量回歸，該怎麼用. Updated:2026-07-26. |Edit page. 額度現況",
+          "score": 11.169748306274414
         },
         {
           "rank": 2,
-          "url": "/claude_code_update_202509/",
-          "title": "Claude Code 更新！ 全新 Extension for VSCode/Cursor 介面",
-          "excerpt": "<mark>Claude </mark><mark>Code </mark>更新！ 全新 Extension for VSCode/Cursor 介面. Updated:2025-11-27. |Edit page. <mark>Claude </mark><mark>Code </mark>Plugin. 最近在 <mark>Claude </mark>",
-          "score": 7.526134014129639
+          "url": "/chatgpt-work-vs-codex/",
+          "title": "ChatGPT Work vs Codex 完整比較：差在哪？可以只用 Codex 嗎？",
+          "excerpt": "Work vs <mark>Codex </mark>完整比較：差在哪？可以只用 <mark>Codex </mark>嗎？ Updated:2026-07-17. |Edit page. 新版 ChatGPT 為",
+          "score": 11.05525016784668
         },
         {
           "rank": 3,
-          "url": "/claude-code-new-command-line-tool/",
-          "title": "Claude Code 發佈 Command Line 的新工具",
-          "excerpt": "<mark>Claude </mark><mark>Code </mark>發佈 Command Line 的新工具. Updated:2026-03-19. |Edit page. <mark>Claude </mark><mark>Code</mark>. <mark>Claude </mark><mark>Code </mark>是 Anthropic 公司最近",
-          "score": 7.523941993713379
+          "url": "/google-antigravity-ide/",
+          "title": "Google Antigravity 全解析：從 IDE 變成 Agent 開發平台（含 CLI 取代 Gemini CLI）",
+          "excerpt": "/global_skills/（所有專案都能用） 直接把 <mark>Claude </mark>Skills 連結過來. 這裡要分享一個超實",
+          "score": 9.961729049682617
         }
       ],
-      "expectedMatch": true,
-      "allTop3Acceptable": true,
-      "unexpectedTop3": [],
+      "expectedMatch": false,
+      "allTop3Acceptable": false,
+      "unexpectedTop3": [
+        "/claude-code-fable-5/",
+        "/chatgpt-work-vs-codex/",
+        "/google-antigravity-ide/"
+      ],
       "forbiddenResults": [],
-      "passed": true
+      "passed": false
     },
     {
       "query": "n8n 模板",
@@ -562,35 +588,37 @@
         "/tools/n8n_template/models.html",
         "/n8n-tutorial-resources/"
       ],
-      "resultCount": 19,
+      "resultCount": 21,
       "top3": [
         {
           "rank": 1,
           "url": "/n8n-security-vulnerability-2025/",
           "title": "n8n 資安漏洞 CVE-2025-68613 快點來更新你的 n8n 版本！",
           "excerpt": "<mark>n8n </mark>資安漏洞 CVE-2025-68613 快點來更新你的 <mark>n8n </mark>版本！ 2025-12-25. |Edit page. 漏洞概要.",
-          "score": 8.37428092956543
+          "score": 9.090349197387695
         },
         {
           "rank": 2,
-          "url": "/tools/n8n_template/models.html",
-          "title": "n8n 模板分享",
-          "excerpt": "<mark>n8n </mark><mark>模板</mark>分享. 這裡是我精心準備的 <mark>n8n </mark>自動化模版，希望能幫助你快速建立自動化工作流",
-          "score": 5.815290451049805
+          "url": "/n8n-deployment/",
+          "title": "n8n 安裝部署與更新教學：Cloud、Zeabur、Docker 比較",
+          "excerpt": "<mark>n8n </mark>安裝部署與更新教學：Cloud、Zeabur、Docker 比較. Updated:2026-05-16. |Edit page. <mark>n8n </mark>Cloud",
+          "score": 8.028400421142578
         },
         {
           "rank": 3,
-          "url": "/n8n-tutorial-resources/",
-          "title": "n8n 教學：節點介紹、模板、部署指南",
-          "excerpt": "省資源。 <mark>n8n </mark><mark>模板</mark>分享. Darrell <mark>模板</mark>分享. Darrell 自製分享<mark>模板</mark>頁面，提供個人的<mark>模板</mark>分享. <mark>n8n </mark>Evaluations 新",
-          "score": 4.0908122062683105
+          "url": "/tools/n8n_template/models.html",
+          "title": "n8n 模板分享",
+          "excerpt": "<mark>n8n </mark><mark>模板</mark>分享. 這裡是我精心準備的 <mark>n8n </mark>自動化模版，希望能幫助你快速建立自動化工作流",
+          "score": 6.0520477294921875
         }
       ],
       "expectedMatch": true,
-      "allTop3Acceptable": true,
-      "unexpectedTop3": [],
+      "allTop3Acceptable": false,
+      "unexpectedTop3": [
+        "/n8n-deployment/"
+      ],
       "forbiddenResults": [],
-      "passed": true
+      "passed": false
     },
     {
       "query": "n8n 教學",
@@ -603,35 +631,37 @@
         "/tools/n8n_template/models.html",
         "/n8n-tutorial-resources/"
       ],
-      "resultCount": 47,
+      "resultCount": 56,
       "top3": [
         {
           "rank": 1,
           "url": "/n8n-security-vulnerability-2025/",
           "title": "n8n 資安漏洞 CVE-2025-68613 快點來更新你的 n8n 版本！",
           "excerpt": "<mark>n8n </mark>資安漏洞 CVE-2025-68613 快點來更新你的 <mark>n8n </mark>版本！ 2025-12-25. |Edit page. 漏洞概要.",
-          "score": 6.124553680419922
+          "score": 6.727105617523193
         },
         {
           "rank": 2,
-          "url": "/tools/n8n_template/models.html",
-          "title": "n8n 模板分享",
-          "excerpt": "<mark>n8n </mark>模板分享. 這裡是我精心準備的 <mark>n8n </mark>自動化模版，希望能幫助你快速建立自動化工作流",
-          "score": 3.516075849533081
+          "url": "/n8n-deployment/",
+          "title": "n8n 安裝部署與更新教學：Cloud、Zeabur、Docker 比較",
+          "excerpt": "<mark>n8n </mark>安裝部署與更新<mark>教</mark>學：Cloud、Zeabur、Docker 比較. Updated:2026-05-16. |Edit page. <mark>n8n </mark>Cloud",
+          "score": 5.625053405761719
         },
         {
           "rank": 3,
-          "url": "/n8n-tutorial-resources/",
-          "title": "n8n 教學：節點介紹、模板、部署指南",
-          "excerpt": "<mark>n8n </mark><mark>教</mark>學：節點介紹、模板、部署指南. <mark>n8n </mark>新手入門<mark>教</mark>學：<mark>n8n </mark>是什麼、Cloud 與自架",
-          "score": 2.1846437454223633
+          "url": "/tools/n8n_template/models.html",
+          "title": "n8n 模板分享",
+          "excerpt": "<mark>n8n </mark>模板分享. 這裡是我精心準備的 <mark>n8n </mark>自動化模版，希望能幫助你快速建立自動化工作流",
+          "score": 3.6351258754730225
         }
       ],
-      "expectedMatch": true,
-      "allTop3Acceptable": true,
-      "unexpectedTop3": [],
+      "expectedMatch": false,
+      "allTop3Acceptable": false,
+      "unexpectedTop3": [
+        "/n8n-deployment/"
+      ],
       "forbiddenResults": [],
-      "passed": true
+      "passed": false
     },
     {
       "query": "n8n 顧問",
@@ -644,28 +674,28 @@
         "/the_martech_handbook/",
         "/tools/n8n_template/models.html"
       ],
-      "resultCount": 10,
+      "resultCount": 15,
       "top3": [
         {
           "rank": 1,
           "url": "/n8n-expert/",
           "title": "讓繁瑣工作 自動運轉 釋放您的創造力",
           "excerpt": "AI Agent 開發到企業內訓。 免費評估需求 <mark>n8n </mark>導入服務項目. 針對不同階段的需求",
-          "score": 4.130837440490723
+          "score": 3.7145235538482666
         },
         {
           "rank": 2,
-          "url": "/the_martech_handbook/",
-          "title": "Martech 實戰聖經 讀書心得",
-          "excerpt": "而不是看看文件後丟給工程師)， 和有一定的<mark>顧</mark>問經驗(跨部門的溝通和解決問題",
-          "score": 3.203442096710205
-        },
-        {
-          "rank": 3,
           "url": "/tools/n8n_template/models.html",
           "title": "n8n 模板分享",
           "excerpt": "<mark>n8n </mark>模板分享. 這裡是我精心準備的 <mark>n8n </mark>自動化模版，希望能幫助你快速建立自動化工作流",
-          "score": 3.1807703971862793
+          "score": 3.349586009979248
+        },
+        {
+          "rank": 3,
+          "url": "/the_martech_handbook/",
+          "title": "Martech 實戰聖經 讀書心得",
+          "excerpt": "而不是看看文件後丟給工程師)， 和有一定的<mark>顧</mark>問經驗(跨部門的溝通和解決問題",
+          "score": 2.9376087188720703
         }
       ],
       "expectedMatch": true,
@@ -693,21 +723,21 @@
           "url": "/tool-remove-ga3-setting-in-gtm-tagsbuster/",
           "title": "工具推薦-移除 GTM 中的舊版 GA設定-Tagsbuster",
           "excerpt": "的舊版 GA設定-<mark>Tagsbuster</mark>. 2024-08-04. |Edit page. 推薦原因. GA3(UA) 已經在 2024",
-          "score": 13.754877090454102
+          "score": 14.201971054077148
         },
         {
           "rank": 2,
           "url": "/gtm-size-limit/",
           "title": "Google Tag Manager 工作區過大，原來有空間大小限制",
           "excerpt": "<mark>Google </mark><mark>Tag </mark><mark>Manager </mark>工作區過大，原來有空間大小限制. 2024-07-04. |Edit page. GTM 的大小空間限制",
-          "score": 11.922318458557129
+          "score": 11.950414657592773
         },
         {
           "rank": 3,
           "url": "/how-to-ask-google-tag-manager-question/",
           "title": "詢問 Google Tag Manager 相關的問題",
           "excerpt": "問 <mark>Google </mark><mark>Tag </mark><mark>Manager </mark>相關的問題. 2024-06-19. |Edit page. 觀察到的問題. 常常會在社群",
-          "score": 9.966024398803711
+          "score": 10.071157455444336
         }
       ],
       "expectedMatch": true,
@@ -727,28 +757,28 @@
         "/n8n-tutorial-resources/",
         "/n8n-update-log/"
       ],
-      "resultCount": 9,
+      "resultCount": 15,
       "top3": [
         {
           "rank": 1,
           "url": "/tools/n8n_template/models.html",
           "title": "n8n 模板分享",
           "excerpt": "Apr 16 <mark>Slack</mark>自動喝水提醒. 每小時隨機時間發送提醒,OpenAI 生成中醫風格提醒文案,<mark>Slack </mark>按",
-          "score": 7.8646135330200195
+          "score": 7.676872730255127
         },
         {
           "rank": 2,
-          "url": "/n8n-tutorial-resources/",
-          "title": "n8n 教學：節點介紹、模板、部署指南",
-          "excerpt": "的最佳實踐。 n8n <mark>Slack </mark>整合實測 - 訊息發送與觸發器設定完整流程. n8n <mark>Slack </mark>整合實戰指南",
-          "score": 5.475100517272949
+          "url": "/n8n-update-log/",
+          "title": "n8n 版本更新紀錄心得",
+          "excerpt": "。 <mark>Slack </mark><mark>節</mark>點新增排程訊息和用 Email 查使用者. <mark>Slack </mark>Node: Add schedule message and look up user by email operations.",
+          "score": 5.139136791229248
         },
         {
           "rank": 3,
-          "url": "/n8n-update-log/",
-          "title": "n8n 版本更新紀錄心得",
-          "excerpt": "來做取消發布. <mark>Slack </mark><mark>節</mark>點新增 User Group 成員操作. feat(editor): New operations in the <mark>Slack </mark>node. 補充",
-          "score": 5.446138858795166
+          "url": "/n8n-tutorial-resources/",
+          "title": "n8n 教學：節點介紹、模板、部署指南",
+          "excerpt": "的最佳實踐。 n8n <mark>Slack </mark>整合實測 - 訊息發送與觸發器設定完整流程. n8n <mark>Slack </mark>整合實戰指南",
+          "score": 5.107868671417236
         }
       ],
       "expectedMatch": true,
@@ -768,35 +798,37 @@
         "/n8n-deployment/",
         "/n8n-tutorial-resources/"
       ],
-      "resultCount": 16,
+      "resultCount": 20,
       "top3": [
         {
           "rank": 1,
-          "url": "/n8n-security-vulnerability-2025/",
-          "title": "n8n 資安漏洞 CVE-2025-68613 快點來更新你的 n8n 版本！",
-          "excerpt": "<mark>n8n </mark>資安漏洞 CVE-2025-68613 快點來更新你的 <mark>n8n </mark>版本！ 2025-12-25. |Edit page. 漏洞概要.",
-          "score": 7.961394309997559
+          "url": "/n8n-deployment/",
+          "title": "n8n 安裝部署與更新教學：Cloud、Zeabur、Docker 比較",
+          "excerpt": "<mark>n8n </mark>安裝<mark>部署</mark>與更新教學：Cloud、Zeabur、Docker 比較. Updated:2026-05-16. |Edit page. <mark>n8n </mark>Cloud",
+          "score": 8.624065399169922
         },
         {
           "rank": 2,
-          "url": "/n8n-deployment/",
-          "title": "n8n 安裝部署教學 - 官方Cloud、Zeabur、本機部署和Glows.ai 該怎麼選?",
-          "excerpt": "<mark>n8n </mark>安裝<mark>部署</mark>教學 - 官方Cloud、Zeabur、本機<mark>部署</mark>和Glows.ai 該怎麼選? 2025-05-10.",
-          "score": 4.61985969543457
+          "url": "/n8n-security-vulnerability-2025/",
+          "title": "n8n 資安漏洞 CVE-2025-68613 快點來更新你的 n8n 版本！",
+          "excerpt": "<mark>n8n </mark>資安漏洞 CVE-2025-68613 快點來更新你的 <mark>n8n </mark>版本！ 2025-12-25. |Edit page. 漏洞概要.",
+          "score": 8.522592544555664
         },
         {
           "rank": 3,
-          "url": "/n8n-tutorial-resources/",
-          "title": "n8n 教學：節點介紹、模板、部署指南",
-          "excerpt": "<mark>n8n </mark>教學：節點介紹、模板、<mark>部署</mark>指南. <mark>n8n </mark>新手入門教學：<mark>n8n </mark>是什麼、Cloud 與自架",
-          "score": 4.407156944274902
+          "url": "/postiz-zeabur-threads-tutorial/",
+          "title": "Postiz 串接 Threads：Zeabur 部署 + Meta Developer 設定教學",
+          "excerpt": "Threads：Zeabur <mark>部署 </mark>+ Meta Developer 設定教學. 2025-07-28. |Edit page. Postiz 是一個用來排程社群",
+          "score": 4.088127613067627
         }
       ],
       "expectedMatch": true,
-      "allTop3Acceptable": true,
-      "unexpectedTop3": [],
+      "allTop3Acceptable": false,
+      "unexpectedTop3": [
+        "/postiz-zeabur-threads-tutorial/"
+      ],
       "forbiddenResults": [],
-      "passed": true
+      "passed": false
     },
     {
       "query": "S3 Cloudflare R2",
@@ -816,21 +848,21 @@
           "url": "/n8n-node-s3-with-cloudflare-r2/",
           "title": "n8n 雲端儲存方案 - S3 節點串接 Cloudflare R2 實戰",
           "excerpt": "- <mark>S3 </mark>節點串接 <mark>Cloudflare </mark><mark>R2 </mark>實戰. 2025-04-25. |Edit page. n8n <mark>s3 </mark>節點. 在 n8n 節點搜尋",
-          "score": 25.378190994262695
+          "score": 26.284616470336914
         },
         {
           "rank": 2,
           "url": "/rclone-cloud-sync-backup/",
           "title": "rclone - 雲端同步與檔案備份的瑞士刀 搭配 Claude Code 超好用",
           "excerpt": "會列出所有檔案。 設定 <mark>Cloudflare </mark><mark>R2</mark>（<mark>S3 </mark>Compatible） 如果你用的是 <mark>Cloudflare </mark><mark>R2 </mark>或其他 <mark>S3 </mark>相容的儲存服務",
-          "score": 23.502012252807617
+          "score": 24.588743209838867
         },
         {
           "rank": 3,
           "url": "/n8n-tutorial-resources/",
           "title": "n8n 教學：節點介紹、模板、部署指南",
           "excerpt": "存方案 - <mark>S3 </mark>節點串接 <mark>Cloudflare </mark><mark>R2 </mark>實戰. n8n 雲端儲存解決方案！使用 <mark>S3 </mark>節點串接 <mark>Cloudflare </mark><mark>R2</mark>，包含",
-          "score": 15.313278198242188
+          "score": 16.03431510925293
         }
       ],
       "expectedMatch": true,
@@ -850,35 +882,37 @@
         "/n8n-tutorial-resources/",
         "/n8n-line-split-expense-workflow/"
       ],
-      "resultCount": 20,
+      "resultCount": 28,
       "top3": [
         {
           "rank": 1,
           "url": "/tools/n8n_template/models.html",
           "title": "n8n 模板分享",
           "excerpt": "追蹤者. <mark>LINE</mark>聊天機器人自動回覆SocialChatbot 7 Nodes Oct 24 <mark>Line </mark>Message <mark>API </mark>完整教學範例. 接收 <mark>LINE </mark>Webhook 事件",
-          "score": 12.606575012207031
+          "score": 12.256400108337402
         },
         {
           "rank": 2,
           "url": "/n8n-tutorial-resources/",
           "title": "n8n 教學：節點介紹、模板、部署指南",
           "excerpt": "n8n <mark>LINE </mark>訊息發送實戰 - Request 節點替代 <mark>LINE </mark>Notify. <mark>LINE </mark>Notify 替代方案實戰！使用 n8n Request 節點發送",
-          "score": 9.199172019958496
+          "score": 8.65101432800293
         },
         {
           "rank": 3,
-          "url": "/n8n-line-split-expense-workflow/",
-          "title": "n8n 模板分享 - 打造 LINE 共同記帳機器人 自動處理日本收據",
-          "excerpt": "分享 - 打造 <mark>LINE </mark>共同記帳機器人 自動處理日本收據. 2025-04-20. |Edit page. 前因.",
-          "score": 7.262730598449707
+          "url": "/n8n-bycrawl-node/",
+          "title": "n8n ByCrawl 節點教學：簡單好用的台灣爬蟲服務",
+          "excerpt": "筆數前先估一下總量。 社群節點安裝與 <mark>API </mark>Key 設定. Step 1：安裝 ByCrawl 社群節點.",
+          "score": 7.580223083496094
         }
       ],
-      "expectedMatch": true,
-      "allTop3Acceptable": true,
-      "unexpectedTop3": [],
+      "expectedMatch": false,
+      "allTop3Acceptable": false,
+      "unexpectedTop3": [
+        "/n8n-bycrawl-node/"
+      ],
       "forbiddenResults": [],
-      "passed": true
+      "passed": false
     },
     {
       "query": "GA4 事件",
@@ -891,28 +925,28 @@
         "/ga4-parameter-name-value-limit/",
         "/google-tag-manager-ga4-configuration-fieldtoset/"
       ],
-      "resultCount": 26,
+      "resultCount": 27,
       "top3": [
         {
           "rank": 1,
           "url": "/stackoverflow-gtm-rewrite-items-in-datalayer/",
           "title": "Google Tag Manager - 重寫 Datalayer 裡面中的 Item",
           "excerpt": "\", price: 9.99, quantity: 1 } ] // <mark>GA4 </mark>中需要的 items: [ { item_id: \"SKU_",
-          "score": 8.253856658935547
+          "score": 8.696598052978516
         },
         {
           "rank": 2,
           "url": "/ga4-parameter-name-value-limit/",
           "title": "GA4 Event/User Parameter 限制",
           "excerpt": "就是一位元. <mark>事件</mark>的限制 Event. <mark>事件</mark>名稱 Event Name. 40 個位元. 每個<mark>事件</mark>可以追蹤的<mark>事件</mark>參數",
-          "score": 4.774930000305176
+          "score": 4.845223426818848
         },
         {
           "rank": 3,
           "url": "/google-tag-manager-ga4-configuration-fieldtoset/",
           "title": "Google Tag Manager - 代碼(Tag) GA4 Field To Set 設定事件參數",
           "excerpt": "代碼(Tag) <mark>GA4 </mark>Field To Set 設定<mark>事件</mark>參數. 2022-10-04. |Edit page. User Property 的限制. 有些",
-          "score": 4.709860324859619
+          "score": 4.782221794128418
         }
       ],
       "expectedMatch": true,
@@ -932,28 +966,28 @@
         "/google-app-script-gmail-nice-email-template/",
         "/n8n-gmail-node/"
       ],
-      "resultCount": 7,
+      "resultCount": 11,
       "top3": [
         {
           "rank": 1,
           "url": "/tools/n8n_template/models.html",
           "title": "n8n 模板分享",
           "excerpt": "行銷Google SheetsGmail自動化活動報名 9 Nodes Jul 31 <mark>Gmail </mark>電商取貨提醒自動化. 監聽取貨通知",
-          "score": 12.539323806762695
+          "score": 12.873764991760254
         },
         {
           "rank": 2,
           "url": "/google-app-script-gmail-nice-email-template/",
           "title": "Google App Script 用 Gmail 發有質感美觀的信",
           "excerpt": "Script 用 <mark>Gmail </mark>發有質感美觀的信. 2024-12-14. |Edit page. 在 Google App Script 中用 <mark>Gmail </mark>來發",
-          "score": 8.258395195007324
+          "score": 8.247644424438477
         },
         {
           "rank": 3,
           "url": "/n8n-gmail-node/",
           "title": "n8n Gmail 節點教學 - 自動化郵件發送和處理",
           "excerpt": "n8n <mark>Gmail </mark><mark>節</mark>點教學 - 自動化郵件發送和處理. 2025-07-22. |Edit page. 預計閱",
-          "score": 7.297562599182129
+          "score": 6.90753698348999
         }
       ],
       "expectedMatch": true,
@@ -963,6 +997,6 @@
       "passed": true
     }
   ],
-  "passed": true,
-  "allResultsCount": 123
+  "passed": false,
+  "allResultsCount": 133
 }
