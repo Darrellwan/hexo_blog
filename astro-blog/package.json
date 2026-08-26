@@ -4,7 +4,7 @@
   "version": "5.5.1",
   "scripts": {
     "dev": "npx tsx scripts/copy-assets-to-public.ts && astro dev",
-    "build": "npx tsx scripts/copy-assets-to-public.ts && astro check && astro build && pagefind --site dist && cp -r dist/pagefind public/",
+    "build": "npx tsx scripts/copy-assets-to-public.ts && astro check && astro build && rm -rf dist/pagefind public/pagefind && pagefind --site dist && cp -r dist/pagefind public/",
     "preview": "astro preview",
     "sync": "astro sync",
     "astro": "astro",
