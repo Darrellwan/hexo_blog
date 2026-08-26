@@ -114,6 +114,7 @@ const pageData: Record<string, unknown> = {
   page_path: canonicalPath,
   url: canonicalHref,
   post_description: articleDescription,
+  post_sticky: String(postData?.sticky ?? ""),
 };
 
 if (articlePublishedAt) pageData.page_date = articlePublishedAt.toISOString();
