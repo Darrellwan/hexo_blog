@@ -1,0 +1,712 @@
+/**
+ * n8n-expert Mobile Optimizations
+ * 手機專用樣式 - 針對行動裝置的優化
+ * 包含：響應式配置、觸控優化、手機專屬功能
+ */
+
+/* ============================================
+   Mobile-First Typography - 手機優先字體
+   ============================================ */
+
+/* 預設 (手機) */
+h1 {
+  font-size: var(--text-4xl); /* 36px */
+}
+
+h2 {
+  font-size: var(--text-3xl); /* 30px */
+}
+
+h3 {
+  font-size: var(--text-2xl); /* 24px */
+}
+
+/* 平板以上 */
+@media (min-width: 640px) {
+  h1 {
+    font-size: var(--text-5xl); /* 48px */
+  }
+
+  h2 {
+    font-size: var(--text-4xl); /* 36px */
+  }
+}
+
+/* 桌面 */
+@media (min-width: 1024px) {
+  h1 {
+    font-size: var(--text-6xl); /* 60px */
+  }
+}
+
+/* ============================================
+   Touch-Friendly UI - 觸控友善介面
+   ============================================ */
+
+/* 最小觸控目標 (44px × 44px) */
+@media (max-width: 1023px) {
+  .btn,
+  .form-input,
+  .form-select,
+  .form-textarea,
+  a.touch-target {
+    min-height: 48px;
+  }
+
+  /* 按鈕最小寬度 */
+  .btn:not(.btn-icon) {
+    min-width: 120px;
+  }
+
+  /* 按鈕間距 */
+  .btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  /* Active 狀態回饋 */
+  .btn:active,
+  a.touch-target:active {
+    transform: scale(0.95);
+    opacity: 0.9;
+  }
+}
+
+/* ============================================
+   Hero Section Mobile - Hero 區塊手機版
+   ============================================ */
+
+@media (max-width: 639px) {
+  .hero {
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-12);
+  }
+
+  .hero h1 {
+    font-size: var(--text-4xl); /* 36px */
+    line-height: var(--leading-tight);
+  }
+
+  .hero .subtitle {
+    font-size: var(--text-base); /* 16px */
+  }
+
+  /* CTA 按鈕垂直堆疊 */
+  .hero .cta-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    width: 100%;
+  }
+
+  .hero .cta-buttons .btn {
+    width: 100%;
+  }
+
+  /* 隱藏背景裝飾 blob 避免 overflow */
+  .animate-blob {
+    display: none !important;
+  }
+}
+
+/* ============================================
+   Service Cards Mobile - 服務卡片手機版
+   ============================================ */
+
+@media (max-width: 767px) {
+  /* 單欄佈局 */
+  .service-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  /* 保持垂直佈局，縮小間距 */
+  .service-card {
+    display: block;
+    padding: var(--space-5);
+  }
+
+  .service-card .icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: var(--space-4);
+  }
+
+  .service-card .title {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-2);
+  }
+
+  .service-card .description {
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-4);
+  }
+
+  .service-card .features li {
+    font-size: var(--text-xs);
+  }
+}
+
+/* ============================================
+   Portfolio Mobile - 作品集手機版
+   ============================================ */
+
+@media (max-width: 767px) {
+  /* 單欄垂直佈局 */
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .portfolio-card {
+    max-width: 100%;
+  }
+}
+
+/* 平板以上：Grid 佈局 */
+@media (min-width: 768px) {
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8);
+  }
+}
+
+@media (min-width: 1024px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ============================================
+   Contact Form Mobile - 聯絡表單手機版
+   ============================================ */
+
+@media (max-width: 767px) {
+  /* 表單卡片縮緊 */
+  #contact .card {
+    padding: var(--space-6) !important;
+  }
+
+  #contact .card > div:first-child {
+    margin-bottom: var(--space-6) !important;
+  }
+
+  #contact h2 {
+    font-size: var(--text-2xl);
+  }
+
+  /* 所有欄位垂直堆疊，間距縮小 */
+  #contactForm > div {
+    gap: var(--space-4) !important;
+  }
+
+  /* 姓名和 Email 也要垂直排列 */
+  #contactForm > div > div:first-child {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-4) !important;
+  }
+
+  .form-group {
+    margin-bottom: 0;
+  }
+
+  /* Input 字體 16px 避免 iOS 縮放 */
+  .form-input,
+  .form-select,
+  .form-textarea {
+    font-size: 16px !important;
+    padding: var(--space-3);
+  }
+
+  .form-label {
+    margin-bottom: var(--space-1);
+  }
+
+  /* textarea 縮小 */
+  .form-textarea {
+    min-height: 100px;
+  }
+}
+
+/* ============================================
+   Quick Contact Bar - 快速聯絡列 (僅手機)
+   ============================================ */
+
+@media (max-width: 767px) {
+  .mobile-quick-contact {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--space-3) var(--space-4);
+    padding-bottom: max(var(--space-3), env(safe-area-inset-bottom));
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(255, 109, 90, 0.2);
+    z-index: var(--z-fixed);
+  }
+
+  /* 單一 CTA 按鈕 */
+  .mobile-quick-contact .quick-contact-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    width: 100%;
+    padding: var(--space-3) var(--space-4);
+    background: var(--gradient-primary);
+    border-radius: var(--radius-lg);
+    color: white;
+    text-decoration: none;
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+    box-shadow: 0 4px 12px rgba(255, 109, 90, 0.3);
+    transition: all var(--transition-base) var(--ease-out);
+  }
+
+  .mobile-quick-contact .quick-contact-primary:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 8px rgba(255, 109, 90, 0.4);
+  }
+
+  .mobile-quick-contact .quick-contact-primary svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* 為 body 加上底部 padding 避免遮擋 */
+  body.has-quick-contact {
+    padding-bottom: 64px;
+  }
+}
+
+/* 桌面隱藏 */
+@media (min-width: 768px) {
+  .mobile-quick-contact {
+    display: none;
+  }
+}
+
+/* ============================================
+   Bottom Sheet - 底部彈出表單 (僅手機)
+   ============================================ */
+
+@media (max-width: 767px) {
+  .bottom-sheet {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-height: 90vh;
+    background: var(--bg-elevated-2);
+    border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(100%);
+    transition: transform var(--transition-medium) var(--ease-out);
+    z-index: var(--z-modal);
+    overflow-y: auto;
+  }
+
+  .bottom-sheet.open {
+    transform: translateY(0);
+  }
+
+  /* 拖曳把手 */
+  .bottom-sheet::before {
+    content: '';
+    position: sticky;
+    top: 0;
+    display: block;
+    width: 40px;
+    height: 4px;
+    background: var(--text-muted);
+    border-radius: var(--radius-full);
+    margin: var(--space-3) auto;
+  }
+
+  /* 背景遮罩 */
+  .bottom-sheet-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-medium) var(--ease-out);
+    z-index: calc(var(--z-modal) - 1);
+  }
+
+  .bottom-sheet-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+/* ============================================
+   Timeline Mobile - 時間軸手機版
+   ============================================ */
+
+@media (max-width: 767px) {
+  /* 置中垂直列表 */
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding: 0;
+    max-width: 100%;
+    margin: 0;
+    overflow: hidden;
+    counter-reset: step;
+  }
+
+  .timeline-step {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-4);
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    width: 100%;
+    /* 重設 components.css 的初始狀態 */
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  /* 手機版不需要複雜動畫，直接顯示 */
+  .timeline-step.active {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    animation: none !important;
+  }
+
+  .timeline-step .step-content {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: 0;
+    text-align: left;
+  }
+
+  /* 隱藏步驟編號 */
+  .timeline-step::before {
+    display: none;
+  }
+
+  /* 隱藏連接線 */
+  .timeline-step::after {
+    display: none;
+  }
+
+  .timeline-step .step-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    margin: 0;
+    background: rgba(255, 109, 90, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .timeline-step .step-icon::after {
+    display: none;
+  }
+
+  .timeline-step .step-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .timeline-step h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-primary);
+  }
+
+  /* 隱藏描述和 badge */
+  .timeline-step p,
+  .timeline-step .badge {
+    display: none;
+  }
+
+  /* Hover 效果 */
+  .timeline-step:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* ============================================
+   FAQ Accordion Mobile - 常見問題手機版
+   ============================================ */
+
+@media (max-width: 767px) {
+  .faq-item {
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-4);
+    overflow: hidden;
+  }
+
+  .faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    background: var(--bg-elevated-2);
+    border: none;
+    color: var(--text-primary);
+    font-size: var(--text-base);
+    font-weight: var(--font-semibold);
+    text-align: left;
+    cursor: pointer;
+    transition: background var(--transition-base) var(--ease-out);
+    min-height: 60px; /* 觸控友善 */
+  }
+
+  .faq-question:active {
+    background: var(--bg-elevated-3);
+  }
+
+  .faq-question i {
+    flex-shrink: 0;
+    transition: transform var(--transition-base) var(--ease-out);
+  }
+
+  .faq-item.open .faq-question i {
+    transform: rotate(180deg);
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-medium) var(--ease-out);
+  }
+
+  .faq-item.open .faq-answer {
+    max-height: 500px;
+  }
+
+  .faq-answer .content {
+    padding: var(--space-4);
+    color: var(--text-tertiary);
+    line-height: var(--leading-relaxed);
+  }
+}
+
+/* ============================================
+   Testimonial Carousel Mobile - 見證輪播手機版
+   ============================================ */
+
+@media (max-width: 767px) {
+  .testimonials-carousel {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .testimonials-track {
+    display: flex;
+    transition: transform var(--transition-medium) var(--ease-out);
+  }
+
+  .testimonial-card {
+    flex: 0 0 100%;
+    padding: var(--space-6);
+  }
+
+  .testimonial-card .quote-icon {
+    font-size: 80px;
+    top: -10px;
+  }
+
+  .testimonial-card .testimonial-text {
+    font-size: var(--text-base);
+  }
+
+  /* 輪播控制 */
+  .carousel-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+  }
+
+  .carousel-btn {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-elevated-3);
+    border: 1px solid var(--border-default);
+    border-radius: 50%;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all var(--transition-base) var(--ease-out);
+  }
+
+  .carousel-btn:active {
+    transform: scale(0.9);
+    background: var(--n8n-primary);
+    border-color: var(--n8n-primary);
+  }
+
+  /* 指示點 */
+  .carousel-dots {
+    display: flex;
+    gap: var(--space-2);
+  }
+
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--bg-elevated-3);
+    border: 1px solid var(--border-default);
+    cursor: pointer;
+    transition: all var(--transition-base) var(--ease-out);
+  }
+
+  .carousel-dot.active {
+    background: var(--n8n-primary);
+    border-color: var(--n8n-primary);
+    width: 24px;
+    border-radius: var(--radius-full);
+  }
+}
+
+/* ============================================
+   Image Optimization - 圖片優化
+   ============================================ */
+
+/* 響應式圖片容器 */
+.img-responsive {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Lazy loading placeholder */
+.img-lazy {
+  background: var(--bg-elevated-3);
+  min-height: 200px;
+}
+
+/* ============================================
+   Section Padding Mobile - 區塊間距手機版
+   ============================================ */
+
+@media (max-width: 639px) {
+  .section {
+    padding-top: var(--space-10);
+    padding-bottom: var(--space-10);
+  }
+
+  /* 所有 section 標題區塊間距縮小 */
+  .section .container > div[style*="margin-bottom: var(--space-16)"],
+  .section .container > div:first-child[style*="text-align: center"] {
+    margin-bottom: var(--space-6) !important;
+  }
+
+  /* 服務流程區塊更緊湊 */
+  #process.section {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-8);
+  }
+
+  #process .container > div:first-child {
+    margin-bottom: var(--space-4) !important;
+  }
+
+  #process h2 {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-2);
+  }
+
+  #process .container > div:first-child p {
+    font-size: var(--text-sm);
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .section {
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-16);
+  }
+}
+
+/* ============================================
+   Horizontal Scroll Containers - 水平滑動容器
+   ============================================ */
+
+@media (max-width: 767px) {
+  .horizontal-scroll {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: var(--space-4);
+    padding: var(--space-4);
+  }
+
+  .horizontal-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .horizontal-scroll > * {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
+}
+
+/* ============================================
+   Safe Areas (iOS Notch) - 安全區域
+   ============================================ */
+
+@supports (padding: max(0px)) {
+  .safe-area-padding {
+    padding-left: max(var(--space-6), env(safe-area-inset-left));
+    padding-right: max(var(--space-6), env(safe-area-inset-right));
+  }
+
+  .safe-area-bottom {
+    padding-bottom: max(var(--space-4), env(safe-area-inset-bottom));
+  }
+}
+
+/* ============================================
+   Performance - 效能優化
+   ============================================ */
+
+/* 減少手機上的陰影以提升效能 */
+@media (max-width: 767px) {
+  .card:hover,
+  .service-card:hover,
+  .portfolio-card:hover {
+    box-shadow: var(--shadow-lg); /* 降低複雜度 */
+  }
+}
+
+/* 禁用 hover 效果在觸控裝置 */
+@media (hover: none) {
+  .hover-lift:hover,
+  .card:hover,
+  .btn:hover {
+    transform: none;
+  }
+}

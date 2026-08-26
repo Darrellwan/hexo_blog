@@ -1,37 +1,23 @@
 ---
 layout: ../layouts/AboutLayout.astro
-title: "About"
+title: "關於我"
 ---
 
-AstroPaper is a minimal, accessible and SEO-friendly blog theme built with [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/).
+我是 Darrell Wang，大家也會叫我 Darrell TW
 
-![Astro Paper](public/astropaper-og.jpg)
+我是一名自動化顧問，專注在 n8n、AI、工作流程自動化、MarTech 與 API integration
 
-AstroPaper provides a solid foundation for blogs, or even portfolios\_ with full markdown support, built-in dark mode, and a clean layout that works out-of-the-box.
+我主要協助台灣中小企業處理這些事情：
 
-The blog posts in this theme also serve as guides, docs or example articles\_ making AstroPaper a flexible starting point for your next content-driven site.
+- 流程診斷，找出可以交給自動化處理的工作
+- ERP、CRM、LINE 串接
+- AI Agent 開發
+- 企業內訓
 
-## Features
+這個部落格會整理我在 n8n 相關的內容，包括節點教學、模板、部署與版本更新
 
-AstroPaper comes with a set of useful features that make content publishing easy and effective:
+想直接看內容，可以從這幾頁開始：
 
-- SEO-friendly
-- Fast performance
-- Light & dark mode
-- Highly customizable
-- Organizable blog posts
-- Responsive & accessible
-- Static search with [PageFind](https://pagefind.app/)
-- Automatic social image generation
-
-and so much more.
-
-## Show your support
-
-If you like [AstroPaper](https://github.com/satnaing/astro-paper), consider giving it a star ⭐️.
-
-Found a bug 🐛 or have an improvement ✨ in mind? Feel free to open an [issue](https://github.com/satnaing/astro-paper/issues), submit a [pull request](https://github.com/satnaing/astro-paper/pulls) or start a [discussion](https://github.com/satnaing/astro-paper/discussions).
-
-If you find this theme helpful, you can also [sponsor me on GitHub](https://github.com/sponsors/satnaing) or [buy me a coffee](https://buymeacoffee.com/satnaing) to show your support — every penny counts.
-
-Kyay zuu! 🙏🏼
+- [n8n 教學資源](/n8n-tutorial-resources/)
+- [n8n 自動化專家服務](/n8n-expert/)
+- [我的連結](/links/)

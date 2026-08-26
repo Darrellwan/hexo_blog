@@ -1,0 +1,251 @@
+{
+  "name": "IG-API_test-demo",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -780,
+        -240
+      ],
+      "id": "302dc1cc-3255-4bbd-a0c0-85b36e3627be",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.instagram.com/v22.0/me/media",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "access_token",
+              "value": "={{ $('prepare token').item.json.token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "form-urlencoded",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "image_url",
+              "value": "https://images.unsplash.com/photo-1741851373499-e2c10ed2eeb3?q=80&w=4000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            },
+            {
+              "name": "method",
+              "value": "post"
+            },
+            {
+              "name": "caption",
+              "value": "=This is a test post from API. \ncurrent time is {{ $now.format('yyyy-MM-dd HH:mm:ss')}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -320,
+        120
+      ],
+      "id": "34d6681e-6ad9-4a8c-b5fd-2f9d1e72389c",
+      "name": "HTTP Request-create container"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.instagram.com/v22.0/me/media_publish?creation_id={{ $json.id }}",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "access_token",
+              "value": "={{ $('prepare token').item.json.token }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -60,
+        120
+      ],
+      "id": "34e24f19-37d3-4535-ae26-f87649263587",
+      "name": "HTTP Request-publish container"
+    },
+    {
+      "parameters": {
+        "url": "https://graph.instagram.com/v22.0/me",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "access_token",
+              "value": "={{ $('prepare token').item.json.token }}"
+            },
+            {
+              "name": "fields",
+              "value": "id,name"
+            },
+            {
+              "name": "format",
+              "value": "json"
+            },
+            {
+              "name": "method",
+              "value": "get"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "form-urlencoded",
+        "bodyParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -320,
+        -240
+      ],
+      "id": "3177a693-b029-4dd9-960d-9c3712df2a24",
+      "name": "HTTP Request-me"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "8ec67fc1-0ace-4ec3-99d0-d71e49bc338a",
+              "name": "token",
+              "value": "貼上 token",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -580,
+        -240
+      ],
+      "id": "94d944b8-558b-4532-b8ef-0ec87cc1f0ca",
+      "name": "prepare token"
+    },
+    {
+      "parameters": {
+        "content": "## 貼上 token",
+        "height": 280
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -640,
+        -360
+      ],
+      "id": "34a5b565-3581-4f15-a72e-f6967daac318",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## 查詢 me 來驗證 token",
+        "height": 280,
+        "width": 300,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -380,
+        -360
+      ],
+      "id": "fa7c05b2-ea80-450b-b8d6-65aa6058469c",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## 發佈貼文\n1. prepare 內放上圖片網址、文字(caption)\n2. publish 後就能看到貼文發佈完成",
+        "height": 340,
+        "width": 520,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -380,
+        -40
+      ],
+      "id": "47393e2f-70e7-4e9a-9e7f-39cc286ada38",
+      "name": "Sticky Note2"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "prepare token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request-create container": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request-publish container",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "prepare token": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request-me",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request-create container",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "471455f9-173c-492a-a401-924bf762c410",
+  "meta": {
+    "instanceId": "fddb3e91967f1012c95dd02bf5ad21f279fc44715f47a7a96a33433621caa253"
+  },
+  "id": "w4Vx9pN2tA1W6EEt",
+  "tags": [
+    {
+      "createdAt": "2025-01-19T06:09:02.745Z",
+      "updatedAt": "2025-01-19T06:09:02.745Z",
+      "id": "xikUDzkBnHMO9C6y",
+      "name": "demo"
+    }
+  ]
+}

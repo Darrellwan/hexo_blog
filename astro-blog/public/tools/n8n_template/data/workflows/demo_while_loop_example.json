@@ -1,0 +1,207 @@
+{
+  "name": "Demo-while loop example",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Edit Fields\n可以設定\nstart 從哪裡開始\nlimit 一次取多少資料\ntimes 最多跑幾次"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -220,
+        -20
+      ],
+      "id": "f9e7fc49-78fe-4d94-a2ba-7df194586e5e",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -300,
+        180
+      ],
+      "id": "130fef2d-2b6f-430c-a235-4670a9312484",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "jsCode": "// n8n 動態陣列生成器節點\n// 根據 start 和 limit 參數生成特定長度的陣列\n// 並根據 start 值計算變化百分比決定是否減少回傳長度\n\n// Loop over input items and process each one based on start and limit parameters\nfor (const item of $input.all()) {\n  // 從輸入獲取參數，或使用預設值\n  const start = item.json.start || 0;\n  const limit = item.json.limit || 25;\n  \n  // 計算變化百分比：start * 1.25 的餘數\n  const changePercentage = (start * 1.1) % 1;\n  \n  // 決定實際要回傳的陣列長度\n  let actualLength;\n  \n  if (limit < 20) {\n    // 如果 limit 小於 20，則只回傳 1 個元素\n    actualLength = 1;\n  } else {\n    // 根據 changePercentage 作為機率進行隨機判斷\n    // 產生 0-1 之間的隨機數，如果小於 changePercentage，則減少長度\n    const random = Math.random();\n    console.log({random: random})\n    console.log({changePercentage: changePercentage})\n    actualLength = random < changePercentage ? limit - 20 : limit;\n    \n    // 確保最小長度為 1\n    actualLength = Math.max(1, actualLength);\n  }\n  \n  // 生成陣列\n  const resultArray = [];\n  for (let i = 0; i < actualLength; i++) {\n    resultArray.push(i + 1);\n  }\n  \n  // 將結果添加到當前項目中\n  item.json.resultArray = resultArray;\n  item.json.changePercentage = changePercentage;\n  item.json.actualLength = actualLength;\n}\n\n// 返回所有處理後的項目\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        80,
+        180
+      ],
+      "id": "cf2f53ca-80cd-439c-837d-2d5ba5ea9d19",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b950656d-2ff9-4dd9-acfc-4f102afaacdc",
+              "leftValue": "={{ $json.resultArray.length }}",
+              "rightValue": "={{ $('Edit Fields1').item.json.limit }}",
+              "operator": {
+                "type": "number",
+                "operation": "lt"
+              }
+            },
+            {
+              "id": "b489e5bb-f6cc-4da9-9385-ae1d7a812bfb",
+              "leftValue": "={{ $runIndex }}",
+              "rightValue": "={{ $('Edit Fields1').item.json.times }}",
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        240,
+        180
+      ],
+      "id": "a5013e06-9c40-4694-9455-514cd4aa86e7",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f0dd52fc-75de-4677-88f1-4c4b158ff7ff",
+              "name": "start",
+              "value": "={{ $runIndex*25 }}",
+              "type": "number"
+            },
+            {
+              "id": "119037fc-9ca0-41dd-adad-c76468b05be8",
+              "name": "limit",
+              "value": 25,
+              "type": "number"
+            },
+            {
+              "id": "5fd0cad4-904c-47e6-a124-0b898846c096",
+              "name": "times",
+              "value": 10,
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -100,
+        180
+      ],
+      "id": "7183207b-035f-44c5-97ab-0c76712d4356",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "content": "## Code\n模擬 API 回傳\n隨機會回傳 limit - 20 的 array 當作最後一個分頁的結果",
+        "width": 360,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        40,
+        -20
+      ],
+      "id": "df0d0170-1ef4-4573-aab1-8ac88b346a08",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## IF\nIF 判斷是否回傳的 array 長度 小於\nlimit 長度\n\n如果是，代表為遇到最後一筆",
+        "height": 140,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        400,
+        240
+      ],
+      "id": "2404b036-c4d4-4ac4-8f89-4f2d806f874c",
+      "name": "Sticky Note2"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "0e35ab2b-2dc4-4596-85df-be30a8453098",
+  "meta": {
+    "instanceId": "fddb3e91967f1012c95dd02bf5ad21f279fc44715f47a7a96a33433621caa253"
+  },
+  "id": "oGQSEmtt0QRQWOzn",
+  "tags": []
+}

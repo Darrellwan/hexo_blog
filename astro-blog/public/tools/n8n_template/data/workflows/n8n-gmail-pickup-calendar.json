@@ -1,0 +1,189 @@
+{
+  "name": "[demo]別忘記取貨",
+  "nodes": [
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "2c16d12047df791a067bf7b0f2e5150206c6f42e1dc841f9f0d01823b0e38e8c@group.calendar.google.com",
+          "mode": "list",
+          "cachedResultName": "n8n testing"
+        },
+        "start": "={{ $json.date.toDateTime().setZone().set({ hour: 20, minute: 00 }) }}",
+        "end": "={{ $json.date.toDateTime().setZone().set({ hour: 20, minute: 00 }).plus(1, \"hour\") }}",
+        "useDefaultReminders": false,
+        "additionalFields": {
+          "description": "={{ $json.subject }}",
+          "summary": "=[取貨提醒]{{$json[\"text\"].match(/收件門市名稱\\s*[\\r\\n]+(.+)/)[1].trim()}}"
+        },
+        "remindersUi": {
+          "remindersValues": [
+            {
+              "method": "popup",
+              "minutes": 20
+            },
+            {
+              "method": "popup",
+              "minutes": 40
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        -48,
+        208
+      ],
+      "id": "dc861006-4960-4456-9b8d-2354db8a38bd",
+      "name": "建立行事曆和提醒-電商",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "5T6TgJ7jo78x5zh5",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyHour",
+              "minute": 10
+            }
+          ]
+        },
+        "simple": false,
+        "filters": {
+          "q": "送貨狀態 更新為: 已到達"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -272,
+        208
+      ],
+      "id": "80572510-cca5-467b-80d2-e2f1b06108b8",
+      "name": "Gmail-電商到店信件",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "GThDvv7aRdBQyg1e",
+          "name": "Gmail account personal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyHour",
+              "minute": 10
+            }
+          ]
+        },
+        "simple": false,
+        "filters": {
+          "q": "賣貨便：您的訂單 已送達"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -272,
+        -16
+      ],
+      "id": "d97c12d4-9476-4ea9-a440-b2beb29b0f2d",
+      "name": "Gmail-電商到店信件-賣貨便",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "GThDvv7aRdBQyg1e",
+          "name": "Gmail account personal"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "2c16d12047df791a067bf7b0f2e5150206c6f42e1dc841f9f0d01823b0e38e8c@group.calendar.google.com",
+          "mode": "list",
+          "cachedResultName": "n8n testing"
+        },
+        "start": "={{ $json.date.toDateTime().setZone().set({ hour: 20, minute: 00 }) }}",
+        "end": "={{ $json.date.toDateTime().setZone().set({ hour: 20, minute: 00 }).plus(1, \"hour\") }}",
+        "useDefaultReminders": false,
+        "additionalFields": {
+          "description": "={{ $json.subject }}",
+          "summary": "=[取貨提醒] {{$json[\"text\"].match(/收件者資訊：[\\s\\S]*?(\\S+門市)/)[1].trim()}}"
+        },
+        "remindersUi": {
+          "remindersValues": [
+            {
+              "method": "popup",
+              "minutes": 20
+            },
+            {
+              "method": "popup",
+              "minutes": 40
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1.3,
+      "position": [
+        -48,
+        -16
+      ],
+      "id": "948042d7-c10f-4858-8853-d2a70130ca18",
+      "name": "建立行事曆和提醒-賣貨便",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "5T6TgJ7jo78x5zh5",
+          "name": "Google Calendar account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Gmail-電商到店信件": {
+      "main": [
+        [
+          {
+            "node": "建立行事曆和提醒-電商",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail-電商到店信件-賣貨便": {
+      "main": [
+        [
+          {
+            "node": "建立行事曆和提醒-賣貨便",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "ccfbeab0-18fc-4d36-a9d3-f308e07186c5",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "fddb3e91967f1012c95dd02bf5ad21f279fc44715f47a7a96a33433621caa253"
+  },
+  "id": "FvxN65HdQknqPKix",
+  "tags": []
+}

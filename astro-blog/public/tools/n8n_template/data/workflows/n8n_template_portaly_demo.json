@@ -1,0 +1,441 @@
+{
+  "name": "Template-PortalyDemo",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "portaly-product-sell",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -720,
+        -360
+      ],
+      "id": "9611f19c-f557-41cc-9e5a-b95047f98f4e",
+      "name": "Webhook-商品",
+      "webhookId": "de63fe06-befe-43fa-ba05-d550a3196028"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -140,
+        -440
+      ],
+      "id": "84d799e7-0caf-4606-bbf6-006cb98f125a",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n  \"id\": \"{{ $json.body.data.id }}\",\n  \"productId\": \"{{ $json.body.data.productId }}\",\n  \"customerEmail\": \"{{ $json.body.data.customerData.email }}\",\n  \"customerName\": \"{{ $json.body.data.customerData.name }}\",\n  \"customerPhone\": \"{{ $json.body.data.customerData.phone }}\",\n  \"amount\": {{ $json.body.data.amount }},\n  \"discount\": {{ $json.body.data.discount }},\n  \"feeAmount\": {{ $json.body.data.feeAmount }},\n  \"netTotal\": {{ $json.body.data.netTotal }},\n  \"systemCommissionAmount\": \"{{ $json.body.data.systemCommissionAmount }}\",\n  \"commissionAmount\": {{ $json.body.data.commissionAmount }},\n  \"taxFeeAmount\": {{ $json.body.data.taxFeeAmount }},\n  \"couponCode\": \"{{ $json.body.data.couponCode }}\",\n  \"currency\": \"{{ $json.body.data.currency }}\",\n  \"event\": \"{{ $json.body.event }}\",\n  \"paymentMethod\": \"{{ $json.body.data.paymentMethod }}\",\n  \"createdAt\": \"{{ $json.body.data.createdAt }}\",\n  \"timestamp\": \"{{ $json.body.timestamp }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -500,
+        -460
+      ],
+      "id": "e489ef43-15a0-4586-ac17-85814eb02c37",
+      "name": "固定欄位資料"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "body.data.customerData.customFields",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -500,
+        -260
+      ],
+      "id": "f6999cdd-be99-437f-b87e-5252a803012d",
+      "name": "Split Out - 自訂欄位"
+    },
+    {
+      "parameters": {
+        "jsCode": "const merged = {};\nfor (const item of $input.all()) {\n  const key = item.json[0];\n  const data = item.json[1];\n  merged[key] = data;\n}\nreturn [\n  { json: merged }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -300,
+        -260
+      ],
+      "id": "34bd8670-f028-4cc2-8640-9e71a7b468fb",
+      "name": "Code - Extract 自訂欄位"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1KzVbzgFAh9-am84kUTfOLIMvDXwq0f4TWdNkvUndr5Q",
+          "mode": "list",
+          "cachedResultName": "Portaly-webhook-demo",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1KzVbzgFAh9-am84kUTfOLIMvDXwq0f4TWdNkvUndr5Q/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1945327631,
+          "mode": "list",
+          "cachedResultName": "Products",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1KzVbzgFAh9-am84kUTfOLIMvDXwq0f4TWdNkvUndr5Q/edit#gid=1945327631"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "productId",
+              "displayName": "productId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "customerEmail",
+              "displayName": "customerEmail",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "customerName",
+              "displayName": "customerName",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "customerPhone",
+              "displayName": "customerPhone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "amount",
+              "displayName": "amount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "discount",
+              "displayName": "discount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "feeAmount",
+              "displayName": "feeAmount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "netTotal",
+              "displayName": "netTotal",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "systemCommissionAmount",
+              "displayName": "systemCommissionAmount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "commissionAmount",
+              "displayName": "commissionAmount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "taxFeeAmount",
+              "displayName": "taxFeeAmount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "couponCode",
+              "displayName": "couponCode",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "currency",
+              "displayName": "currency",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "event",
+              "displayName": "event",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "paymentMethod",
+              "displayName": "paymentMethod",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "createdAt",
+              "displayName": "createdAt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "timestamp",
+              "displayName": "timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "n8n 使用經驗",
+              "displayName": "n8n 使用經驗",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "簡述問題或想討論的方向",
+              "displayName": "簡述問題或想討論的方向",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "會議方便時間 (平日/假日 , 白天/晚上)",
+              "displayName": "會議方便時間 (平日/假日 , 白天/晚上)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        40,
+        -440
+      ],
+      "id": "af89f23a-986c-41f3-9b1a-623b9a689deb",
+      "name": "Google Sheets-紀錄訂單資訊",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "atsKA0m2aQXeL6i6",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Created by darrell_tw_ \n\n### contact me with following:\n[Website](https://www.darrelltw.com/)\n[X](https://x.com/darrell_tw_)\n[Threads](https://www.threads.net/@darrell_tw_)\n[Instagram](https://www.instagram.com/darrell_tw_/)\n![](https://pub-c093258f61a1463ea03e1a40c141968a.r2.dev/darrell-icon-128.svg)",
+        "height": 340,
+        "width": 280,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1100,
+        -660
+      ],
+      "id": "6a5b28ca-d598-4ee0-ba2d-48d8fc7453d8",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "## Attachment(附件)\n\n### Google Sheet Template(模板)\n\nhttps://docs.google.com/spreadsheets/d/1KzVbzgFAh9-am84kUTfOLIMvDXwq0f4TWdNkvUndr5Q/copy\n",
+        "height": 220,
+        "width": 300,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1100,
+        -300
+      ],
+      "id": "e2187ab2-1947-4dd5-993c-efeb52acc142",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## 小撇步 - $$動畫\n```\n(()=>{const d=document,s=d.createElement('style');s.textContent='.o{stroke:transparent!important;fill:none!important}.d{fill:#00aa40;font:700 20px Arial,sans-serif;filter:drop-shadow(0 0 8px #00aa40)}';d.head.appendChild(s);d.querySelectorAll('g[data-test-id=\"edge\"]').forEach((g,i)=>{const p=g.querySelector('path.vue-flow__edge-path');if(!p)return;const id=`p${Date.now()}${i}`;p.id=id;p.classList.add('o');const t=d.createElementNS('http://www.w3.org/2000/svg','text'),tp=d.createElementNS('http://www.w3.org/2000/svg','textPath'),a=d.createElementNS('http://www.w3.org/2000/svg','animate');t.setAttribute('class','d');tp.setAttributeNS('http://www.w3.org/1999/xlink','xlink:href','#'+id);tp.textContent='$ '.repeat(100);a.setAttribute('attributeName','startOffset');a.setAttribute('from','-50%');a.setAttribute('to','0%');a.setAttribute('dur','1.5s');a.setAttribute('repeatCount','indefinite');tp.appendChild(a);t.appendChild(tp);g.appendChild(t);});})();\n```\n\n複製上面的 code 到 chrome devtool console 貼上即可！",
+        "height": 180,
+        "width": 440,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1100,
+        -60
+      ],
+      "id": "465bad80-f042-4e29-af36-a6e523bee74e",
+      "name": "Sticky Note1"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook-商品": {
+      "main": [
+        [
+          {
+            "node": "固定欄位資料",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Split Out - 自訂欄位",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets-紀錄訂單資訊",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "固定欄位資料": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out - 自訂欄位": {
+      "main": [
+        [
+          {
+            "node": "Code - Extract 自訂欄位",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code - Extract 自訂欄位": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "aca4293b-176f-4c2b-b184-d1a07201ff31",
+  "meta": {
+    "instanceId": "fddb3e91967f1012c95dd02bf5ad21f279fc44715f47a7a96a33433621caa253"
+  },
+  "id": "lWvSIyomlLKx1FxD",
+  "tags": [
+    {
+      "createdAt": "2025-04-25T14:04:49.168Z",
+      "updatedAt": "2025-04-25T14:04:49.168Z",
+      "id": "5XRIpCCc7ekBy9Ka",
+      "name": "Darrell-template"
+    }
+  ]
+}

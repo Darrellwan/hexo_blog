@@ -4,7 +4,7 @@ export const SITE = {
   profile: "https://www.darrelltw.com/",
   desc: "MarTech 自動化 & n8n 教學",
   title: "Darrell TW",
-  ogImage: "astropaper-og.jpg",
+  ogImage: "links/images/og-image.webp",
   lightAndDarkMode: true,
   postPerIndex: 4,
   postPerPage: 20,

@@ -28,6 +28,12 @@ pnpm-debug.log*
 public/*
 !public/links/
 !public/n8n-expert/
+!public/tools/
+!public/tools/n8n_template/.claude/
+!public/tools/n8n_template/.claude/**
+!public/tools/n8n_template/docs/
+!public/tools/n8n_template/docs/**
+!public/gallery/
 !public/.well-known/
 !public/_redirects
 !public/_headers
