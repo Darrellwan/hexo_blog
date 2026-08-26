@@ -7,6 +7,9 @@
 import type { Plugin } from "unified";
 import type { Root, Paragraph, Text, Html } from "mdast";
 import { visit } from "unist-util-visit";
+import { readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { SITE } from "../config";
 import imageDimensionsJson from "../data/image_dimensions.json";
 import imageVariantsJson from "../data/image_variants.json";
@@ -577,22 +580,41 @@ export function renderQuickNav(items: { anchor: string; text: string; desc?: str
   return html;
 }
 
-export function renderArticleCard(url: string, title: string, previewText: string, thumbnail: string): string {
+export function renderArticleCard(
+  url: string,
+  title: string,
+  previewText: string,
+  thumbnail: string
+): string {
   const safeUrl = escapeHtml(url);
   const safeTitle = escapeHtml(title);
   const safePreview = escapeHtml(previewText);
   const safeThumb = escapeHtml(thumbnail);
-  return `<div class="article-card">
-  <a href="${safeUrl}" class="article-card-link">
-    <div class="article-card-content">
-      <div class="article-card-text">
-        <div class="article-card-title">${safeTitle}</div>
-        ${previewText ? `<p class="article-card-preview">${safePreview}</p>` : ""}
-      </div>
-      ${thumbnail ? `<div class="article-card-image"><img src="${safeThumb}" alt="${safeTitle}"></div>` : ""}
-    </div>
-  </a>
-</div>`;
+  const textLines = [
+    '      <div class="article-card-text">',
+    `        <div class="article-card-title">${safeTitle}</div>`,
+    ...(previewText
+      ? [`        <p class="article-card-preview">${safePreview}</p>`]
+      : []),
+    "      </div>",
+  ];
+  const contentLines = [
+    '    <div class="article-card-content">',
+    ...textLines,
+    ...(thumbnail
+      ? [
+          `      <div class="article-card-image"><img src="${safeThumb}" alt="${safeTitle}"></div>`,
+        ]
+      : []),
+    "    </div>",
+  ];
+  return [
+    '<div class="article-card">',
+    `  <a href="${safeUrl}" class="article-card-link">`,
+    ...contentLines,
+    "  </a>",
+    "</div>",
+  ].join("\n");
 }
 
 export function renderTemplateCard(
@@ -610,27 +632,207 @@ export function renderTemplateCard(
   const safeTitle = escapeHtml(title);
   const safeDesc = escapeHtml(description);
   const safeThumb = escapeHtml(thumbnail);
-  return `<div class="template-card">
-  <a href="${href}" class="template-card-link">
-    <div class="template-card-content">
-      <div class="template-card-text">
-        <div class="template-card-title">${safeTitle}</div>
-        ${description ? `<p class="template-card-description">${safeDesc}</p>` : ""}
-        ${tags.length ? `<div class="template-card-tags">${tagsHtml}</div>` : ""}
-        <div class="template-card-meta">
-          ${nodeCount ? `<span>${escapeHtml(nodeCount)} 個節點</span>` : ""}
-          ${updatedAt ? `<span>更新於 ${escapeHtml(updatedAt)}</span>` : ""}
-        </div>
-      </div>
-      ${thumbnail ? `<div class="template-card-image"><img src="${safeThumb}" alt="${safeTitle}"></div>` : ""}
-    </div>
-  </a>
-</div>`;
+  const metaLines = [
+    ...(nodeCount
+      ? [`          <span>${escapeHtml(nodeCount)} 個節點</span>`]
+      : []),
+    ...(updatedAt
+      ? [`          <span>更新於 ${escapeHtml(updatedAt)}</span>`]
+      : []),
+  ];
+  const textLines = [
+    '      <div class="template-card-text">',
+    `        <div class="template-card-title">${safeTitle}</div>`,
+    ...(description
+      ? [`        <p class="template-card-description">${safeDesc}</p>`]
+      : []),
+    ...(tags.length
+      ? [`        <div class="template-card-tags">${tagsHtml}</div>`]
+      : []),
+    ...(metaLines.length
+      ? [
+          '        <div class="template-card-meta">',
+          ...metaLines,
+          "        </div>",
+        ]
+      : []),
+    "      </div>",
+  ];
+  const contentLines = [
+    '    <div class="template-card-content">',
+    ...textLines,
+    ...(thumbnail
+      ? [
+          `      <div class="template-card-image"><img src="${safeThumb}" alt="${safeTitle}"></div>`,
+        ]
+      : []),
+    "    </div>",
+  ];
+  return [
+    '<div class="template-card">',
+    `  <a href="${href}" class="template-card-link">`,
+    ...contentLines,
+    "  </a>",
+    "</div>",
+  ].join("\n");
 }
 
 // ============================================
 // Parser helpers
 // ============================================
+
+interface ParsedTagAttribute {
+  present: boolean;
+  value: string;
+}
+
+interface ArticleCardDefaults {
+  title: string;
+  previewText: string;
+  thumbnail: string;
+}
+
+const BLOG_DATA_DIRECTORY = join(
+  dirname(fileURLToPath(import.meta.url)),
+  "../data/blog"
+);
+const ARTICLE_CARD_DEFAULTS_CACHE = new Map<
+  string,
+  ArticleCardDefaults | null
+>();
+const ARTICLE_SLUG_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
+const FRONT_MATTER_FIELD_PATTERN = /^([A-Za-z0-9_-]+):(?:[ \t]*(.*))?$/;
+const FRONT_MATTER_BLOCK_PATTERN = /^[|>][+-]?$/;
+
+function parseFrontMatterScalar(rawValue: string): string {
+  const value = rawValue.trim();
+  if (!value || value === "~" || /^null$/i.test(value)) return "";
+
+  if (value.startsWith('"') && value.endsWith('"')) {
+    try {
+      return JSON.parse(value) as string;
+    } catch {
+      return value.slice(1, -1);
+    }
+  }
+
+  if (value.startsWith("'") && value.endsWith("'")) {
+    return value.slice(1, -1).replace(/''/g, "'");
+  }
+
+  return value;
+}
+
+function parseFrontMatter(source: string): Record<string, string> {
+  const match = source.match(/^---\s*\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/);
+  if (!match) return {};
+
+  const lines = match[1].split(/\r?\n/);
+  const fields: Record<string, string> = {};
+
+  for (let index = 0; index < lines.length; index += 1) {
+    const fieldMatch = lines[index].match(FRONT_MATTER_FIELD_PATTERN);
+    if (!fieldMatch) continue;
+
+    const key = fieldMatch[1];
+    let rawValue = fieldMatch[2] ?? "";
+    if (FRONT_MATTER_BLOCK_PATTERN.test(rawValue.trim())) {
+      const blockLines: string[] = [];
+      let nextIndex = index + 1;
+      while (
+        nextIndex < lines.length &&
+        !FRONT_MATTER_FIELD_PATTERN.test(lines[nextIndex])
+      ) {
+        blockLines.push(lines[nextIndex]);
+        nextIndex += 1;
+      }
+
+      const indents = blockLines
+        .filter(line => line.trim())
+        .map(line => line.match(/^\s*/)?.[0].length ?? 0);
+      const commonIndent = indents.length ? Math.min(...indents) : 0;
+      const normalizedLines = blockLines.map(line =>
+        line.slice(Math.min(commonIndent, line.length))
+      );
+      const isFolded = rawValue.trim().startsWith(">");
+      rawValue = isFolded
+        ? normalizedLines.reduce((result, line) => {
+            if (!line.trim()) return `${result}\n`;
+            return result && !result.endsWith("\n")
+              ? `${result} ${line.trim()}`
+              : `${result}${line.trim()}`;
+          }, "")
+        : normalizedLines.join("\n");
+      index = nextIndex - 1;
+    }
+
+    fields[key] = parseFrontMatterScalar(rawValue);
+  }
+
+  return fields;
+}
+
+function deriveArticleCardSlug(url: string): string {
+  const trimmedUrl = url.trim();
+  if (!trimmedUrl || trimmedUrl.includes("?") || trimmedUrl.includes("#")) {
+    return "";
+  }
+
+  let pathname = trimmedUrl;
+  if (/^https?:\/\//i.test(trimmedUrl)) {
+    try {
+      const parsedUrl = new URL(trimmedUrl);
+      const configuredHost = new URL(SITE.website).hostname;
+      if (parsedUrl.hostname !== configuredHost) return "";
+      pathname = parsedUrl.pathname;
+    } catch {
+      return "";
+    }
+  }
+
+  const pathMatch = pathname.match(/^\/([^/]+)\/?$/);
+  if (!pathMatch) return "";
+
+  let slug = pathMatch[1];
+  try {
+    slug = decodeURIComponent(slug);
+  } catch {
+    return "";
+  }
+  return ARTICLE_SLUG_PATTERN.test(slug) ? slug : "";
+}
+
+function loadArticleCardDefaults(url: string): ArticleCardDefaults | null {
+  const slug = deriveArticleCardSlug(url);
+  if (!slug) return null;
+
+  if (ARTICLE_CARD_DEFAULTS_CACHE.has(slug)) {
+    return ARTICLE_CARD_DEFAULTS_CACHE.get(slug) ?? null;
+  }
+
+  let defaults: ArticleCardDefaults | null = null;
+  try {
+    const source = readFileSync(
+      join(BLOG_DATA_DIRECTORY, `${slug}.md`),
+      "utf8"
+    );
+    const frontMatter = parseFrontMatter(source);
+    const bgImage = frontMatter.bgImage ?? "";
+    const siteUrl = SITE.website.replace(/\/$/, "");
+    defaults = {
+      title: frontMatter.title ?? "",
+      previewText: frontMatter.description ?? "",
+      thumbnail: bgImage
+        ? `${siteUrl}/${slug}/${bgImage.replace(/^\/+/, "")}`
+        : "",
+    };
+  } catch {
+    // A card can intentionally point to a non-Markdown page. Keep its values.
+  }
+
+  ARTICLE_CARD_DEFAULTS_CACHE.set(slug, defaults);
+  return defaults;
+}
 
 /** Parse key="value" or key='value' or key=value attribute from args string */
 function parseAttr(argsStr: string, key: string): string {
@@ -641,6 +843,21 @@ function parseAttr(argsStr: string, key: string): string {
   const unquotedMatch = argsStr.match(new RegExp(`${key}=([^\\s%]+)`));
   if (unquotedMatch) return unquotedMatch[1];
   return "";
+}
+
+/** Parse an attribute while retaining whether it was explicitly supplied. */
+function parseAttrWithPresence(
+  argsStr: string,
+  key: string
+): ParsedTagAttribute {
+  const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const match = argsStr.match(
+    new RegExp(
+      `(?:^|\\s)${escapedKey}\\s*=\\s*(?:"([^"]*)"|'([^']*)'|([^\\s%]*))`
+    )
+  );
+  if (!match) return { present: false, value: "" };
+  return { present: true, value: match[1] ?? match[2] ?? match[3] ?? "" };
 }
 
 /** Parse Hexo's key=value arguments, including unquoted values with spaces. */
@@ -846,10 +1063,24 @@ function processBlockTags(fullText: string): string {
   result = result.replace(
     /\{%\s*articleCard\s+([\s\S]*?)\s*%\}/g,
     (_, argsStr) => {
-      const url = parseAttr(argsStr, "url");
-      const title = parseAttr(argsStr, "title");
-      const previewText = parseAttr(argsStr, "previewText");
-      const thumbnail = parseAttr(argsStr, "thumbnail");
+      const urlAttr = parseAttrWithPresence(argsStr, "url");
+      const titleAttr = parseAttrWithPresence(argsStr, "title");
+      const previewTextAttr = parseAttrWithPresence(argsStr, "previewText");
+      const thumbnailAttr = parseAttrWithPresence(argsStr, "thumbnail");
+      const defaults =
+        !titleAttr.present || !previewTextAttr.present || !thumbnailAttr.present
+          ? loadArticleCardDefaults(urlAttr.value)
+          : null;
+      const url = urlAttr.value;
+      const title = titleAttr.present
+        ? titleAttr.value
+        : (defaults?.title ?? "");
+      const previewText = previewTextAttr.present
+        ? previewTextAttr.value
+        : (defaults?.previewText ?? "");
+      const thumbnail = thumbnailAttr.present
+        ? thumbnailAttr.value
+        : (defaults?.thumbnail ?? "");
       return renderArticleCard(url, title, previewText, thumbnail);
     }
   );
