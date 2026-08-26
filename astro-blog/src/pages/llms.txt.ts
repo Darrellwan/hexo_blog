@@ -22,7 +22,7 @@ export const GET: APIRoute = async () => {
     "## 文章索引",
     "",
     ...sortedPosts.map(post => {
-      const articleUrl = `${siteUrl}${getPath(post.filePath)}/`;
+      const articleUrl = `${siteUrl}${getPath(post.filePath)}`;
       const markdownUrl = `${articleUrl}index.md`;
       const description = post.data.description?.trim();
       return [

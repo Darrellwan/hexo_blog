@@ -38,7 +38,7 @@ export async function GET() {
       latestPubDate ? `<pubDate>${latestPubDate.toUTCString()}</pubDate>` : "",
     ].join(""),
     items: sortedPosts.map(({ data, filePath }) => {
-      const canonicalPath = `${getPath(filePath).replace(/\/+$/, "")}/`;
+      const canonicalPath = getPath(filePath);
       const canonicalURL = new URL(canonicalPath, SITE.website).href;
       const link = `${canonicalURL}?utm_source=rss_feed&utm_medium=rss`;
       const categories = [

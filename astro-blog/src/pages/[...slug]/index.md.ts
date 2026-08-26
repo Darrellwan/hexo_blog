@@ -10,7 +10,7 @@ type MarkdownProps = {
 export async function getStaticPaths() {
   const posts = await getCollection("blog", ({ data }) => !data.draft);
   return posts.map(post => ({
-    params: { slug: getPath(post.filePath).replace(/^\//, "") },
+    params: { slug: getPath(post.filePath).replace(/^\/|\/$/g, "") },
     props: { post },
   }));
 }

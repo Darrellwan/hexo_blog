@@ -12,7 +12,7 @@ export async function getStaticPaths() {
   const posts = await getCollection("blog", ({ data }) => !data.draft);
   return posts.map(post => ({
     // Astro rest params are relative; getPath is the canonical public path.
-    params: { slug: getPath(post.filePath).replace(/^\//, "") },
+    params: { slug: getPath(post.filePath).replace(/^\/|\/$/g, "") },
     props: { post },
   }));
 }

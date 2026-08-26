@@ -1,7 +1,8 @@
 import { BLOG_PATH } from "@/content.config";
 
 /**
- * Get the canonical URL path of a blog post.
+ * Get the canonical URL path of a blog post, with the trailing slash the
+ * legacy site and every canonical tag use.
  *
  * The markdown filename is the source of truth for the URL.  Do not accept an
  * `id` fallback: it can be derived from frontmatter and would reintroduce the
@@ -31,5 +32,5 @@ export function getPath(filePath: string | undefined): string {
     throw new Error(`Blog file path has no canonical slug: ${filePath}`);
   }
 
-  return `/${segments.join("/")}`;
+  return `/${segments.join("/")}/`;
 }

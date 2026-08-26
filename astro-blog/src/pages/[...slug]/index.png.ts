@@ -14,7 +14,7 @@ export async function getStaticPaths() {
   );
 
   return posts.map(post => ({
-    params: { slug: getPath(post.filePath).replace(/^\//, "") },
+    params: { slug: getPath(post.filePath).replace(/^\/|\/$/g, "") },
     props: post,
   }));
 }

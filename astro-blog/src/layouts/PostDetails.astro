@@ -50,12 +50,12 @@ if (typeof initOgImage === "string") {
   ogImageUrl =
     /^(?:https?:)?\/\//i.test(imagePath) || imagePath.startsWith("/")
       ? imagePath
-      : `${getPath(post.filePath)}/${imagePath}`;
+      : `${getPath(post.filePath)}${imagePath}`;
 }
 
 // Use dynamic OG image if enabled and no remote|local ogImage
 if (!ogImageUrl && SITE.dynamicOgImage) {
-  ogImageUrl = `${getPath(post.filePath)}/index.png`;
+  ogImageUrl = `${getPath(post.filePath)}index.png`;
 }
 
 // Resolve OG image URL (or fallback to SITE.ogImage / default `og.png`)
