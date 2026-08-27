@@ -51,7 +51,7 @@ legacyAnchors: true
   },
   {
     "text": "實戰案例",
-    "anchor": "example",
+    "anchor": "實戰範例：AI-自動解析發票寫進-Sheets",
     "desc": "Gmail 發票自動記錄"
   },
   {

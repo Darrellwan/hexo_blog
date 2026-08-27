@@ -78,7 +78,7 @@ legacyAnchors: true
 | cookie_prefix                | 字串    | 未定義        | 指定要在廣告和數據分析 Cookie 名稱前面加上的前置字元。例如，您可以將開頭為 _gcl_aw 的廣告 Cookie 重新命名為 `<your-prefix>_aw`。       | x          | x   | x               |
 | cookie_update                | 布林值  | true          | 如果將 cookie_update 設為 true： GA4 和 Merchant Center 會在每次載入網頁時更新 Cookie，而 Cookie 到期時間也會隨之更新，根據最近一次造訪網站的時間進行設定。舉例來說，如果將 Cookie 到期時間設為一週，而使用者每五天就使用同一個瀏覽器造訪網站，則 Cookie 到期時間會在每次造訪時更新，且永遠不會過期。 Google Ads 和 Floodlight 會以原始到期日更新 Cookie，因此仍與首次造訪的時間相關。 如果設為 false，系統就不會在每次載入網頁時更新 Cookie，而是會根據使用者首次造訪網站的時間，決定 Cookie 到期時間。 | x | x | x |
 | customer_lifetime_value      | 字串    | 未定義        | 指定系統將客戶計為回訪客戶的時間範圍。                                                                | x | | |
-| groups                       | 字串    | 未定義        | 您可以建立一組目標 (例如產品、帳戶和資源)，然後將事件轉送至該群組。如要將事件傳送到群組，則必須在事件代碼中設定 [send_to](/tagmanager/answer/13438771#send-to) 參數。 | x | x | x |
+| groups                       | 字串    | 未定義        | 您可以建立一組目標 (例如產品、帳戶和資源)，然後將事件轉送至該群組。如要將事件傳送到群組，則必須在事件代碼中設定 [send_to](https://support.google.com/tagmanager/answer/13438771#send-to) 參數。 | x | x | x |
 | ignore_referrer              | 布林值  | false         | 設定為 `true`，告訴 Analytics (分析) 不應將參照網址顯示為流量來源。 [瞭解使用這個欄位的時機](https://support.google.com/analytics/answer/10327750#set-parameter)。 | | x | x |
 | language                     | 字串    | [navigator.language](https://developer.mozilla.org/zh-Hant/docs/Web/API/Navigator/language) | 指定使用者的語言偏好設定。                                                          | x | x | x |
 | new_customer                 | 布林值  | 未定義        | 提供 Google Ads 廣告活動的獲取新客報表。如需導入詳情，請參閱 [Google Ads 說明](https://support.google.com/google-ads/answer/12077475#zippy=%2Cinstall-with-google-tag-manager)。 | x | | |
@@ -91,7 +91,7 @@ legacyAnchors: true
 | screen_resolution            | 字串    | [window.screen](https://developer.mozilla.org/en-US/docs/Web/API/Window/screen) | 指定螢幕的解析度。應為兩個正整數，並以 x 分隔。舉例來說，如果是 800 x 600 像素的螢幕，這個值會是「800x600」。根據使用者的 [window.screen](https://developer.mozilla.org/en-US/docs/Web/API/Window/screen) 值計算得出。 | | x | x |
 | server_container_url         | 字串    | 未定義        | 指定標記伺服器的網址。如要進一步瞭解伺服器端代碼，請參閱 [本文](https://developers.google.com/tag-platform/tag-manager/server-side)。 | x | x | x |
 | user_id                      | 字串    | 未定義        | 為使用者指定網站擁有者/程式庫使用者所提供的已知 ID。ID 不得為 PII (個人識別資訊)。這個值不得儲存在 Google Analytics (分析) Cookie 或其他 Analytics (分析) 提供的儲存空間中。長度上限為 256 個字元。 | | x | | |
-| user_properties              | 物件    | 未定義        | 使用者屬性是用來描述使用者族群區隔的屬性，例如語言偏好設定或地理位置。每項專案最多可以額外設定 25 個使用者屬性。 [瞭解如何設定使用者屬性](/tagmanager//answer/13438771#user-properties)。 | | x | |
+| user_properties              | 物件    | 未定義        | 使用者屬性是用來描述使用者族群區隔的屬性，例如語言偏好設定或地理位置。每項專案最多可以額外設定 25 個使用者屬性。 [瞭解如何設定使用者屬性](https://support.google.com/tagmanager/answer/13438771#user-properties)。 | | x | |
 
 </div>
 
@@ -123,13 +123,13 @@ legacyAnchors: true
 | payment_type | 字串 | 未定義 | 客戶選擇的付款方式，例如 'credit card'。 |  | x |  |
 | score | 數字 | 未定義 | 使用者的分數。這是 [post_score](https://developers.google.com/analytics/devguides/collection/ga4/reference/events?client_type=gtm#post_score) 事件的一部分，用於評估遊戲內分數。 |  | x |  |
 | search_term | 字串 | 未定義 | 搜尋的字詞。這是 [search](https://developers.google.com/analytics/devguides/collection/ga4/reference/events?client_type=gtm#search) 事件的一部分。 |  | x |  |
-| send_to<a id="send-to"></a> | 字串 | 未定義 | 指定 Google 代碼目的地 ID。可與 [groups](/tagmanager/answer/13438166#groups) 設定參數搭配使用。 | x | x | x |
+| send_to<a id="send-to"></a> | 字串 | 未定義 | 指定 Google 代碼目的地 ID。可與 [groups](https://support.google.com/tagmanager/answer/13438166#groups) 設定參數搭配使用。 | x | x | x |
 | shipping | 數字 | 未定義 | 與交易相關聯的運費，例如 60。 | x | x | x |
 | shipping_tier | 字串 | 未定義 | 選取配送已購商品的運送層級，例如 'Ground' (陸運)、'Air' (空運)、'Next-day' (隔日)。 | x | x | x |
 | tax | 數字 | 未定義 | 與交易相關聯的稅金費用，例如 30。 |  | x | x |
 | transaction_id | 字串 | 未定義 | 交易的專屬 ID，例如 'T_12345'。[transaction_id](https://developers.google.com/analytics/devguides/collection/ga4/reference/events?client_type=gtm#transaction_id) 參數可避免單筆購買產生重複事件。 | x | x | x |
 | user_data | 物件 | 未定義 | 此參數用於停止自動收集使用者提供的資料。如要停止收集特定網頁的資料，請將 [user_data](https://support.google.com/tagmanager/answer/12131703?#Data&amp;zippy=%2Callow-user-provided-data-capabilities) 設為 null。如要完全停用使用者定義的資料收集功能，請[使用 Google 代碼設定](https://support.google.com/tagmanager/answer/12131703?#Data&amp;zippy=%2Callow-user-provided-data-capabilities)。 | x |  |  |
-| user_properties | 物件 | 未定義 | 用來傳送額外 Google Analytics (分析) 使用者屬性的參數。[瞭解如何設定使用者屬性](#user-properties)。 |  | x |  |
+| user_properties | 物件 | 未定義 | 用來傳送額外 Google Analytics (分析) 使用者屬性的參數。[瞭解如何設定使用者屬性](https://support.google.com/tagmanager/answer/13438771#user-properties)。 |  | x |  |
 | value | 數字 | 未定義 | 事件金額，例如 390。必須設定 value 才能產生有意義的報表，以及填入「購買者」[預測目標對象](https://support.google.com/analytics/answer/9805833)。如已設定 value，則要一併設定 currency。 | x | x | x |
 | virtual_currency_name | 字串 | 未定義 | 虛擬貨幣的名稱。這是 [earn_virtual_currency](https://developers.google.com/analytics/devguides/collection/ga4/reference/events?client_type=gtm#earn_virtual_currency) 和 [spend_virtual_currency](https://developers.google.com/analytics/devguides/collection/ga4/reference/events?client_type=gtm#spend_virtual_currency) 事件的一部分。 |  | x |  |
 

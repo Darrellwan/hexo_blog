@@ -25,7 +25,7 @@ legacyAnchors: true
 [
   {"text": "Zeabur AI Hub 是什麼", "anchor": "Zeabur-AI-Hub-是什麼？", "desc": "統一 API Gateway 介紹"},
   {"text": "n8n Credentials 設定", "anchor": "n8n-Credentials-設定", "desc": "API Key 與 Base URL 設定"},
-  {"text": "AI 模型 Router 實作", "anchor": "實戰：在-n8n-建立一個智慧選擇模型的工作流", "desc": "動態切換模型的工作流"},
+  {"text": "AI 模型 Router 實作", "anchor": "實戰：在-n8n-建立一個-AI-模型-Router-工作流", "desc": "動態切換模型的工作流"},
   {"text": "實測展示", "anchor": "實測展示", "desc": "簡單與複雜問題測試"},
   {"text": "常見問題", "anchor": "faq", "desc": "FAQ"}
 ]

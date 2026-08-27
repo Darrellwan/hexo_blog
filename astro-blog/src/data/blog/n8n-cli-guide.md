@@ -56,7 +56,7 @@ n8n 官方在 2026 年 3 月推出了 CLI 工具，同樣的事一行指令、�
 可以讓 AI 替你打指令，請直接跳到 [AI 整合](#ai-skill)。
 {% endcallout %}
 
-## <span id="what-is-n8n-cli">n8n CLI 是什麼？跟自架的 n8n 指令不一樣</span>
+## n8n CLI 是什麼？跟自架的 n8n 指令不一樣 {#what-is-n8n-cli}
 
 先解決一個很多人會混淆的點。
 
@@ -83,7 +83,7 @@ n8n 官方在 2026 年 3 月推出了 CLI 工具，同樣的事一行指令、�
 這個工具還掛著 beta 標籤、更新蠻快的，新版指令如果長不一樣，以 <code>--help</code> 為準。
 {% endcallout %}
 
-## <span id="setup">安裝與連線設定</span>
+## 安裝與連線設定 {#setup}
 
 ### 前置準備
 
@@ -140,7 +140,7 @@ API Key:  ****jgs4
 
 不用擔心設定很麻煩，整個流程大概 2-3 分鐘內搞定。
 
-## <span id="daily-usage">日常操作：workflow、execution、credential</span>
+## 日常操作：workflow、execution、credential {#daily-usage}
 
 ### 查 workflow
 
@@ -205,7 +205,7 @@ n8n-cli credential schema slackApi
 這是刻意的安全設計，不可能用 CLI 把憑證直接匯出。
 {% endcallout %}
 
-## <span id="ai-skill">AI 整合：讓 Claude Code 直接幫你管 n8n</span>
+## AI 整合：讓 Claude Code 直接幫你管 n8n {#ai-skill}
 
 這是我覺得最有趣的部分，也是**不想學指令的人最該看的一段**。
 
@@ -267,7 +267,7 @@ Claude Code 就能透過這個 Skill (說明書) 去理解 `n8n-cli` 該怎麼�
 `data-table` 管的就是 [Data Table 節點](/n8n-datatables-node/)存的那些資料，
 rows 的批次新增、更新、upsert 都能從終端機做。
 
-## <span id="adopt-or-not">要學 n8n cli 還是交給 AI Agent</span>
+## 要學 n8n cli 還是交給 AI Agent {#adopt-or-not}
 
 在這個充滿 AI 的時代
 如果你是個人用途，需要用 n8n 幫忙處理一些自動化
@@ -288,7 +288,7 @@ rows 的批次新增、更新、upsert 都能從終端機做。
 
 相關服務參考 : [n8n 顧問服務](/n8n-expert/)，需要的話可以聊聊。
 
-## <span id="limits">目前限制</span>
+## 目前限制 {#limits}
 
 誠實說，它還在 beta，這些坑先知道再上：
 
@@ -313,7 +313,7 @@ alias n8n-client='N8N_URL=https://client.example.com N8N_API_KEY=$N8N_KEY_CLIENT
 
 {% darrellImage800Alt "n8n-main 和 n8n-preview 兩個 alias 各自連到不同 instance，回傳不同的 workflow 列表" n8n_cli-multi_instance_alias.png max-800 %}
 
-## <span id="faq">常見問題</span>
+## 常見問題 {#faq}
 
 {% faq %}
 [
