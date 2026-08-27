@@ -2,11 +2,37 @@
 
 ## 🔴 待完成
 
-### Hexo → Astro 獨立 repo 上線（Phase 0、Phase 1、錨點決策完成，下一步 Phase 2 開新 repo）
+### Hexo → Astro 獨立 repo 上線（Phase 0-2 完成，下一步 Phase 3 部署到 Cloudflare）
 - **建立日期**：2026-08-26
 - **決策唯一來源**：`docs/plans/2026-08-26-astro-standalone-repo-cutover.md`（2026-08-26 已收斂：六大決策＋原四個待決問題全數定案，細節與理由一律看該文件，不要重新爭論）
-- **狀態**：**Phase 0、Phase 1 與標題錨點全部完成**。全部只在本機 `blog/astro-blog/`，**未 push、未部署，線上 Hexo 完全沒動**。最終 build：`BUILD_EXIT=0`、0 errors、0 warnings、257 頁、128 篇已發布文章
-- **🔴 下一步是 Phase 2（開新 repo）**，動手前必讀 `~/.claude/memory/github-multi-account.md`（雙帳號、owner 填錯會 404）
+- **狀態**：**Phase 0、Phase 1、標題錨點、Phase 2 全部完成**。新 repo `Darrellwan/blog-astro`（private）已上線，本機在 `~/Darrell/code/blog-astro/`。**線上 Hexo 完全沒動、Cloudflare 一個字都還沒設**
+- **🔴 下一步是 Phase 3（部署到 Cloudflare，不切網域）**。第一件卡住的事：**現有的 `CLOUDFLARE_BR_API_TOKEN` 看得到 0 個 account、0 個 zone（2026-08-27 實查），對這個遷移完全沒用**，要站主到 dashboard 開一個帶 `Zone:Edit`、`Workers Scripts:Edit`、`Access:Edit` 的新 token
+
+#### Phase 2 做了什麼（2026-08-27 完成）
+- `git archive HEAD:astro-blog` 抽出 3,815 個版控檔案，逐檔比對 0 差異（用 `-z` 避開 `git ls-files` 對非 ASCII 檔名的八進位跳脫誤判）
+- 乾淨重開、不帶 git 歷史（待決問題 #1 已定案），初始 commit `7480642`
+- remote 改成 HTTPS（`gh repo create` 預設給 SSH，雙帳號下會認證跑錯身分，見 [[github-multi-account]]）
+- 修掉刪除 `pnpm-lock.yaml` 造成的連帶損壞：`.github/workflows/ci.yml`、`Dockerfile`、`src/pages/search.astro` 的 dev 提示全部改用 npm
+- `README.md` 重寫（原本寫「從 `astro-blog/` 執行」，在新 repo 是錯的）
+- `tests/fixtures/b3/generate-url-manifest.mjs` 加 SUPERSEDED 註記（它讀 `../source/_posts`，在獨立 repo 跑不起來，已被 `verify-url-contract.ts` 取代）
+- `docs/guides/term-definitions.md` 複製進新 repo（**用複製不用搬移**：舊 repo 那份還在被現行 Hexo 寫作 skill 引用）
+- `CLAUDE.md`（167 行，codex 寫、主線抽驗：21 個自訂標籤逐個對 `remark-hexo-tags.ts` 查證存在、front matter schema 逐欄對 `content.config.ts` 全對）
+- **乾淨 clone 抓到一個真 bug**：`verify-url-contract.ts` import `hexo-util` 與 `hexo-front-matter`（靠舊 repo 的 Hexo `node_modules` 撿到，不在 `package.json`），還讀 `../main.yml` 與 `../source/_posts`。修法不是加相依（那會讓獨立 repo 永久綁 Hexo），是把推導結果凍結成 `tests/fixtures/frozen/legacy-url-inventory.json`（362 筆），腳本 709 行縮到 334 行，判定數字一字未變
+- **也抓到我自己驗收腳本的洞**：前一版回報 `CLEAN_MANIFEST=IDENTICAL` 是假通過 —— build 失敗沒產出 `dist/`，`freeze-manifest.ts` 崩潰沒寫檔，`diff` 拿沒被改動的檔案跟自己比。已寫成 `scripts/verify-clean-clone.sh`，每步各自 assert，且信任任何下游比對前先確認 `dist/` 真的有頁面
+- **派工教訓**：給 codex 的 prompt 寫「node_modules 已裝好」但新 repo 從沒跑過 `npm ci`，同時又下「禁止安裝任何套件」，兩條指示互相矛盾，害 F 卡住 41 分鐘。**交辦前要實查環境前提，不能憑印象寫**
+
+#### 🔴 Phase 2 checklist 有一條我刻意沒做，等站主決定
+「把 `docs/skills-astro/` 三份整份覆蓋回 `~/Darrell/skills/`」**不該在 Phase 2 做**。那三個 skill（`article-review`、`blog-article-writer`、`n8n-article-writer`）站主現在還在用來寫 **Hexo** 文章，切換要到 Phase 4；現在覆蓋掉，從今天到切換之間寫的每一篇都會被帶到不存在的路徑。**建議移到 Phase 4 切換當天做**，跟凍結 Hexo repo 同一個動作。
+
+#### 🔴 Phase 3 前要決定：53 個年月 archive 的去留
+`docs/url-contract.md` 逐條核對 362 個舊網址：200=186、308=97、預期 404=25、舊站已 404=1、**缺口=53**。53 個缺口全部是同一類：`/archives/YYYY/` 與 `/archives/YYYY/MM/`，舊站都回 200，Astro 只產出單一頁 `/archives/`。三個選項：Astro 補做年月 archive 路由／全部 308 轉到 `/archives/`／讓它們 404。用 `npm run test:url-contract` 隨時重跑。
+
+#### Phase 3 準備工作已完成（2026-08-27，commit `c91f9ab1`、`8fb6d7d2`）
+- `public/_headers`：`vercel.json` 三條規則移植完，逐條對照表在 `docs/cloudflare-headers-matrix.md`
+- **`_bg` 快取規則刻意不移植**：實測線上三個 `_bg` 檔與非 `_bg` 對照組回傳值完全相同（`public, max-age=86400, must-revalidate`），規則從 `cc4465ee`（2024-11-12）加入起就沒生效過；且它瞄準 `_bg`（底線）而 111 個封面圖用的是 `-bg`（連字號）。修這個需求等切換穩定後單獨做
+- `wrangler.jsonc`：`html_handling: auto-trailing-slash`（官方文件核對過）。**已知行為改變**：Vercel `cleanUrls` 讓 `/slug` 和 `/slug/` 都回 200，Cloudflare 會把 `/slug` 307 轉到 `/slug/`；canonical 與 sitemap 本來就是帶尾斜線那個，所以是改善不是退化
+- `npm run test:headers`：12 路徑 61 header 對線上舊站全過，嚴格 `===` 比對
+- 刪 `pnpm-lock.yaml`，npm 是實際安裝工具
 
 ### 中英文雙語（2026-08-27 完成研究，未動工，建議 Phase 3 之後再做）
 - **研究結論**：`astro-blog/docs/i18n-research.md`（放這裡而不是根目錄 `docs/`，因為根目錄那層被 gitignore 擋掉、Phase 2 帶不走）
