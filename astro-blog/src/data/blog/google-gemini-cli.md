@@ -14,6 +14,7 @@ preload:
 slug: google-gemini-cli
 bgImage: blog-gemini-cli-bg.jpg
 ogImage: blog-gemini-cli-bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover blog-gemini-cli-bg blog-gemini-cli-bg.jpg %}

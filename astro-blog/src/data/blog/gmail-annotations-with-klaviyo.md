@@ -13,6 +13,7 @@ preload:
 slug: gmail-annotations-with-klaviyo
 bgImage: gmail_annotations_discount_code_with_klaviyo_bg.jpg
 ogImage: gmail_annotations_discount_code_with_klaviyo_bg.jpg
+legacyAnchors: true
 ---
 {% darrellImageCover gmail_annotations_discount_code_with_klaviyo_bg gmail_annotations_discount_code_with_klaviyo_bg.jpg max-800 %}
 

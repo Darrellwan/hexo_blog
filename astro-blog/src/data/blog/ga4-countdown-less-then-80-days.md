@@ -7,6 +7,7 @@ tags:
 categories:
   - Google Analytics 4
 slug: ga4-countdown-less-then-80-days
+legacyAnchors: true
 ---
 <link rel="stylesheet" href="button.css">
 

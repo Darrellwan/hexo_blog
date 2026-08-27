@@ -18,6 +18,7 @@ preload:
 slug: google-antigravity-ide
 bgImage: blog-google-antigravity.jpg
 ogImage: blog-google-antigravity.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover antigravity_cover blog-google-antigravity.jpg max-800 %}

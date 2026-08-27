@@ -14,6 +14,7 @@ preload:
 slug: tool-remove-ga3-setting-in-gtm-tagsbuster
 bgImage: tool-remove-ga3-setting-in-gtm-tagsbuster_bg.png
 ogImage: tool-remove-ga3-setting-in-gtm-tagsbuster_bg.png
+legacyAnchors: true
 ---
 
 {% darrellImageCover tool-remove-ga3-setting-in-gtm-tagsbuster_bg tool-remove-ga3-setting-in-gtm-tagsbuster_bg.png max-800 %}

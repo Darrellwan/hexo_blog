@@ -14,6 +14,7 @@ preload:
 slug: chatgpt-broken-in-web-browser
 bgImage: ChatGPT-broken-in-browser-bg.jpg
 ogImage: ChatGPT-broken-in-browser-bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover ChatGPT-broken-in-browser-bg ChatGPT-broken-in-browser-bg.jpg max-800 %}

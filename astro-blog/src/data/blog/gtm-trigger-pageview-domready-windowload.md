@@ -12,6 +12,7 @@ page_type: post
 slug: gtm-trigger-pageview-domready-windowload
 bgImage: gtm_trigger_pageview_bg.png
 ogImage: gtm_trigger_pageview_bg.png
+legacyAnchors: true
 ---
 
 {% darrellImageCover gtm_trigger_pageview_bg gtm_trigger_pageview_bg.png %}

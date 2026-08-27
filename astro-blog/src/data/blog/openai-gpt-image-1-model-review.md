@@ -14,6 +14,7 @@ preload:
 slug: openai-gpt-image-1-model-review
 bgImage: blog-chatgpt-image-1_model_bg.jpg
 ogImage: blog-chatgpt-image-1_model_bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover blog-chatgpt-image-1_model_bg blog-chatgpt-image-1_model_bg.jpg max-800 %}

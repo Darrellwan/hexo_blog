@@ -16,6 +16,7 @@ preload:
 slug: n8n-gmail-node
 bgImage: blog-n8n-gmail-bg.jpg
 ogImage: blog-n8n-gmail-bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover n8n-gmail-node-bg blog-n8n-gmail-bg.jpg max-800 %}

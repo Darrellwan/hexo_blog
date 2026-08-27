@@ -17,6 +17,7 @@ ai_assistance: 10%
 slug: n8n-filter-node
 bgImage: n8n-filter-node-bg.jpg
 ogImage: n8n-filter-node-bg.jpg
+legacyAnchors: true
 ---
 {% darrellImageCover n8n-filter-node-bg n8n-filter-node-bg.jpg max-800 %}
 

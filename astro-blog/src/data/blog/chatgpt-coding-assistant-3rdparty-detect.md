@@ -10,6 +10,7 @@ categories:
   - Martech
 page_type: post
 slug: chatgpt-coding-assistant-3rdparty-detect
+legacyAnchors: true
 ---
 
 {% darrellImageCover 請chatgpt幫忙coding bg_chatgpt_hello_world.png max-800 %}

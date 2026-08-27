@@ -10,6 +10,7 @@ categories:
   - Google Analytics 4
 page_type: post
 slug: google-analytics-data-api-filter-in-google-app-script
+legacyAnchors: true
 ---
 
 {% darrellImageCover GA4_Data_API_在Google_App_Script的Filter使用 ga4_data_api_google_app_script_filter.webp max-800 %}

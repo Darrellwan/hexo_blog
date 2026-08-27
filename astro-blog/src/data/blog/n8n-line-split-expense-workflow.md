@@ -15,6 +15,7 @@ preload:
 slug: n8n-line-split-expense-workflow
 bgImage: blog-n8n-line_expense_japan-bg.jpg
 ogImage: blog-n8n-line_expense_japan-bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover blog-n8n-line_expense_japan-bg blog-n8n-line_expense_japan-bg.jpg max-800 %}

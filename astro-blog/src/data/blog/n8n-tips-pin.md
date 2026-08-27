@@ -14,6 +14,7 @@ preload:
 slug: n8n-tips-pin
 bgImage: n8n_pin_bg.jpg
 ogImage: n8n_pin_bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover n8n_pin_bg n8n_pin_bg.jpg max-800 %}

@@ -15,6 +15,7 @@ preload:
 slug: n8n-poll-time-setting
 bgImage: n8n_polltime-bg.jpg
 ogImage: n8n_polltime-bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover n8n_polltime-bg n8n_polltime-bg.jpg max-800 %}

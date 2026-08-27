@@ -10,6 +10,7 @@ page_type: post
 slug: the_martech_handbook
 bgImage: the_martech_handbook_bg.png
 ogImage: the_martech_handbook_bg.png
+legacyAnchors: true
 ---
 
 {% darrellImageCover the_martech_handbook_bg the_martech_handbook_bg.png max-800 %}

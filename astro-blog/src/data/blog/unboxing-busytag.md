@@ -13,6 +13,7 @@ preload:
 slug: unboxing-busytag
 bgImage: busytag_bg.jpg
 ogImage: busytag_bg.jpg
+legacyAnchors: true
 ---
 {% darrellImageCover busytag_bg busytag_bg.jpg max-800 %}
 

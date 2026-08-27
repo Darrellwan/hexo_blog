@@ -13,6 +13,7 @@ preload:
 slug: ga4-item-name-show-zero-purchase
 bgImage: ga4_item_name_show_zero_purchase_bg.jpg
 ogImage: ga4_item_name_show_zero_purchase_bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImage800 ga4_item_name_show_zero_purchase_bg ga4_item_name_show_zero_purchase_bg.jpg max-800 %}

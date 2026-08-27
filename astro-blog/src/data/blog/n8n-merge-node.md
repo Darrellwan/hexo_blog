@@ -15,6 +15,7 @@ preload:
 slug: n8n-merge-node
 bgImage: blog-n8n-merge-node-bg.jpg
 ogImage: blog-n8n-merge-node-bg.jpg
+legacyAnchors: true
 ---
 
 {% quickNav %}

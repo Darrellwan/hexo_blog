@@ -18,6 +18,7 @@ id: n8n-set-node
 slug: n8n-set-node
 bgImage: blog-n8n-line-set_field-bg.jpg
 ogImage: blog-n8n-line-set_field-bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover n8n-set-node-cover blog-n8n-line-set_field-bg.jpg max-800 %}

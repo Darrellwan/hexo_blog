@@ -8,6 +8,7 @@ categories:
   - Google Tag Manager
 page_type: post
 slug: google-optimize-install-and-connect-ga4
+legacyAnchors: true
 ---
 
 {% darrellImageCover GoogleOptimize安裝教學 google_optimize_install_and_connect_ga4_bg.webp max-800 %}

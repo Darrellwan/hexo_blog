@@ -9,6 +9,7 @@ categories:
   - Google Tag Manager
 page_type: post
 slug: tool-google-tag-manager-list-information
+legacyAnchors: true
 ---
 
 {% darrellImageCover background_image_gtm_tool_preview ./background_image_gtm_tool_preview.png %}

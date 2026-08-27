@@ -10,6 +10,7 @@ page_type: post
 include:
   - _css/custom.css
 slug: google-tag-manager-google-tag-release
+legacyAnchors: true
 ---
 
 <link rel="stylesheet" href="./custom.css" />

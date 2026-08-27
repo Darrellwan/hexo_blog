@@ -16,6 +16,7 @@ preload:
 slug: gtm-trigger-all-click-link-click
 bgImage: GTM-Trigger-Click_Link-BG.jpg
 ogImage: GTM-Trigger-Click_Link-BG.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover GTM所有元素點擊連結元素點擊觸發條件_bg GTM-Trigger-Click_Link-BG.jpg max-800 %}

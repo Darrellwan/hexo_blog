@@ -9,6 +9,7 @@ tags:
 categories:
   - Martech
 slug: ga4-gtm-best-tool-analytics-debugger
+legacyAnchors: true
 ---
 
 這工具好用到很久以前我就透過 Buy Me A Coffee 贊助作者了

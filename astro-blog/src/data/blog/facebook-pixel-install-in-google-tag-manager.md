@@ -12,6 +12,7 @@ id: facebook-pixel-install-in-google-tag-manager
 slug: facebook-pixel-install-in-google-tag-manager
 bgImage: facebook_pixel_install_in_google_tag_manager_bg.png
 ogImage: facebook_pixel_install_in_google_tag_manager_bg.png
+legacyAnchors: true
 ---
 
 {% darrellImageCover facebook_pixel_install_in_google_tag_manager_bg facebook_pixel_install_in_google_tag_manager_bg.png max-800 %}

@@ -15,6 +15,7 @@ preload:
 slug: n8n-elevenlabs-tts
 bgImage: blog-n8n-elevenlabs-node-bg.jpg
 ogImage: blog-n8n-elevenlabs-node-bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover blog-n8n-elevenlabs-node blog-n8n-elevenlabs-node-bg.jpg %}

@@ -15,6 +15,7 @@ preload:
 slug: n8n-if-switch
 bgImage: n8n-If_Switch_bg.jpg
 ogImage: n8n-If_Switch_bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover n8n-If_Switch_bg n8n-If_Switch_bg.jpg %}

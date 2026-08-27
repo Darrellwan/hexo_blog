@@ -13,6 +13,7 @@ id: n8n-update-log-v1
 slug: n8n-update-log-v1
 bgImage: n8n-update_bg.jpg
 ogImage: n8n-update_bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover n8n-update-log-v1-bg n8n-update_bg.jpg %}

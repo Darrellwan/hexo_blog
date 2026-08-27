@@ -11,6 +11,7 @@ page_type: post
 slug: looker-studio-new-release-202212-ga4-api-quota
 bgImage: looker_studio_new_release_202212.png
 ogImage: looker_studio_new_release_202212.png
+legacyAnchors: true
 ---
 
 {% darrellImageCover LookerStudio202212新功能 looker_studio_new_release_202212.png max-800 %}

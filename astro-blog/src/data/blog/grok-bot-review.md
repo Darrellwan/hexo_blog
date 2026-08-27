@@ -12,6 +12,7 @@ id: grok-bot-review
 slug: grok-bot-review
 bgImage: blog-grok-bot-review-bg.jpg
 ogImage: blog-grok-bot-review-bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover grok-bot-review-bg blog-grok-bot-review-bg.jpg %}

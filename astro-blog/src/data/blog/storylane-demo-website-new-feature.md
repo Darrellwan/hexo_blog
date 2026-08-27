@@ -15,6 +15,7 @@ preload:
 slug: storylane-demo-website-new-feature
 bgImage: storylane_bg.png
 ogImage: storylane_bg.png
+legacyAnchors: true
 ---
 
 {% darrellImageCover storylane_bg storylane_bg.png max-800 %}

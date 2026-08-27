@@ -9,6 +9,7 @@ categories:
   - Google App Script
 page_type: post
 slug: google-app-script-with-chatgpt-openai
+legacyAnchors: true
 ---
 
 {% darrellImageCover chat_gpt_bg chat_gpt_bg.jpg max-800 %}

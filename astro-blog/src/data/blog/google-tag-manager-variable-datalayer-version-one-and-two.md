@@ -8,6 +8,7 @@ categories:
   - Google Tag Manager
 page_type: post
 slug: google-tag-manager-variable-datalayer-version-one-and-two
+legacyAnchors: true
 ---
 
 {% darrellImageCover GTM_Variable_DatalayerVersion_One_Two_BG GTM_Variable_DatalayerVersion_One_Two_BG.webp max-800 %}

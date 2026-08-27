@@ -15,6 +15,7 @@ preload:
 slug: send-push-to-me
 bgImage: push_yourself_bg.jpg
 ogImage: push_yourself_bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover push_yourself_bg push_yourself_bg.jpg max-800 %}

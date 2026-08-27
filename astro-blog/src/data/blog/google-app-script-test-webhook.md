@@ -9,6 +9,7 @@ categories:
   - Google App Script
 page_type: post
 slug: google-app-script-test-webhook
+legacyAnchors: true
 ---
 
 {% darrellImageCover API ./API.png %}

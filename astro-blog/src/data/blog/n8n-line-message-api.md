@@ -15,6 +15,7 @@ preload:
 slug: n8n-line-message-api
 bgImage: n8n-line-message-api-bg.jpg
 ogImage: n8n-line-message-api-bg.jpg
+legacyAnchors: true
 ---
 {% darrellImageCover n8n-line-message-api-bg n8n-line-message-api-bg.jpg max-800 %}
 

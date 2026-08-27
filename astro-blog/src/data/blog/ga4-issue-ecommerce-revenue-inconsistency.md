@@ -9,6 +9,7 @@ categories:
   - Google Analytics 4
 page_type: post
 slug: ga4-issue-ecommerce-revenue-inconsistency
+legacyAnchors: true
 ---
 
 {% darrellImageCover GA4台幣電子商務收入不一緻 ga4_revenue_inconsistency_bg.jpg %}

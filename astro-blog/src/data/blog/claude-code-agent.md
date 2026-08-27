@@ -16,6 +16,7 @@ preload:
 slug: claude-code-agent
 bgImage: claude_code_agent-bg.jpg
 ogImage: claude_code_agent-bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover claude_code_agent_bg claude_code_agent-bg.jpg max-800 %}

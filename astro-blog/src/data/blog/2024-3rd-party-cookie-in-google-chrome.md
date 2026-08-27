@@ -13,6 +13,7 @@ id: 2024_3rd_party_cookie_in_google_chrome
 slug: 2024-3rd-party-cookie-in-google-chrome
 bgImage: google_chrome_3rd_party_cookie_bg.png
 ogImage: google_chrome_3rd_party_cookie_bg.png
+legacyAnchors: true
 ---
 
 {% darrellImageCover google_chrome_3rd_party_cookie_bg google_chrome_3rd_party_cookie_bg.png max-800 %}

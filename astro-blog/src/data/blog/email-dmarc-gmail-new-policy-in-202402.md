@@ -13,6 +13,7 @@ socialText: Gmail 和 Yahoo 等電子郵件服務供應商將在 2024/02 套用�
 slug: email-dmarc-gmail-new-policy-in-202402
 bgImage: email-dmarc-gmail-new-policy-in-202402_bg.png
 ogImage: email-dmarc-gmail-new-policy-in-202402_bg.png
+legacyAnchors: true
 ---
 
 {% darrellImageCover email-dmarc-gmail-new-policy-in-202402_bg email-dmarc-gmail-new-policy-in-202402_bg.png max-800 %}

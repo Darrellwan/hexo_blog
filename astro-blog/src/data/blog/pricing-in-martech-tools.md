@@ -11,6 +11,7 @@ id: pricing_in_martech_tools
 slug: pricing-in-martech-tools
 bgImage: pricing-in-martech-tools-bg.jpg
 ogImage: pricing-in-martech-tools-bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover pricing-in-martech-tools-bg pricing-in-martech-tools-bg.jpg max-800 %}

@@ -15,6 +15,7 @@ preload:
 slug: gtm-install-line-tag-pixel
 bgImage: gtm_install_line_tag_bg
 ogImage: gtm_install_line_tag_bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover gtm_install_line_tag_bg gtm_install_line_tag_bg.jpg max-800 %}

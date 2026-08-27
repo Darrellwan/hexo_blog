@@ -15,6 +15,7 @@ preload:
 slug: n8n-aggregate-split-out
 bgImage: n8n-splitout_aggregation_bg.jpg
 ogImage: n8n-splitout_aggregation_bg.jpg
+legacyAnchors: true
 ---
 {% darrellImageCover n8n-splitout_aggregation_bg n8n-splitout_aggregation_bg.jpg max-800 %}
 

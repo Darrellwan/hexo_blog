@@ -12,6 +12,7 @@ categories:
   - Hexo
 page_type: post
 slug: hexo-algolia-tracking
+legacyAnchors: true
 ---
 {% darrellImageCover hexo_algolia_tracking_cover ./hexo_algolia_tracking_cover.webp %}
 

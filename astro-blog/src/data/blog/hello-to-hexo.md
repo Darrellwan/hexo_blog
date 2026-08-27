@@ -11,6 +11,7 @@ categories:
   - Hexo
 page_type: post
 slug: hello-to-hexo
+legacyAnchors: true
 ---
 
 如何挑選 Theme, 主題的設定檔案路徑, 如何安裝 Google Tag Manager, 使用 Git Action 自動化部署 Hexo

@@ -9,6 +9,7 @@ categories:
   - Google Tag Manager
 page_type: post
 slug: gtm-ga4-new-feature-use-ecommerce-datalayer
+legacyAnchors: true
 ---
 
 {% darrellImageCover gtm_tag_with_ecommerce_datalayer ./gtm_tag_with_ecommerce_datalayer.png %}

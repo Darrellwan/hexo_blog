@@ -9,6 +9,7 @@ categories:
   - Google Analytics 4
 page_type: post
 slug: ga4-certification-announced
+legacyAnchors: true
 ---
 
 # Google Analytics 4 Certification !

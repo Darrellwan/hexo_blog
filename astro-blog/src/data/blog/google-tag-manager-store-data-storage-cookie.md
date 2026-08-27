@@ -9,6 +9,7 @@ categories:
   - Google Tag Manager
 page_type: post
 slug: google-tag-manager-store-data-storage-cookie
+legacyAnchors: true
 ---
 {% darrellImageCover background_storage_picture ./background_storage_picture.webp %}
 

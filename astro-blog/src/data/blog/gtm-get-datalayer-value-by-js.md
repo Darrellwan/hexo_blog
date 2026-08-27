@@ -14,6 +14,7 @@ id: gtm-get-datalayer-value-by-js
 slug: gtm-get-datalayer-value-by-js
 bgImage: gtm-get-datalayer-value-by-js-bg.jpg
 ogImage: gtm-get-datalayer-value-by-js-bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover gtm-get-datalayer-value-by-js-bg gtm-get-datalayer-value-by-js-bg.jpg max-800 %}

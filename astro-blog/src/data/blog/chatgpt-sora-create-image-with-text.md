@@ -14,6 +14,7 @@ preload:
 slug: chatgpt-sora-create-image-with-text
 bgImage: chatgpt-sora-create-image-with-text-bg.png
 ogImage: chatgpt-sora-create-image-with-text-bg.png
+legacyAnchors: true
 ---
 
 {% darrellImageCover chatgpt-sora-create-image-with-text-bg chatgpt-sora-create-image-with-text-bg.png %}

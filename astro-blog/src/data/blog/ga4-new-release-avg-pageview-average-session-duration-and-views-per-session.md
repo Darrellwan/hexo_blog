@@ -9,6 +9,7 @@ categories:
   - Google Analytics 4
 page_type: post
 slug: ga4-new-release-avg-pageview-average-session-duration-and-views-per-session
+legacyAnchors: true
 ---
 
 {% darrellImageCover GA4的新功能釋出 ga4_new_release_20221205_bg.png max-800 %}

@@ -15,6 +15,7 @@ preload:
 slug: n8n-debug-line-invalid-json
 bgImage: blog-n8n-invalid-json-bg.jpg
 ogImage: blog-n8n-invalid-json-bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover blog-n8n-invalid-json-bg blog-n8n-invalid-json-bg.jpg %}

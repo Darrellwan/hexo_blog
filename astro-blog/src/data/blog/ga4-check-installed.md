@@ -8,6 +8,7 @@ categories:
   - Google Analytics 4
 page_type: post
 slug: ga4-check-installed
+legacyAnchors: true
 ---
 
 {% darrellImageCover GA4的新功能釋出使用者購物歷程報表 ga4-check_installed.png max-800 %}

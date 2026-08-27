@@ -14,6 +14,7 @@ sticky: 100
 slug: n8n-update-log
 bgImage: n8n-update_bg.jpg
 ogImage: n8n-update_bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover n8n-update_bg n8n-update_bg.jpg %}

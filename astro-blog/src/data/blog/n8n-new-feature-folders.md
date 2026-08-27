@@ -14,6 +14,7 @@ preload:
 slug: n8n-new-feature-folders
 bgImage: n8n_folder-bg.jpg
 ogImage: n8n_folder-bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover n8n_folder-bg n8n_folder-bg.jpg %}

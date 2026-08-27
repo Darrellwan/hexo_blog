@@ -15,6 +15,7 @@ preload:
 slug: n8n-with-cloudflare-turnstile-CAPTCHA
 bgImage: blog-n8n-cloudflare_turnstile.jpg
 ogImage: blog-n8n-cloudflare_turnstile.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover blog-n8n-cloudflare_turnstile blog-n8n-cloudflare_turnstile.jpg %}

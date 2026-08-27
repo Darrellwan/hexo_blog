@@ -15,6 +15,7 @@ preload:
 slug: simmer-chrome-devtool-for-marketer
 bgImage: teamsimmer-chrome_devtool_for_digital_marketers_bg.jpg
 ogImage: teamsimmer-chrome_devtool_for_digital_marketers_bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover teamsimmer-chrome_devtool_for_digital_marketers_bg teamsimmer-chrome_devtool_for_digital_marketers_bg.jpg max-800 %}

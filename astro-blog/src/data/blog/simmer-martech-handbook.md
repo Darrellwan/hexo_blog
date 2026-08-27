@@ -11,6 +11,7 @@ id: simmer-martech-handbook
 slug: simmer-martech-handbook
 bgImage: simmer-martech-handbook.jpg
 ogImage: simmer-martech-handbook.jpg
+legacyAnchors: true
 ---
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 

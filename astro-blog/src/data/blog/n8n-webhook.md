@@ -15,6 +15,7 @@ preload:
 slug: n8n-webhook
 bgImage: blog-n8n-webhook-bg.jpg
 ogImage: blog-n8n-webhook-bg.jpg
+legacyAnchors: true
 ---
 {% darrellImageCover blog-n8n-webhook-bg blog-n8n-webhook-bg.jpg max-800 %}
 

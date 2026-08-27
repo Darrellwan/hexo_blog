@@ -13,6 +13,7 @@ preload:
 slug: gtm-size-limit
 bgImage: GTM-size_limit_bg.jpg
 ogImage: GTM-size_limit_bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover GTM空間過大 GTM-size_limit_bg.jpg max-800 %}

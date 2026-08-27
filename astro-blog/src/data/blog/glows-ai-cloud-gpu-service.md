@@ -13,6 +13,7 @@ preload:
 slug: glows-ai-cloud-gpu-service
 bgImage: glows-ai_bg.jpg
 ogImage: glows-ai_bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover glows-ai_bg glows-ai_bg.jpg max-800 %}

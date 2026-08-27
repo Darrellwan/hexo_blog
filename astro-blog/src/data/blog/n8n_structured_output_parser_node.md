@@ -15,6 +15,7 @@ preload:
 slug: n8n_structured_output_parser_node
 bgImage: bg-n8n-output_parser.jpg
 ogImage: bg-n8n-output_parser.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover bg-n8n-output_parser bg-n8n-output_parser.jpg max-800 %}

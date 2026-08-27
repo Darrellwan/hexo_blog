@@ -12,6 +12,7 @@ id: gtm-datalayer-broken-reset
 slug: gtm-datalayer-broken-reset
 bgImage: gtm-datalayer-broken-reset_bg.png
 ogImage: gtm-datalayer-broken-reset_bg.png
+legacyAnchors: true
 ---
 
 {% darrellImageCover gtm-datalayer-broken-reset_bg gtm-datalayer-broken-reset_bg.png max-800 %}

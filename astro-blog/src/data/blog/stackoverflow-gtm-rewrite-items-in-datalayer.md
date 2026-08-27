@@ -11,6 +11,7 @@ categories:
   - Google Tag Manager
 page_type: post
 slug: stackoverflow-gtm-rewrite-items-in-datalayer
+legacyAnchors: true
 ---
 
 {% darrellImageCover stack_overflow ./stack_overflow.png %}

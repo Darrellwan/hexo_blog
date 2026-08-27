@@ -14,6 +14,7 @@ preload:
 slug: how-to-ask-google-tag-manager-question
 bgImage: how-to-ask-google-tag-manager-question.jpg
 ogImage: how-to-ask-google-tag-manager-question.jpg
+legacyAnchors: true
 ---
 {% darrellImageCover how-to-ask-google-tag-manager-question-如何詢問GTM相關的問題 how-to-ask-google-tag-manager-question.jpg max-800 %}
 

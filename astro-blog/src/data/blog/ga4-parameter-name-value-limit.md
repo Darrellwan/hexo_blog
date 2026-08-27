@@ -8,6 +8,7 @@ categories:
   - Google Analytics 4
 page_type: post
 slug: ga4-parameter-name-value-limit
+legacyAnchors: true
 ---
 
  {% darrellImage limitation ./limitation.webp %}

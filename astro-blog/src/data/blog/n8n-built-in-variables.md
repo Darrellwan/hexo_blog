@@ -14,6 +14,7 @@ preload:
 slug: n8n-built-in-variables
 bgImage: n8n_builtin_variables_bg.jpg
 ogImage: n8n_builtin_variables_bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover n8n_builtin_variables_bg n8n_builtin_variables_bg.jpg max-800 %}

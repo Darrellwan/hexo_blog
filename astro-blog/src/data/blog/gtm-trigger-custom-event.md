@@ -10,6 +10,7 @@ categories:
   - Google Tag Manager
 page_type: post
 slug: gtm-trigger-custom-event
+legacyAnchors: true
 ---
 
 {% darrellImageCover trigger_custom_event_bg trigger_custom_event_bg.png %}

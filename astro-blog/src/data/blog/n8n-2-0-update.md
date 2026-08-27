@@ -15,6 +15,7 @@ preload:
 slug: n8n-2-0-update
 bgImage: n8n-2.0-update-bg.jpg
 ogImage: n8n-2.0-update-bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover n8n-2.0-update-bg n8n-2.0-update-bg.jpg %}

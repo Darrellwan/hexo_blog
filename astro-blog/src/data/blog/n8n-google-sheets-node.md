@@ -16,6 +16,7 @@ id: n8n-google-sheets-node
 slug: n8n-google-sheets-node
 bgImage: blog-n8n-google-sheets-bg.jpg
 ogImage: blog-n8n-google-sheets-bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover n8n-google-sheets-node-bg blog-n8n-google-sheets-bg.jpg max-800 %}

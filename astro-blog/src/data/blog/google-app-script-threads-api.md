@@ -15,6 +15,7 @@ preload:
 slug: google-app-script-threads-api
 bgImage: GAS-ThreadsAPI-LookerStudio_bg.png
 ogImage: GAS-ThreadsAPI-LookerStudio_bg.png
+legacyAnchors: true
 ---
 
 <style>

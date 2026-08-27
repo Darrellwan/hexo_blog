@@ -12,6 +12,7 @@ page_type: post
 slug: stackoverflow-gtm-click-element-css-selector
 bgImage: stackoverflow_qna_bg.png
 ogImage: stackoverflow_qna_bg.png
+legacyAnchors: true
 ---
 
 {% darrellImageCover stackoverflow_gtm_ga_f&q stackoverflow_qna_bg.png max-800 %}

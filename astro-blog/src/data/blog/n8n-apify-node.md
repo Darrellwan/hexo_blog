@@ -17,6 +17,7 @@ preload:
 slug: n8n-apify-node
 bgImage: blog-n8n-apify-node-bg.jpg
 ogImage: blog-n8n-apify-node-bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover n8n-apify-node-bg blog-n8n-apify-node-bg.jpg%}

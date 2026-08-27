@@ -13,6 +13,7 @@ preload:
 slug: ga4-unwanted-referrals
 bgImage: GA4-unwanted_referrals_bg.jpg
 ogImage: GA4-unwanted_referrals_bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover GA4-unwanted_referrals_bg GA4-unwanted_referrals_bg.jpg max-800 %}

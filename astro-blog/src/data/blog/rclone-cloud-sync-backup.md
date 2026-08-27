@@ -13,6 +13,7 @@ id: rclone-cloud-sync-backup
 slug: rclone-cloud-sync-backup
 bgImage: rclone-cloud-sync-backup-bg.jpg
 ogImage: rclone-cloud-sync-backup-bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover rclone_cover rclone-cloud-sync-backup-bg.jpg max-800 %}

@@ -15,6 +15,7 @@ preload:
 slug: line-mcp-server
 bgImage: line_mcp_server_bg.jpg
 ogImage: line_mcp_server_bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover line_mcp_server_bg line_mcp_server_bg.jpg max-800 %}

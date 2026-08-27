@@ -16,6 +16,7 @@ preload:
 slug: n8n-time-saved-node
 bgImage: blog-n8n-time-saved-bg.jpg
 ogImage: blog-n8n-time-saved-bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover n8n_time_saved_cover blog-n8n-time-saved-bg.jpg max-800 %}

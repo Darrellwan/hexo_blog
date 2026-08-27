@@ -10,6 +10,7 @@ categories:
 coverImage: https://www.darrelltw.com/visual-studio-install-and-why/vs_code_logo.png
 page_type: post
 slug: visual-studio-install-and-why
+legacyAnchors: true
 ---
 
 # 從 Sublime Text 的轉移

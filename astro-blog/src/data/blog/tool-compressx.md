@@ -13,6 +13,7 @@ preload:
 slug: tool-compressx
 bgImage: Tool-CompressX_bg.png
 ogImage: Tool-CompressX_bg.png
+legacyAnchors: true
 ---
 {% darrellImageCover Tool-CompressX_bg Tool-CompressX_bg.png max-800 %}
 

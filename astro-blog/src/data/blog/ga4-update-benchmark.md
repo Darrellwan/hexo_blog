@@ -14,6 +14,7 @@ preload:
 slug: ga4-update-benchmark
 bgImage: ga4_update_benchmark_bg.jpg
 ogImage: ga4_update_benchmark_bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover ga4_update_benchmark_bg ga4_update_benchmark_bg.jpg max-800 %}

@@ -16,6 +16,7 @@ preload:
 slug: n8n-zeabur-ai-hub-model-router
 bgImage: n8n-zeabur-ai-hub-model-router-bg.jpg
 ogImage: n8n-zeabur-ai-hub-model-router-bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover n8n-zeabur-ai-hub-model-router-bg n8n-zeabur-ai-hub-model-router-bg.jpg max-800 %}

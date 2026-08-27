@@ -9,6 +9,7 @@ categories:
   - Google Analytics 4
 page_type: post
 slug: ga4-new-release-search-datastream-property-info
+legacyAnchors: true
 ---
 
 {% darrellImageCover GA4的新功能釋出_20230130 ga4_new_release_20230202_bg.png max-800 %}

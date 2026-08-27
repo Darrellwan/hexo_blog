@@ -17,6 +17,7 @@ darrell_structured_data:
     - 一種用來選擇 CSS 和撰寫 CSS 的規則，學習 CSS 時就會利用指定標籤 class id 來套上樣式，同樣的一套選擇方式也可以用來當作選擇元素的方式
     - 這次找到一款很棒的遊戲來練習 CSS Diner 還有一個中文資源 30個你必須記住的CSS選擇器
 slug: google-tag-manager-skills-css-selector-resource
+legacyAnchors: true
 ---
 
 {% darrellImageCover DarrellMartech_進階技巧CSS選擇器的練習資源 gtm-skill-css-selector-resource-bg.webp %}

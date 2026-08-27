@@ -14,6 +14,7 @@ preload:
 slug: n8n-with-zeabur-timezone-issue
 bgImage: n8n-with-zeabur-timezone-issue.jpg
 ogImage: n8n-with-zeabur-timezone-issue.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover n8n-with-zeabur-timezone-issue n8n-with-zeabur-timezone-issue.jpg max-800 %}

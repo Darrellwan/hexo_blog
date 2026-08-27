@@ -17,6 +17,7 @@ preload:
 slug: claude-code-channels-discord-telegram
 bgImage: claude_code_channels_bg.jpg
 ogImage: claude_code_channels_bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover claude_code_channels_bg claude_code_channels_bg.jpg max-800 %}

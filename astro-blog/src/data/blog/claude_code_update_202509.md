@@ -15,6 +15,7 @@ preload:
 slug: claude_code_update_202509
 bgImage: blog-claudecode-update-202509-bg.jpg
 ogImage: blog-claudecode-update-202509-bg.jpg
+legacyAnchors: true
 ---
 {% darrellImageCover blog-claudecode-update-202509-bg blog-claudecode-update-202509-bg.jpg max-800 %}
 

@@ -14,6 +14,7 @@ id: ga4-search-console-mcp-install
 slug: ga4-search-console-mcp-install
 bgImage: ga4-search-console-mcp-cover.jpg
 ogImage: ga4-search-console-mcp-cover.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover ga4-search-console-mcp-install ga4-search-console-mcp-cover.jpg max-800 %}

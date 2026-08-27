@@ -11,6 +11,7 @@ categories:
   - Martech
 id: analytics-debuuger-v2-3-2
 slug: analytics-debuuger-v2-3-2
+legacyAnchors: true
 ---
 
 {% darrellImageCover analytics_debugger_bg_v2_3_2 analytics_debugger_bg_v2_3_2.png max-800 %}

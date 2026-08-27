@@ -10,6 +10,7 @@ categories:
   - Google Tag Manager
 page_type: post
 slug: stackoverflow-handle-comma-and-period
+legacyAnchors: true
 ---
 
 # Stack Overflow 上面的提問

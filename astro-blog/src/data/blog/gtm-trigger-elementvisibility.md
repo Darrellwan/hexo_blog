@@ -10,6 +10,7 @@ categories:
   - Google Tag Manager
 page_type: post
 slug: gtm-trigger-elementvisibility
+legacyAnchors: true
 ---
 
 {% darrellImageCover gtm_trigger_visibility_bg gtm_trigger_visibility_bg.png %}

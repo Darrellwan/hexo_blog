@@ -13,6 +13,7 @@ preload:
 slug: cloudflare-worker-url-shortener
 bgImage: bg-blog-cloudflare-worker-shortenurl.png
 ogImage: bg-blog-cloudflare-worker-shortenurl.png
+legacyAnchors: true
 ---
 {% darrellImageCover bg-blog-cloudflare-worker-shortenurl bg-blog-cloudflare-worker-shortenurl.png max-800 %}
 

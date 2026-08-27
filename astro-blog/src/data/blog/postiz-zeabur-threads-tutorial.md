@@ -15,6 +15,7 @@ preload:
 slug: postiz-zeabur-threads-tutorial
 bgImage: blog-postiz_threads-bg.jpg
 ogImage: blog-postiz_threads-bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover postiz-threads-bg blog-postiz_threads-bg.jpg max-800 %}

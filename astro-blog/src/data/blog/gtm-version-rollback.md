@@ -11,6 +11,7 @@ page_type: post
 slug: gtm-version-rollback
 bgImage: container_rollback_background.webp
 ogImage: container_rollback_background.webp
+legacyAnchors: true
 ---
 {% darrellImageCover container_rollback_background ./container_rollback_background.webp %}
 

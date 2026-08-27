@@ -16,6 +16,7 @@ preload:
 slug: n8n-line-messaging-community-node
 bgImage: blog-n8n-line-messaging-node-bg.jpg
 ogImage: blog-n8n-line-messaging-node-bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover blog-n8n-line-messaging-node blog-n8n-line-messaging-node-bg.jpg max-800 %}

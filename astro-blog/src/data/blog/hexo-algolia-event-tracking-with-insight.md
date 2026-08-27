@@ -11,6 +11,7 @@ page_type: post
 slug: hexo-algolia-event-tracking-with-insight
 bgImage: algolia_event_tracking_in_insight_bg.png
 ogImage: algolia_event_tracking_in_insight_bg.png
+legacyAnchors: true
 ---
 
 {% darrellImageCover algolia_event_tracking_in_insight_bg algolia_event_tracking_in_insight_bg.png max-800 %}

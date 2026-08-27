@@ -14,6 +14,7 @@ preload:
 slug: cursor-mcp-server-guide
 bgImage: cursor_mcp_server_bg.jpg
 ogImage: cursor_mcp_server_bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover cursor_mcp_server_bg cursor_mcp_server_bg.jpg max-800 %}

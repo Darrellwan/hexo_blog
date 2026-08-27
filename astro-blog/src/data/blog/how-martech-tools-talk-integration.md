@@ -14,6 +14,7 @@ preload:
 slug: how-martech-tools-talk-integration
 bgImage: how-martech-tools-talk-integration_bg.png
 ogImage: how-martech-tools-talk-integration_bg.png
+legacyAnchors: true
 ---
 
 {% darrellImageCover how-martech-tools-talk-integration_bg how-martech-tools-talk-integration_bg.png max-800 %}

@@ -18,6 +18,7 @@ id: claude-managed-agents
 slug: claude-managed-agents
 bgImage: blog-claude-managed-agents-bg.jpg
 ogImage: blog-claude-managed-agents-bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover claude-managed-agents-bg blog-claude-managed-agents-bg.jpg %}

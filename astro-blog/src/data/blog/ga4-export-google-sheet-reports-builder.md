@@ -9,6 +9,7 @@ categories:
   - Google Analytics 4
 page_type: post
 slug: ga4-export-google-sheet-reports-builder
+legacyAnchors: true
 ---
 
 {% darrellImageCover 在Google_Sheet使用GA官方套件取得GA4資料 bg_ga4_google_sheet_get_ga4_data.png max-800 %}

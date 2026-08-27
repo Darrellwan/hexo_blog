@@ -15,6 +15,7 @@ comments: true
 slug: google-app-script-cache-service
 bgImage: appscript_cache_bg.jpg
 ogImage: appscript_cache_bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover appscript_cache_bg appscript_cache_bg.jpg max-800 %}

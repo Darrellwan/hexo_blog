@@ -10,6 +10,7 @@ categories:
   - 工具
 page_type: post
 slug: firebase_notification_click_any_link
+legacyAnchors: true
 ---
 
 {% darrellImage firebase ./firebase.png %}

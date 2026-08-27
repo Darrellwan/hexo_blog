@@ -14,6 +14,7 @@ preload:
 slug: n8n-perplexity-node
 bgImage: blog-n8n-perplexity-node-bg.jpg
 ogImage: blog-n8n-perplexity-node-bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover blog-n8n-perplexity-node blog-n8n-perplexity-node-bg.jpg %}

@@ -9,6 +9,7 @@ categories:
   - Google Analytics 4
 page_type: post
 slug: ga4-certification-review
+legacyAnchors: true
 ---
 
 {% darrellImage ga4_certification_review_bg ga4_certification_review_bg.png %}

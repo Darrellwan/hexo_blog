@@ -17,6 +17,7 @@ preload:
 slug: n8n-cli-guide
 bgImage: blog-n8n-cli-guide-bg.jpg
 ogImage: blog-n8n-cli-guide-bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover blog-n8n-cli-guide blog-n8n-cli-guide-bg.jpg max-800 %}

@@ -12,6 +12,7 @@ twitter-id: "1766167180578873589"
 slug: ga4-session-hit-user-explain
 bgImage: ga4_event_session_user_bg.jpg
 ogImage: ga4_event_session_user_bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover ga4_event_session_user_bg ga4_event_session_user_bg.jpg max-800 %}

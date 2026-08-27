@@ -15,6 +15,7 @@ preload:
 slug: n8n-datatables-node
 bgImage: blog-n8n-datatables-bg.jpg
 ogImage: blog-n8n-datatables-bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover blog-n8n-datatables-bg blog-n8n-datatables-bg.jpg max-800 %}

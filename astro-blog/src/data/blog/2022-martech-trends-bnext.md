@@ -10,6 +10,7 @@ categories:
 id: 2022-martech-trends-bnext
 page_type: post
 slug: 2022-martech-trends-bnext
+legacyAnchors: true
 ---
 
 {% darrellImageCover 2022數位時代行銷科技高峰會_混血新行銷 martech_trends_bnext_2022_bg.png max-800 %}

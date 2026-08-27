@@ -12,6 +12,7 @@ page_type: post
 slug: gtm-variable-lookuptable-introduce
 bgImage: gtm_lookuptable_bg.webp
 ogImage: gtm_lookuptable_bg.webp
+legacyAnchors: true
 ---
 {% darrellImage gtm_lookuptable_bg gtm_lookuptable_bg.webp %}
 

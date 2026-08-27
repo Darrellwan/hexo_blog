@@ -16,6 +16,7 @@ preload:
 slug: n8n-node-s3-with-cloudflare-r2
 bgImage: blog-n8n-s3-node-bg.jpg
 ogImage: blog-n8n-s3-node-bg.jpg
+legacyAnchors: true
 ---
 {% darrellImageCover n8n-node-s3-with-cloudflare-r2-bg blog-n8n-s3-node-bg.jpg max-800 %}
 

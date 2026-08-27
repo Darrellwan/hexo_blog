@@ -15,6 +15,7 @@ preload:
 slug: chatgpt-work-with-apps
 bgImage: chatgpt_work_with_apps_bg.png
 ogImage: chatgpt_work_with_apps_bg.png
+legacyAnchors: true
 ---
 {% darrellImageCover chatgpt_work_with_apps_bg chatgpt_work_with_apps_bg.png max-800 %}
 

@@ -13,6 +13,7 @@ preload:
 slug: bouncer-to-clean-email-list
 bgImage: bouncer_api_introduction_bg.png
 ogImage: bouncer_api_introduction_bg.png
+legacyAnchors: true
 ---
 {% darrellImageCover bouncer_api_introduction_bg bouncer_api_introduction_bg.png max-800 %}
 

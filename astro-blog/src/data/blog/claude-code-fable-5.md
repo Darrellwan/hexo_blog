@@ -13,6 +13,7 @@ id: claude-code-fable-5
 slug: claude-code-fable-5
 bgImage: blog-claude-code-fable-5-bg.jpg
 ogImage: blog-claude-code-fable-5-bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover claude-code-fable-5-bg blog-claude-code-fable-5-bg.jpg %}

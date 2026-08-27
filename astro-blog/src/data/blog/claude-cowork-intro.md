@@ -15,6 +15,7 @@ id: claude-cowork-intro
 slug: claude-cowork-intro
 bgImage: blog-claude-cowork-intro-bg.jpg
 ogImage: blog-claude-cowork-intro-bg.jpg
+legacyAnchors: true
 ---
 
 

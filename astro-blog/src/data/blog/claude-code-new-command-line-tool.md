@@ -15,6 +15,7 @@ preload:
 slug: claude-code-new-command-line-tool
 bgImage: claude_code.jpg
 ogImage: claude_code.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover claude_code_bg claude_code.jpg max-800 %}

@@ -11,6 +11,7 @@ page_type: post
 slug: ga4-data-thresholds
 bgImage: ga4-data-thresholds_bg.png
 ogImage: ga4-data-thresholds_bg.png
+legacyAnchors: true
 ---
 
 {% darrellImageCover ga4-data-thresholds_bg ga4-data-thresholds_bg.png max-800 %}

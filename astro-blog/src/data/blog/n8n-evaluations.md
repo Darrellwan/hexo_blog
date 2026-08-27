@@ -14,6 +14,7 @@ preload:
 slug: n8n-evaluations
 bgImage: blog-n8n-evaluations-new_feature-bg.jpg
 ogImage: blog-n8n-evaluations-new_feature-bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover blog-n8n-evaluations-new_feature blog-n8n-evaluations-new_feature-bg.jpg %}

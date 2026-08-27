@@ -9,6 +9,7 @@ categories:
   - Google Tag Manager
 page_type: post
 slug: google-tag-manager-ga4-configuration-fieldtoset
+legacyAnchors: true
 ---
 
 {% darrellImageCover introduce_field_to_set ./introduce_field_to_set.png %}

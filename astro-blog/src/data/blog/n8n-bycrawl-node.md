@@ -14,6 +14,7 @@ preload:
 slug: n8n-bycrawl-node
 bgImage: blog-n8n-bycrawl-node-bg.jpg
 ogImage: blog-n8n-bycrawl-node-bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover n8n-bycrawl-node-bg blog-n8n-bycrawl-node-bg.jpg %}

@@ -16,6 +16,7 @@ preload:
 slug: n8n-with-slack
 bgImage: n8n-with-slack_bg.jpg
 ogImage: n8n-with-slack_bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover n8n-with-slack_bg n8n-with-slack_bg.jpg %}

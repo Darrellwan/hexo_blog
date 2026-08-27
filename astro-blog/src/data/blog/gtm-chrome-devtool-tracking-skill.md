@@ -12,6 +12,7 @@ id: gtm_chrome_devtool_tracking_skill
 slug: gtm-chrome-devtool-tracking-skill
 bgImage: gtm-chrome-devtool-tracking-skill_bg.jpg
 ogImage: gtm-chrome-devtool-tracking-skill_bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover gtm-chrome-devtool-tracking-skill gtm-chrome-devtool-tracking-skill_bg.jpg max-800 %}

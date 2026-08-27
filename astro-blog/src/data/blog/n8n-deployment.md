@@ -15,6 +15,7 @@ preload:
 slug: n8n-deployment
 bgImage: blog-n8n-deployment-bg.jpg
 ogImage: blog-n8n-deployment-bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover blog-n8n-deployment-bg blog-n8n-deployment-bg.jpg %}

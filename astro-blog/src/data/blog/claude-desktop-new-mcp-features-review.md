@@ -14,6 +14,7 @@ preload:
 slug: claude-desktop-new-mcp-features-review
 bgImage: claude_desktop_mcp_bg.jpg
 ogImage: claude_desktop_mcp_bg.jpg
+legacyAnchors: true
 ---
 
 {% darrellImageCover claude_desktop_mcp_bg claude_desktop_mcp_bg.jpg max-800 %}

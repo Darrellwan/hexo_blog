@@ -12,6 +12,7 @@ categories:
   - Google Tag Manager
 page_type: post
 slug: google-tag-manager-advanced-skill-using-ga4-track-website-performance
+legacyAnchors: true
 ---
 
 

@@ -15,6 +15,7 @@ preload:
 slug: google-app-script-gmail-nice-email-template
 bgImage: google-app-script-gmail-nice-email-template_bg.webp
 ogImage: google-app-script-gmail-nice-email-template_bg.webp
+legacyAnchors: true
 ---
 {% darrellImageCover google-app-script-gmail-nice-email-template_bg google-app-script-gmail-nice-email-template_bg.webp max-800 %}
 

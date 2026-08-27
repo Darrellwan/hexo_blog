@@ -10,6 +10,7 @@ categories:
   - Google Tag Manager
 page_type: post
 slug: ga4-ecommerce-recommend-events-datalayer
+legacyAnchors: true
 ---
 
 ## Google 上的建議事件清單
