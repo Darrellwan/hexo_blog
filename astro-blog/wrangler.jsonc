@@ -1,0 +1,49 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "blog-astro",
+  "compatibility_date": "2026-08-27",
+
+  // Workers Static Assets only. This configuration intentionally has no Worker
+  // script, `main`, `run_worker_first`, or `assets.binding`.
+  //
+  // Cloudflare's official HTML handling values are:
+  // `auto-trailing-slash`, `force-trailing-slash`, `drop-trailing-slash`, and
+  // `none`. The official examples use these asset shapes:
+  //   dist/file.html          (the flat-file shape represented by `/foo` below)
+  //   dist/folder/index.html  (the folder-index shape represented by `/folder`)
+  //
+  // | value                | /foo                         | /foo/                        | /folder                              | /folder/                             |
+  // |----------------------|------------------------------|------------------------------|--------------------------------------|--------------------------------------|
+  // | auto-trailing-slash  | 200, dist/file.html          | 307 to /foo                  | 307 to /folder/                      | 200, dist/folder/index.html         |
+  // | force-trailing-slash | 307 to /foo/                 | 200, dist/file.html          | 307 to /folder/                      | 200, dist/folder/index.html         |
+  // | drop-trailing-slash   | 200, dist/file.html          | 307 to /foo                  | 200, dist/folder/index.html          | 307 to /folder                       |
+  // | none                  | Depends on not_found_handling | Depends on not_found_handling | Depends on not_found_handling       | Depends on not_found_handling       |
+  //
+  // Source: https://developers.cloudflare.com/workers/static-assets/routing/advanced/html-handling/
+  // This project emits dist/{slug}/index.html and already uses /{slug}/ as its
+  // canonical URL. `auto-trailing-slash` serves /slug/ directly with 200 and
+  // redirects the non-canonical /slug to /slug/ with 307. It also preserves the
+  // natural flat-file behavior, instead of forcing every flat HTML file to use
+  // a trailing slash.
+  //
+  // Known behavior change from the Vercel site (measured 2026-08-27):
+  // Vercel `cleanUrls: true` serves BOTH /slug and /slug/ with 200 and never
+  // redirects. Cloudflare will 307 /slug to /slug/ instead. This is an
+  // improvement, not a regression: /slug/ is already the canonical form in
+  // both the old and the new build, and it is the form the sitemap publishes,
+  // so the old site was serving the same page at two URLs. Note that 307 is a
+  // temporary redirect and Cloudflare does not let this value be changed; the
+  // canonical tag is what consolidates the two URLs.
+  "assets": {
+    "directory": "./dist",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+
+  "routes": [
+    {
+      "pattern": "next.darrelltw.com",
+      "custom_domain": true
+    }
+  ]
+}

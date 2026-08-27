@@ -4,19 +4,25 @@
     "document": 37,
     "page": 298,
     "markdown": 135,
-    "contract": 5
+    "contract": 6
   },
   "skipped": {
     "_astro": 31,
     "pagefind": 156
   },
-  "total": 2653,
+  "total": 2654,
   "entries": [
     {
       "url": "/",
       "kind": "page",
       "bytes": 61924,
       "sha256": "928c9de022fc3eed7800138c3f3605b2f329e28c1341ad2db9543e8176b716c6"
+    },
+    {
+      "url": "/_headers",
+      "kind": "contract",
+      "bytes": 1002,
+      "sha256": "35b6680e3d52e5d39cac21a68519fa3d4ab48fc77adf688c2b7de961da4457ae"
     },
     {
       "url": "/_redirects",
