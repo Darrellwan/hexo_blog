@@ -2,11 +2,17 @@
 
 ## 🔴 待完成
 
-### Hexo → Astro 獨立 repo 上線（Phase 0、Phase 1 完成，下一步 Phase 2 開新 repo）
+### Hexo → Astro 獨立 repo 上線（Phase 0、Phase 1、錨點決策完成，下一步 Phase 2 開新 repo）
 - **建立日期**：2026-08-26
 - **決策唯一來源**：`docs/plans/2026-08-26-astro-standalone-repo-cutover.md`（2026-08-26 已收斂：六大決策＋原四個待決問題全數定案，細節與理由一律看該文件，不要重新爭論）
-- **狀態**：**Phase 0 與 Phase 1 全部完成**。全部只在本機 `blog/astro-blog/`，**未 push、未部署，線上 Hexo 完全沒動**。最終 build：`BUILD_EXIT=0`、0 errors、0 warnings、257 頁、128 篇已發布文章
+- **狀態**：**Phase 0、Phase 1 與標題錨點全部完成**。全部只在本機 `blog/astro-blog/`，**未 push、未部署，線上 Hexo 完全沒動**。最終 build：`BUILD_EXIT=0`、0 errors、0 warnings、257 頁、128 篇已發布文章
 - **🔴 下一步是 Phase 2（開新 repo）**，動手前必讀 `~/.claude/memory/github-multi-account.md`（雙帳號、owner 填錯會 404）
+
+### 中英文雙語（2026-08-27 完成研究，未動工，建議 Phase 3 之後再做）
+- **研究結論**：`astro-blog/docs/i18n-research.md`（放這裡而不是根目錄 `docs/`，因為根目錄那層被 gitignore 擋掉、Phase 2 帶不走）
+- 技術不是難點：Astro 內建 i18n 路由夠用，`prefixDefaultLocale: false` 讓中文網址完全不動，英文走 `/en/`；前置工程估 2-4 天
+- 真正的成本是翻譯：130 篇、65.8 萬字。**建議選譯 10-20 篇，不要全站雙語** —— Google 的 helpful content 是站台級訊號，一批單薄翻譯頁會拖累原本表現好的中文頁
+- 不要跟搬家綁在一起做：搬家的驗收基準是「新舊站輸出一致」，加了語言維度就沒有對照組
 
 ---
 
@@ -105,12 +111,14 @@ diff /tmp/now.json tests/fixtures/frozen/build-manifest.json
   - **同時升級**：沒寫的 `title`／`previewText`／`thumbnail` 自動從目標文章的 front matter 補（thumbnail = `SITE.website` + slug + `bgImage`）。**寫了的一律以寫的為準**，`=""` 也算寫了。找不到對應 .md（tools 頁、帶 query 的網址）維持手填、不報錯
   - **主線獨立複驗**（在主樹做，不採信 agent 的 worktree 結果）：4 篇全部 `完整卡片 = 標籤數`、被當程式碼 0；全站 78 標籤 = 78 完整卡片 = 0 損壞；渲染器 36 種欄位組合下「只有空白的行」皆為 0；**78 張手填標題 0 張被自動值覆蓋**；`BUILD_EXIT=0` 0 errors 0 warnings 262 頁
   - D1 的 build 在它自己的 worktree 沒綠，原因是 c2 種子過期（缺 `grokbot_pricing_plans-800.webp`、`claude-managed-agents` 是舊版），主樹兩者都正常。**教訓：重用舊 worktree 前要先重跑遷移對齊種子**
-- **🔴 待站主決定：標題錨點要不要沿用舊格式**（2026-08-26 查到，比卡片嚴重）
-  - **128 篇裡有 120 篇的標題 id 與線上不同**，線上共 1,675 個。例：線上 `#Analytics-Debugger-V2-4-6` → Astro `#analytics-debugger-v246`；線上 `#202407-更新-不會移除第三方-Cookie` → Astro `#202407-更新---不會移除第三方-cookie`。差在大小寫與標點處理
-  - **錨點無法用轉址救**：`#` 後面的片段瀏覽器不會送到伺服器，`_redirects` 完全無效。唯一解法是讓 Astro 產生相同的 id
-  - 站內影響小：452 條站內 `#` 連結只有 7 條斷掉（`n8n-zeabur-ai-hub-model-router` 3、`n8n-merge-node` 2、`n8n-google-sheets-node` 1、`google-tag-manager-google-tag-release` 1），其中 `n8n-google-sheets-node#example` 線上也是死的
-  - **主線建議：沿用舊格式**。理由是這題與標籤不同——標籤改小寫**修好了** 5 組被拆開的標籤，有實質收益；錨點改小寫**什麼都沒修好**，純粹換個樣子，卻要付「外部深連結失效且救不回」的代價
-  - 快速導覽（quickNav）的 142 個錨點裡有 6 個對不到正文，其中 5 個是這個 id 規則差異造成的
+- **✅ 標題錨點已定案並實作（2026-08-27，站主選 B：舊文章凍結、新文章用新規則）**
+  - 舊的 128 篇 front matter 加 `legacyAnchors: true`，**逐字移植 Hexo 的錨點演算法**（`hexo-renderer-markdown-it/lib/anchors.js` + `hexo-util` 的 `slugize`，含 `-2`/`-3` 重複編號、`typographer` 的彎引號、`anchors.level: 2` 不給 h1 id）。移植版對全站 1,491 個小標與 `hexo-util` 輸出**零差異**
+  - 新文章走 `slugizeModern`：標點換成連字號（版號 `1.100.0` 保持 `1-100-0`，不會像 github-slugger 黏成 `11000`）、全形標點一併折掉、轉小寫
+  - 任何小標可用 `## 標題 {#custom-slug}` 自己指定英文錨點，**選配**，沒寫就自動套規則。寫法見 `astro-blog/docs/heading-anchors.md`
+  - **驗收**：對線上 1,622 個錨點比對，**0 個對不上**（8 個已查明的可接受差異寫進測試白名單並附理由）；站內 429 條帶 `#` 的連結**失效 0 條**（原本 7 條）；11/11 單元測試；乾淨 checkout 重建與基準檔逐位元組相同
+  - 三支測試：`npm run test:anchors`（單元）、`test:anchors:internal`（站內死錨點）、`test:anchors:live`（對線上，要連網；舊站下線後改對凍結基準檔）
+  - 順手修掉 4 條本來就壞的站內連結，以及 `n8n-cli-guide` 用 `<span id>` 寫錨點導致 Hexo 產生 `span-id-setup-安裝與連線設定-span` 這種畸形 id 的問題
+  - **踩到的坑**：Tailwind 會掃 `.ts` 原始碼，函式命名為 `collapse` 會讓 CSS 多出一條 `.collapse` 規則、連帶整站 HTML 的 CSS 檔名雜湊改變。命名避開 Tailwind utility 名稱
 - **🔴 兩個會讓驗證失真的陷阱（2026-08-26 踩到，之後每次驗收都要做）**：
   1. **Astro 內容快取**：`astro-blog/node_modules/.astro/data-store.json`（約 4MB）存著上次的渲染結果。合併 C1 後直接 build，`dist` 仍是 0 個 `<picture>`；把快取移走重跑才變成 357 個。**驗任何 remark 外掛改動前一定要先移走這個檔**
   2. **內容種子過期**：主 checkout 的 `src/data/blog/` 停在 3 月（121 篇），Hexo 已經 130 篇，`grok-bot-review` 等新文章根本不在。`n8n-update-log` 種子停在 `2.14.0 Pre-release - 2026-03-24`、Hexo 已到 `2.36.0 - 2026-08-18`。121 篇裡有 6 篇正文長度差 >200 字元。**已於 2026-08-26 重跑 `npx tsx scripts/migrate-frontmatter.ts`（MIGRATE_EXIT=0、130 篇、3410 個資產）**，之後拿 Astro 對線上比較前都要先重跑
