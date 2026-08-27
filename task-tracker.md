@@ -6,7 +6,10 @@
 - **建立日期**：2026-08-26
 - **決策唯一來源**：`docs/plans/2026-08-26-astro-standalone-repo-cutover.md`（2026-08-26 已收斂：六大決策＋原四個待決問題全數定案，細節與理由一律看該文件，不要重新爭論）
 - **狀態**：**Phase 0、Phase 1、標題錨點、Phase 2 全部完成**。新 repo `Darrellwan/blog-astro`（private）已上線，本機在 `~/Darrell/code/blog-astro/`。**線上 Hexo 完全沒動、Cloudflare 一個字都還沒設**
-- **🔴 下一步是 Phase 3（部署到 Cloudflare，不切網域）**。第一件卡住的事：**現有的 `CLOUDFLARE_BR_API_TOKEN` 看得到 0 個 account、0 個 zone（2026-08-27 實查），對這個遷移完全沒用**，要站主到 dashboard 開一個帶 `Zone:Edit`、`Workers Scripts:Edit`、`Access:Edit` 的新 token
+- **🔴 下一步是 Phase 3（部署到 Cloudflare，不切網域）**。憑證狀況見 [[reference_cloudflare_credentials]]，**先跑 `npx wrangler whoami` 再說**：
+  - ✅ **不需要新憑證就能做**：`wrangler deploy` 部署 Worker、建 `next.darrelltw.com` Custom Domain。wrangler 已登入 account `91b7e72e621a475d224c475660c42ce7`，`darrelltw.com`（zone `54611c422a6b0e63f3580494f83e94c7`）就在這個 account 底下，scope 有 `workers_scripts:write`、`workers_routes:write`、`ssl_certs:write`、`zone:read`
+  - ❌ **還缺的只有兩項**：zone 層 URL Rewrite 規則（要 `zone:edit`，現在只有 `zone:read`）、Cloudflare Access（scope 裡沒有）。兩者都能改走 dashboard 手動點，或請站主開一個只帶這兩項的窄 token
+  - ⚠️ 2026-08-27 我曾誤報「現有 token 完全沒用、請開新的」，那是只跑 `env | grep -i cloudflare` 的結果 —— 漏掉 `CF_DNS_EDIT_TOKEN`（能讀寫 darrelltw.com 的 DNS），也沒跑 `wrangler whoami`
 
 #### Phase 2 做了什麼（2026-08-27 完成）
 - `git archive HEAD:astro-blog` 抽出 3,815 個版控檔案，逐檔比對 0 差異（用 `-z` 避開 `git ls-files` 對非 ASCII 檔名的八進位跳脫誤判）
