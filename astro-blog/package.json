@@ -13,7 +13,9 @@
     "lint": "eslint .",
     "test:anchors": "npx tsx tests/heading-anchors.ts",
     "test:anchors:live": "npx tsx tests/verify-legacy-anchors.ts",
-    "test:anchors:internal": "npx tsx tests/verify-internal-anchors.ts"
+    "test:anchors:internal": "npx tsx tests/verify-internal-anchors.ts",
+    "test:url-contract": "npx tsx tests/verify-url-contract.ts",
+    "test:headers": "npx tsx tests/verify-headers.ts"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^7.2.4",
