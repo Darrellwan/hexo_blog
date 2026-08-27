@@ -648,6 +648,34 @@ async function main(): Promise<void> {
 
   collectGeneratedRoutes(inventory, posts, config);
   const entries = [...inventory.values()];
+
+  // --freeze <path>：把「舊站有哪些網址、從哪裡推導出來的」倒成 JSON。
+  // 這一段推導需要 Hexo 的 main.yml 與 source/_posts，只有在舊 repo 裡跑得動；
+  // 獨立出去的 blog-astro 讀凍結後的檔案，不再需要 Hexo。
+  const freezeFlag = process.argv.indexOf("--freeze");
+  if (freezeFlag !== -1) {
+    const target = process.argv[freezeFlag + 1];
+    fs.writeFileSync(
+      target,
+      JSON.stringify(
+        {
+          generatedBy: "blog/astro-blog/tests/verify-url-contract.ts --freeze",
+          note: "舊 Hexo 站對外發布過的網址清單。來源是 live sitemap 加上 main.yml 的路由設定與 source/_posts 的 front matter。",
+          urlCount: entries.length,
+          urls: entries
+            .map(entry => ({
+              pathname: entry.pathname,
+              sources: [...entry.sources].sort(),
+            }))
+            .sort((left, right) => left.pathname.localeCompare(right.pathname)),
+        },
+        null,
+        2
+      ) + "\n"
+    );
+    console.log(`已凍結 ${entries.length} 個網址到 ${target}`);
+    return;
+  }
   const liveResults = await fetchAll(entries);
   const results = entries.map(entry => {
     const classification = classify(entry, redirectRules);
