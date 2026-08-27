@@ -9,6 +9,7 @@ import sitemap from "@astrojs/sitemap";
 import remarkToc from "remark-toc";
 import remarkCollapse from "remark-collapse";
 import remarkHexoTags, { preprocessMarkdownSource, remarkHexoPreprocess, derivePostSlug } from "./src/plugins/remark-hexo-tags";
+import remarkHeadingAnchors from "./src/plugins/remark-heading-anchors";
 import {
   transformerNotationDiff,
   transformerNotationHighlight,
@@ -155,6 +156,7 @@ export default defineConfig({
       remarkPlugins: [
         remarkHexoPreprocess,
         remarkHexoTags,
+        remarkHeadingAnchors,
         remarkToc,
         [remarkCollapse, { test: "Table of contents" }],
       ],

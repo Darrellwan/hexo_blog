@@ -15,6 +15,9 @@ const blog = defineCollection({
       title: z.string(),
       featured: z.boolean().optional(),
       draft: z.boolean().optional(),
+      // Freezes this post's heading anchor ids to the rule the live Hexo site
+      // used. Set on every migrated post; never set it on a new one.
+      legacyAnchors: z.boolean().optional(),
       // Hexo `no_ads`: suppresses the in-article AdSense unit on a single post.
       no_ads: z.boolean().optional(),
       // Preserved Hexo metadata; consumers can adopt these fields incrementally.
