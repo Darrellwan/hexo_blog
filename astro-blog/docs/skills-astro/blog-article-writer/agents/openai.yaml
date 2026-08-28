@@ -1,4 +1,0 @@
-interface:
-  display_name: "Blog Article Writer"
-  short_description: "依兩篇既有版型撰寫並驗收 Darrell 部落格正式文章"
-  default_prompt: "Use $blog-article-writer to write a formal Darrell Blog post from two fully read baseline articles."

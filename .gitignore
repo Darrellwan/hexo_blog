@@ -77,10 +77,11 @@ GTM-*.json
 
 # Documentation files
 docs/
-# ...但 astro-blog/docs/ 要進版控：Phase 2 開新 repo 靠它帶走 ledger 與待命 skill。
-# `docs/` 不錨定根目錄，會一併吃掉子目錄（與 2026-08-26 阻擋 7 的 public/ 同一個病）。
-!astro-blog/docs/
-!astro-blog/docs/**
+
+# Astro 遷移工作目錄。內容的正本在私有 repo Darrellwan/blog-astro（Phase 2 已完成），
+# 這個 public repo 不再追蹤它：2026-08-28 推送時把 130 篇文章與 3,344 個素材
+# （含兩篇 draft: true 的未發布文章）送進公開範圍。本機資料夾保留，只是不進版控。
+astro-blog/
 # Antigravity agent files
 .agent/
 
