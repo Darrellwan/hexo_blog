@@ -1,5 +1,5 @@
 ---
-title: Grok Bot：有自己雲端電腦的 AI Agent
+title: Grok Bot 是什麼？實測有自己雲端電腦的 AI Agent
 tags:
   - AI Agent
   - xAI
@@ -10,6 +10,7 @@ id: grok-bot-review
 description: xAI 推出的 Grok Bot 實測心得，每個 Bot 有自己的雲端電腦，可以開瀏覽器操作沒有 API 的網站，實測比價流程、把操作存成技能、Bot 之間互相溝通交辦，以及每天自動跑的例行任務，附三種取得方式的費用比較
 bgImage: blog-grok-bot-review-bg.jpg
 date: 2026-08-23 13:13:00
+updated: 2026-08-28 14:30:00
 ---
 
 {% darrellImageCover grok-bot-review-bg blog-grok-bot-review-bg.jpg %}
@@ -24,9 +25,11 @@ date: 2026-08-23 13:13:00
 
 {% quickNav %}
 [
+  {"text": "Grok Bot 是什麼？", "anchor": "what-is-grok-bot", "desc": "一分鐘看懂"},
   {"text": "方案和費用", "anchor": "pricing", "desc": "三種取得方式"},
   {"text": "安裝與設定", "anchor": "setup", "desc": "從下載到建第一個 Bot"},
   {"text": "特色：有自己的雲端電腦", "anchor": "own-computer", "desc": "最關鍵的差異"},
+  {"text": "Grok Bot vs Hermes vs 龍蝦", "anchor": "framework-comparison", "desc": "自建透天 vs 飯店公寓"},
   {"text": "錄製技能 Skill", "anchor": "teach-skill", "desc": "教一次就會"},
   {"text": "Bot 能互相溝通", "anchor": "bot-to-bot", "desc": "技能是共用的"},
   {"text": "排程設定", "anchor": "scheduled-task", "desc": "每天自己跑"},
@@ -35,6 +38,12 @@ date: 2026-08-23 13:13:00
   {"text": "常見問題", "anchor": "faq", "desc": "FAQ"}
 ]
 {% endquickNav %}
+
+<h2 id="what-is-grok-bot">Grok Bot 是什麼？</h2>
+
+Grok Bot 是 xAI 在 2026 年 8 月推出的 AI Agent 工具，每個 Bot 都配一台自己的雲端電腦，可以開瀏覽器登入你平常在用的網站、讀寫檔案，把一整串工作做完再回報。
+
+跟一般 AI 聊天機器人最大的差別是：聊天機器人給你答案，Grok Bot 是直接幫你把事情做掉。而且那台電腦在雲端，你自己的筆電關機、休眠，它照樣繼續跑。
 
 xAI 在 2026 年 8 月推出的 Grok Bot 非常特別
 以前曾經有一段時間，社群很瘋狂提到要買 mac mini 來養龍蝦，或是現在比較流行的 hermes agent
@@ -114,6 +123,60 @@ Slack、Trello 等等
 把三個介面都打開來：
 
 {% darrellImage800Alt "Bot 桌面實際運作畫面，同時開著 Thunar 檔案管理器、終端機與 Chrome 瀏覽器，檔案管理器停在 workspace 目錄" grokbot_bot_desktop_working.png max-800 %}
+
+<h2 id="framework-comparison">Grok Bot vs Hermes vs 龍蝦：自建透天 vs 飯店公寓</h2>
+
+之前大家熱烈討論要買 Mac mini 放家裡養龍蝦（OpenClaw），或是租一台 VPS 跑 Hermes Agent，但大部分非工程師的朋友基本上都在第一關卡死
+
+這三者最大的差別，其實就像在比**「買地自己蓋透天」**跟**「住拎包入住的飯店式公寓」**：
+
+{% darrellImage800Alt "AI Agent 核心對比圖解：拎包入住（Grok Bot）vs 自建透天（Hermes / OpenClaw 龍蝦）" grokbot_vs_hermes_openclaw_comparison.png max-800 %}
+
+- **心智模型（自建透天 vs 拎包套房）**：OpenClaw / Hermes 就像自己買地拉水電，自由度 100% 但門檻極高；Grok Bot 則是拎包入住的精裝修公寓，點開 App 雲端電腦就已就緒
+- **電腦放哪裡（自備主機 vs 24/7 雲端 VM）**：自建派需要自備常開的 Mac mini 或 VPS 伺服器；Grok Bot 跑在純雲端虛擬機上，完全不需要佔用你本機的硬體資源
+- **怎麼教它做事（寫 Code 配置 vs 示範一次就學會）**：自建派需要寫 Python 程式或 YAML 設定檔；Grok Bot 只要在桌面錄影點擊一次，它就能自動萃取成技能
+- **適合誰（改 Code 掌控派 vs 日常省事外包派）**：要 100% 資料私密與自由換模型選 Hermes / 龍蝦；不想碰 Linux 只想把日常瑣事外包選 Grok Bot
+
+{% dataTable style="minimal" align="left" %}
+[
+  {
+    "比較維度": "架設難度",
+    "Grok Bot": "極低（下載 App 登入就能用）",
+    "Hermes Agent": "高（要自己租 VPS、SSH、裝環境）",
+    "OpenClaw (龍蝦)": "高（要管 Daemon、寫設定檔）"
+  },
+  {
+    "比較維度": "電腦放哪裡",
+    "Grok Bot": "xAI 雲端電腦（關機筆電它照樣跑）",
+    "Hermes Agent": "自己的 VPS 或家裡主機",
+    "OpenClaw (龍蝦)": "自己的 VPS 或家裡主機"
+  },
+  {
+    "比較維度": "模型自由度",
+    "Grok Bot": "鎖定 Grok（不能換 Claude / GPT）",
+    "Hermes Agent": "完全自由（想接哪家模型都可以）",
+    "OpenClaw (龍蝦)": "完全自由（支援 15+ 種平台）"
+  },
+  {
+    "比較維度": "殺手級特色",
+    "Grok Bot": "螢幕錄製直接學會、操作無 API 網頁",
+    "Hermes Agent": "會自己從任務中學新技能的自主大腦",
+    "OpenClaw (龍蝦)": "生態成熟、技能市集資源最多"
+  },
+  {
+    "比較維度": "費用結構",
+    "Grok Bot": "月費制（$60 Pro+ / 內含算力）",
+    "Hermes Agent": "軟體免費，自付 VPS 租金與 API 費",
+    "OpenClaw (龍蝦)": "軟體免費，自付 VPS 租金與 API 費"
+  },
+  {
+    "比較維度": "適合對象",
+    "Grok Bot": "不想碰 Linux / 只想把日常瑣事外包的人",
+    "Hermes Agent": "想自己改 Code 的進階開發者",
+    "OpenClaw (龍蝦)": "需要跨多平台自動化的重度玩家"
+  }
+]
+{% enddataTable %}
 
 <h2 id="teach-skill">教它一次，存成技能</h2>
 
