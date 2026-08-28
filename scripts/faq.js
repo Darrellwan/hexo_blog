@@ -11,7 +11,10 @@
  * {% endfaq %}
  */
 
-// 🆕 全域 Map 儲存 FAQ 資料，讓 Helper 可以讀取
+// 全域 Map 儲存 FAQ 資料。
+// 注意：FAQPage schema 已改由 themes/next/scripts/helpers/custom_structure_data.js
+// 直接解析文章原始碼產生，不再讀這個 Map。增量建置命中 db.json 快取時本 tag 不會執行，
+// Map 會是空的，靠它產 schema 會整批消失。這裡保留只供其他用途。
 // Key: source path, Value: FAQ items array
 global.faqDataStore = global.faqDataStore || new Map();
 

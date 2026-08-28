@@ -2,17 +2,59 @@
  * Builds JSON-LD structured data for current page according to its type (page or post).
  * 支援兩種來源：
  * 1. front matter 的 darrell_structured_data（手動設定）
- * 2. {% faq %} 標籤自動收集的 _autoFaqData
+ * 2. {% faq %} 標籤的內容（直接從文章原始碼解析）
  *
  * @returns {string} - JSON-LD structured data
  */
+
+const FAQ_BLOCK_PATTERN = /\{%\s*faq\b[^%]*%\}([\s\S]*?)\{%\s*endfaq\s*%\}/g;
+
+// JSON-LD 只吃純文字：<br> 轉空白，其餘標籤直接拿掉，再收斂連續空白
+function toPlainText(value) {
+  return String(value || '')
+    .replace(/<br\s*\/?>/gi, ' ')
+    .replace(/<[^>]*>/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/**
+ * 直接從文章原始碼解析 {% faq %} 區塊。
+ * 不能改用 global.faqDataStore：那個 Map 由 tag 在 render 階段填入，
+ * 增量建置命中 db.json 快取時 tag 不會執行，layout 就讀到空的 Map，
+ * 導致 FAQPage schema 整批消失。原始碼在 layout 階段一定拿得到。
+ */
+function parseFaqFromRaw(raw) {
+  const items = [];
+  if (!raw) return items;
+
+  FAQ_BLOCK_PATTERN.lastIndex = 0;
+  let match;
+  while ((match = FAQ_BLOCK_PATTERN.exec(raw)) !== null) {
+    let parsed;
+    try {
+      parsed = JSON.parse(match[1].trim());
+    } catch (error) {
+      // 單一區塊格式壞掉就跳過，其他區塊照常輸出
+      continue;
+    }
+    if (!Array.isArray(parsed)) continue;
+    parsed.forEach(item => {
+      if (!item || !item.question) return;
+      items.push({
+        question: toPlainText(item.question),
+        answer: toPlainText(item.answer)
+      });
+    });
+  }
+  return items;
+}
+
 function darrellStructuredData() {
   const page = this.page;
   const manualFaqData = page.darrell_structured_data || false;
 
-  // 從全域 Map 讀取 FAQ 資料（由 {% faq %} tag 填入）
-  const sourceKey = page.source;
-  const autoFaqData = (global.faqDataStore && global.faqDataStore.get(sourceKey)) || [];
+  const autoFaqData = parseFaqFromRaw(page.raw);
 
   // 如果不是文章，直接返回
   if (!this.is_post()) {
