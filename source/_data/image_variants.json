@@ -11162,5 +11162,92 @@
         "src": "grokbot_pricing_plans-1600.webp"
       }
     ]
+  },
+  "/_posts/zeabur-security-incident-env-leak/zeabur_batch_restart_all_services.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "zeabur_batch_restart_all_services-800.webp"
+      }
+    ],
+    "srcMtimeMs": 1787995583177.352
+  },
+  "/_posts/zeabur-security-incident-env-leak/zeabur_env_check_postgres_user.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "zeabur_env_check_postgres_user-800.webp"
+      },
+      {
+        "width": 1600,
+        "src": "zeabur_env_check_postgres_user-1600.webp"
+      }
+    ],
+    "srcMtimeMs": 1787995825416.4092
+  },
+  "/_posts/zeabur-security-incident-env-leak/zeabur_env_password_edit_modal.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "zeabur_env_password_edit_modal-800.webp"
+      },
+      {
+        "width": 1600,
+        "src": "zeabur_env_password_edit_modal-1600.webp"
+      }
+    ],
+    "srcMtimeMs": 1787995582873.4143
+  },
+  "/_posts/zeabur-security-incident-env-leak/zeabur_psql_alter_role_success.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "zeabur_psql_alter_role_success-800.webp"
+      },
+      {
+        "width": 1600,
+        "src": "zeabur_psql_alter_role_success-1600.webp"
+      }
+    ],
+    "srcMtimeMs": 1787996103454.6292
+  },
+  "/_posts/zeabur-security-incident-env-leak/zeabur_service_restart_button.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "zeabur_service_restart_button-800.webp"
+      },
+      {
+        "width": 1600,
+        "src": "zeabur_service_restart_button-1600.webp"
+      }
+    ],
+    "srcMtimeMs": 1787995582574.4497
+  },
+  "/_posts/zeabur-security-incident-env-leak/blog-zeabur-security-incident-env-leak-bg.jpg": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "blog-zeabur-security-incident-env-leak-bg-800.webp"
+      },
+      {
+        "width": 1080,
+        "src": "blog-zeabur-security-incident-env-leak-bg-1080.webp"
+      }
+    ],
+    "srcMtimeMs": 1787998302032.728
+  },
+  "/_posts/zeabur-security-incident-env-leak/zeabur_service_terminal_entry.png": {
+    "webp": [
+      {
+        "width": 800,
+        "src": "zeabur_service_terminal_entry-800.webp"
+      },
+      {
+        "width": 1600,
+        "src": "zeabur_service_terminal_entry-1600.webp"
+      }
+    ],
+    "srcMtimeMs": 1788011251739.2366
   }
 }
