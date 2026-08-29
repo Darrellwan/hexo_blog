@@ -1,0 +1,237 @@
+// ========================================
+// Timeline Component Styles
+// Style: 左側細線（單色）
+//
+// 節點顏色統一走 --dn-timeline-node，未來要做分級配色時，
+// 只需要在這支檔案加上 [data-level] 的變數覆寫，不必動 timeline.js，
+// 也不必改已經寫好的文章。範例寫在檔案最下方。
+// ========================================
+
+:root {
+  --dn-timeline-accent: #f0ad4e;
+  --dn-timeline-node: rgba(255, 255, 255, 0.28);
+  --dn-timeline-line: rgba(255, 255, 255, 0.12);
+  --dn-timeline-text: rgba(255, 255, 255, 0.9);
+  --dn-timeline-label: rgba(255, 255, 255, 0.42);
+  --dn-timeline-gap: 26px;
+}
+
+.dn-timeline {
+  margin: 20px 0;
+}
+
+// ============================================
+// 標題列（可省略）
+// ============================================
+.dn-timeline-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+
+  span {
+    font-family: 'Roboto Mono', 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dn-timeline-label);
+    flex: none;
+  }
+
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--dn-timeline-line);
+  }
+}
+
+// ============================================
+// 主體
+// ============================================
+.dn-timeline-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.dn-timeline-item {
+  display: flex;
+  gap: 18px;
+  margin: 0;
+
+  &::before {
+    display: none !important;
+  }
+}
+
+// 軸線：圓點在上，剩下的高度用一條 1px 直線補滿
+.dn-timeline-rail {
+  flex: none;
+  width: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &::after {
+    content: '';
+    flex: 1;
+    width: 1px;
+    background: var(--dn-timeline-line);
+  }
+}
+
+.dn-timeline-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 2px solid var(--dn-timeline-node);
+  background: var(--content-bg-color, #282828);
+  margin-top: 5px;
+  flex: none;
+  box-sizing: border-box;
+}
+
+.dn-timeline-body {
+  padding-bottom: var(--dn-timeline-gap);
+  min-width: 0;
+}
+
+.dn-timeline-date {
+  font-family: 'Roboto Mono', 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  color: var(--dn-timeline-accent);
+  margin-bottom: 5px;
+}
+
+.dn-timeline-text {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--dn-timeline-text);
+
+  strong {
+    color: var(--dn-timeline-text);
+    font-weight: 600;
+  }
+
+  code {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.85em;
+    color: #7fb3d3;
+  }
+
+  a {
+    color: #7fb3d3;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(127, 179, 211, 0.3);
+    transition: all 0.2s ease;
+
+    &:hover {
+      color: #a8cce8;
+      border-bottom-color: #a8cce8;
+    }
+  }
+}
+
+// ============================================
+// 最後一則：實心節點，收掉延伸的線與下方留白
+// ============================================
+// 這裡改的是變數而不是 border-color，最後一則才不會蓋掉未來的分級顏色
+.dn-timeline-item:last-child {
+  --dn-timeline-node: var(--dn-timeline-accent);
+
+  .dn-timeline-rail::after {
+    display: none;
+  }
+
+  .dn-timeline-dot {
+    background: var(--dn-timeline-node);
+  }
+
+  .dn-timeline-body {
+    padding-bottom: 0;
+  }
+}
+
+// ============================================
+// 淺色主題適配
+// ============================================
+@media (prefers-color-scheme: light) {
+  :root {
+    --dn-timeline-node: rgba(0, 0, 0, 0.25);
+    --dn-timeline-line: rgba(0, 0, 0, 0.12);
+    --dn-timeline-text: rgba(0, 0, 0, 0.8);
+    --dn-timeline-label: rgba(0, 0, 0, 0.45);
+  }
+
+  .dn-timeline-dot {
+    background: var(--content-bg-color, #ffffff);
+  }
+
+  .dn-timeline-text {
+    strong {
+      color: rgba(0, 0, 0, 0.9);
+    }
+
+    code {
+      background: rgba(0, 0, 0, 0.05);
+      color: #2980b9;
+    }
+
+    a {
+      color: #2980b9;
+      border-bottom-color: rgba(41, 128, 185, 0.3);
+
+      &:hover {
+        color: #1a5276;
+        border-bottom-color: #1a5276;
+      }
+    }
+  }
+}
+
+// ============================================
+// 手機版優化
+// ============================================
+@media (max-width: 768px) {
+  :root {
+    --dn-timeline-gap: 20px;
+  }
+
+  .dn-timeline {
+    margin: 16px 0;
+  }
+
+  .dn-timeline-heading {
+    margin-bottom: 16px;
+  }
+
+  .dn-timeline-item {
+    gap: 14px;
+  }
+
+  .dn-timeline-date {
+    font-size: 0.78rem;
+  }
+
+  .dn-timeline-text {
+    font-size: 0.9rem;
+  }
+}
+
+// ============================================
+// 未來的分級配色（目前停用，全站單色）
+//
+// timeline.js 已經會把 {"level": "warning"} 寫成 data-level="warning"，
+// 要開啟配色只要把下面這段的註解拿掉，文章不用改：
+//
+// .dn-timeline-item[data-level="info"]    { --dn-timeline-node: #428bca; }
+// .dn-timeline-item[data-level="warning"] { --dn-timeline-node: #f0ad4e; }
+// .dn-timeline-item[data-level="error"]   { --dn-timeline-node: #d9534f; }
+// ============================================
