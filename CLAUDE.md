@@ -67,7 +67,8 @@ git push 完成後，**不需要問用戶**，自動執行以下步驟：
    ⚠️ **禁止自己寫輪詢迴圈**（`for i in $(seq 1 30); do vercel ls; sleep 15; done`）。那是每 15 秒發一次網路請求＋佔自己的 turn，`--wait` 把輪詢交給 CLI 自己的 process。
    `--timeout` 預設只有 3m，這個專案含圖片處理常超過，一定要自己加大。
 3. 部署成功後，用 `agent-browser` 開啟對應頁面確認改動正常；只驗日期／meta 這類純文字輸出時，`curl` + `rg` 就夠，不必開瀏覽器
-4. 回報檢查結果給用戶
+4. **效能抽查（改動涉及圖片、版型、腳本時才跑；純文字改動跳過）**：`npx lighthouse <正式站文章URL> --preset=perf --output=json --quiet --chrome-flags="--headless"`，回報效能分、LCP、CLS。⚠️ 一定打 www.darrelltw.com 正式站，不打本機 build；效能分數單次有 ±10 浮動，別當精確值，重點看 CLS 與「比上次大幅退步」。lighthouse 打本機的教訓與 Access 站的打法見 memory `feedback_local_lighthouse_not_the_site`
+5. 回報檢查結果給用戶
 
 **禁止用 `vercel deploy` 部署**：它上傳本機工作目錄，會把未追蹤檔案一起送上線。部署一律走 git push 觸發 GitHub 整合。
 
@@ -77,7 +78,7 @@ git push 完成後，**不需要問用戶**，自動執行以下步驟：
 - **Dev full**: `npm run test-full` - 含圖片處理的完整開發流程
 - **Build**: `npm run build` - 完整建置（images + hexo generate + n8n-sitemap + n8n-snapshots）
 - **Posts**: `npx hexo new "文章標題"` - 新增文章
-- **Images**: `npm run images:process` - 處理圖片尺寸（新增圖片後執行）
+- **Images（新增/修改圖片後用這個）**: `npm run images:post -- <文章slug>` - 一鍵按正確順序跑 compress → webp → dimensions。**改單篇一律帶 slug**。三支腳本也可單獨跑（`images:compress` / `images:webp` / `images:process`），都有增量快取；`images:webp -- --force` 全站重壓（改 cwebp 參數時才用）
 - **n8n Models**: `npm run n8n:generate-models` - 產生 n8n template 頁面
 
 ## Architecture

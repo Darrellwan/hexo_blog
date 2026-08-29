@@ -28,7 +28,9 @@
     "test_draft": "npm run clean && npm run images:process && npm run generate_custom && npm run server_custom_draft",
     "images:process": "node scripts/generate-image-dimensions.js",
     "images:force-process": "node scripts/generate-image-dimensions.js --force",
-    "images:compress": "node scripts/compress-images.js"
+    "images:compress": "node scripts/compress-images.js",
+    "images:webp": "node scripts/generate-webp.js",
+    "images:post": "node scripts/post-images.js"
   },
   "hexo": {
     "version": "8.1.2"

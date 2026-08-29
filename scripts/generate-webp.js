@@ -9,6 +9,11 @@
  *   npm run images:webp                      處理 source/_posts/ 全部
  *   npm run images:webp -- grok-bot-review   只處理某篇文章
  *   npm run images:webp -- --dry             只列出會做什麼，不寫檔
+ *   npm run images:webp -- --force           忽略快取，全部重新編碼
+ *
+ * 增量跳過：manifest 記了每張原圖處理當下的 mtime，原圖沒變、上次的產出
+ * （或「webp 比原圖大所以放棄」的紀錄，存成 webp: []）還在就直接跳過。
+ * 所以重跑只會重壓有變動的圖；改了 cwebp 參數想全站重壓時用 --force。
  *
  * 為什麼要有這支：文章圖普遍是 2060px 寬，實測桌機只顯示 707px、手機 350px，
  * 等於每張都送了三倍的多餘像素。省最多的是縮尺寸，換格式是其次。
@@ -65,6 +70,7 @@ function manifestKey(filePath) {
 async function main() {
   const args = process.argv.slice(2);
   const dryRun = args.includes('--dry');
+  const force = args.includes('--force');
   const subDir = args.find(a => !a.startsWith('--'));
 
   if (!dryRun && !hasCwebp()) {
@@ -88,6 +94,7 @@ async function main() {
 
   let done = 0;
   let skipped = 0;
+  let cached = 0;
   let origTotal = 0;
   let webpTotal = 0;
 
@@ -95,6 +102,19 @@ async function main() {
     const dir = path.dirname(file);
     const ext = path.extname(file);
     const base = path.basename(file, ext);
+    const stat = fs.statSync(file);
+
+    // 增量跳過：原圖 mtime 跟上次處理時一樣、產出的變體檔都還在就不重壓。
+    // webp: [] 是負向快取（上次判定 webp 比原圖大而放棄），一樣不重試。
+    // 舊格式的條目沒有 srcMtimeMs，比不中，會重壓一次然後補上。
+    const prev = manifest[manifestKey(file)];
+    if (!force && !dryRun && prev && prev.srcMtimeMs === stat.mtimeMs) {
+      const outputsIntact = (prev.webp || []).every(v => fs.existsSync(path.join(dir, v.src)));
+      if (outputsIntact) {
+        cached++;
+        continue;
+      }
+    }
 
     let naturalWidth;
     try {
@@ -105,7 +125,7 @@ async function main() {
     }
 
     const widths = targetWidths(naturalWidth);
-    const origSize = fs.statSync(file).size;
+    const origSize = stat.size;
 
     if (dryRun) {
       console.log(`  ${path.relative(POSTS_DIR, file)}  ${naturalWidth}px -> ${widths.join('w, ')}w`);
@@ -131,7 +151,8 @@ async function main() {
     });
 
     if (validVariants.length === 0) {
-      delete manifest[manifestKey(file)];
+      // 圖片標籤那邊對 webp: [] 直接不輸出 <source>，跟沒有條目時行為相同
+      manifest[manifestKey(file)] = { webp: [], srcMtimeMs: stat.mtimeMs };
       skipped++;
       console.log(`  跳過  ${path.relative(POSTS_DIR, file)}  webp >= 原圖 ${toKB(origSize)}KB`);
       continue;
@@ -139,6 +160,7 @@ async function main() {
 
     manifest[manifestKey(file)] = {
       webp: validVariants.map(p => ({ width: p.width, src: path.basename(p.file) })),
+      srcMtimeMs: stat.mtimeMs,
     };
     origTotal += origSize;
     webpTotal += validVariants[validVariants.length - 1].size;
@@ -157,7 +179,7 @@ async function main() {
   fs.writeFileSync(MANIFEST, JSON.stringify(manifest, null, 2) + '\n');
   const saved = origTotal - webpTotal;
   console.log(
-    `[Webp] 產出 ${done} 張、放棄 ${skipped} 張。` +
+    `[Webp] 產出 ${done} 張、放棄 ${skipped} 張、快取跳過 ${cached} 張。` +
     `以最大變體比較：${toKB(origTotal)}KB -> ${toKB(webpTotal)}KB` +
     (origTotal ? `，省下 ${toKB(saved)}KB（${Math.round((saved / origTotal) * 100)}%）` : '')
   );
