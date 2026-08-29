@@ -270,6 +270,3 @@ psql 成功的時候就只回一行 `ALTER ROLE`，不會跟你說「成功」
 ## 參考來源
 
 - [Zeabur 官方事件公告：Unauthorized Access to Project Environment Variable Data](https://status.zeabur.com/incident/1037896)
-- [n8n 官方文件：Executions 環境變數](https://docs.n8n.io/deploy/host-n8n/configure-n8n/basic-configuration/use-environment-variables/executions/)
-- [n8n 官方文件：Set up AI Assistant](https://docs.n8n.io/deploy/host-n8n/configure-n8n/set-up-ai-assistant/)
-- [INSIDE：Zeabur 環境變數外洩！Anthropic、OpenAI、OpenRouter API 憑證遭盜用](https://www.inside.com.tw/article/42241-zeabur-environment-variable-leak-api-keys-stolen)
