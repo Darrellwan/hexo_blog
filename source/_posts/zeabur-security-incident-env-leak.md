@@ -3,9 +3,8 @@ title: Zeabur 資安事件：環境變數外洩後，怎麼確認災情與輪替
 tags:
   - Zeabur
   - 資安
-  - n8n
 categories:
-  - n8n
+  - Code Development
 page_type: post
 id: zeabur-security-incident-env-leak
 description: Zeabur 2026 年 8 月資安事件（環境變數外洩）處理紀錄：官方確認外洩的變數清單、沒收到通知信要怎麼自己確認、用 Zeabur CLI 盤點環境變數與引用鏈、第三方 API Key 的正確撤銷順序，以及 PostgreSQL 密碼輪替時官方指南少了 -d 參數會失敗的修正做法

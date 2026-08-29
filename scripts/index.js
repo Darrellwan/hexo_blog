@@ -28,19 +28,11 @@ hexo.extend.filter.register('before_post_render', function(data) {
     }
     
     // 處理分類
+    // 只在文章沒寫 categories 時才自動補 n8n。
+    // 不能往既有的陣列 push：Hexo 的 categories: [A, B] 是階層 A/B，
+    // 會把「分類設成 Code Development」變成「Code Development/n8n」。
     if (!data.categories) {
-      // 如果沒有分類，直接設置為數組
       data.categories = ['n8n'];
-    } else if (Array.isArray(data.categories)) {
-      // 如果是數組，檢查並添加
-      if (!data.categories.includes('n8n')) {
-        data.categories.push('n8n');
-      }
-    } else if (typeof data.categories === 'string') {
-      // 如果是字符串，轉為數組
-      data.categories = [data.categories, 'n8n'];
-    } else {
-      // console.log('Skip adding n8n category - categories is already a Hexo object');
     }
     
     // 根據標題自動判斷n8n_category
