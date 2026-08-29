@@ -2,14 +2,20 @@
 
 ## 📚 最新文章
 
-### [Grok Bot：有自己雲端電腦的 AI Agent](https://www.darrelltw.com/grok-bot-review/?utm_source=github_readme&utm_medium=referral)
-📅 2026/08/23 · 2 小時前
+### [Zeabur 資安事件：環境變數外洩後，怎麼確認災情與輪替密碼](https://www.darrelltw.com/zeabur-security-incident-env-leak/?utm_source=github_readme&utm_medium=referral)
+📅 2026/08/29 · 8 小時內
+
+> Zeabur 2026 年 8 月資安事件（環境變數外洩）處理紀錄：官方確認外洩的變數清單、沒收到通知信要怎麼自己確認、用 Zeabur CLI 盤點環境變數與引用鏈、第三方 API Key 的正確撤銷順序，以及 PostgreSQL 密碼輪替時官方指南少了 -d 參數會失敗的修正做法
+
+
+### [Grok Bot 是什麼？實測有自己雲端電腦的 AI Agent](https://www.darrelltw.com/grok-bot-review/?utm_source=github_readme&utm_medium=referral)
+📅 2026/08/23 · 6 天前
 
 > xAI 推出的 Grok Bot 實測心得，每個 Bot 有自己的雲端電腦，可以開瀏覽器操作沒有 API 的網站，實測比價流程、把操作存成技能、Bot 之間互相溝通交辦，以及每天自動跑的例行任務，附三種取得方式的費用比較
 
 
 ### [如何在 Claude Desktop 安裝 GA4、SEO MCP](https://www.darrelltw.com/ga4-search-console-mcp-install/?utm_source=github_readme&utm_medium=referral)
-📅 2026/08/02 · 21 天前
+📅 2026/08/02 · 1 個月前
 
 > 實測和分享 GA4 , Search Console 的 MCP 安裝流程，讓 Claude Desktop 串接後就能輕鬆分析 GA4 報表和 Search Console 排名數據。
 
@@ -27,7 +33,7 @@
 
 
 ### [n8n Google Sheets 節點教學](https://www.darrelltw.com/n8n-google-sheets-node/?utm_source=github_readme&utm_medium=referral)
-📅 2026/05/09 · 3 個月前
+📅 2026/05/09 · 4 個月前
 
 > n8n Google Sheets 節點完整教學。6 個操作怎麼選（含決策樹）、Trigger polling 限制說明，以及 Gmail 電子發票 AI 自動解析去重實戰案例。
 
@@ -39,7 +45,7 @@
 
 
 ### [Claude Managed Agents 實測：簡單快速建立自己的雲端 AI Agent](https://www.darrelltw.com/claude-managed-agents/?utm_source=github_readme&utm_medium=referral)
-📅 2026/04/09 · 4 個月前
+📅 2026/04/09 · 5 個月前
 
 > Anthropic 推出 Claude Managed Agents，讓開發者用 Console 或 API 在雲端建立、部署生產等級的 AI Agent。實測 Quickstart 流程，從建立 Agent 到跑出第一個 Session 和心得分享。
 
@@ -56,16 +62,10 @@
 > rclone 實測教學：Google Drive 和 Cloudflare R2 設定、copy/sync/move 指令差異比較、rclone.conf 設定檔解析，以及用 crontab 做每日自動雲端備份。
 
 
-### [Claude Cowork 教學：給大眾用的 Claude Code](https://www.darrelltw.com/claude-cowork-intro/?utm_source=github_readme&utm_medium=referral)
-📅 2026/01/17 · 7 個月前
-
-> Claude Cowork 是 Anthropic 推出的桌面 AI 助理，能自動整理檔案、處理文件，還能學習你的工作流程。實測三大應用場景，看看它如何提升工作效率。（2026/07/07 更新：Chat 與 Cowork 介面整合，並擴大支援 Web、手機版）
-
-
 ## 📊 部落格統計
-![文章總數](https://img.shields.io/badge/文章總數-128-blue?style=flat-square)
-![總字數](https://img.shields.io/badge/總字數-382,891+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2026/08/23-green?style=flat-square)
+![文章總數](https://img.shields.io/badge/文章總數-129-blue?style=flat-square)
+![總字數](https://img.shields.io/badge/總字數-388,193+-blue?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2026/08/29-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -88,7 +88,7 @@
 
 
 ## 🏷️ 熱門主題
-![n8n](https://img.shields.io/badge/n8n-35-orange?style=flat-square) ![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-15-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![AI](https://img.shields.io/badge/AI-8-orange?style=flat-square)
+![n8n](https://img.shields.io/badge/n8n-36-orange?style=flat-square) ![Google Tag Manager](https://img.shields.io/badge/Google%20Tag%20Manager-27-orange?style=flat-square) ![Google Analytics 4](https://img.shields.io/badge/Google%20Analytics%204-15-orange?style=flat-square) ![Martech](https://img.shields.io/badge/Martech-13-orange?style=flat-square) ![AI](https://img.shields.io/badge/AI-8-orange?style=flat-square)
 
 ## 📈 更新頻率
 ```text
@@ -97,7 +97,7 @@
 05月 █░░░░░░░░░ 1篇
 06月 █░░░░░░░░░ 1篇
 07月 █░░░░░░░░░ 1篇
-08月 ██░░░░░░░░ 2篇
+08月 ███░░░░░░░ 3篇
 ```
 
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-08-23 15:28:43*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-08-29 14:29:14*
