@@ -78,7 +78,7 @@ REDIS_PASSWORD        SECRET_KEY
 帳號密碼、個資、付款與信用卡資訊，官方表示沒有被存取的跡象
 {% endcallout %}
 
-<h2 id="am-i-affected">沒收到信不代表沒事</h2>
+<h2 id="am-i-affected">沒收到信不是沒事</h2>
 
 通知分成兩批寄，兩批的判定方式不一樣
 信裡自己也寫了「無論您是否收到先前的事件通知」
@@ -160,7 +160,7 @@ OpenAI 的 `/logs` 比較好用
 而是需要另外再用 `command` 去更新 DB 裡面使用的密碼
 否則重新啟動服務後，會有錯誤的情況發生
 
-### 官方那份輪替指南，指令貼上去會失敗
+### 官方那份輪替指南需要注意
 
 Zeabur 把一份輪替指南掛在事件通知上，PostgreSQL 那行長這樣：
 
@@ -202,7 +202,7 @@ psql -U "$POSTGRES_USER" -d "$POSTGRES_DB" -c "ALTER USER CURRENT_USER WITH PASS
 
 {% darrellImage800Alt "Zeabur 環境變數分頁，標示點開 POSTGRES_USER 右側的眼睛圖示就能看到資料庫使用者帳號" zeabur_env_check_postgres_user.png max-800 %}
 
-### 在 Zeabur 網頁走一次輪替
+### 如何在 Zeabur 網頁版走一次輪替
 
 輪替做完之後，我自己用網頁介面重新走一次流程
 在「環境變數 → 編輯原始環境變數」把 `PASSWORD` 改成新值，然後就以為做完了
