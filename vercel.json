@@ -48,6 +48,21 @@
     ],
     "redirects": [
       {
+        "source": "/analytics-debuuger-v2-3-2",
+        "destination": "/ga4-gtm-best-tool-analytics-debugger/",
+        "permanent": true
+      },
+      {
+        "source": "/analytics-debuuger-v2-3-2/",
+        "destination": "/ga4-gtm-best-tool-analytics-debugger/",
+        "permanent": true
+      },
+      {
+        "source": "/analytics-debuuger-v2-3-2/:path*",
+        "destination": "/ga4-gtm-best-tool-analytics-debugger/:path*",
+        "permanent": true
+      },
+      {
         "source": "/n8n-resources",
         "destination": "/n8n-tutorial-resources",
         "permanent": true

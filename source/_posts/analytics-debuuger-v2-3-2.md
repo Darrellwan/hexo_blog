@@ -2,6 +2,7 @@
 title: Analytics Debugger v2.4.6 更新 
 date: 2023-05-06 23:45:42
 updated: 2024-12-25 12:23:23
+published: false
 id: analytics-debuuger-v2-3-2
 tags:
   - Google Analytics 4
@@ -129,6 +130,5 @@ Ctrl + Shift + P
 
 上面講到的 Vendors 相信在未來的版本中都會持續更新
 Command Plate 說不定未來也會有更酷的新功能出現
-
 
 
