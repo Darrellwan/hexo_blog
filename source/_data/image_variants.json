@@ -8162,10 +8162,11 @@
         "src": "n8n-update_bg-800.webp"
       },
       {
-        "width": 1080,
-        "src": "n8n-update_bg-1080.webp"
+        "width": 1200,
+        "src": "n8n-update_bg-1200.webp"
       }
-    ]
+    ],
+    "srcMtimeMs": 1788075201909.469
   },
   "/_posts/n8n-update-log/n8n_update-n8n_folder_preview.png": {
     "webp": [
@@ -11231,11 +11232,11 @@
         "src": "blog-zeabur-security-incident-env-leak-bg-800.webp"
       },
       {
-        "width": 1080,
-        "src": "blog-zeabur-security-incident-env-leak-bg-1080.webp"
+        "width": 1200,
+        "src": "blog-zeabur-security-incident-env-leak-bg-1200.webp"
       }
     ],
-    "srcMtimeMs": 1788014499830.3157
+    "srcMtimeMs": 1788075201839.8352
   },
   "/_posts/zeabur-security-incident-env-leak/zeabur_service_terminal_entry.png": {
     "webp": [
