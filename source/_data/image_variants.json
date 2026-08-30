@@ -6,10 +6,11 @@
         "src": "blog-grok-bot-review-bg-800.webp"
       },
       {
-        "width": 1080,
-        "src": "blog-grok-bot-review-bg-1080.webp"
+        "width": 1200,
+        "src": "blog-grok-bot-review-bg-1200.webp"
       }
-    ]
+    ],
+    "srcMtimeMs": 1788075505067.7893
   },
   "/_posts/grok-bot-review/grokbot_account_link_confirm.png": {
     "webp": [
@@ -894,10 +895,11 @@
         "src": "blog-claude-code-fable-5-bg-800.webp"
       },
       {
-        "width": 1080,
-        "src": "blog-claude-code-fable-5-bg-1080.webp"
+        "width": 1200,
+        "src": "blog-claude-code-fable-5-bg-1200.webp"
       }
-    ]
+    ],
+    "srcMtimeMs": 1788075505283.2502
   },
   "/_posts/claude-code-fable-5/fable5-claude-code-workflow.png": {
     "webp": [
@@ -1102,10 +1104,11 @@
         "src": "blog-claude-cowork-intro-bg-800.webp"
       },
       {
-        "width": 1080,
-        "src": "blog-claude-cowork-intro-bg-1080.webp"
+        "width": 1200,
+        "src": "blog-claude-cowork-intro-bg-1200.webp"
       }
-    ]
+    ],
+    "srcMtimeMs": 1788075505752.7812
   },
   "/_posts/claude-cowork-intro/cowork_chat_cowork_mode_toggle.png": {
     "webp": [
@@ -2702,10 +2705,11 @@
         "src": "ga4-search-console-mcp-cover-800.webp"
       },
       {
-        "width": 1080,
-        "src": "ga4-search-console-mcp-cover-1080.webp"
+        "width": 1200,
+        "src": "ga4-search-console-mcp-cover-1200.webp"
       }
-    ]
+    ],
+    "srcMtimeMs": 1788075505174.896
   },
   "/_posts/ga4-search-console-mcp-install/ga4_property_access_add_user.png": {
     "webp": [
@@ -3322,10 +3326,11 @@
         "src": "blog-google-antigravity-800.webp"
       },
       {
-        "width": 1080,
-        "src": "blog-google-antigravity-1080.webp"
+        "width": 1200,
+        "src": "blog-google-antigravity-1200.webp"
       }
-    ]
+    ],
+    "srcMtimeMs": 1788075506521.4333
   },
   "/_posts/google-antigravity-ide/feature-chrome-extension.png": {
     "webp": [
@@ -5518,10 +5523,11 @@
         "src": "n8n-2.0-update-bg-800.webp"
       },
       {
-        "width": 1080,
-        "src": "n8n-2.0-update-bg-1080.webp"
+        "width": 1200,
+        "src": "n8n-2.0-update-bg-1200.webp"
       }
-    ]
+    ],
+    "srcMtimeMs": 1788075506245.1997
   },
   "/_posts/n8n-aggregate-split-out/n8n-splitout_aggregation_bg.jpg": {
     "webp": [
@@ -5734,10 +5740,11 @@
         "src": "blog-n8n-bycrawl-node-bg-800.webp"
       },
       {
-        "width": 1000,
-        "src": "blog-n8n-bycrawl-node-bg-1000.webp"
+        "width": 1200,
+        "src": "blog-n8n-bycrawl-node-bg-1200.webp"
       }
-    ]
+    ],
+    "srcMtimeMs": 1788075505509.3567
   },
   "/_posts/n8n-bycrawl-node/choose_your_plan_pricing_tiers_lite_pro_power_elite.png": {
     "webp": [
@@ -6370,10 +6377,11 @@
         "src": "blog-n8n-google-sheets-bg-800.webp"
       },
       {
-        "width": 1000,
-        "src": "blog-n8n-google-sheets-bg-1000.webp"
+        "width": 1200,
+        "src": "blog-n8n-google-sheets-bg-1200.webp"
       }
-    ]
+    ],
+    "srcMtimeMs": 1788075505396.4988
   },
   "/_posts/n8n-google-sheets-node/n8n_append_or_update_row_google_sheets_settings.png": {
     "webp": [
@@ -6876,8 +6884,13 @@
       {
         "width": 800,
         "src": "n8n-security-vulnerability-2025-bg-800.webp"
+      },
+      {
+        "width": 1200,
+        "src": "n8n-security-vulnerability-2025-bg-1200.webp"
       }
-    ]
+    ],
+    "srcMtimeMs": 1788075505865.2227
   },
   "/_posts/n8n-security-vulnerability-2025/n8n-zeabur-settings-source.png": {
     "webp": [
@@ -6922,10 +6935,11 @@
         "src": "blog-n8n-line-set_field-bg-800.webp"
       },
       {
-        "width": 1080,
-        "src": "blog-n8n-line-set_field-bg-1080.webp"
+        "width": 1200,
+        "src": "blog-n8n-line-set_field-bg-1200.webp"
       }
-    ]
+    ],
+    "srcMtimeMs": 1788075506394.6907
   },
   "/_posts/n8n-set-node/n8n-set-node-combine-fields.png": {
     "webp": [
@@ -6994,10 +7008,11 @@
         "src": "blog-n8n-time-saved-bg-800.webp"
       },
       {
-        "width": 1000,
-        "src": "blog-n8n-time-saved-bg-1000.webp"
+        "width": 1200,
+        "src": "blog-n8n-time-saved-bg-1200.webp"
       }
-    ]
+    ],
+    "srcMtimeMs": 1788075506001.8162
   },
   "/_posts/n8n-time-saved-node/blog-n8n-time-saved-cover.png": {
     "webp": [
@@ -8511,10 +8526,11 @@
         "src": "n8n-zeabur-ai-hub-model-router-bg-800.webp"
       },
       {
-        "width": 1080,
-        "src": "n8n-zeabur-ai-hub-model-router-bg-1080.webp"
+        "width": 1200,
+        "src": "n8n-zeabur-ai-hub-model-router-bg-1200.webp"
       }
-    ]
+    ],
+    "srcMtimeMs": 1788075506120.4326
   },
   "/_posts/n8n-zeabur-ai-hub-model-router/n8n-zeabur-dynamic-model-workflow-cover.jpg": {
     "webp": [
@@ -9175,10 +9191,11 @@
         "src": "rclone-cloud-sync-backup-bg-800.webp"
       },
       {
-        "width": 1080,
-        "src": "rclone-cloud-sync-backup-bg-1080.webp"
+        "width": 1200,
+        "src": "rclone-cloud-sync-backup-bg-1200.webp"
       }
-    ]
+    ],
+    "srcMtimeMs": 1788075505638.0757
   },
   "/_posts/rclone-cloud-sync-backup/rclone_concept_overview.jpg": {
     "webp": [
