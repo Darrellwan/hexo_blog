@@ -1,5 +1,7 @@
 'use strict';
 
+const { wrapWithSources } = require('../themes/next/scripts/helpers/image-variants')(hexo);
+
 // 註冊自定義的n8n分類助手函數
 hexo.extend.helper.register('get_n8n_posts_by_category', function(category) {
   const posts = this.site.posts.data;
@@ -228,7 +230,7 @@ hexo.extend.helper.register('latest_n8n_articles', function(limit = 6) {
     
     // 文章封面
     if (post.thumbnail) {
-      html += `<img src="${post.thumbnail}" alt="${post.title}">`;
+      html += wrapWithSources(post.thumbnail, `<img src="${post.thumbnail}" alt="${post.title}">`);
     } else if (post.bgImage) {
       html += `<img src="/gallery/${post.bgImage}" alt="${post.title}">`;
     } else {
@@ -275,7 +277,8 @@ hexo.extend.helper.register('n8n_category_articles', function(category, limit = 
     html += '<div class="n8n-article-card">';
     
     // 文章封面
-    html += `<img src="${this.get_n8n_post_thumbnail(post)}" alt="${post.title}">`;
+    const thumbnailUrl = this.get_n8n_post_thumbnail(post);
+    html += wrapWithSources(thumbnailUrl, `<img src="${thumbnailUrl}" alt="${post.title}">`);
     
     // 文章信息
     html += '<div class="n8n-article-info">';

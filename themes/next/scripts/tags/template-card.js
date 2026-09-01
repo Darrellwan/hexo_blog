@@ -4,6 +4,8 @@
 
 'use strict';
 
+const { wrapWithSources } = require('../helpers/image-variants')(hexo);
+
 function templateCard(args) {
   const urlMatch = args.join(' ').match(/url=["']?([^"'\s]+)["']?/);
   const idMatch = args.join(' ').match(/id=["']?([^"'\s]+)["']?/);
@@ -38,7 +40,7 @@ function templateCard(args) {
           </div>
         </div>
         <div class="template-card-image">
-          <img src="${thumbnail}" alt="${title}">
+          ${wrapWithSources(thumbnail, `<img src="${thumbnail}" alt="${title}">`)}
         </div>
       </div>
     </a>

@@ -28,10 +28,9 @@
         {%- endif %}
         <div class="post-thumbnail">
           <a href="{{ url_for(post.path) }}" class="post-thumbnail-link">
-            <img src="{{ thumbnailUrl }}"
-                 alt="{{ post.title }}"
-                 class="lazyload"
-                 loading="lazy">
+            {#- 縮圖只顯示 120x120，送原圖等於多送十幾倍。thumbnail_picture 會
+                包成 <picture> 去吃 800w 的 avif/webp，對不到變體就原樣輸出 <img>。 -#}
+            {{ thumbnail_picture(thumbnailUrl, post.title, 'class="lazyload" loading="lazy"') | safe }}
           </a>
         </div>
         {%- endif %}

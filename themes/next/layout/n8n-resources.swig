@@ -1800,11 +1800,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <a href="{{ pinnedCard.link }}" class="n8n-article-link" target="_blank" rel="noopener"
                    onclick="trackClick('{{ pinnedCard.link }}', '{{ pinnedCard.title }}', 'Darrell TW', '{{ cid }}-pinned')">
                   <div class="n8n-article-image" style="--bg-image: url('{{ pinnedCard.image }}');">
-                    <img src="{{ pinnedCard.image }}"
-                         alt="{{ pinnedCard.title }} - n8n {{ cid }}置頂卡片"
-                         loading="lazy"
-                         decoding="async"
-                         width="320" height="320">
+                    {{ thumbnail_picture(pinnedCard.image, pinnedCard.title ~ ' - n8n ' ~ cid ~ '置頂卡片', 'loading="lazy" decoding="async" width="320" height="320"') | safe }}
                   </div>
                   <div class="n8n-article-info">
                     <h3>{{ pinnedCard.title }}</h3>
@@ -1822,11 +1818,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <a href="{{ url_for(post.path) }}" class="n8n-article-link" target="_blank" rel="noopener"
                    onclick="trackClick('{{ url_for(post.path) }}', '{{ post.title }}', 'Darrell TW', '{{ cid }}')">
                   <div class="n8n-article-image" style="--bg-image: url('{{ get_n8n_post_thumbnail(post) }}');">
-                    <img src="{{ get_n8n_post_thumbnail(post) }}" 
-                         alt="{{ post.title }} - n8n {{ cid }}教學文章封面圖" 
-                         loading="lazy"
-                         decoding="async"
-                         width="320" height="320">
+                    {{ thumbnail_picture(get_n8n_post_thumbnail(post), post.title ~ ' - n8n ' ~ cid ~ '教學文章封面圖', 'loading="lazy" decoding="async" width="320" height="320"') | safe }}
                   </div>
                   <div class="n8n-article-info">
                     {# <div class="n8n-article-date">{{ format_n8n_date(post.date) }}</div> #}
@@ -1858,11 +1850,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <div class="n8n-tutorial-image" style="--bg-image: url('{{ tutorial.image }}');">
                 <a href="{{ tutorial.link }}" class="n8n-tutorial-image-link" target="_blank" rel="noopener"
                    onclick="trackClick('{{ tutorial.link }}', '{{ tutorial.title }}', '{{ tutorial.author }}', 'external')">
-                  <img src="{{ tutorial.image }}" 
-                       alt="{{ tutorial.title }} - 由{{ tutorial.author }}提供的n8n教學" 
-                       loading="lazy"
-                       decoding="async"
-                       width="400" height="225">
+                  {{ thumbnail_picture(tutorial.image, tutorial.title ~ ' - 由' ~ tutorial.author ~ '提供的n8n教學', 'loading="lazy" decoding="async" width="400" height="225"') | safe }}
                 </a>
               </div>
               <div class="n8n-tutorial-info">

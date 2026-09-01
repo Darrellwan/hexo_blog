@@ -4,6 +4,8 @@
 
 'use strict';
 
+const { wrapWithSources } = require('../helpers/image-variants')(hexo);
+
 function articleCard(args) {
   const urlMatch = args.join(' ').match(/url=["']?([^"'\s]+)["']?/);
   const titleMatch = args.join(' ').match(/title=["']?([^"']+?)["']?(?=\s+\w+=|$)/);
@@ -34,7 +36,7 @@ function articleCard(args) {
           ${previewText ? `<p class="article-card-preview">${previewText}</p>` : ''}
         </div>
         ${thumbnail ? `<div class="article-card-image">
-          <img src="${thumbnail}" alt="${title}" loading="lazy" decoding="async">
+          ${wrapWithSources(thumbnail, `<img src="${thumbnail}" alt="${title}" loading="lazy" decoding="async">`)}
         </div>` : ''}
       </div>
     </a>
