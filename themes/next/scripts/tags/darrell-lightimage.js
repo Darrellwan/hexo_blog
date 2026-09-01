@@ -68,11 +68,15 @@ function getFullUrl(imagePath, context) {
 const IMG_SIZES = '(max-width: 640px) 92vw, (max-width: 1024px) 76vw, (max-width: 1600px) 58vw, 810px';
 
 /**
- * 產生 <picture> 用的 webp <source>。
+ * 產生 <picture> 用的 <source>：avif 排在 webp 前面。
+ *
+ * 瀏覽器由上而下取第一個看得懂的 type，所以這個順序就是優先序：
+ * 支援 avif 的用 avif，只支援 webp 的往下拿 webp，兩個都不支援的用 <img> 原圖。
  *
  * 來源是 npm run images:webp 寫的 source/_data/image_variants.json，
  * 沒有登記的圖片回傳空字串，輸出就跟以前一模一樣。所以這個改動對還沒轉檔的
- * 舊文章沒有任何影響，不需要一次回填全站。
+ * 舊文章沒有任何影響，不需要一次回填全站；只有 webp 沒有 avif 的圖也照樣正確，
+ * 就只是少一個 <source>。
  *
  * lazy=true 用 data-srcset 交給 lazysizes 接手（5.3.2 原生支援 <picture>）；
  * 封面圖不走 lazyload，直接給 srcset。
@@ -96,15 +100,20 @@ function buildWebpSource(originalImageSrc, fullImageUrl, lazy) {
     key = matches.length === 1 ? matches[0] : null;
   }
 
-  if (!key || !variants[key] || !variants[key].webp || variants[key].webp.length === 0) return '';
+  if (!key || !variants[key]) return '';
 
+  const entry = variants[key];
   const baseUrl = fullImageUrl.substring(0, fullImageUrl.lastIndexOf('/') + 1);
-  const srcset = variants[key].webp
-    .map(v => `${baseUrl}${v.src} ${v.width}w`)
-    .join(', ');
   const attr = lazy ? 'data-srcset' : 'srcset';
 
-  return `<source type="image/webp" ${attr}="${srcset}" sizes="${IMG_SIZES}">`;
+  const toSource = (list, type) => {
+    if (!list || list.length === 0) return '';
+    const srcset = list.map(v => `${baseUrl}${v.src} ${v.width}w`).join(', ');
+    return `<source type="${type}" ${attr}="${srcset}" sizes="${IMG_SIZES}">`;
+  };
+
+  // 順序就是優先序，avif 必須排在 webp 前面
+  return toSource(entry.avif, 'image/avif') + toSource(entry.webp, 'image/webp');
 }
 
 // 生成 SVG 佔位符

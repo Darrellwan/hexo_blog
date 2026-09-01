@@ -10,6 +10,15 @@
  *   npm run images:webp -- grok-bot-review   只處理某篇文章
  *   npm run images:webp -- --dry             只列出會做什麼，不寫檔
  *   npm run images:webp -- --force           忽略快取，全部重新編碼
+ *   npm run images:webp -- --avif            順便產 avif 變體（需要 avifenc）
+ *
+ * --avif：除了 webp 再產一組同尺寸的 avif，寫進 manifest 的 avif 欄位，
+ * 圖片標籤會把 <source type="image/avif"> 排在 webp 前面。2026-09-01 用本站
+ * 10 張代表圖實測（800w、對照現有 webp q82）：體積 523KB→370KB（少 29%），
+ * 平均 SSIM 0.9749→0.9870（畫質反而更好）。不帶這個 flag 的行為完全不變。
+ *
+ * 🔴 帶 --avif 時，沒有 avif 紀錄的圖會連 webp 一起重壓一次（快取整筆算沒命中）。
+ * 正確但慢，全站第一次鋪開要等；之後就會被快取跳過。
  *
  * 增量跳過：manifest 記了每張原圖處理當下的 mtime，原圖沒變、上次的產出
  * （或「webp 比原圖大所以放棄」的紀錄，存成 webp: []）還在就直接跳過。
@@ -30,14 +39,22 @@
  */
 
 const fs = require('fs');
+const os = require('os');
 const path = require('path');
 const { execFileSync } = require('child_process');
 const { glob } = require('glob');
 const { imageSize } = require('image-size');
 
+// avif 縮圖用的 ImageMagick 路徑。在 main() 裡才偵測——這個檔案會被 Hexo
+// 當 plugin 載入，module 層級去戳外部執行檔會拖慢每次 hexo 啟動。
+let MAGICK = null;
+
 const POSTS_DIR = path.join(__dirname, '../source/_posts');
 const MANIFEST = path.join(__dirname, '../source/_data/image_variants.json');
 const QUALITY = '82';
+// avifenc 的品質尺度跟 cwebp 不一樣，數字不能互相對照。60 是實測挑出來的：
+// 同尺寸下比 webp q82 小 29%，SSIM 還高一截（0.9870 vs 0.9749）。
+const AVIF_QUALITY = '60';
 const TARGET_WIDTHS = [800, 1600];
 
 const toKB = bytes => Math.round(bytes / 1024);
@@ -49,6 +66,85 @@ function hasCwebp() {
   } catch (err) {
     return false;
   }
+}
+
+function hasAvifenc() {
+  try {
+    execFileSync('avifenc', ['--version'], { stdio: 'ignore' });
+    return true;
+  } catch (err) {
+    return false;
+  }
+}
+
+/** ImageMagick 的位置，avif 縮圖要用。找不到回傳 null。 */
+function findMagick() {
+  for (const bin of ['/opt/homebrew/bin/magick', '/usr/local/bin/magick', 'magick']) {
+    try {
+      execFileSync(bin, ['-version'], { stdio: 'ignore' });
+      return bin;
+    } catch (err) {
+      // 換下一個候選
+    }
+  }
+  return null;
+}
+
+const WEBP_FORMAT = {
+  ext: 'webp',
+  // cwebp 自己會縮圖，一步到位
+  encode: (src, out, w) => execFileSync('cwebp',
+    ['-quiet', '-q', QUALITY, '-m', '6', '-resize', String(w), '0', src, '-o', out],
+    { stdio: 'ignore' }),
+};
+
+/**
+ * avifenc 沒有縮圖功能，所以先用 ImageMagick 縮到暫存 PNG 再編碼。
+ *
+ * 為什麼不用 macOS 內建的 sips（免一個依賴）：`sips -Z` 限制的是「最長邊」
+ * 不是寬度，800x1656 的直式圖會被縮成 386x800；而且它讀不了本站那個
+ * 副檔名叫 .png、內容其實是 WebP 的檔案。
+ *
+ * -j all 吃滿 CPU 核心；--speed 6 是編碼速度與體積的折衷，本機批次跑得完。
+ */
+const AVIF_FORMAT = {
+  ext: 'avif',
+  encode: (src, out, w) => {
+    const tmp = path.join(os.tmpdir(), `avif-src-${process.pid}-${w}.png`);
+    try {
+      execFileSync(MAGICK, [src, '-resize', `${w}x>`, tmp], { stdio: 'ignore' });
+      execFileSync('avifenc', ['-q', AVIF_QUALITY, '--speed', '6', '-j', 'all', tmp, out],
+        { stdio: 'ignore' });
+    } finally {
+      try { fs.unlinkSync(tmp); } catch (e) {}
+    }
+  },
+};
+
+/**
+ * 產一組指定格式的變體，回傳「比原圖小」的那幾個。
+ *
+ * 比原圖大的直接刪掉不留：<picture> 只有在變體更小的時候才有意義，
+ * 留著只會佔 repo 空間又永遠不會被送出去。
+ */
+function encodeVariants(file, dir, base, widths, origSize, format) {
+  const produced = [];
+
+  for (const w of widths) {
+    const out = path.join(dir, `${base}-${w}.${format.ext}`);
+    try {
+      format.encode(file, out, w);
+      produced.push({ width: w, file: out, size: fs.statSync(out).size });
+    } catch (err) {
+      console.warn(`[Webp] ${format.ext} 轉檔失敗：${path.relative(POSTS_DIR, file)} @${w}w`);
+    }
+  }
+
+  const valid = produced.filter(p => p.size < origSize);
+  produced.filter(p => p.size >= origSize).forEach(p => {
+    try { fs.unlinkSync(p.file); } catch (e) {}
+  });
+  return valid;
 }
 
 /**
@@ -73,9 +169,23 @@ async function main() {
   const force = args.includes('--force');
   const subDir = args.find(a => !a.startsWith('--'));
 
+  const wantAvif = args.includes('--avif');
+
   if (!dryRun && !hasCwebp()) {
     console.error('[Webp] 找不到 cwebp，請先安裝：brew install webp');
     process.exit(1);
+  }
+
+  if (!dryRun && wantAvif) {
+    if (!hasAvifenc()) {
+      console.error('[Webp] --avif 需要 avifenc，請先安裝：brew install libavif');
+      process.exit(1);
+    }
+    MAGICK = findMagick();
+    if (!MAGICK) {
+      console.error('[Webp] --avif 需要 ImageMagick 來縮圖（avifenc 自己不會縮），請先安裝：brew install imagemagick');
+      process.exit(1);
+    }
   }
 
   const scope = subDir ? path.join(POSTS_DIR, subDir) : POSTS_DIR;
@@ -97,6 +207,8 @@ async function main() {
   let cached = 0;
   let origTotal = 0;
   let webpTotal = 0;
+  let avifTotal = 0;
+  let webpCmpTotal = 0;   // 跟 avifTotal 對應的同尺寸 webp 合計，只用來算 avif 省了多少
 
   for (const file of files) {
     const dir = path.dirname(file);
@@ -109,8 +221,11 @@ async function main() {
     // 舊格式的條目沒有 srcMtimeMs，比不中，會重壓一次然後補上。
     const prev = manifest[manifestKey(file)];
     if (!force && !dryRun && prev && prev.srcMtimeMs === stat.mtimeMs) {
-      const outputsIntact = (prev.webp || []).every(v => fs.existsSync(path.join(dir, v.src)));
-      if (outputsIntact) {
+      const intact = list => (list || []).every(v => fs.existsSync(path.join(dir, v.src)));
+      // avif 是後來才加的欄位：舊條目連 key 都沒有，這時候不能算命中，
+      // 否則所有 mtime 沒變的圖永遠不會被補產 avif。
+      const avifReady = !wantAvif || (prev.avif !== undefined && intact(prev.avif));
+      if (intact(prev.webp) && avifReady) {
         cached++;
         continue;
       }
@@ -132,42 +247,64 @@ async function main() {
       continue;
     }
 
-    const produced = [];
-    for (const w of widths) {
-      const out = path.join(dir, `${base}-${w}.webp`);
-      try {
-        execFileSync('cwebp', ['-quiet', '-q', QUALITY, '-m', '6', '-resize', String(w), '0', file, '-o', out]);
-        produced.push({ width: w, file: out, size: fs.statSync(out).size });
-      } catch (err) {
-        console.warn(`[Webp] 轉檔失敗：${path.relative(POSTS_DIR, file)} @${w}w`);
-      }
+    const validVariants = encodeVariants(file, dir, base, widths, origSize, WEBP_FORMAT);
+    let avifVariants = wantAvif
+      ? encodeVariants(file, dir, base, widths, origSize, AVIF_FORMAT)
+      : null;
+
+    // avif 排在 webp 前面，支援的瀏覽器一定拿 avif，所以同一個尺寸的 avif
+    // 沒有比 webp 小就是幫倒忙——大片純色的 UI 截圖很常這樣。這種就刪掉，
+    // 讓那個尺寸退回 webp。
+    // 同尺寸沒有 webp 可比的（webp 比原圖大被放棄）則保留：那是純賺的。
+    if (avifVariants) {
+      const webpSizeAt = new Map(validVariants.map(v => [v.width, v.size]));
+      avifVariants = avifVariants.filter(a => {
+        const webpSize = webpSizeAt.get(a.width);
+        if (webpSize !== undefined && a.size >= webpSize) {
+          try { fs.unlinkSync(a.file); } catch (e) {}
+          return false;
+        }
+        return true;
+      });
     }
 
-    if (produced.length === 0) continue;
+    const toEntry = list => list.map(p => ({ width: p.width, src: path.basename(p.file) }));
+    const entry = { webp: toEntry(validVariants), srcMtimeMs: stat.mtimeMs };
+    if (avifVariants) {
+      entry.avif = toEntry(avifVariants);
+    } else if (prev && prev.avif !== undefined) {
+      // 這一輪沒產 avif 就沿用上次的紀錄，別把既有的 avif 欄位洗掉
+      entry.avif = prev.avif;
+    }
+    manifest[manifestKey(file)] = entry;
 
-    const validVariants = produced.filter(p => p.size < origSize);
-    produced.filter(p => p.size >= origSize).forEach(p => {
-      try { fs.unlinkSync(p.file); } catch (e) {}
-    });
-
-    if (validVariants.length === 0) {
-      // 圖片標籤那邊對 webp: [] 直接不輸出 <source>，跟沒有條目時行為相同
-      manifest[manifestKey(file)] = { webp: [], srcMtimeMs: stat.mtimeMs };
+    if (entry.webp.length === 0 && (entry.avif || []).length === 0) {
+      // 圖片標籤那邊對空陣列直接不輸出 <source>，跟沒有條目時行為相同
       skipped++;
-      console.log(`  跳過  ${path.relative(POSTS_DIR, file)}  webp >= 原圖 ${toKB(origSize)}KB`);
+      console.log(`  跳過  ${path.relative(POSTS_DIR, file)}  變體都沒有比原圖 ${toKB(origSize)}KB 小`);
       continue;
     }
 
-    manifest[manifestKey(file)] = {
-      webp: validVariants.map(p => ({ width: p.width, src: path.basename(p.file) })),
-      srcMtimeMs: stat.mtimeMs,
-    };
     origTotal += origSize;
-    webpTotal += validVariants[validVariants.length - 1].size;
+    if (validVariants.length) webpTotal += validVariants[validVariants.length - 1].size;
+    // avif 只跟「同尺寸也有 webp」的部分比。兩邊保留的尺寸可能不一樣
+    // （webp 放棄了某個尺寸、avif 留著），直接比各自的最大變體會得到假數字。
+    if (avifVariants) {
+      const webpSizeAt = new Map(validVariants.map(v => [v.width, v.size]));
+      for (const a of avifVariants) {
+        const webpSize = webpSizeAt.get(a.width);
+        if (webpSize !== undefined) {
+          avifTotal += a.size;
+          webpCmpTotal += webpSize;
+        }
+      }
+    }
     done++;
+    const fmtList = list => list.map(p => `${p.width}w ${toKB(p.size)}KB`).join(', ');
     console.log(
       `  ${path.relative(POSTS_DIR, file)}  原圖 ${toKB(origSize)}KB -> ` +
-      validVariants.map(p => `${p.width}w ${toKB(p.size)}KB`).join(', ')
+      `webp ${fmtList(validVariants)}` +
+      (avifVariants && avifVariants.length ? `｜avif ${fmtList(avifVariants)}` : '')
     );
   }
 
@@ -183,6 +320,14 @@ async function main() {
     `以最大變體比較：${toKB(origTotal)}KB -> ${toKB(webpTotal)}KB` +
     (origTotal ? `，省下 ${toKB(saved)}KB（${Math.round((saved / origTotal) * 100)}%）` : '')
   );
+  if (wantAvif && webpCmpTotal) {
+    // 支援 avif 的瀏覽器本來就會拿 webp，省的是這個差額
+    const vsWebp = webpCmpTotal - avifTotal;
+    console.log(
+      `[Webp] avif ${toKB(avifTotal)}KB vs 同尺寸 webp ${toKB(webpCmpTotal)}KB，` +
+      `少 ${toKB(vsWebp)}KB（${Math.round((vsWebp / webpCmpTotal) * 100)}%）`
+    );
+  }
   console.log(`[Webp] 清單已寫入 ${path.relative(path.join(__dirname, '..'), MANIFEST)}`);
 }
 
