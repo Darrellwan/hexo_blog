@@ -3,13 +3,13 @@
 ## 📚 最新文章
 
 ### [Zeabur 資安事件：環境變數外洩後，怎麼確認災情與輪替密碼](https://www.darrelltw.com/zeabur-security-incident-env-leak/?utm_source=github_readme&utm_medium=referral)
-📅 2026/08/29 · 2 天前
+📅 2026/08/29 · 7 天前
 
 > Zeabur 2026 年 8 月資安事件（環境變數外洩）處理紀錄：官方確認外洩的變數清單、沒收到通知信要怎麼自己確認、用 Zeabur CLI 盤點環境變數與引用鏈、第三方 API Key 的正確撤銷順序，以及 PostgreSQL 密碼輪替時官方指南少了 -d 參數會失敗的修正做法
 
 
 ### [Grok Bot 是什麼？實測有自己雲端電腦的 AI Agent](https://www.darrelltw.com/grok-bot-review/?utm_source=github_readme&utm_medium=referral)
-📅 2026/08/23 · 9 天前
+📅 2026/08/23 · 14 天前
 
 > xAI 推出的 Grok Bot 實測心得，每個 Bot 有自己的雲端電腦，可以開瀏覽器操作沒有 API 的網站，實測比價流程、把操作存成技能、Bot 之間互相溝通交辦，以及每天自動跑的例行任務，附三種取得方式的費用比較
 
@@ -39,7 +39,7 @@
 
 
 ### [n8n ByCrawl 節點教學：簡單好用的台灣爬蟲服務](https://www.darrelltw.com/n8n-bycrawl-node/?utm_source=github_readme&utm_medium=referral)
-📅 2026/04/20 · 4 個月前
+📅 2026/04/20 · 5 個月前
 
 > n8n ByCrawl 社群節點完整教學！一把 API Key 就能抓 Threads、IG、X、Reddit、Dcard、PTT 等 15 個平台的社群數據。包含安裝設定、功能介紹、品牌聲量監控實戰案例和定價分析。
 
@@ -51,7 +51,7 @@
 
 
 ### [Claude Code Channels 設定教學，用 Discord、Telegram 遠端使用 Claude Code](https://www.darrelltw.com/claude-code-channels-discord-telegram/?utm_source=github_readme&utm_medium=referral)
-📅 2026/03/20 · 5 個月前
+📅 2026/03/20 · 6 個月前
 
 > Claude Code Channels 讓你從手機 Discord 或 Telegram 傳訊息給正在跑的 Claude Code，不用坐在電腦前也能讓 AI 幫你改 code、跑指令。完整 Discord Bot 和 Telegram Bot 設定教學和幾個場景測試
 
@@ -65,7 +65,7 @@
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-129-blue?style=flat-square)
 ![總字數](https://img.shields.io/badge/總字數-388,657+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2026/09/01-green?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2026/09/06-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-09-01 10:06:21*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-09-06 03:53:24*
