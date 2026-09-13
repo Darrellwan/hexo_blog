@@ -3,13 +3,13 @@
 ## 📚 最新文章
 
 ### [Zeabur 資安事件：環境變數外洩後，怎麼確認災情與輪替密碼](https://www.darrelltw.com/zeabur-security-incident-env-leak/?utm_source=github_readme&utm_medium=referral)
-📅 2026/08/29 · 7 天前
+📅 2026/08/29 · 14 天前
 
 > Zeabur 2026 年 8 月資安事件（環境變數外洩）處理紀錄：官方確認外洩的變數清單、沒收到通知信要怎麼自己確認、用 Zeabur CLI 盤點環境變數與引用鏈、第三方 API Key 的正確撤銷順序，以及 PostgreSQL 密碼輪替時官方指南少了 -d 參數會失敗的修正做法
 
 
 ### [Grok Bot 是什麼？實測有自己雲端電腦的 AI Agent](https://www.darrelltw.com/grok-bot-review/?utm_source=github_readme&utm_medium=referral)
-📅 2026/08/23 · 14 天前
+📅 2026/08/23 · 21 天前
 
 > xAI 推出的 Grok Bot 實測心得，每個 Bot 有自己的雲端電腦，可以開瀏覽器操作沒有 API 的網站，實測比價流程、把操作存成技能、Bot 之間互相溝通交辦，以及每天自動跑的例行任務，附三種取得方式的費用比較
 
@@ -27,7 +27,7 @@
 
 
 ### [n8n CLI 教學 - 用終端機管理 workflow，備份、批次操作、AI 整合](https://www.darrelltw.com/n8n-cli-guide/?utm_source=github_readme&utm_medium=referral)
-📅 2026/06/22 · 2 個月前
+📅 2026/06/22 · 3 個月前
 
 > n8n 官方 CLI 工具（@n8n/cli）實測教學：從安裝、API key 連線設定，到 workflow 備份、execution 錯誤排查、批次停用，再用 skill install 讓 Claude Code 直接幫你管理 n8n。包含指令安全分級、npm 同名套件陷阱、--id-only 改版注意事項與目前限制整理。
 
@@ -65,7 +65,7 @@
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-129-blue?style=flat-square)
 ![總字數](https://img.shields.io/badge/總字數-388,657+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2026/09/06-green?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2026/09/13-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-09-06 03:53:24*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-09-13 04:08:14*
