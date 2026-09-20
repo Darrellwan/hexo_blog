@@ -3,25 +3,25 @@
 ## 📚 最新文章
 
 ### [Zeabur 資安事件：環境變數外洩後，怎麼確認災情與輪替密碼](https://www.darrelltw.com/zeabur-security-incident-env-leak/?utm_source=github_readme&utm_medium=referral)
-📅 2026/08/29 · 14 天前
+📅 2026/08/29 · 21 天前
 
 > Zeabur 2026 年 8 月資安事件（環境變數外洩）處理紀錄：官方確認外洩的變數清單、沒收到通知信要怎麼自己確認、用 Zeabur CLI 盤點環境變數與引用鏈、第三方 API Key 的正確撤銷順序，以及 PostgreSQL 密碼輪替時官方指南少了 -d 參數會失敗的修正做法
 
 
 ### [Grok Bot 是什麼？實測有自己雲端電腦的 AI Agent](https://www.darrelltw.com/grok-bot-review/?utm_source=github_readme&utm_medium=referral)
-📅 2026/08/23 · 21 天前
+📅 2026/08/23 · 1 個月前
 
 > xAI 推出的 Grok Bot 實測心得，每個 Bot 有自己的雲端電腦，可以開瀏覽器操作沒有 API 的網站，實測比價流程、把操作存成技能、Bot 之間互相溝通交辦，以及每天自動跑的例行任務，附三種取得方式的費用比較
 
 
 ### [如何在 Claude Desktop 安裝 GA4、SEO MCP](https://www.darrelltw.com/ga4-search-console-mcp-install/?utm_source=github_readme&utm_medium=referral)
-📅 2026/08/02 · 1 個月前
+📅 2026/08/02 · 2 個月前
 
 > 實測和分享 GA4 , Search Console 的 MCP 安裝流程，讓 Claude Desktop 串接後就能輕鬆分析 GA4 報表和 Search Console 排名數據。
 
 
 ### [Claude Code Fable 5 限時限量回歸，該怎麼用](https://www.darrelltw.com/claude-code-fable-5/?utm_source=github_readme&utm_medium=referral)
-📅 2026/07/03 · 2 個月前
+📅 2026/07/03 · 3 個月前
 
 > Claude Code Fable 5 使用建議，整理 2026/07 額度規則、Opus 5 與 Fable 5 的 benchmark 對照，以及哪些任務值得用 Fable、怎麼切換模型與控制成本。
 
@@ -57,7 +57,7 @@
 
 
 ### [rclone - 雲端同步與檔案備份的瑞士刀 搭配 Claude Code 超好用](https://www.darrelltw.com/rclone-cloud-sync-backup/?utm_source=github_readme&utm_medium=referral)
-📅 2026/03/03 · 6 個月前
+📅 2026/03/03 · 7 個月前
 
 > rclone 實測教學：Google Drive 和 Cloudflare R2 設定、copy/sync/move 指令差異比較、rclone.conf 設定檔解析，以及用 crontab 做每日自動雲端備份。
 
@@ -65,7 +65,7 @@
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-129-blue?style=flat-square)
 ![總字數](https://img.shields.io/badge/總字數-388,657+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2026/09/13-green?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2026/09/20-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-09-13 04:08:14*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-09-20 04:18:15*
