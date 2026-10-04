@@ -65,7 +65,7 @@
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-129-blue?style=flat-square)
 ![總字數](https://img.shields.io/badge/總字數-388,657+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2026/09/27-green?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2026/10/04-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -92,12 +92,12 @@
 
 ## 📈 更新頻率
 ```text
-04月 ██░░░░░░░░ 2篇
 05月 █░░░░░░░░░ 1篇
 06月 █░░░░░░░░░ 1篇
 07月 █░░░░░░░░░ 1篇
 08月 ███░░░░░░░ 3篇
 09月 ░░░░░░░░░░ 0篇
+10月 ░░░░░░░░░░ 0篇
 ```
 
 
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-09-27 04:39:34*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-10-04 05:12:22*
