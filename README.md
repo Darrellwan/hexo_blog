@@ -15,13 +15,13 @@
 
 
 ### [如何在 Claude Desktop 安裝 GA4、SEO MCP](https://www.darrelltw.com/ga4-search-console-mcp-install/?utm_source=github_readme&utm_medium=referral)
-📅 2026/08/02 · 2 個月前
+📅 2026/08/02 · 3 個月前
 
 > 實測和分享 GA4 , Search Console 的 MCP 安裝流程，讓 Claude Desktop 串接後就能輕鬆分析 GA4 報表和 Search Console 排名數據。
 
 
 ### [Claude Code Fable 5 限時限量回歸，該怎麼用](https://www.darrelltw.com/claude-code-fable-5/?utm_source=github_readme&utm_medium=referral)
-📅 2026/07/03 · 3 個月前
+📅 2026/07/03 · 4 個月前
 
 > Claude Code Fable 5 使用建議，整理 2026/07 額度規則、Opus 5 與 Fable 5 的 benchmark 對照，以及哪些任務值得用 Fable、怎麼切換模型與控制成本。
 
@@ -33,7 +33,7 @@
 
 
 ### [n8n Google Sheets 節點教學](https://www.darrelltw.com/n8n-google-sheets-node/?utm_source=github_readme&utm_medium=referral)
-📅 2026/05/09 · 5 個月前
+📅 2026/05/09 · 6 個月前
 
 > n8n Google Sheets 節點完整教學。6 個操作怎麼選（含決策樹）、Trigger polling 限制說明，以及 Gmail 電子發票 AI 自動解析去重實戰案例。
 
@@ -45,7 +45,7 @@
 
 
 ### [Claude Managed Agents 實測：簡單快速建立自己的雲端 AI Agent](https://www.darrelltw.com/claude-managed-agents/?utm_source=github_readme&utm_medium=referral)
-📅 2026/04/09 · 6 個月前
+📅 2026/04/09 · 7 個月前
 
 > Anthropic 推出 Claude Managed Agents，讓開發者用 Console 或 API 在雲端建立、部署生產等級的 AI Agent。實測 Quickstart 流程，從建立 Agent 到跑出第一個 Session 和心得分享。
 
@@ -65,7 +65,7 @@
 ## 📊 部落格統計
 ![文章總數](https://img.shields.io/badge/文章總數-129-blue?style=flat-square)
 ![總字數](https://img.shields.io/badge/總字數-388,657+-blue?style=flat-square)
-![最後更新](https://img.shields.io/badge/最後更新-2026/10/18-green?style=flat-square)
+![最後更新](https://img.shields.io/badge/最後更新-2026/10/25-green?style=flat-square)
 
 ## 📈 近期 30 天熱門文章
 ```text
@@ -119,4 +119,4 @@
 </div>
 
 ---
-*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-10-18 03:53:29*
+*此 README 由 [GitHub Actions](https://github.com/Darrellwan/hexo_blog/actions) 自動生成，最後更新：2026-10-25 04:01:05*
